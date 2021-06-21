@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['palettecount_917',['PaletteCount',['../struct_tui_instance__s.html#a65f6caed60d4ad1ef4f701c09122816d',1,'TuiInstance_s']]],
+  ['palettecreate_918',['PaletteCreate',['../struct_tui_instance__s.html#ae345877c471c62074e781f46fff96dc9',1,'TuiInstance_s']]],
+  ['palettedestroy_919',['PaletteDestroy',['../struct_tui_instance__s.html#af454b0dc6f7af90f3739bb733c5a36b7',1,'TuiInstance_s']]],
+  ['panelclearcolor_920',['PanelClearColor',['../struct_tui_instance__s.html#a880211eaedb382b3fb2d187abb4d8025',1,'TuiInstance_s']]],
+  ['panelcount_921',['PanelCount',['../struct_tui_instance__s.html#a340b0c40b3081f9319fa658de2c2a75b',1,'TuiInstance_s']]],
+  ['panelcreate_922',['PanelCreate',['../struct_tui_instance__s.html#a87ce8825eee3c84630a97e4433fe030d',1,'TuiInstance_s']]],
+  ['paneldestroy_923',['PanelDestroy',['../struct_tui_instance__s.html#aaee9adce91ab4b1dffffd2040fa5facd',1,'TuiInstance_s']]],
+  ['paneldrawbatchdata_924',['PanelDrawBatchData',['../struct_tui_instance__s.html#a40cbe65b66acb7238d97f957762cc254',1,'TuiInstance_s']]],
+  ['panelgetpixels_925',['PanelGetPixels',['../struct_tui_instance__s.html#a2803c1e2f9519b505d49b907783165f0',1,'TuiInstance_s']]],
+  ['panelrender_926',['PanelRender',['../struct_tui_instance__s.html#aff7678355a6e1e52782fe3ccf5be0f74',1,'TuiInstance_s']]],
+  ['panelrendertopanel_927',['PanelRenderToPanel',['../struct_tui_instance__s.html#acc610d94b607d3b4021fe716d0352ca5',1,'TuiInstance_s']]],
+  ['panelsetsize_928',['PanelSetSize',['../struct_tui_instance__s.html#a9fc250dd84cbbba512959d5a2e5b6845',1,'TuiInstance_s']]],
+  ['pixeldata_929',['PixelData',['../struct_tui_image__s.html#aa3040ece309a5ae877bb036698dd04f5',1,'TuiImage_s']]],
+  ['pixeldatasize_930',['PixelDataSize',['../struct_tui_glyph_atlas__s.html#ad331d0875c6aaebe22a1fa4bd26bbebf',1,'TuiGlyphAtlas_s::PixelDataSize()'],['../struct_tui_image__s.html#a5a9731438310ba5e90ca91646389135d',1,'TuiImage_s::PixelDataSize()']]],
+  ['pixelheight_931',['PixelHeight',['../struct_tui_instance__s.html#a1188a424643b30de5a2e51c8d0f81980',1,'TuiInstance_s::PixelHeight()'],['../struct_tui_glyph_atlas__s.html#a7d66c956d2a304266c7a915f0953e035',1,'TuiGlyphAtlas_s::PixelHeight()'],['../struct_tui_image__s.html#a9dee996f23b5226de2c38562a00742dd',1,'TuiImage_s::PixelHeight()']]],
+  ['pixelwidth_932',['PixelWidth',['../struct_tui_instance__s.html#a42d3a21009f7529d37d011a60526b492',1,'TuiInstance_s::PixelWidth()'],['../struct_tui_glyph_atlas__s.html#a8c9d69ad010dcc646ed399f1e28a4618',1,'TuiGlyphAtlas_s::PixelWidth()'],['../struct_tui_image__s.html#a313191714b00a8231eb238ad014f054f',1,'TuiImage_s::PixelWidth()']]]
+];
