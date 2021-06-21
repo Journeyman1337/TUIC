@@ -1,0 +1,1 @@
+This manual test framework is for ensuring that TUIC rendered output looks correct. Due to graphics card differences, these tests are best done manually.

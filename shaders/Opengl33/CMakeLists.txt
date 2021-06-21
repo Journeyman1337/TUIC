@@ -1,0 +1,16 @@
+file(GLOB OPENGL33_GLSL_FILES
+	${TUIC_SOURCE_DIR}/shaders/Opengl33/*.glsl
+)
+set(OPENGL33_GLSL_SHADERS "")
+foreach(GLSL_FILE ${OPENGL33_GLSL_FILES})
+	set(FILE ${TUIC_SOURCE_DIR}/shaders/Opengl33/${GLSL_FILE})
+	get_filename_component(FILE_NAME ${FILE} NAME_WE)
+	set(source "\"")
+	file(STRINGS ${GLSL_FILE} LINES)
+	foreach (LINE ${LINES})		
+		set(source "${source}\\n${LINE}")
+	endforeach()
+	set(source "${source}\"")
+	set(OPENGL33_GLSL_SHADERS "${OPENGL33_GLSL_SHADERS}\nconst char* kShader_${FILE_NAME} = ${source};")
+endforeach()
+configure_file(${TUIC_SOURCE_DIR}/include/TUIC/backends/opengl33_implementation.in  ${TUIC_SOURCE_DIR}/include/TUIC/backends/opengl33_implementation.h)

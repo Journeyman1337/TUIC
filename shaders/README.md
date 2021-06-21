@@ -1,0 +1,1 @@
+These files contain shader code for all shaders used in TUIC for easy viewing. You do not need to worry about including these with your project, as they are automatically copied into the TUIC header files by the CMake build system.

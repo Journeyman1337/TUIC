@@ -1,0 +1,1 @@
+This auto test framework is for testing features of TUIC that can be tested automatically using Catch2.
