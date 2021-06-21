@@ -182,7 +182,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, 
  * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
  * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
- * Throws @ref TUI_ERROR_NULL_BATCH_SATA if batch_data is NULL.
+ * Throws @ref TUI_ERROR_NULL_BATCH_DATA if batch_data is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
@@ -234,7 +234,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalett
  * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
  * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
- * Throws @ref TUI_ERROR_NULL_BATCH_SATA if batch_data is NULL.
+ * Throws @ref TUI_ERROR_NULL_BATCH_DATA if batch_data is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
