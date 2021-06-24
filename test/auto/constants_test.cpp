@@ -1,7 +1,6 @@
-#pragma once
 #include <TUIC/tuic.h>
 #include <string>
-#include "catch.hpp"
+#include <catch2/catch.hpp>
 
 TEST_CASE("tuiDetailModeIsValid") {
     SECTION("Detail modes should all return true") {

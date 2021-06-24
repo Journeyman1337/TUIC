@@ -1,6 +1,5 @@
-#pragma once
 #include <TUIC/tuic.h>
-#include "catch.hpp"
+#include <catch2/catch.hpp>
 
 TEST_CASE("tuiClassicColorGetBackground") {
     REQUIRE(tuiClassicColorGetBackground(43) == 2);

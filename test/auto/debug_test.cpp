@@ -1,8 +1,6 @@
-#pragma once
 #include <TUIC/tuic.h>
 #include <string>
-#include "catch.hpp"
-
+#include <catch2/catch.hpp>
 #define TO_STRING(value) #value
 
 TEST_CASE("tuiErrorCodeToString") {

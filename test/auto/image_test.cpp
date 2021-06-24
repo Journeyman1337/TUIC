@@ -1,6 +1,6 @@
-#pragma once
 #include <TUIC/tuic.h>
 #include <iostream>
+#include <catch2/catch.hpp>
 
 uint8_t kRedPixels4x4RGB[4 * 4 * 3] =
 {
