@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         platform:
-        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,       arch: "x64-windows",   vcpkgdir: "C:/vcpkg/downloads" }
+        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,       arch: "x64-windows",   vcpkgdir: "C:/vcpkg/" }
         - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10,       arch: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg" }
         - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12,   arch: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg" }
         - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++,      arch: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg"  }
