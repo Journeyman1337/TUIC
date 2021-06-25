@@ -25,7 +25,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-#include <stdint.h>
+#include <stddef.h>
 /*! @name Opaque Object Types
  * These structs are defined in the header file \"tuic/backends/objects.h\", but you are not meant to access their properties directly except when implementing a backend to avoid undefined behaviour. Instead, you are meant to only manipulate these objects by passing these opaque types into functions included in the library.
  *  @{ */
