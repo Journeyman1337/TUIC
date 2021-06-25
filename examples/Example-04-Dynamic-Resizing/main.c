@@ -1,4 +1,4 @@
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <TUIC/tuic.h>
@@ -77,7 +77,7 @@ void WindowResizeCallback(GLFWwindow* window, int width, int height)
             }
         }
         tuiPanelClearColor(usr_ptr->panel, 0, 0, 0, 0);
-        tuiPanelDrawBatch(usr_ptr->panel, usr_ptr->atlas, usr_ptr->palette, usr_ptr->batch, kSheetBlendMode);
+        tuiPanelDrawBatch(usr_ptr->panel, usr_ptr->atlas, usr_ptr->palette, usr_ptr->batch);
     }
 }
 
