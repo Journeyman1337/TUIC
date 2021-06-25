@@ -166,7 +166,7 @@ size_t tuiImageGetPixelDataSize(TuiImage image)
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return 0;
 	}
 
 	return image->PixelDataSize;
