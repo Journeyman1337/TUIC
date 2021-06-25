@@ -38,7 +38,7 @@ jobs:
       - name: install Catch2
         shell: bash
         working-directory: ${{ matrix.vcpkgdir }}
-        run: vcpkg install catch2 --triplet=${{ matrix.triplet }} 
+        run: vcpkg install catch2 --triplet ${{ matrix.triplet }} 
       - name: cmake build
         shell: bash
         working-directory: ${{github.workspace}}
