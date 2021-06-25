@@ -343,7 +343,7 @@ TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
 	palette->ColorCount = (size_t)color_count;
 	palette->Instance = instance;
 	palette->ApiData = NULL;
-	palette->Instance->PaletteCreate(palette, &kTuiXtermPalette[0]);
+	palette->Instance->PaletteCreate(palette, (const uint8_t*)&kTuiXtermPalette[0]);
 	return palette;
 }
 
