@@ -48,7 +48,7 @@ TuiInstance tuiPanelGetInstance(TuiPanel panel)
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
+		return NULL;
 	}
 
 	return panel->Instance;
@@ -162,7 +162,7 @@ int tuiPanelGetPixelWidth(TuiPanel panel)
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
+		return 0;
 	}
 
 	return panel->FramebufferWidth;
@@ -173,7 +173,7 @@ int tuiPanelGetPixelHeight(TuiPanel panel)
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
+		return 0;
 	}
 
 	return panel->FramebufferHeight;
