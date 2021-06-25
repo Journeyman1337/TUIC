@@ -24,9 +24,6 @@ jobs:
       - name: log CMake version
         shell: bash
         run: cmake --version
-      - name: update vcpkg portfiles
-        shell: bash
-        run: vcpkg update
       - name: create build enviornment
         shell: bash
         working-directory: ${{github.workspace}}
