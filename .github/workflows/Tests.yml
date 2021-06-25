@@ -42,7 +42,7 @@ jobs:
       - name: bootstrap vcpkg
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
-        run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+        run: ./bootstrap-vcpkg.sh -disableMetrics
       - name: install packages
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
