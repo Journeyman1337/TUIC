@@ -9,10 +9,10 @@ jobs:
     strategy:
       matrix:
         platform:
-        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,       triplet: x64-windows,   vcpkgdir: "C:\\vcpkg\\downloads" }
-        - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10,       triplet: x64-linux,     vcpkgdir: "/usr/local/share/vcpkg" }
-        - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12,   triplet: x64-linux,     vcpkgdir: "/usr/local/share/vcpkg" }
-        - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++,      triplet: x64-linux,     vcpkgdir: "/usr/local/share/vcpkg"  }
+        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,       triplet: "x64-windows",   vcpkgdir: "C:\\vcpkg\\downloads" }
+        - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10,       triplet: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg" }
+        - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12,   triplet: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg" }
+        - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++,      triplet: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg"  }
         build_type: [Release, Debug]
     env:
       buildDir: '${{ github.workspace }}\build'
