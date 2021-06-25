@@ -9,10 +9,10 @@ jobs:
     strategy:
       matrix:
         platform:
-        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,       arch: "x64-windows",   vcpkgdir: "C:/vcpkg/" }
-        - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10,       arch: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg" }
-        - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12,   arch: "x64-linux",     vcpkgdir: "/usr/local/share/vcpkg" }
-        - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++,      arch: "x64-osx",       vcpkgdir: "/usr/local/share/vcpkg"  }
+        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,       arch: "x64-windows" }
+        - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10,       arch: "x64-linux" }
+        - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12,   arch: "x64-linux" }
+        - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++,      arch: "x64-osx"  }
         build_type: [Release, Debug]
     env:
       buildDir: '${{ github.workspace }}\build'
@@ -26,27 +26,36 @@ jobs:
         run: cmake --version
       - name: create build enviornment
         shell: bash
-        working-directory: ${{github.workspace}}
+        working-directory: ${{ github.workspace }
         run: cmake -E make_directory $GITHUB_WORKSPACE/build
       - uses: actions/cache@v2
         with:
-          path: ${{ matrix.platform.vcpkgdir }}/downloads
+          path: ${{ github.workspace }}/vcpkg/
           key: ${{ runner.os }}-vcpkg-download-${{ matrix.platform.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-
+            ${{ runner.os }}-vcpkg-download-${{ matrix.platform.os }}-
             ${{ runner.os }}-vcpkg-download-
+      - name: add vcpkg submodule
+        shell: bash
+        working-directory: ${{ github.workspace }}
+        run: git submodule add https://github.com/microsoft/vcpkg vcpkg/
+      - name: bootstrap vcpkg
+        shell: bash
+        working-directory: ${{ github.workspace }}/vcpkg/
+        run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
       - name: install packages
         shell: bash
-        working-directory: ${{ matrix.platform.vcpkgdir }}
-        run: vcpkg install catch2 glew glfw3 --triplet ${{ matrix.platform.arch }}
+        working-directory: ${{ github.workspace }}/vcpkg/
+        run: ./vcpkg install catch2 glew glfw3 --triplet ${{ matrix.platform.arch }}
       - name: list packages in vcpkg
         shell: bash
-        run:  vcpkg list
+        working-directory: ${{ github.workspace }}/vcpkg/
+        run:  ./vcpkg list
       - name: cmake build tests
         shell: bash
         working-directory: ${{github.workspace}}
         run: |
-             cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DTUIC_BUILD_AUTO_TESTS=ON -DTUIC_OPENGL33_BACKEND=ON -DCMAKE_TOOLCHAIN_FILE=$VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake
+             cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DTUIC_BUILD_AUTO_TESTS=ON -DTUIC_OPENGL33_BACKEND=ON -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake
              cmake --build $GITHUB_WORKSPACE/build --config ${{ matrix.build_type }}
         continue-on-error: true
       - name: run auto tests
