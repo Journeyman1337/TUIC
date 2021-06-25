@@ -364,7 +364,7 @@ TuiInstance tuiPaletteGetInstance(TuiPalette palette)
 	if (palette == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
-		return;
+		return NULL;
 	}
 
 	return palette->Instance;
