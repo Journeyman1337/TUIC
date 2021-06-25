@@ -20,7 +20,7 @@
 /*! \file opengl33.h
  * This file includes all function prototypes for the opengl33 backend. To use this backend, it needs to be implemented in a c or cpp file somewhere  in your project using opengl33_implementation.h like so:
  * 
- *     #include <gl/glew.h> //You need to include opengl bindings before implementing the opengl33 backend. You can use any Opengl loading library that you prefeer.
+ *     #include <GL/glew.h> //You need to include opengl bindings before implementing the opengl33 backend. You can use any Opengl loading library that you prefeer.
  *     #define TUIC_OPENGL33_LOAD_GLEW //specify that glew is the library being used.
  *     //#define TUIC_OPENGL33_LOAD_GLAD //specify this instead of previous macro to use GLAD instead of GLEW.
  *     //#define TUIC_OPENGL33_LOAD_NONE //specify this to use no loading library. This will cause tuiOpengl33InstanceCreateNewContext to return NULL.
@@ -33,7 +33,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-#include "tuic/types.h"
+#include "TUIC/types.h"
 /*!
  * @brief Create a new @ref TuiInstance using the Opengl33 backend.
  * 

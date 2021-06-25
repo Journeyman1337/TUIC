@@ -10,7 +10,7 @@
 	be used if you run your project in debug configuration. If you don't even want to run these macros in debug configuration, you can define the macro GLD_ACTIVE as 0 before including the backend.
 */
 
-#include <gl/glew.h> //You need to include opengl bindings before implementing the opengl33 backend. You can use any Opengl loading library that you prefeer.
+#include <GL/glew.h> //You need to include opengl bindings before implementing the opengl33 backend. You can use any Opengl loading library that you prefeer.
 #define TUIC_OPENGL33_LOAD_GLEW //specify that glew is the library being used.
 //#define TUIC_OPENGL33_LOAD_GLAD //specify this instead of previous macro to use GLAD instead of GLEW.
 //#define TUIC_OPENGL33_LOAD_NONE //specify this to use no loading library. This will cause @ref tuiOpengl33InstanceCreateNewContext to return NULL.

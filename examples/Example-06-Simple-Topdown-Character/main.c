@@ -1,4 +1,4 @@
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <TUIC/tuic.h>
@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 const size_t kTilesWide = 100;
 const size_t kTilesTall = 80;
@@ -188,7 +189,7 @@ int main()
         tuiBatchSetTile_G8_C4_SPARSE(batch2, info.player_x, info.player_y, 2, player_color);
 
         tuiPanelClearColor(panel2, 0, 0, 0, 0);
-        tuiPanelDrawBatch(panel2, atlas, palette, batch2, kSheetBlendMode);
+        tuiPanelDrawBatch(panel2, atlas, palette, batch2);
         tuiPanelRender(panel1);
         tuiPanelRender(panel2);
 
