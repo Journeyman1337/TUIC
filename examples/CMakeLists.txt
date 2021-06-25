@@ -13,7 +13,6 @@ target_link_libraries(Example-00-Implementation
 if (UNIX)
 target_link_libraries(Example-00-Implementation
     PUBLIC
-        m # for pow()
         GL
 )
 endif()

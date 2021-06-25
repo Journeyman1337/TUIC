@@ -60,6 +60,13 @@ add_library(${PROJECT_NAME}
 	${TUIC_SOURCES}
 )
 
+if (UNIX)
+    target_link_libraries(${PROJECT_NAME} 
+        PUBLIC
+            m
+    )
+endif()
+
 target_include_directories(${PROJECT_NAME}
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
