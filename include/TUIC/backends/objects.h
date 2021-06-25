@@ -78,7 +78,7 @@ typedef void(*tuiInstanceDrawBatchDataCallback) (TuiInstance instance, TuiGlyphA
  * @param pixel_data The raw pixels of the @ref TuiImage.
  * @param glyph_bounding_boxes The raw bounding box array if this atlas uses type @ref TUI_ATLAS_COORDS.
  */
-typedef void(*tuiGlyphAtlasCreateCallback) (TuiGlyphAtlas atlas, uint8_t* pixel_data, float* raw_glyph_uvs);
+typedef void(*tuiGlyphAtlasCreateCallback) (TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
 /*!
  * @brief Callback type used for destroying the API data of a @ref TuiGlyphAtlas.
  * 
@@ -91,7 +91,7 @@ typedef void(*tuiGlyphAtlasDestroyCallback) (TuiGlyphAtlas atlas);
  * @param palette The @ref TuiPalette.
  * @param pixel_data The raw palette colors.
  */
-typedef void(*tuiPaletteCreateCallback) (TuiPalette palette, uint8_t* color_data);
+typedef void(*tuiPaletteCreateCallback) (TuiPalette palette, const uint8_t* color_data);
 /*!
  * @brief Callback type used for destroying the API data of a @ref TuiPalette.
  * 
@@ -127,7 +127,7 @@ typedef void(*tuiPanelDestroyCallback) (TuiPanel panel);
  * @param top_y The topmost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
  * @param bottom_y The bottommost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
  */
-typedef void(*tuiPanelDrawBatchDataCallback) (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+typedef void(*tuiPanelDrawBatchDataCallback) (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Callback type used for getting the raw pixels of a @ref TuiPanel.
  * 

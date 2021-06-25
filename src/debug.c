@@ -1,6 +1,6 @@
 #include <TUIC/debug.h>
 #include <TUIC/backends/objects.h>
-#include <stdlib.h>
+#include <string.h>
 
 #define TO_STRING(value) #value
 
@@ -97,7 +97,7 @@ const char* kTui_Error_Unmatching_Palette_Instance_Description = "The provided T
 const char* kTui_Error_Unmatching_Panel_Instance_Description = "The provided TuiPanel has an unmatching TuiInstance.";
 
 
-void tui_default_debug_callback(int error_type, int arg1, int arg2, const char* arg_str) {}
+void tui_default_debug_callback(int error_type, const char* str) {}
 
 static tuiDebugErrorCallback sDebugCallback = tui_default_debug_callback;
 

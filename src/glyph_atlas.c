@@ -43,7 +43,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyp
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return;
+		return NULL;
 	}
 	if (glyph_bounding_boxes == NULL)
 	{
@@ -474,7 +474,7 @@ TuiInstance tuiGlyphAtlasGetInstance(TuiGlyphAtlas atlas)
 	if (atlas == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
-		return;
+		return NULL;
 	}
 
 	return atlas->Instance;
@@ -496,7 +496,7 @@ int tuiGlyphAtlasGetPixelWidth(TuiGlyphAtlas atlas)
 	if (atlas == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
-		return;
+		return 0;
 	}
 
 	return atlas->PixelWidth;
@@ -507,7 +507,7 @@ int tuiGlyphAtlasGetPixelHeight(TuiGlyphAtlas atlas)
 	if (atlas == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
-		return;
+		return 0;
 	}
 
 	return atlas->PixelHeight;

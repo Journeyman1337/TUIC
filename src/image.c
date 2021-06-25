@@ -166,13 +166,13 @@ size_t tuiImageGetPixelDataSize(TuiImage image)
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return 0;
 	}
 
 	return image->PixelDataSize;
 }
 
-inline uint8_t* get_resized_data(TuiImage image, int new_size, int new_width, int new_height, const char* func_name)
+static inline uint8_t* get_resized_data(TuiImage image, int new_size, int new_width, int new_height, const char* func_name)
 {
 	uint8_t* output_pixels = tuiAllocate(new_size);
 	int stb_result = stbir_resize_uint8(image->PixelData, image->PixelWidth, image->PixelHeight, 0,

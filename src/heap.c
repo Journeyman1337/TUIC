@@ -20,6 +20,7 @@
 #include <TUIC/tuic.h>
 
 #include <stdlib.h>
+#include <string.h>
 
 void* default_allocate(size_t size)
 {

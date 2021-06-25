@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <stdlib.h>
+#include <string.h>
 
 #define TO_STRING(value) #value
 

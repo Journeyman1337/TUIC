@@ -35,7 +35,7 @@ void tuiInstanceClearColor(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b
 	if (instance->IsDamaged == TUI_TRUE)
 	{
 		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
+		return;
 	}
 
 	instance->InstanceClearColor(instance, r, g, b, a);
