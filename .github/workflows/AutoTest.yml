@@ -1,5 +1,5 @@
 name: AutoTest
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
     runs-on: ${{ matrix.platform.os }}
