@@ -38,12 +38,14 @@ jobs:
       - name: install Catch2
         shell: bash
         working-directory: ${{ matrix.platform.vcpkgdir }}
-        run: vcpkg install catch2 --triplet ${{ matrix.platform.arch }} 
+        run: vcpkg install catch2 --triplet ${{ matrix.platform.arch }}
+      - name: list packages in vcpkg
+        shell: bash
+        run:  vcpkg list
       - name: cmake build
         shell: bash
         working-directory: ${{github.workspace}}
         run: |
-             vcpkg list
              cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DTUIC_BUILD_AUTO_TESTS=ON -DTUIC_OPENGL33_BACKEND=OFF -DCMAKE_TOOLCHAIN_FILE=$VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake
              cmake --build $GITHUB_WORKSPACE/build --config ${{ matrix.build_type }}
         continue-on-error: true
