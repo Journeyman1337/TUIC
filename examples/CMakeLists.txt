@@ -14,6 +14,7 @@ if (UNIX)
 target_link_libraries(Example-00-Implementation
     PUBLIC
         m # for pow()
+        GL
 )
 endif()
 set_property(TARGET Example-00-Implementation PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $<TARGET_FILE_DIR:Example-00-Implementation>)
