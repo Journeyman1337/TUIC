@@ -1,4 +1,7 @@
-name: AutoTest
+#Compile manual tests to check for compile errors
+#Compile automatic tests and run them, outputting errors
+
+name: Tests
 on: [push]
 jobs:
   build:
@@ -6,10 +9,10 @@ jobs:
     strategy:
       matrix:
         platform:
-        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe }
-        - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10 }
-        - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12 }
-        - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++  }
+        - { Name: Windows VS2019, os: windows-2019, cc: cl.exe,    cxx: cl.exe,   triplet: x64-windows,   vcpkgdir: C:\vcpkg\downloads }
+        - { Name: Linux GCC,      os: ubuntu-20.04, cc: gcc-10,    cxx: g++-10,   triplet: x64-linux,     vcpkgdir: /usr/local/share/vcpkg }
+        - { Name: Linux Clang,    os: ubuntu-20.04, cc: clang-12,  cxx: clang++-12,   triplet: x64-linux, vcpkgdir: /usr/local/share/vcpkg }
+        - { Name: MacOS Clang,    os: macos-10.15,  cc: clang,     cxx: clang++,   triplet: x64-linux,    vcpkgdir: /usr/local/share/vcpkg  }
         build_type: [Release, Debug]
     env:
       buildDir: '${{ github.workspace }}\build'
@@ -26,44 +29,16 @@ jobs:
         working-directory: ${{github.workspace}}
         run: cmake -E make_directory $GITHUB_WORKSPACE/build
       - uses: actions/cache@v2
-        if: runner.os == 'Windows'
         with:
-          path: C:\vcpkg\downloads
+          path: ${{ matrix.vcpkgdir }}
           key: ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-
             ${{ runner.os }}-vcpkg-download-
-      - name: install catch2 with vcpkg (windows)
-        if: runner.os == 'Windows'
+      - name: install Catch2
         shell: bash
-        working-directory: C:\vcpkg
-        run: vcpkg install catch2:x64-windows
-      - uses: actions/cache@v2
-        if: runner.os == 'Linux'
-        with:
-          path: \usr\local\share\vcpkg\downloads
-          key: ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-
-            ${{ runner.os }}-vcpkg-download-
-      - name: install catch2 with vcpkg (linux)
-        if: runner.os == 'Linux'
-        shell: bash
-        working-directory: /usr/local/share/vcpkg
-        run: vcpkg install catch2:x64-linux
-      - uses: actions/cache@v2
-        if: runner.os == 'macOS'
-        with:
-          path: \usr\local\share\vcpkg\downloads
-          key: ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-
-            ${{ runner.os }}-vcpkg-download-
-      - name: install catch2 with vcpkg (macos)
-        if: runner.os == 'macOS'
-        shell: bash
-        working-directory: /usr/local/share/vcpkg
-        run: vcpkg install catch2:x64-osx
+        working-directory: ${{ matrix.vcpkgdir }}
+        run: vcpkg install catch2 --triplet ${{ matrix.triplet }} 
       - name: cmake build
         shell: bash
         working-directory: ${{github.workspace}}
