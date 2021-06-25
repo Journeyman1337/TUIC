@@ -21,7 +21,7 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_ONLY_PNG
-#define STBI_MALLOC(size) tuiAllocate(size)
+#define STBI_MALLOC(size, context) tuiAllocate(size)
 #define STBI_REALLOC(ptr, size) tuiReallocate(ptr, size)
 #define STBI_FREE(ptr) tuiFree(ptr)
 #include <TUIC/vendor/stb_image.h>
