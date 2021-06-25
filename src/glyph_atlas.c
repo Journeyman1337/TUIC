@@ -507,7 +507,7 @@ int tuiGlyphAtlasGetPixelHeight(TuiGlyphAtlas atlas)
 	if (atlas == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
-		return NULL;
+		return 0;
 	}
 
 	return atlas->PixelHeight;
