@@ -30,15 +30,15 @@ jobs:
         run: cmake -E make_directory $GITHUB_WORKSPACE/build
       - uses: actions/cache@v2
         with:
-          path: ${{ matrix.vcpkgdir }}/downloads
-          key: ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ matrix.platform.vcpkgdir }}/downloads
+          key: ${{ runner.os }}-vcpkg-download-${{ matrix.platform.os }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-download-${{ matrix.os }}-
             ${{ runner.os }}-vcpkg-download-
       - name: install Catch2
         shell: bash
-        working-directory: ${{ matrix.vcpkgdir }}
-        run: vcpkg install catch2 --triplet ${{ matrix.arch }} 
+        working-directory: ${{ matrix.platform.vcpkgdir }}
+        run: vcpkg install catch2 --triplet ${{ matrix.platform.arch }} 
       - name: cmake build
         shell: bash
         working-directory: ${{github.workspace}}
