@@ -20,10 +20,10 @@
 #ifndef TUIC_IMAGE_INLINE_H //header guard
 #define TUIC_IMAGE_INLINE_H
 #ifdef __cplusplus //extern C guard
-#include <TUIC/types.h>
 extern "C" {
 #endif
-
+#include <TUIC/types.h>
+#include <string.h>
 inline TuiImage create_image(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data, const char* func_name)
 {
 	if (channel_count != 3 && channel_count != 4)
