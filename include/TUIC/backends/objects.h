@@ -127,7 +127,7 @@ typedef void(*tuiPanelDestroyCallback) (TuiPanel panel);
  * @param top_y The topmost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
  * @param bottom_y The bottommost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
  */
-typedef void(*tuiPanelDrawBatchDataCallback) (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+typedef void(*tuiPanelDrawBatchDataCallback) (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Callback type used for getting the raw pixels of a @ref TuiPanel.
  * 
