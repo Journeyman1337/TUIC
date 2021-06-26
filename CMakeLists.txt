@@ -42,7 +42,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/texture.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/backends/objects.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/stb_image.h
