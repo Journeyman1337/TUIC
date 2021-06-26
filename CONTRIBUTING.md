@@ -43,4 +43,4 @@ Be sure to also include the following additional information in your issue threa
 
 # How to make a pull request
  
- Currently, I (Journeyman) am the sole developer of this library. If you wish to help me with development, please speak to me first. 
+ If you wish to help me with development, please speak to me first. 
