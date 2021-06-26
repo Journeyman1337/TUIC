@@ -39,12 +39,12 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mod
 	}
 	if (tuiFilterModeIsValid(filter_mode) == TUI_FALSE)
 	{
-		//TODO tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
 		return NULL;
 	}
 	if (tuiDrawModeIsValid(draw_mode) == TUI_FALSE)
 	{
-		//TODO tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
 		return NULL;
 	}
 
