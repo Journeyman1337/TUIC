@@ -47,7 +47,7 @@ jobs:
       - name: install packages
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
-        run: ./vcpkg install catch2 glew glfw3 --triplet ${{ matrix.platform.arch }}
+        run: ./vcpkg install catch2 glad glfw3 --triplet ${{ matrix.platform.arch }}
       - name: list packages in vcpkg
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
