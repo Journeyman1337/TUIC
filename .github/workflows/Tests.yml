@@ -39,11 +39,11 @@ jobs:
         run: sudo apt install libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev
       - uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/vcpkg/
-          key: ${{ runner.os }}-vcpkg-download-${{ matrix.platform.os }}-${{ github.sha }}
+          path: ${{ github.workspace }}/vcpkg/downloads/
+          key: ${{ runner.os }}-vcpkg-downloads-${{ matrix.platform.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-vcpkg-download-${{ matrix.platform.os }}-
-            ${{ runner.os }}-vcpkg-download-
+            ${{ runner.os }}-vcpkg-downloads-${{ matrix.platform.os }}-
+            ${{ runner.os }}-vcpkg-downloads-
       - name: bootstrap vcpkg
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
