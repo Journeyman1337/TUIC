@@ -989,7 +989,7 @@ const char* tuiFilterModeToString(int filter_mode)
 	case TUI_FILTER_BILINEAR:
 		return kTui_Filter_Bilinear_Name;
 	default:
-		//TODO tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
 		return NULL;
 	}
 }
@@ -1018,7 +1018,7 @@ const char* tuiDrawModeToString(int draw_mode)
 	case TUI_DRAW_STREAM:
 		return kTui_Draw_Stream_Name;
 	default:
-		//TODO tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
 		return NULL;
 	}
 }

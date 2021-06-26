@@ -89,12 +89,12 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 	}
 	if (tuiFilterModeIsValid(filter_mode) == TUI_FALSE)
 	{
-		//TODO tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
 		return NULL;
 	}
 	if (tuiDrawModeIsValid(draw_mode) == TUI_FALSE)
 	{
-		//TODO tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
 		return NULL;
 	}
 
@@ -114,7 +114,7 @@ void tuiTextureDestroy(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 
@@ -126,7 +126,7 @@ void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pix
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 
@@ -144,7 +144,7 @@ int tuiTextureGetPixelWidth(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
 	}
 
@@ -155,7 +155,7 @@ int tuiTextureGetPixelHeight(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
 	}
 
@@ -166,7 +166,7 @@ int tuiTextureGetChannelCount(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
 	}
 
@@ -177,7 +177,7 @@ int tuiTextureGetFilterMode(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
 	}
 
@@ -188,7 +188,7 @@ int tuiTextureGetDrawMode(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
 	}
 
@@ -199,7 +199,7 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 	if (texture->Instance->IsDamaged)
@@ -223,7 +223,7 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 	if (texture->Instance->IsDamaged)
@@ -257,7 +257,7 @@ void tuiTextureRender(TuiTexture texture)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 	if (texture->Instance->IsDamaged)
@@ -273,7 +273,7 @@ void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, in
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 	if (texture->Instance->IsDamaged)
@@ -289,7 +289,7 @@ void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel)
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 	if (texture->Instance->IsDamaged)
@@ -314,7 +314,7 @@ void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int 
 {
 	if (texture == NULL)
 	{
-		//TODO tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 	if (texture->Instance->IsDamaged)
