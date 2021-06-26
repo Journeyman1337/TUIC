@@ -121,7 +121,7 @@ void gld_message(const char* a, const char* b)
 inline void CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_handle, uint32_t* renderbuffer_handle, size_t width, size_t height)
 {
 	GLD_CLEAR();
-	GLD_CALL(glCreateFramebuffers(1, framebuffer_handle));
+	GLD_CALL(glGenFramebuffers(1, framebuffer_handle));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, *framebuffer_handle));
 	GLD_CALL(glGenTextures(1, texture_handle));
 	GLD_CALL(glBindTexture(GL_TEXTURE_2D, *texture_handle));
