@@ -67,7 +67,7 @@ void WindowResizeCallback(GLFWwindow* window, int width, int height)
         // If you look in a debugger, you will see upon shrinking the batch memory usage doesn't decrease. If you change the third argument to TUI_FALSE, it will decrease.
         // Reserving extra space on batch resize shrinking can allow for increased performance in some situations.
         tuiBatchResize(usr_ptr->batch, usr_ptr->tiles_wide, usr_ptr->tiles_tall, TUI_TRUE);
-        tuiPanelSetSize(usr_ptr->panel, new_tiles_wide * kTilePixelWidth, new_tiles_tall * kTilePixelHeight);
+        tuiPanelSetPixelDimensions(usr_ptr->panel, new_tiles_wide * kTilePixelWidth, new_tiles_tall * kTilePixelHeight);
         for (int x = 0; x < usr_ptr->tiles_wide; x++)
         {
             for (int y = 0; y < usr_ptr->tiles_tall; y++)
