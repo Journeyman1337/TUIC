@@ -785,6 +785,21 @@ enum TuiFilterMode
 extern const char* kTui_Filter_Point_Name;
 
 extern const char* kTui_Filter_Bilinear_Name;
+
+enum TuiDrawMode
+{
+	TUI_DRAW_STATIC = 1,
+
+	TUI_DRAW_DYNAMIC = 2,
+
+	TUI_DRAW_STREAM = 3
+};
+
+extern const char* kTui_Draw_Static_Name;
+
+extern const char* kTui_Draw_Dynamic_Name;
+
+extern const char* kTui_Draw_Stream_Name;
 /*! @} */
 /*! @name Enum Manipulation Functions
  *  @{ */
@@ -872,6 +887,8 @@ int tuiAtlasTypeIsValid(int atlas_type);
 int tuiDetailFlagIsValid(int detail_flag);
 
 int tuiFilterModeIsValid(int filter_mode);
+
+int tuiDrawModeIsValid(int draw_mode);
 /*!
  * @brief Get if a @ref TuiBlendMode is compatible with a @ref TuiDetailMode.
  *
@@ -949,6 +966,10 @@ int tuiStringToAtlasType(const char* string);
 const char* tuiFilterModeToString(int filter_mode);
 
 int tuiStringToFilterMode(const char* string);
+
+const char* tuiDrawModeToString(int draw_mode);
+
+int tuiStringToDrawMode(const char* string);
 /*! @} */
 #ifdef __cplusplus //extern C guard
  }
