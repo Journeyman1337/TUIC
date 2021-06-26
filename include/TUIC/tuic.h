@@ -30,3 +30,4 @@
 #include <TUIC/glyph_atlas.h>
 #include <TUIC/panel.h>
 #include <TUIC/image.h>
+#include <TUIC/texture.h>

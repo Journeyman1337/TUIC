@@ -42,6 +42,8 @@ typedef struct TuiPalette_s* TuiPalette;
  * @brief TUI glyph image atlas. This object contains a image for rendering glyphs as well as definitions of where glyphs are in the image. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in glyph_atlas.h instead.
  */
 typedef struct TuiGlyphAtlas_s* TuiGlyphAtlas;
+
+typedef struct TuiTexture_s* TuiTexture;
 /*!
  * @brief TUI rendering data container, which contains data about tiles to draw. TuiBatch objects are passable between multiple threads and are independent of @ref TuiInstance objects. This object is opaque, and its members are not meant to be accessed directly. Use the functions in batch.h instead.
  */

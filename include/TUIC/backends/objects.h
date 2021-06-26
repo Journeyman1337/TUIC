@@ -338,6 +338,23 @@ typedef struct TuiGlyphAtlas_s
 	 */
 	void* ApiData;
 } TuiGlyphAtlas_s;
+
+typedef struct TuiTexture_s
+{
+	TuiInstance Instance;
+
+	int FilterMode;
+
+	int DrawMode;
+
+	size_t PixelWidth;
+
+	size_t PixelHeight;
+
+	size_t ChannelCount;
+
+	void* ApiData;
+} TuiTexture_s;
 /*
  * @brief The struct behind @ref TuiPalette opaque objects.
  *
