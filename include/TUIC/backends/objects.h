@@ -70,7 +70,7 @@ typedef void(*tuiInstanceResizeScreenCallback)(TuiInstance instance, size_t scre
  * @param top_y The topmost pixel to draw the batch data in the screen of the @ref TuiInstance.
  * @param bottom_y The bottommost pixel to draw the batch data in the screen of the @ref TuiInstance.
  */
-typedef void(*tuiInstanceDrawBatchDataCallback) (TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+typedef void(*tuiInstanceDrawBatchDataCallback) (TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Callback type used for creating the API data of a @ref TuiGlyphAtlas.
  * 
