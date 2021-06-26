@@ -33,6 +33,10 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}
         run: git submodule add https://github.com/microsoft/vcpkg vcpkg/
+      - name: add linux system packages
+        if: ${{ runner.os == 'Linux' }}
+        shell: bash
+        run: sudo apt install libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/vcpkg/
