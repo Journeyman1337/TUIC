@@ -3,19 +3,13 @@ file(GLOB implementation_lib_files
 )
 add_library(Example-00-Implementation ${implementation_lib_files})
 find_package(glfw3 CONFIG REQUIRED)
-find_package(GLEW REQUIRED)
+find_package(glad REQUIRED)
 target_link_libraries(Example-00-Implementation
 	PUBLIC
 		${PROJECT_NAME}
 		glfw
-		GLEW::GLEW
+		glad::glad
 )
-if (UNIX)
-target_link_libraries(Example-00-Implementation
-    PUBLIC
-        GL
-)
-endif()
 set_property(TARGET Example-00-Implementation PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $<TARGET_FILE_DIR:Example-00-Implementation>)
 # cmake function for adding an example project
 function(add_example Name)
