@@ -39,14 +39,14 @@ extern "C" {
 void InstanceDestroy_Opengl33(TuiInstance instance);
 void InstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 void InstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, size_t screen_height);
-void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, uint8_t* pixel_data, float* raw_glyph_uvs);
+void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
 void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas);
-void PaletteCreate_Opengl33(TuiPalette palette, uint8_t* color_data);
+void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
 void PaletteDestroy_Opengl33(TuiPalette palette);
 void PanelCreate_Opengl33(TuiPanel panel);
 void PanelDestroy_Opengl33(TuiPanel panel);
-void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 uint8_t* PanelGetPixels_Opengl33(TuiPanel panel, size_t* width, size_t* height, uint8_t* pixel_ptr);
 void PanelRender_Opengl33(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
 void PanelRenderToPanel_Opengl33(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y);
@@ -121,7 +121,7 @@ void gld_message(const char* a, const char* b)
 inline void CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_handle, uint32_t* renderbuffer_handle, size_t width, size_t height)
 {
 	GLD_CLEAR();
-	GLD_CALL(glCreateFramebuffers(1, framebuffer_handle));
+	GLD_CALL(glGenFramebuffers(1, framebuffer_handle));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, *framebuffer_handle));
 	GLD_CALL(glGenTextures(1, texture_handle));
 	GLD_CALL(glBindTexture(GL_TEXTURE_2D, *texture_handle));
@@ -269,7 +269,7 @@ inline int GetBlendModeUniformValue(int blend_mode)
 		return 0;
 	}
 }
-inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width, size_t framebuffer_height, TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t blend_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, const float* matrix)
+inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width, size_t framebuffer_height, TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t blend_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, const float* matrix)
 {
 	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
 	TuiOpengl33PaletteApiData* palette_data = NULL;
@@ -458,7 +458,7 @@ TuiInstance tuiOpengl33InstanceCreate(int pixel_width, int pixel_height, void* w
     }
 #endif
 #ifdef TUIC_OPENGL33_LOAD_GLAD
-	if (!gladLoadGLL_LOAD_oader((GLADloadproc)window_proc_address))
+	if (!gladLoadGLLoader((GLADloadproc)window_proc_address))
 	{
 		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Failed to initialize GLAD.");
         return NULL;
@@ -480,7 +480,7 @@ void InstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, si
 	GLD_CALL(glViewport(0, 0, screen_width, screen_height));
 }
 
-void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
 	float* transformed_matrix = (float*)tuiAllocate(sizeof(float) * 16);
@@ -515,7 +515,7 @@ void InstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uin
 	GLD_CALL(glClearColor((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f));
 	GLD_CALL(glClear(GL_COLOR_BUFFER_BIT));
 }
-void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, uint8_t* pixel_data, float* raw_glyph_uvs)
+void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
 {
 	atlas->ApiData = (TuiOpengl33GlyphAtlasApiData*)tuiAllocate(sizeof(TuiOpengl33GlyphAtlasApiData));
 	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
@@ -573,7 +573,7 @@ void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas)
 	}
 	tuiFree(atlas_data);
 }
-void PaletteCreate_Opengl33(TuiPalette palette, uint8_t* color_data)
+void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
 {
 	palette->ApiData = (TuiOpengl33PaletteApiData*)tuiAllocate(sizeof(TuiOpengl33PaletteApiData));
 	TuiOpengl33PaletteApiData* palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
@@ -620,7 +620,7 @@ void PanelDestroy_Opengl33(TuiPanel panel)
 	}
 	tuiFree(panel_data);
 }
-void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	float* transformed_matrix = (float*)tuiAllocate(sizeof(float) * 16);

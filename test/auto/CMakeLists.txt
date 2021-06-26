@@ -12,7 +12,6 @@ target_link_libraries(TUIC_TESTS_AUTO
 		Catch2::Catch2
 		${PROJECT_NAME}
 )
-
 include(CTest)
 include(Catch)
 catch_discover_tests(

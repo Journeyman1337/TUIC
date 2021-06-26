@@ -1,6 +1,6 @@
 /* This example showcases how to use a panel that uses JTUI_DETAIL_G8_C4 detail mode. This detail mode has 8 bits per glyph and 4 bits per color. This allows for up to 256 unique glyphs and for a palette of 16 colors. */
 
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <TUIC/tuic.h>

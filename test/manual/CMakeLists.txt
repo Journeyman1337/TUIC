@@ -8,12 +8,12 @@ add_executable(TUIC_TESTS_MANUAL
 	test_impl.cpp
 )
 find_package(glfw3 CONFIG REQUIRED)
-find_package(GLEW REQUIRED)
+find_package(glad CONFIG REQUIRED)
 target_link_libraries(TUIC_TESTS_MANUAL
 	PUBLIC
 		${PROJECT_NAME}
 		glfw
-		GLEW::GLEW
+		glad::glad
 )
 file(GLOB asset_files
 	assets/*
