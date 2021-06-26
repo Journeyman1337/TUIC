@@ -29,6 +29,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/instance.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	# Include files
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/enums.h
@@ -41,6 +42,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/backends/objects.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/stb_image.h
