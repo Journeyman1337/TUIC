@@ -36,10 +36,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-vcpkg-download-${{ matrix.platform.os }}-
             ${{ runner.os }}-vcpkg-download-
-      - name: add vcpkg submodule
+      - name: add vcpkg
         shell: bash
         working-directory: ${{ github.workspace }}
-        run: git submodule add https://github.com/microsoft/vcpkg vcpkg/
+        run: git clone https://github.com/microsoft/vcpkg vcpkg/
       - name: bootstrap vcpkg
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
