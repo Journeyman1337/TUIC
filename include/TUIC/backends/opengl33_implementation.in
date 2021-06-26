@@ -458,7 +458,7 @@ TuiInstance tuiOpengl33InstanceCreate(int pixel_width, int pixel_height, void* w
     }
 #endif
 #ifdef TUIC_OPENGL33_LOAD_GLAD
-	if (!gladLoadGLL_LOAD_oader((GLADloadproc)window_proc_address))
+	if (!gladLoadGLLoader((GLADloadproc)window_proc_address))
 	{
 		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Failed to initialize GLAD.");
         return NULL;
