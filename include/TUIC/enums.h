@@ -773,6 +773,18 @@ extern const char* kTui_Blend_BG_BLUE_Name;
  * @brief String name of @ref TUI_BLEND_BG_ALPHA.
  */
 extern const char* kTui_Blend_BG_ALPHA_Name;
+
+enum TuiFilterMode
+{
+
+	TUI_FILTER_POINT = 1,
+
+	TUI_FILTER_BILINEAR = 2
+};
+
+extern const char* kTui_Filter_Point_Name;
+
+extern const char* kTui_Filter_Bilinear_Name;
 /*! @} */
 /*! @name Enum Manipulation Functions
  *  @{ */
@@ -858,6 +870,8 @@ int tuiAtlasTypeIsValid(int atlas_type);
  * @returns If it is valid.
  */
 int tuiDetailFlagIsValid(int detail_flag);
+
+int tuiFilterModeIsValid(int filter_mode);
 /*!
  * @brief Get if a @ref TuiBlendMode is compatible with a @ref TuiDetailMode.
  *
@@ -931,6 +945,10 @@ const char* tuiAtlasTypeToString(int atlas_type);
  * @returns The atlas type.
  */
 int tuiStringToAtlasType(const char* string);
+
+const char* tuiFilterModeToString(int filter_mode);
+
+int tuiStringToFilterMode(const char* string);
 /*! @} */
 #ifdef __cplusplus //extern C guard
  }

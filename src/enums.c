@@ -214,6 +214,11 @@ const char* kTui_Blend_BG_BLUE_Name = TO_STRING(TUI_BLEND_BG_BLUE);
 
 const char* kTui_Blend_BG_ALPHA_Name = TO_STRING(TUI_BLEND_BG_ALPHA);
 
+const char* kTui_Filter_Point_Name = TO_STRING(TUI_FILTER_POINT);
+
+const char* kTui_Filter_Bilinear_Name = TO_STRING(TUI_FILTER_BILINEAR);
+
+const char* kTui_Draw_Static_Name = TO_STRING(TUI_DRAW_STATIC);
 int tuiDetailHasPalette(int detail_mode)
 {
 	if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_FALSE)
@@ -344,6 +349,21 @@ int tuiDetailFlagIsValid(int detail_flag)
 		TUI_COLOR_FLAG_C32NFG |
 		TUI_LAYOUT_FLAG_FULL |
 		TUI_LAYOUT_FLAG_SPARSE);
+}
+
+int tuiFilterModeIsValid(int filter_mode)
+{
+	if (
+		filter_mode == TUI_FILTER_POINT ||
+		filter_mode == TUI_FILTER_BILINEAR
+		)
+	{
+		return TUI_TRUE;
+	}
+	else
+	{
+		return TUI_FALSE;
+	}
 }
 
 int tuiDetailGetGlyphFlag(int detail_mode)
@@ -938,3 +958,31 @@ int tuiStringToAtlasType(const char* string)
 	}
 	return 0;
 }
+
+const char* tuiFilterModeToString(int filter_mode)
+{
+	switch (filter_mode)
+	{
+	case TUI_FILTER_POINT:
+		return kTui_Filter_Point_Name;
+	case TUI_FILTER_BILINEAR:
+		return kTui_Filter_Bilinear_Name;
+	default:
+		//TODO tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
+		return NULL;
+	}
+}
+
+int tuiStringToFilterMode(const char* string)
+{
+	if (strcmp(string, kTui_Filter_Point_Name) == 0)
+	{
+		return TUI_FILTER_POINT;
+	}
+	else if (strcmp(string, kTui_Filter_Bilinear_Name) == 0)
+	{
+		return TUI_FILTER_BILINEAR;
+	}
+	return 0;
+}
+
