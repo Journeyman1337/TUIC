@@ -218,12 +218,6 @@ const char* kTui_Filter_Point_Name = TO_STRING(TUI_FILTER_POINT);
 
 const char* kTui_Filter_Bilinear_Name = TO_STRING(TUI_FILTER_BILINEAR);
 
-const char* kTui_Draw_Static_Name = TO_STRING(TUI_DRAW_STATIC);
-
-const char* kTui_Draw_Dynamic_Name = TO_STRING(TUI_DRAW_DYNAMIC);
-
-const char* kTui_Draw_Stream_Name = TO_STRING(TUI_DRAW_STREAM);
-
 int tuiDetailHasPalette(int detail_mode)
 {
 	if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_FALSE)
@@ -361,22 +355,6 @@ int tuiFilterModeIsValid(int filter_mode)
 	if (
 		filter_mode == TUI_FILTER_POINT ||
 		filter_mode == TUI_FILTER_BILINEAR
-		)
-	{
-		return TUI_TRUE;
-	}
-	else
-	{
-		return TUI_FALSE;
-	}
-}
-
-int tuiDrawModeIsValid(int draw_mode)
-{
-	if (
-		draw_mode == TUI_DRAW_STATIC ||
-		draw_mode == TUI_DRAW_DYNAMIC ||
-		draw_mode == TUI_DRAW_STREAM
 		)
 	{
 		return TUI_TRUE;
@@ -1006,38 +984,3 @@ int tuiStringToFilterMode(const char* string)
 	}
 	return 0;
 }
-
-const char* tuiDrawModeToString(int draw_mode)
-{
-	switch (draw_mode)
-	{
-	case TUI_DRAW_STATIC:
-		return kTui_Draw_Static_Name;
-	case TUI_DRAW_DYNAMIC:
-		return kTui_Draw_Dynamic_Name;
-	case TUI_DRAW_STREAM:
-		return kTui_Draw_Stream_Name;
-	default:
-		tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
-		return NULL;
-	}
-}
-
-int tuiStringToDrawMode(const char* string)
-{
-	if (strcmp(string, kTui_Draw_Static_Name) == 0)
-	{
-		return TUI_DRAW_STATIC;
-	}
-	else if (strcmp(string, kTui_Draw_Dynamic_Name) == 0)
-	{
-		return TUI_DRAW_DYNAMIC;
-	}
-	else if (strcmp(string, kTui_Draw_Stream_Name) == 0)
-	{
-		return TUI_DRAW_STREAM;
-	}
-	return 0;
-}
-
-

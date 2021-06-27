@@ -20,7 +20,7 @@
 #include <TUIC/tuic.h>
 #include <TUIC/backends/objects.h>
 
-TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode, int draw_mode)
+TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode)
 {
 	if (instance == NULL)
 	{
@@ -42,16 +42,10 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mod
 		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
 		return NULL;
 	}
-	if (tuiDrawModeIsValid(draw_mode) == TUI_FALSE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
-		return NULL;
-	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
 	texture->Instance = instance;
 	texture->FilterMode = filter_mode;
-	texture->DrawMode = draw_mode;
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
@@ -60,7 +54,7 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mod
 	return texture;
 }
 
-TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode, int draw_mode)
+TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode)
 {
 	if (instance == NULL)
 	{
@@ -92,16 +86,10 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
 		return NULL;
 	}
-	if (tuiDrawModeIsValid(draw_mode) == TUI_FALSE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_DRAW_MODE, __func__);
-		return NULL;
-	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
 	texture->Instance = instance;
 	texture->FilterMode = filter_mode;
-	texture->DrawMode = draw_mode;
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
@@ -183,17 +171,6 @@ int tuiTextureGetFilterMode(TuiTexture texture)
 	}
 
 	return texture->FilterMode;
-}
-
-int tuiTextureGetDrawMode(TuiTexture texture)
-{
-	if (texture == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
-		return 0;
-	}
-
-	return texture->DrawMode;
 }
 
 void tuiTextureSetImage(TuiTexture texture, TuiImage image)

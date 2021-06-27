@@ -36,7 +36,6 @@ extern "C" {
  * @param instance The @ref TuiInstance.
  * @param image The @ref TuiImage.
  * @param filter_mode The @ref TuiFilterMode.
- * @param draw_mode The @ref TuiDrawMode.
  *
  * @returns The created @ref TuiTexture object. NULL is returned on error.
  *
@@ -44,10 +43,9 @@ extern "C" {
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
  * Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
  * Throws @ref TUI_ERROR_INVALID_FILTER_MODE if filter_mode is not a valid @ref TuiFilterMode.
- * Throws @ref TUI_ERROR_INVALID_DRAW_MODE if draw_mode is not a valid @ref TuiDrawMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode, int draw_mode);
+TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode);
 /*!
  * @brief Create a @ref TuiTexture with a raw pixel array.
  *
@@ -57,7 +55,6 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mod
  * @param channel_count The amount of channels per pixel in the pixel array.
  * @param pixels A pointer to the pixel array.
  * @param filter_mode The @ref TuiFilterMode.
- * @param draw_mode The @ref TuiDrawMode.
  *
  * @returns The created @ref TuiTexture object. NULL is returned on error.
  *
@@ -67,10 +64,9 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mod
  * Throws @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS if pixel_with or pixel_height is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT if channel_count is not 3 or 4.
  * Throws @ref TUI_ERROR_INVALID_FILTER_MODE if filter_mode is not a valid @ref TuiFilterMode.
- * Throws @ref TUI_ERROR_INVALID_DRAW_MODE if draw_mode is not a valid @ref TuiDrawMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode, int draw_mode);
+TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode);
 /*!
  * @brief  Destroy @ref TuiTexture and correctly dispose of all of its resources.
  *
@@ -130,16 +126,6 @@ int tuiTextureGetChannelCount(TuiTexture texture);
  * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
  */
 int tuiTextureGetFilterMode(TuiTexture texture);
-/*!
- * @brief Get the @ref TuiDrawMode used by a @ref TuiTexture.
- *
- * @param texture The @ref TuiTexture.
- *
- * @returns The @ref TuiDrawMode. 0 is returned on error.
- *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- */
-int tuiTextureGetDrawMode(TuiTexture texture);
 /*!
  * @brief Set the pixels of a @ref TuiTexture with a @ref TuiImage.
  *

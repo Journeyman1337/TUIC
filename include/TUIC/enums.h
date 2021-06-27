@@ -797,36 +797,6 @@ extern const char* kTui_Filter_Point_Name;
  */
 extern const char* kTui_Filter_Bilinear_Name;
 /*! @} */
-enum TuiDrawMode
-{
-	/*!
-	 * \brief Draw mode for things that never change.
-	 */
-	TUI_DRAW_STATIC = 1,
-	/*!
-	 * \brief Draw mode for things that change sometimes.
-	 */
-	TUI_DRAW_DYNAMIC = 2,
-	/*!
-	 * \brief Draw mode for things that change frequently or every frame.
-	 */
-	TUI_DRAW_STREAM = 3
-};
-/*! @name Draw Mode Names
- *  @{ */
-/*!
- * @brief String name of @ref TUI_FILTER_POINT.
- */
-extern const char* kTui_Draw_Static_Name;
-/*!
- * @brief String name of @ref TUI_DRAW_DYNAMIC.
- */
-extern const char* kTui_Draw_Dynamic_Name;
-/*!
- * @brief String name of @ref TUI_DRAW_STREAM.
- */
-extern const char* kTui_Draw_Stream_Name;
-/*! @} */
 /*! @name Enum Manipulation Functions
  *  @{ */
  /*!
@@ -920,14 +890,6 @@ int tuiDetailFlagIsValid(int detail_flag);
  */
 int tuiFilterModeIsValid(int filter_mode);
 /*!
- * @brief Get if a @ref TuiDrawMode is valid.
- *
- * @param draw_mode The @ref TuiDrawMode.
- *
- * @returns If it is valid.
- */
-int tuiDrawModeIsValid(int draw_mode);
-/*!
  * @brief Get if a @ref TuiBlendMode is compatible with a @ref TuiDetailMode.
  *
  * @param detail_mode The @ref TuiDetailMode.
@@ -1016,22 +978,6 @@ const char* tuiFilterModeToString(int filter_mode);
  * @returns The @ref TuiFilterModee.
  */
 int tuiStringToFilterMode(const char* string);
-/*!
- * @brief Get string name of an @ref TuiDrawMode.
- *
- * @param draw_mode The @ref TuiDrawMode.
- *
- * @returns The string name.
- */
-const char* tuiDrawModeToString(int draw_mode);
-/*!
- * @brief Get a @ref TuiDrawMode from a string name.
- *
- * @param string The string name.
- *
- * @returns The @ref TuiDrawMode.
- */
-int tuiStringToDrawMode(const char* string);
 /*! @} */
 #ifdef __cplusplus //extern C guard
  }

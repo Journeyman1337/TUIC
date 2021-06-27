@@ -417,10 +417,6 @@ typedef struct TuiTexture_s
 	 */
 	int FilterMode;
 	/*!
-	 * @brief The @ref TuiDrawMode.
-	 */
-	int DrawMode;
-	/*!
 	 * @brief The width of the texture in pixels.
 	 */
 	size_t PixelWidth;

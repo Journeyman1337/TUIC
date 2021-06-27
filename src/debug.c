@@ -21,7 +21,6 @@ const char* kTui_Error_Invalid_Blend_Mode_Name = TO_STRING(TUI_ERROR_INVALID_BLE
 const char* kTui_Error_Invalid_Codepage_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS);
 const char* kTui_Error_Invalid_Channel_Count_Name = TO_STRING(TUI_ERROR_INVALID_CHANNEL_COUNT);
 const char* kTui_Error_Invalid_Detail_Flag_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_FLAG);
-const char* kTui_Error_Invalid_Draw_Mode_Name = TO_STRING(TUI_ERROR_INVALID_DRAW_MODE);
 const char* kTui_Error_Invalid_Filter_Mode_Name = TO_STRING(TUI_ERROR_INVALID_FILTER_MODE);
 const char* kTui_Error_Invalid_Detail_Mode_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_MODE);
 const char* kTui_Error_Invalid_Glyph_Count_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_COUNT);
@@ -72,7 +71,6 @@ const char* kTui_Error_Invalid_Codepage_Dimensions_Description = "The image pixe
 const char* kTui_Error_Invalid_Channel_Count_Description = "The color channel count is not supported.";
 const char* kTui_Error_Invalid_Detail_Flag_Description = "The provided detail flag is invalid.";
 const char* kTui_Error_Invalid_Detail_Mode_Description = "The provided detail mode is invalid.";
-const char* kTui_Error_Invalid_Draw_Mode_Description = "The provided draw mode is invalid.";
 const char* kTui_Error_Invalid_Filter_Mode_Description = "The provided filter mode is invalid.";
 const char* kTui_Error_Invalid_Glyph_Count_Description = "The glyph count must be greater than 0.";
 const char* kTui_Error_Invalid_Glyph_Dimensions_Description = "The glyph dimensions of a TuiGlyphAtlas must be greater than 0.";
@@ -149,8 +147,6 @@ const char* tuiErrorCodeToString(int error_code)
 		return kTui_Error_Invalid_Detail_Flag_Name;
 	case TUI_ERROR_INVALID_DETAIL_MODE:
 		return kTui_Error_Invalid_Detail_Mode_Name;
-	case TUI_ERROR_INVALID_DRAW_MODE:
-		return kTui_Error_Invalid_Draw_Mode_Name;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Name;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
@@ -288,10 +284,6 @@ int tuiStringToErrorCode(const char* string)
 	else if (strcmp(string, kTui_Error_Invalid_Detail_Mode_Name) == 0)
 	{
 		return TUI_ERROR_INVALID_DETAIL_MODE;
-	}
-	else if (strcmp(string, kTui_Error_Invalid_Draw_Mode_Name) == 0)
-	{
-		return TUI_ERROR_INVALID_DRAW_MODE;
 	}
 	else if (strcmp(string, kTui_Error_Invalid_Filter_Mode_Name) == 0)
 	{
@@ -458,8 +450,6 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Invalid_Detail_Mode_Description;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Description;
-	case TUI_ERROR_INVALID_DRAW_MODE:
-		return kTui_Error_Invalid_Draw_Mode_Description;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
 		return kTui_Error_Invalid_Glyph_Count_Description;
 	case TUI_ERROR_INVALID_GLYPH_DIMENSIONS:
