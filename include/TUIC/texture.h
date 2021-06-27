@@ -1,3 +1,5 @@
+/*! \file texture.h
+ */
 /*
 	Copyright (c) 2021 Daniel Valcour
 
