@@ -13,6 +13,7 @@ if (DOXYGEN_FOUND)
 		"${TUI_SOURCE_DIR}/include/tuic/glyph_atlas.h"
 		"${TUI_SOURCE_DIR}/include/tuic/batch.h"
 		"${TUI_SOURCE_DIR}/include/tuic/image.h"
+		"${TUI_SOURCE_DIR}/include/tuic/texture.h"
 		"${TUI_SOURCE_DIR}/include/tuic/backends/objects.h"
 		"${TUI_SOURCE_DIR}/include/tuic/backends/opengl33.h"
 		)
