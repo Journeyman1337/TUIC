@@ -120,18 +120,6 @@ TEST_CASE("tuiFilterModeIsValid") {
     }
 }
 
-TEST_CASE("tuiDrawModeIsValid") {
-    SECTION("Draw modes should return true.") {
-        REQUIRE(tuiDrawModeIsValid(TUI_DRAW_STATIC) == TUI_TRUE);
-        REQUIRE(tuiDrawModeIsValid(TUI_DRAW_DYNAMIC) == TUI_TRUE);
-        REQUIRE(tuiDrawModeIsValid(TUI_DRAW_STREAM) == TUI_TRUE);
-    }
-    SECTION("Non draw modes should return false.") {
-        REQUIRE(tuiFilterModeIsValid(4) == TUI_FALSE);
-        REQUIRE(tuiFilterModeIsValid(0) == TUI_FALSE);
-    }
-}
-
 TEST_CASE("tuiDetailGetGlyphFlag") {
     REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G8_C0_FULL) == TUI_GLYPH_FLAG_G8);
     REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G16_C0_FULL) == TUI_GLYPH_FLAG_G16);
@@ -245,12 +233,6 @@ TEST_CASE("tuiFilterModeToString") {
     REQUIRE(std::string(tuiFilterModeToString(TUI_FILTER_BILINEAR)) == std::string(TO_STRING(TUI_FILTER_BILINEAR)));
 }
 
-TEST_CASE("tuiDrawModeToString") {
-    REQUIRE(std::string(tuiDrawModeToString(TUI_DRAW_STATIC)) == std::string(TO_STRING(TUI_DRAW_STATIC)));
-    REQUIRE(std::string(tuiDrawModeToString(TUI_DRAW_DYNAMIC)) == std::string(TO_STRING(TUI_DRAW_DYNAMIC)));
-    REQUIRE(std::string(tuiDrawModeToString(TUI_DRAW_STREAM)) == std::string(TO_STRING(TUI_DRAW_STREAM)));
-}
-
 TEST_CASE("tuiStringToDetailFlag") {
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_GLYPH_FLAG_G8)) == TUI_GLYPH_FLAG_G8);
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_GLYPH_FLAG_G16)) == TUI_GLYPH_FLAG_G16);
@@ -336,10 +318,4 @@ TEST_CASE("tuiStringToBlendMode") {
 TEST_CASE("tuiStringToFilterMode") {
     REQUIRE(tuiStringToFilterMode(TO_STRING(TUI_FILTER_POINT)) == TUI_FILTER_POINT);
     REQUIRE(tuiStringToFilterMode(TO_STRING(TUI_FILTER_BILINEAR)) == TUI_FILTER_BILINEAR);
-}
-
-TEST_CASE("tuiStringToDrawMode") {
-    REQUIRE(tuiStringToDrawMode(TO_STRING(TUI_DRAW_STATIC)) == TUI_DRAW_STATIC);
-    REQUIRE(tuiStringToDrawMode(TO_STRING(TUI_DRAW_DYNAMIC)) == TUI_DRAW_DYNAMIC);
-    REQUIRE(tuiStringToDrawMode(TO_STRING(TUI_DRAW_STREAM)) == TUI_DRAW_STREAM);
 }
