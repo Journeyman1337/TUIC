@@ -52,6 +52,9 @@ enum TuiErrorCode
 	 * @brief TUI error for when a @ref TuiInstance is destroyed when there are still one or more attached @ref TuiPanel objects.
 	 */
 	TUI_ERROR_DANGLING_PANEL = 4,
+	/*!
+	 * @brief TUI error for when a @ref TuiInstance is destroyed when there are still one or more attached @ref TuiTexture objects.
+	 */
 	TUI_ERROR_DANGLING_TEXTURE = 5,
 	/*!
 	 * @brief TUI error for when trying to use an opqaue object attached to a damaged @ref TuiInstance or a damanged @ref TuiInstance.
@@ -249,6 +252,9 @@ extern const char* kTui_Error_Dangling_Palette_Name;
  * @brief String name of @ref TUI_ERROR_DANGLING_PANEL.
  */
 extern const char* kTui_Error_Dangling_Panel_Name;
+/*!
+ * @brief String name of @ref TUI_ERROR_DANGLING_TEXTURE.
+ */
 extern const char* kTui_Error_Dangling_Texture_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_DAMAGED_INSTANCE.
@@ -449,6 +455,9 @@ extern const char* kTui_Error_Dangling_Palette_Description;
  * @brief String description of @ref TUI_ERROR_DANGLING_PANEL.
  */
 extern const char* kTui_Error_Dangling_Panel_Description;
+/*!
+ * @brief String description of @ref TUI_ERROR_DANGLING_TEXTURE.
+ */
 extern const char* kTui_Error_Dangling_Texture_Description;
 /*!
  * @brief String name of @ref TUI_ERROR_DAMAGED_INSTANCE.
