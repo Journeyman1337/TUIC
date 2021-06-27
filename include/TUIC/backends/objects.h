@@ -86,6 +86,47 @@ typedef void(*tuiGlyphAtlasCreateCallback) (TuiGlyphAtlas atlas, const uint8_t* 
  */
 typedef void(*tuiGlyphAtlasDestroyCallback) (TuiGlyphAtlas atlas);
 /*!
+ * @brief Callback type used for creating the API data of a @ref TuiTexture.
+ *
+ * @param texture The @ref TuiTexture.
+ * @param pixels The raw pixel array.
+ */
+typedef void(*tuiTextureCreateCallback)(TuiTexture texture, const uint8_t* pixels);
+/*!
+ * @brief Callback type used for destroying the API data of a @ref TuiTexture.
+ *
+ * @param texture The @ref TuiTexture.
+ */
+typedef void(*tuiTextureDestroyCallback)(TuiTexture texture);
+/*!
+ * @brief Callback type used for setting the pixels of a @ref TuiTexture.
+ *
+ * @param texture The @ref TuiTexture.
+ * @param pixels The pixel array.
+ */
+typedef void(*tuiTextureSetPixelsCallback)(TuiTexture texture, const uint8_t* pixels);
+/*!
+ * @brief Callback type used for rendering a @ref TuiTexture to the screen of its @ref TuiInstance.
+ *
+ * @param texture The @ref TuiTexture.
+ * @param left_x The leftmost pixel to draw the batch data in the screen of the @ref TuiInstance.
+ * @param right_x The rightmost pixel to draw the batch data in the screen of the @ref TuiInstance.
+ * @param top_y The topmost pixel to draw the batch data in the screen of the @ref TuiInstance.
+ * @param bottom_y The bottommost pixel to draw the batch data in the screen of the @ref TuiInstance.
+ */
+typedef void(*tuiTextureRenderCallback)(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+/*!
+ * @brief Callback type used for rendering a @ref TuiTexture to the framebuffer of a @ref TuiPanel.
+ *
+ * @param texture The @ref TuiTexture.
+ * @param panel The @ref TuiPanel.
+ * @param left_x The leftmost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
+ * @param right_x The rightmost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
+ * @param top_y The topmost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
+ * @param bottom_y The bottommost pixel to draw the batch data in the framebuffer of the @ref TuiPanel.
+ */
+typedef void(*tuiTextureRenderToPanelCallback)(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
+/*!
  * @brief Callback type used for creating the API data of a @ref TuiPalette.
  * 
  * @param palette The @ref TuiPalette.
@@ -212,6 +253,26 @@ typedef struct TuiInstance_s
 	 */
 	tuiGlyphAtlasDestroyCallback GlyphDestroy;
 	/*!
+	 *@brief Callback type used for creating the API data of a @ref TuiTexture.
+	 */
+	tuiTextureCreateCallback TextureCreate;
+	/*!
+	 *@brief Callback type used for destroying the API data of a @ref TuiTexture.
+	 */
+	tuiTextureDestroyCallback TextureDestroy;
+	/*!
+	 *@brief Callback type used for setting the pixels of a @ref TuiTexture.
+	 */
+	tuiTextureSetPixelsCallback TextureSetPixels;
+	/*!
+	 * @brief Callback type used for rendering a @ref TuiTexture to the screen of its @ref TuiInstance.
+	 */ 
+	tuiTextureRenderCallback TextureRender;
+	/*!
+	 * @brief Callback type used for rendering a @ref TuiTexture to the framebuffer of a @ref TuiPanel.
+	 */
+	tuiTextureRenderToPanelCallback TextureRenderToPanel;
+	/*!
 	 * @brief Callback for creating the API data of a @ref TuiPalette.
 	 */
 	tuiPaletteCreateCallback PaletteCreate;
@@ -260,6 +321,10 @@ typedef struct TuiInstance_s
 	 */
 	size_t GlyphAtlasCount;
 	/*!
+	 * @brief The amount of @ref TuiTexture objects that currently exist attached to this @ref TuiInstance.
+	 */
+	size_t TextureCount;
+	/*!
 	 * @brief The amount of @ref TuiPalette objects that currently exist attached to this @ref TuiInstance.
 	 */
 	size_t PaletteCount;
@@ -291,7 +356,9 @@ typedef struct TuiGlyphAtlas_s
 	 * @brief The @ref TuiInstance that this object is attached to.
 	 */
 	TuiInstance Instance;
-
+	/*!
+	 * @brief The @ref TuiBlendMode.
+	 */
 	int BlendMode;
 	/*!
 	 * @brief The atlas type that this @ref TuiGlyphAtlas uses.
@@ -341,18 +408,33 @@ typedef struct TuiGlyphAtlas_s
 
 typedef struct TuiTexture_s
 {
+	/*!
+	 * @brief The @ref TuiInstance that this object is attached to.
+	 */
 	TuiInstance Instance;
-
+	/*!
+	 * @brief The @ref TuiFilterMode.
+	 */
 	int FilterMode;
-
+	/*!
+	 * @brief The @ref TuiDrawMode.
+	 */
 	int DrawMode;
-
+	/*!
+	 * @brief The width of the texture in pixels.
+	 */
 	size_t PixelWidth;
-
+	/*!
+	 * @brief The height of the texture in pixels.
+	 */
 	size_t PixelHeight;
-
+	/*!
+	 * @brief The amount of channels in the texture of this @ref TuiTexture.
+	 */
 	size_t ChannelCount;
-
+	/*!
+	 * @brief A pointer to backend specific API data.
+	 */
 	void* ApiData;
 } TuiTexture_s;
 /*

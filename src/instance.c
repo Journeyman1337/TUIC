@@ -8,17 +8,30 @@ void tuiInstanceDestroy(TuiInstance instance)
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return;
 	}
+	int dangling = TUI_FALSE;
 	if (instance->PanelCount > 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_PANEL, __func__);
+		dangling = TUI_TRUE;
 	}
 	if (instance->GlyphAtlasCount > 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_GLYPH_ATLAS, __func__);
+		dangling = TUI_TRUE;
 	}
 	if (instance->PaletteCount > 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_PALETTE, __func__);
+		dangling = TUI_TRUE;
+	}
+	if (instance->TextureCount > 0)
+	{
+		tuiDebugError(TUI_ERROR_DANGLING_TEXTURE, __func__);
+		dangling = TUI_TRUE;
+	}
+	if (dangling == TUI_TRUE)
+	{
+		return;
 	}
 
 	instance->InstanceDestroy(instance);
