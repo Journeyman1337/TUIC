@@ -100,9 +100,13 @@ enum TuiErrorCode
 	 * @brief TUI error for when a @ref TuiDetailMode is invalid.
 	 */
 	TUI_ERROR_INVALID_DETAIL_MODE = 17,
-
+	/*!
+	 * @brief TUI error for when a @ref TuiDrawMode is invalid.
+	 */
 	TUI_ERROR_INVALID_DRAW_MODE = 18,
-
+	/*!
+	 * @brief TUI error for when a @ref TuiFilterMode is invalid.
+	 */
 	TUI_ERROR_INVALID_FILTER_MODE = 19,
 	/*!
 	 * @brief TUI error for when the glyph count of a @ref TuiGlyphAtlas is less than or equal to 0.
@@ -192,7 +196,9 @@ enum TuiErrorCode
 	 * @brief TUI error for when a target @ref TuiPanel is NULL.
 	 */
 	TUI_ERROR_NULL_TARGET_PANEL = 41,
-
+	/*!
+	 * @brief TUI error for when a @ref TuiTexture is NULL.
+	 */
 	TUI_ERROR_NULL_TEXTURE = 42,
 	/*!
 	 * @brief TUI error for when a texture coordinates array is NULL.
@@ -290,9 +296,13 @@ extern const char* kTui_Error_Invalid_Detail_Flag_Name;
  * @brief String name of @ref TUI_ERROR_INVALID_DETAIL_MODE.
  */
 extern const char* kTui_Error_Invalid_Detail_Mode_Name;
-
+/*!
+ * @brief String name of @ref TUI_ERROR_INVALID_DRAW_MODE.
+ */
 extern const char* kTui_Error_Invalid_Draw_Mode_Name;
-
+/*!
+ * @brief String name of @ref TUI_ERROR_INVALID_FILTER_MODE.
+ */
 extern const char* kTui_Error_Invalid_Filter_Mode_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_INVALID_GLYPH_COUNT.
@@ -382,7 +392,9 @@ extern const char* kTui_Error_Null_Target_Image_Name;
  * @brief String name of @ref TUI_ERROR_NULL_TARGET_PANEL.
  */
 extern const char* kTui_Error_Null_Target_Panel_Name;
-
+/*!
+ * @brief String name of @ref TUI_ERROR_NULL_TEXTURE.
+ */
 extern const char* kTui_Error_Null_Texture_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_NULL_TEXTURE_COORDINATES.
@@ -483,9 +495,13 @@ extern const char* kTui_Error_Invalid_Detail_Flag_Description;
  * @brief String description of @ref TUI_ERROR_INVALID_DETAIL_MODE.
  */
 extern const char* kTui_Error_Invalid_Detail_Mode_Description;
-
+/*!
+ * @brief String description of @ref TUI_ERROR_INVALID_DRAW_MODE.
+ */
 extern const char* kTui_Error_Invalid_Draw_Mode_Description;
-
+/*!
+ * @brief String description of @ref TUI_ERROR_INVALID_FILTER_MODE.
+ */
 extern const char* kTui_Error_Invalid_Filter_Mode_Description;
 /*!
  * @brief String description of @ref TUI_ERROR_INVALID_GLYPH_COUNT.
@@ -575,7 +591,9 @@ extern const char* kTui_Error_Null_Target_Image_Description;
  * @brief String description of @ref TUI_ERROR_NULL_TARGET_PANEL.
  */
 extern const char* kTui_Error_Null_Target_Panel_Description;
-
+/*!
+ * @brief String description of @ref TUI_ERROR_NULL_TEXTURE.
+ */
 extern const char* kTui_Error_Null_Texture_Description;
 /*!
  * @brief String description of @ref TUI_ERROR_NULL_TEXTURE_COORDINATES.
