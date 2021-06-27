@@ -52,178 +52,179 @@ enum TuiErrorCode
 	 * @brief TUI error for when a @ref TuiInstance is destroyed when there are still one or more attached @ref TuiPanel objects.
 	 */
 	TUI_ERROR_DANGLING_PANEL = 4,
+	TUI_ERROR_DANGLING_TEXTURE = 5,
 	/*!
 	 * @brief TUI error for when trying to use an opqaue object attached to a damaged @ref TuiInstance or a damanged @ref TuiInstance.
 	 */
-	 TUI_ERROR_DAMAGED_INSTANCE = 5,
+	 TUI_ERROR_DAMAGED_INSTANCE = 6,
 	/*!
 	 * @brief TUI error for when a @ref TuiInstance is destroyed when there are still one or more attached @ref TuiPanel objects.
 	 */
-	TUI_ERROR_INCOMPATIBLE_BLEND_MODE = 6,
+	TUI_ERROR_INCOMPATIBLE_BLEND_MODE = 7,
 	/*!
 	 * @brief TUI error for when a emplacing a @ref TuiImage into another and they are not compatible with one another.
 	 */
-	TUI_ERROR_INCOMPATIBLE_IMAGES = 7,
+	TUI_ERROR_INCOMPATIBLE_IMAGES = 8,
 	/*!
 	 * @brief TUI error for when a @ref TuiAtlasType is invalid.
 	 */
-	TUI_ERROR_INVALID_ATLAS_TYPE = 8,
+	TUI_ERROR_INVALID_ATLAS_TYPE = 9,
 	/*!
 	 * @brief TUI error for when batch data dimensions are less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS = 9,
+	TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS = 10,
 	/*!
 	 * @brief TUI error for when batch dimensions are less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_BATCH_DIMENSIONS = 10,
+	TUI_ERROR_INVALID_BATCH_DIMENSIONS = 12,
 	/*!
 	 * @brief TUI error for when a batch setter is used for a @ref TuiBatch that is intended for a different @ref TuiDetailMode.
 	 */
-	TUI_ERROR_INVALID_BATCH_SETTER = 11,
+	TUI_ERROR_INVALID_BATCH_SETTER = 13,
 	/*!
 	 * @brief TUI error for when a @ref TuiBlendMode is invalid.
 	 */
-	TUI_ERROR_INVALID_BLEND_MODE = 12,
+	TUI_ERROR_INVALID_BLEND_MODE = 14,
 	/*!
 	 * @brief TUI error for when attempting to create a codepage glyph atlas with pixel dimensions that are not divisible by 16 and less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 13,
+	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 15,
 	/*!
 	 * @brief TUI error for when there is an invalid color channel count specified.
 	 */
-	TUI_ERROR_INVALID_CHANNEL_COUNT = 15,
+	TUI_ERROR_INVALID_CHANNEL_COUNT = 16,
 	/*!
 	 * @brief TUI error for when a @ref TuiDetailFlag is invalid.
 	 */
-	TUI_ERROR_INVALID_DETAIL_FLAG = 16,
+	TUI_ERROR_INVALID_DETAIL_FLAG = 17,
 	/*!
 	 * @brief TUI error for when a @ref TuiDetailMode is invalid.
 	 */
-	TUI_ERROR_INVALID_DETAIL_MODE = 17,
+	TUI_ERROR_INVALID_DETAIL_MODE = 18,
 	/*!
 	 * @brief TUI error for when a @ref TuiDrawMode is invalid.
 	 */
-	TUI_ERROR_INVALID_DRAW_MODE = 18,
+	TUI_ERROR_INVALID_DRAW_MODE = 19,
 	/*!
 	 * @brief TUI error for when a @ref TuiFilterMode is invalid.
 	 */
-	TUI_ERROR_INVALID_FILTER_MODE = 19,
+	TUI_ERROR_INVALID_FILTER_MODE = 20,
 	/*!
 	 * @brief TUI error for when the glyph count of a @ref TuiGlyphAtlas is less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_GLYPH_COUNT = 20,
+	TUI_ERROR_INVALID_GLYPH_COUNT = 21,
 	/*!
 	 * @brief TUI error for glyph width of height is less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 21,
+	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 22,
 	/*!
 	 * @brief TUI error for then the pixel width or height of a @ref TuiImage is less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 22,
+	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 23,
 	/*!
 	 * @brief TUI error for when the pixel width or height of a @ref TuiInstance is less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_INSTANCE_DIMENSIONS = 23,
+	TUI_ERROR_INVALID_INSTANCE_DIMENSIONS = 24,
 	/*!
 	 * @brief TUI error for when a @ref TuiPalette is given a color count less than or equal to 0 or greater than 256.
 	 */
-	TUI_ERROR_INVALID_PALETTE_COLOR_COUNT = 24,
+	TUI_ERROR_INVALID_PALETTE_COLOR_COUNT = 25,
 	/*!
 	 * @brief TUI error for when the pixel width or height of a @ref TuiPanel is less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_PANEL_DIMENSIONS = 25,
+	TUI_ERROR_INVALID_PANEL_DIMENSIONS = 26,
 	/*!
 	 * @brief TUI error for when the pixel width or height of a raw pixel array is less than or equal to 0.
 	 */
-	TUI_ERROR_INVALID_PIXEL_DIMENSIONS = 26,
+	TUI_ERROR_INVALID_PIXEL_DIMENSIONS = 27,
 	/*!
 	 * @brief TUI error for when a @ref TuiImage has failed to be loaded from an image file.
 	 */
-	TUI_ERROR_LOAD_IMAGE_FAILURE = 27,
+	TUI_ERROR_LOAD_IMAGE_FAILURE = 28,
 	/*!
 	 * @brief TUI error for when a @ref TuiImage has been loaded with an unexpected channel count.
 	 */
-	TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS = 28,
+	TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS = 29,
 	/*!
 	 * @brief TUI error for when a @ref TuiBatch is NULL.
 	 */
-	TUI_ERROR_NULL_BATCH = 29,
+	TUI_ERROR_NULL_BATCH = 30,
 	/*!
 	 * @brief TUI error for when a batch data array is NULL.
 	 */
-	TUI_ERROR_NULL_BATCH_DATA = 30,
+	TUI_ERROR_NULL_BATCH_DATA = 31,
 	/*!
 	 * @brief TUI error for when a colors array is NULL.
 	 */
-	TUI_ERROR_NULL_COLORS = 31,
+	TUI_ERROR_NULL_COLORS = 32,
 	/*!
 	 * @brief TUI error for when a @ref TuiGlyphAtlas is NULL.
 	 */
-	TUI_ERROR_NULL_GLYPH_ATLAS = 32,
+	TUI_ERROR_NULL_GLYPH_ATLAS = 33,
 	/*!
 	 * @brief TUI error for when a glyph bounding box array is NULL.
 	 */
-	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 33,
+	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 34,
 	/*!
 	 * @brief TUI error for when a @ref TuiImage is NULL.
 	 */
-	TUI_ERROR_NULL_IMAGE = 34,
+	TUI_ERROR_NULL_IMAGE = 35,
 	/*!
 	 * @brief TUI error for when a @ref TuiInstance is NULL.
 	 */
-	TUI_ERROR_NULL_INSTANCE = 35,
+	TUI_ERROR_NULL_INSTANCE = 36,
 	/*!
 	 * @brief TUI error for when a @ref TuiPalette is NULL.
 	 */
-	TUI_ERROR_NULL_PALETTE = 36,
+	TUI_ERROR_NULL_PALETTE = 37,
 	/*!
 	 * @brief TUI error for when a @ref TuiPanel is NULL.
 	 */
-	TUI_ERROR_NULL_PANEL = 37,
+	TUI_ERROR_NULL_PANEL = 38,
 	/*!
 	 * @brief TUI error for when a file path is NULL.
 	 */
-	TUI_ERROR_NULL_PATH = 38,
+	TUI_ERROR_NULL_PATH = 39,
 	/*!
 	 * @brief TUI error for when a pixel array is NULL.
 	 */
-	TUI_ERROR_NULL_PIXELS = 39,
+	TUI_ERROR_NULL_PIXELS = 40,
 	/*!
 	 * @brief TUI error for when a target @ref TuiImage is NULL.
 	 */
-	TUI_ERROR_NULL_TARGET_IMAGE = 40,
+	TUI_ERROR_NULL_TARGET_IMAGE = 41,
 	/*!
 	 * @brief TUI error for when a target @ref TuiPanel is NULL.
 	 */
-	TUI_ERROR_NULL_TARGET_PANEL = 41,
+	TUI_ERROR_NULL_TARGET_PANEL = 42,
 	/*!
 	 * @brief TUI error for when a @ref TuiTexture is NULL.
 	 */
-	TUI_ERROR_NULL_TEXTURE = 42,
+	TUI_ERROR_NULL_TEXTURE = 43,
 	/*!
 	 * @brief TUI error for when a texture coordinates array is NULL.
 	 */
-	TUI_ERROR_NULL_TEXTURE_COORDINATES = 43,
+	TUI_ERROR_NULL_TEXTURE_COORDINATES = 44,
 	/*!
 	 * @brief TUI error for when attempting to draw a @ref TuiBatch or batch data with a @ref TuiDetailMode that requires a @ref TuiPalette and none is provided.
 	 */
-	TUI_ERROR_PALETTE_REQUIRED = 44,
+	TUI_ERROR_PALETTE_REQUIRED = 45,
 	/*!
 	 * @brief TUI error for when a @ref TuiImage has failed to be resized.
 	 */
-	TUI_ERROR_RESIZE_IMAGE_FAILURE = 45,
+	TUI_ERROR_RESIZE_IMAGE_FAILURE = 46,
 	/*!
 	 * @brief TUI error for when a @ref TuiGlyphAtlas uses an unmatching @ref TuiInstance.
 	 */
-	TUI_ERROR_UNMATCHING_ATLAS_INSTANCE = 46,
+	TUI_ERROR_UNMATCHING_ATLAS_INSTANCE = 47,
 	/*!
 	 * @brief TUI error for when a @ref TuiPalette uses an unmatching @ref TuiInstance.
 	 */
-	TUI_ERROR_UNMATCHING_PALETTE_INSTANCE = 47,
+	TUI_ERROR_UNMATCHING_PALETTE_INSTANCE = 48,
 	/*!
 	* @brief TUI error for when a @ref TuiPanel uses an unmatching @ref TuiInstance.
 	*/
-	TUI_ERROR_UNMATCHING_PANEL_INSTANCE = 48
+	TUI_ERROR_UNMATCHING_PANEL_INSTANCE = 49
 };
 /*! @name Error Code Names
  * These are the const string names of @ref TuiErrorCode enum values.
@@ -248,6 +249,7 @@ extern const char* kTui_Error_Dangling_Palette_Name;
  * @brief String name of @ref TUI_ERROR_DANGLING_PANEL.
  */
 extern const char* kTui_Error_Dangling_Panel_Name;
+extern const char* kTui_Error_Dangling_Texture_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_DAMAGED_INSTANCE.
  */
@@ -447,6 +449,7 @@ extern const char* kTui_Error_Dangling_Palette_Description;
  * @brief String description of @ref TUI_ERROR_DANGLING_PANEL.
  */
 extern const char* kTui_Error_Dangling_Panel_Description;
+extern const char* kTui_Error_Dangling_Texture_Description;
 /*!
  * @brief String name of @ref TUI_ERROR_DAMAGED_INSTANCE.
  */

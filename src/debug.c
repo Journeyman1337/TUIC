@@ -9,6 +9,7 @@ const char* kTui_Error_Backend_Specific_Name = TO_STRING(TUI_ERROR_BACKEND_SPECI
 const char* kTui_Error_Dangling_Glyph_Atlas_Name = TO_STRING(TUI_ERROR_DANGLING_GLYPH_ATLAS);
 const char* kTui_Error_Dangling_Palette_Name = TO_STRING(TUI_ERROR_DANGLING_PALETTE);
 const char* kTui_Error_Dangling_Panel_Name = TO_STRING(TUI_ERROR_DANGLING_PANEL);
+const char* kTui_Error_Dangling_Texture_Name = TO_STRING(TUI_ERROR_DANGLING_TEXTURE);
 const char* kTui_Error_Damaged_Instance_Name = TO_STRING(TUI_ERROR_DAMAGED_INSTANCE);
 const char* kTui_Error_Incompatible_Blend_Mode_Name = TO_STRING(TUI_ERROR_INCOMPATIBLE_BLEND_MODE);
 const char* kTui_Error_Incompatible_Images_Name = TO_STRING(TUI_ERROR_INCOMPATIBLE_IMAGES);
@@ -58,6 +59,7 @@ const char* kTui_Error_Backend_Specific_Description = "A backend specific error 
 const char* kTui_Error_Dangling_Glyph_Atlas_Description = "A TuiInstance has been destroyed with one or more dangling TuiGlyphAtlas.";
 const char* kTui_Error_Dangling_Palette_Description = "A TuiInstance has been destroyed with one or more dangling TuiPalette";
 const char* kTui_Error_Dangling_Panel_Description = "A TuiInstance has been destroyed with one or more dangling TuiPanel.";
+const char* kTui_Error_Dangling_Texture_Description = "A TuiInstance has been destroyed with one or more dangling TuiTexture.";
 const char* kTui_Error_Damaged_Instance_Description = "A TuiInstance is damaged so all associated opaque objects must be remade.";
 const char* kTui_Error_Incompatible_Blend_Mode_Description = "The provided blend mode is incompatible with the provided detail mode.";
 const char* kTui_Error_Incompatible_Images_Description = "The TuiImage and target TuiImage are incompatible with each other.";
@@ -121,6 +123,8 @@ const char* tuiErrorCodeToString(int error_code)
 		return kTui_Error_Dangling_Palette_Name;
 	case TUI_ERROR_DANGLING_PANEL:
 		return kTui_Error_Dangling_Panel_Name;
+	case TUI_ERROR_DANGLING_TEXTURE:
+		return kTui_Error_Dangling_Texture_Name;
 	case TUI_ERROR_DAMAGED_INSTANCE:
 		return kTui_Error_Damaged_Instance_Name;
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
@@ -232,6 +236,10 @@ int tuiStringToErrorCode(const char* string)
 	else if (strcmp(string, kTui_Error_Dangling_Panel_Name) == 0)
 	{
 		return TUI_ERROR_DANGLING_PANEL;
+	}
+	else if (strcmp(string, kTui_Error_Dangling_Texture_Name) == 0)
+	{
+		return TUI_ERROR_DANGLING_TEXTURE;
 	}
 	else if (strcmp(string, kTui_Error_Damaged_Instance_Name) == 0)
 	{
@@ -422,6 +430,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Dangling_Palette_Description;
 	case TUI_ERROR_DANGLING_PANEL:
 		return kTui_Error_Dangling_Panel_Description;
+	case TUI_ERROR_DANGLING_TEXTURE:
+		return kTui_Error_Dangling_Texture_Description;
 	case TUI_ERROR_DAMAGED_INSTANCE:
 		return kTui_Error_Damaged_Instance_Description;
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
