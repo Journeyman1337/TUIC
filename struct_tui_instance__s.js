@@ -22,5 +22,11 @@ var struct_tui_instance__s =
     [ "PanelRenderToPanel", "struct_tui_instance__s.html#acc610d94b607d3b4021fe716d0352ca5", null ],
     [ "PanelSetSize", "struct_tui_instance__s.html#a9fc250dd84cbbba512959d5a2e5b6845", null ],
     [ "PixelHeight", "struct_tui_instance__s.html#a1188a424643b30de5a2e51c8d0f81980", null ],
-    [ "PixelWidth", "struct_tui_instance__s.html#a42d3a21009f7529d37d011a60526b492", null ]
+    [ "PixelWidth", "struct_tui_instance__s.html#a42d3a21009f7529d37d011a60526b492", null ],
+    [ "TextureCount", "struct_tui_instance__s.html#ac7d9c624f959008652d49e9573979796", null ],
+    [ "TextureCreate", "struct_tui_instance__s.html#a308546d9d98008962caf22a09d569a69", null ],
+    [ "TextureDestroy", "struct_tui_instance__s.html#a357915160d890f0ead2a80a614e989e6", null ],
+    [ "TextureRender", "struct_tui_instance__s.html#a20a8013d8af4ff0950501565f8b73464", null ],
+    [ "TextureRenderToPanel", "struct_tui_instance__s.html#a49f1f97fe3b3c363727d240c035650e3", null ],
+    [ "TextureSetPixels", "struct_tui_instance__s.html#a31fd2c31a3874cf8304d7943e50d03aa", null ]
 ];

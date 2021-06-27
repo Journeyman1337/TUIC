@@ -118,6 +118,26 @@ tuiGlyphAtlasCreateCallback&#160;</td><td class="memItemRight" valign="bottom"><
 tuiGlyphAtlasDestroyCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a3694a61a11a7622a65fd0bc43286ee64">GlyphDestroy</a></td></tr>
 <tr class="memdesc:a3694a61a11a7622a65fd0bc43286ee64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for destroying the API data of a TuiGlyphAtlas. <br /></td></tr>
 <tr class="separator:a3694a61a11a7622a65fd0bc43286ee64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308546d9d98008962caf22a09d569a69"><td class="memItemLeft" align="right" valign="top"><a id="a308546d9d98008962caf22a09d569a69"></a>
+tuiTextureCreateCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a308546d9d98008962caf22a09d569a69">TextureCreate</a></td></tr>
+<tr class="memdesc:a308546d9d98008962caf22a09d569a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used for creating the API data of a TuiTexture. <br /></td></tr>
+<tr class="separator:a308546d9d98008962caf22a09d569a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a357915160d890f0ead2a80a614e989e6"><td class="memItemLeft" align="right" valign="top"><a id="a357915160d890f0ead2a80a614e989e6"></a>
+tuiTextureDestroyCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a357915160d890f0ead2a80a614e989e6">TextureDestroy</a></td></tr>
+<tr class="memdesc:a357915160d890f0ead2a80a614e989e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used for destroying the API data of a TuiTexture. <br /></td></tr>
+<tr class="separator:a357915160d890f0ead2a80a614e989e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31fd2c31a3874cf8304d7943e50d03aa"><td class="memItemLeft" align="right" valign="top"><a id="a31fd2c31a3874cf8304d7943e50d03aa"></a>
+tuiTextureSetPixelsCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a31fd2c31a3874cf8304d7943e50d03aa">TextureSetPixels</a></td></tr>
+<tr class="memdesc:a31fd2c31a3874cf8304d7943e50d03aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used for setting the pixels of a TuiTexture. <br /></td></tr>
+<tr class="separator:a31fd2c31a3874cf8304d7943e50d03aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a8013d8af4ff0950501565f8b73464"><td class="memItemLeft" align="right" valign="top"><a id="a20a8013d8af4ff0950501565f8b73464"></a>
+tuiTextureRenderCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a20a8013d8af4ff0950501565f8b73464">TextureRender</a></td></tr>
+<tr class="memdesc:a20a8013d8af4ff0950501565f8b73464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used for rendering a TuiTexture to the screen of its TuiInstance. <br /></td></tr>
+<tr class="separator:a20a8013d8af4ff0950501565f8b73464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49f1f97fe3b3c363727d240c035650e3"><td class="memItemLeft" align="right" valign="top"><a id="a49f1f97fe3b3c363727d240c035650e3"></a>
+tuiTextureRenderToPanelCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a49f1f97fe3b3c363727d240c035650e3">TextureRenderToPanel</a></td></tr>
+<tr class="memdesc:a49f1f97fe3b3c363727d240c035650e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used for rendering a TuiTexture to the framebuffer of a TuiPanel. <br /></td></tr>
+<tr class="separator:a49f1f97fe3b3c363727d240c035650e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae345877c471c62074e781f46fff96dc9"><td class="memItemLeft" align="right" valign="top"><a id="ae345877c471c62074e781f46fff96dc9"></a>
 tuiPaletteCreateCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#ae345877c471c62074e781f46fff96dc9">PaletteCreate</a></td></tr>
 <tr class="memdesc:ae345877c471c62074e781f46fff96dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for creating the API data of a TuiPalette. <br /></td></tr>
@@ -166,6 +186,10 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a42217f7bb58aa64448f99e46ee5bbc44">GlyphAtlasCount</a></td></tr>
 <tr class="memdesc:a42217f7bb58aa64448f99e46ee5bbc44"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of TuiGlyphAtlas objects that currently exist attached to this TuiInstance. <br /></td></tr>
 <tr class="separator:a42217f7bb58aa64448f99e46ee5bbc44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d9c624f959008652d49e9573979796"><td class="memItemLeft" align="right" valign="top"><a id="ac7d9c624f959008652d49e9573979796"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#ac7d9c624f959008652d49e9573979796">TextureCount</a></td></tr>
+<tr class="memdesc:ac7d9c624f959008652d49e9573979796"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of TuiTexture objects that currently exist attached to this TuiInstance. <br /></td></tr>
+<tr class="separator:ac7d9c624f959008652d49e9573979796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65f6caed60d4ad1ef4f701c09122816d"><td class="memItemLeft" align="right" valign="top"><a id="a65f6caed60d4ad1ef4f701c09122816d"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tui_instance__s.html#a65f6caed60d4ad1ef4f701c09122816d">PaletteCount</a></td></tr>
 <tr class="memdesc:a65f6caed60d4ad1ef4f701c09122816d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of TuiPalette objects that currently exist attached to this TuiInstance. <br /></td></tr>

@@ -5,5 +5,6 @@ var annotated_dup =
     [ "TuiImage", "struct_tui_image__s.html", "struct_tui_image__s" ],
     [ "TuiInstance", "struct_tui_instance__s.html", "struct_tui_instance__s" ],
     [ "TuiPalette", "struct_tui_palette__s.html", "struct_tui_palette__s" ],
-    [ "TuiPanel", "struct_tui_panel__s.html", "struct_tui_panel__s" ]
+    [ "TuiPanel", "struct_tui_panel__s.html", "struct_tui_panel__s" ],
+    [ "TuiTexture", "struct_tui_texture__s.html", "struct_tui_texture__s" ]
 ];
