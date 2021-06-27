@@ -10,6 +10,7 @@ var files_dup =
     [ "opengl33.h", "opengl33_8h.html", "opengl33_8h" ],
     [ "palette.h", "palette_8h.html", "palette_8h" ],
     [ "panel.h", "panel_8h.html", "panel_8h" ],
+    [ "texture.h", "texture_8h.html", "texture_8h" ],
     [ "tuic.h", "tuic_8h.html", null ],
     [ "types.h", "types_8h.html", null ]
 ];
