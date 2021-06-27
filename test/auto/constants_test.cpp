@@ -109,6 +109,17 @@ TEST_CASE("tuiAtlasTypeIsValid") {
     }
 }
 
+TEST_CASE("tuiFilterModeIsValid") {
+    SECTION("Filter modes should return true.") {
+        REQUIRE(tuiFilterModeIsValid(TUI_FILTER_POINT) == TUI_TRUE);
+        REQUIRE(tuiFilterModeIsValid(TUI_FILTER_BILINEAR) == TUI_TRUE);
+    }
+    SECTION("Non filter modes should return false.") {
+        REQUIRE(tuiFilterModeIsValid(3) == TUI_FALSE);
+        REQUIRE(tuiFilterModeIsValid(0) == TUI_FALSE);
+    }
+}
+
 TEST_CASE("tuiDetailGetGlyphFlag") {
     REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G8_C0_FULL) == TUI_GLYPH_FLAG_G8);
     REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G16_C0_FULL) == TUI_GLYPH_FLAG_G16);
@@ -217,6 +228,11 @@ TEST_CASE("tuiBlendModeToString") {
     REQUIRE(std::string(tuiBlendModeToString(TUI_BLEND_BG_ALPHA)) == std::string(TO_STRING(TUI_BLEND_BG_ALPHA)));
 }
 
+TEST_CASE("tuiFilterModeToString") {
+    REQUIRE(std::string(tuiFilterModeToString(TUI_FILTER_POINT)) == std::string(TO_STRING(TUI_FILTER_POINT)));
+    REQUIRE(std::string(tuiFilterModeToString(TUI_FILTER_BILINEAR)) == std::string(TO_STRING(TUI_FILTER_BILINEAR)));
+}
+
 TEST_CASE("tuiStringToDetailFlag") {
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_GLYPH_FLAG_G8)) == TUI_GLYPH_FLAG_G8);
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_GLYPH_FLAG_G16)) == TUI_GLYPH_FLAG_G16);
@@ -299,3 +315,7 @@ TEST_CASE("tuiStringToBlendMode") {
     REQUIRE(tuiStringToBlendMode(TO_STRING(TUI_BLEND_BG_ALPHA)) == TUI_BLEND_BG_ALPHA);
 }
 
+TEST_CASE("tuiStringToFilterMode") {
+    REQUIRE(tuiStringToFilterMode(TO_STRING(TUI_FILTER_POINT)) == TUI_FILTER_POINT);
+    REQUIRE(tuiStringToFilterMode(TO_STRING(TUI_FILTER_BILINEAR)) == TUI_FILTER_BILINEAR);
+}

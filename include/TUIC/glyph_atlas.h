@@ -224,7 +224,7 @@ TuiInstance tuiGlyphAtlasGetInstance(TuiGlyphAtlas atlas);
  * 
  * @returns The amount of color channels. 0 is returned on error.
  * 
- *  @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
 int tuiGlyphAtlasGetChannelCount(TuiGlyphAtlas atlas);
 /*!

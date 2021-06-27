@@ -36,7 +36,7 @@ extern "C" {
  * @param pixel_width The width of the TuiPanel in pixels.
  * @param pixel_height The height of the TuiPanel in pixels
  *
- * @returns batch The created @ref TuiPanel object. NULL is returned on error.
+ * @returns The created @ref TuiPanel object. NULL is returned on error.
  * 
  * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
@@ -277,6 +277,7 @@ void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of panel is damaged.
  * Throws @ref TUI_ERROR_NULL_TARGET_PANEL if target_panel is NULL.
  * Throws @ref TUI_ERROR_UNMATCHING_PANEL_INSTANCE if the @ref TuiInstacne of target_panel does not match the @ref TuiInstance of panel.
+ * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
 void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel);
 /*!

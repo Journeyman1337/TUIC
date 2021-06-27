@@ -9,6 +9,7 @@ const char* kTui_Error_Backend_Specific_Name = TO_STRING(TUI_ERROR_BACKEND_SPECI
 const char* kTui_Error_Dangling_Glyph_Atlas_Name = TO_STRING(TUI_ERROR_DANGLING_GLYPH_ATLAS);
 const char* kTui_Error_Dangling_Palette_Name = TO_STRING(TUI_ERROR_DANGLING_PALETTE);
 const char* kTui_Error_Dangling_Panel_Name = TO_STRING(TUI_ERROR_DANGLING_PANEL);
+const char* kTui_Error_Dangling_Texture_Name = TO_STRING(TUI_ERROR_DANGLING_TEXTURE);
 const char* kTui_Error_Damaged_Instance_Name = TO_STRING(TUI_ERROR_DAMAGED_INSTANCE);
 const char* kTui_Error_Incompatible_Blend_Mode_Name = TO_STRING(TUI_ERROR_INCOMPATIBLE_BLEND_MODE);
 const char* kTui_Error_Incompatible_Images_Name = TO_STRING(TUI_ERROR_INCOMPATIBLE_IMAGES);
@@ -20,6 +21,7 @@ const char* kTui_Error_Invalid_Blend_Mode_Name = TO_STRING(TUI_ERROR_INVALID_BLE
 const char* kTui_Error_Invalid_Codepage_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS);
 const char* kTui_Error_Invalid_Channel_Count_Name = TO_STRING(TUI_ERROR_INVALID_CHANNEL_COUNT);
 const char* kTui_Error_Invalid_Detail_Flag_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_FLAG);
+const char* kTui_Error_Invalid_Filter_Mode_Name = TO_STRING(TUI_ERROR_INVALID_FILTER_MODE);
 const char* kTui_Error_Invalid_Detail_Mode_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_MODE);
 const char* kTui_Error_Invalid_Glyph_Count_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_COUNT);
 const char* kTui_Error_Invalid_Glyph_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_DIMENSIONS);
@@ -43,6 +45,7 @@ const char* kTui_Error_Null_Path_Name = TO_STRING(TUI_ERROR_NULL_PATH);
 const char* kTui_Error_Null_Pixels_Name = TO_STRING(TUI_ERROR_NULL_PIXELS);
 const char* kTui_Error_Null_Target_Image_Name = TO_STRING(TUI_ERROR_NULL_TARGET_IMAGE);
 const char* kTui_Error_Null_Target_Panel_Name = TO_STRING(TUI_ERROR_NULL_TARGET_PANEL);
+const char* kTui_Error_Null_Texture_Name = TO_STRING(TUI_ERROR_NULL_TEXTURE);
 const char* kTui_Error_Null_Texture_Coordinates_Name = TO_STRING(TUI_ERROR_NULL_TEXTURE_COORDINATES);
 const char* kTui_Error_Palette_Required_Name = TO_STRING(TUI_ERROR_PALETTE_REQUIRED);
 const char* kTui_Error_Resize_Image_Failure_Name = TO_STRING(TUI_ERROR_RESIZE_IMAGE_FAILURE);
@@ -55,6 +58,7 @@ const char* kTui_Error_Backend_Specific_Description = "A backend specific error 
 const char* kTui_Error_Dangling_Glyph_Atlas_Description = "A TuiInstance has been destroyed with one or more dangling TuiGlyphAtlas.";
 const char* kTui_Error_Dangling_Palette_Description = "A TuiInstance has been destroyed with one or more dangling TuiPalette";
 const char* kTui_Error_Dangling_Panel_Description = "A TuiInstance has been destroyed with one or more dangling TuiPanel.";
+const char* kTui_Error_Dangling_Texture_Description = "A TuiInstance has been destroyed with one or more dangling TuiTexture.";
 const char* kTui_Error_Damaged_Instance_Description = "A TuiInstance is damaged so all associated opaque objects must be remade.";
 const char* kTui_Error_Incompatible_Blend_Mode_Description = "The provided blend mode is incompatible with the provided detail mode.";
 const char* kTui_Error_Incompatible_Images_Description = "The TuiImage and target TuiImage are incompatible with each other.";
@@ -67,6 +71,7 @@ const char* kTui_Error_Invalid_Codepage_Dimensions_Description = "The image pixe
 const char* kTui_Error_Invalid_Channel_Count_Description = "The color channel count is not supported.";
 const char* kTui_Error_Invalid_Detail_Flag_Description = "The provided detail flag is invalid.";
 const char* kTui_Error_Invalid_Detail_Mode_Description = "The provided detail mode is invalid.";
+const char* kTui_Error_Invalid_Filter_Mode_Description = "The provided filter mode is invalid.";
 const char* kTui_Error_Invalid_Glyph_Count_Description = "The glyph count must be greater than 0.";
 const char* kTui_Error_Invalid_Glyph_Dimensions_Description = "The glyph dimensions of a TuiGlyphAtlas must be greater than 0.";
 const char* kTui_Error_Invalid_Image_Dimensions_Description = "The pixel dimensions of a TuiImage must be greater than 0.";
@@ -89,6 +94,7 @@ const char* kTui_Error_Null_Path_Description = "The provided path is NULL.";
 const char* kTui_Error_Null_Pixels_Description = "The provided pixels array is NULL.";
 const char* kTui_Error_Null_Target_Image_Description = "The provided target TuiImage is NULL.";
 const char* kTui_Error_Null_Target_Panel_Description = "The provided target TuiPanel is NULL.";
+const char* kTui_Error_Null_Texture_Description = "The provided TuiTexture is NULL.";
 const char* kTui_Error_Null_Texture_Coordinates_Description = "The provided texture coordinates array is NULL.";
 const char* kTui_Error_Palette_Required_Description = "Can not draw tiles of detail mode without a TuiPalette.";
 const char* kTui_Error_Resize_Image_Failure_Description = "Failed to resize TuiImage.";
@@ -115,6 +121,8 @@ const char* tuiErrorCodeToString(int error_code)
 		return kTui_Error_Dangling_Palette_Name;
 	case TUI_ERROR_DANGLING_PANEL:
 		return kTui_Error_Dangling_Panel_Name;
+	case TUI_ERROR_DANGLING_TEXTURE:
+		return kTui_Error_Dangling_Texture_Name;
 	case TUI_ERROR_DAMAGED_INSTANCE:
 		return kTui_Error_Damaged_Instance_Name;
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
@@ -139,6 +147,8 @@ const char* tuiErrorCodeToString(int error_code)
 		return kTui_Error_Invalid_Detail_Flag_Name;
 	case TUI_ERROR_INVALID_DETAIL_MODE:
 		return kTui_Error_Invalid_Detail_Mode_Name;
+	case TUI_ERROR_INVALID_FILTER_MODE:
+		return kTui_Error_Invalid_Filter_Mode_Name;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
 		return kTui_Error_Invalid_Glyph_Count_Name;
 	case TUI_ERROR_INVALID_GLYPH_DIMENSIONS:
@@ -183,6 +193,8 @@ const char* tuiErrorCodeToString(int error_code)
 		return kTui_Error_Null_Target_Image_Name;
 	case TUI_ERROR_NULL_TARGET_PANEL:
 		return kTui_Error_Null_Target_Panel_Name;
+	case TUI_ERROR_NULL_TEXTURE:
+		return kTui_Error_Null_Texture_Name;
 	case TUI_ERROR_NULL_TEXTURE_COORDINATES:
 		return kTui_Error_Null_Texture_Coordinates_Name;
 	case TUI_ERROR_PALETTE_REQUIRED:
@@ -220,6 +232,10 @@ int tuiStringToErrorCode(const char* string)
 	else if (strcmp(string, kTui_Error_Dangling_Panel_Name) == 0)
 	{
 		return TUI_ERROR_DANGLING_PANEL;
+	}
+	else if (strcmp(string, kTui_Error_Dangling_Texture_Name) == 0)
+	{
+		return TUI_ERROR_DANGLING_TEXTURE;
 	}
 	else if (strcmp(string, kTui_Error_Damaged_Instance_Name) == 0)
 	{
@@ -268,6 +284,10 @@ int tuiStringToErrorCode(const char* string)
 	else if (strcmp(string, kTui_Error_Invalid_Detail_Mode_Name) == 0)
 	{
 		return TUI_ERROR_INVALID_DETAIL_MODE;
+	}
+	else if (strcmp(string, kTui_Error_Invalid_Filter_Mode_Name) == 0)
+	{
+		return TUI_ERROR_INVALID_FILTER_MODE;
 	}
 	else if (strcmp(string, kTui_Error_Invalid_Glyph_Count_Name) == 0)
 	{
@@ -357,6 +377,10 @@ int tuiStringToErrorCode(const char* string)
 	{
 		return TUI_ERROR_NULL_TARGET_PANEL;
 	}
+	else if (strcmp(string, kTui_Error_Null_Texture_Name) == 0)
+	{
+		return TUI_ERROR_NULL_TEXTURE;
+	}
 	else if (strcmp(string, kTui_Error_Null_Texture_Coordinates_Name) == 0)
 	{
 		return TUI_ERROR_NULL_TEXTURE_COORDINATES;
@@ -398,6 +422,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Dangling_Palette_Description;
 	case TUI_ERROR_DANGLING_PANEL:
 		return kTui_Error_Dangling_Panel_Description;
+	case TUI_ERROR_DANGLING_TEXTURE:
+		return kTui_Error_Dangling_Texture_Description;
 	case TUI_ERROR_DAMAGED_INSTANCE:
 		return kTui_Error_Damaged_Instance_Description;
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
@@ -422,6 +448,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Invalid_Detail_Flag_Description;
 	case TUI_ERROR_INVALID_DETAIL_MODE:
 		return kTui_Error_Invalid_Detail_Mode_Description;
+	case TUI_ERROR_INVALID_FILTER_MODE:
+		return kTui_Error_Invalid_Filter_Mode_Description;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
 		return kTui_Error_Invalid_Glyph_Count_Description;
 	case TUI_ERROR_INVALID_GLYPH_DIMENSIONS:
@@ -466,6 +494,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Null_Target_Image_Description;
 	case TUI_ERROR_NULL_TARGET_PANEL:
 		return kTui_Error_Null_Target_Panel_Description;
+	case TUI_ERROR_NULL_TEXTURE:
+		return kTui_Error_Null_Texture_Description;
 	case TUI_ERROR_NULL_TEXTURE_COORDINATES:
 		return kTui_Error_Null_Texture_Coordinates_Description;
 	case TUI_ERROR_PALETTE_REQUIRED:

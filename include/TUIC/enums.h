@@ -675,64 +675,63 @@ extern const char* kTui_Atlas_COORDS_Name;
  */
 extern const char* kTui_Atlas_GRID_Name;
 /*! @} */
-
 /*! @brief Blend Mode Enums
  */
 enum TuiBlendMode
 {
-/*!
- * \brief Blend mode that uses no foreground and background colors.
- * 
- * This blend mode only works for panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that uses no foreground and background colors.
+	 * 
+	 * This blend mode only works for panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_NORMAL = 0,
-/*!
- * \brief Blend mode that blends the glyph foreground color with the red color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph foreground color with the red color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_FG_RED = 1,
-/*!
- * \brief Blend mode that blends the glyph foreground color with the green color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph foreground color with the green color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_FG_GREEN = 2,
-/*!
- * \brief Blend mode that blends the glyph foreground color with the blue color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph foreground color with the blue color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_FG_BLUE = 3,
-/*!
- * \brief Blend mode that blends the glyph foreground color with the alpha color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph foreground color with the alpha color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_FG_ALPHA = 4,
-/*!
- * \brief Blend mode that blends the glyph background color with the red color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph background color with the red color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_BG_RED = 5,
-/*!
- * \brief Blend mode that blends the glyph background color with the green color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph background color with the green color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_BG_GREEN = 6,
-/*!
- * \brief Blend mode that blends the glyph background color with the blue color component of the glyph texture.
- * 
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph background color with the blue color component of the glyph texture.
+	 * 
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_BG_BLUE = 7,
-/*!
- * \brief Blend mode that blends the glyph background color with the alpha color component of the glyph texture.
- *
- * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
- */
+	/*!
+	 * \brief Blend mode that blends the glyph background color with the alpha color component of the glyph texture.
+	 *
+	 * This blend mode does not work with panels using detail modes with @ref TUI_COLOR_FLAG_C0.
+	 */
 	TUI_BLEND_BG_ALPHA = 8,
 };
 /*! @name Blend Mode Names
@@ -773,6 +772,30 @@ extern const char* kTui_Blend_BG_BLUE_Name;
  * @brief String name of @ref TUI_BLEND_BG_ALPHA.
  */
 extern const char* kTui_Blend_BG_ALPHA_Name;
+/*! @} */
+/*! @brief Filter Mode Enums
+ */
+enum TuiFilterMode
+{
+	/*!
+	 * \brief Filter mode with no interpolation.
+	 */
+	TUI_FILTER_POINT = 1,
+	/*!
+	 * \brief Filter mode that uses bilinear interpolation.
+	 */
+	TUI_FILTER_BILINEAR = 2
+};
+/*! @name Filter Mode Names
+ *  @{ */
+/*!
+ * @brief String name of @ref TUI_FILTER_POINT.
+ */
+extern const char* kTui_Filter_Point_Name;
+/*!
+ * @brief String name of @ref TUI_FILTER_BILINEAR.
+ */
+extern const char* kTui_Filter_Bilinear_Name;
 /*! @} */
 /*! @name Enum Manipulation Functions
  *  @{ */
@@ -859,6 +882,14 @@ int tuiAtlasTypeIsValid(int atlas_type);
  */
 int tuiDetailFlagIsValid(int detail_flag);
 /*!
+ * @brief Get if a @ref TuiFilterMode is valid.
+ *
+ * @param filter_mode The @ref TuiFilterMode.
+ *
+ * @returns If it is valid.
+ */
+int tuiFilterModeIsValid(int filter_mode);
+/*!
  * @brief Get if a @ref TuiBlendMode is compatible with a @ref TuiDetailMode.
  *
  * @param detail_mode The @ref TuiDetailMode.
@@ -928,9 +959,25 @@ const char* tuiAtlasTypeToString(int atlas_type);
  *
  * @param string The string name.
  *
- * @returns The atlas type.
+ * @returns The @ref TuiAtlasType.
  */
 int tuiStringToAtlasType(const char* string);
+/*!
+ * @brief Get string name of an @ref TuiFilterMode.
+ *
+ * @param filter_mode The @ref TuiFilterMode.
+ *
+ * @returns The string name.
+ */
+const char* tuiFilterModeToString(int filter_mode);
+/*!
+ * @brief Get a @ref TuiFilterMode from a string name.
+ *
+ * @param string The string name.
+ *
+ * @returns The @ref TuiFilterModee.
+ */
+int tuiStringToFilterMode(const char* string);
 /*! @} */
 #ifdef __cplusplus //extern C guard
  }

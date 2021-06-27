@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <TUIC/vendor/stb_image.h>
 
 
 const size_t kTilesWide = 50;
@@ -50,6 +51,11 @@ void TuiMessageCallback(int error_code, const char* msg)
     else
     {
         printf("%s : %s location: %s\n", tuiErrorCodeToString(error_code), tuiErrorCodeGetDescription(error_code), msg);
+    }
+
+    if (error_code == TUI_ERROR_LOAD_IMAGE_FAILURE)
+    {
+        printf("%s\n", stbi_failure_reason());
     }
 }
 int main()
@@ -125,6 +131,13 @@ int main()
     int nbFrame = 0;
 
     int color = tuiClassicColorCombine(14, 0);
+
+    //load background image and render it
+    TuiImage background_image = tuiImageLoad("kenny_moon.png", 0);
+    TuiTexture background_texture = tuiTextureCreate(instance, background_image, TUI_FILTER_BILINEAR); //create a TuiTexture to load the image to the GPU for rendering
+    tuiTextureRenderToPanel(background_texture, panel);
+    tuiImageDestroy(background_image);
+    tuiTextureDestroy(background_texture);
 
     //Render loop
     while (!glfwWindowShouldClose(window))
