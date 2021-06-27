@@ -212,17 +212,17 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return;
 	}
 
 	texture->PixelWidth = pixel_width;
