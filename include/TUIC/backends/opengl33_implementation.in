@@ -1,4 +1,4 @@
-/*
+ /*
 	Copyright (c) 2021 Daniel Valcour
 	
 	Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -42,6 +42,11 @@ void InstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, si
 void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
 void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas);
+void TextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
+void TextureDestroy_Opengl33(TuiTexture texture);
+void TextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels);
+void TextureRender_Opengl33(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+void TextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
 void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
 void PaletteDestroy_Opengl33(TuiPalette palette);
 void PanelCreate_Opengl33(TuiPanel panel);
@@ -93,6 +98,13 @@ typedef struct TuiOpengl33GlyphAtlasApiData
 	uint32_t FontmapBufferHandle;
 	uint32_t FontmapTextureHandle;
 } TuiOpengl33GlyphAtlasApiData;
+typedef struct TuiOpengl33TextureApiData
+{
+	uint32_t TextureHandle;
+	size_t PixelWidth;
+	size_t PixelHeight;
+	size_t ChannelCount;
+} TuiOpengl33TextureApiData;
 typedef struct TuiOpengl33PaletteApiData
 {
 	uint32_t PaletteTextureHandle;
@@ -161,6 +173,63 @@ inline uint32_t CreateProgram(const char** vertex_source, const char** fragment_
 	GLD_CALL(glDeleteShader(gl_vertex_shader));
 	GLD_CALL(glDeleteShader(gl_fragment_shader));
 	return handle;
+}
+inline uint32_t GetGlTextureFormatFromChannels(size_t channels)
+{
+	switch (channels)
+	{
+	case 3:
+		return GL_RGB;
+	case 4:
+		return GL_RGBA;
+	default:
+		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not get texture format from invalid channel count.");
+		return 0;
+	}
+}
+inline uint32_t GetGlInternalFormatFromChannels(size_t channels)
+{
+	switch (channels)
+	{
+	case 3:
+		return GL_RGB8;
+	case 4:
+		return GL_RGBA8;
+	default:
+		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not get internal format from invalid channel count.");
+		return 0;
+	}
+}
+inline uint32_t GetGlFilterModeFromEnum(int filter_mode)
+{
+	switch (filter_mode)
+	{
+		case TUI_FILTER_POINT:
+			return GL_NEAREST;
+		case TUI_FILTER_BILINEAR:
+			return GL_LINEAR;
+		default:
+			tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not get filter mode from invalid enum.");
+			return 0;
+	}
+}
+inline uint32_t CreateTexture(size_t width, size_t height, size_t channels, const uint8_t* pixels, int filter_mode)
+{
+	uint32_t gl_texture_handle = 0;
+	uint32_t gl_texture_format = GetGlTextureFormatFromChannels(channels);
+	uint32_t gl_internal_format = GetGlInternalFormatFromChannels(channels);
+	uint32_t gl_filter_mode = GetGlFilterModeFromEnum(filter_mode);
+	GLD_CLEAR(); 
+	GLD_CALL(glGenTextures(1, &gl_texture_handle));
+	GLD_CALL(glBindTexture(GL_TEXTURE_2D, gl_texture_handle));
+	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, gl_filter_mode));
+	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, gl_filter_mode));
+	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0));
+	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0));
+	GLD_CALL(glTexImage2D(GL_TEXTURE_2D, 0, gl_internal_format, width, height, 0, gl_texture_format, GL_UNSIGNED_BYTE, pixels));
+	return gl_texture_handle;
 }
 //Transform an opengl screen matrix so that a rectangle using it is flat facing the screen and its 2d edges match the screen space pixel coordinates given.
 inline void TransformMatrix(float* matrix, size_t screen_width, size_t screen_height, int left_x, int right_x, int top_y, int bottom_y)
@@ -311,7 +380,10 @@ inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width,
 	GLD_CALL(glUniform1i(instance_data->BatchRenderColorModeUniformLocation, color_mode_id));
 	GLD_CALL(glUniform1i(instance_data->BatchRenderLayoutModeUniformLocation, layout_mode_id));
 	GLD_CALL(glUniform1i(instance_data->BatchRenderAtlasTypeUniformLocation, atlas_type_id));
-	GLD_CALL(glUniform1i(instance_data->BatchRenderPaletteChannelCountUniformLocation, palette->ChannelCount));
+	if (palette != NULL)
+	{
+		GLD_CALL(glUniform1i(instance_data->BatchRenderPaletteChannelCountUniformLocation, palette->ChannelCount));
+	}
 	GLD_CALL(glUniform1i(instance_data->BatchRenderBlendModeUniformLocation, blend_mode_id));
 	GLD_CALL(glUniformMatrix4fv(instance_data->BatchRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
 	if (instance_data->DataBufferHandle == 0)
@@ -364,6 +436,24 @@ inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width,
 		GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, sparse_index * kVertsPerTile));
 	}
 }
+inline void RenderTextureToFramebuffer(TuiInstance instance, uint32_t texture_handle, uint32_t framebuffer_handle, size_t render_area_width, size_t render_area_height, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
+	float matrix[16];
+	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
+	TransformMatrix(matrix, render_area_width, render_area_height, left_x, right_x, top_y, bottom_y);
+	GLD_CLEAR();
+	GLD_CALL(glEnable(GL_BLEND));
+	GLD_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_handle));
+	GLD_CALL(glBindVertexArray(instance_data->VaoHandle));
+	GLD_CALL(glUseProgram(instance_data->FramebufferRenderProgramHandle));
+	GLD_CALL(glActiveTexture(GL_TEXTURE0));
+	GLD_CALL(glBindTexture(GL_TEXTURE_2D, texture_handle));
+	GLD_CALL(glUniformMatrix4fv(instance_data->FramebufferRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
+	GLD_CALL(glViewport(0, 0, render_area_width, render_area_height));
+	GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
+}
 //Opengl33 specific (non-callback).
 TuiInstance tuiOpengl33InstanceCreateExistingContext(int pixel_width, int pixel_height)
 {
@@ -380,6 +470,11 @@ TuiInstance tuiOpengl33InstanceCreateExistingContext(int pixel_width, int pixel_
 	instance->InstanceDrawBatchData = InstanceDrawBatchData_Opengl33;
 	instance->GlyphCreate = GlyphAtlasCreate_Opengl33;
 	instance->GlyphDestroy = GlyphAtlasDestroy_Opengl33;
+	instance->TextureCreate = TextureCreate_Opengl33;
+	instance->TextureDestroy = TextureDestroy_Opengl33;
+	instance->TextureSetPixels = TextureSetPixels_Opengl33;
+	instance->TextureRender = TextureRender_Opengl33;
+	instance->TextureRenderToPanel = TextureRenderToPanel_Opengl33;
 	instance->PaletteCreate = PaletteCreate_Opengl33;
 	instance->PaletteDestroy = PaletteDestroy_Opengl33;
 	instance->PanelCreate = PanelCreate_Opengl33;
@@ -538,18 +633,10 @@ void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, c
 	default:
 		return;
 	}
-	GLD_CLEAR();
-	GLD_CALL(glGenTextures(1, &atlas_data->SheetTextureHandle));
-	GLD_CALL(glBindTexture(GL_TEXTURE_2D, atlas_data->SheetTextureHandle));
-	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
-	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0));
-	GLD_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0));
-	GLD_CALL(glTexImage2D(GL_TEXTURE_2D, 0, gl_texture_internal_format, atlas->PixelWidth, atlas->PixelHeight, 0, gl_texture_format, GL_UNSIGNED_BYTE, pixel_data));
+	atlas_data->SheetTextureHandle = CreateTexture(atlas->PixelWidth, atlas->PixelHeight, atlas->ChannelCount, pixel_data, TUI_FILTER_POINT);
 	if (atlas->AtlasType == TUI_ATLAS_COORDS)
 	{
+		GLD_CLEAR();
 		GLD_CALL(glGenBuffers(1, &atlas_data->FontmapBufferHandle));
 		GLD_CALL(glBindBuffer(GL_TEXTURE_BUFFER, atlas_data->FontmapBufferHandle));
 		GLD_CALL(glBufferData(GL_TEXTURE_BUFFER, atlas->GlyphCount * 4 * sizeof(float), raw_glyph_uvs, GL_STATIC_DRAW));
@@ -572,6 +659,56 @@ void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas)
 		GLD_CALL(glDeleteTextures(1, &atlas_data->SheetTextureHandle));
 	}
 	tuiFree(atlas_data);
+}
+void TextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels)
+{
+	texture->ApiData = (TuiOpengl33TextureApiData*)tuiAllocate(sizeof(TuiOpengl33TextureApiData));
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	
+	texture_data->TextureHandle = CreateTexture(texture->PixelWidth, texture->PixelHeight, texture->ChannelCount, pixels, texture->FilterMode);
+	texture_data->PixelWidth = texture->PixelWidth;
+	texture_data->PixelHeight = texture->PixelHeight;
+	texture_data->ChannelCount = texture->ChannelCount;
+}
+void TextureDestroy_Opengl33(TuiTexture texture)
+{
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	if (texture->Instance->IsDamaged == TUI_FALSE)
+	{
+		GLD_CLEAR();
+		GLD_CALL(glDeleteTextures(1, &texture_data->TextureHandle));
+	}
+	tuiFree(texture_data);
+}
+void TextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels)
+{
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	
+	GLD_CLEAR();
+	if (texture->PixelWidth == texture_data->PixelWidth && texture->PixelHeight == texture_data->PixelHeight && texture->ChannelCount == texture_data->ChannelCount)
+	{
+		GLD_CALL(glTexSubImage2D(texture_data->TextureHandle, 0, 0, 0, texture->PixelWidth, texture->PixelHeight, GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels)); //We can use glSubImage2D because its faster when no resizing.
+	}
+	else
+	{
+		texture_data->PixelWidth = texture->PixelWidth;
+		texture_data->PixelHeight = texture->PixelHeight;
+		texture_data->ChannelCount = texture->ChannelCount;
+		GLD_CALL(glTexImage2D(GL_TEXTURE_2D, 0, GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels)); //Need to use this slower alternative to resize it.
+	}
+}
+void TextureRender_Opengl33(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	
+	RenderTextureToFramebuffer(texture->Instance, texture_data->TextureHandle, 0, texture->Instance->PixelWidth, texture->Instance->PixelHeight, left_x, right_x, top_y, bottom_y);
+}
+void TextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	
+	RenderTextureToFramebuffer(texture->Instance, texture_data->TextureHandle, panel_data->FramebufferHandle, panel->FramebufferWidth, panel->FramebufferHeight, left_x, right_x, top_y, bottom_y);
 }
 void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
 {
@@ -653,43 +790,15 @@ uint8_t* PanelGetPixels_Opengl33(TuiPanel panel, size_t* texture_width, size_t* 
 void PanelRender_Opengl33(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
-	TuiInstance instance = panel->Instance;
-	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)panel->Instance->ApiData;
-	float matrix[16];
-	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
-	TransformMatrix(matrix, instance->PixelWidth, instance->PixelHeight, left_x, right_x, top_y, bottom_y);
-	GLD_CLEAR();
-	GLD_CALL(glEnable(GL_BLEND));
-	GLD_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-	GLD_CALL(glBindVertexArray(instance_data->VaoHandle));
-	GLD_CALL(glUseProgram(instance_data->FramebufferRenderProgramHandle));
-	GLD_CALL(glActiveTexture(GL_TEXTURE0));
-	GLD_CALL(glBindTexture(GL_TEXTURE_2D, panel_data->FramebufferTextureHandle));
-	GLD_CALL(glUniformMatrix4fv(instance_data->FramebufferRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
-	GLD_CALL(glViewport(0, 0, instance->PixelWidth, instance->PixelHeight));
-	GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
+
+	RenderTextureToFramebuffer(panel->Instance, panel_data->FramebufferTextureHandle, 0, panel->Instance->PixelWidth, panel->Instance->PixelHeight, left_x, right_x, top_y, bottom_y);
 }
 void PanelRenderToPanel_Opengl33(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
-	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)panel->Instance->ApiData;
 	TuiOpengl33PanelApiData* target_panel_data = (TuiOpengl33PanelApiData*)target_panel->ApiData;
-	float matrix[16];
-	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
-	TransformMatrix(matrix, target_panel->FramebufferWidth, target_panel->FramebufferHeight, left_x, right_x, top_y, bottom_y);
-	GLD_CLEAR();
-	GLD_CALL(glEnable(GL_BLEND));
-	GLD_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, target_panel_data->FramebufferHandle));
-	GLD_CALL(glBindVertexArray(instance_data->VaoHandle));
-	GLD_CALL(glUseProgram(instance_data->FramebufferRenderProgramHandle));
-	GLD_CALL(glActiveTexture(GL_TEXTURE0));
-	GLD_CALL(glBindTexture(GL_TEXTURE_2D, panel_data->FramebufferTextureHandle));
-	GLD_CALL(glUniformMatrix4fv(instance_data->FramebufferRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
-	GLD_CALL(glViewport(0, 0, target_panel->FramebufferWidth, target_panel->FramebufferHeight));
-	GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
-	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	
+	RenderTextureToFramebuffer(panel->Instance, panel_data->FramebufferTextureHandle, target_panel_data->FramebufferHandle, target_panel->FramebufferWidth, target_panel->FramebufferHeight, left_x, right_x, top_y, bottom_y);
 }
 void PanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
