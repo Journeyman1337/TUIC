@@ -405,7 +405,11 @@ typedef struct TuiGlyphAtlas_s
 	 */
 	void* ApiData;
 } TuiGlyphAtlas_s;
-
+/*
+ * @brief The struct behind @ref TuiTexture opaque objects.
+ *
+ * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
+ */
 typedef struct TuiTexture_s
 {
 	/*!

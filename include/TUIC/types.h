@@ -35,14 +35,16 @@ extern "C" {
  */
 typedef struct TuiInstance_s* TuiInstance;
 /*!
- * @brief A TUI palette that can have up to 256 colors with RGB componenets. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in palette.h instead
+ * @brief TUI color palette. This object contains an array of colors that can be used for the drawing of batch data arrays with a @ref TuiDetailMode that requires a palette. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in palette.h instead
  */
 typedef struct TuiPalette_s* TuiPalette;
 /*!
  * @brief TUI glyph image atlas. This object contains a image for rendering glyphs as well as definitions of where glyphs are in the image. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in glyph_atlas.h instead.
  */
 typedef struct TuiGlyphAtlas_s* TuiGlyphAtlas;
-
+/*!
+ * @brief TUI background texture. This object can be rendered to a @ref TuiPanel or the screen of a @ref TuiInstance. Can be loaded from a @ref TuiImage or a pixel array, and can be modified after it is created. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in palette.h instead
+ */
 typedef struct TuiTexture_s* TuiTexture;
 /*!
  * @brief TUI rendering data container, which contains data about tiles to draw. TuiBatch objects are passable between multiple threads and are independent of @ref TuiInstance objects. This object is opaque, and its members are not meant to be accessed directly. Use the functions in batch.h instead.
