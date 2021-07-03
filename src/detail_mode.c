@@ -1,57 +1,11 @@
-/*
-	Copyright (c) 2021 Daniel Valcour
-	
-	Permission is hereby granted, free of charge, to any person obtaining a copy of
-	this software and associated documentation files (the "Software"), to deal in
-	the Software without restriction, including without limitation the rights to
-	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-	the Software, and to permit persons to whom the Software is furnished to do so,
-	subject to the following conditions:
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
-	
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-#include <TUIC/tuic.h>
-#include <string.h>
+#include <stddef.h>
+#include <TUIC/detail_mode.h>
+#include <TUIC/blend_mode.h>
+#include <TUIC/debug.h>
+#include <TUIC/boolean.h>
 
 #define TO_STRING(value) #value
 
-const char* kTui_Glyph_Flag_G8_Name = TO_STRING(TUI_GLYPH_FLAG_G8);
-
-const char* kTui_Glyph_Flag_G16_Name = TO_STRING(TUI_GLYPH_FLAG_G16);
-
-const char* kTui_Color_Flag_C0_Name = TO_STRING(TUI_COLOR_FLAG_C0);
-
-const char* kTui_Color_Flag_C4_Name = TO_STRING(TUI_COLOR_FLAG_C4);
-
-const char* kTui_Color_Flag_C8_Name = TO_STRING(TUI_COLOR_FLAG_C8);
-
-const char* kTui_Color_Flag_C8NBG_Name = TO_STRING(TUI_COLOR_FLAG_C8NBG);
-
-const char* kTui_Color_Flag_C8NFG_Name = TO_STRING(TUI_COLOR_FLAG_C8NFG);
-
-const char* kTui_Color_Flag_C24_Name = TO_STRING(TUI_COLOR_FLAG_C24);
-
-const char* kTui_Color_Flag_C24NBG_Name = TO_STRING(TUI_COLOR_FLAG_C24NBG);
-
-const char* kTui_Color_Flag_C24NFG_Name = TO_STRING(TUI_COLOR_FLAG_C24NFG);
-
-const char* kTui_Color_Flag_C32_Name = TO_STRING(TUI_COLOR_FLAG_C32);
-
-const char* kTui_Color_Flag_C32NBG_Name = TO_STRING(TUI_COLOR_FLAG_C32NBG);
-
-const char* kTui_Color_Flag_C32NFG_Name = TO_STRING(TUI_COLOR_FLAG_C32NFG);
-
-const char* kTui_Layout_Flag_Full_Name = TO_STRING(TUI_LAYOUT_FLAG_FULL);
-
-const char* kTui_Layout_Flag_Sparse_Name = TO_STRING(TUI_LAYOUT_FLAG_SPARSE);
- 
 const size_t kTui_Detail_G8_C0_Size = 1;
 
 const size_t kTui_Detail_G8_C4_Size = 2;
@@ -184,52 +138,6 @@ const char* kTui_Detail_G16_C32NBG_Sparse_Name = TO_STRING(TUI_DETAIL_G16_C32NBG
 
 const char* kTui_Detail_G16_C32NFG_Sparse_Name = TO_STRING(TUI_DETAIL_G16_C32NFG_SPARSE);
 
-const char* KTui_Texture_RGB_Name = TO_STRING(TUI_TEXTURE_RGB);
-
-const char* kTui_Texture_RGBA_Name = TO_STRING(TUI_TEXTURE_RGBA);
-
-const char* kTui_Atlas_COORDS_Name = TO_STRING(TUI_ATLAS_COORDS);
-
-const char* kTui_Atlas_GRID_Name = TO_STRING(TUI_ATLAS_GRID);
-
-const char* kTui_Palette_RGB_Name = TO_STRING(TUI_PALETTE_RGB);
-
-const char* kTui_Palette_RGBA_Name = TO_STRING(TUI_PALETTE_RGBA);
-
-const char* kTui_Blend_NORMAL_Name = TO_STRING(TUI_BLEND_NORMAL);
-
-const char* kTui_Blend_FG_RED_Name = TO_STRING(TUI_BLEND_FG_RED);
-
-const char* kTui_Blend_FG_GREEN_Name = TO_STRING(TUI_BLEND_FG_GREEN);
-
-const char* kTui_Blend_FG_BLUE_Name = TO_STRING(TUI_BLEND_FG_BLUE);
-
-const char* kTui_Blend_FG_ALPHA_Name = TO_STRING(TUI_BLEND_FG_ALPHA);
-
-const char* kTui_Blend_BG_RED_Name = TO_STRING(TUI_BLEND_BG_RED);
-
-const char* kTui_Blend_BG_GREEN_Name = TO_STRING(TUI_BLEND_BG_GREEN);
-
-const char* kTui_Blend_BG_BLUE_Name = TO_STRING(TUI_BLEND_BG_BLUE);
-
-const char* kTui_Blend_BG_ALPHA_Name = TO_STRING(TUI_BLEND_BG_ALPHA);
-
-const char* kTui_Filter_Point_Name = TO_STRING(TUI_FILTER_POINT);
-
-const char* kTui_Filter_Bilinear_Name = TO_STRING(TUI_FILTER_BILINEAR);
-
-int tuiDetailHasPalette(int detail_mode)
-{
-	if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_FALSE)
-	{
-		return TUI_TRUE;
-	}
-	else
-	{
-		return TUI_FALSE;
-	}
-}
-
 int tuiDetailIsValid(int detail_mode)
 {
 if (
@@ -287,75 +195,6 @@ return TUI_FALSE;
 int tuiDetailHasFlag(int detail_mode, int detail_flag)
 {
 	if ((detail_mode & detail_flag) == detail_flag)
-	{
-		return TUI_TRUE;
-	}
-	else
-	{
-		return TUI_FALSE;
-	}
-}
-
-int tuiBlendIsValid(int blend_mode)
-{
-	if (
-		(blend_mode == TUI_BLEND_NORMAL) ||
-		(blend_mode == TUI_BLEND_BG_RED) ||
-		(blend_mode == TUI_BLEND_BG_GREEN) ||
-		(blend_mode == TUI_BLEND_BG_BLUE) ||
-		(blend_mode == TUI_BLEND_BG_ALPHA) ||
-		(blend_mode == TUI_BLEND_FG_RED) ||
-		(blend_mode == TUI_BLEND_FG_GREEN) ||
-		(blend_mode == TUI_BLEND_FG_BLUE) ||
-		(blend_mode == TUI_BLEND_FG_ALPHA)
-		)
-	{
-		return TUI_TRUE;
-	}
-	return TUI_FALSE;
-}
-
-int tuiAtlasTypeIsValid(int atlas_type)
-{
-	if (
-		(atlas_type == TUI_ATLAS_COORDS) ||
-		(atlas_type == TUI_ATLAS_GRID)
-		)
-	{
-		return TUI_TRUE;
-	}
-	else
-	{
-		return TUI_FALSE;
-	}
-}
-
-int tuiDetailFlagIsValid(int detail_flag)
-{
-	return detail_flag & (
-		TUI_GLYPH_FLAG_G8 |
-		TUI_GLYPH_FLAG_G16 |
-		TUI_COLOR_FLAG_C0 |
-		TUI_COLOR_FLAG_C4 |
-		TUI_COLOR_FLAG_C8 |
-		TUI_COLOR_FLAG_C8NBG |
-		TUI_COLOR_FLAG_C8NFG |
-		TUI_COLOR_FLAG_C24 |
-		TUI_COLOR_FLAG_C24NBG |
-		TUI_COLOR_FLAG_C24NFG |
-		TUI_COLOR_FLAG_C32 |
-		TUI_COLOR_FLAG_C32NBG |
-		TUI_COLOR_FLAG_C32NFG |
-		TUI_LAYOUT_FLAG_FULL |
-		TUI_LAYOUT_FLAG_SPARSE);
-}
-
-int tuiFilterModeIsValid(int filter_mode)
-{
-	if (
-		filter_mode == TUI_FILTER_POINT ||
-		filter_mode == TUI_FILTER_BILINEAR
-		)
 	{
 		return TUI_TRUE;
 	}
@@ -477,109 +316,16 @@ int tuiModesAreCompatible(int detail_mode, int blend_mode)
 	return TUI_TRUE;
 }
 
-const char* tuiDetailFlagToString(int detail_flag)
+int tuiDetailHasPalette(int detail_mode)
 {
-	switch (detail_flag)
+	if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_FALSE)
 	{
-	case TUI_GLYPH_FLAG_G8:
-		return kTui_Glyph_Flag_G8_Name;
-	case TUI_GLYPH_FLAG_G16:
-		return kTui_Glyph_Flag_G16_Name;
-	case TUI_COLOR_FLAG_C0:
-		return kTui_Color_Flag_C0_Name;
-	case TUI_COLOR_FLAG_C4:
-		return kTui_Color_Flag_C4_Name;
-	case TUI_COLOR_FLAG_C8:
-		return kTui_Color_Flag_C8_Name;
-	case TUI_COLOR_FLAG_C8NBG:
-		return kTui_Color_Flag_C8NBG_Name;
-	case TUI_COLOR_FLAG_C8NFG:
-		return kTui_Color_Flag_C8NFG_Name;
-	case TUI_COLOR_FLAG_C24:
-		return kTui_Color_Flag_C24_Name;
-	case TUI_COLOR_FLAG_C24NBG:
-		return kTui_Color_Flag_C24NBG_Name;
-	case TUI_COLOR_FLAG_C24NFG:
-		return kTui_Color_Flag_C24NFG_Name;
-	case TUI_COLOR_FLAG_C32:
-		return kTui_Color_Flag_C32_Name;
-	case TUI_COLOR_FLAG_C32NBG:
-		return kTui_Color_Flag_C32NBG_Name;
-	case TUI_COLOR_FLAG_C32NFG:
-		return kTui_Color_Flag_C32NFG_Name;
-	case TUI_LAYOUT_FLAG_FULL:
-		return kTui_Layout_Flag_Full_Name;
-	case TUI_LAYOUT_FLAG_SPARSE:
-		return kTui_Layout_Flag_Sparse_Name;
-	default:
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_FLAG, __func__);
-		return NULL;
+		return TUI_TRUE;
 	}
-}
-
-int tuiStringToDetailFlag(const char* string)
-{
-	if (strcmp(string, kTui_Glyph_Flag_G8_Name) == 0)
+	else
 	{
-		return TUI_GLYPH_FLAG_G8;
+		return TUI_FALSE;
 	}
-	else if (strcmp(string, kTui_Glyph_Flag_G16_Name) == 0)
-	{
-		return TUI_GLYPH_FLAG_G16;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C0_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C0;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C4_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C4;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C8_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C8;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C8NBG_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C8NBG;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C8NFG_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C8NFG;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C24_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C24;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C24NBG_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C24NBG;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C24NFG_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C24NFG;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C32_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C32;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C32NBG_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C32NBG;
-	}
-	else if (strcmp(string, kTui_Color_Flag_C32NFG_Name) == 0)
-	{
-		return TUI_COLOR_FLAG_C32NFG;
-	}
-	else if (strcmp(string, kTui_Layout_Flag_Full_Name) == 0)
-	{
-		return TUI_LAYOUT_FLAG_FULL;
-	}
-	else if (strcmp(string, kTui_Layout_Flag_Sparse_Name) == 0)
-	{
-		return TUI_LAYOUT_FLAG_SPARSE;
-	}
-	return 0;
 }
 
 const char* tuiDetailModeToString(int detail_mode)
@@ -857,130 +603,6 @@ int tuiStringToDetailMode(const char* string)
 	else if (strcmp(string, kTui_Detail_G16_C32NFG_Sparse_Name) == 0)
 	{
 		return TUI_DETAIL_G16_C32NFG_SPARSE;
-	}
-	return 0;
-}
-
-const char* tuiBlendModeToString(int blend_mode)
-{
-	switch (blend_mode)
-	{
-	case TUI_BLEND_NORMAL:
-		return kTui_Blend_NORMAL_Name;
-	case TUI_BLEND_FG_RED:
-		return kTui_Blend_FG_RED_Name;
-	case TUI_BLEND_FG_GREEN:
-		return kTui_Blend_FG_GREEN_Name;
-	case TUI_BLEND_FG_BLUE:
-		return kTui_Blend_FG_BLUE_Name;
-	case TUI_BLEND_FG_ALPHA:
-		return kTui_Blend_FG_ALPHA_Name;
-	case TUI_BLEND_BG_RED:
-		return kTui_Blend_BG_RED_Name;
-	case TUI_BLEND_BG_GREEN:
-		return kTui_Blend_BG_GREEN_Name;
-	case TUI_BLEND_BG_BLUE:
-		return kTui_Blend_BG_BLUE_Name;
-	case TUI_BLEND_BG_ALPHA:
-		return kTui_Blend_BG_ALPHA_Name;
-	default:
-		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
-	}
-}
-
-
-int tuiStringToBlendMode(const char* string)
-{
-	if (strcmp(string, kTui_Blend_NORMAL_Name) == 0)
-	{
-		return TUI_BLEND_NORMAL;
-	}
-	else if (strcmp(string, kTui_Blend_FG_RED_Name) == 0)
-	{
-		return TUI_BLEND_FG_RED;
-	}
-	else if (strcmp(string, kTui_Blend_FG_GREEN_Name) == 0)
-	{
-		return TUI_BLEND_FG_GREEN;
-	}
-	else if (strcmp(string, kTui_Blend_FG_BLUE_Name) == 0)
-	{
-		return TUI_BLEND_FG_BLUE;
-	}
-	else if (strcmp(string, kTui_Blend_FG_ALPHA_Name) == 0)
-	{
-		return TUI_BLEND_FG_ALPHA;
-	}
-	else if (strcmp(string, kTui_Blend_BG_RED_Name) == 0)
-	{
-		return TUI_BLEND_BG_RED;
-	}
-	else if (strcmp(string, kTui_Blend_BG_GREEN_Name) == 0)
-	{
-		return TUI_BLEND_BG_GREEN;
-	}
-	else if (strcmp(string, kTui_Blend_BG_BLUE_Name) == 0)
-	{
-		return TUI_BLEND_BG_BLUE;
-	}
-	else if (strcmp(string, kTui_Blend_BG_ALPHA_Name) == 0)
-	{
-		return TUI_BLEND_BG_ALPHA;
-	}
-	return 0;
-}
-
-const char* tuiAtlasTypeToString(int atlas_type)
-{
-	switch (atlas_type)
-	{
-	case TUI_ATLAS_COORDS:
-		return kTui_Atlas_COORDS_Name;
-	case TUI_ATLAS_GRID:
-		return kTui_Atlas_GRID_Name;
-	default:
-		tuiDebugError(TUI_ERROR_INVALID_ATLAS_TYPE, __func__);
-		return NULL;
-	}
-}
-
-int tuiStringToAtlasType(const char* string)
-{
-	if (strcmp(string, kTui_Atlas_COORDS_Name) == 0)
-	{
-		return TUI_ATLAS_COORDS;
-	}
-	else if (strcmp(string, kTui_Atlas_GRID_Name) == 0)
-	{
-		return TUI_ATLAS_GRID;
-	}
-	return 0;
-}
-
-const char* tuiFilterModeToString(int filter_mode)
-{
-	switch (filter_mode)
-	{
-	case TUI_FILTER_POINT:
-		return kTui_Filter_Point_Name;
-	case TUI_FILTER_BILINEAR:
-		return kTui_Filter_Bilinear_Name;
-	default:
-		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
-		return NULL;
-	}
-}
-
-int tuiStringToFilterMode(const char* string)
-{
-	if (strcmp(string, kTui_Filter_Point_Name) == 0)
-	{
-		return TUI_FILTER_POINT;
-	}
-	else if (strcmp(string, kTui_Filter_Bilinear_Name) == 0)
-	{
-		return TUI_FILTER_BILINEAR;
 	}
 	return 0;
 }
