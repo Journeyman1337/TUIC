@@ -18,7 +18,8 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
+#include "opengl33.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -70,7 +71,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyp
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, NULL);
-	atlas->Instance->GlyphCreate(atlas, image->PixelData, raw_glyph_uvs);
+	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
 	atlas->Instance->GlyphAtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
@@ -133,7 +134,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateRawPixels(TuiInstance instance, int pixel_width
 	atlas->GlyphCount = glyph_count;
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, NULL);
-	atlas->Instance->GlyphCreate(atlas, pixels, raw_glyph_uvs);
+	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
 	atlas->Instance->GlyphAtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
@@ -185,7 +186,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateRawUVs(TuiInstance instance, TuiImage image, in
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	atlas->Instance->GlyphCreate(atlas, image->PixelData, raw_glyph_uvs);
+	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
 	atlas->Instance->GlyphAtlasCount++;
 	return atlas;
 }
@@ -246,7 +247,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	atlas->Instance->GlyphCreate(atlas, pixels, raw_glyph_uvs);
+	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
 	atlas->Instance->GlyphAtlasCount++;
 	return atlas;
 }
@@ -291,7 +292,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateGrid(TuiInstance instance, TuiImage image, int 
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	atlas->Instance->GlyphCreate(atlas, image->PixelData, NULL);
+	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
 	atlas->Instance->GlyphAtlasCount++;
 	return atlas;
 }
@@ -346,7 +347,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateGridRawPixels(TuiInstance instance, int pixel_w
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	atlas->Instance->GlyphCreate(atlas, pixels, NULL);
+	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, NULL);
 	atlas->Instance->GlyphAtlasCount++;
 	return atlas;
 }
@@ -395,7 +396,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateCodepageGrid(TuiInstance instance, TuiImage ima
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	atlas->Instance->GlyphCreate(atlas, image->PixelData, NULL);
+	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
 	atlas->Instance->GlyphAtlasCount++;
 	return atlas;
 }
@@ -451,7 +452,7 @@ TuiGlyphAtlas tuiGlyphAtlasCreateCodepageGridRawPixels(TuiInstance instance, int
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	atlas->Instance->GlyphCreate(atlas, pixels, NULL);
+	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, NULL);
 	atlas->Instance->GlyphAtlasCount++;
 	return atlas;
 }
@@ -464,7 +465,7 @@ void tuiGlyphAtlasDestroy(TuiGlyphAtlas atlas)
 		return;
 	}
 
-	atlas->Instance->GlyphDestroy(atlas);
+	tuiGlyphAtlasDestroy_Opengl33(atlas);
 	atlas->Instance->GlyphAtlasCount--;
 	tuiFree(atlas);
 }

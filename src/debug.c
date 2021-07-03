@@ -1,5 +1,5 @@
 #include <TUIC/debug.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 #include <string.h>
 
 #define TO_STRING(value) #value

@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 #include <string.h>
 
 TuiBatch tuiBatchCreate(int detail_mode, int tiles_wide, int tiles_tall)

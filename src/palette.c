@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -316,7 +316,7 @@ TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_c
 	palette->ColorCount = (size_t)color_count;
 	palette->Instance = instance;
 	palette->ApiData = NULL;
-	palette->Instance->PaletteCreate(palette, color_data);
+	tuiPaletteCreate_Opengl33(palette, color_data);
 	return palette;
 }
 
@@ -343,7 +343,7 @@ TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
 	palette->ColorCount = (size_t)color_count;
 	palette->Instance = instance;
 	palette->ApiData = NULL;
-	palette->Instance->PaletteCreate(palette, &kTuiXtermPalette[0]);
+	tuiPaletteCreate_Opengl33(palette, &kTuiXtermPalette[0]);
 	return palette;
 }
 
@@ -355,7 +355,7 @@ void tuiPaletteDestroy(TuiPalette palette)
 		return;
 	}
 
-	palette->Instance->PaletteDestroy(palette);
+	tuiPaletteDestroy_Opengl33(palette);
 	tuiFree(palette);
 }
 

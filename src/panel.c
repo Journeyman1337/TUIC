@@ -1,6 +1,7 @@
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 #include "image_inline.h"
+#include "opengl33.h"
 
 TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height)
 {
@@ -25,7 +26,7 @@ TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height)
 	panel->FramebufferWidth = (size_t)pixel_width;
 	panel->FramebufferHeight = (size_t)pixel_height;
 	panel->ApiData = NULL;
-	panel->Instance->PanelCreate(panel);
+	tuiPanelCreate_Opengl33(panel);
 	panel->Instance->PanelCount++;
 	return panel;
 }
@@ -38,7 +39,7 @@ void tuiPanelDestroy(TuiPanel panel)
 		return;
 	}
 
-	panel->Instance->PanelDestroy(panel);
+	tuiPanelDestroy_Opengl33(panel);
 	panel->Instance->PanelCount--;
 	tuiFree(panel);
 }
@@ -69,13 +70,14 @@ TuiImage tuiPanelGetImage(TuiPanel panel, TuiImage fill_image)
 
 	if (fill_image != NULL)
 	{
-		fill_image->PixelData = panel->Instance->PanelGetPixels(panel, &fill_image->PixelWidth, &fill_image->PixelHeight, fill_image->PixelData);
+		fill_image->PixelData = tuiPanelGetPixels_Opengl33(panel, &fill_image->PixelWidth, &fill_image->PixelHeight, fill_image->PixelData);
 	}
 	else
 	{
-		size_t p_width, p_height;
-		uint8_t* pixel_data = panel->Instance->PanelGetPixels(panel, &p_width, &p_height, NULL);
-		fill_image = create_image(p_width, p_height, 4, pixel_data, TUI_FALSE, __func__);
+		size_t p_width = 0;
+		size_t p_height = 0;
+		uint8_t* pixel_data = tuiPanelGetPixels_Opengl33(panel, &p_width, &p_height, NULL);
+		fill_image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE, __func__);
 	}
 
 	return fill_image;
@@ -95,7 +97,7 @@ uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, 
 	}
 
 	size_t o_width, o_height;
-	fill_pixels = panel->Instance->PanelGetPixels(panel, &o_width, &o_height, fill_pixels);
+	fill_pixels = tuiPanelGetPixels_Opengl33(panel, &o_width, &o_height, fill_pixels);
 	*pixel_width = (int)o_width;
 	*pixel_height = (int)o_height;
 	return fill_pixels;
@@ -115,7 +117,7 @@ void tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t
 		return;
 	}
 
-	panel->Instance->PanelClearColor(panel, r, g, b, a);
+	tuiPanelClearColor_Opengl33(panel, r, g, b, a);
 }
 
 void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_height)
@@ -136,7 +138,7 @@ void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_heigh
 		return;
 	}
 
-	panel->Instance->PanelSetSize(panel, (size_t)pixel_width, (size_t)pixel_height);
+	tuiPanelSetSize_Opengl33(panel, (size_t)pixel_width, (size_t)pixel_height);
 }
 
 void tuiPanelGetPixelDimensions(TuiPanel panel, int* pixel_width, int* pixel_height)
@@ -222,7 +224,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, 
 		return;
 	}
 
-	panel->Instance->PanelDrawBatchData(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
+	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
 }
 
 void tuiPanelDrawBatchData(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
@@ -267,7 +269,7 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palet
 		return;
 	}
 
-	panel->Instance->PanelDrawBatchData(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
+	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
 }
 
 void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
@@ -312,7 +314,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalett
 		return;
 	}
 
-	panel->Instance->PanelDrawBatchData(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
+	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
 }
 
 void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
@@ -352,7 +354,7 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPa
 		return;
 	}
 
-	panel->Instance->PanelDrawBatchData(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, left_x, right_x, top_y, bottom_y);
+	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, left_x, right_x, top_y, bottom_y);
 }
 
 void tuiPanelRender(TuiPanel panel)
@@ -368,7 +370,7 @@ void tuiPanelRender(TuiPanel panel)
 		return;
 	}
 
-	panel->Instance->PanelRender(panel, 0, (int)panel->Instance->PixelWidth, 0, (int)panel->Instance->PixelHeight);
+	tuiPanelRender_Opengl33(panel, 0, (int)panel->Instance->PixelWidth, 0, (int)panel->Instance->PixelHeight);
 }
 
 void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
@@ -384,7 +386,7 @@ void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_
 		return;
 	}
 
-	panel->Instance->PanelRender(panel, left_x, right_x, top_y, bottom_y);
+	tuiPanelRender_Opengl33(panel, left_x, right_x, top_y, bottom_y);
 }
 
 void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel)
@@ -410,7 +412,7 @@ void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel)
 		return;
 	}
 
-	panel->Instance->PanelRenderToPanel(panel, target_panel, 0, (int)target_panel->FramebufferWidth, 0, (int)target_panel->FramebufferHeight);
+	tuiPanelRenderToPanel_Opengl33(panel, target_panel, 0, (int)target_panel->FramebufferWidth, 0, (int)target_panel->FramebufferHeight);
 }
 
 void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y)
@@ -436,5 +438,5 @@ void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int
 		return;
 	}
 
-	panel->Instance->PanelRenderToPanel(panel, target_panel, left_x, right_x, top_y, bottom_y);
+	tuiPanelRenderToPanel_Opengl33(panel, target_panel, left_x, right_x, top_y, bottom_y);
 }

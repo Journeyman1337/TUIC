@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 
 TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode)
 {
@@ -49,7 +49,7 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mod
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
-	texture->Instance->TextureCreate(texture, image->PixelData);
+	tuiTextureCreate_Opengl33(texture, image->PixelData);
 	texture->Instance->TextureCount++;
 	return texture;
 }
@@ -93,7 +93,7 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
-	texture->Instance->TextureCreate(texture, pixels);
+	tuiTextureCreate_Opengl33(texture, pixels);
 	texture->Instance->TextureCount++;
 	return texture;
 }
@@ -106,7 +106,7 @@ void tuiTextureDestroy(TuiTexture texture)
 		return;
 	}
 
-	texture->Instance->TextureDestroy(texture);
+	tuiTextureDestroy_Opengl33(texture);
 	texture->Instance->TextureCount--;
 	tuiFree(texture);
 }
@@ -194,7 +194,7 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
-	texture->Instance->TextureSetPixels(texture, image->PixelData);
+	tuiTextureSetPixels_Opengl33(texture, image->PixelData);
 }
 
 void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels)
@@ -228,7 +228,7 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
-	texture->Instance->TextureSetPixels(texture, pixels);
+	tuiTextureSetPixels_Opengl33(texture, pixels);
 }
 
 void tuiTextureRender(TuiTexture texture)
@@ -244,7 +244,7 @@ void tuiTextureRender(TuiTexture texture)
 		return;
 	}
 
-	texture->Instance->TextureRender(texture, 0, texture->Instance->PixelWidth, 0, texture->Instance->PixelHeight);
+	tuiTextureRender_Opengl33(texture, 0, texture->Instance->PixelWidth, 0, texture->Instance->PixelHeight);
 }
 
 void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
@@ -260,7 +260,7 @@ void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, in
 		return;
 	}
 
-	texture->Instance->TextureRender(texture, left_x, right_x, top_y, bottom_y);
+	tuiTextureRender_Opengl33(texture, left_x, right_x, top_y, bottom_y);
 }
 
 void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel)
@@ -285,7 +285,7 @@ void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel)
 		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
 	}
 
-	texture->Instance->TextureRenderToPanel(texture, panel, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
+	tuiTextureRenderToPanel_Opengl33(texture, panel, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
 }
 
 void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
@@ -310,5 +310,5 @@ void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int 
 		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
 	}
 
-	texture->Instance->TextureRenderToPanel(texture, panel, left_x, right_x, top_y, bottom_y);
+	tuiTextureRenderToPanel_Opengl33(texture, panel, left_x, right_x, top_y, bottom_y);
 }
