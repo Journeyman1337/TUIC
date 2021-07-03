@@ -1,16 +1,3 @@
-file(GLOB implementation_lib_files
-	Example-00-Implementation/*
-)
-add_library(Example-00-Implementation ${implementation_lib_files})
-find_package(glfw3 CONFIG REQUIRED)
-find_package(glad REQUIRED)
-target_link_libraries(Example-00-Implementation
-	PUBLIC
-		${PROJECT_NAME}
-		glfw
-		glad::glad
-)
-set_property(TARGET Example-00-Implementation PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $<TARGET_FILE_DIR:Example-00-Implementation>)
 # cmake function for adding an example project
 function(add_example Name)
 	# create the executable for the example
@@ -19,8 +6,8 @@ function(add_example Name)
 	)
 	# link the implementation library
 	target_link_libraries(${Name}
-		PUBLIC
-			Example-00-Implementation
+		PRIVATE
+			${PROJECT_NAME}
 	)
 	# grab the content file paths
 	file(GLOB asset_files
@@ -36,11 +23,4 @@ function(add_example Name)
 	set_property(TARGET ${Name} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $<TARGET_FILE_DIR:${Name}>)
 endfunction()
 
-add_example(Example-01-Basic-Panel)
-add_example(Example-02-Channel-Replace-Blend-Modes)
-add_example(Example-03-Panel-Transformed-Rendering)
-add_example(Example-04-Dynamic-Resizing)
-add_example(Example-05-Basic-Text-Rendering)
-add_example(Example-06-Simple-Topdown-Character)
-add_example(Example-07-Mouse-Input)
-add_example(Example-08-Matrix-Rain)
+add_example(Example-01-Classic-Panel)
