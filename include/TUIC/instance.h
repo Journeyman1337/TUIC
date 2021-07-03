@@ -30,6 +30,8 @@ extern "C" {
  * These functions are used for manipulating @ref TuiInstance opaque objects. Create functions for TuiInstance objects can only be found in backend headers (such as opengl33.h).
  *
  *  @{ */
+
+TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title);
 /*!
  * @brief Destroy a @ref TuiInstance and properly dispose of all of its internal data.
  *
@@ -41,6 +43,8 @@ extern "C" {
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
 void tuiInstanceDestroy(TuiInstance instance);
+
+int tuiGetInstanceCount();
 /*!
  * @brief Clear the color of the main screen of a @ref TuiInstance graphics context.
  *
@@ -208,6 +212,115 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiGlyphAtlas atlas, 
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
 void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiInstanceSwapBuffers(TuiInstance instance);
+
+void tuiInstanceSwapInterval(TuiInstance instance, int interval);
+
+const char* tuiInstanceGetClipboardString(TuiInstance instance);
+
+void tuiInstanceSetClipboardString(TuiInstance instance, const char* string);
+
+int tuiInstanceGetInputMode(TuiInstance instance, int mode);
+
+void tuiInstanceSetInputMode(TuiInstance instance, int mode, int value);
+
+int tuiInstanceGetKey(TuiInstance instance, int key);
+
+int tuiInstanceGetMouseButton(TuiInstance instance, int button);
+
+void tuiInstanceGetCursorPos(TuiInstance instance, double *xpos, double *ypos);
+
+void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos);
+
+void tuiDefaultWindowHints();
+
+void tuiWindowHint(int hint, int value);
+
+void tuiWindowHintString(int hint, const char* value);
+
+int tuiInstanceWindowShouldClose(TuiInstance instance);
+
+void tuiInstanceSetWindowShouldClose(TuiInstance instance, int should_close);
+
+void tuiInstanceSetWindowTitle(TuiInstance instance, const char* title);
+
+void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* images);
+
+void tuiInstanceGetWindowPos(TuiInstance instance, int* xpos, int* ypos);
+
+void tuiInstanceSetWindowPos(TuiInstance instance, int xpos, int ypos); 
+
+void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minheight, int maxwidth, int maxheight);
+
+void tuiInstanceSetWindowAspectRatio(TuiInstance instance, int numer, int denom);
+
+void tuiInstanceGetWindowContentScale(TuiInstance instance, float* xscale, float* yscale);
+
+float tuiInstanceGetWindowOpacity(TuiInstance instance);
+
+void tuiInstanceSetWindowOpacity(TuiInstance instance, float opacity);
+
+void tuiInstanceIconifyWindow(TuiInstance instance);
+
+void tuiInstanceRestoreWindow(TuiInstance instance);
+
+void tuiInstanceMaximizeWindow(TuiInstance instance);
+
+void tuiInstanceShowWindow(TuiInstance instance);
+
+void tuiInstanceHideWindow(TuiInstance instance);
+
+void tuiInstanceFocusWindow(TuiInstance instance);
+
+void tuiInstanceRequestWindowAttention(TuiInstance instance);
+
+TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance);
+
+void tuiInstanceSetWindowMonitor(TuiInstance instance, TuiMonitor monitor, int xpos, int ypos, int width, int height, int refreshRate);
+
+int tuiInstanceGetWindowAttrib(TuiInstance instance, int attrib);
+
+void tuiInstanceSetWindowAttrib(TuiInstance instance, int attrib, int value);
+
+void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr);
+
+void* tuiInstanceGetUserPtr(TuiInstance instance);
+
+void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor);
+
+tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWindowPosFunction callback);
+
+tuiWindowSizeFunction tuiInstanceSetWindowSizeCallback(TuiInstance instance, tuiWindowSizeFunction callback);
+
+tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, tuiWindowCloseFunction callback);
+
+tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instance, tuiWindowRefreshFunction callback);
+
+tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, tuiWindowFocusFunction callback);
+
+tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instance, tuiWindowIconifyFunction callback);
+
+tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance instance, tuiWindowMaximizeFunction callback);
+
+tuiFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstance instance, tuiFramebufferSizeFunction callback);
+
+tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstance instance, tuiWindowContentScaleFunction callback);
+
+tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction callback);
+
+tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction callback);
+
+tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, tuiMouseButtonFunction callback);
+
+tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCursorPosFunction callback);
+
+tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, tuiCursorEnterFunction callback);
+
+tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFunction callback);
+
+tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction callback);
+
 /*! @} */
 #ifdef __cplusplus //extern C guard
 }
