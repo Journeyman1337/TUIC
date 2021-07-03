@@ -17,46 +17,16 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-#ifndef TUIC_OPENGL33_IMPLEMENTATION_H //header guard
-#define TUIC_OPENGL33_IMPLEMENTATION_H
-#ifdef __cplusplus //extern C guard
-extern "C" {
-#endif
-#ifndef TUIC_OPENGL33_IMPLEMENTED
-#ifdef TUIC_OPENGL33_IMPLEMENTATION
-#define TUIC_OPENGL33_IMPLEMENTED
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
-#include <TUIC/backends/opengl33.h>
+#include <glad/glad.h>
+#include "objects.h"
+#include "opengl33.h"
 #define GLD_IMPLEMENTATION
-#include <TUIC/vendor/glDebug.h>
-#if defined(TUIC_OPENGL33_LOAD_GLEW) + defined(TUIC_OPENGL33_LOAD_GLAD) + defined(TUIC_OPENGL33_LOAD_NONE) != 1
-#error Exactly one opengl loading library macro must be defined for Opengl33 backend out of the following: TUIC_OPENGL33_LOAD_GLEW, TUIC_OPENGL33_LOAD_GLAD, or TUIC_OPENGL33_LOAD_NONE.
-#endif
-void InstanceDestroy_Opengl33(TuiInstance instance);
-void InstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-void InstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, size_t screen_height);
-void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
-void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas);
-void TextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
-void TextureDestroy_Opengl33(TuiTexture texture);
-void TextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels);
-void TextureRender_Opengl33(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-void TextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
-void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
-void PaletteDestroy_Opengl33(TuiPalette palette);
-void PanelCreate_Opengl33(TuiPanel panel);
-void PanelDestroy_Opengl33(TuiPanel panel);
-void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-uint8_t* PanelGetPixels_Opengl33(TuiPanel panel, size_t* width, size_t* height, uint8_t* pixel_ptr);
-void PanelRender_Opengl33(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
-void PanelRenderToPanel_Opengl33(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y);
-void PanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-void PanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height);
+#include "vendor/glDebug.h"
+
 const float kOpenglScreenMatrix[16] =
 {
 	2.0f,  0.0f,  0.0f,  -1.0f,
@@ -454,43 +424,31 @@ inline void RenderTextureToFramebuffer(TuiInstance instance, uint32_t texture_ha
 	GLD_CALL(glViewport(0, 0, render_area_width, render_area_height));
 	GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
-//Opengl33 specific (non-callback).
-TuiInstance tuiOpengl33InstanceCreateExistingContext(int pixel_width, int pixel_height)
+inline void VerticalFlipPixels(uint8_t* pixels, int w, int h, int c)
 {
-	if (pixel_width <= 0 || pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_INSTANCE_DIMENSIONS, __func__);
-		return NULL;
-	}
-	
-	TuiInstance_s* instance = (TuiInstance_s*)tuiAllocate(sizeof(TuiInstance_s));
-	instance->InstanceDestroy = InstanceDestroy_Opengl33;
-	instance->InstanceClearColor = InstanceClearColor_Opengl33;
-	instance->InstanceResizeScreen = InstanceResizeScreen_Opengl33;
-	instance->InstanceDrawBatchData = InstanceDrawBatchData_Opengl33;
-	instance->GlyphCreate = GlyphAtlasCreate_Opengl33;
-	instance->GlyphDestroy = GlyphAtlasDestroy_Opengl33;
-	instance->TextureCreate = TextureCreate_Opengl33;
-	instance->TextureDestroy = TextureDestroy_Opengl33;
-	instance->TextureSetPixels = TextureSetPixels_Opengl33;
-	instance->TextureRender = TextureRender_Opengl33;
-	instance->TextureRenderToPanel = TextureRenderToPanel_Opengl33;
-	instance->PaletteCreate = PaletteCreate_Opengl33;
-	instance->PaletteDestroy = PaletteDestroy_Opengl33;
-	instance->PanelCreate = PanelCreate_Opengl33;
-	instance->PanelDestroy = PanelDestroy_Opengl33;
-	instance->PanelDrawBatchData = PanelDrawBatchData_Opengl33;
-	instance->PanelGetPixels = PanelGetPixels_Opengl33;
-	instance->PanelRender = PanelRender_Opengl33;
-	instance->PanelRenderToPanel = PanelRenderToPanel_Opengl33;
-	instance->PanelClearColor = PanelClearColor_Opengl33;
-	instance->PanelSetSize = PanelSetSize_Opengl33;
-	instance->PanelCount = 0;
-	instance->PixelWidth = (size_t)pixel_width;
-	instance->PixelHeight = (size_t)pixel_height;
-	instance->GlyphAtlasCount = 0;
-	instance->PaletteCount = 0;
-	instance->IsDamaged = TUI_FALSE;
+   int row;
+   size_t bytes_per_row = (size_t)w * c;
+   uint8_t temp[2048];
+
+   for (row = 0; row < (h>>1); row++) {
+      uint8_t *row0 = pixels + row*bytes_per_row;
+      uint8_t *row1 = pixels + (h - row - 1)*bytes_per_row;
+      // swap row0 with row1
+      size_t bytes_left = bytes_per_row;
+      while (bytes_left) {
+         size_t bytes_copy = (bytes_left < sizeof(temp)) ? bytes_left : sizeof(temp);
+         memcpy(temp, row0, bytes_copy);
+         memcpy(row0, row1, bytes_copy);
+         memcpy(row1, temp, bytes_copy);
+         row0 += bytes_copy;
+         row1 += bytes_copy;
+         bytes_left -= bytes_copy;
+      }
+   }
+}
+//Opengl33 specific (non-callback).
+TuiInstance tuiOpengl33InstanceCreateExistingContext(TuiInstance instance)
+{
 	instance->ApiData = (TuiOpengl33InstanceApiData*)tuiAllocate(sizeof(TuiOpengl33InstanceApiData));
 	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
 	instance_data->VaoHandle = 0;
@@ -535,56 +493,18 @@ TuiInstance tuiOpengl33InstanceCreateExistingContext(int pixel_width, int pixel_
 	GLD_CALL(glUniform1i(instance_data->BatchRenderPaletteUniformLocation, 3));
 	GLD_CALL(glUseProgram(0));
 	GLD_CALL(glBindVertexArray(0));
-	return instance;
+	instance;
 }
-//Opengl33 specific (non-callback).
-TuiInstance tuiOpengl33InstanceCreate(int pixel_width, int pixel_height, void* window_proc_address)
+void tuiInstanceCreate_Opengl33(TuiInstance instance, void* proc_address)
 {
-	if (pixel_width <= 0 || pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_INSTANCE_DIMENSIONS, __func__);
-		return NULL;
-	}
-#ifdef TUIC_OPENGL33_LOAD_GLEW
-    if (glewInit() != GLEW_OK)
-    {
-        tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Failed to initialize GLEW.");
-        return NULL;
-    }
-#endif
-#ifdef TUIC_OPENGL33_LOAD_GLAD
-	if (!gladLoadGLLoader((GLADloadproc)window_proc_address))
+	if (!gladLoadGLLoader((GLADloadproc)proc_address))
 	{
 		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Failed to initialize GLAD.");
-        return NULL;
+        return;
 	}    
-#endif	
-#ifdef TUIC_OPENGL33_LOAD_NONE
-	tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not create new Opengl graphics context when loading library is not defined.");
-	return NULL;
-#endif
-	return tuiOpengl33InstanceCreateExistingContext(pixel_width, pixel_height);
+	tuiOpengl33InstanceCreateExistingContext(instance);
 }
-//Callbacks begin.
-void InstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, size_t screen_height)
-{
-	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
-	instance->PixelWidth = screen_width;
-	instance->PixelHeight = screen_height;
-	GLD_CLEAR();
-	GLD_CALL(glViewport(0, 0, screen_width, screen_height));
-}
-
-void InstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
-{
-	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
-	float* transformed_matrix = (float*)tuiAllocate(sizeof(float) * 16);
-	memcpy(transformed_matrix, &kOpenglScreenMatrix[0], 16);
-	TransformMatrix(transformed_matrix, instance->PixelWidth, instance->PixelHeight, left_x, right_x, top_y, bottom_y);
-	DrawBatchData(0, instance->PixelWidth, instance->PixelHeight, instance, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, &kOpenglScreenMatrix[0]);
-	tuiFree(transformed_matrix);
-}
-void InstanceDestroy_Opengl33(TuiInstance instance)
+void tuiInstanceDestroy_Opengl33(TuiInstance instance)
 {
 	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
 	if (instance->IsDamaged == TUI_FALSE)
@@ -604,13 +524,31 @@ void InstanceDestroy_Opengl33(TuiInstance instance)
 	}
 	tuiFree(instance_data);
 }
-void InstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+void tuiInstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, size_t screen_height)
+{
+	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
+	instance->PixelWidth = screen_width;
+	instance->PixelHeight = screen_height;
+	GLD_CLEAR();
+	GLD_CALL(glViewport(0, 0, screen_width, screen_height));
+}
+
+void tuiInstanceDrawBatchData_Opengl33(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiOpengl33InstanceApiData* instance_data = (TuiOpengl33InstanceApiData*)instance->ApiData;
+	float* transformed_matrix = (float*)tuiAllocate(sizeof(float) * 16);
+	memcpy(transformed_matrix, &kOpenglScreenMatrix[0], 16);
+	TransformMatrix(transformed_matrix, instance->PixelWidth, instance->PixelHeight, left_x, right_x, top_y, bottom_y);
+	DrawBatchData(0, instance->PixelWidth, instance->PixelHeight, instance, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, &kOpenglScreenMatrix[0]);
+	tuiFree(transformed_matrix);
+}
+void tuiInstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
 	GLD_CLEAR();
 	GLD_CALL(glClearColor((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f));
 	GLD_CALL(glClear(GL_COLOR_BUFFER_BIT));
 }
-void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
+void tuiGlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
 {
 	atlas->ApiData = (TuiOpengl33GlyphAtlasApiData*)tuiAllocate(sizeof(TuiOpengl33GlyphAtlasApiData));
 	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
@@ -645,7 +583,7 @@ void GlyphAtlasCreate_Opengl33(TuiGlyphAtlas atlas, const uint8_t* pixel_data, c
 		GLD_CALL(glTexBuffer(GL_TEXTURE_BUFFER, GL_RGBA32F, atlas_data->FontmapBufferHandle));
 	}
 }
-void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas)
+void tuiGlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas)
 {
 	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
 	if (atlas->Instance->IsDamaged == TUI_FALSE)
@@ -660,7 +598,7 @@ void GlyphAtlasDestroy_Opengl33(TuiGlyphAtlas atlas)
 	}
 	tuiFree(atlas_data);
 }
-void TextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels)
+void tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels)
 {
 	texture->ApiData = (TuiOpengl33TextureApiData*)tuiAllocate(sizeof(TuiOpengl33TextureApiData));
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
@@ -670,7 +608,7 @@ void TextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels)
 	texture_data->PixelHeight = texture->PixelHeight;
 	texture_data->ChannelCount = texture->ChannelCount;
 }
-void TextureDestroy_Opengl33(TuiTexture texture)
+void tuiTextureDestroy_Opengl33(TuiTexture texture)
 {
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	if (texture->Instance->IsDamaged == TUI_FALSE)
@@ -680,7 +618,7 @@ void TextureDestroy_Opengl33(TuiTexture texture)
 	}
 	tuiFree(texture_data);
 }
-void TextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels)
+void tuiTextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels)
 {
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	
@@ -697,20 +635,20 @@ void TextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels)
 		GLD_CALL(glTexImage2D(GL_TEXTURE_2D, 0, GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels)); //Need to use this slower alternative to resize it.
 	}
 }
-void TextureRender_Opengl33(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
+void tuiTextureRender_Opengl33(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	
 	RenderTextureToFramebuffer(texture->Instance, texture_data->TextureHandle, 0, texture->Instance->PixelWidth, texture->Instance->PixelHeight, left_x, right_x, top_y, bottom_y);
 }
-void TextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
+void tuiTextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	
 	RenderTextureToFramebuffer(texture->Instance, texture_data->TextureHandle, panel_data->FramebufferHandle, panel->FramebufferWidth, panel->FramebufferHeight, left_x, right_x, top_y, bottom_y);
 }
-void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
+void tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
 {
 	palette->ApiData = (TuiOpengl33PaletteApiData*)tuiAllocate(sizeof(TuiOpengl33PaletteApiData));
 	TuiOpengl33PaletteApiData* palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
@@ -724,7 +662,7 @@ void PaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
 	GLD_CALL(glBindTexture(GL_TEXTURE_BUFFER, palette_data->PaletteTextureHandle));
 	GLD_CALL(glTexBuffer(GL_TEXTURE_BUFFER, GL_R8UI, palette_data->PaletteBufferHandle));
 }
-void PaletteDestroy_Opengl33(TuiPalette palette)
+void tuiPaletteDestroy_Opengl33(TuiPalette palette)
 {
 	TuiOpengl33PaletteApiData* palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
 	if (palette->Instance->IsDamaged == TUI_FALSE)
@@ -735,7 +673,7 @@ void PaletteDestroy_Opengl33(TuiPalette palette)
 	}
 	tuiFree(palette_data);
 }
-void PanelCreate_Opengl33(TuiPanel panel)
+void tuiPanelCreate_Opengl33(TuiPanel panel)
 {
 	panel->ApiData = (TuiOpengl33PanelApiData*)tuiAllocate(sizeof(TuiOpengl33PanelApiData));
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
@@ -745,7 +683,7 @@ void PanelCreate_Opengl33(TuiPanel panel)
 	GLD_CLEAR();
 	CreateFramebuffer(&panel_data->FramebufferHandle, &panel_data->FramebufferTextureHandle, &panel_data->RenderbufferHandle, panel->FramebufferWidth, panel->FramebufferHeight);
 }
-void PanelDestroy_Opengl33(TuiPanel panel)
+void tuiPanelDestroy_Opengl33(TuiPanel panel)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	if (panel->Instance->IsDamaged == TUI_FALSE)
@@ -757,7 +695,7 @@ void PanelDestroy_Opengl33(TuiPanel panel)
 	}
 	tuiFree(panel_data);
 }
-void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+void tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	float* transformed_matrix = (float*)tuiAllocate(sizeof(float) * 16);
@@ -766,41 +704,41 @@ void PanelDrawBatchData_Opengl33(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette
 	DrawBatchData(panel_data->FramebufferHandle, panel->FramebufferWidth, panel->FramebufferHeight, panel->Instance, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, &kOpenglScreenMatrix[0]);
 	tuiFree(transformed_matrix);
 }
-uint8_t* PanelGetPixels_Opengl33(TuiPanel panel, size_t* texture_width, size_t* texture_height, uint8_t* pixel_ptr)
+uint8_t* tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* texture_width, size_t* texture_height, uint8_t* pixel_ptr)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+
 	if (pixel_ptr == NULL)
 	{
 		pixel_ptr = (uint8_t*)tuiAllocate(panel->FramebufferWidth * panel->FramebufferHeight * 4);
-		*texture_width = panel->FramebufferWidth;
-		*texture_height = panel->FramebufferHeight;
 	}
 	else if (*texture_width != panel->FramebufferWidth || *texture_height != panel->FramebufferHeight)
 	{
 		pixel_ptr = (uint8_t*)tuiReallocate(pixel_ptr, panel->FramebufferWidth * panel->FramebufferHeight * 4);
-		*texture_width = panel->FramebufferWidth;
-		*texture_height = panel->FramebufferHeight;
 	}
+	*texture_width = panel->FramebufferWidth;
+	*texture_height = panel->FramebufferHeight;
 	GLD_CLEAR();
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, panel_data->FramebufferHandle));
 	GLD_CALL(glReadPixels(0, 0, panel->FramebufferWidth, panel->FramebufferHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixel_ptr));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	VerticalFlipPixels(pixel_ptr, *texture_width, *texture_height, 4);
 	return pixel_ptr;
 }
-void PanelRender_Opengl33(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
+void tuiPanelRender_Opengl33(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 
 	RenderTextureToFramebuffer(panel->Instance, panel_data->FramebufferTextureHandle, 0, panel->Instance->PixelWidth, panel->Instance->PixelHeight, left_x, right_x, top_y, bottom_y);
 }
-void PanelRenderToPanel_Opengl33(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y)
+void tuiPanelRenderToPanel_Opengl33(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	TuiOpengl33PanelApiData* target_panel_data = (TuiOpengl33PanelApiData*)target_panel->ApiData;
 	
 	RenderTextureToFramebuffer(panel->Instance, panel_data->FramebufferTextureHandle, target_panel_data->FramebufferHandle, target_panel->FramebufferWidth, target_panel->FramebufferHeight, left_x, right_x, top_y, bottom_y);
 }
-void PanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+void tuiPanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	GLD_CLEAR();
@@ -809,7 +747,7 @@ void PanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, u
 	GLD_CALL(glClear(GL_COLOR_BUFFER_BIT));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 }
-void PanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height)
+void tuiPanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	if (panel->FramebufferWidth != new_width || panel->FramebufferHeight != new_height)
@@ -833,9 +771,3 @@ void PanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height)
 		CreateFramebuffer(&panel_data->FramebufferHandle, &panel_data->FramebufferTextureHandle, &panel_data->RenderbufferHandle, new_width, new_height);
 	}
 }
-#endif //ifndef TUIC_OPENGL33_IMPLEMENTED
-#endif //ifdef TUIC_OPENGL33_IMPLEMENTATION
-#ifdef __cplusplus //extern C guard
-}
-#endif
-#endif //header guard
