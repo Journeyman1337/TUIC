@@ -13,48 +13,97 @@ option(TUIC_BUILD_MANUAL_TESTS "Build manual test framework." OFF)
 option(TUIC_BUILD_AUTO_TESTS "Build automatic test framework." OFF)
 option(TUIC_OPENGL33_BACKEND "Include the Opengl33 backend." ON)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/configuration.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/configuration.h)
+
 set(TUIC_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TUIC_CONFIGURE_HEADER_TEXT "")
 
 set(TUIC_SOURCES
 	# Source files
+	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas_type.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/enums.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_shape.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/glyph_atlas.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/impl.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/instance.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_hat_state.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_id.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/key.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/key_mod.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/monitor.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/mouse_button.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/panel.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/instance.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
-	# Include files
+	${CMAKE_CURRENT_SOURCE_DIR}/src/window_attribute.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
+	# Vendor Source Files
+	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
+	# Include Files
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas_type.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/enums.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_shape.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/debug.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/desktop_callback.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_flag.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/glyph_atlas.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/instance.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_hat_state.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_id.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/key.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/key_mod.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/monitor.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/mouse_button.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/backends/objects.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/glDebug.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/stb_image.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/stb_image_resize.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/vendor/stb_image_write.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/window_attribute.h
+)
+
+set(TUIC_LINK_LIBRARIES
+	""
 )
 
 if (TUIC_OPENGL33_BACKEND)
+	find_package(glad CONFIG REQUIRED)
 	add_subdirectory(shaders/Opengl33)
 	set(TUIC_SOURCES ${TUIC_SOURCES} 
-		${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/backends/opengl33.h
-		${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/backends/opengl33_implementation.h
+		${CMAKE_CURRENT_SOURCE_DIR}/src/opengl33.c
+		${CMAKE_CURRENT_SOURCE_DIR}/src/opengl33.h
+	)
+	find_package(glfw3 CONFIG REQUIRED)
+	find_package(glad CONFIG REQUIRED)
+	set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
+		glfw
+		glad::glad
+	)
+endif()
+
+if (UNIX)
+    set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
+		m
 	)
 endif()
 
@@ -62,14 +111,14 @@ add_library(${PROJECT_NAME}
 	${TUIC_SOURCES}
 )
 
-if (UNIX)
-    target_link_libraries(${PROJECT_NAME} 
-        PUBLIC
-            m
-    )
-endif()
+target_link_libraries(${PROJECT_NAME}
+	${TUIC_LINK_LIBRARIES}
+)
 
+find_path(STB_INCLUDE_DIRS "stb.h")
 target_include_directories(${PROJECT_NAME}
+	PRIVATE
+		${STB_INCLUDE_DIRS}
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
