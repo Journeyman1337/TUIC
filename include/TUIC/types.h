@@ -58,6 +58,11 @@ typedef struct TuiPanel_s* TuiPanel;
  * @brief Image loaded from a file or generated through code. This object contains an image texture, which can be loaded into a @ref TuiGlyphAtlas. TuiImage objects are passable between multiple threads and are independent of @ref TuiInstance objects. This object is opaque, and its members are not meant to be accessed directly. Use the functions in image.h instead.
  */
 typedef struct TuiImage_s* TuiImage;
+
+typedef struct GLFWcursor* TuiCursor;
+
+typedef struct GLFWmonitor* TuiMonitor;
+
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }
