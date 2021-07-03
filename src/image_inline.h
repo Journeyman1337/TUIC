@@ -24,7 +24,12 @@ extern "C" {
 #endif
 #include <TUIC/types.h>
 #include <string.h>
-static inline TuiImage create_image(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data, const char* func_name)
+#include <GLFW/glfw3.h>
+#include "objects.h"
+#include <TUIC/debug.h>
+#include <TUIC/boolean.h>
+
+static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data, const char* func_name)
 {
 	if (channel_count != 3 && channel_count != 4)
 	{
@@ -61,6 +66,27 @@ static inline TuiImage create_image(int pixel_width, int pixel_height, int chann
 		memset(image->PixelData, 0, image->PixelDataSize);
 	}
 	return image;
+}
+
+static inline GLFWimage _TuiImageToGlfwImage(TuiImage image, const char* func_name)
+{
+	GLFWimage glfw_image;
+	glfw_image.width = 0;
+	glfw_image.height = 0;
+	glfw_image.pixels = NULL;
+	if (image->ChannelCount != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, func_name);
+		return glfw_image;
+	}
+	glfw_image.width = image->PixelWidth;
+	glfw_image.height = image->PixelHeight;
+	glfw_image.pixels = image->PixelData;
+}
+
+static inline TuiImage _GlfwImageToTuiImage(GLFWimage image, const char* func_name)
+{
+	return create_image(image.width, image.height, 4, image.pixels, TUI_TRUE, func_name);
 }
 #ifdef __cplusplus //extern C guard
 }

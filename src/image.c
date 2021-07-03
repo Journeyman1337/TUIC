@@ -18,16 +18,16 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 #include "image_inline.h"
 
-#include <TUIC/vendor/stb_image.h>
-#include <TUIC/vendor/stb_image_write.h>
-#include <TUIC/vendor/stb_image_resize.h>
+#include <stb_image.h>
+#include <stb_image_write.h>
+#include <stb_image_resize.h>
 
 TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data)
 {
-	return create_image(pixel_width, pixel_height, channel_count, pixel_data, copy_data, __func__);
+	return _CreateImage(pixel_width, pixel_height, channel_count, pixel_data, copy_data, __func__);
 }
 
 void tuiImageDestroy(TuiImage image)
@@ -68,7 +68,7 @@ TuiImage tuiImageLoad(const char* path, int expected_channel_count)
 		tuiDebugError(TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS, __func__);
 		return NULL;
 	}
-	TuiImage ret = create_image(i_width, i_height, i_channels, pixels, TUI_FALSE, __func__);
+	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE, __func__);
 	return ret;
 }
 
@@ -96,7 +96,7 @@ TuiImage tuiImageClone(TuiImage image)
 		return NULL;
 	}
 
-	return create_image(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE, __func__);
+	return _CreateImage(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE, __func__);
 }
 
 void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height)
@@ -232,7 +232,7 @@ TuiImage tuiImageCloneResize(TuiImage image, int new_width, int new_height)
 	{
 		return NULL;
 	}
-	return create_image(image->ChannelCount, new_width, new_height, new_pixels, TUI_TRUE, __func__);
+	return _CreateImage(image->ChannelCount, new_width, new_height, new_pixels, TUI_TRUE, __func__);
 }
 
 void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int start_y)
