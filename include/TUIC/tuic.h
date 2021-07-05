@@ -37,6 +37,7 @@
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
 #include <TUIC/instance.h>
+#include <TUIC/joystick.h>
 #include <TUIC/joystick_hat_state.h>
 #include <TUIC/joystick_id.h>
 #include <TUIC/key.h>
