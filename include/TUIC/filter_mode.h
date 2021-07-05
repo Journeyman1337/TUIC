@@ -26,11 +26,11 @@ extern "C" {
 #endif
 
 
-enum TuiFilterMode
+typedef enum TuiFilterMode
 {
 	TUI_FILTER_POINT = 1,
 	TUI_FILTER_BILINEAR = 2
-};
+} TuiFilterMode;
 
 extern const char* kTui_Filter_Point_Name;
 extern const char* kTui_Filter_Bilinear_Name;

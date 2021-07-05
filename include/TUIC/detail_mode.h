@@ -26,7 +26,7 @@ extern "C" {
 #endif
 #include <TUIC/detail_flag.h>
 
-enum TuiDetailMode
+typedef enum TuiDetailMode
 {
 	TUI_DETAIL_G8_C0_FULL =				(TUI_GLYPH_FLAG_G8 		| TUI_COLOR_FLAG_C0			| TUI_LAYOUT_FLAG_FULL),
 	TUI_DETAIL_G8_C4_FULL =				(TUI_GLYPH_FLAG_G8		| TUI_COLOR_FLAG_C4			| TUI_LAYOUT_FLAG_FULL),
@@ -72,7 +72,7 @@ enum TuiDetailMode
 	TUI_DETAIL_G16_C32_SPARSE =			(TUI_GLYPH_FLAG_G16		| TUI_COLOR_FLAG_C32		| TUI_LAYOUT_FLAG_SPARSE),
 	TUI_DETAIL_G16_C32NBG_SPARSE =		(TUI_GLYPH_FLAG_G16		| TUI_COLOR_FLAG_C32NBG		| TUI_LAYOUT_FLAG_SPARSE),
 	TUI_DETAIL_G16_C32NFG_SPARSE =		(TUI_GLYPH_FLAG_G16		| TUI_COLOR_FLAG_C32NFG		| TUI_LAYOUT_FLAG_SPARSE)
-};
+} TuiDetailMode;
 
 extern const size_t kTui_Detail_G8_C0_Size;
 extern const size_t kTui_Detail_G8_C4_Size;
