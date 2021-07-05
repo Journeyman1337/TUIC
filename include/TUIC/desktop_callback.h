@@ -63,7 +63,7 @@ typedef void (* tuiCharFunction)(TuiInstance,unsigned int);
 
 typedef void (* tuiDropFunction)(TuiInstance,int,const char*[]);
 
-typedef void (* tuiMonitorFunction)(TuiMonitor,int);
+typedef void (* tuiMonitorFunction)(TuiMonitor,TuiBoolean);
 
 typedef void (* tuiJoysticFunction)(TuiJoystickId,int);
 
