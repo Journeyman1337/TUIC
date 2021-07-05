@@ -33,7 +33,6 @@ void tuiWaitEvents();
 void tuiWaitEventsTimeout(double timeout);
 void tuiPostEmptyEvent();
 int tuiRawMouseMotionSupported(void);
-int tuiGetKeyScancode(int key);
 double tuiGetTime();
 void tuiSetTime(double time);
 uint64_t tuiGetTimerValue();

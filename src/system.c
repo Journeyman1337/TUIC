@@ -83,18 +83,6 @@ void tuiPostEmptyEvent()
 	glfwPostEmptyEvent();
 }
 
-int tuiGetKeyScancode(int key)
-{
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
-	}
-
-	return glfwGetKeyScancode(key);
-}
-
-
 int tuiRawMouseMotionSupported()
 {
 	if (tuiIsActive() == TUI_FALSE)
