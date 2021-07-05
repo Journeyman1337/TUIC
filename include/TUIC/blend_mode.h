@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-enum TuiBlendMode
+typedef enum TuiBlendMode
 {
 	TUI_BLEND_INVALID = 0,
 	TUI_BLEND_NORMAL = 1,
@@ -38,7 +38,7 @@ enum TuiBlendMode
 	TUI_BLEND_BG_BLUE = 8,
 	TUI_BLEND_BG_ALPHA = 9,
 	TUI_BLEND_LAST = TUI_BLEND_BG_ALPHA
-};
+} TuiBlendMode;
 
 extern const char* kTui_Blend_NORMAL_Name;
 extern const char* kTui_Blend_FG_RED_Name;
