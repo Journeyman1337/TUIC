@@ -24,9 +24,11 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiJoystickHatState
-{
+typedef enum TuiJoystickHatState
+	{
+	TUI_HAT_INVALID    = 16,
 	TUI_HAT_CENTERED   = 0,
 	TUI_HAT_UP         = 1,
 	TUI_HAT_RIGHT      = 2,
@@ -35,8 +37,24 @@ enum TuiJoystickHatState
 	TUI_HAT_RIGHT_UP   = (TUI_HAT_RIGHT | TUI_HAT_UP),
 	TUI_HAT_RIGHT_DOWN = (TUI_HAT_RIGHT | TUI_HAT_DOWN),
 	TUI_HAT_LEFT_UP    = (TUI_HAT_LEFT  | TUI_HAT_UP),
-	TUI_HAT_LEFT_DOWN  = (TUI_HAT_LEFT  | TUI_HAT_DOWN)
-};
+	TUI_HAT_LEFT_DOWN  = (TUI_HAT_LEFT  | TUI_HAT_DOWN),
+} TuiJoystickHatState;
+
+extern const char* kTui_Hat_Centered_Name;
+extern const char* kTui_Hat_Up_Name;
+extern const char* kTui_Hat_Right_Name;
+extern const char* kTui_Hat_Down_Name;
+extern const char* kTui_Hat_Left_Name;
+extern const char* kTui_Hat_Right_Up_Name;
+extern const char* kTui_Hat_Right_Down_Name;
+extern const char* kTui_Hat_Left_Up_Name;
+extern const char* kTui_Hat_Left_Down_Name;
+
+TuiBoolean tuiJoystickHatStateIsValid(TuiJoystickHatState joystick_hat_state);
+const char* tuiJoystickHatStateToString(TuiJoystickHatState joystick_hat_state);
+TuiJoystickHatState tuiStringToJoystickHatState(const char* str);
+
+
 
 #ifdef __cplusplus //extern C guard
 }
