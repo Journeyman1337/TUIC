@@ -24,22 +24,40 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiMouseButton
+typedef enum TuiMouseButton
 {
-	TUI_MOUSE_BUTTON_1        = 0,
-	TUI_MOUSE_BUTTON_2        = 1,
-	TUI_MOUSE_BUTTON_3        = 2,
-	TUI_MOUSE_BUTTON_4        = 3,
-	TUI_MOUSE_BUTTON_5        = 4,
-	TUI_MOUSE_BUTTON_6        = 5,
-	TUI_MOUSE_BUTTON_7        = 6,
-	TUI_MOUSE_BUTTON_8        = 7,
-	TUI_MOUSE_BUTTON_LAST     = TUI_MOUSE_BUTTON_8,
-	TUI_MOUSE_BUTTON_LEFT     = TUI_MOUSE_BUTTON_1,
-	TUI_MOUSE_BUTTON_RIGHT    = TUI_MOUSE_BUTTON_2,
-	TUI_MOUSE_BUTTON_MIDDLE   = TUI_MOUSE_BUTTON_3
-};
+	TUI_MOUSE_INVALID  = 8,
+	TUI_MOUSE_1        = 0,
+	TUI_MOUSE_2        = 1,
+	TUI_MOUSE_3        = 2,
+	TUI_MOUSE_4        = 3,
+	TUI_MOUSE_5        = 4,
+	TUI_MOUSE_6        = 5,
+	TUI_MOUSE_7        = 6,
+	TUI_MOUSE_8        = 7,
+	TUI_MOUSE_FIRST    = TUI_MOUSE_1,
+	TUI_MOUSE_LAST     = TUI_MOUSE_8,
+	TUI_MOUSE_LEFT     = TUI_MOUSE_1,
+	TUI_MOUSE_RIGHT    = TUI_MOUSE_2,
+	TUI_MOUSE_MIDDLE   = TUI_MOUSE_3,
+	TUI_MOUSE_X1       = TUI_MOUSE_4,
+	TUI_MOUSE_X2       = TUI_MOUSE_5
+} TuiMouseButton;
+
+extern const char* kTui_Mouse_1_Name;
+extern const char* kTui_Mouse_2_Name;
+extern const char* kTui_Mouse_3_Name;
+extern const char* kTui_Mouse_4_Name;
+extern const char* kTui_Mouse_5_Name;
+extern const char* kTui_Mouse_6_Name;
+extern const char* kTui_Mouse_7_Name;
+extern const char* kTui_Mouse_8_Name;
+
+TuiBoolean tuiMouseButtonIsValid(TuiMouseButton mouse_button);
+const char* tuiMouseButtonToString(TuiMouseButton mouse_button);
+TuiMouseButton tuiStringToMouseButton(const char* str);
 
 #ifdef __cplusplus //extern C guard
 }

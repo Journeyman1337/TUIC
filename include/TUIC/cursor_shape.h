@@ -24,23 +24,42 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiCursorShape
+typedef enum TuiCursorShape
 {
-	TUI_ARROW_CURSOR          = 0x00036001,
-	TUI_IBEAM_CURSOR          = 0x00036002,
-	TUI_CROSSHAIR_CURSOR      = 0x00036003,
-	TUI_POINTING_HAND_CURSOR  = 0x00036004,
-	TUI_RESIZE_EW_CURSOR      = 0x00036005,
-	TUI_RESIZE_NS_CURSOR      = 0x00036006,
-	TUI_RESIZE_NWSE_CURSOR    = 0x00036007,
-	TUI_RESIZE_NESW_CURSOR    = 0x00036008,
-	TUI_RESIZE_ALL_CURSOR     = 0x00036009,
-	TUI_NOT_ALLOWED_CURSOR    = 0x0003600A,
-	TUI_HRESIZE_CURSOR        = TUI_RESIZE_EW_CURSOR,
-	TUI_VRESIZE_CURSOR        = TUI_RESIZE_NS_CURSOR,
-	TUI_HAND_CURSOR           = TUI_POINTING_HAND_CURSOR
-};
+	TUI_CURSOR_INVALID		  = 0,
+	TUI_CURSOR_ARROW          = 0x00036001,
+	TUI_CURSOR_IBEAM          = 0x00036002,
+	TUI_CURSOR_CROSSHAIR      = 0x00036003,
+	TUI_CURSOR_POINTING_HAND  = 0x00036004,
+	TUI_CURSOR_RESIZE_EW      = 0x00036005,
+	TUI_CURSOR_RESIZE_NS      = 0x00036006,
+	TUI_CURSOR_RESIZE_NWSE    = 0x00036007,
+	TUI_CURSOR_RESIZE_NESW    = 0x00036008,
+	TUI_CURSOR_RESIZE_ALL     = 0x00036009,
+	TUI_CURSOR_NOT_ALLOWED    = 0x0003600A,
+	TUI_CURSOR_HRESIZE        = TUI_CURSOR_RESIZE_EW,
+	TUI_CURSOR_VRESIZE        = TUI_CURSOR_RESIZE_NS,
+	TUI_CURSOR_HAND           = TUI_CURSOR_POINTING_HAND,
+	TUI_CURSOR_FIRST		  = TUI_CURSOR_ARROW,
+	TUI_CURSOR_LAST			  = TUI_CURSOR_NOT_ALLOWED
+}TuiCursorShape;
+
+extern const char* kTui_Cursor_Arrow_Name;
+extern const char* kTui_Cursor_Ibeam_Name;
+extern const char* kTui_Cursor_Crosshair_Name;
+extern const char* kTui_Cursor_Pointing_Hand_Name;
+extern const char* kTui_Cursor_Resize_EW_Name;
+extern const char* kTui_Cursor_Resize_NS_Name;
+extern const char* kTui_Cursor_Resize_NWSE_Name;
+extern const char* kTui_Cursor_Resize_NESW_Name;
+extern const char* kTui_Cursor_Resize_All_Name;
+extern const char* kTui_Cursor_Not_Allowed_Name;
+
+TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
+const char* tuiCursorShapeToString(TuiCursorShape cursor_shape);
+TuiCursorShape tuiStringToCursorShape(const char* str);
 
 #ifdef __cplusplus //extern C guard
 }

@@ -24,16 +24,35 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiKeyMod
+typedef enum TuiKeyMod
 {
-	TUI_MOD_SHIFT          = 0x0001,
-	TUI_MOD_CONTROL        = 0x0002,
-	TUI_MOD_ALT            = 0x0004,
-	TUI_MOD_SUPER          = 0x0008,
-	TUI_MOD_CAPS_LOCK      = 0x0010,
-	TUI_MOD_NUM_LOCK       = 0x0020
-};
+	TUI_MOD_INVALID	 	    = 0x0040,
+	TUI_MOD_SHIFT           = 0x0001,
+	TUI_MOD_CONTROL         = 0x0002,
+	TUI_MOD_ALT             = 0x0004,
+	TUI_MOD_SUPER           = 0x0008,
+	TUI_MOD_CAPS_LOCK       = 0x0010,
+	TUI_MOD_NUM_LOCK        = 0x0020,
+	TUI_MOD_NONE			= 0,
+	TUI_MOD_ALL				= (TUI_MOD_SHIFT | TUI_MOD_CONTROL | TUI_MOD_ALT | TUI_MOD_SUPER | TUI_MOD_CAPS_LOCK | TUI_MOD_NUM_LOCK)
+} TuiKeyMod;
+
+
+extern const char* kTui_Mod_Shift_Name;
+extern const char* kTui_Mod_Control_Name;
+extern const char* kTui_Mod_Alt_Name;
+extern const char* kTui_Mod_Super_Name;
+extern const char* kTui_Mod_Caps_Lock_Name;
+extern const char* kTui_Mod_Num_Lock_Name;
+extern const char* kTui_Mod_None_Name;
+extern const char* kTui_Mod_All_Name;
+
+TuiBoolean tuiModIsValid(TuiKeyMod mod);
+const char* tuiModToString(TuiKeyMod mod);
+TuiKeyMod tuiStringToMod(const char* str);
+TuiBoolean tuiModContainsMod(TuiKeyMod mod, TuiKeyMod contains_mod);
 
 #ifdef __cplusplus //extern C guard
 }

@@ -5,49 +5,48 @@
 
 #define TO_STRING(value) #value
 
-const char* kTui_Atlas_COORDS_Name = TO_STRING(TUI_ATLAS_COORDS);
+const char* kTui_Atlas_Coords_Name = TO_STRING(TUI_ATLAS_COORDS);
 
-const char* kTui_Atlas_GRID_Name = TO_STRING(TUI_ATLAS_GRID);
+const char* kTui_Atlas_Grid_Name = TO_STRING(TUI_ATLAS_GRID);
 
-int tuiAtlasTypeIsValid(int atlas_type)
+TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type)
 {
 	if (
-		(atlas_type == TUI_ATLAS_COORDS) ||
-		(atlas_type == TUI_ATLAS_GRID)
+			(atlas_type >= TUI_ATLAS_FIRST) &&
+			(atlas_type <= TUI_ATLAS_LAST) 
 		)
 	{
 		return TUI_TRUE;
 	}
-	else
+	else 
 	{
 		return TUI_FALSE;
 	}
 }
 
-const char* tuiAtlasTypeToString(int atlas_type)
+const char* tuiAtlasTypeToString(TuiAtlasType atlas_type)
 {
 	switch (atlas_type)
 	{
 	case TUI_ATLAS_COORDS:
-		return kTui_Atlas_COORDS_Name;
+		return kTui_Atlas_Coords_Name;
 	case TUI_ATLAS_GRID:
-		return kTui_Atlas_GRID_Name;
+		return kTui_Atlas_Grid_Name;
 	default:
-		tuiDebugError(TUI_ERROR_INVALID_ATLAS_TYPE, __func__);
 		return NULL;
 	}
 }
 
-int tuiStringToAtlasType(const char* string)
+int tuiStringToAtlasType(const char* str)
 {
-	if (strcmp(string, kTui_Atlas_COORDS_Name) == 0)
+	if (strcmp(str, kTui_Atlas_Coords_Name) == 0)
 	{
 		return TUI_ATLAS_COORDS;
 	}
-	else if (strcmp(string, kTui_Atlas_GRID_Name) == 0)
+	else if (strcmp(str, kTui_Atlas_Grid_Name) == 0)
 	{
 		return TUI_ATLAS_GRID;
 	}
-	return 0;
+	return TUI_ATLAS_INVALID;
 }
 

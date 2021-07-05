@@ -25,11 +25,11 @@
 extern "C" {
 #endif
 
-enum TuiBoolean
+typedef enum TuiBoolean
 {
 	TUI_TRUE = 1,
 	TUI_FALSE = 0
-};
+} TuiBoolean;
 
 #ifdef __cplusplus //extern C guard
 }

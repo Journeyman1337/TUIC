@@ -24,19 +24,108 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiAtlasType
+
+/*! @name Atlas types
+ *  @{ */
+/*!
+* @brief How the glyph locations within a TuiAtlas are stored. 
+*/
+typedef enum TuiAtlasType
 {
-	TUI_ATLAS_COORDS = 0,
-	TUI_ATLAS_GRID = 1,
-};
+	/*!
+	 * \brief The atlas type is invalid.
+	 *
+	 * This atlas type is returned when an error occurs, and is also used to specify that no atlas type is
+	 * defined.
+	 */
+	TUI_ATLAS_INVALID = 0,
 
-extern const char* kTui_Atlas_COORDS_Name;
-extern const char* kTui_Atlas_GRID_Name;
+	/*!
+	 * \brief The atlas uses an STPQ texture coordinate array to store the locations of each glyph.
+	 * 
+	 * The STPQ coordinates for each glyph are in order of glyph index, with the first four
+	 * elemeents in the array being the STPQ coordinates of the glyph of index 0.
+	 */
+	TUI_ATLAS_COORDS = 1,
 
-int tuiAtlasTypeIsValid(int atlas_type);
-const char* tuiAtlasTypeToString(int atlas_type);
-int tuiStringToAtlasType(const char* string);
+	/*!
+	 * \brief The glyphs are layed out in a grid pattern where each glyph has the same pixel width
+	 * and pixel height.
+	 * 
+	 * Glyphs are indexed from left to right, top to bottom, with the index of 0 being the glyph in
+	 * the upper right corner of the texture.
+	 */
+	TUI_ATLAS_GRID = 2,
+
+	TUI_ATLAS_FIRST = TUI_ATLAS_COORDS,
+
+	/*!
+	 * \brief The last valid value of TuiAtlasType.
+	 */
+	TUI_ATLAS_LAST = TUI_ATLAS_GRID
+} TuiAtlasType;
+/*! @} */
+
+
+/*! @name TuiAtlasType names
+ *
+ * Constant string names of each atlas type.
+ *  @{ */
+/*!
+ * @brief String name of TUI_ATLAS_COORDS.
+ */
+extern const char* kTui_Atlas_Coords_Name;
+
+/*!
+ * @brief String name of TUI_ATLAS_GRID.
+ */
+extern const char* kTui_Atlas_Grid_Name;
+/*! @} */
+
+
+/*! @name TuiAtlasType functions
+ *
+ * Functions for dealing with TuiAtlasType enum values.
+ *  @{ */
+/*!
+ * @brief Determine if a TuiAtlasType enum is valid.
+ * 
+ * This function determines if a value is a valid TuiAtlasType enum value. If it is valid, it
+ * returns TuiTrue. Otherwise, it returns TuiFalse.
+ * 
+ * @param atlas_type The TuiAtlasType to check.
+ * 
+ * @returns The TuiBoolean result.
+ */
+TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type);
+
+/*!
+ * @brief Retrieve the string name of a TuiAtlasType enum.
+ *
+ * This function retrieves the constant string name associated with a TuiAtlasType enum value.
+ *
+ * @param atlas_type The TuiAtlasType to get the name of.
+ *
+ * @returns The string name. NULL is returned if an error occurs.
+ * 
+ * @errors Throws TUI_ERROR_INVALID_ATLAS_TYPE if atlas_type is not a TuiAtlasType enum value.
+ */
+const char* tuiAtlasTypeToString(TuiAtlasType atlas_type);
+
+/*!
+ * @brief Determine the TuiAtlasType enum value associated with a string name.
+ *
+ * This function determine what TuiAtlasType a string name represents.
+ *
+ * @param str The string name.
+ *
+ * @returns The TuiAtlasType. TUI_ATLAS_INVALID is returned if no match is found.
+ */
+TuiAtlasType tuiStringToAtlasType(const char* str);
+/*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }

@@ -24,13 +24,25 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiButtonState
+typedef enum TuiButtonState
 {
+	TUI_BUTTON_INVALID = 3,
 	TUI_BUTTON_RELEASE = 0,
 	TUI_BUTTON_PRESS = 1,
-	TUI_BUTTON_REPEAT = 2
-};
+	TUI_BUTTON_REPEAT = 2,
+	TUI_BUTTON_FIRST = TUI_BUTTON_RELEASE,
+	TUI_BUTTON_LAST = TUI_BUTTON_REPEAT
+}TuiButtonState;
+
+extern const char* kTui_Button_Release_Name;
+extern const char* kTui_Button_Press_Name;
+extern const char* kTui_Button_Repeat_Name;
+
+TuiBoolean tuiButtonStateIsValid(TuiButtonState button_state);
+const char* tuiButtonStateToString(TuiButtonState button_state);
+TuiButtonState tuiStringToButtonState(const char* str);
 
 #ifdef __cplusplus //extern C guard
 }

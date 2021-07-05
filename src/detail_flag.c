@@ -89,7 +89,6 @@ const char* tuiDetailFlagToString(int detail_flag)
 	case TUI_LAYOUT_FLAG_SPARSE:
 		return kTui_Layout_Flag_Sparse_Name;
 	default:
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_FLAG, __func__);
 		return NULL;
 	}
 }

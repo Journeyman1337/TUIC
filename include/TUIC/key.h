@@ -24,134 +24,262 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiKey
+typedef enum TuiKey
 {
-	TUI_KEY_SPACE             = 32,
-	TUI_KEY_APOSTROPHE        = 39, /* ' */
-	TUI_KEY_COMMA             = 44, /* , */
-	TUI_KEY_MINUS             = 45, /* - */
-	TUI_KEY_PERIOD            = 46, /* . */
-	TUI_KEY_SLASH             = 47, /* / */
-	TUI_KEY_0                 = 48,
-	TUI_KEY_1                 = 49,
-	TUI_KEY_2                 = 50,
-	TUI_KEY_3                 = 51,
-	TUI_KEY_4                 = 52,
-	TUI_KEY_5                 = 53,
-	TUI_KEY_6                 = 54,
-	TUI_KEY_7                 = 55,
-	TUI_KEY_8                 = 56,
-	TUI_KEY_9                 = 57,
-	TUI_KEY_SEMICOLON         = 59, /* ; */
-	TUI_KEY_EQUAL             = 61, /* = */
-	TUI_KEY_A                 = 65,
-	TUI_KEY_B                 = 66,
-	TUI_KEY_C                 = 67,
-	TUI_KEY_D                 = 68,
-	TUI_KEY_E                 = 69,
-	TUI_KEY_F                 = 70,
-	TUI_KEY_G                 = 71,
-	TUI_KEY_H                 = 72,
-	TUI_KEY_I                 = 73,
-	TUI_KEY_J                 = 74,
-	TUI_KEY_K                 = 75,
-	TUI_KEY_L                 = 76,
-	TUI_KEY_M                 = 77,
-	TUI_KEY_N                 = 78,
-	TUI_KEY_O                 = 79,
-	TUI_KEY_P                 = 80,
-	TUI_KEY_Q                 = 81,
-	TUI_KEY_R                 = 82,
-	TUI_KEY_S                 = 83,
-	TUI_KEY_T                 = 84,
-	TUI_KEY_U                 = 85,
-	TUI_KEY_V                 = 86,
-	TUI_KEY_W                 = 87,
-	TUI_KEY_X                 = 88,
-	TUI_KEY_Y                 = 89,
-	TUI_KEY_Z                 = 90,
-	TUI_KEY_LEFT_BRACKET      = 91, /* [ */
-	TUI_KEY_BACKSLASH         = 92, /* \ */
-	TUI_KEY_RIGHT_BRACKET     = 93, /* ] */
-	TUI_KEY_GRAVE_ACCENT      = 96, /* ` */
-	TUI_KEY_WORLD_1           = 16, /* non-US #1 */
-	TUI_KEY_WORLD_2           = 16, /* non-US #2 */
+	TUIK_INVALID		   = 0,
+	TUIK_SPACE             = 32,
+	TUIK_APOSTROPHE        = 39, /* ' */
+	TUIK_COMMA             = 44, /* , */
+	TUIK_MINUS             = 45, /* - */
+	TUIK_PERIOD            = 46, /* . */
+	TUIK_SLASH             = 47, /* / */
+	TUIK_0                 = 48,
+	TUIK_1                 = 49,
+	TUIK_2                 = 50,
+	TUIK_3                 = 51,
+	TUIK_4                 = 52,
+	TUIK_5                 = 53,
+	TUIK_6                 = 54,
+	TUIK_7                 = 55,
+	TUIK_8                 = 56,
+	TUIK_9                 = 57,
+	TUIK_SEMICOLON         = 59, /* ; */
+	TUIK_EQUAL             = 61, /* = */
+	TUIK_A                 = 65,
+	TUIK_B                 = 66,
+	TUIK_C                 = 67,
+	TUIK_D                 = 68,
+	TUIK_E                 = 69,
+	TUIK_F                 = 70,
+	TUIK_G                 = 71,
+	TUIK_H                 = 72,
+	TUIK_I                 = 73,
+	TUIK_J                 = 74,
+	TUIK_K                 = 75,
+	TUIK_L                 = 76,
+	TUIK_M                 = 77,
+	TUIK_N                 = 78,
+	TUIK_O                 = 79,
+	TUIK_P                 = 80,
+	TUIK_Q                 = 81,
+	TUIK_R                 = 82,
+	TUIK_S                 = 83,
+	TUIK_T                 = 84,
+	TUIK_U                 = 85,
+	TUIK_V                 = 86,
+	TUIK_W                 = 87,
+	TUIK_X                 = 88,
+	TUIK_Y                 = 89,
+	TUIK_Z                 = 90,
+	TUIK_LEFT_BRACKET      = 91, /* [ */
+	TUIK_BACKSLASH         = 92, /* \ */
+	TUIK_RIGHT_BRACKET     = 93, /* ] */
+	TUIK_GRAVE_ACCENT      = 96, /* ` */
+	TUIK_WORLD_1           = 161, /* non-US #1 */
+	TUIK_WORLD_2           = 162, /* non-US #2 */
 
 /* Function keys */
-	TUI_KEY_ESCAPE            = 256,
-	TUI_KEY_ENTER             = 257,
-	TUI_KEY_TAB               = 258,
-	TUI_KEY_BACKSPACE         = 259,
-	TUI_KEY_INSERT            = 260,
-	TUI_KEY_DELETE            = 261,
-	TUI_KEY_RIGHT             = 262,
-	TUI_KEY_LEFT              = 263,
-	TUI_KEY_DOWN              = 264,
-	TUI_KEY_UP                = 265,
-	TUI_KEY_PAGE_UP           = 266,
-	TUI_KEY_PAGE_DOWN         = 267,
-	TUI_KEY_HOME              = 268,
-	TUI_KEY_END               = 269,
-	TUI_KEY_CAPS_LOCK         = 280,
-	TUI_KEY_SCROLL_LOCK       = 281,
-	TUI_KEY_NUM_LOCK          = 282,
-	TUI_KEY_PRINT_SCREEN      = 283,
-	TUI_KEY_PAUSE             = 284,
-	TUI_KEY_F1                = 290,
-	TUI_KEY_F2                = 291,
-	TUI_KEY_F3                = 292,
-	TUI_KEY_F4                = 293,
-	TUI_KEY_F5                = 294,
-	TUI_KEY_F6                = 295,
-	TUI_KEY_F7                = 296,
-	TUI_KEY_F8                = 297,
-	TUI_KEY_F9                = 298,
-	TUI_KEY_F10               = 299,
-	TUI_KEY_F11               = 300,
-	TUI_KEY_F12               = 301,
-	TUI_KEY_F13               = 302,
-	TUI_KEY_F14               = 303,
-	TUI_KEY_F15               = 304,
-	TUI_KEY_F16               = 305,
-	TUI_KEY_F17               = 306,
-	TUI_KEY_F18               = 307,
-	TUI_KEY_F19               = 308,
-	TUI_KEY_F20               = 309,
-	TUI_KEY_F21               = 310,
-	TUI_KEY_F22               = 311,
-	TUI_KEY_F23               = 312,
-	TUI_KEY_F24               = 313,
-	TUI_KEY_F25               = 314,
-	TUI_KEY_KP_0              = 320,
-	TUI_KEY_KP_1              = 321,
-	TUI_KEY_KP_2              = 322,
-	TUI_KEY_KP_3              = 323,
-	TUI_KEY_KP_4              = 324,
-	TUI_KEY_KP_5              = 325,
-	TUI_KEY_KP_6              = 326,
-	TUI_KEY_KP_7              = 327,
-	TUI_KEY_KP_8              = 328,
-	TUI_KEY_KP_9              = 329,
-	TUI_KEY_KP_DECIMAL        = 330,
-	TUI_KEY_KP_DIVIDE         = 331,
-	TUI_KEY_KP_MULTIPLY       = 332,
-	TUI_KEY_KP_SUBTRACT       = 333,
-	TUI_KEY_KP_ADD            = 334,
-	TUI_KEY_KP_ENTER          = 335,
-	TUI_KEY_KP_EQUAL          = 336,
-	TUI_KEY_LEFT_SHIFT        = 340,
-	TUI_KEY_LEFT_CONTROL      = 341,
-	TUI_KEY_LEFT_ALT          = 342,
-	TUI_KEY_LEFT_SUPER        = 343,
-	TUI_KEY_RIGHT_SHIFT       = 344,
-	TUI_KEY_RIGHT_CONTROL     = 345,
-	TUI_KEY_RIGHT_ALT         = 346,
-	TUI_KEY_RIGHT_SUPER       = 347,
-	TUI_KEY_MENU              = 348,
+	TUIK_ESCAPE            = 256,
+	TUIK_ENTER             = 257,
+	TUIK_TAB               = 258,
+	TUIK_BACKSPACE         = 259,
+	TUIK_INSERT            = 260,
+	TUIK_DELETE            = 261,
+	TUIK_RIGHT             = 262,
+	TUIK_LEFT              = 263,
+	TUIK_DOWN              = 264,
+	TUIK_UP                = 265,
+	TUIK_PAGE_UP           = 266,
+	TUIK_PAGE_DOWN         = 267,
+	TUIK_HOME              = 268,
+	TUIK_END               = 269,
+	TUIK_CAPS_LOCK         = 280,
+	TUIK_SCROLL_LOCK       = 281,
+	TUIK_NUM_LOCK          = 282,
+	TUIK_PRINT_SCREEN      = 283,
+	TUIK_PAUSE             = 284,
+	TUIK_F1                = 290,
+	TUIK_F2                = 291,
+	TUIK_F3                = 292,
+	TUIK_F4                = 293,
+	TUIK_F5                = 294,
+	TUIK_F6                = 295,
+	TUIK_F7                = 296,
+	TUIK_F8                = 297,
+	TUIK_F9                = 298,
+	TUIK_F10               = 299,
+	TUIK_F11               = 300,
+	TUIK_F12               = 301,
+	TUIK_F13               = 302,
+	TUIK_F14               = 303,
+	TUIK_F15               = 304,
+	TUIK_F16               = 305,
+	TUIK_F17               = 306,
+	TUIK_F18               = 307,
+	TUIK_F19               = 308,
+	TUIK_F20               = 309,
+	TUIK_F21               = 310,
+	TUIK_F22               = 311,
+	TUIK_F23               = 312,
+	TUIK_F24               = 313,
+	TUIK_F25               = 314,
+	TUIK_KP_0              = 320,
+	TUIK_KP_1              = 321,
+	TUIK_KP_2              = 322,
+	TUIK_KP_3              = 323,
+	TUIK_KP_4              = 324,
+	TUIK_KP_5              = 325,
+	TUIK_KP_6              = 326,
+	TUIK_KP_7              = 327,
+	TUIK_KP_8              = 328,
+	TUIK_KP_9              = 329,
+	TUIK_KP_DECIMAL        = 330,
+	TUIK_KP_DIVIDE         = 331,
+	TUIK_KP_MULTIPLY       = 332,
+	TUIK_KP_SUBTRACT       = 333,
+	TUIK_KP_ADD            = 334,
+	TUIK_KP_ENTER          = 335,
+	TUIK_KP_EQUAL          = 336,
+	TUIK_LEFT_SHIFT        = 340,
+	TUIK_LEFT_CONTROL      = 341,
+	TUIK_LEFT_ALT          = 342,
+	TUIK_LEFT_SUPER        = 343,
+	TUIK_RIGHT_SHIFT       = 344,
+	TUIK_RIGHT_CONTROL     = 345,
+	TUIK_RIGHT_ALT         = 346,
+	TUIK_RIGHT_SUPER       = 347,
+	TUIK_MENU              = 348,
 
-	TUI_KEY_LAST              = TUI_KEY_MENU
-};
+	TUIK_LAST              = TUIK_MENU
+} TuiKey;
+
+extern const char* kTuik_Space_Name;
+extern const char* kTuik_Apostrophe_Name;
+extern const char* kTuik_Comma_Name;
+extern const char* kTuik_Minus_Name;
+extern const char* kTuik_Period_Name;
+extern const char* kTuik_Slash_Name;
+extern const char* kTuik_0_Name;
+extern const char* kTuik_1_Name;
+extern const char* kTuik_2_Name;
+extern const char* kTuik_3_Name;
+extern const char* kTuik_4_Name;
+extern const char* kTuik_5_Name;
+extern const char* kTuik_6_Name;
+extern const char* kTuik_7_Name;
+extern const char* kTuik_8_Name;
+extern const char* kTuik_9_Name;
+extern const char* kTuik_Semicolon_Name;
+extern const char* kTuik_Equal_Name;
+extern const char* kTuik_A_Name;
+extern const char* kTuik_B_Name;
+extern const char* kTuik_C_Name;
+extern const char* kTuik_D_Name;
+extern const char* kTuik_E_Name;
+extern const char* kTuik_F_Name;
+extern const char* kTuik_G_Name;
+extern const char* kTuik_H_Name;
+extern const char* kTuik_I_Name;
+extern const char* kTuik_J_Name;
+extern const char* kTuik_K_Name;
+extern const char* kTuik_L_Name;
+extern const char* kTuik_M_Name;
+extern const char* kTuik_N_Name;
+extern const char* kTuik_O_Name;
+extern const char* kTuik_P_Name;
+extern const char* kTuik_Q_Name;
+extern const char* kTuik_R_Name;
+extern const char* kTuik_S_Name;
+extern const char* kTuik_T_Name;
+extern const char* kTuik_U_Name;
+extern const char* kTuik_V_Name;
+extern const char* kTuik_W_Name;
+extern const char* kTuik_X_Name;
+extern const char* kTuik_Y_Name;
+extern const char* kTuik_Z_Name;
+extern const char* kTuik_Left_Bracket_Name;
+extern const char* kTuik_Backslash_Name;
+extern const char* kTuik_Right_Bracket_Name;
+extern const char* kTuik_Grave_Accent_Name;
+extern const char* kTuik_World_1_Name;
+extern const char* kTuik_World_2_Name;
+extern const char* kTuik_Escape_Name;
+extern const char* kTuik_Enter_Name;
+extern const char* kTuik_Tab_Name;
+extern const char* kTuik_Backspace_Name;
+extern const char* kTuik_Insert_Name;
+extern const char* kTuik_Delete_Name;
+extern const char* kTuik_Right_Name;
+extern const char* kTuik_Left_Name;
+extern const char* kTuik_Down_Name;
+extern const char* kTuik_Up_Name;
+extern const char* kTuik_Page_Up_Name;
+extern const char* kTuik_Page_Down_Name;
+extern const char* kTuik_Home_Name;
+extern const char* kTuik_End_Name;
+extern const char* kTuik_Caps_Lock_Name;
+extern const char* kTuik_Scroll_Lock_Name;
+extern const char* kTuik_Num_Lock_Name;
+extern const char* kTuik_Print_Screen_Name;
+extern const char* kTuik_Pause_Name;
+extern const char* kTuik_F1_Name;
+extern const char* kTuik_F2_Name;
+extern const char* kTuik_F3_Name;
+extern const char* kTuik_F4_Name;
+extern const char* kTuik_F5_Name;
+extern const char* kTuik_F6_Name;
+extern const char* kTuik_F7_Name;
+extern const char* kTuik_F8_Name;
+extern const char* kTuik_F9_Name;
+extern const char* kTuik_F10_Name;
+extern const char* kTuik_F11_Name;
+extern const char* kTuik_F12_Name;
+extern const char* kTuik_F13_Name;
+extern const char* kTuik_F14_Name;
+extern const char* kTuik_F15_Name;
+extern const char* kTuik_F16_Name;
+extern const char* kTuik_F17_Name;
+extern const char* kTuik_F18_Name;
+extern const char* kTuik_F19_Name;
+extern const char* kTuik_F20_Name;
+extern const char* kTuik_F21_Name;
+extern const char* kTuik_F22_Name;
+extern const char* kTuik_F23_Name;
+extern const char* kTuik_F24_Name;
+extern const char* kTuik_F25_Name;
+extern const char* kTuik_KP_0_Name;
+extern const char* kTuik_KP_1_Name;
+extern const char* kTuik_KP_2_Name;
+extern const char* kTuik_KP_3_Name;
+extern const char* kTuik_KP_4_Name;
+extern const char* kTuik_KP_5_Name;
+extern const char* kTuik_KP_6_Name;
+extern const char* kTuik_KP_7_Name;
+extern const char* kTuik_KP_8_Name;
+extern const char* kTuik_KP_9_Name;
+extern const char* kTuik_KP_Decimal_Name;
+extern const char* kTuik_KP_Divide_Name;
+extern const char* kTuik_KP_Multiply_Name;
+extern const char* kTuik_KP_Subtract_Name;
+extern const char* kTuik_KP_Add_Name;
+extern const char* kTuik_KP_Enter_Name;
+extern const char* kTuik_KP_Equal_Name;
+extern const char* kTuik_Left_Shift_Name;
+extern const char* kTuik_Left_Control_Name;
+extern const char* kTuik_Left_Alt_Name;
+extern const char* kTuik_Left_Super_Name;
+extern const char* kTuik_Right_Shift_Name;
+extern const char* kTuik_Right_Control_Name;
+extern const char* kTuik_Right_Alt_Name;
+extern const char* kTuik_Right_Super_Name;
+extern const char* kTuik_Menu_Name;
+
+TuiBoolean tuiKeyIsValid(TuiKey key);
+const char* tuiKeyToString(TuiKey key);
+TuiKey tuiStringToKey(const char* str);
+int tuiKeyGetScancode(int key);
 
 #ifdef __cplusplus //extern C guard
 }

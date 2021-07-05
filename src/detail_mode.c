@@ -421,7 +421,6 @@ const char* tuiDetailModeToString(int detail_mode)
 	case TUI_DETAIL_G16_C32NFG_SPARSE:
 		return kTui_Detail_G16_C32NFG_Sparse_Name;
 	default:
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
 		return NULL;
 	}
 }

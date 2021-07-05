@@ -34,7 +34,6 @@ const char* tuiFilterModeToString(int filter_mode)
 	case TUI_FILTER_BILINEAR:
 		return kTui_Filter_Bilinear_Name;
 	default:
-		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
 		return NULL;
 	}
 }

@@ -24,9 +24,11 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
-enum TuiJoystickId
+typedef enum TuiJoystickId
 {
+	TUI_JOYSTICK_INVALID      = 16,
 	TUI_JOYSTICK_1            = 0,
 	TUI_JOYSTICK_2            = 1,
 	TUI_JOYSTICK_3            = 2,
@@ -43,8 +45,30 @@ enum TuiJoystickId
 	TUI_JOYSTICK_14           = 13,
 	TUI_JOYSTICK_15           = 14,
 	TUI_JOYSTICK_16           = 15,
+	TUI_JOYSTICK_FIRST        = TUI_JOYSTICK_1,
 	TUI_JOYSTICK_LAST         = TUI_JOYSTICK_16
-};
+} TuiJoystickId;
+
+extern const char* kTui_Joystick_1_Name;
+extern const char* kTui_Joystick_2_Name;
+extern const char* kTui_Joystick_3_Name;
+extern const char* kTui_Joystick_4_Name;
+extern const char* kTui_Joystick_5_Name;
+extern const char* kTui_Joystick_6_Name;
+extern const char* kTui_Joystick_7_Name;
+extern const char* kTui_Joystick_8_Name;
+extern const char* kTui_Joystick_9_Name;
+extern const char* kTui_Joystick_10_Name;
+extern const char* kTui_Joystick_11_Name;
+extern const char* kTui_Joystick_12_Name;
+extern const char* kTui_Joystick_13_Name;
+extern const char* kTui_Joystick_14_Name;
+extern const char* kTui_Joystick_15_Name;
+extern const char* kTui_Joystick_16_Name;
+
+TuiBoolean tuiJoystickIdIsValid(TuiJoystickId joystick_id);
+const char* tuiJoystickIdToString(TuiJoystickId joystick_id);
+TuiJoystickId tuiStringToJoystickId(const char* str);
 
 #ifdef __cplusplus //extern C guard
 }

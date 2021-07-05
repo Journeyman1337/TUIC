@@ -26,11 +26,11 @@ extern "C" {
 #endif
 #include <TUIC/types.h>
 
-TuiCursor tuiCreateCursor(TuiImage image, int xhot, int yhot);
+TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot);
 
-TuiCursor tuiCreateStandardCursor(int shape);
+TuiCursor tuiCursorCreateStandard(int shape);
 
-void tuiDestroyCursor(TuiCursor cursor);
+void tuiCursorDestroy(TuiCursor cursor);
 
 int tuiGetCursorCount();
 
