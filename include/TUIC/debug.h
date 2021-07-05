@@ -27,7 +27,7 @@ extern "C" {
 
 /*! @brief These are error codes passed into the set @ref TuiDebugCallback function.
  */
-enum TuiErrorCode
+typedef enum TuiErrorCode
 {
 	/*!
 	 * @brief TUI error for situations where an unkown error has occured.
@@ -224,7 +224,7 @@ enum TuiErrorCode
 	* @brief TUI error for when a @ref TuiPanel uses an unmatching @ref TuiInstance.
 	*/
 	TUI_ERROR_UNMATCHING_PANEL_INSTANCE = 48
-};
+} TuiErrorCode;
 /*! @name Error Code Names
  * These are the const string names of @ref TuiErrorCode enum values.
  *  @{ */
