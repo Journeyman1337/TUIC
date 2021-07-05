@@ -65,7 +65,7 @@ typedef void (* tuiDropFunction)(TuiInstance,int,const char*[]);
 
 typedef void (* tuiMonitorFunction)(TuiMonitor,TuiBoolean);
 
-typedef void (* tuiJoysticFunction)(TuiJoystickId,int);
+typedef void (* tuiJoysticFunction)(TuiJoystickId, TuiBoolean);
 
 #ifdef __cplusplus //extern C guard
 }
