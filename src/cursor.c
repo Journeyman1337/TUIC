@@ -7,7 +7,7 @@
 
 static size_t sCursorCount;
 
-TuiCursor tuiCreateCursor(TuiImage image, int xhot, int yhot)
+TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 {
 	if (tuiIsActive() == TUI_FALSE)
 	{
@@ -21,7 +21,7 @@ TuiCursor tuiCreateCursor(TuiImage image, int xhot, int yhot)
 	}
 
 	GLFWimage glfw_image = _TuiImageToGlfwImage(image, __func__);
-	if (glfw_image.width = 0)
+	if (glfw_image.width == 0)
 	{
 		return NULL;
 	}
@@ -29,7 +29,7 @@ TuiCursor tuiCreateCursor(TuiImage image, int xhot, int yhot)
 	return glfwCreateCursor(&glfw_image, xhot, yhot);
 }
 
-TuiCursor tuiCreateStandardCursor(int shape)
+TuiCursor tuiCursorCreateStandard(int shape)
 {
 	if (tuiIsActive() == TUI_FALSE)
 	{
@@ -45,7 +45,7 @@ TuiCursor tuiCreateStandardCursor(int shape)
 	return glfwCreateStandardCursor(shape);
 }
 
-void tuiDestroyCursor(TuiCursor cursor)
+void tuiCursorDestroy(TuiCursor cursor)
 {
 	if (cursor == NULL)
 	{
