@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-	TuiBoolean tuiInit();
+TuiBoolean tuiInit();
 TuiBoolean tuiIsActive();
 void tuiTerminate();
 void tuiPollEvents();
