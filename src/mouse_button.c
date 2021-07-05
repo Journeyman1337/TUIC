@@ -2,21 +2,21 @@
 #include <stddef.h>
 #include <string.h>
 
-const char* kTui_Mouse_Button_1_Name = "MOUSE_1";
+const char* kTui_Mouse_Button_1_Name = "MOUSE_BUTTON_1";
 
-const char* kTui_Mouse_Button_2_Name = "MOUSE_2";
+const char* kTui_Mouse_Button_2_Name = "MOUSE_BUTTON_2";
 
-const char* kTui_Mouse_Button_3_Name = "MOUSE_3";
+const char* kTui_Mouse_Button_3_Name = "MOUSE_BUTTON_3";
 
-const char* kTui_Mouse_Button_4_Name = "MOUSE_4";
+const char* kTui_Mouse_Button_4_Name = "MOUSE_BUTTON_4";
 
-const char* kTui_Mouse_Button_5_Name = "MOUSE_5";
+const char* kTui_Mouse_Button_5_Name = "MOUSE_BUTTON_5";
 
-const char* kTui_Mouse_Button_6_Name = "MOUSE_6";
+const char* kTui_Mouse_Button_6_Name = "MOUSE_BUTTON_6";
 
-const char* kTui_Mouse_Button_7_Name = "MOUSE_7";
+const char* kTui_Mouse_Button_7_Name = "MOUSE_BUTTON_7";
 
-const char* kTui_Mouse_Button_8_Name = "MOUSE_8";
+const char* kTui_Mouse_Button_8_Name = "MOUSE_BUTTON_8";
 
 TuiBoolean tuiMouseButtonIsValid(TuiMouseButton mouse_button)
 {
