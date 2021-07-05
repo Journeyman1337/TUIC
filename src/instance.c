@@ -406,14 +406,60 @@ void tuiInstanceSetClipboardString(TuiInstance instance, const char* string)
 	glfwSetClipboardString(instance->window, string);
 }
 
-int tuiInstanceGetInputMode(TuiInstance instance, int mode)
+TuiCursorMode tuiInstanceGetCursorMode(TuiInstance instance)
 {
-	return glfwGetInputMode(instance->window, mode);
+	return (TuiCursorMode)glfwGetInputMode(instance->window, GLFW_CURSOR);
 }
 
-void tuiInstanceSetInputMode(TuiInstance instance, int mode, int value)
+void tuiInstanceSetCursorMode(TuiInstance instance, TuiCursorMode cursor_mode)
 {
-	glfwSetInputMode(instance->window, mode, value);
+	glfwSetInputMode(instance->window, GLFW_CURSOR, (int)cursor_mode);
+}
+
+TuiBoolean tuiInstanceGetStickyKeys(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_STICKY_KEYS);
+}
+
+void tuiInstanceSetStickyKeys(TuiInstance instance, TuiBoolean sticky_keys_mode)
+{
+	glfwSetInputMode(instance->window, GLFW_STICKY_KEYS, (int)sticky_keys_mode);
+}
+
+TuiBoolean tuiInstanceGetStickyMouseButtons(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_STICKY_MOUSE_BUTTONS);
+}
+
+void tuiInstanceSetStickyMouseButtons(TuiInstance instance, TuiBoolean sticky_mouse_buttons)
+{
+	glfwSetInputMode(instance->window, GLFW_STICKY_MOUSE_BUTTONS, (int)sticky_mouse_buttons);
+}
+
+TuiBoolean tuiInstanceGetLockKeyMods(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_LOCK_KEY_MODS);
+}
+
+void tuiInstanceSetLockKeyMods(TuiInstance instance, TuiBoolean lock_key_mods)
+{
+	glfwSetInputMode(instance->window, GLFW_LOCK_KEY_MODS, (int)lock_key_mods);
+}
+
+TuiBoolean tuiInstanceGetRawMouseMotion(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_RAW_MOUSE_MOTION);
+}
+
+void tuiInstanceSetRawMouseMotion(TuiInstance instance, TuiBoolean raw_mouse_motion)
+{
+	if (glfwRawMouseMotionSupported() == GLFW_FALSE)
+	{
+		// TODO tuiDebugError(TUI_ERROR_INVALID_RAW_MOUSE_MOTION, __func__);
+		return;
+	}
+
+	glfwSetInputMode(instance->window, GLFW_RAW_MOUSE_MOTION, (int)raw_mouse_motion);
 }
 
 TuiButtonState tuiInstanceGetKey(TuiInstance instance, TuiKey key)

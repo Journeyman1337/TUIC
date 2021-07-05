@@ -31,6 +31,7 @@ extern "C" {
 #include <TUIC/key.h>
 #include <TUIC/button_state.h>
 #include <TUIC/window_attribute.h>
+#include <TUIC/cursor_mode.h>
 
 /*! @name TuiInstance functions
  *
@@ -228,9 +229,25 @@ const char* tuiInstanceGetClipboardString(TuiInstance instance);
 
 void tuiInstanceSetClipboardString(TuiInstance instance, const char* string);
 
-int tuiInstanceGetInputMode(TuiInstance instance, int mode);
+TuiCursorMode tuiInstanceGetCursorMode(TuiInstance instance);
 
-void tuiInstanceSetInputMode(TuiInstance instance, int mode, int value);
+void tuiInstanceSetCursorMode(TuiInstance instance, TuiCursorMode cursor_mode);
+
+TuiBoolean tuiInstanceGetStickyKeys(TuiInstance instance);
+
+void tuiInstanceSetStickyKeys(TuiInstance instance, TuiBoolean sticky_keys_mode);
+
+TuiBoolean tuiInstanceGetStickyMouseButtons(TuiInstance instance);
+
+void tuiInstanceSetStickyMouseButtons(TuiInstance instance, TuiBoolean sticky_mouse_buttons);
+
+TuiBoolean tuiInstanceGetLockKeyMods(TuiInstance instance);
+
+void tuiInstanceSetLockKeyMods(TuiInstance instance, TuiBoolean lock_key_mods);
+
+TuiBoolean tuiInstanceGetRawMouseMotion(TuiInstance instance);
+
+void tuiInstanceSetRawMouseMotion(TuiInstance instance, TuiBoolean raw_mouse_motion);
 
 TuiButtonState tuiInstanceGetKey(TuiInstance instance, TuiKey key);
 
