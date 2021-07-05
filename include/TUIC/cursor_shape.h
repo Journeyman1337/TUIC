@@ -28,34 +28,34 @@ extern "C" {
 
 typedef enum TuiCursorShape
 {
-	TUI_CURSOR_INVALID		  = 0,
-	TUI_CURSOR_ARROW          = 0x00036001,
-	TUI_CURSOR_IBEAM          = 0x00036002,
-	TUI_CURSOR_CROSSHAIR      = 0x00036003,
-	TUI_CURSOR_POINTING_HAND  = 0x00036004,
-	TUI_CURSOR_RESIZE_EW      = 0x00036005,
-	TUI_CURSOR_RESIZE_NS      = 0x00036006,
-	TUI_CURSOR_RESIZE_NWSE    = 0x00036007,
-	TUI_CURSOR_RESIZE_NESW    = 0x00036008,
-	TUI_CURSOR_RESIZE_ALL     = 0x00036009,
-	TUI_CURSOR_NOT_ALLOWED    = 0x0003600A,
-	TUI_CURSOR_HRESIZE        = TUI_CURSOR_RESIZE_EW,
-	TUI_CURSOR_VRESIZE        = TUI_CURSOR_RESIZE_NS,
-	TUI_CURSOR_HAND           = TUI_CURSOR_POINTING_HAND,
-	TUI_CURSOR_FIRST		  = TUI_CURSOR_ARROW,
-	TUI_CURSOR_LAST			  = TUI_CURSOR_NOT_ALLOWED
+	TUI_CURSOR_SHAPE_INVALID		  = 0,
+	TUI_CURSOR_SHAPE_ARROW          = 0x00036001,
+	TUI_CURSOR_SHAPE_IBEAM          = 0x00036002,
+	TUI_CURSOR_SHAPE_CROSSHAIR      = 0x00036003,
+	TUI_CURSOR_SHAPE_POINTING_HAND  = 0x00036004,
+	TUI_CURSOR_SHAPE_RESIZE_EW      = 0x00036005,
+	TUI_CURSOR_SHAPE_RESIZE_NS      = 0x00036006,
+	TUI_CURSOR_SHAPE_RESIZE_NWSE    = 0x00036007,
+	TUI_CURSOR_SHAPE_RESIZE_NESW    = 0x00036008,
+	TUI_CURSOR_SHAPE_RESIZE_ALL     = 0x00036009,
+	TUI_CURSOR_SHAPE_NOT_ALLOWED    = 0x0003600A,
+	TUI_CURSOR_SHAPE_HRESIZE        = TUI_CURSOR_SHAPE_RESIZE_EW,
+	TUI_CURSOR_SHAPE_VRESIZE        = TUI_CURSOR_SHAPE_RESIZE_NS,
+	TUI_CURSOR_SHAPE_HAND           = TUI_CURSOR_SHAPE_POINTING_HAND,
+	TUI_CURSOR_SHAPE_FIRST		    = TUI_CURSOR_SHAPE_ARROW,
+	TUI_CURSOR_SHAPE_LAST			= TUI_CURSOR_SHAPE_NOT_ALLOWED
 }TuiCursorShape;
 
-extern const char* kTui_Cursor_Arrow_Name;
-extern const char* kTui_Cursor_Ibeam_Name;
-extern const char* kTui_Cursor_Crosshair_Name;
-extern const char* kTui_Cursor_Pointing_Hand_Name;
-extern const char* kTui_Cursor_Resize_EW_Name;
-extern const char* kTui_Cursor_Resize_NS_Name;
-extern const char* kTui_Cursor_Resize_NWSE_Name;
-extern const char* kTui_Cursor_Resize_NESW_Name;
-extern const char* kTui_Cursor_Resize_All_Name;
-extern const char* kTui_Cursor_Not_Allowed_Name;
+extern const char* kTui_Cursor_Shape_Arrow_Name;
+extern const char* kTui_Cursor_Shape_Ibeam_Name;
+extern const char* kTui_Cursor_Shape_Crosshair_Name;
+extern const char* kTui_Cursor_Shape_Pointing_Hand_Name;
+extern const char* kTui_Cursor_Shape_Resize_EW_Name;
+extern const char* kTui_Cursor_Shape_Resize_NS_Name;
+extern const char* kTui_Cursor_Shape_Resize_NWSE_Name;
+extern const char* kTui_Cursor_Shape_Resize_NESW_Name;
+extern const char* kTui_Cursor_Shape_Resize_All_Name;
+extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
 
 TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
 const char* tuiCursorShapeToString(TuiCursorShape cursor_shape);
