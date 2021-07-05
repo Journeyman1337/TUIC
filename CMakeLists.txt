@@ -13,8 +13,6 @@ option(TUIC_BUILD_MANUAL_TESTS "Build manual test framework." OFF)
 option(TUIC_BUILD_AUTO_TESTS "Build automatic test framework." OFF)
 option(TUIC_OPENGL33_BACKEND "Include the Opengl33 backend." ON)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/configuration.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/configuration.h)
-
 set(TUIC_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TUIC_CONFIGURE_HEADER_TEXT "")
 
