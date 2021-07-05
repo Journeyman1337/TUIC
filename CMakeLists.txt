@@ -23,6 +23,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_shape.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
@@ -56,6 +57,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_shape.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/debug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/desktop_callback.h
