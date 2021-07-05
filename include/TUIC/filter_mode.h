@@ -24,7 +24,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-
+#include <TUIC/boolean.h>
 
 typedef enum TuiFilterMode
 {
@@ -35,9 +35,9 @@ typedef enum TuiFilterMode
 extern const char* kTui_Filter_Point_Name;
 extern const char* kTui_Filter_Bilinear_Name;
 
-int tuiFilterModeIsValid(int filter_mode);
-const char* tuiFilterModeToString(int filter_mode);
-int tuiStringToFilterMode(const char* string);
+TuiBoolean tuiFilterModeIsValid(TuiFilterMode filter_mode);
+const char* tuiFilterModeToString(TuiFilterMode filter_mode);
+TuiFilterMode tuiStringToFilterMode(const char* string);
 
 #ifdef __cplusplus //extern C guard
 }

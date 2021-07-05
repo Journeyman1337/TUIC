@@ -138,7 +138,7 @@ const char* kTui_Detail_G16_C32NBG_Sparse_Name = TO_STRING(TUI_DETAIL_G16_C32NBG
 
 const char* kTui_Detail_G16_C32NFG_Sparse_Name = TO_STRING(TUI_DETAIL_G16_C32NFG_SPARSE);
 
-int tuiDetailIsValid(int detail_mode)
+TuiBoolean tuiDetailIsValid(TuiDetailMode detail_mode)
 {
 if (
 	(detail_mode == TUI_DETAIL_G8_C0_FULL) ||
@@ -192,7 +192,7 @@ if (
 return TUI_FALSE;
 }
 
-int tuiDetailHasFlag(int detail_mode, int detail_flag)
+TuiBoolean tuiDetailHasFlag(TuiDetailMode detail_mode, TuiDetailFlag detail_flag)
 {
 	if ((detail_mode & detail_flag) == detail_flag)
 	{
@@ -204,14 +204,14 @@ int tuiDetailHasFlag(int detail_mode, int detail_flag)
 	}
 }
 
-int tuiDetailGetGlyphFlag(int detail_mode)
+TuiDetailFlag tuiDetailGetGlyphFlag(TuiDetailMode detail_mode)
 {
 	return detail_mode & (
 		TUI_GLYPH_FLAG_G8 |
 		TUI_GLYPH_FLAG_G16);
 }
 
-int tuiDetailGetColorFlag(int detail_mode)
+TuiDetailFlag tuiDetailGetColorFlag(TuiDetailMode detail_mode)
 {
 	return detail_mode & (
 		TUI_COLOR_FLAG_C0 |
@@ -227,14 +227,14 @@ int tuiDetailGetColorFlag(int detail_mode)
 		TUI_COLOR_FLAG_C32NFG);
 }
 
-int tuiDetailGetLayoutFlag(int detail_mode)
+TuiDetailFlag tuiDetailGetLayoutFlag(TuiDetailMode detail_mode)
 {
 	return detail_mode & (
 		TUI_LAYOUT_FLAG_FULL |
 		TUI_LAYOUT_FLAG_SPARSE);
 }
 
-size_t tuiDetailGetTileByteSize(int glyph_flag, int color_flag)
+size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_flag)
 {
 	switch (glyph_flag)
 	{
@@ -296,7 +296,7 @@ size_t tuiDetailGetTileByteSize(int glyph_flag, int color_flag)
 	return 0;
 }
 
-int tuiModesAreCompatible(int detail_mode, int blend_mode)
+TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_mode)
 {
 	if (blend_mode == TUI_BLEND_NORMAL)
 	{
@@ -316,7 +316,7 @@ int tuiModesAreCompatible(int detail_mode, int blend_mode)
 	return TUI_TRUE;
 }
 
-int tuiDetailHasPalette(int detail_mode)
+TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode)
 {
 	if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_FALSE)
 	{
@@ -328,7 +328,7 @@ int tuiDetailHasPalette(int detail_mode)
 	}
 }
 
-const char* tuiDetailModeToString(int detail_mode)
+const char* tuiDetailModeToString(TuiDetailMode detail_mode)
 {
 	switch (detail_mode)
 	{
@@ -425,7 +425,7 @@ const char* tuiDetailModeToString(int detail_mode)
 	}
 }
 
-int tuiStringToDetailMode(const char* string)
+TuiDetailMode tuiStringToDetailMode(const char* string)
 {
 	if (strcmp(string, kTui_Detail_G8_C0_Full_Name) == 0)
 	{

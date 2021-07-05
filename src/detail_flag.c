@@ -34,7 +34,7 @@ const char* kTui_Layout_Flag_Full_Name = TO_STRING(TUI_LAYOUT_FLAG_FULL);
 
 const char* kTui_Layout_Flag_Sparse_Name = TO_STRING(TUI_LAYOUT_FLAG_SPARSE);
 
-int tuiDetailFlagIsValid(int detail_flag)
+TuiBoolean tuiDetailFlagIsValid(TuiDetailFlag detail_flag)
 {
 	return detail_flag & (
 		TUI_GLYPH_FLAG_G8 |
@@ -54,7 +54,7 @@ int tuiDetailFlagIsValid(int detail_flag)
 		TUI_LAYOUT_FLAG_SPARSE);
 }
 
-const char* tuiDetailFlagToString(int detail_flag)
+const char* tuiDetailFlagToString(TuiDetailFlag detail_flag)
 {
 	switch (detail_flag)
 	{
@@ -93,7 +93,7 @@ const char* tuiDetailFlagToString(int detail_flag)
 	}
 }
 
-int tuiStringToDetailFlag(const char* string)
+TuiDetailFlag tuiStringToDetailFlag(const char* string)
 {
 	if (strcmp(string, kTui_Glyph_Flag_G8_Name) == 0)
 	{

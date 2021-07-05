@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 #include <TUIC/detail_flag.h>
+#include <TUIC/boolean.h>
+#include <TUIC/blend_mode.h>
 
 typedef enum TuiDetailMode
 {
@@ -142,16 +144,16 @@ extern const char* kTui_Detail_G16_C32_Sparse_Name;
 extern const char* kTui_Detail_G16_C32NBG_Sparse_Name;
 extern const char* kTui_Detail_G16_C32NFG_Sparse_Name;
 
-int tuiDetailGetGlyphFlag(int detail_mode);
-int tuiDetailGetColorFlag(int detail_mode);
-int tuiDetailGetLayoutFlag(int detail_mode);
-size_t tuiDetailGetTileByteSize(int glyph_flag, int color_flag);
-int tuiDetailHasPalette(int detail_mode);
-int tuiDetailIsValid(int detail_mode);
-int tuiDetailHasFlag(int detail_mode, int detail_flag);
-int tuiModesAreCompatible(int detail_mode, int blend_mode);
-const char* tuiDetailModeToString(int detail_mode);
-int tuiStringToDetailMode(const char* string);
+TuiDetailFlag tuiDetailGetGlyphFlag(TuiDetailMode detail_mode);
+TuiDetailFlag tuiDetailGetColorFlag(TuiDetailMode detail_mode);
+TuiDetailFlag tuiDetailGetLayoutFlag(TuiDetailMode detail_mode);
+size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_flag);
+TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode);
+TuiBoolean tuiDetailIsValid(TuiDetailMode detail_mode);
+TuiBoolean tuiDetailHasFlag(TuiDetailMode detail_mode, TuiDetailFlag detail_flag);
+TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_mode);
+const char* tuiDetailModeToString(TuiDetailMode detail_mode);
+TuiDetailMode tuiStringToDetailMode(const char* string);
 
 #ifdef __cplusplus //extern C guard
 }

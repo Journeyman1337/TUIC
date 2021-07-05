@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
+#include <TUIC/boolean.h>
+
 /*! @name TuiImage functions
  *
  * These functions are used for manipulating @ref TuiImage opaque objects.
@@ -44,7 +46,7 @@ extern "C" {
  * @errors Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT when channel_count is not 3 or 4.
  * Throws @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS when pixel_width or pixel_height is less than or equal to 0.
  */
-TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data);
+TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data);
 /*!
  * @brief  Destroy @ref TuiImage and correctly dispose of all of its resources.
  *

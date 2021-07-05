@@ -47,7 +47,7 @@ extern "C" {
  * Throws @ref TUI_ERROR_INVALID_FILTER_MODE if filter_mode is not a valid @ref TuiFilterMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode);
+TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode filter_mode);
 /*!
  * @brief Create a @ref TuiTexture with a raw pixel array.
  *
@@ -127,7 +127,7 @@ int tuiTextureGetChannelCount(TuiTexture texture);
  *
  * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
  */
-int tuiTextureGetFilterMode(TuiTexture texture);
+TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture);
 /*!
  * @brief Set the pixels of a @ref TuiTexture with a @ref TuiImage.
  *

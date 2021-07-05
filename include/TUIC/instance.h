@@ -22,9 +22,16 @@
 #ifndef TUIC_INSTANCE_H //header guard
 #define TUIC_INSTANCE_H
 #ifdef __cplusplus //extern C guard
-#include <TUIC/types.h>
 extern "C" {
 #endif
+#include <TUIC/types.h>
+#include <TUIC/boolean.h>
+#include <TUIC/detail_mode.h>
+#include <TUIC/mouse_button.h>
+#include <TUIC/key.h>
+#include <TUIC/button_state.h>
+#include <TUIC/window_attribute.h>
+
 /*! @name TuiInstance functions
  *
  * These functions are used for manipulating @ref TuiInstance opaque objects. Create functions for TuiInstance objects can only be found in backend headers (such as opengl33.h).
@@ -159,7 +166,7 @@ void tuiInstanceDrawBatch(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette 
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match instance.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceDrawBatchData(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
+void tuiInstanceDrawBatchData(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
 /*!
  * @brief Draw a @ref TuiBatch to the scren of a @ref TuiInstance with a transformation.
  *
@@ -211,7 +218,7 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiGlyphAtlas atlas, 
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match instance.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 
 void tuiInstanceSwapBuffers(TuiInstance instance);
 
@@ -225,9 +232,9 @@ int tuiInstanceGetInputMode(TuiInstance instance, int mode);
 
 void tuiInstanceSetInputMode(TuiInstance instance, int mode, int value);
 
-int tuiInstanceGetKey(TuiInstance instance, int key);
+TuiButtonState tuiInstanceGetKey(TuiInstance instance, TuiKey key);
 
-int tuiInstanceGetMouseButton(TuiInstance instance, int button);
+TuiButtonState tuiInstanceGetMouseButton(TuiInstance instance, TuiMouseButton mouse_button);
 
 void tuiInstanceGetCursorPos(TuiInstance instance, double *xpos, double *ypos);
 
@@ -235,13 +242,13 @@ void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos);
 
 void tuiDefaultWindowHints();
 
-void tuiWindowHint(int hint, int value);
+void tuiWindowHint(TuiWindowAttribute hint, int value);
 
-void tuiWindowHintString(int hint, const char* value);
+void tuiWindowHintString(TuiWindowAttribute hint, const char* value);
 
 int tuiInstanceWindowShouldClose(TuiInstance instance);
 
-void tuiInstanceSetWindowShouldClose(TuiInstance instance, int should_close);
+void tuiInstanceSetWindowShouldClose(TuiInstance instance, TuiBoolean should_close);
 
 void tuiInstanceSetWindowTitle(TuiInstance instance, const char* title);
 
@@ -279,9 +286,9 @@ TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance);
 
 void tuiInstanceSetWindowMonitor(TuiInstance instance, TuiMonitor monitor, int xpos, int ypos, int width, int height, int refreshRate);
 
-int tuiInstanceGetWindowAttrib(TuiInstance instance, int attrib);
+int tuiInstanceGetWindowAttrib(TuiInstance instance, TuiWindowAttribute attrib);
 
-void tuiInstanceSetWindowAttrib(TuiInstance instance, int attrib, int value);
+void tuiInstanceSetWindowAttrib(TuiInstance instance, TuiWindowAttribute attrib, int value);
 
 void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr);
 

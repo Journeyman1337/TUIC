@@ -24,6 +24,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
 typedef enum TuiBlendMode
 {
@@ -50,9 +51,9 @@ extern const char* kTui_Blend_BG_GREEN_Name;
 extern const char* kTui_Blend_BG_BLUE_Name;
 extern const char* kTui_Blend_BG_ALPHA_Name;
 
-int tuiBlendIsValid(int blend_mode);
-const char* tuiBlendModeToString(int blend_mode);
-int tuiStringToBlendMode(const char* string);
+TuiBoolean tuiBlendIsValid(TuiBlendMode blend_mode);
+const char* tuiBlendModeToString(TuiBlendMode blend_mode);
+TuiBlendMode tuiStringToBlendMode(const char* string);
 
 #ifdef __cplusplus //extern C guard
 }

@@ -1,5 +1,4 @@
 #include <TUIC/filter_mode.h>
-#include <TUIC/boolean.h>
 #include <TUIC/debug.h>
 
 #include <stddef.h>
@@ -10,7 +9,7 @@ const char* kTui_Filter_Point_Name = TO_STRING(TUI_FILTER_POINT);
 
 const char* kTui_Filter_Bilinear_Name = TO_STRING(TUI_FILTER_BILINEAR);
 
-int tuiFilterModeIsValid(int filter_mode)
+TuiBoolean tuiFilterModeIsValid(TuiFilterMode filter_mode)
 {
 	if (
 		filter_mode == TUI_FILTER_POINT ||
@@ -25,7 +24,7 @@ int tuiFilterModeIsValid(int filter_mode)
 	}
 }
 
-const char* tuiFilterModeToString(int filter_mode)
+const char* tuiFilterModeToString(TuiFilterMode filter_mode)
 {
 	switch (filter_mode)
 	{
@@ -38,7 +37,7 @@ const char* tuiFilterModeToString(int filter_mode)
 	}
 }
 
-int tuiStringToFilterMode(const char* string)
+TuiFilterMode tuiStringToFilterMode(const char* string)
 {
 	if (strcmp(string, kTui_Filter_Point_Name) == 0)
 	{

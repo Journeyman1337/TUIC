@@ -25,6 +25,9 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
+#include <TUIC/detail_mode.h>
+#include <TUIC/boolean.h>
+
 /*! @name TuiBatch functions
  *
  * These functions are used for manipulating @ref TuiBatch opaque objects.
@@ -42,7 +45,7 @@ extern "C" {
  * @errors Throws @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
  */
-TuiBatch tuiBatchCreate(int detail_mode, int tiles_wide, int tiles_tall);
+TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall);
 /*!
  * @brief  Destroy @ref TuiBatch and correctly dispose of all of its resources.
  *
@@ -60,7 +63,7 @@ void tuiBatchDestroy(TuiBatch batch);
  *
  * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
  */
-int tuiBatchGetDetail(TuiBatch batch);
+TuiDetailMode tuiBatchGetDetail(TuiBatch batch);
 /*!
  * @brief Resize the tile dimensions of a @ref TuiBatch and clear its data.
  *
@@ -72,7 +75,7 @@ int tuiBatchGetDetail(TuiBatch batch);
  * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  */
-void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, int reserve_extra);
+void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra);
 /*!
  * @brief Get the size of a @ref TuiBatch in tile dimensions.
  *

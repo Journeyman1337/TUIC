@@ -29,7 +29,7 @@ extern "C" {
 #include <TUIC/debug.h>
 #include <TUIC/boolean.h>
 
-static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data, const char* func_name)
+static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data, const char* func_name)
 {
 	if (channel_count != 3 && channel_count != 4)
 	{

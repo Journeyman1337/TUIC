@@ -20,7 +20,7 @@
 #include <TUIC/tuic.h>
 #include "objects.h"
 
-TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode)
+TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode filter_mode)
 {
 	if (instance == NULL)
 	{
@@ -162,7 +162,7 @@ int tuiTextureGetChannelCount(TuiTexture texture)
 	return texture->ChannelCount;
 }
 
-int tuiTextureGetFilterMode(TuiTexture texture)
+TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture)
 {
 	if (texture == NULL)
 	{

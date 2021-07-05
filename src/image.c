@@ -25,7 +25,7 @@
 #include <stb_image_write.h>
 #include <stb_image_resize.h>
 
-TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data)
+TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
 {
 	return _CreateImage(pixel_width, pixel_height, channel_count, pixel_data, copy_data, __func__);
 }

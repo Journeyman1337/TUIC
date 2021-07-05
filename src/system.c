@@ -6,13 +6,17 @@
 
 static int sActive = TUI_FALSE;
 
-int tuiInit()
+TuiBoolean tuiInit()
 {
-	sActive = TUI_TRUE;
-	return glfwInit();
+	if (glfwInit() == GLFW_TRUE)
+	{
+		sActive = TUI_TRUE;
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
-int tuiIsActive()
+TuiBoolean tuiIsActive()
 {
 	return sActive;
 }
@@ -83,7 +87,7 @@ void tuiPostEmptyEvent()
 	glfwPostEmptyEvent();
 }
 
-int tuiRawMouseMotionSupported()
+TuiBoolean tuiRawMouseMotionSupported()
 {
 	if (tuiIsActive() == TUI_FALSE)
 	{
@@ -91,7 +95,11 @@ int tuiRawMouseMotionSupported()
 		return TUI_FALSE;
 	}
 
-	return glfwRawMouseMotionSupported();
+	if (glfwRawMouseMotionSupported() == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 double tuiGetTime()
@@ -138,7 +146,7 @@ uint64_t tuiGetTimerFrequency()
 	return glfwGetTimerFrequency();
 }
 
-int tuiVulkanSupported()
+TuiBoolean tuiVulkanSupported()
 {
 	if (tuiIsActive() == TUI_FALSE)
 	{
@@ -146,5 +154,9 @@ int tuiVulkanSupported()
 		return 0;
 	}
 
-	return glfwVulkanSupported();
+	if (glfwVulkanSupported() == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }

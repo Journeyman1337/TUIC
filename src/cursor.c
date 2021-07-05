@@ -29,7 +29,7 @@ TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 	return glfwCreateCursor(&glfw_image, xhot, yhot);
 }
 
-TuiCursor tuiCursorCreateStandard(int shape)
+TuiCursor tuiCursorCreateStandard(TuiCursorShape shape)
 {
 	if (tuiIsActive() == TUI_FALSE)
 	{

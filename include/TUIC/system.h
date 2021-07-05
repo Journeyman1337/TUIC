@@ -25,19 +25,19 @@
 extern "C" {
 #endif
 
-int tuiInit();
-int tuiIsActive();
+	TuiBoolean tuiInit();
+TuiBoolean tuiIsActive();
 void tuiTerminate();
 void tuiPollEvents();
 void tuiWaitEvents();
 void tuiWaitEventsTimeout(double timeout);
 void tuiPostEmptyEvent();
-int tuiRawMouseMotionSupported(void);
+TuiBoolean tuiRawMouseMotionSupported();
 double tuiGetTime();
 void tuiSetTime(double time);
 uint64_t tuiGetTimerValue();
 uint64_t tuiGetTimerFrequency();
-int tuiVulkanSupported();
+TuiBoolean tuiVulkanSupported();
 
 #ifdef __cplusplus //extern C guard
 }

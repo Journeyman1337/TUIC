@@ -1006,7 +1006,7 @@ TuiKey tuiStringToKey(const char* str)
 	return TUIK_INVALID;
 }
 
-int tuiKeyGetScancode(int key)
+int tuiKeyGetScancode(TuiKey key)
 {
 	if (tuiIsActive() == TUI_FALSE)
 	{

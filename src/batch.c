@@ -21,7 +21,7 @@
 #include "objects.h"
 #include <string.h>
 
-TuiBatch tuiBatchCreate(int detail_mode, int tiles_wide, int tiles_tall)
+TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall)
 {
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
@@ -88,7 +88,7 @@ void tuiBatchDestroy(TuiBatch batch)
 	tuiFree(batch);
 }
 
-int tuiBatchGetDetail(TuiBatch batch)
+TuiDetailMode tuiBatchGetDetail(TuiBatch batch)
 {
 	if (batch == NULL)
 	{
@@ -99,7 +99,7 @@ int tuiBatchGetDetail(TuiBatch batch)
 	return batch->DetailMode;
 }
 
-void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, int reserve_extra)
+void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra)
 {
 	if (batch == NULL)
 	{

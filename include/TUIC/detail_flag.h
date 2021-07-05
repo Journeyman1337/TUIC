@@ -24,6 +24,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
 typedef enum TuiDetailFlag
 {
@@ -60,9 +61,9 @@ extern const char* kTui_Color_Flag_C32NFG_Name;
 extern const char* kTui_Layout_Flag_Full_Name;
 extern const char* kTui_Layout_Flag_Sparse_Name;
 
-int tuiDetailFlagIsValid(int detail_flag);
-const char* tuiDetailFlagToString(int detail_flag);
-int tuiStringToDetailFlag(const char* string);
+TuiBoolean tuiDetailFlagIsValid(TuiDetailFlag detail_flag);
+const char* tuiDetailFlagToString(TuiDetailFlag detail_flag);
+TuiDetailFlag tuiStringToDetailFlag(const char* string);
 
 #ifdef __cplusplus //extern C guard
 }

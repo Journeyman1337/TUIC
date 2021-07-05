@@ -23,7 +23,7 @@ const char* kTui_Blend_BG_BLUE_Name = TO_STRING(TUI_BLEND_BG_BLUE);
 
 const char* kTui_Blend_BG_ALPHA_Name = TO_STRING(TUI_BLEND_BG_ALPHA);
 
-int tuiBlendIsValid(int blend_mode)
+TuiBoolean tuiBlendIsValid(TuiBlendMode blend_mode)
 {
 	if (
 		(blend_mode > TUI_BLEND_INVALID) &&
@@ -35,7 +35,7 @@ int tuiBlendIsValid(int blend_mode)
 	return TUI_FALSE;
 }
 
-const char* tuiBlendModeToString(int blend_mode)
+const char* tuiBlendModeToString(TuiBlendMode blend_mode)
 {
 	switch (blend_mode)
 	{
@@ -62,7 +62,7 @@ const char* tuiBlendModeToString(int blend_mode)
 	}
 }
 
-int tuiStringToBlendMode(const char* str)
+TuiBlendMode tuiStringToBlendMode(const char* str)
 {
 	if (strcmp(str, kTui_Blend_NORMAL_Name) == 0)
 	{

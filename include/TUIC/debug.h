@@ -629,7 +629,7 @@ extern const char* kTui_Error_Unmatching_Panel_Instance_Description;
  *
  * @returns The string name.
  */
-const char* tuiErrorCodeToString(int error_code);
+const char* tuiErrorCodeToString(TuiErrorCode error_code);
 /*!
  * @brief Get a @ref TuiErrorCode from a string name.
  *

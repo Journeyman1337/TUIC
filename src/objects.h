@@ -60,7 +60,7 @@ typedef struct TuiInstance_s
 	/*!
 	 * @brief If this @ref TuiInstance is damaged.
 	 */
-	int IsDamaged;
+	TuiBoolean IsDamaged;
 	/*!
 	 * @brief The pixel width of the screen of the TuiInstance.
 	 */
@@ -88,7 +88,7 @@ typedef struct TuiGlyphAtlas_s
 	/*!
 	 * @brief The @ref TuiBlendMode.
 	 */
-	int BlendMode;
+	TuiBlendMode BlendMode;
 	/*!
 	 * @brief The atlas type that this @ref TuiGlyphAtlas uses.
 	 */
@@ -148,7 +148,7 @@ typedef struct TuiTexture_s
 	/*!
 	 * @brief The @ref TuiFilterMode.
 	 */
-	int FilterMode;
+	TuiFilterMode FilterMode;
 	/*!
 	 * @brief The width of the texture in pixels.
 	 */
@@ -256,11 +256,11 @@ typedef struct TuiBatch_s
 	/*!
 	 * @brief If this is a @ref TuiBatch that uses @ref TUI_LAYOUT_FLAG_SPARSE and requires two bytes for the tile x position instead of one.
 	 */
-	uint8_t IsLargeSparseWide;
+	TuiBoolean IsLargeSparseWide;
 	/*!
 	 * @brief If this is a @ref TuiBatch that uses @ref TUI_LAYOUT_FLAG_SPARSE and requires two bytes for the tile y position instead of one.
 	 */
-	uint8_t IsLargeSparseTall;
+	TuiBoolean IsLargeSparseTall;
 	/*!
 	 * @brief A pointer to the used indices 2d array used to prevent sparse batches from rendering to the same tile position twice.
 	 */
