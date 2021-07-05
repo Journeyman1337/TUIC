@@ -24,7 +24,6 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-#include <TUIC/desktop_callback.h>
 
 int tuiInit();
 int tuiIsActive();
@@ -35,18 +34,6 @@ void tuiWaitEventsTimeout(double timeout);
 void tuiPostEmptyEvent();
 int tuiRawMouseMotionSupported(void);
 int tuiGetKeyScancode(int key);
-int tuiJoystickPresent(int jid);
-const float* tuiGetJoystickAxes(int jid, int* count);
-const unsigned char* tuiGetJoystickButtons(int jid, int* count);
-const unsigned char* tuiGetJoystickHats(int jid, int* count);
-const char* tuiGetJoystickName(int jid);
-const char* tuiGetJoystickGUID(int jid);
-void tuiSetJoystickUserPointer(int jid, void* pointer);
-void* tuiGetJoystickUserPointer(int jid);
-int tuiJoystickIsGamepad(int jid);
-tuiJoysticFunction tuiSetJoystickCallback(tuiJoysticFunction callback);
-int tuiUpdateGamepadMappings(const char* string);
-const char* tuiGetGamepadName(int jid);
 double tuiGetTime();
 void tuiSetTime(double time);
 uint64_t tuiGetTimerValue();

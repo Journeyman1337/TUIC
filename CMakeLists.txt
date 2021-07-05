@@ -33,6 +33,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/instance.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_hat_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_id.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/key.c
@@ -65,6 +66,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/instance.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_hat_state.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_id.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/key.h

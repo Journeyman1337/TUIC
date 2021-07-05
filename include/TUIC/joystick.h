@@ -1,6 +1,6 @@
 /*
 	Copyright (c) 2021 Daniel Valcour
-	
+
 	Permission is hereby granted, free of charge, to any person obtaining a copy of
 	this software and associated documentation files (the "Software"), to deal in
 	the Software without restriction, including without limitation the rights to
@@ -9,7 +9,7 @@
 	subject to the following conditions:
 	The above copyright notice and this permission notice shall be included in all
 	copies or substantial portions of the Software.
-	
+
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -17,42 +17,30 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*! \file joystick_hat_state.h
+/*! \file joystick.h
  */
-#ifndef TUIC_JOYSTICK_HAT_STATE_H //header guard
-#define TUIC_JOYSTICK_HAT_STATE_H
+#ifndef TUIC_JOYSTICK_H //header guard
+#define TUIC_JOYSTICK_H
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
 #include <TUIC/boolean.h>
+#include <TUIC/joystick_id.h>
+#include <TUIC/joystick_hat_state.h>
+#include <TUIC/desktop_callback.h>
 
-typedef enum TuiJoystickHatState
-	{
-	TUI_HAT_INVALID    = 16,
-	TUI_HAT_CENTERED   = 0,
-	TUI_HAT_UP         = 1,
-	TUI_HAT_RIGHT      = 2,
-	TUI_HAT_DOWN       = 4,
-	TUI_HAT_LEFT       = 8,
-	TUI_HAT_RIGHT_UP   = (TUI_HAT_RIGHT | TUI_HAT_UP),
-	TUI_HAT_RIGHT_DOWN = (TUI_HAT_RIGHT | TUI_HAT_DOWN),
-	TUI_HAT_LEFT_UP    = (TUI_HAT_LEFT  | TUI_HAT_UP),
-	TUI_HAT_LEFT_DOWN  = (TUI_HAT_LEFT  | TUI_HAT_DOWN),
-} TuiJoystickHatState;
-
-extern const char* kTui_Hat_Centered_Name;
-extern const char* kTui_Hat_Up_Name;
-extern const char* kTui_Hat_Right_Name;
-extern const char* kTui_Hat_Down_Name;
-extern const char* kTui_Hat_Left_Name;
-extern const char* kTui_Hat_Right_Up_Name;
-extern const char* kTui_Hat_Right_Down_Name;
-extern const char* kTui_Hat_Left_Up_Name;
-extern const char* kTui_Hat_Left_Down_Name;
-
-TuiBoolean tuiJoystickHatStateIsValid(TuiJoystickHatState joystick_hat_state);
-const char* tuiJoystickHatStateToString(TuiJoystickHatState joystick_hat_state);
-TuiJoystickHatState tuiStringToJoystickHatState(const char* str);
+TuiBoolean tuiJoystickIsPresent(TuiJoystickId joystick_id);
+const float* tuiGetJoystickAxes(TuiJoystickId joystick_id, int* count);
+const unsigned char* tuiGetJoystickButtons(TuiJoystickId joystick_id, int* count);
+const unsigned char* tuiGetJoystickHats(TuiJoystickId joystick_id, int* count);
+const char* tuiGetJoystickName(TuiJoystickId joystick_id);
+const char* tuiGetJoystickGUID(TuiJoystickId joystick_id);
+void tuiSetJoystickUserPointer(TuiJoystickId joystick_id, void* pointer);
+void* tuiGetJoystickUserPointer(TuiJoystickId joystick_id);
+TuiBoolean tuiJoystickIsGamepad(TuiJoystickId joystick_id);
+TuiBoolean tuiUpdateGamepadMappings(const char* string);
+const char* tuiGetGamepadName(TuiJoystickId joystick_id);
+tuiJoysticFunction tuiSetJoystickCallback(tuiJoysticFunction callback);
 
 #ifdef __cplusplus //extern C guard
 }
