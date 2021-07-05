@@ -26,8 +26,6 @@
 #include <TUIC/blend_mode.h>
 #include <TUIC/boolean.h>
 #include <TUIC/button_state.h>
-#include <TUIC/configuration.h>
-#include <TUIC/context_backend.h>
 #include <TUIC/cursor.h>
 #include <TUIC/cursor_shape.h>
 #include <TUIC/debug.h>
@@ -36,7 +34,6 @@
 #include <TUIC/detail_mode.h>
 #include <TUIC/filter_mode.h>
 #include <TUIC/glyph_atlas.h>
-#include <TUIC/graphics_backend.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
 #include <TUIC/instance.h>
