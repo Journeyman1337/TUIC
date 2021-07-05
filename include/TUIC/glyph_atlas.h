@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
+#include <TUIC/blend_mode.h>
+
 /*! @name TuiGlyphAtlas functions
  *
  * These functions are used for manipulating @ref TuiGlyphAtlas opaque objects.
