@@ -83,28 +83,6 @@ void tuiPostEmptyEvent()
 	glfwPostEmptyEvent();
 }
 
-int tuiRawMouseMotionSupported()
-{
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return TUI_FALSE;
-	}
-
-	return glfwRawMouseMotionSupported();
-}
-
-const char* tuiGetKeyName(int key, int scancode)
-{
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwGetKeyName(key, scancode);
-}
-
 int tuiGetKeyScancode(int key)
 {
 	if (tuiIsActive() == TUI_FALSE)
@@ -114,6 +92,18 @@ int tuiGetKeyScancode(int key)
 	}
 
 	return glfwGetKeyScancode(key);
+}
+
+
+int tuiRawMouseMotionSupported()
+{
+	if (tuiIsActive() == TUI_FALSE)
+	{
+		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
+		return TUI_FALSE;
+	}
+
+	return glfwRawMouseMotionSupported();
 }
 
 int tuiJoystickPresent(int jid)

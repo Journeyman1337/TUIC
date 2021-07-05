@@ -34,7 +34,6 @@ void tuiWaitEvents();
 void tuiWaitEventsTimeout(double timeout);
 void tuiPostEmptyEvent();
 int tuiRawMouseMotionSupported(void);
-const char* tuiGetKeyName(int key, int scancode);
 int tuiGetKeyScancode(int key);
 int tuiJoystickPresent(int jid);
 const float* tuiGetJoystickAxes(int jid, int* count);
