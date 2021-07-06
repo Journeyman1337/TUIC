@@ -49,7 +49,7 @@ typedef struct TuiInstance_s
 	 */
 	size_t PanelCount;
 	/*!
-	 * @brief The amount of @ref TuiGlyphAtlas objects that currently exist attached to this @ref TuiInstance.
+	 * @brief The amount of @ref TuiAtlas objects that currently exist attached to this @ref TuiInstance.
 	 */
 	size_t GlyphAtlasCount;
 	/*!
@@ -78,11 +78,11 @@ typedef struct TuiInstance_s
 	void* ApiData;
 } TuiInstance_s;
 /*
- * @brief The struct behind @ref TuiGlyphAtlas opaque objects.
+ * @brief The struct behind @ref TuiAtlas opaque objects.
  *
  * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
  */
-typedef struct TuiGlyphAtlas_s
+typedef struct TuiAtlas_s
 {
 	/*!
 	 * @brief The @ref TuiInstance that this object is attached to.
@@ -93,11 +93,11 @@ typedef struct TuiGlyphAtlas_s
 	 */
 	TuiBlendMode BlendMode;
 	/*!
-	 * @brief The atlas type that this @ref TuiGlyphAtlas uses.
+	 * @brief The atlas type that this @ref TuiAtlas uses.
 	 */
 	size_t AtlasType;
 	/*!
-	 * @brief The amount of channels in the texture of this @ref TuiGlyphAtlas.
+	 * @brief The amount of channels in the texture of this @ref TuiAtlas.
 	 */
 	size_t ChannelCount;
 	/*!
@@ -125,18 +125,18 @@ typedef struct TuiGlyphAtlas_s
 	 */
 	size_t GlyphCount;
 	/*!
-	 * @brief The amount of glyphs wide, used if this @ref TuiGlyphAtlas uses atlas type @ref TUI_ATLAS_GRID.
+	 * @brief The amount of glyphs wide, used if this @ref TuiAtlas uses atlas type @ref TUI_ATLAS_GRID.
 	 */
 	size_t GridGlyphsWide;
 	/*!
-	 * @brief The amount of glyphs tall, used if this @ref TuiGlyphAtlas uses atlas type @ref TUI_ATLAS_GRID.
+	 * @brief The amount of glyphs tall, used if this @ref TuiAtlas uses atlas type @ref TUI_ATLAS_GRID.
 	 */
 	size_t GridGlyphsTall;
 	/*!
 	 * @brief A pointer to backend specific API data.
 	 */
 	void* ApiData;
-} TuiGlyphAtlas_s;
+} TuiAtlas_s;
 /*
  * @brief The struct behind @ref TuiTexture opaque objects.
  *

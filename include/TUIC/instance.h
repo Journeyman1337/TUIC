@@ -147,7 +147,7 @@ void tuiInstanceGetPixelDimensons(TuiInstance instance, int* width, int* height)
  * @brief Draw a @ref TuiBatch to the screen of a @ref TuiInstance.
  *
  * @param instance The @ref TuiInstance.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param blend_mode The blend mode to use for this draw.
@@ -162,12 +162,12 @@ void tuiInstanceGetPixelDimensons(TuiInstance instance, int* width, int* height)
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match instance.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceDrawBatch(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch);
+void tuiInstanceDrawBatch(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
 /*!
  * @brief Draw a @ref TuiBatch to the screen of a @ref TuiInstance.
  *
  * @param instance The @ref TuiInstance.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param blend_mode The blend mode to use for this draw.
@@ -183,12 +183,12 @@ void tuiInstanceDrawBatch(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette 
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match instance.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceDrawBatchData(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
+void tuiInstanceDrawBatchData(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
 /*!
  * @brief Draw a @ref TuiBatch to the scren of a @ref TuiInstance with a transformation.
  *
  * @param instance The @ref TuiInstance.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param blend_mode The blend mode to use for this draw.
@@ -206,12 +206,12 @@ void tuiInstanceDrawBatchData(TuiInstance instance, TuiGlyphAtlas atlas, TuiPale
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match instance.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
+void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Draw batch data to a @ref TuiInstance with a transformation.
  *
  * @param instance The @ref TuiInstance.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param detail_mode The detail mode to use for this render.
@@ -235,7 +235,7 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiGlyphAtlas atlas, 
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match instance.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 
 void tuiInstanceSwapBuffers(TuiInstance instance);
 

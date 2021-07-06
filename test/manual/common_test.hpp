@@ -7,7 +7,7 @@
 
 extern const char* kOutDirectoryPath;
 
-TuiGlyphAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode);
+TuiAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode);
 TuiBatch test_GetTestPatternBatch(int detail_mode);
 void test_BlendMode(TuiInstance instance, int blend_mode, TuiPanel panel);
 void test_DetailMode(TuiInstance instance, int detail_mode, TuiPanel panel);

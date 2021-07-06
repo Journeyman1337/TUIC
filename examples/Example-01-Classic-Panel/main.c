@@ -57,7 +57,7 @@ int main()
 
     /* Create the Glyph Atlas */
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
-    TuiGlyphAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, atlas_image, blend_mode);
+    TuiAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
 

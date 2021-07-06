@@ -33,7 +33,7 @@
 #include <TUIC/detail_flag.h>
 #include <TUIC/detail_mode.h>
 #include <TUIC/filter_mode.h>
-#include <TUIC/glyph_atlas.h>
+#include <TUIC/atlas.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
 #include <TUIC/instance.h>

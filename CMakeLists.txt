@@ -18,6 +18,7 @@ set(TUIC_CONFIGURE_HEADER_TEXT "")
 
 set(TUIC_SOURCES
 	# Source files
+	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas_type.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
@@ -29,7 +30,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/glyph_atlas.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
@@ -50,6 +50,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
 	# Include Files
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas_type.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
@@ -63,7 +64,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_flag.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/glyph_atlas.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/instance.h

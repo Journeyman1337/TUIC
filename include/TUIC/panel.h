@@ -155,7 +155,7 @@ int tuiPanelGetPixelHeight(TuiPanel panel);
  * @brief Draw a @ref TuiBatch to a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param blend_mode The blend mode to use for this draw.
@@ -169,12 +169,12 @@ int tuiPanelGetPixelHeight(TuiPanel panel);
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiPanelDrawBatch(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch);
+void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
 /*!
  * @brief Draw a @ref TuiBatch to a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param blend_mode The blend mode to use for this draw.
@@ -190,12 +190,12 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, 
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiPanelDrawBatchData(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
+void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
 /*!
  * @brief Draw a @ref TuiBatch to the scren of a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param blend_mode The blend mode to use for this draw.
@@ -213,12 +213,12 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palet
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Draw batch data to a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
+ * @param atlas The @ref TuiAtlas to use for this draw.
  * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
  * @param batch The @ref TuiBatch to draw to the framebuffer.
  * @param detail_mode The detail mode to use for this render.
@@ -242,7 +242,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalett
  * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Render a @ref TuiPanel to the main graphics context framebuffer if its @ref TuiInstance.
  *

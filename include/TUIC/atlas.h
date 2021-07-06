@@ -17,7 +17,7 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*! \file glyph_atlas.h
+/*! \file atlas.h
  */
 #ifndef TUIC_GLYPH_ATLAS_H //header guard
 #define TUIC_GLYPH_ATLAS_H
@@ -27,13 +27,13 @@ extern "C" {
 #include <TUIC/types.h>
 #include <TUIC/blend_mode.h>
 
-/*! @name TuiGlyphAtlas functions
+/*! @name TuiAtlas functions
  *
- * These functions are used for manipulating @ref TuiGlyphAtlas opaque objects.
+ * These functions are used for manipulating @ref TuiAtlas opaque objects.
  *
  *  @{ */
 /*!
- * @brief Create a new @ref TuiGlyphAtlas from a @ref TuiImage using @ref ATLAS_TYPE_COORDS.
+ * @brief Create a new @ref TuiAtlas from a @ref TuiImage using @ref ATLAS_TYPE_COORDS.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param image The @ref TuiImage of for the texture.
@@ -50,9 +50,9 @@ extern "C" {
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas from a raw pixel array using @ref ATLAS_TYPE_COORDS.
+ * @brief Create a new @ref TuiAtlas from a raw pixel array using @ref ATLAS_TYPE_COORDS.
  *
  * @param instance The @ref TuiInstance object from raw pixel data that contains the graphics context.
  * @param pixel_width The width of the pixel array.
@@ -75,9 +75,9 @@ TuiGlyphAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyp
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas from a @ref TuiImage using @ref ATLAS_TYPE_COORDS and raw uvs.
+ * @brief Create a new @ref TuiAtlas from a @ref TuiImage using @ref ATLAS_TYPE_COORDS and raw uvs.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param image The @ref TuiImage of for the texture.
@@ -95,9 +95,9 @@ TuiGlyphAtlas tuiGlyphAtlasCreateRawPixels(TuiInstance instance, int pixel_width
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas from a @ref TuiImage using raw texture coordinates and @ref ATLAS_TYPE_COORDS.
+ * @brief Create a new @ref TuiAtlas from a @ref TuiImage using raw texture coordinates and @ref ATLAS_TYPE_COORDS.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param pixel_width The width of the pixel array.
@@ -120,9 +120,9 @@ TuiGlyphAtlas tuiGlyphAtlasCreateRawUVs(TuiInstance instance, TuiImage image, in
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas from a @ref TuiImage using @ref ATLAS_TYPE_GRID.
+ * @brief Create a new @ref TuiAtlas from a @ref TuiImage using @ref ATLAS_TYPE_GRID.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param image The @ref TuiImage object for the atlas image.
@@ -139,9 +139,9 @@ TuiGlyphAtlas tuiGlyphAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas using @ref ATLAS_TYPE_GRID.
+ * @brief Create a new @ref TuiAtlas using @ref ATLAS_TYPE_GRID.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param pixel_width The width of the pixel array.
@@ -162,9 +162,9 @@ TuiGlyphAtlas tuiGlyphAtlasCreateGrid(TuiInstance instance, TuiImage image, int 
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas from a @ref TuiImage for a codepage spritesheet using @ref ATLAS_TYPE_GRID.
+ * @brief Create a new @ref TuiAtlas from a @ref TuiImage for a codepage spritesheet using @ref ATLAS_TYPE_GRID.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param image The @ref TuiImage object for the atlas image.
@@ -178,9 +178,9 @@ TuiGlyphAtlas tuiGlyphAtlasCreateGridRawPixels(TuiInstance instance, int pixel_w
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBlendMode blend_mode);
 /*!
- * @brief Create a new @ref TuiGlyphAtlas for a codepage spritesheet using @ref ATLAS_TYPE_GRID.
+ * @brief Create a new @ref TuiAtlas for a codepage spritesheet using @ref ATLAS_TYPE_GRID.
  *
  * @param instance The @ref TuiInstance object that contains the graphics context.
  * @param image_width The width of the image in pixels.
@@ -199,80 +199,80 @@ TuiGlyphAtlas tuiGlyphAtlasCreateCodepageGrid(TuiInstance instance, TuiImage ima
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if blend_mode is an invalid @ref TuiBlendMode.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-TuiGlyphAtlas tuiGlyphAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
+TuiAtlas tuiGlyphAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
 /*!
- * @brief  Destroy @ref TuiGlyphAtlas and correctly dispose of all of its resources.
+ * @brief  Destroy @ref TuiAtlas and correctly dispose of all of its resources.
  *
- * @param atlas The @ref TuiGlyphAtlas object to destroy.
+ * @param atlas The @ref TuiAtlas object to destroy.
  * 
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiGlyphAtlasDestroy(TuiGlyphAtlas atlas);
+void tuiGlyphAtlasDestroy(TuiAtlas atlas);
 /*!
- * @brief  Get the @ref TuiInstance of a  @ref TuiGlyphAtlas.
+ * @brief  Get the @ref TuiInstance of a  @ref TuiAtlas.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  * 
  * @returns The @ref TuiInstance. NULL is returned on error.
  *
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-TuiInstance tuiGlyphAtlasGetInstance(TuiGlyphAtlas atlas);
+TuiInstance tuiGlyphAtlasGetInstance(TuiAtlas atlas);
 /*!
- * @brief Get the amount of channels used by a @ref TuiGlyphAtlas.
+ * @brief Get the amount of channels used by a @ref TuiAtlas.
  * 
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  * 
  * @returns The amount of color channels. 0 is returned on error.
  * 
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-int tuiGlyphAtlasGetChannelCount(TuiGlyphAtlas atlas);
+int tuiGlyphAtlasGetChannelCount(TuiAtlas atlas);
 /*!
- * @brief Get the pixel width of the texture of a @ref TuiGlyphAtlas.
+ * @brief Get the pixel width of the texture of a @ref TuiAtlas.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  *
  * @returns The pixel width of the texture. 0 is returned on error.
  *
  *  @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-int tuiGlyphAtlasGetPixelWidth(TuiGlyphAtlas atlas);
+int tuiGlyphAtlasGetPixelWidth(TuiAtlas atlas);
 /*!
- * @brief Get the pixel height of the texture of a @ref TuiGlyphAtlas.
+ * @brief Get the pixel height of the texture of a @ref TuiAtlas.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  *
  * @returns The pixel height of the texture. 0 is returned on error.
  *
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-int tuiGlyphAtlasGetPixelHeight(TuiGlyphAtlas atlas);
+int tuiGlyphAtlasGetPixelHeight(TuiAtlas atlas);
 /*!
- * @brief Get width and height of the image of a @ref TuiGlyphAtlas in pixels.
+ * @brief Get width and height of the image of a @ref TuiAtlas in pixels.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  * @param out_pixel_width A pointer to where the width will be stored. If NULL or an error occurs, it is ignored.
  * @param out_pixel_height A pointer to where the height will be stored. If NULL or an error occurs, it is ignored.
  * 
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-void tuiGlyphAtlasGetPixelDimensions(TuiGlyphAtlas atlas, int* out_pixel_width, int* out_pixel_height);
+void tuiGlyphAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height);
 /*!
- * @brief Get the @ref TuiBlendMode of a @ref TuiGlyphAtlas.
+ * @brief Get the @ref TuiBlendMode of a @ref TuiAtlas.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  *
  * @returns The @ref TuiBlendMode. 0 is returned on error.
  *
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiGlyphAtlas atlas);
+TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiAtlas atlas);
 /*!
- * @brief Set the @ref TuiBlendMode of a @ref TuiGlyphAtlas.
+ * @brief Set the @ref TuiBlendMode of a @ref TuiAtlas.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  * @param blend_mode The blend mode.
  *
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
@@ -280,17 +280,17 @@ TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiGlyphAtlas atlas);
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if atlas is NULL.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiGlyphAtlasSetBlendMode(TuiGlyphAtlas atlas, TuiBlendMode blend_mode);
+void tuiGlyphAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
 /*!
- * @brief Get the glyph count of a @ref TuiGlyphAtlas.
+ * @brief Get the glyph count of a @ref TuiAtlas.
  *
- * @param atlas The @ref TuiGlyphAtlas.
+ * @param atlas The @ref TuiAtlas.
  *
  * @returns The glyuph count. 0 is returned on error.
  *
  * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
  */
-int tuiGlyphAtlasGetGlyphCount(TuiGlyphAtlas atlas);
+int tuiGlyphAtlasGetGlyphCount(TuiAtlas atlas);
 /*!
  * @brief Get a raw UV texture coordinate STPQ array from a raw pixel coordinate STPQ array.
  *

@@ -239,7 +239,7 @@ void tuiInstanceGetPixelDimensons(TuiInstance instance, int* width, int* height)
 	}
 }
 
-void tuiInstanceDrawBatch(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch)
+void tuiInstanceDrawBatch(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiBatch batch)
 {
 	if (instance == NULL)
 	{
@@ -284,7 +284,7 @@ void tuiInstanceDrawBatch(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette 
 	tuiInstanceDrawBatchData_Opengl33(instance, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, instance->PixelWidth, 0, instance->PixelHeight);
 }
 
-void tuiInstanceDrawBatchData(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
+void tuiInstanceDrawBatchData(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
 {
 	if (instance == NULL)
 	{
@@ -335,7 +335,7 @@ void tuiInstanceDrawBatchData(TuiInstance instance, TuiGlyphAtlas atlas, TuiPale
 
 }
 
-void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
+void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
 {
 	if (instance == NULL)
 	{
@@ -380,7 +380,7 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiGlyphAtlas atlas, 
 	tuiInstanceDrawBatchData_Opengl33(instance, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiGlyphAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
 {
 	if (instance == NULL)
 	{

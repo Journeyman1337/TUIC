@@ -10,7 +10,7 @@ if (DOXYGEN_FOUND)
 		"${TUI_SOURCE_DIR}/include/tuic/instance.h"
 		"${TUI_SOURCE_DIR}/include/tuic/panel.h"
 		"${TUI_SOURCE_DIR}/include/tuic/palette.h"
-		"${TUI_SOURCE_DIR}/include/tuic/glyph_atlas.h"
+		"${TUI_SOURCE_DIR}/include/tuic/atlas.h"
 		"${TUI_SOURCE_DIR}/include/tuic/batch.h"
 		"${TUI_SOURCE_DIR}/include/tuic/image.h"
 		"${TUI_SOURCE_DIR}/include/tuic/texture.h"

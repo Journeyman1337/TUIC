@@ -5,7 +5,7 @@
 
 const char* kOutDirectoryPath = "test_out/";
 
-TuiGlyphAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode)
+TuiAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode)
 {
 	TuiImage image = nullptr;
 	switch (blend_mode)
@@ -38,7 +38,7 @@ TuiGlyphAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode)
 			image = tuiImageLoad("cp_8x8_rgba_bg_alpha.png", 0);
 			break;
 	}
-	TuiGlyphAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, image, blend_mode);
+	TuiAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, image, blend_mode);
 	tuiImageDestroy(image);
 	return atlas;
 }
@@ -199,7 +199,7 @@ void test_BlendMode(TuiInstance instance, int blend_mode, TuiPanel panel)
 	const char* blend_name = tuiBlendModeToString(blend_mode);
 	TuiBatch batch = test_GetTestPatternBatch(TUI_DETAIL_G8_C4_FULL);
 	TuiPalette palette = tuiPaletteCreateXterm(instance, 16);  
-	TuiGlyphAtlas atlas = test_CreateCodepageAtlas(instance, blend_mode);
+	TuiAtlas atlas = test_CreateCodepageAtlas(instance, blend_mode);
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	tuiPanelDrawBatch(panel, atlas, palette, batch);
 	TuiImage out_image = tuiPanelGetImage(panel, NULL);
@@ -230,7 +230,7 @@ void test_DetailMode(TuiInstance instance, int detail_mode, TuiPanel panel)
 	{
 		 blend_mode = TUI_BLEND_NORMAL;
 	}
-	TuiGlyphAtlas atlas = test_CreateCodepageAtlas(instance, blend_mode);
+	TuiAtlas atlas = test_CreateCodepageAtlas(instance, blend_mode);
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	tuiPanelDrawBatch(panel, atlas, palette, batch);
 	TuiImage out_image = tuiPanelGetImage(panel, NULL);
@@ -269,7 +269,7 @@ void test_PaletteType(TuiInstance instance, int palette_channel_count, TuiPanel 
 	}
 	TuiPalette palette = tuiPaletteCreate(instance, palette_channel_count, 16, palette_colors);
 	delete[] palette_colors;
-	TuiGlyphAtlas atlas = test_CreateCodepageAtlas(instance, TUI_BLEND_BG_ALPHA);
+	TuiAtlas atlas = test_CreateCodepageAtlas(instance, TUI_BLEND_BG_ALPHA);
 	tuiPanelClearColor(panel, 0, 0, 255, 255);
 	tuiPanelDrawBatch(panel, atlas, palette, batch);
 	TuiImage out_image = tuiPanelGetImage(panel, NULL);

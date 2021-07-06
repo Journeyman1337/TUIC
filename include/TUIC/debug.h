@@ -41,7 +41,7 @@ typedef enum TuiErrorCode
 	 */
 	TUI_ERROR_BACKEND_SPECIFIC = 1,
 	/*!
-	 * @brief TUI error for when a @ref TuiInstance is destroyed when there are still one or more attached @ref TuiGlyphAtlas objects.
+	 * @brief TUI error for when a @ref TuiInstance is destroyed when there are still one or more attached @ref TuiAtlas objects.
 	 */
 	TUI_ERROR_DANGLING_GLYPH_ATLAS = 2,
 	/*!
@@ -89,7 +89,7 @@ typedef enum TuiErrorCode
 	 */
 	TUI_ERROR_INVALID_BLEND_MODE = 14,
 	/*!
-	 * @brief TUI error for when attempting to create a codepage glyph atlas with pixel dimensions that are not divisible by 16 and less than or equal to 0.
+	 * @brief TUI error for when attempting to create a codepage atlas with pixel dimensions that are not divisible by 16 and less than or equal to 0.
 	 */
 	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 15,
 	/*!
@@ -109,7 +109,7 @@ typedef enum TuiErrorCode
 	 */
 	TUI_ERROR_INVALID_FILTER_MODE = 19,
 	/*!
-	 * @brief TUI error for when the glyph count of a @ref TuiGlyphAtlas is less than or equal to 0.
+	 * @brief TUI error for when the glyph count of a @ref TuiAtlas is less than or equal to 0.
 	 */
 	TUI_ERROR_INVALID_GLYPH_COUNT = 20,
 	/*!
@@ -157,7 +157,7 @@ typedef enum TuiErrorCode
 	 */
 	TUI_ERROR_NULL_COLORS = 31,
 	/*!
-	 * @brief TUI error for when a @ref TuiGlyphAtlas is NULL.
+	 * @brief TUI error for when a @ref TuiAtlas is NULL.
 	 */
 	TUI_ERROR_NULL_GLYPH_ATLAS = 32,
 	/*!
@@ -213,7 +213,7 @@ typedef enum TuiErrorCode
 	 */
 	TUI_ERROR_RESIZE_IMAGE_FAILURE = 45,
 	/*!
-	 * @brief TUI error for when a @ref TuiGlyphAtlas uses an unmatching @ref TuiInstance.
+	 * @brief TUI error for when a @ref TuiAtlas uses an unmatching @ref TuiInstance.
 	 */
 	TUI_ERROR_UNMATCHING_ATLAS_INSTANCE = 46,
 	/*!
