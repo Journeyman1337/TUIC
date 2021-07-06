@@ -314,9 +314,37 @@ TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance);
 
 void tuiInstanceSetWindowMonitor(TuiInstance instance, TuiMonitor monitor, int xpos, int ypos, int width, int height, int refreshRate);
 
-int tuiInstanceGetWindowAttrib(TuiInstance instance, TuiWindowAttribute attrib);
+TuiBoolean tuiInstanceGetWindowFocused(TuiInstance instance);
 
-void tuiInstanceSetWindowAttrib(TuiInstance instance, TuiWindowAttribute attrib, int value);
+TuiBoolean tuiInstanceGetWindowIconified(TuiInstance instance);
+
+TuiBoolean tuiInstanceGetWindowMaximized(TuiInstance instance);
+
+TuiBoolean tuiInstanceGetWindowMouseEntered(TuiInstance instance);
+
+TuiBoolean tuiInstanceGetWindowVisible(TuiInstance instance);
+
+TuiBoolean tuiInstanceGetWindowResizable(TuiInstance instance);
+
+void tuiInstanceSetWindowResizable(TuiInstance instance, TuiBoolean resizable);
+
+TuiBoolean tuiInstanceGetWindowDecorated(TuiInstance instance);
+
+void tuiInstanceSetWindowDecorated(TuiInstance instance, TuiBoolean decorated);
+
+TuiBoolean tuiInstanceGetWindowAutoIconify(TuiInstance instance);
+
+void tuiInstanceSetWindowAutoIconify(TuiInstance instance, TuiBoolean auto_iconify);
+
+TuiBoolean tuiInstanceGetWindowFloating(TuiInstance instance);
+
+void tuiInstanceSetWindowFloating(TuiInstance instance, TuiBoolean floating);
+
+TuiBoolean tuiInstanceGetWindowTransparentFramebuffer(TuiInstance instance);
+
+TuiBoolean tuiInstanceGetWindowFocusOnShow(TuiInstance instance);
+
+void tuiInstanceSetWindowFocusOnShow(TuiInstance instance, TuiBoolean focus_on_show);
 
 void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr);
 

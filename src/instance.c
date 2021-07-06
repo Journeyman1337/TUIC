@@ -629,14 +629,84 @@ void tuiInstanceSetWindowMonitor(TuiInstance instance, TuiMonitor monitor, int x
 	glfwSetWindowMonitor(instance->window, monitor, xpos, ypos, width, height, refreshRate);
 }
 
-int tuiInstanceGetWindowAttrib(TuiInstance instance, TuiWindowAttribute attrib)
+TuiBoolean tuiInstanceGetWindowFocused(TuiInstance instance)
 {
-	return glfwGetWindowAttrib(instance->window, attrib);
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_FOCUSED);
 }
 
-void tuiInstanceSetWindowAttrib(TuiInstance instance, TuiWindowAttribute attrib, int value)
+TuiBoolean tuiInstanceGetWindowIconified(TuiInstance instance)
 {
-	glfwSetWindowAttrib(instance->window, attrib, value);
+	return (TuiBoolean)glfwGetWindowAttib(instance->window, GLFW_ICONIFIED);
+}
+
+TuiBoolean tuiInstanceGetWindowMaximized(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_MAXIMIZED);
+}
+
+TuiBoolean tuiInstanceGetWindowMouseEntered(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_HOVERED);
+}
+
+TuiBoolean tuiInstanceGetWindowVisible(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_VISIBLE);
+}
+
+TuiBoolean tuiInstanceGetWindowResizable(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_RESIZABLE);
+}
+
+void tuiInstanceSetWindowResizable(TuiInstance instance, TuiBoolean resizable)
+{
+	glfwSetWindowAttrib(instance->window, GLFW_RESIZABLE, (int)resizable);
+}
+
+TuiBoolean tuiInstanceGetWindowDecorated(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_DECORATED);
+}
+
+void tuiInstanceSetWindowDecorated(TuiInstance instance, TuiBoolean decorated)
+{
+	glfwSetWindowAttrib(instance->window, GLFW_DECORATED, (int)decorated);
+}
+
+TuiBoolean tuiInstanceGetWindowAutoIconify(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_AUTO_ICONIFY);
+}
+
+void tuiInstanceSetWindowAutoIconify(TuiInstance instance, TuiBoolean auto_iconify)
+{
+	glfwSetWindowAttrib(instance->window, GLFW_AUTO_ICONIFY, (int)auto_iconify);
+}
+
+TuiBoolean tuiInstanceGetWindowFloating(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_FLOATING);
+}
+
+void tuiInstanceSetWindowFloating(TuiInstance instance, TuiBoolean floating)
+{
+	glfwSetWindowAttrib(instance->window, GLFW_FLOATING, (int)floating);
+}
+
+TuiBoolean tuiInstanceGetWindowTransparentFramebuffer(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_TRANSPARENT_FRAMEBUFFER);
+}
+
+TuiBoolean tuiInstanceGetWindowFocusOnShow(TuiInstance instance)
+{
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_FOCUS_ON_SHOW);
+}
+
+void tuiInstanceSetWindowFocusOnShow(TuiInstance instance, TuiBoolean focus_on_show)
+{
+	glfwSetWindowAttrib(instance->window, GLFW_FOCUS_ON_SHOW, (int)focus_on_show);
 }
 
 void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr)
