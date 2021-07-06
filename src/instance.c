@@ -5,7 +5,7 @@
 
 static size_t sInstanceCount = 0;
 
-TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title)
+TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info)
 {
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
@@ -18,13 +18,41 @@ TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* tit
 		return NULL;
 	}
 
-
+	glfwDefaultWindowHints();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
+	if (create_info != NULL)
+	{ 
+		glfwWindowHint(GLFW_RESIZABLE, create_info->resizable);
+		glfwWindowHint(GLFW_VISIBLE, create_info->visible);
+		glfwWindowHint(GLFW_DECORATED, create_info->decorated);
+		glfwWindowHint(GLFW_FOCUSED, create_info->focused);
+		glfwWindowHint(GLFW_AUTO_ICONIFY, create_info->auto_iconify);
+		glfwWindowHint(GLFW_FLOATING, create_info->floating);
+		glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
+		glfwWindowHint(GLFW_CENTER_CURSOR, create_info->center_cursor);
+		glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, create_info->transparent_framebuffer);
+		glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info->focus_on_show);
+		glfwWindowHint(GLFW_SCALE_TO_MONITOR, create_info->scale_to_monitor);
+	}
+	else
+	{
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
+		glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
+		glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_TRUE);
+		glfwWindowHint(GLFW_FLOATING, GLFW_FALSE);
+		glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
+		glfwWindowHint(GLFW_CENTER_CURSOR, GLFW_FALSE);
+		glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_FALSE);
+		glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
+		glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_FALSE);
+	}
 	GLFWwindow* window = glfwCreateWindow(pixel_width, pixel_height, title, NULL, NULL);
 	if (window == NULL)
 	{
@@ -47,6 +75,23 @@ TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* tit
 	tuiInstanceCreate_Opengl33(instance, ((void*)glfwGetProcAddress));
 	sInstanceCount++;
 	return instance;
+}
+
+TuiWindowCreateInfo tuiWindowCreateInfo()
+{
+	TuiWindowCreateInfo info;
+	info.resizable = TUI_FALSE;
+	info.visible = TUI_TRUE;
+	info.decorated = TUI_TRUE;
+	info.focused = TUI_TRUE;
+	info.auto_iconify = TUI_TRUE;
+	info.floating = TUI_FALSE;
+	info.maximized = TUI_FALSE;
+	info.center_cursor = TUI_FALSE;
+	info.transparent_framebuffer = TUI_FALSE;
+	info.focus_on_show = TUI_TRUE;
+	info.scale_to_monitor = TUI_FALSE;
+	return info;
 }
 
 void tuiInstanceDestroy(TuiInstance instance)
@@ -480,21 +525,6 @@ void tuiInstanceGetCursorPos(TuiInstance instance, double* xpos, double* ypos)
 void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos)
 {
 	glfwSetCursorPos(instance->window, xpos, ypos);
-}
-
-void tuiDefaultWindowHints()
-{
-	glfwDefaultWindowHints();
-}
-
-void tuiWindowHint(TuiWindowAttribute hint, int value)
-{
-	glfwWindowHint(hint, value);
-}
-
-void tuiWindowHintString(TuiWindowAttribute hint, const char* value)
-{
-	glfwWindowHintString(hint, value);
 }
 
 void tuiInstanceSetWindowTitle(TuiInstance instance, const char* title)

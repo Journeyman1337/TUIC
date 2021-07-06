@@ -33,13 +33,30 @@ extern "C" {
 #include <TUIC/window_attribute.h>
 #include <TUIC/cursor_mode.h>
 
+typedef struct TuiWindowCreateInfo
+{;
+	TuiBoolean resizable;
+	TuiBoolean visible;
+	TuiBoolean decorated;
+	TuiBoolean focused;
+	TuiBoolean auto_iconify;
+	TuiBoolean floating;
+	TuiBoolean maximized;
+	TuiBoolean center_cursor;
+	TuiBoolean transparent_framebuffer;
+	TuiBoolean focus_on_show;
+	TuiBoolean scale_to_monitor;
+} TuiWindowCreateInfo;
+
+TuiWindowCreateInfo tuiWindowCreateInfo();
+
 /*! @name TuiInstance functions
  *
  * These functions are used for manipulating @ref TuiInstance opaque objects. Create functions for TuiInstance objects can only be found in backend headers (such as opengl33.h).
  *
  *  @{ */
 
-TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title);
+TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info);
 /*!
  * @brief Destroy a @ref TuiInstance and properly dispose of all of its internal data.
  *
@@ -256,12 +273,6 @@ TuiButtonState tuiInstanceGetMouseButton(TuiInstance instance, TuiMouseButton mo
 void tuiInstanceGetCursorPos(TuiInstance instance, double *xpos, double *ypos);
 
 void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos);
-
-void tuiDefaultWindowHints();
-
-void tuiWindowHint(TuiWindowAttribute hint, int value);
-
-void tuiWindowHintString(TuiWindowAttribute hint, const char* value);
 
 int tuiInstanceWindowShouldClose(TuiInstance instance);
 
