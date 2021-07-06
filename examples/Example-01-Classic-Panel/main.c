@@ -49,12 +49,14 @@ int main()
     if (atlas_image == NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
+        tuiInstanceDestroy(instance);
+        instance = NULL;
         tuiTerminate();
         return -1;
     }
 
     /* Create the Glyph Atlas */
-    int blend_mode = TUI_BLEND_FG_GREEN;
+    TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
     TuiGlyphAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
@@ -67,7 +69,7 @@ int main()
     TuiPanel panel = tuiPanelCreate(instance, window_width, window_height);
 
     /* Create the batch (tile rendering data container) */
-    int detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_GLYPH_FLAG_G8 | TUI_COLOR_FLAG_C4 | TUI_LAYOUT_FLAG_FULL)
+    TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_GLYPH_FLAG_G8 | TUI_COLOR_FLAG_C4 | TUI_LAYOUT_FLAG_FULL)
     TuiBatch batch = tuiBatchCreate(detail_mode, tiles_wide, tiles_tall);
 
     //Fill the batch with tile data.
