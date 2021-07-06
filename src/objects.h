@@ -27,6 +27,9 @@ extern "C" {
 #include <stdint.h>
 #include <TUIC/types.h>
 #include <GLFW/glfw3.h>
+#include <TUIC/blend_mode.h>
+#include <TUIC/filter_mode.h>
+
 /*! @} */
 /*! @name Opaque Object Full Declarations
  * These structs are represent the hidden types behind TUIC opaque objects.
