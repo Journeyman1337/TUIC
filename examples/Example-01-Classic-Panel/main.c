@@ -34,9 +34,13 @@ int main()
     /* Tell TUIC to send all debug messages to our message callback (the function we implemented above main). */
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
+    /* Create the window create info */
+    TuiWindowCreateInfo window_create_info = tuiWindowCreateInfo();
+    window_create_info.center_cursor = TUI_TRUE;
+
     /* Create the TUIC instance. */
     const char* window_title = "Example 1";
-    TuiInstance instance = tuiInstanceCreate(window_width, window_height, window_title);
+    TuiInstance instance = tuiInstanceCreate(window_width, window_height, window_title, &window_create_info);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
