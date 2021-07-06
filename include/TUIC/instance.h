@@ -365,7 +365,7 @@ tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instanc
 
 tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance instance, tuiWindowMaximizeFunction callback);
 
-tuiFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstance instance, tuiFramebufferSizeFunction callback);
+tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstance instance, tuiWindowFramebufferSizeFunction callback);
 
 tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstance instance, tuiWindowContentScaleFunction callback);
 

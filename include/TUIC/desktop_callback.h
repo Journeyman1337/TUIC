@@ -46,7 +46,7 @@ typedef void (* tuiWindowIconifyFunction)(TuiInstance instance,TuiBoolean iconif
 
 typedef void (* tuiWindowMaximizeFunction)(TuiInstance instance, TuiBoolean maximized);
 
-typedef void (* tuiFramebufferSizeFunction)(TuiInstance instance, int pixel_width, int pixel_height);
+typedef void (* tuiWindowFramebufferSizeFunction)(TuiInstance instance, int pixel_width, int pixel_height);
 
 typedef void (* tuiWindowContentScaleFunction)(TuiInstance instance, float xscale, float yscale);
 
