@@ -29,7 +29,7 @@ const char* kTui_Joystick_13_Name = "JOYSTICK_13";
 
 const char* kTui_Joystick_14_Name = "JOYSTICK_14";
 
-const char* kTui_Joystick_16_Name = "JOYSTICK_15";
+const char* kTui_Joystick_15_Name = "JOYSTICK_15";
 
 const char* kTui_Joystick_16_Name = "JOYSTICK_16";
 
