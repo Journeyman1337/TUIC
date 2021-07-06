@@ -34,7 +34,7 @@ extern "C" {
 #include <TUIC/cursor_mode.h>
 
 typedef struct TuiWindowCreateInfo
-{;
+{
 	TuiBoolean resizable;
 	TuiBoolean visible;
 	TuiBoolean decorated;
