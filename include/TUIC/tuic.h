@@ -49,4 +49,3 @@
 #include <TUIC/system.h>
 #include <TUIC/texture.h>
 #include <TUIC/types.h>
-#include <TUIC/window_attribute.h>

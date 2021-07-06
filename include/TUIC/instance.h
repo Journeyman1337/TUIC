@@ -30,7 +30,6 @@ extern "C" {
 #include <TUIC/mouse_button.h>
 #include <TUIC/key.h>
 #include <TUIC/button_state.h>
-#include <TUIC/window_attribute.h>
 #include <TUIC/cursor_mode.h>
 
 typedef struct TuiWindowCreateInfo

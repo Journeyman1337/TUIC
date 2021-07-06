@@ -45,7 +45,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/panel.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/window_attribute.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
@@ -81,7 +80,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/window_attribute.h
 )
 
 set(TUIC_LINK_LIBRARIES
