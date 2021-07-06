@@ -636,7 +636,7 @@ TuiBoolean tuiInstanceGetWindowFocused(TuiInstance instance)
 
 TuiBoolean tuiInstanceGetWindowIconified(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttib(instance->window, GLFW_ICONIFIED);
+	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_ICONIFIED);
 }
 
 TuiBoolean tuiInstanceGetWindowMaximized(TuiInstance instance)
