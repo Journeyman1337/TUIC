@@ -29,7 +29,7 @@ void tuiInstanceCreate_Opengl33(TuiInstance instance, void* window_proc_address)
 void tuiInstanceDestroy_Opengl33(TuiInstance instance);
 void tuiInstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 void tuiInstanceResizeScreen_Opengl33(TuiInstance instance, size_t screen_width, size_t screen_height);
-void tuiInstanceDrawBatchData_Opengl33(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void tuiInstanceDrawBatchData_Opengl33(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 void tuiGlyphAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
 void tuiGlyphAtlasDestroy_Opengl33(TuiAtlas atlas);
 void tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
@@ -41,7 +41,7 @@ void tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
 void tuiPaletteDestroy_Opengl33(TuiPalette palette);
 void tuiPanelCreate_Opengl33(TuiPanel panel);
 void tuiPanelDestroy_Opengl33(TuiPanel panel);
-void tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, size_t detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 uint8_t* tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* width, size_t* height, uint8_t* pixel_ptr);
 void tuiPanelRender_Opengl33(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
 void tuiPanelRenderToPanel_Opengl33(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y);
