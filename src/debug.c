@@ -4,7 +4,7 @@
 
 #define TO_STRING(value) #value
 
-const char* kTui_Error_Unkown_Name = TO_STRING(TUI_ERROR_UNKOWN);
+const char* kTui_Error_Unknown_Name = TO_STRING(TUI_ERROR_UNKNOWN);
 const char* kTui_Error_Backend_Specific_Name = TO_STRING(TUI_ERROR_BACKEND_SPECIFIC);
 const char* kTui_Error_Dangling_Glyph_Atlas_Name = TO_STRING(TUI_ERROR_DANGLING_GLYPH_ATLAS);
 const char* kTui_Error_Dangling_Palette_Name = TO_STRING(TUI_ERROR_DANGLING_PALETTE);
@@ -53,7 +53,7 @@ const char* kTui_Error_Unmatching_Atlas_Instance_Name = TO_STRING(TUI_ERROR_UNMA
 const char* kTui_Error_Unmatching_Palette_Instance_Name = TO_STRING(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE);
 const char* kTui_Error_Unmatching_Panel_Instance_Name = TO_STRING(TUI_ERROR_UNMATCHING_PANEL_INSTANCE);
 
-const char* kTui_Error_Unkown_Description = "An unkown error has occured.";
+const char* kTui_Error_Unknown_Description = "An unknown error has occured.";
 const char* kTui_Error_Backend_Specific_Description = "A backend specific error has occured.";
 const char* kTui_Error_Dangling_Glyph_Atlas_Description = "A TuiInstance has been destroyed with one or more dangling TuiAtlas.";
 const char* kTui_Error_Dangling_Palette_Description = "A TuiInstance has been destroyed with one or more dangling TuiPalette";
@@ -111,8 +111,8 @@ const char* tuiErrorCodeToString(int error_code)
 {
 	switch (error_code)
 	{
-	case TUI_ERROR_UNKOWN:
-		return kTui_Error_Unkown_Name;
+	case TUI_ERROR_UNKNOWN:
+		return kTui_Error_Unknown_Name;
 	case TUI_ERROR_BACKEND_SPECIFIC:
 		return kTui_Error_Backend_Specific_Name;
 	case TUI_ERROR_DANGLING_GLYPH_ATLAS:
@@ -208,14 +208,14 @@ const char* tuiErrorCodeToString(int error_code)
 	case TUI_ERROR_UNMATCHING_PANEL_INSTANCE:
 		return kTui_Error_Unmatching_Panel_Instance_Name;
 	}
-	return kTui_Error_Unkown_Name;
+	return kTui_Error_Unknown_Name;
 }
 
 int tuiStringToErrorCode(const char* string)
 {
-	if (strcmp(string, kTui_Error_Unkown_Name) == 0)
+	if (strcmp(string, kTui_Error_Unknown_Name) == 0)
 	{
-		return TUI_ERROR_UNKOWN;
+		return TUI_ERROR_UNKNOWN;
 	}
 	else if (strcmp(string, kTui_Error_Backend_Specific_Name) == 0)
 	{
@@ -412,8 +412,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 {
 	switch (error_code)
 	{
-	case TUI_ERROR_UNKOWN:
-		return kTui_Error_Unkown_Description;
+	case TUI_ERROR_UNKNOWN:
+		return kTui_Error_Unknown_Description;
 	case TUI_ERROR_BACKEND_SPECIFIC:
 		return kTui_Error_Backend_Specific_Description;
 	case TUI_ERROR_DANGLING_GLYPH_ATLAS:
@@ -509,7 +509,7 @@ const char* tuiErrorCodeGetDescription(int error_code)
 	case TUI_ERROR_UNMATCHING_PANEL_INSTANCE:
 		return kTui_Error_Unmatching_Panel_Instance_Description;
 }
-return kTui_Error_Unkown_Name;
+return kTui_Error_Unknown_Name;
 }
 
 void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback)

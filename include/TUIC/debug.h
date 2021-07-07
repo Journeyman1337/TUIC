@@ -30,9 +30,9 @@ extern "C" {
 typedef enum TuiErrorCode
 {
 	/*!
-	 * @brief TUI error for situations where an unkown error has occured.
+	 * @brief TUI error for situations where an unknown error has occured.
 	 */
-	TUI_ERROR_UNKOWN = 0,
+	TUI_ERROR_UNKNOWN = 0,
 	/*!
 	 * @brief TUI error for backend specific errors.
 	 * 
@@ -229,9 +229,9 @@ typedef enum TuiErrorCode
  * These are the const string names of @ref TuiErrorCode enum values.
  *  @{ */
 /*!
- * @brief String name of @ref TUI_ERROR_UNKOWN.
+ * @brief String name of @ref TUI_ERROR_UNKNOWN.
  */
-extern const char* kTui_Error_Unkown_Name;
+extern const char* kTui_Error_Unknown_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_BACKEND_SPECIFIC.
  */
@@ -430,7 +430,7 @@ extern const char* kTui_Error_Unmatching_Panel_Instance_Name;
 /*!
  * @brief String description of @ref TUI_ERROR_UNKOWN.
  */
-extern const char* kTui_Error_Unkown_Description;
+extern const char* kTui_Error_Unknown_Description;
 /*!
  * @brief String description of @ref TUI_ERROR_BACKEND_SPECIFIC.
  */
