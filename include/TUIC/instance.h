@@ -279,6 +279,8 @@ void tuiInstanceSetWindowShouldClose(TuiInstance instance, TuiBoolean should_clo
 
 void tuiInstanceSetWindowTitle(TuiInstance instance, const char* title);
 
+void tuiInstanceSetWindowDefaultIcon(TuiInstance instance);
+
 void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* images);
 
 void tuiInstanceGetWindowPos(TuiInstance instance, int* xpos, int* ypos);

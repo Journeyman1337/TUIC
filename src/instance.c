@@ -532,6 +532,22 @@ void tuiInstanceSetWindowTitle(TuiInstance instance, const char* title)
 	glfwSetWindowTitle(instance->window, title);
 }
 
+void tuiInstanceSetWindowDefaultIcon(TuiInstance instance)
+{
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
+	glfwSetWindowIcon(instance->window, 0, NULL);
+}
+
 void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* images)
 {
 
