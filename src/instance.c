@@ -175,7 +175,14 @@ int tuiInstanceGetDamaged(TuiInstance instance)
 	return instance->IsDamaged;
 }
 
-void tuiInstanceResizeScreen(TuiInstance instance, int screen_width, int screen_height)
+inline static _InstanceFramebufferResize(TuiInstance instance, int pixel_width, int pixel_height)
+{
+	instance->PixelWidth = (size_t)pixel_width;
+	instance->PixelHeight = (size_t)pixel_height;
+	tuiInstanceResizeScreen_Opengl33(instance, pixel_width, pixel_height);
+}
+
+void tuiInstanceResize(TuiInstance instance, int pixel_width, int pixel_height)
 {
 	if (instance == NULL)
 	{
@@ -187,16 +194,14 @@ void tuiInstanceResizeScreen(TuiInstance instance, int screen_width, int screen_
 		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return;
 	}
-	if (screen_width <= 0 || screen_height <= 0)
+	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_INSTANCE_DIMENSIONS, __func__);
 		return;
 	}
 
-	glfwSetWindowSize(instance->window, screen_width, screen_height);
-	instance->PixelWidth = (int)screen_width;
-	instance->PixelHeight = (int)screen_height;
-	tuiInstanceResizeScreen_Opengl33(instance, screen_width, screen_height);
+	glfwSetWindowSize(instance->window, pixel_width, pixel_height);
+	_InstanceFramebufferResize(instance, pixel_width, pixel_height);
 }
 
 int tuiInstanceGetPixelWidth(TuiInstance instance)
@@ -639,14 +644,100 @@ void tuiInstanceRequestWindowAttention(TuiInstance instance)
 	glfwRequestWindowAttention(instance->window);
 }
 
-TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance)
+//taken from https://stackoverflow.com/a/31526753
+static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 {
-	return glfwGetWindowMonitor(instance->window);
+	GLFWmonitor* monitor = glfwGetWindowMonitor(window);
+	if (monitor != NULL)
+	{
+		return (TuiMonitor)monitor;
+	}
+
+	int nmonitors, i;
+	int wx, wy, ww, wh;
+	int mx, my, mw, mh;
+	int overlap, bestoverlap;
+
+	GLFWmonitor** monitors;
+	const GLFWvidmode* mode;
+
+	bestoverlap = 0;
+
+	glfwGetWindowPos(window, &wx, &wy);
+	glfwGetWindowSize(window, &ww, &wh);
+	monitors = glfwGetMonitors(&nmonitors);
+
+	for (i = 0; i < nmonitors; i++) {
+		mode = glfwGetVideoMode(monitors[i]);
+		glfwGetMonitorPos(monitors[i], &mx, &my);
+		mw = mode->width;
+		mh = mode->height;
+
+		overlap =
+			maxi(0, mini(wx + ww, mx + mw) - maxi(wx, mx)) *
+			maxi(0, mini(wy + wh, my + mh) - maxi(wy, my));
+
+		if (bestoverlap < overlap) {
+			bestoverlap = overlap;
+			monitor = monitors[i];
+		}
+	}
+
+	return (TuiMonitor)monitor;
 }
 
-void tuiInstanceSetWindowMonitor(TuiInstance instance, TuiMonitor monitor, int xpos, int ypos, int width, int height, int refreshRate)
+TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance)
 {
-	glfwSetWindowMonitor(instance->window, monitor, xpos, ypos, width, height, refreshRate);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return NULL;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return NULL;
+	}
+	return _GetCurrentMonitor(instance->window);
+}
+
+void tuiInstanceSetWindowFullscreen(TuiInstance instance, TuiMonitor monitor, int refresh_rate)
+{
+	if (monitor == NULL)
+	{
+		monitor = _GetCurrentMonitor(instance->window);
+	}
+	glfwSetWindowMonitor(instance->window, monitor, 0, 0, instance->PixelWidth, instance->PixelHeight, refresh_rate);
+}
+
+void tuiInstanceSetWindowFullscreenResize(TuiInstance instance, TuiMonitor monitor, int refresh_rate, int pixel_width, int pixel_height)
+{
+	if (monitor == NULL)
+	{
+		monitor = _GetCurrentMonitor(instance->window);
+	}
+	glfwSetWindowMonitor(instance->window, monitor, 0, 0, pixel_width, pixel_height, refresh_rate);
+	_InstanceFramebufferResize(instance, pixel_width, pixel_height);
+}
+
+void tuiInstanceSetWindowWindowed(TuiInstance instance, int xpos, int ypos)
+{
+	glfwSetWindowMonitor(instance->window, NULL, xpos, ypos, instance->PixelWidth, instance->PixelHeight, GLFW_DONT_CARE);
+}
+
+void tuiInstanceSetWindowWindowedResize(TuiInstance instance, int xpos, int ypos, int pixel_width, int pixel_height)
+{
+	glfwSetWindowMonitor(instance->window, NULL, xpos, ypos, pixel_width, pixel_height, GLFW_DONT_CARE);
+	_InstanceFramebufferResize(instance, pixel_width, pixel_height);
+}
+
+TuiBoolean tuiInstanceWindowIsFullscreen(TuiInstance instance)
+{
+	if (glfwGetWindowMonitor(instance->window) == NULL)
+	{
+		return TUI_FALSE;
+	}
+	return TUI_TRUE;
 }
 
 TuiBoolean tuiInstanceGetWindowFocused(TuiInstance instance)

@@ -107,8 +107,8 @@ int tuiInstanceGetDamaged(TuiInstance instance);
  * @brief Resize the main screen of the graphics context of a @ref TuiInstance.
  *
  * @param instance The @ref TuiInstance.
- * @param screen_width The new width of the screen in pixels.
- * @param screen_height The new height of the screen in pixels.
+ * @param pixel_width The new width of the screen in pixels.
+ * @param pixel_height The new height of the screen in pixels.
  * @returns The @ref TuiInstance.
  * 
  * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
@@ -116,7 +116,7 @@ int tuiInstanceGetDamaged(TuiInstance instance);
  * Throws @ref TUI_ERROR_INVALID_INSTANCE_DIMENSIONS if screen_width or screen_height is less than or equal to 0.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
-void tuiInstanceResizeScreen(TuiInstance instnace, int screen_width, int screen_height);
+void tuiInstanceResize(TuiInstance instnace, int pixel_width, int pixel_height);
 /*!
 * @brief Get the pixel width of a @ref TuiInstance.
 *
@@ -313,7 +313,15 @@ void tuiInstanceRequestWindowAttention(TuiInstance instance);
 
 TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance);
 
-void tuiInstanceSetWindowMonitor(TuiInstance instance, TuiMonitor monitor, int xpos, int ypos, int width, int height, int refreshRate);
+void tuiInstanceSetWindowFullscreen(TuiInstance instance, TuiMonitor monitor, int refresh_rate);
+
+void tuiInstanceSetWindowFullscreenResize(TuiInstance instance, TuiMonitor monitor, int refresh_rate, int pixel_width, int pixel_height);
+
+void tuiInstanceSetWindowWindowed(TuiInstance instance, int xpos, int ypos);
+
+void tuiInstanceSetWindowWindowedResize(TuiInstance instance, int xpos, int ypos, int pixel_width, int pixel_height);
+
+TuiBoolean tuiInstanceWindowIsFullscreen(TuiInstance instance);
 
 TuiBoolean tuiInstanceGetWindowFocused(TuiInstance instance);
 
