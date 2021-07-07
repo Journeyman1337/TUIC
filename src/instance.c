@@ -175,7 +175,7 @@ int tuiInstanceGetDamaged(TuiInstance instance)
 	return instance->IsDamaged;
 }
 
-inline static _InstanceFramebufferResize(TuiInstance instance, int pixel_width, int pixel_height)
+inline static void _InstanceFramebufferResize(TuiInstance instance, int pixel_width, int pixel_height)
 {
 	instance->PixelWidth = (size_t)pixel_width;
 	instance->PixelHeight = (size_t)pixel_height;
