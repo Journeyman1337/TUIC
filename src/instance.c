@@ -584,9 +584,13 @@ void tuiInstanceRestoreWindow(TuiInstance instance)
 }
 
 
-int tuiInstanceWindowShouldClose(TuiInstance instance)
+TuiBoolean tuiInstanceWindowShouldClose(TuiInstance instance)
 {
-	return glfwWindowShouldClose(instance->window);
+	if (glfwWindowShouldClose(instance->window) == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetWindowShouldClose(TuiInstance instance, TuiBoolean should_close)

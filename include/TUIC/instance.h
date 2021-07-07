@@ -273,7 +273,7 @@ void tuiInstanceGetCursorPos(TuiInstance instance, double *xpos, double *ypos);
 
 void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos);
 
-int tuiInstanceWindowShouldClose(TuiInstance instance);
+TuiBoolean tuiInstanceWindowShouldClose(TuiInstance instance);
 
 void tuiInstanceSetWindowShouldClose(TuiInstance instance, TuiBoolean should_close);
 
