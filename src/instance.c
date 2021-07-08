@@ -650,6 +650,16 @@ void tuiInstanceRequestWindowAttention(TuiInstance instance)
 	glfwRequestWindowAttention(instance->window);
 }
 
+static int mini(int x, int y)
+{
+	return x < y ? x : y;
+}
+
+static int maxi(int x, int y)
+{
+	return x > y ? x : y;
+}
+
 //taken from https://stackoverflow.com/a/31526753
 static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 {
