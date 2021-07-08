@@ -595,6 +595,8 @@ float tuiInstanceGetWindowOpacity(TuiInstance instance)
 
 void tuiInstanceSetWindowOpacity(TuiInstance instance, float opacity)
 {
+	opacity = (opacity > 1.0f) ? 1.0f : (opacity < 0.0f) ? 0.0f : opacity;
+
 	glfwSetWindowOpacity(instance->window, opacity);
 }
 
