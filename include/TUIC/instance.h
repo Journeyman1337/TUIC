@@ -55,7 +55,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo();
  *
  *  @{ */
 
-TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info);
+TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info);
 /*!
  * @brief Destroy a @ref TuiInstance and properly dispose of all of its internal data.
  *

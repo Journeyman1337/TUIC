@@ -6,7 +6,7 @@
 
 static size_t sInstanceCount = 0;
 
-TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info)
+TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info)
 {
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
