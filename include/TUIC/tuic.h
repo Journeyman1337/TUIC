@@ -21,6 +21,7 @@
  * The global include for the TUIC library. This header file includes all other headers meant to be used outside of backend implementation.
  */
 
+#include <TUIC/atlas.h>
 #include <TUIC/atlas_type.h>
 #include <TUIC/batch.h>
 #include <TUIC/blend_mode.h>
@@ -32,8 +33,9 @@
 #include <TUIC/desktop_callback.h>
 #include <TUIC/detail_flag.h>
 #include <TUIC/detail_mode.h>
+#include <TUIC/error_code.h>
+#include <TUIC/events.h>
 #include <TUIC/filter_mode.h>
-#include <TUIC/atlas.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
 #include <TUIC/instance.h>
@@ -48,4 +50,5 @@
 #include <TUIC/panel.h>
 #include <TUIC/system.h>
 #include <TUIC/texture.h>
+#include <TUIC/time.h>
 #include <TUIC/types.h>
