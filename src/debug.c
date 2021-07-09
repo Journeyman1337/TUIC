@@ -1,4 +1,5 @@
 #include <TUIC/debug.h>
+#include <stddef.h>
 
 void tui_default_debug_callback(int error_type, const char* str) {}
 
