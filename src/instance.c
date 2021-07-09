@@ -901,7 +901,7 @@ void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minh
 	GLFW_CHECK_ERROR()
 }
 
-void tuiInstanceEnableWindowAspectRatio(TuiInstance instance, int numer, int denom)
+void tuiInstanceEnableWindowFixedAspectRatio(TuiInstance instance, int numer, int denom)
 {
 	if (instance == NULL)
 	{
@@ -923,7 +923,7 @@ void tuiInstanceEnableWindowAspectRatio(TuiInstance instance, int numer, int den
 	GLFW_CHECK_ERROR()
 }
 
-void tuiInstanceDisableAspectRatio(TuiInstance instance)
+void tuiInstanceDisableWindowFixedAspectRatio(TuiInstance instance)
 {
 	if (instance == NULL)
 	{
