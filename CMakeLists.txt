@@ -30,6 +30,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/glfw_error_check.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
