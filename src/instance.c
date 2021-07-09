@@ -1659,7 +1659,7 @@ tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWi
 	{
 		glfwSetWindowPosCallback(instance->window, glfwWindowPosCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1693,7 +1693,7 @@ tuiWindowSizeFunction tuiInstanceSetWindowSizeCallback(TuiInstance instance, tui
 	{
 		glfwSetWindowSizeCallback(instance->window, glfwWindowSizeCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1727,7 +1727,7 @@ tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, t
 	{
 		glfwSetWindowCloseCallback(instance->window, glfwWindowCloseCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1761,7 +1761,7 @@ tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instanc
 	{
 		glfwSetWindowRefreshCallback(instance->window, glfwWindowRefreshCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1795,7 +1795,7 @@ tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, t
 	{
 		glfwSetWindowFocusCallback(instance->window, glfwWindowFocusCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1829,7 +1829,7 @@ tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instanc
 	{
 		glfwSetWindowIconifyCallback(instance->window, glfwWindowIconifyCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1863,7 +1863,7 @@ tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance insta
 	{
 		glfwSetWindowMaximizeCallback(instance->window, glfwWindowMaximizeCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1897,7 +1897,7 @@ tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstan
 	{
 		glfwSetFramebufferSizeCallback(instance->window, glfwWindowFramebufferSizeCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1931,7 +1931,7 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 	{
 		glfwSetWindowContentScaleCallback(instance->window, glfwWindowContentScaleCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1965,7 +1965,7 @@ tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction ca
 	{
 		glfwSetKeyCallback(instance->window, glfwKeyCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -1999,7 +1999,7 @@ tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction
 	{
 		glfwSetCharCallback(instance->window, glfwCharCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -2034,7 +2034,7 @@ tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, t
 	{
 		glfwSetMouseButtonCallback(instance->window, glfwMouseButtonCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -2069,7 +2069,7 @@ tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCu
 	{
 		glfwSetCursorPosCallback(instance->window, glfwCursorPosCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -2104,7 +2104,7 @@ tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, t
 	{
 		glfwCursorEnterCallback(instance->window, glfwCursorEnterCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -2139,7 +2139,7 @@ tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFu
 	{
 		glfwSetScrollCallback(instance->window, glfwCursorScrollCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
@@ -2174,6 +2174,6 @@ tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction
 	{
 		glfwSetDropCallback(instance->window, glfwDropCallback);
 	}
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
