@@ -1,7 +1,7 @@
 #include <TUIC/debug.h>
 #include <stddef.h>
 
-void tui_default_debug_callback(int error_type, const char* str) {}
+void tui_default_debug_callback(TuiErrorCode error_type, const char* str) {}
 
 static tuiDebugErrorCallback sDebugCallback = tui_default_debug_callback;
 
@@ -17,7 +17,7 @@ void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback)
 	}
 }
 
-void tuiDebugError(int error_code, const char* msg)
+void tuiDebugError(TuiErrorCode error_code, const char* msg)
 {
 	sDebugCallback(error_code, msg);
 }

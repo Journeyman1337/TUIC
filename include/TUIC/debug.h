@@ -34,7 +34,7 @@ extern "C" {
 /*!
  * @brief Callback type used to set the debug callback handler.
  */
-typedef void(*tuiDebugErrorCallback) (int error_code, const char* msg);
+typedef void(*tuiDebugErrorCallback) (TuiErrorCode error_code, const char* msg);
 /*!
  * @brief Set the callback function to handle debug output from TUI.
  *
@@ -49,7 +49,7 @@ void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback);
  *
  * This function sends a message to the currently set debug callback function. If none was set or it was set to NULL, nothing will happen.
  */
-void tuiDebugError(int error_code, const char* msg);
+void tuiDebugError(TuiErrorCode error_code, const char* msg);
 /*! @} */
 #ifdef __cplusplus //extern C guard
 }
