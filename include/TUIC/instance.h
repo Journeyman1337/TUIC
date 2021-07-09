@@ -289,7 +289,7 @@ void tuiInstanceSetWindowPos(TuiInstance instance, int xpos, int ypos);
 
 void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minheight, int maxwidth, int maxheight);
 
-void tuiInstanceSetWindowAspectRatio(TuiInstance instance, int numer, int denom);
+void tuiInstanceEnableWindowAspectRatio(TuiInstance instance, int numer, int denom);
 
 void tuiInstanceDisableAspectRatio(TuiInstance instance);
 
