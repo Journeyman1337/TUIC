@@ -19,8 +19,8 @@
 */
 /*! \file atlas.h
  */
-#ifndef TUIC_GLYPH_ATLAS_H //header guard
-#define TUIC_GLYPH_ATLAS_H
+#ifndef TUIC_ATLAS_H //header guard
+#define TUIC_ATLAS_H
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
