@@ -6,7 +6,7 @@
 
 void TuiMessageCallback(int error_code, const char* msg)
 {
-    if (error_code == TUI_ERROR_BACKEND_SPECIFIC)
+    if (error_code == TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC)
     {
         printf("%s : %s backend message: %s\n", tuiErrorCodeToString(error_code), tuiErrorCodeGetDescription(error_code), msg);
     }
