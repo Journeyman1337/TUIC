@@ -19,9 +19,6 @@
 */
 #ifndef TUIC_IMAGE_INLINE_H //header guard
 #define TUIC_IMAGE_INLINE_H
-#ifdef __cplusplus //extern C guard
-extern "C" {
-#endif
 #include <TUIC/types.h>
 #include <string.h>
 #include <GLFW/glfw3.h>
@@ -88,7 +85,4 @@ static inline TuiImage _GlfwImageToTuiImage(GLFWimage image, const char* func_na
 {
 	return create_image(image.width, image.height, 4, image.pixels, TUI_TRUE, func_name);
 }
-#ifdef __cplusplus //extern C guard
-}
-#endif
 #endif //header guard
