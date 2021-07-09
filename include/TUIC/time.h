@@ -24,6 +24,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <stdint.h>
  
 double tuiGetTime();
 void tuiSetTime(double time);
