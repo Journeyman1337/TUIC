@@ -291,6 +291,8 @@ void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minh
 
 void tuiInstanceSetWindowAspectRatio(TuiInstance instance, int numer, int denom);
 
+void tuiInstanceDisableAspectRatio(TuiInstance instance);
+
 void tuiInstanceGetWindowContentScale(TuiInstance instance, float* xscale, float* yscale);
 
 float tuiInstanceGetWindowOpacity(TuiInstance instance);

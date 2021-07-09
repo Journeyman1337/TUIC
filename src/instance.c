@@ -923,6 +923,23 @@ void tuiInstanceSetWindowAspectRatio(TuiInstance instance, int numer, int denom)
 	GLFW_CHECK_ERROR()
 }
 
+void tuiInstanceDisableAspectRatio(TuiInstance instance)
+{
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
+	glfwSetWindowAspectRatio(instance->window, GLFW_DONT_CARE, GLFW_DONT_CARE);
+	GLFW_CHECK_ERROR()
+}
+
 void tuiInstanceGetWindowContentScale(TuiInstance instance, float* xscale, float* yscale)
 {
 	if (instance == NULL)
