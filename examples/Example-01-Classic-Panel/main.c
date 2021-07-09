@@ -57,7 +57,7 @@ int main()
 
     /* Create the Glyph Atlas */
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
-    TuiAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, atlas_image, blend_mode);
+    TuiAtlas atlas = tuiAtlasCreateCodepageGrid(instance, atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
 
@@ -131,7 +131,7 @@ int main()
     panel = NULL;
     tuiPaletteDestroy(palette);
     palette = NULL;
-    tuiGlyphAtlasDestroy(atlas);
+    tuiAtlasDestroy(atlas);
     atlas = NULL;
     tuiInstanceDestroy(instance); //The instance must always be created first and destroyed last.
     instance = NULL;
