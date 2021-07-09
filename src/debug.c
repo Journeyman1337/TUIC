@@ -160,6 +160,19 @@ void tui_default_debug_callback(int error_type, const char* str) {}
 
 static tuiDebugErrorCallback sDebugCallback = tui_default_debug_callback;
 
+TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code)
+{
+	if (
+		(code >= TUI_ERROR_FIRST) &&
+		(code <= TUI_ERROR_LAST)
+		)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+
+const char* tuiErrorCodeToString(TuiErrorCode error_code)
 {
 	switch (error_code)
 	{

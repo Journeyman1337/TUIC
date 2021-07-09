@@ -268,6 +268,9 @@ extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
 /*! @} */
 /*! @name Error Code Manipilation Functions
  *  @{ */
+
+TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code);
+
 const char* tuiErrorCodeToString(TuiErrorCode error_code);
 
 int tuiStringToErrorCode(const char* str);
