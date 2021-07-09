@@ -2,6 +2,7 @@
 #include "objects.h"
 #include <GLFW/glfw3.h>
 #include "opengl33.h"
+#include "glfw_error_check.h"
 
 static size_t sInstanceCount = 0;
 
@@ -12,13 +13,10 @@ TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* tit
 		tuiDebugError(TUI_ERROR_INVALID_INSTANCE_DIMENSIONS, __func__);
 		return;
 	}
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
+
 
 	glfwDefaultWindowHints();
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -53,13 +51,9 @@ TuiInstance tuiInstanceCreate(int pixel_width, int pixel_height, const char* tit
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
 		glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_FALSE);
 	}
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	GLFWwindow* window = glfwCreateWindow(pixel_width, pixel_height, title, NULL, NULL);
-	if (window == NULL)
-	{
-		printf("Failed to create GLFW window.\n");
-		glfwTerminate();
-		return -1;
-	}
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	
 
 	TuiInstance instance = (TuiInstance_s*)tuiAllocate(sizeof(TuiInstance_s));
@@ -109,7 +103,7 @@ void tuiInstanceDestroy(TuiInstance instance)
 	}
 	if (instance->GlyphAtlasCount > 0)
 	{
-		tuiDebugError(TUI_ERROR_DANGLING_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_DANGLING_ATLAS, __func__);
 		dangling = TUI_TRUE;
 	}
 	if (instance->PaletteCount > 0)
@@ -205,6 +199,7 @@ void tuiInstanceResize(TuiInstance instance, int pixel_width, int pixel_height)
 	}
 
 	glfwSetWindowSize(instance->window, pixel_width, pixel_height);
+	GLFW_CHECK_ERROR()
 	_InstanceFramebufferResize(instance, pixel_width, pixel_height);
 }
 
@@ -262,7 +257,7 @@ void tuiInstanceDrawBatch(TuiInstance instance, TuiAtlas atlas, TuiPalette palet
 	}
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 	if (batch == NULL)
@@ -358,7 +353,7 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiAtlas atlas, TuiPa
 	}
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 	if (batch == NULL)
@@ -441,104 +436,380 @@ void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiAtlas atlas, T
 
 void tuiInstanceSwapBuffers(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSwapBuffers(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSwapInterval(TuiInstance instance, int interval)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwMakeContextCurrent(instance->window);
 	glfwSwapInterval(interval);
+	GLFW_CHECK_ERROR()
 }
 
 const char* tuiInstanceGetClipboardString(TuiInstance instance)
 {
-	return glfwGetClipboardString(instance->window);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return NULL;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return NULL;
+	}
+
+	const char* str = glfwGetClipboardString(instance->window);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return str;
 }
 
 void tuiInstanceSetClipboardString(TuiInstance instance, const char* string)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+	if (string == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_STRING, __func__);
+		return;
+	}
+
 	glfwSetClipboardString(instance->window, string);
+	GLFW_CHECK_ERROR()
 }
 
 TuiCursorMode tuiInstanceGetCursorMode(TuiInstance instance)
 {
-	return (TuiCursorMode)glfwGetInputMode(instance->window, GLFW_CURSOR);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_CURSOR_MODE_INVALID;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_CURSOR_MODE_INVALID;
+	}
+
+	TuiCursorMode cursor_mode = (TuiCursorMode)glfwGetInputMode(instance->window, GLFW_CURSOR);
+	GLFW_CHECK_ERROR_RETURN(TUI_CURSOR_MODE_INVALID)
+	return cursor_mode;
 }
 
 void tuiInstanceSetCursorMode(TuiInstance instance, TuiCursorMode cursor_mode)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+	if (tuiCursorModeIsValid(cursor_mode) == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CURSOR_MODE, __func__);
+		return;
+	}
+
 	glfwSetInputMode(instance->window, GLFW_CURSOR, (int)cursor_mode);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetStickyKeys(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_STICKY_KEYS);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int sticky_keys = glfwGetInputMode(instance->window, GLFW_STICKY_KEYS);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (sticky_keys == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetStickyKeys(TuiInstance instance, TuiBoolean sticky_keys_mode)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetInputMode(instance->window, GLFW_STICKY_KEYS, (int)sticky_keys_mode);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetStickyMouseButtons(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_STICKY_MOUSE_BUTTONS);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int sticky_mouse_buttons = glfwGetInputMode(instance->window, GLFW_STICKY_MOUSE_BUTTONS);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (sticky_mouse_buttons == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetStickyMouseButtons(TuiInstance instance, TuiBoolean sticky_mouse_buttons)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetInputMode(instance->window, GLFW_STICKY_MOUSE_BUTTONS, (int)sticky_mouse_buttons);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetLockKeyMods(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_LOCK_KEY_MODS);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int lock_key_mods = glfwGetInputMode(instance->window, GLFW_LOCK_KEY_MODS);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (lock_key_mods == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetLockKeyMods(TuiInstance instance, TuiBoolean lock_key_mods)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetInputMode(instance->window, GLFW_LOCK_KEY_MODS, (int)lock_key_mods);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetRawMouseMotion(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetInputMode(instance->window, GLFW_RAW_MOUSE_MOTION);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int raw_mouse_motion = glfwGetInputMode(instance->window, GLFW_RAW_MOUSE_MOTION);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (raw_mouse_motion == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetRawMouseMotion(TuiInstance instance, TuiBoolean raw_mouse_motion)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
 	if (glfwRawMouseMotionSupported() == GLFW_FALSE)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INVALID_RAW_MOUSE_MOTION, __func__);
+		// TODO tuiDebugError(TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION, __func__);
 		return;
 	}
 
 	glfwSetInputMode(instance->window, GLFW_RAW_MOUSE_MOTION, (int)raw_mouse_motion);
+	GLFW_CHECK_ERROR()
 }
 
 TuiButtonState tuiInstanceGetKey(TuiInstance instance, TuiKey key)
 {
-	return glfwGetKey(instance->window, key);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_BUTTON_INVALID;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_BUTTON_INVALID;
+	}
+	if (tuiKeyIsValid(key) == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_KEY, __func__);
+		return TUI_BUTTON_INVALID;
+	}
+	
+	TuiButtonState button_state = (TuiButtonState)glfwGetKey(instance->window, key);
+	GLFW_CHECK_ERROR_RETURN(TUI_BUTTON_INVALID)
+	return button_state;
 }
 
 TuiButtonState tuiInstanceGetMouseButton(TuiInstance instance, TuiMouseButton mouse_button)
 {
-	return glfwGetMouseButton(instance->window, mouse_button);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_BUTTON_INVALID;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_BUTTON_INVALID;
+	}
+	if (tuiMouseButtonIsValid(mouse_button) == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_MOUSE_BUTTON, __func__);
+		return TUI_BUTTON_INVALID;
+	}
+
+	TuiButtonState button_state = (TuiButtonState)glfwGetMouseButton(instance->window, mouse_button);
+	GLFW_CHECK_ERROR_RETURN(TUI_BUTTON_INVALID);
+	return button_state;
 }
 
 void tuiInstanceGetCursorPos(TuiInstance instance, double* xpos, double* ypos)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwGetCursorPos(instance->window, xpos, ypos);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetCursorPos(instance->window, xpos, ypos);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowTitle(TuiInstance instance, const char* title)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+	if (title == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_STRING, __func__);
+		return;
+	}
+
 	glfwSetWindowTitle(instance->window, title);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowDefaultIcon(TuiInstance instance)
@@ -555,65 +826,213 @@ void tuiInstanceSetWindowDefaultIcon(TuiInstance instance)
 	}
 
 	glfwSetWindowIcon(instance->window, 0, NULL);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* images)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
 
 	// TODO glfwSetWindowIcon(instance->window, count, );
 }
 
 void tuiInstanceGetWindowPos(TuiInstance instance, int* xpos, int* ypos)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwGetWindowPos(instance->window, xpos, ypos);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowPos(TuiInstance instance, int xpos, int ypos)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowPos(instance->window, xpos, ypos);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minheight, int maxwidth, int maxheight)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+	if (minwidth <= 0 || minheight <= 0 || maxwidth <= 0 || maxheight <= 0 || maxwidth < minwidth || maxheight < minheight)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
 	glfwSetWindowSizeLimits(instance->window, minwidth, minheight, maxwidth, maxheight);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowAspectRatio(TuiInstance instance, int numer, int denom)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+	if (numer <= 0 || denom <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_ASPECT_RATIO, __func__);
+		return;
+	}
+
 	glfwSetWindowAspectRatio(instance->window, numer, denom);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceGetWindowContentScale(TuiInstance instance, float* xscale, float* yscale)
 {
-	return glfwGetWindowContentScale(instance->window, xscale, yscale);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
+	glfwGetWindowContentScale(instance->window, xscale, yscale);
+	GLFW_CHECK_ERROR()
 }
 
 float tuiInstanceGetWindowOpacity(TuiInstance instance)
 {
-	return glfwGetWindowOpacity(instance->window);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
+	float opacity = glfwGetWindowOpacity(instance->window);
+	GLFW_CHECK_ERROR_RETURN(-1.0f)
+	return opacity;
 }
 
 void tuiInstanceSetWindowOpacity(TuiInstance instance, float opacity)
 {
 	opacity = (opacity > 1.0f) ? 1.0f : (opacity < 0.0f) ? 0.0f : opacity;
 
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+	if (opacity != 1.0f && glfwGetWindowAttrib(instance->window, GLFW_TRANSPARENT_FRAMEBUFFER) == GLFW_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_TRANSPARENT_FRAMEBUFFER_OPACITY, __func__);
+		return;
+	}
+	GLFW_CHECK_ERROR()
 	glfwSetWindowOpacity(instance->window, opacity);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceIconifyWindow(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwIconifyWindow(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceRestoreWindow(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwRestoreWindow(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 
 TuiBoolean tuiInstanceWindowShouldClose(TuiInstance instance)
 {
-	if (glfwWindowShouldClose(instance->window) == GLFW_TRUE)
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int should_close = glfwWindowShouldClose(instance->window);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (should_close == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
@@ -622,32 +1041,102 @@ TuiBoolean tuiInstanceWindowShouldClose(TuiInstance instance)
 
 void tuiInstanceSetWindowShouldClose(TuiInstance instance, TuiBoolean should_close)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowShouldClose(instance->window, should_close);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceMaximizeWindow(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwMaximizeWindow(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceShowWindow(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwShowWindow(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceHideWindow(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwHideWindow(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceFocusWindow(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
 	glfwFocusWindow(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceRequestWindowAttention(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
 	glfwRequestWindowAttention(instance->window);
+	GLFW_CHECK_ERROR()
 }
 
 static int mini(int x, int y)
@@ -698,7 +1187,6 @@ static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 			monitor = monitors[i];
 		}
 	}
-
 	return (TuiMonitor)monitor;
 }
 
@@ -714,7 +1202,9 @@ TuiMonitor tuiInstanceGetWindowMonitor(TuiInstance instance)
 		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return NULL;
 	}
-	return _GetCurrentMonitor(instance->window);
+	TuiMonitor monitor = _GetCurrentMonitor(instance->window);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return monitor;
 }
 
 void tuiInstanceSetWindowFullscreen(TuiInstance instance, TuiMonitor monitor, int refresh_rate)
@@ -724,6 +1214,7 @@ void tuiInstanceSetWindowFullscreen(TuiInstance instance, TuiMonitor monitor, in
 		monitor = _GetCurrentMonitor(instance->window);
 	}
 	glfwSetWindowMonitor(instance->window, monitor, 0, 0, instance->PixelWidth, instance->PixelHeight, refresh_rate);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowFullscreenResize(TuiInstance instance, TuiMonitor monitor, int refresh_rate, int pixel_width, int pixel_height)
@@ -731,25 +1222,31 @@ void tuiInstanceSetWindowFullscreenResize(TuiInstance instance, TuiMonitor monit
 	if (monitor == NULL)
 	{
 		monitor = _GetCurrentMonitor(instance->window);
+		GLFW_CHECK_ERROR()
 	}
 	glfwSetWindowMonitor(instance->window, monitor, 0, 0, pixel_width, pixel_height, refresh_rate);
+	GLFW_CHECK_ERROR()
 	_InstanceFramebufferResize(instance, pixel_width, pixel_height);
 }
 
 void tuiInstanceSetWindowWindowed(TuiInstance instance, int xpos, int ypos)
 {
 	glfwSetWindowMonitor(instance->window, NULL, xpos, ypos, instance->PixelWidth, instance->PixelHeight, GLFW_DONT_CARE);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetWindowWindowedResize(TuiInstance instance, int xpos, int ypos, int pixel_width, int pixel_height)
 {
 	glfwSetWindowMonitor(instance->window, NULL, xpos, ypos, pixel_width, pixel_height, GLFW_DONT_CARE);
+	GLFW_CHECK_ERROR()
 	_InstanceFramebufferResize(instance, pixel_width, pixel_height);
 }
 
 TuiBoolean tuiInstanceWindowIsFullscreen(TuiInstance instance)
 {
-	if (glfwGetWindowMonitor(instance->window) == NULL)
+	TuiMonitor monitor = glfwGetWindowMonitor(instance->window);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (monitor == NULL)
 	{
 		return TUI_FALSE;
 	}
@@ -757,98 +1254,379 @@ TuiBoolean tuiInstanceWindowIsFullscreen(TuiInstance instance)
 }
 
 TuiBoolean tuiInstanceGetWindowFocused(TuiInstance instance)
-{
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_FOCUSED);
+{ 
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int focused = glfwGetWindowAttrib(instance->window, GLFW_FOCUSED);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (focused == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 TuiBoolean tuiInstanceGetWindowIconified(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_ICONIFIED);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int iconified = glfwGetWindowAttrib(instance->window, GLFW_ICONIFIED);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (iconified == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 TuiBoolean tuiInstanceGetWindowMaximized(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_MAXIMIZED);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int maximized = glfwGetWindowAttrib(instance->window, GLFW_MAXIMIZED);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (maximized == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 TuiBoolean tuiInstanceGetWindowMouseEntered(TuiInstance instance)
-{
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_HOVERED);
+{ 
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int mouse_entered = glfwGetWindowAttrib(instance->window, GLFW_HOVERED);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (mouse_entered == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 TuiBoolean tuiInstanceGetWindowVisible(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_VISIBLE);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int visible = glfwGetWindowAttrib(instance->window, GLFW_VISIBLE);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (visible == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 TuiBoolean tuiInstanceGetWindowResizable(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_RESIZABLE);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int resizable = glfwGetWindowAttrib(instance->window, GLFW_RESIZABLE);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (resizable == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetWindowResizable(TuiInstance instance, TuiBoolean resizable)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowAttrib(instance->window, GLFW_RESIZABLE, (int)resizable);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetWindowDecorated(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_DECORATED);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int decorated = glfwGetWindowAttrib(instance->window, GLFW_DECORATED);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (decorated == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetWindowDecorated(TuiInstance instance, TuiBoolean decorated)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowAttrib(instance->window, GLFW_DECORATED, (int)decorated);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetWindowAutoIconify(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_AUTO_ICONIFY);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int auto_iconify = glfwGetWindowAttrib(instance->window, GLFW_AUTO_ICONIFY);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (auto_iconify == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetWindowAutoIconify(TuiInstance instance, TuiBoolean auto_iconify)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowAttrib(instance->window, GLFW_AUTO_ICONIFY, (int)auto_iconify);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetWindowFloating(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_FLOATING);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int floating =glfwGetWindowAttrib(instance->window, GLFW_FLOATING);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (floating == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetWindowFloating(TuiInstance instance, TuiBoolean floating)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowAttrib(instance->window, GLFW_FLOATING, (int)floating);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiInstanceGetWindowTransparentFramebuffer(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_TRANSPARENT_FRAMEBUFFER);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int transparent_framebuffer = glfwGetWindowAttrib(instance->window, GLFW_TRANSPARENT_FRAMEBUFFER);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (transparent_framebuffer == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 TuiBoolean tuiInstanceGetWindowFocusOnShow(TuiInstance instance)
 {
-	return (TuiBoolean)glfwGetWindowAttrib(instance->window, GLFW_FOCUS_ON_SHOW);
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return TUI_FALSE;
+	}
+
+	int focus_on_show = glfwGetWindowAttrib(instance->window, GLFW_FOCUS_ON_SHOW);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (focus_on_show == GLFW_TRUE)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
 }
 
 void tuiInstanceSetWindowFocusOnShow(TuiInstance instance, TuiBoolean focus_on_show)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetWindowAttrib(instance->window, GLFW_FOCUS_ON_SHOW, (int)focus_on_show);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	instance->UserPtr = ptr;
 }
 
 void* tuiInstanceGetUserPtr(TuiInstance instance)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return NULL;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return NULL;
+	}
+
 	return instance->UserPtr;
 }
 
 void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	glfwSetCursor(instance->window, cursor);
+	GLFW_CHECK_ERROR()
 }
 
 static tuiWindowPosFunction sWindowPosCallback = NULL;
@@ -860,6 +1638,17 @@ static inline void glfwWindowPosCallback(GLFWwindow* window, int xpos, int ypos)
 
 tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWindowPosFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowPosFunction old_callback = sWindowPosCallback;
 	sWindowPosCallback = callback;
 	if (callback == NULL)
@@ -870,6 +1659,7 @@ tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWi
 	{
 		glfwSetWindowPosCallback(instance->window, glfwWindowPosCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -882,6 +1672,17 @@ static inline void glfwWindowSizeCallback(GLFWwindow* window, int width, int hei
 
 tuiWindowSizeFunction tuiInstanceSetWindowSizeCallback(TuiInstance instance, tuiWindowSizeFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowSizeFunction old_callback = sWindowSizeCallback;
 	sWindowSizeCallback = callback;
 	if (callback == NULL)
@@ -892,6 +1693,7 @@ tuiWindowSizeFunction tuiInstanceSetWindowSizeCallback(TuiInstance instance, tui
 	{
 		glfwSetWindowSizeCallback(instance->window, glfwWindowSizeCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -904,6 +1706,17 @@ static inline void glfwWindowCloseCallback(GLFWwindow* window)
 
 tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, tuiWindowCloseFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowCloseFunction old_callback = sWindowCloseCallback;
 	sWindowCloseCallback = callback;
 	if (callback == NULL)
@@ -914,6 +1727,7 @@ tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, t
 	{
 		glfwSetWindowCloseCallback(instance->window, glfwWindowCloseCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -926,6 +1740,17 @@ static inline void glfwWindowRefreshCallback(GLFWwindow* window)
 
 tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instance, tuiWindowRefreshFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowRefreshFunction old_callback = sWindowRefreshCallback;
 	sWindowRefreshCallback = callback;
 	if (callback == NULL)
@@ -936,6 +1761,7 @@ tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instanc
 	{
 		glfwSetWindowRefreshCallback(instance->window, glfwWindowRefreshCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -948,6 +1774,17 @@ static inline void glfwWindowFocusCallback(GLFWwindow* window, int focused)
 
 tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, tuiWindowFocusFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowRefreshFunction old_callback = sWindowFocusCallback;
 	sWindowFocusCallback = callback;
 	if (callback == NULL)
@@ -958,6 +1795,7 @@ tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, t
 	{
 		glfwSetWindowFocusCallback(instance->window, glfwWindowFocusCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -970,6 +1808,17 @@ static inline void glfwWindowIconifyCallback(GLFWwindow* window, int iconified)
 
 tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instance, tuiWindowIconifyFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowIconifyFunction old_callback = sWindowIconifyCallback;
 	sWindowIconifyCallback = callback;
 	if (callback == NULL)
@@ -980,6 +1829,7 @@ tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instanc
 	{
 		glfwSetWindowIconifyCallback(instance->window, glfwWindowIconifyCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -992,6 +1842,17 @@ static inline void glfwWindowMaximizeCallback(GLFWwindow* window, int maximized)
 
 tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance instance, tuiWindowMaximizeFunction callback)
 { 
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowMaximizeFunction old_callback = sWindowMaximizeCallback;
 	sWindowMaximizeCallback = callback;
 	if (callback == NULL)
@@ -1002,6 +1863,7 @@ tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance insta
 	{
 		glfwSetWindowMaximizeCallback(instance->window, glfwWindowMaximizeCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1014,6 +1876,17 @@ static inline void glfwWindowFramebufferSizeCallback(GLFWwindow* window, int wid
 
 tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstance instance, tuiWindowFramebufferSizeFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowFramebufferSizeFunction old_callback = sWindowFramebufferSizeCallback;
 	sWindowFramebufferSizeCallback = callback;
 	if (callback == NULL)
@@ -1024,6 +1897,7 @@ tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstan
 	{
 		glfwSetFramebufferSizeCallback(instance->window, glfwWindowFramebufferSizeCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1036,6 +1910,17 @@ static inline void glfwWindowContentScaleCallback(GLFWwindow* window, int pixel_
 
 tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstance instance, tuiWindowContentScaleFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiWindowContentScaleFunction old_callback = sWindowContentScaleCallback;
 	sWindowContentScaleCallback = callback;
 	if (callback == NULL)
@@ -1046,6 +1931,7 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 	{
 		glfwSetWindowContentScaleCallback(instance->window, glfwWindowContentScaleCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1058,6 +1944,17 @@ static inline void glfwKeyCallback(GLFWwindow* window, int key, int scancode, in
 
 tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiKeyFunction old_callback = sKeyCallback;
 	sKeyCallback = callback;
 	if (callback == NULL)
@@ -1068,6 +1965,7 @@ tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction ca
 	{
 		glfwSetKeyCallback(instance->window, glfwKeyCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1080,6 +1978,17 @@ static inline void glfwCharCallback(GLFWwindow* window, unsigned int charcode)
 
 tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiCharFunction old_callback = sCharCallback;
 	sCharCallback = callback;
 	if (callback == NULL)
@@ -1090,6 +1999,7 @@ tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction
 	{
 		glfwSetCharCallback(instance->window, glfwCharCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1098,10 +2008,22 @@ static tuiMouseButtonFunction sMouseButtonCallback = NULL;
 static inline void glfwMouseButtonCallback(GLFWwindow* window, int mouse_button, int button_state, int mod)
 {
 	sMouseButtonCallback((TuiInstance)glfwGetWindowUserPointer(window), (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyMod)mod);
+	GLFW_CLEAR_ERRORS()
 }
 
 tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, tuiMouseButtonFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiMouseButtonFunction old_callback = sMouseButtonCallback;
 	sMouseButtonCallback = callback;
 	if (callback == NULL)
@@ -1112,6 +2034,7 @@ tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, t
 	{
 		glfwSetMouseButtonCallback(instance->window, glfwMouseButtonCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1120,10 +2043,22 @@ static tuiCursorPosFunction sCursorPosCallback = NULL;
 static inline void glfwCursorPosCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	sCursorPosCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
+	GLFW_CLEAR_ERRORS()
 }
 
 tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCursorPosFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiCursorPosFunction old_callback = sCursorPosCallback;
 	sCursorPosCallback = callback;
 	if (callback == NULL)
@@ -1134,6 +2069,7 @@ tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCu
 	{
 		glfwSetCursorPosCallback(instance->window, glfwCursorPosCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1142,10 +2078,22 @@ static tuiCursorEnterFunction sCursorEnterCallback = NULL;
 static inline void glfwCursorEnterCallback(GLFWwindow* window, int entered)
 {
 	sCursorEnterCallback((TuiInstance)glfwGetWindowUserPointer(window), entered);
+	GLFW_CLEAR_ERRORS()
 }
 
 tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, tuiCursorEnterFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiCursorEnterFunction old_callback = sCursorEnterCallback;
 	sCursorEnterCallback = callback;
 	if (callback == NULL)
@@ -1156,6 +2104,7 @@ tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, t
 	{
 		glfwCursorEnterCallback(instance->window, glfwCursorEnterCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1164,10 +2113,22 @@ static tuiScrollFunction sScrollCallback = NULL;
 static inline void glfwCursorScrollCallback(GLFWwindow* window, double xscroll, double yscroll)
 {
 	sScrollCallback((TuiInstance)glfwGetWindowUserPointer(window), xscroll, yscroll);
+	GLFW_CLEAR_ERRORS()
 }
 
 tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiScrollFunction old_callback = sScrollCallback;
 	sScrollCallback = callback;
 	if (callback == NULL)
@@ -1178,6 +2139,7 @@ tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFu
 	{
 		glfwSetScrollCallback(instance->window, glfwCursorScrollCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }
 
@@ -1186,10 +2148,22 @@ static tuiDropFunction sDropCallback = NULL;
 static inline void glfwDropCallback(GLFWwindow* window, int path_count, const char* paths[])
 {
 	sDropCallback((TuiInstance)glfwGetWindowUserPointer(window), path_count, paths);
+	GLFW_CLEAR_ERRORS()
 }
 
 tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction callback)
 {
+	if (instance == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		return;
+	}
+	if (instance->IsDamaged == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
+		return;
+	}
+
 	tuiDropFunction old_callback = sDropCallback;
 	sDropCallback = callback;
 	if (callback == NULL)
@@ -1200,5 +2174,6 @@ tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction
 	{
 		glfwSetDropCallback(instance->window, glfwDropCallback);
 	}
+	GLFW_CHECK_ERROR()
 	return old_callback;
 }

@@ -1,6 +1,7 @@
 #include <TUIC/cursor.h>
 #include "image_inline.h"
 #include <GLFW/glfw3.h>
+#include "glfw_error_check.h"
 #include <TUIC/debug.h>
 #include <TUIC/system.h>
 #include <TUIC/boolean.h>
@@ -9,11 +10,6 @@ static size_t sCursorCount;
 
 TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -25,35 +21,37 @@ TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 	{
 		return NULL;
 	}
+	TuiCursor cursor = glfwCreateCursor(&glfw_image, xhot, yhot);
+	GLFW_CHECK_ERROR_RETURN(NULL)
 	sCursorCount++;
-	return glfwCreateCursor(&glfw_image, xhot, yhot);
+	return cursor;
 }
 
 TuiCursor tuiCursorCreateStandard(TuiCursorShape shape)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	if (tuiCursorShapeIsValid(shape) == TUI_FALSE)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-	// TODO if (tuiCursorShapeIsValid(shape) == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INVALID_CURSOR_SHAPE, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_CURSOR_SHAPE, __func__);
 		return NULL;
 	}
 	sCursorCount++;
-	return glfwCreateStandardCursor(shape);
+	TuiCursor cursor = glfwCreateStandardCursor(shape);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	sCursorCount++;
+	return cursor;
 }
 
 void tuiCursorDestroy(TuiCursor cursor)
 {
 	if (cursor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_CURSOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_CURSOR, __func__);
 		return;
 	}
-	sCursorCount--;
 	glfwDestroyCursor(cursor);
+	GLFW_CHECK_ERROR()
+	sCursorCount--;
+	
 }
 
 int tuiGetCursorCount()

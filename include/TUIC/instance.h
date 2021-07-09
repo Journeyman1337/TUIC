@@ -154,7 +154,7 @@ void tuiInstanceGetPixelDimensons(TuiInstance instance, int* width, int* height)
  *
  * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
@@ -174,7 +174,7 @@ void tuiInstanceDrawBatch(TuiInstance instance, TuiAtlas atlas, TuiPalette palet
  *
  * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH_SATA if batch_data is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
@@ -199,7 +199,7 @@ void tuiInstanceDrawBatchData(TuiInstance instance, TuiAtlas atlas, TuiPalette p
  * 
  * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
  * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match instance.
@@ -226,7 +226,7 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiAtlas atlas, TuiPa
  * 
  * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH_SATA if batch_data is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.

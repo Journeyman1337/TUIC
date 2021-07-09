@@ -1,16 +1,13 @@
 #include <TUIC/joystick.h>
 #include <TUIC/system.h>
 #include <GLFW/glfw3.h>
+#include "glfw_error_check.h"
 
 TuiBoolean tuiJoystickIsPresent(TuiJoystickId joystick_id)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return TUI_FALSE;
-	}
-
-	if (glfwJoystickPresent(joystick_id) == TUI_TRUE)
+	int present = glfwJoystickPresent(joystick_id);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (present == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
@@ -19,91 +16,72 @@ TuiBoolean tuiJoystickIsPresent(TuiJoystickId joystick_id)
 
 const float* tuiGetJoystickAxes(TuiJoystickId joystick_id, int* count)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	int out_count = 0;
+	const float* axes = glfwGetJoystickAxes(joystick_id, &out_count);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	if (count != NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
+		*count = out_count;
 	}
-
-	return glfwGetJoystickAxes(joystick_id, count);
+	return axes;
 }
 
 const unsigned char* tuiGetJoystickButtons(TuiJoystickId joystick_id, int* count)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	int out_count = 0;
+	const unsigned char* buttons = glfwGetJoystickButtons(joystick_id, count);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	if (count != NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
+		*count = out_count;
 	}
-
-	return glfwGetJoystickButtons(joystick_id, count);
+	return buttons;
 }
 
 const unsigned char* tuiGetJoystickHats(TuiJoystickId joystick_id, int* count)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	int out_count = 0;
+	const unsigned char* hats = glfwGetJoystickHats(joystick_id, count);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	if (count != NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
+		*count = out_count;
 	}
-
-
-	return tuiGetJoystickHats(joystick_id, count);
+	return hats;
 }
 
 const char* tuiGetJoystickName(TuiJoystickId joystick_id)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwGetJoystickName(joystick_id);
+	const char* name = glfwGetJoystickName(joystick_id);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return name;
 }
 
 const char* tuiGetJoystickGUID(TuiJoystickId joystick_id)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwGetJoystickGUID(joystick_id);
+	const char* guid = glfwGetJoystickGUID(joystick_id);
+	GLFW_CHECK_ERROR(NULL)
+	return guid;
 }
 
 void tuiSetJoystickUserPointer(TuiJoystickId joystick_id, void* pointer)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-
 	glfwSetJoystickUserPointer(joystick_id, pointer);
+	GLFW_CHECK_ERROR()
 }
 
 void* tuiGetJoystickUserPointer(TuiJoystickId joystick_id)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwGetJoystickUserPointer(joystick_id);
+	void* ptr = glfwGetJoystickUserPointer(joystick_id);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return ptr;
 }
 
 TuiBoolean tuiJoystickIsGamepad(TuiJoystickId joystick_id)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
-	}
-
-	if (glfwJoystickIsGamepad(joystick_id) == GLFW_TRUE)
+	int is_gamepad = glfwJoystickIsGamepad(joystick_id);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (is_gamepad == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
@@ -112,13 +90,9 @@ TuiBoolean tuiJoystickIsGamepad(TuiJoystickId joystick_id)
 
 TuiBoolean tuiUpdateGamepadMappings(const char* string)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
-	}
-
-	if (glfwUpdateGamepadMappings(string) == GLFW_TRUE)
+	int updated = glfwUpdateGamepadMappings(string);
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (updated == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
@@ -127,22 +101,14 @@ TuiBoolean tuiUpdateGamepadMappings(const char* string)
 
 const char* tuiGetGamepadName(TuiJoystickId joystick_id)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwGetGamepadName(joystick_id);
+	const char* name = glfwGetGamepadName(joystick_id);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return name;
 }
 
 tuiJoysticFunction tuiSetJoystickCallback(tuiJoysticFunction callback)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwSetJoystickCallback(callback);
+	tuiJoysticFunction joystick_function = glfwSetJoystickCallback(callback);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return joystick_function;
 }

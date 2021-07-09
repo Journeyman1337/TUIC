@@ -205,7 +205,7 @@ TuiAtlas tuiGlyphAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixe
  *
  * @param atlas The @ref TuiAtlas object to destroy.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
  */
 void tuiGlyphAtlasDestroy(TuiAtlas atlas);
@@ -216,7 +216,7 @@ void tuiGlyphAtlasDestroy(TuiAtlas atlas);
  * 
  * @returns The @ref TuiInstance. NULL is returned on error.
  *
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 TuiInstance tuiGlyphAtlasGetInstance(TuiAtlas atlas);
 /*!
@@ -226,7 +226,7 @@ TuiInstance tuiGlyphAtlasGetInstance(TuiAtlas atlas);
  * 
  * @returns The amount of color channels. 0 is returned on error.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 int tuiGlyphAtlasGetChannelCount(TuiAtlas atlas);
 /*!
@@ -236,7 +236,7 @@ int tuiGlyphAtlasGetChannelCount(TuiAtlas atlas);
  *
  * @returns The pixel width of the texture. 0 is returned on error.
  *
- *  @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ *  @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 int tuiGlyphAtlasGetPixelWidth(TuiAtlas atlas);
 /*!
@@ -246,7 +246,7 @@ int tuiGlyphAtlasGetPixelWidth(TuiAtlas atlas);
  *
  * @returns The pixel height of the texture. 0 is returned on error.
  *
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 int tuiGlyphAtlasGetPixelHeight(TuiAtlas atlas);
 /*!
@@ -256,7 +256,7 @@ int tuiGlyphAtlasGetPixelHeight(TuiAtlas atlas);
  * @param out_pixel_width A pointer to where the width will be stored. If NULL or an error occurs, it is ignored.
  * @param out_pixel_height A pointer to where the height will be stored. If NULL or an error occurs, it is ignored.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 void tuiGlyphAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height);
 /*!
@@ -266,7 +266,7 @@ void tuiGlyphAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* 
  *
  * @returns The @ref TuiBlendMode. 0 is returned on error.
  *
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiAtlas atlas);
 /*!
@@ -275,7 +275,7 @@ TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiAtlas atlas);
  * @param atlas The @ref TuiAtlas.
  * @param blend_mode The blend mode.
  *
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of atlas is damaged.
  * Throws @ref TUI_ERROR_INVALID_BLEND_MODE if atlas is NULL.
  * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
@@ -288,7 +288,7 @@ void tuiGlyphAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
  *
  * @returns The glyuph count. 0 is returned on error.
  *
- * @errors Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * @errors Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  */
 int tuiGlyphAtlasGetGlyphCount(TuiAtlas atlas);
 /*!

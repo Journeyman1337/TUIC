@@ -1,14 +1,23 @@
 #include <TUIC/tuic.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <TUIC/desktop_callback.h>
+#include "glfw_error_check.h"
 
 static int sActive = TUI_FALSE;
 
 TuiBoolean tuiInit()
 {
-	if (glfwInit() == GLFW_TRUE)
+	if (sActive == TUI_TRUE)
+	{
+		tuiDebugError(TUI_ERROR_ALREADY_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
+
+	int initialized = glfwInit();
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+
+	if (initialized == GLFW_TRUE)
 	{
 		sActive = TUI_TRUE;
 		return TUI_TRUE;
@@ -23,79 +32,51 @@ TuiBoolean tuiIsActive()
 
 void tuiTerminate()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
 	if (tuiGetInstanceCount() != 0)
 	{
-		// TODO tuiDebugError(TUI_ERROR_DANGLING_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_DANGLING_INSTANCE, __func__);
 		return;
 	}
 	if (tuiGetCursorCount() != 0)
 	{
-		// TODO tuiDebugError(TUI_ERROR_DANGLING_CURSOR, __func__);
+		tuiDebugError(TUI_ERROR_DANGLING_CURSOR, __func__);
 		return;
 	}
 
 	sActive = TUI_FALSE;
 	glfwTerminate();
+	GLFW_CHECK_ERROR()
 }
 
 void tuiPollEvents()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-
 	glfwPollEvents();
+	GLFW_CHECK_ERROR()
 }
 
 void tuiWaitEvents()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-
 	glfwWaitEvents();
+	GLFW_CHECK_ERROR()
 }
 
 void tuiWaitEventsTimeout(double timeout)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-
 	glfwWaitEventsTimeout(timeout);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiPostEmptyEvent()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-
 	glfwPostEmptyEvent();
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiRawMouseMotionSupported()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return TUI_FALSE;
-	}
-
-	if (glfwRawMouseMotionSupported() == GLFW_TRUE)
+	int supported = glfwRawMouseMotionSupported();
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (supported == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
@@ -104,57 +85,40 @@ TuiBoolean tuiRawMouseMotionSupported()
 
 double tuiGetTime()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0.0;
-	}
-
-	return glfwGetTime();
+	double time = glfwGetTime();
+	GLFW_CHECK_ERROR_RETURN(time, 0.0)
+	return time;
 }
 
 void tuiSetTime(double time)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	if (time <= 0 || time >= 18446744073.0)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_TIME, __func__);
 		return;
 	}
-
 	glfwSetTime(time);
+	GLFW_CHECK_ERROR()
 }
 
 uint64_t tuiGetTimerValue()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
-	}
-
-	return glfwGetTimerValue();
+	uint64_t timer_value = glfwGetTimerValue();
+	GLFW_CHECK_ERROR_RETURN(0)
+	return timer_value;
 }
 
 uint64_t tuiGetTimerFrequency()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
-	}
-
-	return glfwGetTimerFrequency();
+	uint64_t timer_frequency = glfwGetTimerFrequency();
+	GLFW_CHECK_ERROR_RETURN(0)
 }
 
 TuiBoolean tuiVulkanSupported()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
-	}
-
-	if (glfwVulkanSupported() == GLFW_TRUE)
+	int supported = glfwVulkanSupported();
+	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	if (supported == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}

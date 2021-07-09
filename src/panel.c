@@ -196,7 +196,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 	}
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 	if (batch == NULL)
@@ -286,7 +286,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 	}
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 	if (batch == NULL)

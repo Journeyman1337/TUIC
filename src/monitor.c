@@ -1,107 +1,78 @@
 #include <TUIC/monitor.h>
 #include <TUIC/system.h>
 #include <GLFW/glfw3.h>
+#include "glfw_error_check.h"
 #include <TUIC/boolean.h>
+#include <TUIC/debug.h>
+
 
 TuiMonitor* tuiGetMonitors(int* count)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	int out_count;
+	TuiMonitor* monitors = glfwGetMonitors(&out_count);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	if (count != NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
+		*count = out_count;
 	}
-	return glfwGetMonitors(count);
+	
+	return monitors;
 }
 
 TuiMonitor tuiGetPrimaryMonitor()
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-	return glfwGetPrimaryMonitor();
+	TuiMonitor monitor = glfwGetPrimaryMonitor();
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return monitor;
 }
 
 void tuiGetMonitorPos(TuiMonitor monitor, int* xpos, int* ypos)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
 	glfwGetMonitorPos(monitor, xpos, ypos);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiGetMonitorWorkarea(TuiMonitor monitor, int* xpos, int* ypos, int* width, int* height)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
 	glfwGetMonitorWorkarea(monitor, xpos, ypos, width, height);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiGetMonitorPhysicalSize(TuiMonitor monitor, int* widthMM, int* heightMM)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
 	glfwGetMonitorPhysicalSize(monitor, widthMM, heightMM);
+	GLFW_CHECK_ERROR()
 }
 
 void tuiGetMonitorContentScale(TuiMonitor monitor, float* xscale, float* yscale)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
 	glfwGetMonitorContentScale(monitor, xscale, yscale);
+	GLFW_CHECK_ERROR()
 }
 
 const char* tuiGetMonitorName(TuiMonitor monitor)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-	return glfwGetMonitorName(monitor);
+	const char* name = glfwGetMonitorName(monitor);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return name;
 }
 
 void tuiSetMonitorUserPointer(TuiMonitor monitor, void* pointer)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return;
-	}
-
 	glfwSetMonitorUserPointer(monitor, pointer);
+	GLFW_CHECK_ERROR()
 }
 
 void* tuiGetMonitorUserPointer(TuiMonitor monitor)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return glfwGetMonitorUserPointer(monitor);
+	void* ptr = glfwGetMonitorUserPointer(monitor);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return ptr;
 }
 
 tuiMonitorFunction tuiSetMonitorCallback(tuiMonitorFunction callback)
 {
-	if (tuiIsActive() == TUI_FALSE)
-	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return NULL;
-	}
-
-	return (tuiMonitorFunction)glfwSetMonitorCallback(callback);
+	tuiMonitorFunction monitor_function = (tuiMonitorFunction)glfwSetMonitorCallback(callback);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return monitor_function;
 }

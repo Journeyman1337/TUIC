@@ -461,7 +461,7 @@ void tuiGlyphAtlasDestroy(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 
@@ -474,7 +474,7 @@ TuiInstance tuiGlyphAtlasGetInstance(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return NULL;
 	}
 
@@ -485,7 +485,7 @@ int tuiGlyphAtlasGetChannelCount(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
 	}
 
@@ -496,7 +496,7 @@ int tuiGlyphAtlasGetPixelWidth(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
 	}
 
@@ -507,7 +507,7 @@ int tuiGlyphAtlasGetPixelHeight(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
 	}
 
@@ -518,7 +518,7 @@ void tuiGlyphAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* 
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 	if (out_pixel_width != NULL)
@@ -536,7 +536,7 @@ TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
 	}
 	return atlas->BlendMode;
@@ -546,7 +546,7 @@ void tuiGlyphAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 	if (atlas->Instance->IsDamaged == TUI_TRUE)
@@ -566,7 +566,7 @@ int tuiGlyphAtlasGetGlyphCount(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_GLYPH_ATLAS, __func__);
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
 	}
 	return atlas->GlyphCount;

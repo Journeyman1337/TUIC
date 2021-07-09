@@ -162,7 +162,7 @@ int tuiPanelGetPixelHeight(TuiPanel panel);
  * 
  * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH is batch is NULL.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
  * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match the @ref TuiInstance of panel.
@@ -181,7 +181,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
  *
  * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH_DATA if batch_data is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
@@ -206,7 +206,7 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, i
  *
  * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
  * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
  * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match the @ref TuiInstance of panel.
@@ -233,7 +233,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
  *
  * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
  * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
+ * Throws @ref TUI_ERROR_NULL_ATLAS if atlas is NULL.
  * Throws @ref TUI_ERROR_NULL_BATCH_DATA if batch_data is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.

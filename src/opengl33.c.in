@@ -98,7 +98,7 @@ void gld_message(const char* a, const char* b)
 	strcat(combined_message, a);
 	strcat(combined_message, message_seperator);
 	strcat(combined_message, b);
-	tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, combined_message);
+	tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, combined_message);
 }
 inline void CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_handle, uint32_t* renderbuffer_handle, size_t width, size_t height)
 {
@@ -118,7 +118,7 @@ inline void CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_ha
 	GLD_CALL(uint32_t status = glCheckFramebufferStatus(GL_FRAMEBUFFER));
 	if (status != GL_FRAMEBUFFER_COMPLETE)
 	{
-		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Framebuffer not complete!");
+		tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, "Framebuffer not complete!");
 	}
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 }
@@ -153,7 +153,7 @@ inline uint32_t GetGlTextureFormatFromChannels(size_t channels)
 	case 4:
 		return GL_RGBA;
 	default:
-		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not get texture format from invalid channel count.");
+		tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, "Can not get texture format from invalid channel count.");
 		return 0;
 	}
 }
@@ -166,7 +166,7 @@ inline uint32_t GetGlInternalFormatFromChannels(size_t channels)
 	case 4:
 		return GL_RGBA8;
 	default:
-		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not get internal format from invalid channel count.");
+		tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, "Can not get internal format from invalid channel count.");
 		return 0;
 	}
 }
@@ -179,7 +179,7 @@ inline uint32_t GetGlFilterModeFromEnum(TuiFilterMode filter_mode)
 		case TUI_FILTER_BILINEAR:
 			return GL_LINEAR;
 		default:
-			tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Can not get filter mode from invalid enum.");
+			tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, "Can not get filter mode from invalid enum.");
 			return 0;
 	}
 }
@@ -499,7 +499,7 @@ void tuiInstanceCreate_Opengl33(TuiInstance instance, void* proc_address)
 {
 	if (!gladLoadGLLoader((GLADloadproc)proc_address))
 	{
-		tuiDebugError(TUI_ERROR_BACKEND_SPECIFIC, "Failed to initialize GLAD.");
+		tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, "Failed to initialize GLAD.");
         return;
 	}    
 	tuiOpengl33InstanceCreateExistingContext(instance);

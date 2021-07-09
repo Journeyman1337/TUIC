@@ -1,6 +1,8 @@
 #include <TUIC/key.h>
 #include <GLFW/glfw3.h>
 #include <stddef.h>
+#include <TUIC/system.h>
+#include <TUIC/debug.h>
 
 const char* kTuik_Space_Name = "KEY_SPACE";
 
@@ -1008,11 +1010,29 @@ TuiKey tuiStringToKey(const char* str)
 
 int tuiKeyGetScancode(TuiKey key)
 {
-	if (tuiIsActive() == TUI_FALSE)
+	int scancode = glfwGetKeyScancode(key);
+
+	int glfw_error = glfwGetError(NULL);
+	if (glfw_error == GLFW_PLATFORM_ERROR)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INACTIVE_SYSTEM, __func__);
-		return 0;
+		// TODO tuiDebugError(TUI_ERROR_PLATFORM, __func__);
+		return -1;
+	}
+	else if (glfw_error == GLFW_NOT_INITIALIZED)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return -1;
+	}
+	else if (glfw_error == GLFW_INVALID_ENUM)
+	{
+		// TODO tuiDebugError(TUI_ERROR_INVALID_KEY, __func__);
+		return -1;
+	}
+	else if (glfw_error != GLFW_NO_ERROR)
+	{
+		tuiDebugError(TUI_ERROR_UNKNOWN, __func__);
+		return -1;
 	}
 
-	return glfwGetKeyScancode(key);
+	return -1;
 }
