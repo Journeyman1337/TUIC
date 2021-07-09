@@ -62,12 +62,12 @@ typedef struct TuiOpengl33InstanceApiData
 	uint32_t DataBufferHandle;
 	uint32_t DataTextureHandle;
 } TuiOpengl33InstanceApiData;
-typedef struct TuiOpengl33GlyphAtlasApiData
+typedef struct TuiOpengl33AtlasApiData
 {
 	uint32_t SheetTextureHandle;
 	uint32_t FontmapBufferHandle;
 	uint32_t FontmapTextureHandle;
-} TuiOpengl33GlyphAtlasApiData;
+} TuiOpengl33AtlasApiData;
 typedef struct TuiOpengl33TextureApiData
 {
 	uint32_t TextureHandle;
@@ -310,7 +310,7 @@ inline int GetBlendModeUniformValue(TuiDetailFlag blend_mode)
 }
 inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width, size_t framebuffer_height, TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, TuiBlendMode blend_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, const float* matrix)
 {
-	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
 	TuiOpengl33PaletteApiData* palette_data = NULL;
 
 	if (palette != NULL)
@@ -548,10 +548,10 @@ void tuiInstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, 
 	GLD_CALL(glClearColor((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f));
 	GLD_CALL(glClear(GL_COLOR_BUFFER_BIT));
 }
-void tuiGlyphAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
+void tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
 {
-	atlas->ApiData = (TuiOpengl33GlyphAtlasApiData*)tuiAllocate(sizeof(TuiOpengl33GlyphAtlasApiData));
-	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
+	atlas->ApiData = (TuiOpengl33AtlasApiData*)tuiAllocate(sizeof(TuiOpengl33AtlasApiData));
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
 	atlas_data->SheetTextureHandle = 0;
 	atlas_data->FontmapBufferHandle = 0;
 	atlas_data->FontmapTextureHandle = 0;
@@ -583,9 +583,9 @@ void tuiGlyphAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, con
 		GLD_CALL(glTexBuffer(GL_TEXTURE_BUFFER, GL_RGBA32F, atlas_data->FontmapBufferHandle));
 	}
 }
-void tuiGlyphAtlasDestroy_Opengl33(TuiAtlas atlas)
+void tuiAtlasDestroy_Opengl33(TuiAtlas atlas)
 {
-	TuiOpengl33GlyphAtlasApiData* atlas_data = (TuiOpengl33GlyphAtlasApiData*)atlas->ApiData;
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
 	if (atlas->Instance->IsDamaged == TUI_FALSE)
 	{
 		GLD_CLEAR();
