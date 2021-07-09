@@ -3,9 +3,11 @@
 #ifndef TUIC_PALETTE_H //header guard
 #define TUIC_PALETTE_H
 #ifdef __cplusplus //extern C guard
-#include <TUIC/types.h>
 extern "C" {
 #endif
+#include <TUIC/types.h>
+#include <stdint.h>
+
 /*! 
  * @brief The default Xterm color palette, with every three indices representing the RGB values of each of the 256 colors ordered by color index. 
  */
