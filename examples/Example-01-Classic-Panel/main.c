@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void TuiMessageCallback(int error_code, const char* msg)
+void TuiMessageCallback(TuiErrorCode error_code, const char* msg)
 {
     if (error_code == TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC)
     {
