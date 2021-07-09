@@ -51,7 +51,7 @@ typedef struct TuiInstance_s
 	/*!
 	 * @brief The amount of @ref TuiAtlas objects that currently exist attached to this @ref TuiInstance.
 	 */
-	size_t GlyphAtlasCount;
+	size_t AtlasCount;
 	/*!
 	 * @brief The amount of @ref TuiTexture objects that currently exist attached to this @ref TuiInstance.
 	 */

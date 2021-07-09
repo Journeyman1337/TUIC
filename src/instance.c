@@ -60,7 +60,7 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 	instance->PanelCount = 0;
 	instance->PixelWidth = (size_t)pixel_width;
 	instance->PixelHeight = (size_t)pixel_height;
-	instance->GlyphAtlasCount = 0;
+	instance->AtlasCount = 0;
 	instance->PaletteCount = 0;
 	instance->IsDamaged = TUI_FALSE;
 	instance->window = window;
@@ -101,7 +101,7 @@ void tuiInstanceDestroy(TuiInstance instance)
 		tuiDebugError(TUI_ERROR_DANGLING_PANEL, __func__);
 		dangling = TUI_TRUE;
 	}
-	if (instance->GlyphAtlasCount > 0)
+	if (instance->AtlasCount > 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_ATLAS, __func__);
 		dangling = TUI_TRUE;

@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
-TuiAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -71,13 +71,13 @@ TuiAtlas tuiGlyphAtlasCreate(TuiInstance instance, TuiImage image, int glyph_cou
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, NULL);
-	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
+	atlas->Instance->AtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
 }
 
-TuiAtlas tuiGlyphAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -134,13 +134,13 @@ TuiAtlas tuiGlyphAtlasCreateRawPixels(TuiInstance instance, int pixel_width , in
 	atlas->GlyphCount = glyph_count;
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, NULL);
-	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
+	atlas->Instance->AtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
 }
 
-TuiAtlas tuiGlyphAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -186,12 +186,12 @@ TuiAtlas tuiGlyphAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int gly
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
+	atlas->Instance->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiGlyphAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -247,12 +247,12 @@ TuiAtlas tuiGlyphAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_widt
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
+	atlas->Instance->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiGlyphAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -292,12 +292,12 @@ TuiAtlas tuiGlyphAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
+	atlas->Instance->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiGlyphAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -347,15 +347,15 @@ TuiAtlas tuiGlyphAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width,
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, NULL);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
+	atlas->Instance->AtlasCount++;
 	return atlas;
 }
 
 const size_t kCodepageGlyphCount = 256;
 const size_t kCodepageGlyphTileDimensions = 16;
 
-TuiAtlas tuiGlyphAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -396,12 +396,12 @@ TuiAtlas tuiGlyphAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, T
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiGlyphAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
+	atlas->Instance->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiGlyphAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
 {
 	if (instance == NULL)
 	{
@@ -452,12 +452,12 @@ TuiAtlas tuiGlyphAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixe
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiGlyphAtlasCreate_Opengl33(atlas, pixels, NULL);
-	atlas->Instance->GlyphAtlasCount++;
+	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
+	atlas->Instance->AtlasCount++;
 	return atlas;
 }
 
-void tuiGlyphAtlasDestroy(TuiAtlas atlas)
+void tuiAtlasDestroy(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -465,12 +465,12 @@ void tuiGlyphAtlasDestroy(TuiAtlas atlas)
 		return;
 	}
 
-	tuiGlyphAtlasDestroy_Opengl33(atlas);
-	atlas->Instance->GlyphAtlasCount--;
+	tuiAtlasDestroy_Opengl33(atlas);
+	atlas->Instance->AtlasCount--;
 	tuiFree(atlas);
 }
 
-TuiInstance tuiGlyphAtlasGetInstance(TuiAtlas atlas)
+TuiInstance tuiAtlasGetInstance(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -481,7 +481,7 @@ TuiInstance tuiGlyphAtlasGetInstance(TuiAtlas atlas)
 	return atlas->Instance;
 }
 
-int tuiGlyphAtlasGetChannelCount(TuiAtlas atlas)
+int tuiAtlasGetChannelCount(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -492,7 +492,7 @@ int tuiGlyphAtlasGetChannelCount(TuiAtlas atlas)
 	return (int)atlas->ChannelCount;
 }
 
-int tuiGlyphAtlasGetPixelWidth(TuiAtlas atlas)
+int tuiAtlasGetPixelWidth(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -503,7 +503,7 @@ int tuiGlyphAtlasGetPixelWidth(TuiAtlas atlas)
 	return atlas->PixelWidth;
 }
 
-int tuiGlyphAtlasGetPixelHeight(TuiAtlas atlas)
+int tuiAtlasGetPixelHeight(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -514,7 +514,7 @@ int tuiGlyphAtlasGetPixelHeight(TuiAtlas atlas)
 	return atlas->PixelHeight;
 }
 
-void tuiGlyphAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height)
+void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height)
 {
 	if (atlas == NULL)
 	{
@@ -532,7 +532,7 @@ void tuiGlyphAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* 
 	}
 }
 
-TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiAtlas atlas)
+TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -542,7 +542,7 @@ TuiBlendMode tuiGlyphAtlasGetBlendMode(TuiAtlas atlas)
 	return atlas->BlendMode;
 }
 
-void tuiGlyphAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
+void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 {
 	if (atlas == NULL)
 	{
@@ -562,7 +562,7 @@ void tuiGlyphAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 	atlas->BlendMode = blend_mode;
 }
 
-int tuiGlyphAtlasGetGlyphCount(TuiAtlas atlas)
+int tuiAtlasGetGlyphCount(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
