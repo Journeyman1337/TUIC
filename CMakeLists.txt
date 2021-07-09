@@ -29,6 +29,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/glfw_error_check.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
@@ -47,6 +48,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/time.h
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
@@ -64,6 +66,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/desktop_callback.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_flag.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/events.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
@@ -79,6 +82,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
 )

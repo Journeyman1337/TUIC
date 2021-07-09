@@ -17,19 +17,18 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*! \file system.h
+/*! \file time.h
  */
-#ifndef TUIC_SYSTEM_H //header guard
-#define TUIC_SYSTEM_H
+#ifndef TUIC_TIME_H //header guard
+#define TUIC_TIME_H
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-
-TuiBoolean tuiInit();
-TuiBoolean tuiIsActive();
-void tuiTerminate();
-TuiBoolean tuiRawMouseMotionSupported();
-TuiBoolean tuiVulkanSupported();
+ 
+double tuiGetTime();
+void tuiSetTime(double time);
+uint64_t tuiGetTimerValue();
+uint64_t tuiGetTimerFrequency();
 
 #ifdef __cplusplus //extern C guard
 }
