@@ -49,7 +49,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/time.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/time.c
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
