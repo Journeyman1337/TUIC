@@ -40,7 +40,7 @@ int main()
 
     /* Create the TUIC instance. */
     const char* window_title = "Example 1";
-    TuiInstance instance = tuiInstanceCreate(window_width, window_height, window_title, &window_create_info);
+    TuiInstance instance = tuiInstanceCreateWindow(window_width, window_height, window_title, &window_create_info);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
