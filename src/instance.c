@@ -177,7 +177,6 @@ inline static void _InstanceFramebufferResize(TuiInstance instance, int pixel_wi
 	}
 	instance->PixelWidth = (size_t)pixel_width;
 	instance->PixelHeight = (size_t)pixel_height;
-	tuiInstanceResizeScreen_Opengl33(instance, pixel_width, pixel_height);
 }
 
 void tuiInstanceResize(TuiInstance instance, int pixel_width, int pixel_height)
