@@ -158,7 +158,7 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 	instance->PaletteCount = 0;
 	instance->IsDamaged = TUI_FALSE;
 	instance->window = window;
-	instance->UserPtr = NULL;
+	instance->UserPointer = NULL;
 	instance->WindowMoveCallback = NULL;
 	instance->WindowRefreshCallback = NULL;
 	instance->WindowFocusCallback = NULL;
@@ -1706,7 +1706,7 @@ void tuiInstanceSetWindowFocusOnShow(TuiInstance instance, TuiBoolean focus_on_s
 	GLFW_CHECK_ERROR()
 }
 
-void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr)
+void tuiInstanceSetUserPointer(TuiInstance instance, void* ptr)
 {
 	if (instance == NULL)
 	{
@@ -1719,10 +1719,10 @@ void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr)
 		return;
 	}
 
-	instance->UserPtr = ptr;
+	instance->UserPointer = ptr;
 }
 
-void* tuiInstanceGetUserPtr(TuiInstance instance)
+void* tuiInstanceGetUserPointer(TuiInstance instance)
 {
 	if (instance == NULL)
 	{
@@ -1735,7 +1735,7 @@ void* tuiInstanceGetUserPtr(TuiInstance instance)
 		return NULL;
 	}
 
-	return instance->UserPtr;
+	return instance->UserPointer;
 }
 
 void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor)
@@ -1971,7 +1971,7 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 	return old_callback;
 }
 
-tuiKeyboardKeyFunction tuiInstanceSetKeyboardKeyCallback(TuiInstance instance, tuiKeyboardKeyFunction callback)
+tuiKeyboardKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyboardKeyFunction callback)
 {
 	if (instance == NULL)
 	{

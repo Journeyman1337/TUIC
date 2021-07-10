@@ -357,9 +357,9 @@ TuiBoolean tuiInstanceGetWindowFocusOnShow(TuiInstance instance);
 
 void tuiInstanceSetWindowFocusOnShow(TuiInstance instance, TuiBoolean focus_on_show);
 
-void tuiInstanceSetUserPtr(TuiInstance instance, void* ptr);
+void tuiInstanceSetUserPointer(TuiInstance instance, void* ptr);
 
-void* tuiInstanceGetUserPtr(TuiInstance instance);
+void* tuiInstanceGetUserPointer(TuiInstance instance);
 
 void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor);
 

@@ -42,7 +42,7 @@ extern "C" {
  */
 typedef struct TuiInstance_s
 {
-	void* UserPtr;
+	void* UserPointer;
 
 	tuiWindowMoveFunction WindowMoveCallback;
 
