@@ -6,7 +6,6 @@
 const char* kTui_Error_Unknown_Name = TO_STRING(TUI_ERROR_UNKNOWN);
 const char* kTui_Error_None_Name = TO_STRING(TUI_ERROR_NONE);
 const char* kTui_Error_Already_Initialized_Name = TO_STRING(TUI_ERROR_ALREADY_INITIALIZED);
-const char* kTui_Error_Damaged_Instance_Name = TO_STRING(TUI_ERROR_DAMAGED_INSTANCE);
 const char* kTui_Error_Dangling_Atlas_Name = TO_STRING(TUI_ERROR_DANGLING_ATLAS);
 const char* kTui_Error_Dangling_Cursor_Name = TO_STRING(TUI_ERROR_DANGLING_CURSOR);
 const char* kTui_Error_Dangling_Instance_Name = TO_STRING(TUI_ERROR_DANGLING_INSTANCE);
@@ -82,7 +81,6 @@ const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name = TO_STRING(TUI_ERROR_U
 const char* kTui_Error_Unknown_Description = "An unkown error has occured. This may be a bug with TUIC library.";
 const char* kTui_Error_None_Description = "No error has occured.";
 const char* kTui_Error_Already_Initialized_Description = "TUIC has already been initialized.";
-const char* kTui_Error_Damaged_Instance_Description = "Can not use object associated with a damaged TuiInstance.";
 const char* kTui_Error_Dangling_Atlas_Description = "Attempting to destroy a TuiInstance with one or more dangling TuiAtlas.";
 const char* kTui_Error_Dangling_Cursor_Description = "Attempting to terminate TUIC with one or more dangling TuiCursor.";
 const char* kTui_Error_Dangling_Instance_Description = "Attempting to terminate TUIC with one or more dangling TuiInstance.";
@@ -177,8 +175,6 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_None_Name;
 	case TUI_ERROR_ALREADY_INITIALIZED:
 		return kTui_Error_Already_Initialized_Name;
-	case TUI_ERROR_DAMAGED_INSTANCE:
-		return kTui_Error_Damaged_Instance_Name;
 	case TUI_ERROR_DANGLING_ATLAS:
 		return kTui_Error_Dangling_Atlas_Name;
 	case TUI_ERROR_DANGLING_CURSOR:
@@ -331,10 +327,6 @@ int tuiStringToErrorCode(const char* str)
 	else if (strcmp(str, kTui_Error_Already_Initialized_Name) == 0)
 	{
 		return TUI_ERROR_ALREADY_INITIALIZED;
-	}
-	else if (strcmp(str, kTui_Error_Damaged_Instance_Name) == 0)
-	{
-		return TUI_ERROR_DAMAGED_INSTANCE;
 	}
 	else if (strcmp(str, kTui_Error_Dangling_Atlas_Name) == 0)
 	{
@@ -634,8 +626,6 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_None_Description;
 	case TUI_ERROR_ALREADY_INITIALIZED:
 		return kTui_Error_Already_Initialized_Description;
-	case TUI_ERROR_DAMAGED_INSTANCE:
-		return kTui_Error_Damaged_Instance_Description;
 	case TUI_ERROR_DANGLING_ATLAS:
 		return kTui_Error_Dangling_Atlas_Description;
 	case TUI_ERROR_DANGLING_CURSOR:
