@@ -283,9 +283,9 @@ void tuiInstanceSetWindowDefaultIcon(TuiInstance instance);
 
 void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* images);
 
-void tuiInstanceGetWindowMove(TuiInstance instance, int* xpos, int* ypos);
+void tuiInstanceGetWindowPosition(TuiInstance instance, int* xpos, int* ypos);
 
-void tuiInstanceSetWindowMove(TuiInstance instance, int xpos, int ypos); 
+void tuiInstanceSetWindowPosition(TuiInstance instance, int xpos, int ypos); 
 
 void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minheight, int maxwidth, int maxheight);
 

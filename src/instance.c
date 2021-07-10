@@ -954,7 +954,7 @@ void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* i
 	// TODO glfwSetWindowIcon(instance->window, count, );
 }
 
-void tuiInstanceGetWindowPos(TuiInstance instance, int* xpos, int* ypos)
+void tuiInstanceGetWindowPosition(TuiInstance instance, int* xpos, int* ypos)
 {
 	if (instance == NULL)
 	{
@@ -971,7 +971,7 @@ void tuiInstanceGetWindowPos(TuiInstance instance, int* xpos, int* ypos)
 	GLFW_CHECK_ERROR()
 }
 
-void tuiInstanceSetWindowPos(TuiInstance instance, int xpos, int ypos)
+void tuiInstanceSetWindowPosition(TuiInstance instance, int xpos, int ypos)
 {
 	if (instance == NULL)
 	{
