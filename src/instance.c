@@ -64,6 +64,21 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 	instance->PaletteCount = 0;
 	instance->IsDamaged = TUI_FALSE;
 	instance->window = window;
+	instance->UserPtr = NULL;
+	instance->WindowMoveCallback = NULL;
+	instance->WindowRefreshCallback = NULL;
+	instance->WindowFocusCallback = NULL;
+	instance->WindowIconifyCallback = NULL;
+	instance->WindowMaximizeCallback = NULL;
+	instance->WindowResizeCallback = NULL;
+	instance->WindowContentScaleCallback = NULL;
+	instance->MouseButtonCallback = NULL;
+	instance->CursorMoveCallback = NULL;
+	instance->CursorEnterCallback = NULL;
+	instance->ScrollCallback = NULL;
+	instance->KeyCallback = NULL;
+	instance->CharCallback = NULL;
+	instance->DropCallback = NULL;
 	glfwSetWindowUserPointer(window, instance);
 	glfwMakeContextCurrent(window);
 	tuiInstanceCreate_Opengl33(instance, ((void*)glfwGetProcAddress));
@@ -1645,11 +1660,10 @@ void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor)
 	GLFW_CHECK_ERROR()
 }
 
-static tuiWindowMoveFunction sWindowMoveCallback = NULL;
-
-static inline void glfwWindowMoveCallback(GLFWwindow* window, int xpos, int ypos)
+static void glfwWindowPosCallback(GLFWwindow* window, int xpos, int ypos)
 {
-	sWindowMoveCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowMoveCallback(instance, xpos, ypos);
 }
 
 tuiWindowMoveFunction tuiInstanceSetWindowMoveCallback(TuiInstance instance, tuiWindowMoveFunction callback)
@@ -1665,25 +1679,24 @@ tuiWindowMoveFunction tuiInstanceSetWindowMoveCallback(TuiInstance instance, tui
 		return;
 	}
 
-	tuiWindowMoveFunction old_callback = sWindowMoveCallback;
-	sWindowMoveCallback = callback;
+	tuiWindowMoveFunction old_callback = instance->WindowMoveCallback;
+	instance->WindowMoveCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowPosCallback(instance->window, NULL);
 	}
 	else
 	{
-		glfwSetWindowPosCallback(instance->window, glfwWindowMoveCallback);
+		glfwSetWindowPosCallback(instance->window, glfwWindowPosCallback);
 	}
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
-static tuiWindowCloseFunction sWindowCloseCallback = NULL;
-
-static inline void glfwWindowCloseCallback(GLFWwindow* window)
+static void glfwWindowCloseCallback(GLFWwindow* window)
 {
-	sWindowCloseCallback((TuiInstance)glfwGetWindowUserPointer(window));
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowCloseCallback(instance);
 }
 
 tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, tuiWindowCloseFunction callback)
@@ -1699,8 +1712,8 @@ tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, t
 		return;
 	}
 
-	tuiWindowCloseFunction old_callback = sWindowCloseCallback;
-	sWindowCloseCallback = callback;
+	tuiWindowCloseFunction old_callback = instance->WindowCloseCallback;
+	instance->WindowCloseCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowCloseCallback(instance->window, NULL);
@@ -1713,11 +1726,10 @@ tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, t
 	return old_callback;
 }
 
-static tuiWindowRefreshFunction sWindowRefreshCallback = NULL;
-
-static inline void glfwWindowRefreshCallback(GLFWwindow* window)
+static void glfwWindowRefreshCallback(GLFWwindow* window)
 {
-	sWindowRefreshCallback((TuiInstance)glfwGetWindowUserPointer(window));
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowRefreshCallback(instance);
 }
 
 tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instance, tuiWindowRefreshFunction callback)
@@ -1733,8 +1745,8 @@ tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instanc
 		return;
 	}
 
-	tuiWindowRefreshFunction old_callback = sWindowRefreshCallback;
-	sWindowRefreshCallback = callback;
+	tuiWindowRefreshFunction old_callback = instance->WindowRefreshCallback;
+	instance->WindowRefreshCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowRefreshCallback(instance->window, NULL);
@@ -1747,11 +1759,10 @@ tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instanc
 	return old_callback;
 }
 
-static tuiWindowFocusFunction sWindowFocusCallback = NULL;
-
-static inline void glfwWindowFocusCallback(GLFWwindow* window, int focused)
+static void glfwWindowFocusCallback(GLFWwindow* window, int focused)
 {
-	sWindowFocusCallback((TuiInstance)glfwGetWindowUserPointer(window),(TuiBoolean)focused);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowFocusCallback(instance, (TuiBoolean)focused);
 } 
 
 tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, tuiWindowFocusFunction callback)
@@ -1767,8 +1778,8 @@ tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, t
 		return;
 	}
 
-	tuiWindowRefreshFunction old_callback = sWindowFocusCallback;
-	sWindowFocusCallback = callback;
+	tuiWindowRefreshFunction old_callback = instance->WindowFocusCallback;
+	instance->WindowFocusCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowFocusCallback(instance->window, NULL);
@@ -1781,11 +1792,10 @@ tuiWindowFocusFunction tuiInstanceSetWindowFocusCallback(TuiInstance instance, t
 	return old_callback;
 }
 
-static tuiWindowIconifyFunction sWindowIconifyCallback = NULL;
-
-static inline void glfwWindowIconifyCallback(GLFWwindow* window, int iconified)
+static void glfwWindowIconifyCallback(GLFWwindow* window, int iconified)
 {
-	sWindowIconifyCallback((TuiInstance)glfwGetWindowUserPointer(window), (TuiBoolean)iconified);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowIconifyCallback(instance, (TuiBoolean) iconified);
 }
 
 tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instance, tuiWindowIconifyFunction callback)
@@ -1801,8 +1811,8 @@ tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instanc
 		return;
 	}
 
-	tuiWindowIconifyFunction old_callback = sWindowIconifyCallback;
-	sWindowIconifyCallback = callback;
+	tuiWindowIconifyFunction old_callback = instance->WindowIconifyCallback;
+	instance->WindowIconifyCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowIconifyCallback(instance->window, NULL);
@@ -1815,11 +1825,10 @@ tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instanc
 	return old_callback;
 }
 
-static tuiWindowMaximizeFunction sWindowMaximizeCallback = NULL;
-
-static inline void glfwWindowMaximizeCallback(GLFWwindow* window, int maximized)
+static void glfwWindowMaximizeCallback(GLFWwindow* window, int maximized)
 {
-	sWindowMaximizeCallback((TuiInstance)glfwGetWindowUserPointer(window), (TuiBoolean)maximized);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowMaximizeCallback(instance, (TuiBoolean)maximized);
 }
 
 tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance instance, tuiWindowMaximizeFunction callback)
@@ -1835,8 +1844,8 @@ tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance insta
 		return;
 	}
 
-	tuiWindowMaximizeFunction old_callback = sWindowMaximizeCallback;
-	sWindowMaximizeCallback = callback;
+	tuiWindowMaximizeFunction old_callback = instance->WindowMaximizeCallback;
+	instance->WindowMaximizeCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowMaximizeCallback(instance->window, NULL);
@@ -1849,11 +1858,10 @@ tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance insta
 	return old_callback;
 }
 
-static tuiWindowResizeFunction sWindowResizeCallback = NULL;
-
-static inline void glfwWindowFramebufferSizeCallback(GLFWwindow* window, int pixel_width, int pixel_height)
+static void glfwWindowFramebufferSizeCallback(GLFWwindow* window, int pixel_width, int pixel_height)
 {
-	sWindowResizeCallback((TuiInstance)glfwGetWindowUserPointer(window), pixel_width, pixel_height);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowResizeCallback(instance, pixel_width, pixel_height);
 }
 
 tuiWindowResizeFunction tuiInstanceSetResizeCallback(TuiInstance instance, tuiWindowResizeFunction callback)
@@ -1869,8 +1877,8 @@ tuiWindowResizeFunction tuiInstanceSetResizeCallback(TuiInstance instance, tuiWi
 		return;
 	}
 
-	tuiWindowResizeFunction old_callback = sWindowResizeCallback;
-	sWindowResizeCallback = callback;
+	tuiWindowResizeFunction old_callback = instance->WindowResizeCallback;
+	instance->WindowResizeCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetFramebufferSizeCallback(instance->window, NULL);
@@ -1883,11 +1891,10 @@ tuiWindowResizeFunction tuiInstanceSetResizeCallback(TuiInstance instance, tuiWi
 	return old_callback;
 }
 
-static tuiWindowContentScaleFunction sWindowContentScaleCallback = NULL;
-
-static inline void glfwWindowContentScaleCallback(GLFWwindow* window, int pixel_width, int pixel_height)
+static void glfwWindowContentScaleCallback(GLFWwindow* window, int pixel_width, int pixel_height)
 {
-	sWindowContentScaleCallback((TuiInstance)glfwGetWindowUserPointer(window), pixel_width, pixel_height);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->WindowContentScaleCallback(instance, pixel_width, pixel_height);
 }
 
 tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstance instance, tuiWindowContentScaleFunction callback)
@@ -1903,8 +1910,8 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 		return;
 	}
 
-	tuiWindowContentScaleFunction old_callback = sWindowContentScaleCallback;
-	sWindowContentScaleCallback = callback;
+	tuiWindowContentScaleFunction old_callback = instance->WindowContentScaleCallback;
+	instance->WindowContentScaleCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowContentScaleCallback(instance->window, NULL);
@@ -1917,11 +1924,10 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 	return old_callback;
 }
 
-static tuiKeyFunction sKeyCallback = NULL;
-
-static inline void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int button_state, int key_mod)
+static void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int button_state, int key_mod)
 {
-	sKeyCallback((TuiInstance)glfwGetWindowUserPointer(window), (TuiKey)key, scancode, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->KeyCallback(instance, (TuiKey)key, scancode, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
 }
 
 tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction callback)
@@ -1937,8 +1943,8 @@ tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction ca
 		return;
 	}
 
-	tuiKeyFunction old_callback = sKeyCallback;
-	sKeyCallback = callback;
+	tuiKeyFunction old_callback = instance->KeyCallback;
+	instance->KeyCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetKeyCallback(instance->window, NULL);
@@ -1951,11 +1957,10 @@ tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction ca
 	return old_callback;
 }
 
-static tuiCharFunction sCharCallback = NULL;
-
-static inline void glfwCharCallback(GLFWwindow* window, unsigned int charcode)
+static void glfwCharCallback(GLFWwindow* window, unsigned int charcode)
 {
-	sCharCallback((TuiInstance)glfwGetWindowUserPointer(window), charcode);
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->CharCallback(instance, charcode);
 }
 
 tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction callback)
@@ -1971,8 +1976,8 @@ tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction
 		return;
 	}
 
-	tuiCharFunction old_callback = sCharCallback;
-	sCharCallback = callback;
+	tuiCharFunction old_callback = instance->CharCallback;
+	instance->CharCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetCharCallback(instance->window, NULL);
@@ -1985,12 +1990,10 @@ tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction
 	return old_callback;
 }
 
-static tuiMouseButtonFunction sMouseButtonCallback = NULL;
-
-static inline void glfwMouseButtonCallback(GLFWwindow* window, int mouse_button, int button_state, int mod)
+static void glfwMouseButtonCallback(GLFWwindow* window, int mouse_button, int button_state, int key_mod)
 {
-	sMouseButtonCallback((TuiInstance)glfwGetWindowUserPointer(window), (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyMod)mod);
-	GLFW_CLEAR_ERRORS()
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->MouseButtonCallback(instance, (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
 }
 
 tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, tuiMouseButtonFunction callback)
@@ -2006,8 +2009,8 @@ tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, t
 		return;
 	}
 
-	tuiMouseButtonFunction old_callback = sMouseButtonCallback;
-	sMouseButtonCallback = callback;
+	tuiMouseButtonFunction old_callback = instance->MouseButtonCallback;
+	instance->MouseButtonCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetMouseButtonCallback(instance->window, NULL);
@@ -2020,12 +2023,10 @@ tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, t
 	return old_callback;
 }
 
-static tuiCursorMoveFunction sCursorMoveCallback = NULL;
-
-static inline void glfwCursorMoveCallback(GLFWwindow* window, double xpos, double ypos)
+static void glfwCursorMoveCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	sCursorMoveCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
-	GLFW_CLEAR_ERRORS()
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->CursorMoveCallback(instance, xpos, ypos);
 }
 
 tuiCursorMoveFunction tuiInstanceSetCursorMoveCallback(TuiInstance instance, tuiCursorMoveFunction callback)
@@ -2041,8 +2042,8 @@ tuiCursorMoveFunction tuiInstanceSetCursorMoveCallback(TuiInstance instance, tui
 		return;
 	}
 
-	tuiCursorMoveFunction old_callback = sCursorMoveCallback;
-	sCursorMoveCallback = callback;
+	tuiCursorMoveFunction old_callback = instance->CursorMoveCallback;
+	instance->CursorMoveCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetCursorPosCallback(instance->window, NULL);
@@ -2055,12 +2056,10 @@ tuiCursorMoveFunction tuiInstanceSetCursorMoveCallback(TuiInstance instance, tui
 	return old_callback;
 }
 
-static tuiCursorEnterFunction sCursorEnterCallback = NULL;
-
-static inline void glfwCursorEnterCallback(GLFWwindow* window, int entered)
+static void glfwCursorEnterCallback(GLFWwindow* window, int entered)
 {
-	sCursorEnterCallback((TuiInstance)glfwGetWindowUserPointer(window), entered);
-	GLFW_CLEAR_ERRORS()
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->CursorEnterCallback(instance, (TuiBoolean)entered);
 }
 
 tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, tuiCursorEnterFunction callback)
@@ -2076,8 +2075,8 @@ tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, t
 		return;
 	}
 
-	tuiCursorEnterFunction old_callback = sCursorEnterCallback;
-	sCursorEnterCallback = callback;
+	tuiCursorEnterFunction old_callback = instance->CursorEnterCallback;
+	instance->CursorEnterCallback = callback;
 	if (callback == NULL)
 	{
 		glfwCursorEnterCallback(instance->window, NULL);
@@ -2090,12 +2089,10 @@ tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, t
 	return old_callback;
 }
 
-static tuiScrollFunction sScrollCallback = NULL;
-
-static inline void glfwCursorScrollCallback(GLFWwindow* window, double xscroll, double yscroll)
+static void glfwScrollCallback(GLFWwindow* window, double xscroll, double yscroll)
 {
-	sScrollCallback((TuiInstance)glfwGetWindowUserPointer(window), xscroll, yscroll);
-	GLFW_CLEAR_ERRORS()
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->ScrollCallback(instance, xscroll, yscroll);
 }
 
 tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFunction callback)
@@ -2111,26 +2108,24 @@ tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFu
 		return;
 	}
 
-	tuiScrollFunction old_callback = sScrollCallback;
-	sScrollCallback = callback;
+	tuiScrollFunction old_callback = instance->ScrollCallback;
+	instance->ScrollCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetScrollCallback(instance->window, NULL);
 	}
 	else
 	{
-		glfwSetScrollCallback(instance->window, glfwCursorScrollCallback);
+		glfwSetScrollCallback(instance->window, glfwScrollCallback);
 	}
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
 
-static tuiDropFunction sDropCallback = NULL;
-
-static inline void glfwDropCallback(GLFWwindow* window, int path_count, const char* paths[])
+static void glfwDropCallback(GLFWwindow* window, int path_count, const char* paths[])
 {
-	sDropCallback((TuiInstance)glfwGetWindowUserPointer(window), path_count, paths);
-	GLFW_CLEAR_ERRORS()
+	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
+	instance->DropCallback(instance, path_count, paths);
 }
 
 tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction callback)
@@ -2146,8 +2141,8 @@ tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction
 		return;
 	}
 
-	tuiDropFunction old_callback = sDropCallback;
-	sDropCallback = callback;
+	tuiDropFunction old_callback = instance->DropCallback;
+	instance->DropCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetDropCallback(instance->window, NULL);

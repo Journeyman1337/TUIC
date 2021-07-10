@@ -29,6 +29,7 @@ extern "C" {
 #include <GLFW/glfw3.h>
 #include <TUIC/blend_mode.h>
 #include <TUIC/filter_mode.h>
+#include <TUIC/desktop_callback.h>
 
 /*! @} */
 /*! @name Opaque Object Full Declarations
@@ -42,6 +43,36 @@ extern "C" {
 typedef struct TuiInstance_s
 {
 	void* UserPtr;
+
+	tuiWindowMoveFunction WindowMoveCallback;
+
+	tuiWindowCloseFunction WindowCloseCallback;
+
+	tuiWindowRefreshFunction WindowRefreshCallback;
+
+	tuiWindowFocusFunction WindowFocusCallback;
+
+	tuiWindowIconifyFunction WindowIconifyCallback;
+
+	tuiWindowMaximizeFunction WindowMaximizeCallback;
+
+	tuiWindowResizeFunction WindowResizeCallback;
+
+	tuiWindowContentScaleFunction WindowContentScaleCallback;
+
+	tuiMouseButtonFunction MouseButtonCallback;
+
+	tuiCursorMoveFunction CursorMoveCallback;
+
+	tuiCursorEnterFunction CursorEnterCallback;
+
+	tuiScrollFunction ScrollCallback;
+
+	tuiKeyFunction KeyCallback;
+
+	tuiCharFunction CharCallback;
+
+	tuiDropFunction DropCallback;
 
 	GLFWwindow* window;
 	/*!
