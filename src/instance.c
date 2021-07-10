@@ -257,28 +257,6 @@ void tuiInstanceClearColor(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b
 	tuiInstanceClearColor_Opengl33(instance, r, g, b, a);
 }
 
-void tuiInstanceSetDamaged(TuiInstance instance)
-{
-	if (instance == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return;
-	}
-
-	instance->IsDamaged = TUI_TRUE;
-}
-
-int tuiInstanceGetDamaged(TuiInstance instance)
-{
-	if (instance == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return TUI_FALSE;
-	}
-
-	return instance->IsDamaged;
-}
-
 inline static void _InstanceFramebufferResize(TuiInstance instance, int pixel_width, int pixel_height)
 {
 	if (pixel_width == instance->PixelWidth && pixel_height == instance->PixelHeight)

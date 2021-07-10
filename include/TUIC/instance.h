@@ -86,24 +86,6 @@ int tuiGetInstanceCount();
  */
 void tuiInstanceClearColor(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*!
- * @brief Tell an instance that its graphics context was damaged.
- *
- * After an instance is damaged, all objects attached to the instance no longer work and must be manually destroyed and remade.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiInstanceSetDamaged(TuiInstance instance);
-/*!
- * @brief Get if a @ref TuiInstance was damaged.
- * 
- * @returns A @ref TuiBoolean showing if it was damaged. @ref TUI_FALSE is returned on error.
- *
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-int tuiInstanceGetDamaged(TuiInstance instance);
-/*!
  * @brief Resize the main screen of the graphics context of a @ref TuiInstance.
  *
  * @param instance The @ref TuiInstance.
