@@ -34,8 +34,6 @@ extern "C" {
 
 typedef void (* tuiWindowPosFunction)(TuiInstance instance, int xpos, int ypos);
 
-typedef void (* tuiWindowSizeFunction)(TuiInstance instance, int width, int height);
-
 typedef void (* tuiWindowCloseFunction)(TuiInstance instance);
 
 typedef void (* tuiWindowRefreshFunction)(TuiInstance instance);
@@ -46,7 +44,7 @@ typedef void (* tuiWindowIconifyFunction)(TuiInstance instance,TuiBoolean iconif
 
 typedef void (* tuiWindowMaximizeFunction)(TuiInstance instance, TuiBoolean maximized);
 
-typedef void (* tuiWindowFramebufferSizeFunction)(TuiInstance instance, int pixel_width, int pixel_height);
+typedef void (* tuiWindowResizeFunction)(TuiInstance instance, int pixel_width, int pixel_height);
 
 typedef void (* tuiWindowContentScaleFunction)(TuiInstance instance, float xscale, float yscale);
 

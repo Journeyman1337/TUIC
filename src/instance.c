@@ -1679,40 +1679,6 @@ tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWi
 	return old_callback;
 }
 
-static tuiWindowSizeFunction sWindowSizeCallback = NULL;
-
-static inline void glfwWindowSizeCallback(GLFWwindow* window, int width, int height)
-{
-	sWindowSizeCallback((TuiInstance)glfwGetWindowUserPointer(window), width, width);
-}
-
-tuiWindowSizeFunction tuiInstanceSetWindowSizeCallback(TuiInstance instance, tuiWindowSizeFunction callback)
-{
-	if (instance == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
-
-	tuiWindowSizeFunction old_callback = sWindowSizeCallback;
-	sWindowSizeCallback = callback;
-	if (callback == NULL)
-	{
-		glfwSetWindowSizeCallback(instance->window, NULL);
-	}
-	else
-	{
-		glfwSetWindowSizeCallback(instance->window, glfwWindowSizeCallback);
-	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
-	return old_callback;
-}
-
 static tuiWindowCloseFunction sWindowCloseCallback = NULL;
 
 static inline void glfwWindowCloseCallback(GLFWwindow* window)
@@ -1883,14 +1849,14 @@ tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance insta
 	return old_callback;
 }
 
-static tuiWindowFramebufferSizeFunction sWindowFramebufferSizeCallback = NULL;
+static tuiWindowResizeFunction sWindowResizeCallback = NULL;
 
-static inline void glfwWindowFramebufferSizeCallback(GLFWwindow* window, int width, int height)
+static inline void glfwWindowFramebufferSizeCallback(GLFWwindow* window, int pixel_width, int pixel_height)
 {
-	sWindowFramebufferSizeCallback((TuiInstance)glfwGetWindowUserPointer(window), width, height);
+	sWindowResizeCallback((TuiInstance)glfwGetWindowUserPointer(window), pixel_width, pixel_height);
 }
 
-tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstance instance, tuiWindowFramebufferSizeFunction callback)
+tuiWindowResizeFunction tuiInstanceSetResizeCallback(TuiInstance instance, tuiWindowResizeFunction callback)
 {
 	if (instance == NULL)
 	{
@@ -1903,8 +1869,8 @@ tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstan
 		return;
 	}
 
-	tuiWindowFramebufferSizeFunction old_callback = sWindowFramebufferSizeCallback;
-	sWindowFramebufferSizeCallback = callback;
+	tuiWindowResizeFunction old_callback = sWindowResizeCallback;
+	sWindowResizeCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetFramebufferSizeCallback(instance->window, NULL);

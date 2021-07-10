@@ -365,8 +365,6 @@ void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor);
 
 tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWindowPosFunction callback);
 
-tuiWindowSizeFunction tuiInstanceSetWindowSizeCallback(TuiInstance instance, tuiWindowSizeFunction callback);
-
 tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, tuiWindowCloseFunction callback);
 
 tuiWindowRefreshFunction tuiInstanceSetWindowRefreshCallback(TuiInstance instance, tuiWindowRefreshFunction callback);
@@ -377,7 +375,7 @@ tuiWindowIconifyFunction tuiInstanceSetWindowIconifyCallback(TuiInstance instanc
 
 tuiWindowMaximizeFunction tuiInstanceSetWindowMaximizeCallback(TuiInstance instance, tuiWindowMaximizeFunction callback);
 
-tuiWindowFramebufferSizeFunction tuiInstanceSetFramebufferSizeCallback(TuiInstance instance, tuiWindowFramebufferSizeFunction callback);
+tuiWindowResizeFunction tuiInstanceSetResizeCallback(TuiInstance instance, tuiWindowResizeFunction callback);
 
 tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstance instance, tuiWindowContentScaleFunction callback);
 
