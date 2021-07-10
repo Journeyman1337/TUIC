@@ -75,10 +75,10 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 	instance->MouseButtonCallback = NULL;
 	instance->CursorMoveCallback = NULL;
 	instance->CursorEnterCallback = NULL;
-	instance->ScrollCallback = NULL;
-	instance->KeyCallback = NULL;
+	instance->MouseScrollCallback = NULL;
+	instance->KeyboardKeyCallback = NULL;
 	instance->CharCallback = NULL;
-	instance->DropCallback = NULL;
+	instance->FileDropCallback = NULL;
 	glfwSetWindowUserPointer(window, instance);
 	glfwMakeContextCurrent(window);
 	tuiInstanceCreate_Opengl33(instance, ((void*)glfwGetProcAddress));
@@ -1927,10 +1927,10 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 static void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int button_state, int key_mod)
 {
 	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
-	instance->KeyCallback(instance, (TuiKey)key, scancode, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
+	instance->KeyboardKeyCallback(instance, (TuiKey)key, scancode, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
 }
 
-tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction callback)
+tuiKeyboardKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyboardKeyFunction callback)
 {
 	if (instance == NULL)
 	{
@@ -1943,8 +1943,8 @@ tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction ca
 		return;
 	}
 
-	tuiKeyFunction old_callback = instance->KeyCallback;
-	instance->KeyCallback = callback;
+	tuiKeyboardKeyFunction old_callback = instance->KeyboardKeyCallback;
+	instance->KeyboardKeyCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetKeyCallback(instance->window, NULL);
@@ -2092,10 +2092,10 @@ tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, t
 static void glfwScrollCallback(GLFWwindow* window, double xscroll, double yscroll)
 {
 	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
-	instance->ScrollCallback(instance, xscroll, yscroll);
+	instance->MouseScrollCallback(instance, xscroll, yscroll);
 }
 
-tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFunction callback)
+tuiMouseScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiMouseScrollFunction callback)
 {
 	if (instance == NULL)
 	{
@@ -2108,8 +2108,8 @@ tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFu
 		return;
 	}
 
-	tuiScrollFunction old_callback = instance->ScrollCallback;
-	instance->ScrollCallback = callback;
+	tuiMouseScrollFunction old_callback = instance->MouseScrollCallback;
+	instance->MouseScrollCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetScrollCallback(instance->window, NULL);
@@ -2125,10 +2125,10 @@ tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFu
 static void glfwDropCallback(GLFWwindow* window, int path_count, const char* paths[])
 {
 	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
-	instance->DropCallback(instance, path_count, paths);
+	instance->FileDropCallback(instance, path_count, paths);
 }
 
-tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction callback)
+tuiFileDropFunction tuiInstanceSetFileDropCallback(TuiInstance instance, tuiFileDropFunction callback)
 {
 	if (instance == NULL)
 	{
@@ -2141,8 +2141,8 @@ tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction
 		return;
 	}
 
-	tuiDropFunction old_callback = instance->DropCallback;
-	instance->DropCallback = callback;
+	tuiFileDropFunction old_callback = instance->FileDropCallback;
+	instance->FileDropCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetDropCallback(instance->window, NULL);

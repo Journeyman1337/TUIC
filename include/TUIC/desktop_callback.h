@@ -54,13 +54,13 @@ typedef void (* tuiCursorMoveFunction)(TuiInstance instance, double xpos, double
 
 typedef void (* tuiCursorEnterFunction)(TuiInstance instance, TuiBoolean entered);
 
-typedef void (* tuiScrollFunction)(TuiInstance instance, double xscroll, double yscroll);
+typedef void (* tuiMouseScrollFunction)(TuiInstance instance, double xscroll, double yscroll);
 
-typedef void (* tuiKeyFunction)(TuiInstance instance, TuiKey key, int scancode, TuiButtonState button_state, TuiKeyMod key_mod);
+typedef void (* tuiKeyboardKeyFunction)(TuiInstance instance, TuiKey key, int scancode, TuiButtonState button_state, TuiKeyMod key_mod);
 
 typedef void (* tuiCharFunction)(TuiInstance instance, unsigned int codepoint);
 
-typedef void (* tuiDropFunction)(TuiInstance instance, int path_count, const char* paths[]);
+typedef void (* tuiFileDropFunction)(TuiInstance instance, int path_count, const char* paths[]);
 
 typedef void (* tuiMonitorFunction)(TuiMonitor monitor, TuiBoolean connected);
 

@@ -66,13 +66,13 @@ typedef struct TuiInstance_s
 
 	tuiCursorEnterFunction CursorEnterCallback;
 
-	tuiScrollFunction ScrollCallback;
+	tuiMouseScrollFunction MouseScrollCallback;
 
-	tuiKeyFunction KeyCallback;
+	tuiKeyboardKeyFunction KeyboardKeyCallback;
 
 	tuiCharFunction CharCallback;
 
-	tuiDropFunction DropCallback;
+	tuiFileDropFunction FileDropCallback;
 
 	GLFWwindow* window;
 	/*!

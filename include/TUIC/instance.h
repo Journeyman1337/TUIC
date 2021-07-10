@@ -379,7 +379,7 @@ tuiWindowResizeFunction tuiInstanceSetResizeCallback(TuiInstance instance, tuiWi
 
 tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstance instance, tuiWindowContentScaleFunction callback);
 
-tuiKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyFunction callback);
+tuiKeyboardKeyFunction tuiInstanceSetKeyboardKeyCallback(TuiInstance instance, tuiKeyboardKeyFunction callback);
 
 tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction callback);
 
@@ -389,9 +389,9 @@ tuiCursorMoveFunction tuiInstanceSetCursorMoveCallback(TuiInstance instance, tui
 
 tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, tuiCursorEnterFunction callback);
 
-tuiScrollFunction tuiInstanceSetScrollCallback(TuiInstance instance, tuiScrollFunction callback);
+tuiMouseScrollFunction tuiInstanceSetMouseScrollCallback(TuiInstance instance, tuiMouseScrollFunction callback);
 
-tuiDropFunction tuiInstanceSetDropCallback(TuiInstance instance, tuiDropFunction callback);
+tuiFileDropFunction tuiInstanceSetFileDropCallback(TuiInstance instance, tuiFileDropFunction callback);
 
 /*! @} */
 #ifdef __cplusplus //extern C guard
