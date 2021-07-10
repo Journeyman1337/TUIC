@@ -1971,7 +1971,7 @@ tuiWindowContentScaleFunction tuiInstanceSetWindowContentScaleCallback(TuiInstan
 	return old_callback;
 }
 
-tuiKeyboardKeyFunction tuiInstanceSetKeyCallback(TuiInstance instance, tuiKeyboardKeyFunction callback)
+tuiKeyboardKeyFunction tuiInstanceSetKeyboardKeyCallback(TuiInstance instance, tuiKeyboardKeyFunction callback)
 {
 	if (instance == NULL)
 	{
