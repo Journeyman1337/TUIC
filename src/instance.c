@@ -865,7 +865,7 @@ TuiButtonState tuiInstanceGetMouseButton(TuiInstance instance, TuiMouseButton mo
 	return button_state;
 }
 
-void tuiInstanceGetCursorPos(TuiInstance instance, double* xpos, double* ypos)
+void tuiInstanceGetCursorPosition(TuiInstance instance, double* xpos, double* ypos)
 {
 	if (instance == NULL)
 	{
@@ -882,7 +882,7 @@ void tuiInstanceGetCursorPos(TuiInstance instance, double* xpos, double* ypos)
 	GLFW_CHECK_ERROR()
 }
 
-void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos)
+void tuiInstanceSetCursorPosition(TuiInstance instance, double xpos, double ypos)
 {
 	if (instance == NULL)
 	{

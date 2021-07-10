@@ -269,9 +269,9 @@ TuiButtonState tuiInstanceGetKey(TuiInstance instance, TuiKey key);
 
 TuiButtonState tuiInstanceGetMouseButton(TuiInstance instance, TuiMouseButton mouse_button);
 
-void tuiInstanceGetCursorMove(TuiInstance instance, double *xpos, double *ypos);
+void tuiInstanceGetCursorPosition(TuiInstance instance, double *xpos, double *ypos);
 
-void tuiInstanceSetCursorMove(TuiInstance instance, double xpos, double ypos);
+void tuiInstanceSetCursorPosition(TuiInstance instance, double xpos, double ypos);
 
 TuiBoolean tuiInstanceWindowShouldClose(TuiInstance instance);
 
