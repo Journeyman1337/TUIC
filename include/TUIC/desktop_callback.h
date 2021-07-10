@@ -32,7 +32,7 @@ extern "C" {
 #include <TUIC/joystick_id.h>
 #include <TUIC/types.h>
 
-typedef void (* tuiWindowPosFunction)(TuiInstance instance, int xpos, int ypos);
+typedef void (* tuiWindowMoveFunction)(TuiInstance instance, int xpos, int ypos);
 
 typedef void (* tuiWindowCloseFunction)(TuiInstance instance);
 
@@ -50,7 +50,7 @@ typedef void (* tuiWindowContentScaleFunction)(TuiInstance instance, float xscal
 
 typedef void (* tuiMouseButtonFunction)(TuiInstance instance, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyMod key_mod);
 
-typedef void (* tuiCursorPosFunction)(TuiInstance instance, double xpos, double ypos);
+typedef void (* tuiCursorMoveFunction)(TuiInstance instance, double xpos, double ypos);
 
 typedef void (* tuiCursorEnterFunction)(TuiInstance instance, TuiBoolean entered);
 

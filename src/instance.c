@@ -1645,14 +1645,14 @@ void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor)
 	GLFW_CHECK_ERROR()
 }
 
-static tuiWindowPosFunction sWindowPosCallback = NULL;
+static tuiWindowMoveFunction sWindowMoveCallback = NULL;
 
-static inline void glfwWindowPosCallback(GLFWwindow* window, int xpos, int ypos)
+static inline void glfwWindowMoveCallback(GLFWwindow* window, int xpos, int ypos)
 {
-	sWindowPosCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
+	sWindowMoveCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
 }
 
-tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWindowPosFunction callback)
+tuiWindowMoveFunction tuiInstanceSetWindowMoveCallback(TuiInstance instance, tuiWindowMoveFunction callback)
 {
 	if (instance == NULL)
 	{
@@ -1665,15 +1665,15 @@ tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWi
 		return;
 	}
 
-	tuiWindowPosFunction old_callback = sWindowPosCallback;
-	sWindowPosCallback = callback;
+	tuiWindowMoveFunction old_callback = sWindowMoveCallback;
+	sWindowMoveCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetWindowPosCallback(instance->window, NULL);
 	}
 	else
 	{
-		glfwSetWindowPosCallback(instance->window, glfwWindowPosCallback);
+		glfwSetWindowPosCallback(instance->window, glfwWindowMoveCallback);
 	}
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
@@ -2020,15 +2020,15 @@ tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, t
 	return old_callback;
 }
 
-static tuiCursorPosFunction sCursorPosCallback = NULL;
+static tuiCursorMoveFunction sCursorMoveCallback = NULL;
 
-static inline void glfwCursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+static inline void glfwCursorMoveCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	sCursorPosCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
+	sCursorMoveCallback((TuiInstance)glfwGetWindowUserPointer(window), xpos, ypos);
 	GLFW_CLEAR_ERRORS()
 }
 
-tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCursorPosFunction callback)
+tuiCursorMoveFunction tuiInstanceSetCursorMoveCallback(TuiInstance instance, tuiCursorMoveFunction callback)
 {
 	if (instance == NULL)
 	{
@@ -2041,15 +2041,15 @@ tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCu
 		return;
 	}
 
-	tuiCursorPosFunction old_callback = sCursorPosCallback;
-	sCursorPosCallback = callback;
+	tuiCursorMoveFunction old_callback = sCursorMoveCallback;
+	sCursorMoveCallback = callback;
 	if (callback == NULL)
 	{
 		glfwSetCursorPosCallback(instance->window, NULL);
 	}
 	else
 	{
-		glfwSetCursorPosCallback(instance->window, glfwCursorPosCallback);
+		glfwSetCursorPosCallback(instance->window, glfwCursorMoveCallback);
 	}
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;

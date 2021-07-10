@@ -269,9 +269,9 @@ TuiButtonState tuiInstanceGetKey(TuiInstance instance, TuiKey key);
 
 TuiButtonState tuiInstanceGetMouseButton(TuiInstance instance, TuiMouseButton mouse_button);
 
-void tuiInstanceGetCursorPos(TuiInstance instance, double *xpos, double *ypos);
+void tuiInstanceGetCursorMove(TuiInstance instance, double *xpos, double *ypos);
 
-void tuiInstanceSetCursorPos(TuiInstance instance, double xpos, double ypos);
+void tuiInstanceSetCursorMove(TuiInstance instance, double xpos, double ypos);
 
 TuiBoolean tuiInstanceWindowShouldClose(TuiInstance instance);
 
@@ -283,9 +283,9 @@ void tuiInstanceSetWindowDefaultIcon(TuiInstance instance);
 
 void tuiInstanceSetWindowIcon(TuiInstance instance, int count, const TuiImage* images);
 
-void tuiInstanceGetWindowPos(TuiInstance instance, int* xpos, int* ypos);
+void tuiInstanceGetWindowMove(TuiInstance instance, int* xpos, int* ypos);
 
-void tuiInstanceSetWindowPos(TuiInstance instance, int xpos, int ypos); 
+void tuiInstanceSetWindowMove(TuiInstance instance, int xpos, int ypos); 
 
 void tuiInstanceSetWindowSizeLimits(TuiInstance instance, int minwidth, int minheight, int maxwidth, int maxheight);
 
@@ -363,7 +363,7 @@ void* tuiInstanceGetUserPtr(TuiInstance instance);
 
 void tuiInstanceSetCursor(TuiInstance instance, TuiCursor cursor);
 
-tuiWindowPosFunction tuiInstanceSetWindowPosCallback(TuiInstance instance, tuiWindowPosFunction callback);
+tuiWindowMoveFunction tuiInstanceSetWindowMoveCallback(TuiInstance instance, tuiWindowMoveFunction callback);
 
 tuiWindowCloseFunction tuiInstanceSetWindowCloseCallback(TuiInstance instance, tuiWindowCloseFunction callback);
 
@@ -385,7 +385,7 @@ tuiCharFunction tuiInstanceSetCharCallback(TuiInstance instance, tuiCharFunction
 
 tuiMouseButtonFunction tuiInstanceSetMouseButtonCallback(TuiInstance instance, tuiMouseButtonFunction callback);
 
-tuiCursorPosFunction tuiInstanceSetCursorPosCallback(TuiInstance instance, tuiCursorPosFunction callback);
+tuiCursorMoveFunction tuiInstanceSetCursorMoveCallback(TuiInstance instance, tuiCursorMoveFunction callback);
 
 tuiCursorEnterFunction tuiInstanceSetCursorEnterCallback(TuiInstance instance, tuiCursorEnterFunction callback);
 
