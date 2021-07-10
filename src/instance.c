@@ -124,7 +124,7 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 		glfwWindowHint(GLFW_DECORATED, create_info->decorated);
 		glfwWindowHint(GLFW_FOCUSED, create_info->focused);
 		glfwWindowHint(GLFW_AUTO_ICONIFY, create_info->auto_iconify);
-		glfwWindowHint(GLFW_FLOATING, create_info->floating);
+		glfwWindowHint(GLFW_FLOATING, create_info->topmost);
 		glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
 		glfwWindowHint(GLFW_CENTER_CURSOR, create_info->center_cursor);
 		glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, create_info->transparent_framebuffer);
@@ -189,7 +189,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.decorated = TUI_TRUE;
 	info.focused = TUI_TRUE;
 	info.auto_iconify = TUI_TRUE;
-	info.floating = TUI_FALSE;
+	info.topmost = TUI_FALSE;
 	info.maximized = TUI_FALSE;
 	info.center_cursor = TUI_FALSE;
 	info.transparent_framebuffer = TUI_FALSE;
@@ -1606,7 +1606,7 @@ void tuiInstanceSetWindowAutoIconify(TuiInstance instance, TuiBoolean auto_iconi
 	GLFW_CHECK_ERROR()
 }
 
-TuiBoolean tuiInstanceGetWindowFloating(TuiInstance instance)
+TuiBoolean tuiInstanceGetWindowTopmost(TuiInstance instance)
 {
 	if (instance == NULL)
 	{
@@ -1619,16 +1619,16 @@ TuiBoolean tuiInstanceGetWindowFloating(TuiInstance instance)
 		return TUI_FALSE;
 	}
 
-	int floating =glfwGetWindowAttrib(instance->window, GLFW_FLOATING);
+	int topmost =glfwGetWindowAttrib(instance->window, GLFW_FLOATING);
 	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
-	if (floating == GLFW_TRUE)
+	if (topmost == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
 	return TUI_FALSE;
 }
 
-void tuiInstanceSetWindowFloating(TuiInstance instance, TuiBoolean floating)
+void tuiInstanceSetWindowTopmost(TuiInstance instance, TuiBoolean topmost)
 {
 	if (instance == NULL)
 	{
@@ -1641,7 +1641,7 @@ void tuiInstanceSetWindowFloating(TuiInstance instance, TuiBoolean floating)
 		return;
 	}
 
-	glfwSetWindowAttrib(instance->window, GLFW_FLOATING, (int)floating);
+	glfwSetWindowAttrib(instance->window, GLFW_FLOATING, (int)topmost);
 	GLFW_CHECK_ERROR()
 }
 

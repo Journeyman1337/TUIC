@@ -39,7 +39,7 @@ typedef struct TuiWindowCreateInfo
 	TuiBoolean decorated;
 	TuiBoolean focused;
 	TuiBoolean auto_iconify;
-	TuiBoolean floating;
+	TuiBoolean topmost;
 	TuiBoolean maximized;
 	TuiBoolean center_cursor;
 	TuiBoolean transparent_framebuffer;
@@ -347,9 +347,9 @@ TuiBoolean tuiInstanceGetWindowAutoIconify(TuiInstance instance);
 
 void tuiInstanceSetWindowAutoIconify(TuiInstance instance, TuiBoolean auto_iconify);
 
-TuiBoolean tuiInstanceGetWindowFloating(TuiInstance instance);
+TuiBoolean tuiInstanceGetWindowTopmost(TuiInstance instance);
 
-void tuiInstanceSetWindowFloating(TuiInstance instance, TuiBoolean floating);
+void tuiInstanceSetWindowTopmost(TuiInstance instance, TuiBoolean topmost);
 
 TuiBoolean tuiInstanceGetWindowTransparentFramebuffer(TuiInstance instance);
 
