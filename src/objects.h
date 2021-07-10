@@ -91,10 +91,8 @@ typedef struct TuiInstance_s
 	 * @brief The amount of @ref TuiPalette objects that currently exist attached to this @ref TuiInstance.
 	 */
 	size_t PaletteCount;
-	/*!
-	 * @brief If this @ref TuiInstance is damaged.
-	 */
-	TuiBoolean IsDamaged;
+	
+	size_t DamageIndex;
 	/*!
 	 * @brief The pixel width of the screen of the TuiInstance.
 	 */
@@ -119,6 +117,8 @@ typedef struct TuiAtlas_s
 	 * @brief The @ref TuiInstance that this object is attached to.
 	 */
 	TuiInstance Instance;
+
+	size_t DamageIndex;
 	/*!
 	 * @brief The @ref TuiBlendMode.
 	 */
@@ -179,6 +179,8 @@ typedef struct TuiTexture_s
 	 * @brief The @ref TuiInstance that this object is attached to.
 	 */
 	TuiInstance Instance;
+
+	size_t DamageIndex;
 	/*!
 	 * @brief The @ref TuiFilterMode.
 	 */
@@ -211,6 +213,8 @@ typedef struct TuiPalette_s
 	 * @brief The @ref TuiInstance that this object is attached to.
 	 */
 	TuiInstance Instance;
+
+	size_t DamageIndex;
 	/*!
 	 * @brief The channels per color in this @ref TuiPalette.
 	 */
@@ -235,6 +239,8 @@ typedef struct TuiPanel_s
 	 * @brief The @ref TuiInstance that this object is attached to.
 	 */
 	TuiInstance Instance;
+
+	size_t DamageIndex;
 	/*!
 	 * @brief The width of the framebuffer in pixels.
 	 */

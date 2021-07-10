@@ -290,11 +290,6 @@ TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_c
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);
@@ -312,9 +307,10 @@ TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_c
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
+	palette->Instance = instance;
+	palette->DamageIndex = instance->DamageIndex;
 	palette->ChannelCount = channel_count;
 	palette->ColorCount = (size_t)color_count;
-	palette->Instance = instance;
 	palette->ApiData = NULL;
 	tuiPaletteCreate_Opengl33(palette, color_data);
 	return palette;
@@ -327,11 +323,6 @@ TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);
@@ -339,9 +330,10 @@ TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
+	palette->Instance = instance;
+	palette->DamageIndex = instance->DamageIndex;
 	palette->ChannelCount = 3;
 	palette->ColorCount = (size_t)color_count;
-	palette->Instance = instance;
 	palette->ApiData = NULL;
 	tuiPaletteCreate_Opengl33(palette, &kTuiXtermPalette[0]);
 	return palette;

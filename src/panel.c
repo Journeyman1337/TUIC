@@ -10,11 +10,6 @@ TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height)
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
@@ -23,6 +18,7 @@ TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height)
 
 	TuiPanel panel = tuiAllocate(sizeof(TuiPanel_s));
 	panel->Instance = instance;
+	panel->DamageIndex = instance->DamageIndex;
 	panel->FramebufferWidth = (size_t)pixel_width;
 	panel->FramebufferHeight = (size_t)pixel_height;
 	panel->ApiData = NULL;
@@ -62,10 +58,10 @@ TuiImage tuiPanelGetImage(TuiPanel panel, TuiImage fill_image)
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return NULL;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
+
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
+		// TODO rebuild panel
 	}
 
 	if (fill_image != NULL)
@@ -90,10 +86,10 @@ uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, 
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return NULL;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
+	
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
+		// TODO rebuild panel
 	}
 
 	size_t o_width, o_height;
@@ -111,10 +107,10 @@ void tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
+	
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
+		// TODO rebuild panel
 	}
 
 	tuiPanelClearColor_Opengl33(panel, r, g, b, a);
@@ -127,15 +123,15 @@ void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_heigh
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
 		return;
+	}
+
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
 	}
 
 	tuiPanelSetSize_Opengl33(panel, (size_t)pixel_width, (size_t)pixel_height);
@@ -189,11 +185,6 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (atlas == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
@@ -224,6 +215,11 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		return;
 	}
 
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
+	}
+
 	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
 }
 
@@ -232,11 +228,6 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return;
 	}
 	if (batch_data == NULL)
@@ -269,6 +260,19 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 		return;
 	}
 
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
+	}
+	if (atlas->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild atlas
+	}
+	if (palette != NULL && palette->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild palette
+	}
+
 	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
 }
 
@@ -277,11 +281,6 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return;
 	}
 	if (atlas == NULL)
@@ -314,6 +313,19 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 		return;
 	}
 
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
+	}
+	if (atlas->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild atlas
+	}
+	if (palette != NULL && palette->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild palette
+	}
+
 	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
 }
 
@@ -322,11 +334,6 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return;
 	}
 	if (batch_data == NULL)
@@ -354,6 +361,19 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
 		return;
 	}
 
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
+	}
+	if (atlas->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild atlas
+	}
+	if (palette != NULL && palette->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild palette
+	}
+
 	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, left_x, right_x, top_y, bottom_y);
 }
 
@@ -364,10 +384,10 @@ void tuiPanelRender(TuiPanel panel)
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
+
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
+		// TODO rebuild panel
 	}
 
 	tuiPanelRender_Opengl33(panel, 0, (int)panel->Instance->PixelWidth, 0, (int)panel->Instance->PixelHeight);
@@ -380,10 +400,10 @@ void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
+
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
+		// TODO rebuild panel
 	}
 
 	tuiPanelRender_Opengl33(panel, left_x, right_x, top_y, bottom_y);
@@ -396,11 +416,6 @@ void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel)
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (target_panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TARGET_PANEL, __func__);
@@ -410,6 +425,15 @@ void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
 		return;
+	}
+
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
+	}
+	if (target_panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild target_panel
 	}
 
 	tuiPanelRenderToPanel_Opengl33(panel, target_panel, 0, (int)target_panel->FramebufferWidth, 0, (int)target_panel->FramebufferHeight);
@@ -422,11 +446,6 @@ void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (target_panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TARGET_PANEL, __func__);
@@ -436,6 +455,15 @@ void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
 		return;
+	}
+
+	if (panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild panel
+	}
+	if (target_panel->DamageIndex != panel->Instance->DamageIndex)
+	{
+		// TODO rebuild target_panel
 	}
 
 	tuiPanelRenderToPanel_Opengl33(panel, target_panel, left_x, right_x, top_y, bottom_y);

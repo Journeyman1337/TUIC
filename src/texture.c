@@ -27,11 +27,6 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode 
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -45,6 +40,7 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode 
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
 	texture->Instance = instance;
+	texture->DamageIndex = instance->DamageIndex;
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
@@ -59,11 +55,6 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 	if (instance == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return NULL;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -89,6 +80,7 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
 	texture->Instance = instance;
+	texture->DamageIndex = instance->DamageIndex;
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
@@ -180,15 +172,15 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (texture->Instance->IsDamaged)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
+	}
+
+	if (texture->DamageIndex != texture->Instance->DamageIndex)
+	{
+		// TODO rebuild texture
 	}
 
 	texture->PixelWidth = image->PixelWidth;
@@ -202,11 +194,6 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 	if (texture == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
-		return;
-	}
-	if (texture->Instance->IsDamaged)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return;
 	}
 	if (pixels == NULL)
@@ -225,6 +212,11 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 		return;
 	}
 
+	if (texture->DamageIndex != texture->Instance->DamageIndex)
+	{
+		// TODO rebuild texture
+	}
+
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
@@ -238,10 +230,10 @@ void tuiTextureRender(TuiTexture texture)
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (texture->Instance->IsDamaged)
+
+	if (texture->DamageIndex != texture->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
+		// TODO rebuild texture
 	}
 
 	tuiTextureRender_Opengl33(texture, 0, texture->Instance->PixelWidth, 0, texture->Instance->PixelHeight);
@@ -254,10 +246,10 @@ void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, in
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (texture->Instance->IsDamaged)
+
+	if (texture->DamageIndex != texture->Instance->DamageIndex)
 	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
+		// TODO rebuild texture
 	}
 
 	tuiTextureRender_Opengl33(texture, left_x, right_x, top_y, bottom_y);
@@ -270,11 +262,6 @@ void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel)
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (texture->Instance->IsDamaged)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
@@ -283,6 +270,11 @@ void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel)
 	if (texture->Instance != panel->Instance)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
+	}
+
+	if (texture->DamageIndex != texture->Instance->DamageIndex)
+	{
+		// TODO rebuild texture
 	}
 
 	tuiTextureRenderToPanel_Opengl33(texture, panel, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
@@ -295,11 +287,6 @@ void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int 
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (texture->Instance->IsDamaged)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
@@ -308,6 +295,11 @@ void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int 
 	if (texture->Instance != panel->Instance)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
+	}
+
+	if (texture->DamageIndex != texture->Instance->DamageIndex)
+	{
+		// TODO rebuild texture
 	}
 
 	tuiTextureRenderToPanel_Opengl33(texture, panel, left_x, right_x, top_y, bottom_y);

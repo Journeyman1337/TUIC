@@ -31,11 +31,6 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -59,6 +54,7 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -84,11 +80,6 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
@@ -122,6 +113,7 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -147,11 +139,6 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -175,6 +162,7 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -196,11 +184,6 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 	if (instance == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return NULL;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -236,6 +219,7 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -259,11 +243,6 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -282,6 +261,7 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -302,11 +282,6 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 	if (instance == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return NULL;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -337,6 +312,7 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -362,11 +338,6 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
 		return NULL;
 	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -385,6 +356,7 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = image->PixelWidth / kCodepageGlyphTileDimensions;
@@ -406,11 +378,6 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 	if (instance == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return NULL;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -441,6 +408,7 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
+	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)pixel_width / kCodepageGlyphTileDimensions;
@@ -549,16 +517,17 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
-	if (atlas->Instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return;
-	}
 	if (tuiBlendIsValid(blend_mode) != TUI_TRUE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
 		return;
 	}
+
+	if (atlas->DamageIndex != atlas->Instance->DamageIndex)
+	{
+		// TODO rebuild atlas
+	}
+
 	atlas->BlendMode = blend_mode;
 }
 
