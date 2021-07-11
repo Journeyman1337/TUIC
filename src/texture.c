@@ -19,6 +19,7 @@
 */
 #include <TUIC/tuic.h>
 #include "objects.h"
+#include <string.h>
 
 TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode filter_mode)
 {
@@ -41,11 +42,14 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
 	texture->Instance = instance;
 	texture->DamageIndex = instance->DamageIndex;
+	texture->PixelDataSize = image->PixelDataSize;
+	texture->PixelData = tuiAllocate(image->PixelDataSize);
+	memcpy(texture->PixelData, image->PixelData, image->PixelDataSize);
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
-	tuiTextureCreate_Opengl33(texture, image->PixelData);
+	tuiTextureCreate_Opengl33(texture);
 	texture->Instance->TextureCount++;
 	return texture;
 }
@@ -81,6 +85,9 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
 	texture->Instance = instance;
 	texture->DamageIndex = instance->DamageIndex;
+	texture->PixelDataSize = pixel_width * pixel_height * channel_count;
+	texture->PixelData = tuiAllocate(texture->PixelDataSize);
+	memcpy(texture->PixelData, pixels, texture->PixelDataSize);
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
@@ -96,6 +103,11 @@ void tuiTextureDestroy(TuiTexture texture)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
+	}
+
+	if (texture->PixelData != NULL)
+	{
+		tuiFree(texture->PixelData);
 	}
 
 	tuiTextureDestroy_Opengl33(texture);
@@ -183,10 +195,20 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 		// TODO rebuild texture
 	}
 
+	if (texture->PixelData != NULL)
+	{
+		tuiFree(texture->PixelData);
+		texture->PixelData = NULL;
+	}
+
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
-	tuiTextureSetPixels_Opengl33(texture, image->PixelData);
+	texture->PixelDataSize = image->PixelDataSize;
+	texture->PixelData = tuiAllocate(texture->PixelDataSize);
+	memcpy(texture->PixelData, image->PixelData, texture->PixelDataSize);
+
+	tuiTextureSetPixels_Opengl33(texture);
 }
 
 void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels)
@@ -217,10 +239,20 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 		// TODO rebuild texture
 	}
 
+	if (texture->PixelData != NULL)
+	{
+		tuiFree(texture->PixelData);
+		texture->PixelData = NULL;
+	}
+
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
-	tuiTextureSetPixels_Opengl33(texture, pixels);
+	texture->PixelDataSize = pixel_width * pixel_height * channel_count;
+	texture->PixelData = tuiAllocate(texture->PixelDataSize);
+	memcpy(texture->PixelData, pixels, texture->PixelDataSize);
+
+	tuiTextureSetPixels_Opengl33(texture);
 }
 
 void tuiTextureRender(TuiTexture texture)

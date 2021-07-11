@@ -52,11 +52,19 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 		return NULL;
 	}
 
+	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, NULL);
+
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
+	atlas->PixelDataSize = image->PixelDataSize;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, image->PixelData, atlas->PixelDataSize);
+	atlas->UVMapSize = glyph_count * 4 * sizeof(float);
+	atlas->UVMap = tuiAllocate(atlas->UVMapSize);
+	memcpy(atlas->UVMap, raw_glyph_uvs, atlas->UVMapSize);
 	atlas->ChannelCount = image->ChannelCount;
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
@@ -66,8 +74,8 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, NULL);
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
+	
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
@@ -111,11 +119,19 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 		return NULL;
 	}
 
+	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, NULL);
+
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
+	atlas->PixelDataSize = pixel_width * pixel_height * channel_count;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, pixels, atlas->PixelDataSize);
+	atlas->UVMapSize = glyph_count * 4 * sizeof(float);
+	atlas->UVMap = tuiAllocate(atlas->UVMapSize);
+	memcpy(atlas->UVMap, raw_glyph_uvs, atlas->UVMapSize);
 	atlas->ChannelCount = (size_t)channel_count;
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
@@ -125,8 +141,7 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = glyph_count;
 	
-	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, NULL);
-	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
@@ -165,6 +180,12 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
+	atlas->PixelDataSize = image->PixelDataSize;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, image->PixelData, atlas->PixelDataSize);
+	atlas->UVMapSize = 4 * glyph_count * sizeof(float);
+	atlas->UVMap = tuiAllocate(atlas->UVMapSize);
+	memcpy(atlas->UVMap, raw_glyph_uvs, atlas->UVMapSize);
 	atlas->ChannelCount = image->ChannelCount;
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
@@ -174,7 +195,7 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	return atlas;
 }
@@ -222,6 +243,12 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
+	atlas->PixelDataSize = pixel_width * pixel_height * channel_count;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, pixels, atlas->PixelDataSize);
+	atlas->UVMapSize = 4 * glyph_count * sizeof(float);
+	atlas->UVMap = tuiAllocate(atlas->UVMapSize);
+	memcpy(atlas->UVMap, raw_glyph_uvs, atlas->UVMapSize);
 	atlas->ChannelCount = (size_t)channel_count;
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
@@ -231,7 +258,7 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 	atlas->ApiData = NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	return atlas;
 }
@@ -264,6 +291,11 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
+	atlas->PixelDataSize = image->PixelDataSize;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, image->PixelData, atlas->PixelDataSize);
+	atlas->UVMapSize = 0;
+	atlas->UVMap = NULL;
 	atlas->TileWidth = (size_t)tile_pixel_width;
 	atlas->TileHeight = (size_t)tile_pixel_height;
 	atlas->GridGlyphsWide = image->PixelWidth / tile_pixel_width;
@@ -272,7 +304,7 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	return atlas;
 }
@@ -315,6 +347,11 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
+	atlas->PixelDataSize = pixel_width * pixel_height * channel_count;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, pixels, atlas->PixelDataSize);
+	atlas->UVMapSize = 0;
+	atlas->UVMap = NULL;
 	atlas->TileWidth = (size_t)tile_pixel_width;
 	atlas->TileHeight = (size_t)tile_pixel_height;
 	atlas->GridGlyphsWide = (size_t)pixel_width / (size_t)tile_pixel_width;
@@ -323,7 +360,7 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	return atlas;
 }
@@ -359,6 +396,11 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
+	atlas->PixelDataSize = image->PixelDataSize;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, image->PixelData, atlas->PixelDataSize);
+	atlas->UVMapSize = 0;
+	atlas->UVMap = NULL;
 	atlas->TileWidth = image->PixelWidth / kCodepageGlyphTileDimensions;
 	atlas->TileHeight = image->PixelHeight / kCodepageGlyphTileDimensions;
 	atlas->GridGlyphsWide = kCodepageGlyphTileDimensions;
@@ -368,7 +410,7 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	return atlas;
 }
@@ -411,6 +453,11 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
+	atlas->PixelDataSize = pixel_width * pixel_height * channel_count;
+	atlas->PixelData = tuiAllocate(atlas->PixelDataSize);
+	memcpy(atlas->PixelData, pixels, atlas->PixelDataSize);
+	atlas->UVMapSize = 0;
+	atlas->UVMap = NULL;
 	atlas->TileWidth = (size_t)pixel_width / kCodepageGlyphTileDimensions;
 	atlas->TileHeight = (size_t)pixel_height / kCodepageGlyphTileDimensions;
 	atlas->GridGlyphsWide = kCodepageGlyphTileDimensions;
@@ -420,7 +467,7 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
+	tuiAtlasCreate_Opengl33(atlas);
 	atlas->Instance->AtlasCount++;
 	return atlas;
 }
@@ -431,6 +478,15 @@ void tuiAtlasDestroy(TuiAtlas atlas)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
+	}
+
+	if (atlas->PixelData != NULL)
+	{
+		tuiFree(atlas->PixelData);
+	}
+	if (atlas->UVMap != NULL)
+	{
+		tuiFree(atlas->UVMap);
 	}
 
 	tuiAtlasDestroy_Opengl33(atlas);
