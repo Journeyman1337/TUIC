@@ -19,11 +19,7 @@ static void glfwWindowCloseCallback(GLFWwindow* window)
 static void glfwWindowRefreshCallback(GLFWwindow* window)
 {
 	TuiInstance instance = (TuiInstance)glfwGetWindowUserPointer(window);
-	instance->DamageIndex++;
-	if (instance->WindowRefreshCallback != NULL)
-	{
-		instance->WindowRefreshCallback(instance);
-	}
+	instance->WindowRefreshCallback(instance);
 }
 
 static void glfwWindowFocusCallback(GLFWwindow* window, int focused)
@@ -154,7 +150,6 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 	instance->PixelHeight = (size_t)pixel_height;
 	instance->AtlasCount = 0;
 	instance->PaletteCount = 0;
-	instance->DamageIndex = 0;
 	instance->window = window;
 	instance->UserPointer = NULL;
 	instance->WindowMoveCallback = NULL;
@@ -174,7 +169,6 @@ TuiInstance tuiInstanceCreateWindow(int pixel_width, int pixel_height, const cha
 	glfwSetWindowUserPointer(window, instance);
 	glfwMakeContextCurrent(window);
 	tuiInstanceCreate_Opengl33(instance, ((void*)glfwGetProcAddress));
-	glfwSetWindowRefreshCallback(window, glfwWindowRefreshCallback);
 	sInstanceCount++;
 	return instance;
 }
@@ -355,15 +349,6 @@ void tuiInstanceDrawBatch(TuiInstance instance, TuiAtlas atlas, TuiPalette palet
 		return;
 	}
 
-	if (atlas->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild atlas
-	}
-	if (palette != NULL && palette->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild palette
-	}
-
 	tuiInstanceDrawBatchData_Opengl33(instance, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, instance->PixelWidth, 0, instance->PixelHeight);
 }
 
@@ -409,15 +394,6 @@ void tuiInstanceDrawBatchData(TuiInstance instance, TuiAtlas atlas, TuiPalette p
 		return;
 	}
 
-	if (atlas->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild atlas
-	}
-	if (palette != NULL && palette->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild palette
-	}
-
 	tuiInstanceDrawBatchData_Opengl33(instance, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, (size_t)sparse_index, batch_data, 0, instance->PixelWidth, 0, instance->PixelHeight);
 
 }
@@ -457,15 +433,6 @@ void tuiInstanceDrawBatchTransformed(TuiInstance instance, TuiAtlas atlas, TuiPa
 	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && batch->TileCount == 0)
 	{
 		return;
-	}
-
-	if (atlas->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild atlas
-	}
-	if (palette != NULL && palette->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild palette
 	}
 
 	tuiInstanceDrawBatchData_Opengl33(instance, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
@@ -511,15 +478,6 @@ void tuiInstanceDrawBatchDataTransformed(TuiInstance instance, TuiAtlas atlas, T
 	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
 	{
 		return;
-	}
-
-	if (atlas->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild atlas
-	}
-	if (palette != NULL && palette->DamageIndex != instance->DamageIndex)
-	{
-		// TODO rebuild palette
 	}
 
 	tuiInstanceDrawBatchData_Opengl33(instance, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, left_x, right_x, top_y, bottom_y);

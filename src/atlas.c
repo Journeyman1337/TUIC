@@ -54,7 +54,6 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -113,7 +112,6 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -162,7 +160,6 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -219,7 +216,6 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -261,7 +257,6 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -312,7 +307,6 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -356,7 +350,6 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = image->PixelWidth / kCodepageGlyphTileDimensions;
@@ -408,7 +401,6 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
 	atlas->Instance = instance;
-	atlas->DamageIndex = instance->DamageIndex;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)pixel_width / kCodepageGlyphTileDimensions;
@@ -521,11 +513,6 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
 		return;
-	}
-
-	if (atlas->DamageIndex != atlas->Instance->DamageIndex)
-	{
-		// TODO rebuild atlas
 	}
 
 	atlas->BlendMode = blend_mode;

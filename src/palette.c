@@ -308,7 +308,6 @@ TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_c
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
 	palette->Instance = instance;
-	palette->DamageIndex = instance->DamageIndex;
 	palette->ChannelCount = channel_count;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
@@ -331,7 +330,6 @@ TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
 	palette->Instance = instance;
-	palette->DamageIndex = instance->DamageIndex;
 	palette->ChannelCount = 3;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
