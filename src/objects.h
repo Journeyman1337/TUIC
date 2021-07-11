@@ -119,14 +119,6 @@ typedef struct TuiAtlas_s
 	TuiInstance Instance;
 
 	size_t DamageIndex;
-
-	const uint8_t* PixelData;
-
-	size_t PixelDataSize;
-
-	const float* UVMap;
-
-	size_t UVMapSize;
 	/*!
 	 * @brief The @ref TuiBlendMode.
 	 */
@@ -155,6 +147,10 @@ typedef struct TuiAtlas_s
 	 * @brief The height of a single tile in pixels when rendered to a panel.
 	 */
 	size_t TileHeight;
+	/*!
+	 * @brief The size of the image pixel data array.
+	 */
+	size_t PixelDataSize;
 	/*!
 	 * @brief The amount of glyphs in this atlas.
 	 */
@@ -185,10 +181,6 @@ typedef struct TuiTexture_s
 	TuiInstance Instance;
 
 	size_t DamageIndex;
-
-	const uint8_t* PixelData;
-
-	size_t PixelDataSize;
 	/*!
 	 * @brief The @ref TuiFilterMode.
 	 */
@@ -223,10 +215,6 @@ typedef struct TuiPalette_s
 	TuiInstance Instance;
 
 	size_t DamageIndex;
-
-	const uint8_t* ColorData;
-
-	size_t ColorDataSize;
 	/*!
 	 * @brief The channels per color in this @ref TuiPalette.
 	 */

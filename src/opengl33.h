@@ -29,14 +29,14 @@ void tuiInstanceCreate_Opengl33(TuiInstance instance, void* window_proc_address)
 void tuiInstanceDestroy_Opengl33(TuiInstance instance);
 void tuiInstanceClearColor_Opengl33(TuiInstance instance, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 void tuiInstanceDrawBatchData_Opengl33(TuiInstance instance, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-void tuiAtlasCreate_Opengl33(TuiAtlas atlas);
+void tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
 void tuiAtlasDestroy_Opengl33(TuiAtlas atlas);
-void tuiTextureCreate_Opengl33(TuiTexture texture);
+void tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
 void tuiTextureDestroy_Opengl33(TuiTexture texture);
-void tuiTextureSetPixels_Opengl33(TuiTexture texture);
+void tuiTextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels);
 void tuiTextureRender_Opengl33(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
 void tuiTextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
-void tuiPaletteCreate_Opengl33(TuiPalette palette);
+void tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
 void tuiPaletteDestroy_Opengl33(TuiPalette palette);
 void tuiPanelCreate_Opengl33(TuiPanel panel);
 void tuiPanelDestroy_Opengl33(TuiPanel panel);
