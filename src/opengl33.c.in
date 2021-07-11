@@ -574,13 +574,16 @@ void tuiAtlasCreate_Opengl33(TuiAtlas atlas)
 void tuiAtlasDestroy_Opengl33(TuiAtlas atlas)
 {
 	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
-	GLD_CLEAR();
-	if (atlas->AtlasType == TUI_ATLAS_COORDS)
+	if (atlas->DamageIndex == atlas->Instance->DamageIndex)
 	{
-		GLD_CALL(glDeleteBuffers(1, &atlas_data->FontmapBufferHandle));
-		GLD_CALL(glDeleteTextures(1, &atlas_data->FontmapTextureHandle));
+		GLD_CLEAR();
+		if (atlas->AtlasType == TUI_ATLAS_COORDS)
+		{
+			GLD_CALL(glDeleteBuffers(1, &atlas_data->FontmapBufferHandle));
+			GLD_CALL(glDeleteTextures(1, &atlas_data->FontmapTextureHandle));
+		}
+		GLD_CALL(glDeleteTextures(1, &atlas_data->SheetTextureHandle));
 	}
-	GLD_CALL(glDeleteTextures(1, &atlas_data->SheetTextureHandle));
 	tuiFree(atlas_data);
 }
 void tuiTextureCreate_Opengl33(TuiTexture texture)
@@ -596,8 +599,11 @@ void tuiTextureCreate_Opengl33(TuiTexture texture)
 void tuiTextureDestroy_Opengl33(TuiTexture texture)
 {
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
-	GLD_CLEAR();
-	GLD_CALL(glDeleteTextures(1, &texture_data->TextureHandle));
+	if (texture->DamageIndex == texture->Instance->DamageIndex)
+	{
+		GLD_CLEAR();
+		GLD_CALL(glDeleteTextures(1, &texture_data->TextureHandle));
+	}
 	tuiFree(texture_data);
 }
 void tuiTextureSetPixels_Opengl33(TuiTexture texture)
@@ -654,9 +660,12 @@ void tuiPaletteCreate_Opengl33(TuiPalette palette)
 void tuiPaletteDestroy_Opengl33(TuiPalette palette)
 {
 	TuiOpengl33PaletteApiData* palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
-	GLD_CLEAR();
-	GLD_CALL(glDeleteBuffers(1, &palette_data->PaletteBufferHandle));
-	GLD_CALL(glDeleteTextures(1, &palette_data->PaletteTextureHandle));
+	if (palette->DamageIndex == palette->Instance->DamageIndex)
+	{
+		GLD_CLEAR();
+		GLD_CALL(glDeleteBuffers(1, &palette_data->PaletteBufferHandle));
+		GLD_CALL(glDeleteTextures(1, &palette_data->PaletteTextureHandle));
+	}
 	tuiFree(palette_data);
 }
 void tuiPanelCreate_Opengl33(TuiPanel panel)
@@ -672,10 +681,13 @@ void tuiPanelCreate_Opengl33(TuiPanel panel)
 void tuiPanelDestroy_Opengl33(TuiPanel panel)
 {
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
-	GLD_CLEAR();
-	GLD_CALL(glDeleteFramebuffers(1, &panel_data->FramebufferHandle));
-	GLD_CALL(glDeleteRenderbuffers(1, &panel_data->RenderbufferHandle));
-	GLD_CALL(glDeleteTextures(1, &panel_data->FramebufferTextureHandle));
+	if (panel->DamageIndex == panel->Instance->DamageIndex)
+	{
+		GLD_CLEAR();
+		GLD_CALL(glDeleteFramebuffers(1, &panel_data->FramebufferHandle));
+		GLD_CALL(glDeleteRenderbuffers(1, &panel_data->RenderbufferHandle));
+		GLD_CALL(glDeleteTextures(1, &panel_data->FramebufferTextureHandle));
+	}
 	tuiFree(panel_data);
 }
 void tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
