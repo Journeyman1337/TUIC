@@ -30,33 +30,19 @@ extern "C" {
 /*! @name Opaque Object Types
  * These structs are defined in the header file \"tuic/backends/objects.h\", but you are not meant to access their properties directly except when implementing a backend to avoid undefined behaviour. Instead, you are meant to only manipulate these objects by passing these opaque types into functions included in the library.
  *  @{ */
-/*!
- * @brief TUI rendering context. TuiPalette, @ref TuiAtlas, and @ref TuiPanel objects are all attached to a TuiInstance. You must create the TuiInstance before these other objects, and destroy it last. These objects should only be used on a single thread. TuiInstance create functions are always backend specific. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use functions functions from instance.h or opengl33.h instead.
- */
-typedef struct TuiInstance_s* TuiInstance;
-/*!
- * @brief TUI color palette. This object contains an array of colors that can be used for the drawing of batch data arrays with a @ref TuiDetailMode that requires a palette. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in palette.h instead
- */
+
+typedef struct TuiWindow_s* TuiWindow;
+
 typedef struct TuiPalette_s* TuiPalette;
-/*!
- * @brief TUI glyph image atlas. This object contains a image for rendering glyphs as well as definitions of where glyphs are in the image. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in atlas.h instead.
- */
+
 typedef struct TuiAtlas_s* TuiAtlas;
-/*!
- * @brief TUI background texture. This object can be rendered to a @ref TuiPanel or the screen of a @ref TuiInstance. Can be loaded from a @ref TuiImage or a pixel array, and can be modified after it is created. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in palette.h instead
- */
+
 typedef struct TuiTexture_s* TuiTexture;
-/*!
- * @brief TUI rendering data container, which contains data about tiles to draw. TuiBatch objects are passable between multiple threads and are independent of @ref TuiInstance objects. This object is opaque, and its members are not meant to be accessed directly. Use the functions in batch.h instead.
- */
+
 typedef struct TuiBatch_s* TuiBatch;
-/*!
- * @brief TUI rendering panel. This is a framebuffer for rendering @ref TuiBatch objects and other @ref TuiPanel objects to. These objects should only be used on the same thread as its @ref TuiInstance. This object is opaque, and its members are not meant to be accessed directly unless implementing a backend. Use the functions in panel.h instead.
- */
+
 typedef struct TuiPanel_s* TuiPanel;
-/*!
- * @brief Image loaded from a file or generated through code. This object contains an image texture, which can be loaded into a @ref TuiAtlas. TuiImage objects are passable between multiple threads and are independent of @ref TuiInstance objects. This object is opaque, and its members are not meant to be accessed directly. Use the functions in image.h instead.
- */
+
 typedef struct TuiImage_s* TuiImage;
 
 typedef struct GLFWcursor* TuiCursor;

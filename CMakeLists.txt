@@ -36,7 +36,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/instance.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_hat_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_id.c
@@ -50,6 +49,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/time.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
@@ -72,7 +72,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/instance.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_hat_state.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_id.h
@@ -87,6 +86,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/window.h
 )
 
 set(TUIC_LINK_LIBRARIES

@@ -38,7 +38,6 @@
 #include <TUIC/filter_mode.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
-#include <TUIC/instance.h>
 #include <TUIC/joystick.h>
 #include <TUIC/joystick_hat_state.h>
 #include <TUIC/joystick_id.h>
@@ -52,3 +51,4 @@
 #include <TUIC/texture.h>
 #include <TUIC/time.h>
 #include <TUIC/types.h>
+#include <TUIC/window.h>

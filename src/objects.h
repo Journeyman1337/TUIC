@@ -35,12 +35,8 @@ extern "C" {
 /*! @name Opaque Object Full Declarations
  * These structs are represent the hidden types behind TUIC opaque objects.
  *  @{ */
-/*
- * @brief The struct behind @ref TuiInstance opaque objects. 
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
-typedef struct TuiInstance_s
+
+typedef struct TuiWindow_s
 {
 	void* UserPointer;
 
@@ -74,36 +70,36 @@ typedef struct TuiInstance_s
 
 	tuiFileDropFunction FileDropCallback;
 
-	GLFWwindow* window;
+	GLFWwindow* GlfwWindow;
 	/*!
-	 * @brief The amount of @ref TuiPanel objects that currently exist attached to this @ref TuiInstance.
+	 * @brief The amount of @ref TuiPanel objects that currently exist attached to this @ref TuiWindow.
 	 */
 	size_t PanelCount;
 	/*!
-	 * @brief The amount of @ref TuiAtlas objects that currently exist attached to this @ref TuiInstance.
+	 * @brief The amount of @ref TuiAtlas objects that currently exist attached to this @ref TuiWindow.
 	 */
 	size_t AtlasCount;
 	/*!
-	 * @brief The amount of @ref TuiTexture objects that currently exist attached to this @ref TuiInstance.
+	 * @brief The amount of @ref TuiTexture objects that currently exist attached to this @ref TuiWindow.
 	 */
 	size_t TextureCount;
 	/*!
-	 * @brief The amount of @ref TuiPalette objects that currently exist attached to this @ref TuiInstance.
+	 * @brief The amount of @ref TuiPalette objects that currently exist attached to this @ref TuiWindow.
 	 */
 	size_t PaletteCount;
 	/*!
-	 * @brief The pixel width of the screen of the TuiInstance.
+	 * @brief The pixel width of the screen of the TuiWindow.
 	 */
 	size_t PixelWidth;
 	/*!
-	 * @brief The pixel height of the screen of the TuiInstance.
+	 * @brief The pixel height of the screen of the TuiWindow.
 	 */
 	size_t PixelHeight;
 	/*!
 	 * @brief A pointer to backend specific API data.
 	 */
 	void* ApiData;
-} TuiInstance_s;
+} TuiWindow_s;
 /*
  * @brief The struct behind @ref TuiAtlas opaque objects.
  *
@@ -111,10 +107,7 @@ typedef struct TuiInstance_s
  */
 typedef struct TuiAtlas_s
 {
-	/*!
-	 * @brief The @ref TuiInstance that this object is attached to.
-	 */
-	TuiInstance Instance;
+	TuiWindow Window;
 	/*!
 	 * @brief The @ref TuiBlendMode.
 	 */
@@ -172,9 +165,9 @@ typedef struct TuiAtlas_s
 typedef struct TuiTexture_s
 {
 	/*!
-	 * @brief The @ref TuiInstance that this object is attached to.
+	 * @brief The @ref TuiWindow that this object is attached to.
 	 */
-	TuiInstance Instance;
+	TuiWindow Window;
 	/*!
 	 * @brief The @ref TuiFilterMode.
 	 */
@@ -204,9 +197,9 @@ typedef struct TuiTexture_s
 typedef struct TuiPalette_s
 {
 	/*!
-	 * @brief The @ref TuiInstance that this object is attached to.
+	 * @brief The @ref TuiWindow that this object is attached to.
 	 */
-	TuiInstance Instance;
+	TuiWindow Window;
 	/*!
 	 * @brief The channels per color in this @ref TuiPalette.
 	 */
@@ -228,9 +221,9 @@ typedef struct TuiPalette_s
 typedef struct TuiPanel_s
 {
 	/*!
-	 * @brief The @ref TuiInstance that this object is attached to.
+	 * @brief The @ref TuiWindow that this object is attached to.
 	 */
-	TuiInstance Instance;
+	TuiWindow Window;
 	/*!
 	 * @brief The width of the framebuffer in pixels.
 	 */

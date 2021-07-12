@@ -32,9 +32,9 @@ TuiBoolean tuiIsActive()
 
 void tuiTerminate()
 {
-	if (tuiGetInstanceCount() != 0)
+	if (tuiGetWindowCount() != 0)
 	{
-		tuiDebugError(TUI_ERROR_DANGLING_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_DANGLING_WINDOW, __func__);
 		return;
 	}
 	if (tuiGetCursorCount() != 0)

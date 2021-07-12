@@ -40,7 +40,7 @@ int main()
 
     /* Create the TUIC instance. */
     const char* window_title = "Example 1";
-    TuiInstance instance = tuiInstanceCreateWindow(window_width, window_height, window_title, &window_create_info);
+    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, &window_create_info);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
@@ -49,24 +49,24 @@ int main()
     if (atlas_image == NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
-        tuiInstanceDestroy(instance);
-        instance = NULL;
+        tuiWindowDestroy(window);
+        window = NULL;
         tuiTerminate();
         return -1;
     }
 
     /* Create the Glyph Atlas */
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
-    TuiAtlas atlas = tuiAtlasCreateCodepageGrid(instance, atlas_image, blend_mode);
+    TuiAtlas atlas = tuiAtlasCreateCodepageGrid(window, atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
 
     /* Create the palette */
     int palette_color_count = 16;
-    TuiPalette palette = tuiPaletteCreateXterm(instance, palette_color_count);
+    TuiPalette palette = tuiPaletteCreateXterm(window, palette_color_count);
 
     /* Create the panel (graphics framebuffer) */
-    TuiPanel panel = tuiPanelCreate(instance, window_width, window_height);
+    TuiPanel panel = tuiPanelCreate(window, window_width, window_height);
 
     /* Create the batch (tile rendering data container) */
     TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_GLYPH_FLAG_G8 | TUI_COLOR_FLAG_C4 | TUI_LAYOUT_FLAG_FULL)
@@ -104,7 +104,7 @@ int main()
     int nbFrame = 0;
 
     //Render loop
-    while (tuiInstanceWindowShouldClose(instance) == TUI_FALSE)
+    while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
         tuiPollEvents(); //handle input events and call callback functions
 
@@ -123,7 +123,7 @@ int main()
         tuiPanelRender(panel);
         //tuiPanelRenderTransformed(panel, window_width/2, window_width, window_height/2, window_height); //Use this function instead to render the panel within the given rect sides.
 
-        tuiInstanceSwapBuffers(instance); //swap the window buffers
+        tuiWindowSwapBuffers(window); //swap the window buffers
     }
 
     /* Destroy all remaining TUIC objects */
@@ -133,8 +133,8 @@ int main()
     palette = NULL;
     tuiAtlasDestroy(atlas);
     atlas = NULL;
-    tuiInstanceDestroy(instance); //The instance must always be created first and destroyed last.
-    instance = NULL;
+    tuiWindowDestroy(window); //The instance must always be created first and destroyed last.
+    window = NULL;
 
     tuiTerminate();
     return 0;

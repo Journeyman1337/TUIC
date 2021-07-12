@@ -3,11 +3,11 @@
 #include "image_inline.h"
 #include "opengl33.h"
 
-TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height)
+TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
@@ -17,12 +17,12 @@ TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height)
 	}
 
 	TuiPanel panel = tuiAllocate(sizeof(TuiPanel_s));
-	panel->Instance = instance;
+	panel->Window = window;
 	panel->FramebufferWidth = (size_t)pixel_width;
 	panel->FramebufferHeight = (size_t)pixel_height;
 	panel->ApiData = NULL;
 	tuiPanelCreate_Opengl33(panel);
-	panel->Instance->PanelCount++;
+	panel->Window->PanelCount++;
 	return panel;
 }
 
@@ -35,11 +35,11 @@ void tuiPanelDestroy(TuiPanel panel)
 	}
 
 	tuiPanelDestroy_Opengl33(panel);
-	panel->Instance->PanelCount--;
+	panel->Window->PanelCount--;
 	tuiFree(panel);
 }
 
-TuiInstance tuiPanelGetInstance(TuiPanel panel)
+TuiWindow tuiPanelGetWindow(TuiPanel panel)
 {
 	if (panel == NULL)
 	{
@@ -47,7 +47,7 @@ TuiInstance tuiPanelGetInstance(TuiPanel panel)
 		return NULL;
 	}
 
-	return panel->Instance;
+	return panel->Window;
 }
 
 TuiImage tuiPanelGetImage(TuiPanel panel, TuiImage fill_image)
@@ -179,12 +179,12 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (atlas->Instance != panel->Instance)
+	if (atlas->Window != panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
 		return;
 	}
-	if (palette != NULL && atlas->Instance != panel->Instance)
+	if (palette != NULL && atlas->Window != panel->Window)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
 		return;
@@ -214,9 +214,9 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, __func__);
 		return;
 	}
-	if (atlas->Instance != panel->Instance)
+	if (atlas->Window != panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
 		return;
 	}
 	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE && palette == NULL)
@@ -224,7 +224,7 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (palette != NULL && atlas->Instance != panel->Instance)
+	if (palette != NULL && atlas->Window != panel->Window)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
 		return;
@@ -259,12 +259,12 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (atlas->Instance != panel->Instance)
+	if (atlas->Window != panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
 		return;
 	}
-	if (palette != NULL && atlas->Instance != panel->Instance)
+	if (palette != NULL && atlas->Window != panel->Window)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
 		return;
@@ -294,12 +294,12 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
 		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
 		return;
 	}
-	if (atlas->Instance != panel->Instance)
+	if (atlas->Window != panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
 		return;
 	}
-	if (palette != NULL && atlas->Instance != panel->Instance)
+	if (palette != NULL && atlas->Window != panel->Window)
 	{
 		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
 		return;
@@ -320,7 +320,7 @@ void tuiPanelRender(TuiPanel panel)
 		return;
 	}
 
-	tuiPanelRender_Opengl33(panel, 0, (int)panel->Instance->PixelWidth, 0, (int)panel->Instance->PixelHeight);
+	tuiPanelRender_Opengl33(panel, 0, (int)panel->Window->PixelWidth, 0, (int)panel->Window->PixelHeight);
 }
 
 void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
@@ -346,9 +346,9 @@ void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel)
 		tuiDebugError(TUI_ERROR_NULL_TARGET_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance != target_panel->Instance)
+	if (panel->Window != target_panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_WINDOW, __func__);
 		return;
 	}
 
@@ -367,9 +367,9 @@ void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int
 		tuiDebugError(TUI_ERROR_NULL_TARGET_PANEL, __func__);
 		return;
 	}
-	if (panel->Instance != target_panel->Instance)
+	if (panel->Window != target_panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_WINDOW, __func__);
 		return;
 	}
 

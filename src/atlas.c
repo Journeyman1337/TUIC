@@ -24,11 +24,11 @@
 #include <stdio.h>
 #include <string.h>
 
-TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreate(TuiWindow window, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (image == NULL)
@@ -53,7 +53,7 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -67,16 +67,16 @@ TuiAtlas tuiAtlasCreate(TuiInstance instance, TuiImage image, int glyph_count, u
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, NULL);
 	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateRawPixels(TuiWindow window, int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -111,7 +111,7 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -125,16 +125,16 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiInstance instance, int pixel_width , int pix
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, NULL);
 	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	tuiFree(raw_glyph_uvs);
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateRawUVs(TuiWindow window, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (image == NULL)
@@ -159,7 +159,7 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -172,15 +172,15 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiInstance instance, TuiImage image, int glyph_co
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -215,7 +215,7 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -228,15 +228,15 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiInstance instance, int pixel_width, in
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateGrid(TuiWindow window, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (image == NULL)
@@ -256,7 +256,7 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -268,15 +268,15 @@ TuiAtlas tuiAtlasCreateGrid(TuiInstance instance, TuiImage image, int tile_pixel
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateGridRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -306,7 +306,7 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -318,18 +318,18 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiInstance instance, int pixel_width, int 
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	return atlas;
 }
 
 const size_t kCodepageGlyphCount = 256;
 const size_t kCodepageGlyphTileDimensions = 16;
 
-TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCodepageGrid(TuiWindow window, TuiImage image, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (image == NULL)
@@ -349,7 +349,7 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = image->PixelWidth / kCodepageGlyphTileDimensions;
@@ -362,15 +362,15 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiInstance instance, TuiImage image, TuiBle
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
 	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -400,7 +400,7 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
-	atlas->Instance = instance;
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)pixel_width / kCodepageGlyphTileDimensions;
@@ -413,7 +413,7 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiInstance instance, int pixel_wid
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
 	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
-	atlas->Instance->AtlasCount++;
+	atlas->Window->AtlasCount++;
 	return atlas;
 }
 
@@ -426,11 +426,11 @@ void tuiAtlasDestroy(TuiAtlas atlas)
 	}
 
 	tuiAtlasDestroy_Opengl33(atlas);
-	atlas->Instance->AtlasCount--;
+	atlas->Window->AtlasCount--;
 	tuiFree(atlas);
 }
 
-TuiInstance tuiAtlasGetInstance(TuiAtlas atlas)
+TuiWindow tuiAtlasGetWindow(TuiAtlas atlas)
 {
 	if (atlas == NULL)
 	{
@@ -438,7 +438,7 @@ TuiInstance tuiAtlasGetInstance(TuiAtlas atlas)
 		return NULL;
 	}
 
-	return atlas->Instance;
+	return atlas->Window;
 }
 
 int tuiAtlasGetChannelCount(TuiAtlas atlas)

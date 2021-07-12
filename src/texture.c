@@ -20,11 +20,11 @@
 #include <TUIC/tuic.h>
 #include "objects.h"
 
-TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode filter_mode)
+TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filter_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (image == NULL)
@@ -39,21 +39,21 @@ TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, TuiFilterMode 
 	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
-	texture->Instance = instance;
+	texture->Window = window;
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
 	tuiTextureCreate_Opengl33(texture, image->PixelData);
-	texture->Instance->TextureCount++;
+	texture->Window->TextureCount++;
 	return texture;
 }
 
-TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode)
+TuiTexture tuiTextureCreateRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (pixels == NULL)
@@ -78,13 +78,13 @@ TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int 
 	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
-	texture->Instance = instance;
+	texture->Window = window;
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
 	tuiTextureCreate_Opengl33(texture, pixels);
-	texture->Instance->TextureCount++;
+	texture->Window->TextureCount++;
 	return texture;
 }
 
@@ -97,7 +97,7 @@ void tuiTextureDestroy(TuiTexture texture)
 	}
 
 	tuiTextureDestroy_Opengl33(texture);
-	texture->Instance->TextureCount--;
+	texture->Window->TextureCount--;
 	tuiFree(texture);
 }
 
@@ -219,7 +219,7 @@ void tuiTextureRender(TuiTexture texture)
 		return;
 	}
 
-	tuiTextureRender_Opengl33(texture, 0, texture->Instance->PixelWidth, 0, texture->Instance->PixelHeight);
+	tuiTextureRender_Opengl33(texture, 0, texture->Window->PixelWidth, 0, texture->Window->PixelHeight);
 }
 
 void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
@@ -245,9 +245,9 @@ void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel)
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (texture->Instance != panel->Instance)
+	if (texture->Window != panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_WINDOW, __func__);
 	}
 
 	tuiTextureRenderToPanel_Opengl33(texture, panel, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
@@ -265,9 +265,9 @@ void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int 
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
-	if (texture->Instance != panel->Instance)
+	if (texture->Window != panel->Window)
 	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_UNMATCHING_PANEL_WINDOW, __func__);
 	}
 
 	tuiTextureRenderToPanel_Opengl33(texture, panel, left_x, right_x, top_y, bottom_y);

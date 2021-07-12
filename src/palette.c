@@ -283,11 +283,11 @@ const uint8_t kTuiXtermPalette[768] = {
 	238,238,238
 };
 
-TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_count, uint8_t* color_data)
+TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count, uint8_t* color_data)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (color_count <= 0 || color_count > 256)
@@ -307,7 +307,7 @@ TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_c
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
-	palette->Instance = instance;
+	palette->Window = window;
 	palette->ChannelCount = channel_count;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
@@ -315,11 +315,11 @@ TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_c
 	return palette;
 }
 
-TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
+TuiPalette tuiPaletteCreateXterm(TuiWindow window, int color_count)
 {
-	if (instance == NULL)
+	if (window == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return NULL;
 	}
 	if (color_count <= 0 || color_count > 256)
@@ -329,7 +329,7 @@ TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
-	palette->Instance = instance;
+	palette->Window = window;
 	palette->ChannelCount = 3;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
@@ -349,7 +349,7 @@ void tuiPaletteDestroy(TuiPalette palette)
 	tuiFree(palette);
 }
 
-TuiInstance tuiPaletteGetInstance(TuiPalette palette)
+TuiWindow tuiPaletteGetWindow(TuiPalette palette)
 {
 	if (palette == NULL)
 	{
@@ -357,7 +357,7 @@ TuiInstance tuiPaletteGetInstance(TuiPalette palette)
 		return NULL;
 	}
 
-	return palette->Instance;
+	return palette->Window;
 }
 
 int tuiPaletteGetColorCount(TuiPalette palette)

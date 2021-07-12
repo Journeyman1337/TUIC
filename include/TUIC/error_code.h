@@ -33,7 +33,7 @@ typedef enum TuiErrorCode
 	TUI_ERROR_ALREADY_INITIALIZED = 1,
 	TUI_ERROR_DANGLING_ATLAS = 2,
 	TUI_ERROR_DANGLING_CURSOR = 3,
-	TUI_ERROR_DANGLING_INSTANCE = 4,
+	TUI_ERROR_DANGLING_WINDOW = 4,
 	TUI_ERROR_DANGLING_PALETTE = 5,
 	TUI_ERROR_DANGLING_PANEL = 6,
 	TUI_ERROR_DANGLING_TEXTURE = 7,
@@ -62,7 +62,7 @@ typedef enum TuiErrorCode
 	TUI_ERROR_INVALID_GLYPH_COUNT = 30,
 	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 31,
 	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 32,
-	TUI_ERROR_INVALID_INSTANCE_DIMENSIONS = 33,
+	TUI_ERROR_INVALID_WINDOW_DIMENSIONS = 33,
 	TUI_ERROR_INVALID_JOYSTICK_HAT_STATE = 34,
 	TUI_ERROR_INVALID_JOYSTICK_ID = 35,
 	TUI_ERROR_INVALID_KEY = 36,
@@ -84,7 +84,7 @@ typedef enum TuiErrorCode
 	TUI_ERROR_NULL_CURSOR = 52,
 	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 53,
 	TUI_ERROR_NULL_IMAGE = 54,
-	TUI_ERROR_NULL_INSTANCE = 55,
+	TUI_ERROR_NULL_WINDOW = 55,
 	TUI_ERROR_NULL_PALETTE = 56,
 	TUI_ERROR_NULL_PANEL = 57,
 	TUI_ERROR_NULL_PATH = 58,
@@ -98,9 +98,9 @@ typedef enum TuiErrorCode
 	TUI_ERROR_RESIZE_IMAGE_FAILURE = 66,
 	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 67,
 	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 68,
-	TUI_ERROR_UNMATCHING_ATLAS_INSTANCE = 69,
+	TUI_ERROR_UNMATCHING_ATLAS_WINDOW = 69,
 	TUI_ERROR_UNMATCHING_PALETTE_INSTANCE = 70,
-	TUI_ERROR_UNMATCHING_PANEL_INSTANCE = 71,
+	TUI_ERROR_UNMATCHING_PANEL_WINDOW = 71,
 	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 72,
 	TUI_ERROR_FIRST = TUI_ERROR_UNKNOWN,
 	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION
@@ -111,7 +111,7 @@ extern const char* kTui_Error_None_Name;
 extern const char* kTui_Error_Already_Initialized_Name;
 extern const char* kTui_Error_Dangling_Atlas_Name;
 extern const char* kTui_Error_Dangling_Cursor_Name;
-extern const char* kTui_Error_Dangling_Instance_Name;
+extern const char* kTui_Error_Dangling_Window_Name;
 extern const char* kTui_Error_Dangling_Palette_Name;
 extern const char* kTui_Error_Dangling_Panel_Name;
 extern const char* kTui_Error_Dangling_Texture_Name;
@@ -140,7 +140,7 @@ extern const char* kTui_Error_Invalid_Filter_Mode_Name;
 extern const char* kTui_Error_Invalid_Glyph_Count_Name;
 extern const char* kTui_Error_Invalid_Glyph_Dimensions_Name;
 extern const char* kTui_Error_Invalid_Image_Dimensions_Name;
-extern const char* kTui_Error_Invalid_Instance_Dimensions_Name;
+extern const char* kTui_Error_Invalid_Window_Dimensions_Name;
 extern const char* kTui_Error_Invalid_Joystick_Hat_State_Name;
 extern const char* kTui_Error_Invalid_Joystick_Id_Name;
 extern const char* kTui_Error_Invalid_Key_Name;
@@ -162,7 +162,7 @@ extern const char* kTui_Error_Null_Colors_Name;
 extern const char* kTui_Error_Null_Cursor_Name;
 extern const char* kTui_Error_Null_Glyph_Bounding_Boxes_Name;
 extern const char* kTui_Error_Null_Image_Name;
-extern const char* kTui_Error_Null_Instance_Name;
+extern const char* kTui_Error_Null_Window_Name;
 extern const char* kTui_Error_Null_Palette_Name;
 extern const char* kTui_Error_Null_Panel_Name;
 extern const char* kTui_Error_Null_Path_Name;
@@ -176,9 +176,9 @@ extern const char* kTui_Error_Palette_Required_Name;
 extern const char* kTui_Error_Resize_Image_Failure_Name;
 extern const char* kTui_Error_Unavailable_Graphics_API_Name;
 extern const char* kTui_Error_Unavailable_Graphics_API_Version_Name;
-extern const char* kTui_Error_Unmatching_Atlas_Instance_Name;
-extern const char* kTui_Error_Unmatching_Palette_Instance_Name;
-extern const char* kTui_Error_Unmatching_Panel_Instance_Name;
+extern const char* kTui_Error_Unmatching_Atlas_Window_Name;
+extern const char* kTui_Error_Unmatching_Palette_Window_Name;
+extern const char* kTui_Error_Unmatching_Panel_Window_Name;
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name;
 
 extern const char* kTui_Error_Unknown_Description;
@@ -187,7 +187,7 @@ extern const char* kTui_Error_Already_Initialized_Description;
 extern const char* kTui_Error_Backend_Specific_Description;
 extern const char* kTui_Error_Dangling_Atlas_Description;
 extern const char* kTui_Error_Dangling_Cursor_Description;
-extern const char* kTui_Error_Dangling_Instance_Description;
+extern const char* kTui_Error_Dangling_Window_Description;
 extern const char* kTui_Error_Dangling_Palette_Description;
 extern const char* kTui_Error_Dangling_Panel_Description;
 extern const char* kTui_Error_Dangling_Texture_Description;
@@ -216,7 +216,7 @@ extern const char* kTui_Error_Invalid_Filter_Mode_Description;
 extern const char* kTui_Error_Invalid_Glyph_Count_Description;
 extern const char* kTui_Error_Invalid_Glyph_Dimensions_Description;
 extern const char* kTui_Error_Invalid_Image_Dimensions_Description;
-extern const char* kTui_Error_Invalid_Instance_Dimensions_Description;
+extern const char* kTui_Error_Invalid_Window_Dimensions_Description;
 extern const char* kTui_Error_Invalid_Joystick_Hat_State_Description;
 extern const char* kTui_Error_Invalid_Joystick_Id_Description;
 extern const char* kTui_Error_Invalid_Key_Description;
@@ -238,7 +238,7 @@ extern const char* kTui_Error_Null_Colors_Description;
 extern const char* kTui_Error_Null_Cursor_Description;
 extern const char* kTui_Error_Null_Glyph_Bounding_Boxes_Description;
 extern const char* kTui_Error_Null_Image_Description;
-extern const char* kTui_Error_Null_Instance_Description;
+extern const char* kTui_Error_Null_Window_Description;
 extern const char* kTui_Error_Null_Palette_Description;
 extern const char* kTui_Error_Null_Panel_Description;
 extern const char* kTui_Error_Null_Path_Description;
@@ -253,8 +253,8 @@ extern const char* kTui_Error_Resize_Image_Failure_Description;
 extern const char* kTui_Error_Unavailable_Graphics_API_Description;
 extern const char* kTui_Error_Unavailable_Graphics_API_Version_Description;
 extern const char* kTui_Error_Unmatching_Atlas_Type_Description;
-extern const char* kTui_Error_Unmatching_Palette_Instance_Description;
-extern const char* kTui_Error_Unmatching_Panel_Instance_Description;
+extern const char* kTui_Error_Unmatching_Palette_Window_Description;
+extern const char* kTui_Error_Unmatching_Panel_Window_Description;
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
 
 TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code);

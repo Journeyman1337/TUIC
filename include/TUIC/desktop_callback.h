@@ -32,35 +32,35 @@ extern "C" {
 #include <TUIC/joystick_id.h>
 #include <TUIC/types.h>
 
-typedef void (* tuiWindowMoveFunction)(TuiInstance instance, int xpos, int ypos);
+typedef void (* tuiWindowMoveFunction)(TuiWindow window, int xpos, int ypos);
 
-typedef void (* tuiWindowCloseFunction)(TuiInstance instance);
+typedef void (* tuiWindowCloseFunction)(TuiWindow window);
 
-typedef void (* tuiWindowRefreshFunction)(TuiInstance instance);
+typedef void (* tuiWindowRefreshFunction)(TuiWindow window);
 
-typedef void (* tuiWindowFocusFunction)(TuiInstance instance, TuiBoolean focused);
+typedef void (* tuiWindowFocusFunction)(TuiWindow window, TuiBoolean focused);
 
-typedef void (* tuiWindowIconifyFunction)(TuiInstance instance,TuiBoolean iconified);
+typedef void (* tuiWindowIconifyFunction)(TuiWindow window,TuiBoolean iconified);
 
-typedef void (* tuiWindowMaximizeFunction)(TuiInstance instance, TuiBoolean maximized);
+typedef void (* tuiWindowMaximizeFunction)(TuiWindow window, TuiBoolean maximized);
 
-typedef void (* tuiWindowResizeFunction)(TuiInstance instance, int pixel_width, int pixel_height);
+typedef void (* tuiWindowResizeFunction)(TuiWindow window, int pixel_width, int pixel_height);
 
-typedef void (* tuiWindowContentScaleFunction)(TuiInstance instance, float xscale, float yscale);
+typedef void (* tuiWindowContentScaleFunction)(TuiWindow window, float xscale, float yscale);
 
-typedef void (* tuiMouseButtonFunction)(TuiInstance instance, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyMod key_mod);
+typedef void (* tuiMouseButtonFunction)(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyMod key_mod);
 
-typedef void (* tuiCursorMoveFunction)(TuiInstance instance, double xpos, double ypos);
+typedef void (* tuiCursorMoveFunction)(TuiWindow window, double xpos, double ypos);
 
-typedef void (* tuiCursorEnterFunction)(TuiInstance instance, TuiBoolean entered);
+typedef void (* tuiCursorEnterFunction)(TuiWindow window, TuiBoolean entered);
 
-typedef void (* tuiMouseScrollFunction)(TuiInstance instance, double xscroll, double yscroll);
+typedef void (* tuiMouseScrollFunction)(TuiWindow window, double xscroll, double yscroll);
 
-typedef void (* tuiKeyboardKeyFunction)(TuiInstance instance, TuiKey key, int scancode, TuiButtonState button_state, TuiKeyMod key_mod);
+typedef void (* tuiKeyboardKeyFunction)(TuiWindow window, TuiKey key, int scancode, TuiButtonState button_state, TuiKeyMod key_mod);
 
-typedef void (* tuiCharFunction)(TuiInstance instance, unsigned int codepoint);
+typedef void (* tuiCharFunction)(TuiWindow window, unsigned int codepoint);
 
-typedef void (* tuiFileDropFunction)(TuiInstance instance, int path_count, const char* paths[]);
+typedef void (* tuiFileDropFunction)(TuiWindow window, int path_count, const char* paths[]);
 
 typedef void (* tuiMonitorFunction)(TuiMonitor monitor, TuiBoolean connected);
 

@@ -8,7 +8,7 @@ const char* kTui_Error_None_Name = TO_STRING(TUI_ERROR_NONE);
 const char* kTui_Error_Already_Initialized_Name = TO_STRING(TUI_ERROR_ALREADY_INITIALIZED);
 const char* kTui_Error_Dangling_Atlas_Name = TO_STRING(TUI_ERROR_DANGLING_ATLAS);
 const char* kTui_Error_Dangling_Cursor_Name = TO_STRING(TUI_ERROR_DANGLING_CURSOR);
-const char* kTui_Error_Dangling_Instance_Name = TO_STRING(TUI_ERROR_DANGLING_INSTANCE);
+const char* kTui_Error_Dangling_Window_Name = TO_STRING(TUI_ERROR_DANGLING_WINDOW);
 const char* kTui_Error_Dangling_Palette_Name = TO_STRING(TUI_ERROR_DANGLING_PALETTE);
 const char* kTui_Error_Dangling_Panel_Name = TO_STRING(TUI_ERROR_DANGLING_PANEL);
 const char* kTui_Error_Dangling_Texture_Name = TO_STRING(TUI_ERROR_DANGLING_TEXTURE);
@@ -37,7 +37,7 @@ const char* kTui_Error_Invalid_Filter_Mode_Name = TO_STRING(TUI_ERROR_INVALID_FI
 const char* kTui_Error_Invalid_Glyph_Count_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_COUNT);
 const char* kTui_Error_Invalid_Glyph_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_DIMENSIONS);
 const char* kTui_Error_Invalid_Image_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_IMAGE_DIMENSIONS);
-const char* kTui_Error_Invalid_Instance_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_INSTANCE_DIMENSIONS);
+const char* kTui_Error_Invalid_Window_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_WINDOW_DIMENSIONS);
 const char* kTui_Error_Invalid_Joystick_Hat_State_Name = TO_STRING(TUI_ERROR_INVALID_JOYSTICK_HAT_STATE);
 const char* kTui_Error_Invalid_Joystick_Id_Name = TO_STRING(TUI_ERROR_INVALID_JOYSTICK_ID);
 const char* kTui_Error_Invalid_Key_Name = TO_STRING(TUI_ERROR_INVALID_KEY);
@@ -59,7 +59,7 @@ const char* kTui_Error_Null_Colors_Name = TO_STRING(TUI_ERROR_NULL_COLORS);
 const char* kTui_Error_Null_Cursor_Name = TO_STRING(TUI_ERROR_NULL_CURSOR);
 const char* kTui_Error_Null_Glyph_Bounding_Boxes_Name = TO_STRING(TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES);
 const char* kTui_Error_Null_Image_Name = TO_STRING(TUI_ERROR_NULL_IMAGE);
-const char* kTui_Error_Null_Instance_Name = TO_STRING(TUI_ERROR_NULL_INSTANCE);
+const char* kTui_Error_Null_Window_Name = TO_STRING(TUI_ERROR_NULL_WINDOW);
 const char* kTui_Error_Null_Palette_Name = TO_STRING(TUI_ERROR_NULL_PALETTE);
 const char* kTui_Error_Null_Panel_Name = TO_STRING(TUI_ERROR_NULL_PANEL);
 const char* kTui_Error_Null_Path_Name = TO_STRING(TUI_ERROR_NULL_PATH);
@@ -73,20 +73,20 @@ const char* kTui_Error_Palette_Required_Name = TO_STRING(TUI_ERROR_PALETTE_REQUI
 const char* kTui_Error_Resize_Image_Failure_Name = TO_STRING(TUI_ERROR_RESIZE_IMAGE_FAILURE);
 const char* kTui_Error_Unavailable_Graphics_API_Name = TO_STRING(TUI_ERROR_UNAVAILABLE_GRAPHICS_API);
 const char* kTui_Error_Unavailable_Graphics_API_Version_Name = TO_STRING(TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION);
-const char* kTui_Error_Unmatching_Atlas_Instance_Name = TO_STRING(TUI_ERROR_UNMATCHING_ATLAS_INSTANCE);
-const char* kTui_Error_Unmatching_Palette_Instance_Name = TO_STRING(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE);
-const char* kTui_Error_Unmatching_Panel_Instance_Name = TO_STRING(TUI_ERROR_UNMATCHING_PANEL_INSTANCE);
+const char* kTui_Error_Unmatching_Atlas_Window_Name = TO_STRING(TUI_ERROR_UNMATCHING_ATLAS_WINDOW);
+const char* kTui_Error_Unmatching_Palette_Window_Name = TO_STRING(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE);
+const char* kTui_Error_Unmatching_Panel_Window_Name = TO_STRING(TUI_ERROR_UNMATCHING_PANEL_WINDOW);
 const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION);
 
 const char* kTui_Error_Unknown_Description = "An unkown error has occured. This may be a bug with TUIC library.";
 const char* kTui_Error_None_Description = "No error has occured.";
 const char* kTui_Error_Already_Initialized_Description = "TUIC has already been initialized.";
-const char* kTui_Error_Dangling_Atlas_Description = "Attempting to destroy a TuiInstance with one or more dangling TuiAtlas.";
+const char* kTui_Error_Dangling_Atlas_Description = "Attempting to destroy a TuiWindow with one or more dangling TuiAtlas.";
 const char* kTui_Error_Dangling_Cursor_Description = "Attempting to terminate TUIC with one or more dangling TuiCursor.";
-const char* kTui_Error_Dangling_Instance_Description = "Attempting to terminate TUIC with one or more dangling TuiInstance.";
-const char* kTui_Error_Dangling_Palette_Description = "Attempting to destroy a TuiInstance with one or more dangling TuiPalette.";
-const char* kTui_Error_Dangling_Panel_Description = "Attempting to destroy a TuiInstance with one or more dangling TuiPanel.";
-const char* kTui_Error_Dangling_Texture_Description = "Attempting to destroy a TuiInstance with one or more dangling TuiTexture.";
+const char* kTui_Error_Dangling_Window_Description = "Attempting to terminate TUIC with one or more dangling TuiWindow.";
+const char* kTui_Error_Dangling_Palette_Description = "Attempting to destroy a TuiWindow with one or more dangling TuiPalette.";
+const char* kTui_Error_Dangling_Panel_Description = "Attempting to destroy a TuiWindow with one or more dangling TuiPanel.";
+const char* kTui_Error_Dangling_Texture_Description = "Attempting to destroy a TuiWindow with one or more dangling TuiTexture.";
 const char* kTui_Error_Desktop_Format_Unavailable_Description = "A desktop format unavailable error has occured.";
 const char* kTui_Error_Desktop_Not_Initialized_Description = "Attempting to use a desktop related function when the desktop system is not initialized.";
 const char* kTui_Error_Desktop_No_Graphics_Context_Description = "Attempting to use a graphics API without a graphics context. This is a bug with TUIC library.";
@@ -112,7 +112,7 @@ const char* kTui_Error_Invalid_Filter_Mode_Description = "The TuiFilterMode is i
 const char* kTui_Error_Invalid_Glyph_Count_Description = "The glyph count must be greater than zero.";
 const char* kTui_Error_Invalid_Glyph_Dimensions_Description = "The glyph dimensions of a TuiAtlas must be greater than zero.";
 const char* kTui_Error_Invalid_Image_Dimensions_Description = "The pixel dimensions of a TuiImage must be greater than zero.";
-const char* kTui_Error_Invalid_Instance_Dimensions_Description = "The pixel dimensions of a TuiInstance must be greater than zero.";
+const char* kTui_Error_Invalid_Window_Dimensions_Description = "The pixel dimensions of a TuiWindow must be greater than zero.";
 const char* kTui_Error_Invalid_Joystick_Hat_State_Description = "The TuiJoyustickHatState is invalid.";
 const char* kTui_Error_Invalid_Joystick_Id_Description = "The TuiJoystickId is invalid.";
 const char* kTui_Error_Invalid_Key_Description = "The TuiKey is invalid.";
@@ -134,7 +134,7 @@ const char* kTui_Error_Null_Colors_Description = "The colors array is NULL.";
 const char* kTui_Error_Null_Cursor_Description = "The TuiCursor is NULL.";
 const char* kTui_Error_Null_Glyph_Bounding_Boxes_Description = "The glyph bounding boxes array is NULL.";
 const char* kTui_Error_Null_Image_Description = "The TuiImage is NULL.";
-const char* kTui_Error_Null_Instance_Description = "The TuiInstance is NULL.";
+const char* kTui_Error_Null_Window_Description = "The TuiWindow is NULL.";
 const char* kTui_Error_Null_Palette_Description = "The TuiPalette is NULL.";
 const char* kTui_Error_Null_Panel_Description = "The TuiPanel is NULL.";
 const char* kTui_Error_Null_Path_Description = "The file path is NULL.";
@@ -148,9 +148,9 @@ const char* kTui_Error_Palette_Required_Description = "Attempting to render batc
 const char* kTui_Error_Resize_Image_Failure_Description = "Failed to resize a TuiImage.";
 const char* kTui_Error_Unavailable_Graphics_API_Description = "The graphics API is unavailable on this device.";
 const char* kTui_Error_Unavailable_Graphics_API_Version_Description = "The graphics API version is unavailable on this device.";
-const char* kTui_Error_Unmatching_Atlas_Instance_Description = "The TuiAtlas belongs to the graphics context of a different TuiInstance.";
-const char* kTui_Error_Unmatching_Palette_Instance_Description = "The TuiPalette belongs to the graphics context of a different TuiInstance.";
-const char* kTui_Error_Unmatching_Panel_Instance_Description = "The TuiPanel belongs to the graphics context of a different TuiInstance.";
+const char* kTui_Error_Unmatching_Atlas_Window_Description = "The TuiAtlas belongs to the graphics context of a different TuiWindow.";
+const char* kTui_Error_Unmatching_Palette_Window_Description = "The TuiPalette belongs to the graphics context of a different TuiWindow.";
+const char* kTui_Error_Unmatching_Panel_Window_Description = "The TuiPanel belongs to the graphics context of a different TuiWindow.";
 const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description = "Raw mouse motion is not supported on this device.";
 
 TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code)
@@ -179,8 +179,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Dangling_Atlas_Name;
 	case TUI_ERROR_DANGLING_CURSOR:
 		return kTui_Error_Dangling_Cursor_Name;
-	case TUI_ERROR_DANGLING_INSTANCE:
-		return kTui_Error_Dangling_Instance_Name;
+	case TUI_ERROR_DANGLING_WINDOW:
+		return kTui_Error_Dangling_Window_Name;
 	case TUI_ERROR_DANGLING_PALETTE:
 		return kTui_Error_Dangling_Palette_Name;
 	case TUI_ERROR_DANGLING_PANEL:
@@ -231,8 +231,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Glyph_Dimensions_Name;
 	case TUI_ERROR_INVALID_IMAGE_DIMENSIONS:
 		return kTui_Error_Invalid_Image_Dimensions_Name;
-	case TUI_ERROR_INVALID_INSTANCE_DIMENSIONS:
-		return kTui_Error_Invalid_Instance_Dimensions_Name;
+	case TUI_ERROR_INVALID_WINDOW_DIMENSIONS:
+		return kTui_Error_Invalid_Window_Dimensions_Name;
 	case TUI_ERROR_INVALID_JOYSTICK_HAT_STATE:
 		return kTui_Error_Invalid_Joystick_Hat_State_Name;
 	case TUI_ERROR_INVALID_JOYSTICK_ID:
@@ -273,8 +273,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Null_Glyph_Bounding_Boxes_Name;
 	case TUI_ERROR_NULL_IMAGE:
 		return kTui_Error_Null_Image_Name;
-	case TUI_ERROR_NULL_INSTANCE:
-		return kTui_Error_Null_Instance_Name;
+	case TUI_ERROR_NULL_WINDOW:
+		return kTui_Error_Null_Window_Name;
 	case TUI_ERROR_NULL_PALETTE:
 		return kTui_Error_Null_Palette_Name;
 	case TUI_ERROR_NULL_PANEL:
@@ -301,12 +301,12 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Unavailable_Graphics_API_Name;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION:
 		return kTui_Error_Unavailable_Graphics_API_Version_Name;
-	case TUI_ERROR_UNMATCHING_ATLAS_INSTANCE:
-		return kTui_Error_Unmatching_Atlas_Instance_Name;
+	case TUI_ERROR_UNMATCHING_ATLAS_WINDOW:
+		return kTui_Error_Unmatching_Atlas_Window_Name;
 	case TUI_ERROR_UNMATCHING_PALETTE_INSTANCE:
-		return kTui_Error_Unmatching_Palette_Instance_Name;
-	case TUI_ERROR_UNMATCHING_PANEL_INSTANCE:
-		return kTui_Error_Unmatching_Panel_Instance_Name;
+		return kTui_Error_Unmatching_Palette_Window_Name;
+	case TUI_ERROR_UNMATCHING_PANEL_WINDOW:
+		return kTui_Error_Unmatching_Panel_Window_Name;
 	case TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION:
 		return kTui_Error_Unsupported_Raw_Mouse_Motion_Name;
 	default:
@@ -336,9 +336,9 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_DANGLING_CURSOR;
 	}
-	else if (strcmp(str, kTui_Error_Dangling_Instance_Name) == 0)
+	else if (strcmp(str, kTui_Error_Dangling_Window_Name) == 0)
 	{
-		return TUI_ERROR_DANGLING_INSTANCE;
+		return TUI_ERROR_DANGLING_WINDOW;
 	}
 	else if (strcmp(str, kTui_Error_Dangling_Palette_Name) == 0)
 	{
@@ -452,9 +452,9 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_INVALID_IMAGE_DIMENSIONS;
 	}
-	else if (strcmp(str, kTui_Error_Invalid_Instance_Dimensions_Name) == 0)
+	else if (strcmp(str, kTui_Error_Invalid_Window_Dimensions_Name) == 0)
 	{
-		return TUI_ERROR_INVALID_INSTANCE_DIMENSIONS;
+		return TUI_ERROR_INVALID_WINDOW_DIMENSIONS;
 	}
 	else if (strcmp(str, kTui_Error_Invalid_Joystick_Hat_State_Name) == 0)
 	{
@@ -540,9 +540,9 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_NULL_IMAGE;
 	}
-	else if (strcmp(str, kTui_Error_Null_Instance_Name) == 0)
+	else if (strcmp(str, kTui_Error_Null_Window_Name) == 0)
 	{
-		return TUI_ERROR_NULL_INSTANCE;
+		return TUI_ERROR_NULL_WINDOW;
 	}
 	else if (strcmp(str, kTui_Error_Null_Palette_Name) == 0)
 	{
@@ -596,17 +596,17 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION;
 	}
-	else if (strcmp(str, kTui_Error_Unmatching_Atlas_Instance_Name) == 0)
+	else if (strcmp(str, kTui_Error_Unmatching_Atlas_Window_Name) == 0)
 	{
-		return TUI_ERROR_UNMATCHING_ATLAS_INSTANCE;
+		return TUI_ERROR_UNMATCHING_ATLAS_WINDOW;
 	}
-	else if (strcmp(str, kTui_Error_Unmatching_Palette_Instance_Name) == 0)
+	else if (strcmp(str, kTui_Error_Unmatching_Palette_Window_Name) == 0)
 	{
 		return TUI_ERROR_UNMATCHING_PALETTE_INSTANCE;
 	}
-	else if (strcmp(str, kTui_Error_Unmatching_Panel_Instance_Name) == 0)
+	else if (strcmp(str, kTui_Error_Unmatching_Panel_Window_Name) == 0)
 	{
-		return TUI_ERROR_UNMATCHING_PANEL_INSTANCE;
+		return TUI_ERROR_UNMATCHING_PANEL_WINDOW;
 	}
 	else if (strcmp(str, kTui_Error_Unsupported_Raw_Mouse_Motion_Name) == 0)
 	{
@@ -630,8 +630,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Dangling_Atlas_Description;
 	case TUI_ERROR_DANGLING_CURSOR:
 		return kTui_Error_Dangling_Cursor_Description;
-	case TUI_ERROR_DANGLING_INSTANCE:
-		return kTui_Error_Dangling_Instance_Description;
+	case TUI_ERROR_DANGLING_WINDOW:
+		return kTui_Error_Dangling_Window_Description;
 	case TUI_ERROR_DANGLING_PALETTE:
 		return kTui_Error_Dangling_Palette_Description;
 	case TUI_ERROR_DANGLING_PANEL:
@@ -682,8 +682,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Invalid_Glyph_Dimensions_Description;
 	case TUI_ERROR_INVALID_IMAGE_DIMENSIONS:
 		return kTui_Error_Invalid_Image_Dimensions_Description;
-	case TUI_ERROR_INVALID_INSTANCE_DIMENSIONS:
-		return kTui_Error_Invalid_Instance_Dimensions_Description;
+	case TUI_ERROR_INVALID_WINDOW_DIMENSIONS:
+		return kTui_Error_Invalid_Window_Dimensions_Description;
 	case TUI_ERROR_INVALID_JOYSTICK_HAT_STATE:
 		return kTui_Error_Invalid_Joystick_Hat_State_Description;
 	case TUI_ERROR_INVALID_JOYSTICK_ID:
@@ -724,8 +724,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Null_Glyph_Bounding_Boxes_Description;
 	case TUI_ERROR_NULL_IMAGE:
 		return kTui_Error_Null_Image_Description;
-	case TUI_ERROR_NULL_INSTANCE:
-		return kTui_Error_Null_Instance_Description;
+	case TUI_ERROR_NULL_WINDOW:
+		return kTui_Error_Null_Window_Description;
 	case TUI_ERROR_NULL_PALETTE:
 		return kTui_Error_Null_Palette_Description;
 	case TUI_ERROR_NULL_PANEL:
@@ -752,12 +752,12 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Unavailable_Graphics_API_Description;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION:
 		return kTui_Error_Unavailable_Graphics_API_Version_Description;
-	case TUI_ERROR_UNMATCHING_ATLAS_INSTANCE:
-		return kTui_Error_Unmatching_Atlas_Instance_Description;
+	case TUI_ERROR_UNMATCHING_ATLAS_WINDOW:
+		return kTui_Error_Unmatching_Atlas_Window_Description;
 	case TUI_ERROR_UNMATCHING_PALETTE_INSTANCE:
-		return kTui_Error_Unmatching_Palette_Instance_Description;
-	case TUI_ERROR_UNMATCHING_PANEL_INSTANCE:
-		return kTui_Error_Unmatching_Panel_Instance_Description;
+		return kTui_Error_Unmatching_Palette_Window_Description;
+	case TUI_ERROR_UNMATCHING_PANEL_WINDOW:
+		return kTui_Error_Unmatching_Panel_Window_Description;
 	case TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION:
 		return kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
 	default:
