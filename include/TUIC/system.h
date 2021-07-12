@@ -24,6 +24,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/boolean.h>
 
 TuiBoolean tuiInit();
 TuiBoolean tuiIsActive();
