@@ -285,13 +285,8 @@ const uint8_t kTuiXtermPalette[768] = {
 
 static int sPaletteCount = 0;
 
-TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count, uint8_t* color_data)
+TuiPalette tuiPaletteCreate(int channel_count, int color_count, uint8_t* color_data)
 {
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);
@@ -317,13 +312,8 @@ TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count
 	return palette;
 }
 
-TuiPalette tuiPaletteCreateXterm(TuiWindow window, int color_count)
+TuiPalette tuiPaletteCreateXterm(int color_count)
 {
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);

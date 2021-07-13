@@ -28,9 +28,9 @@ extern "C" {
 #endif
 #include <TUIC/types.h>
 
-TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filter_mode);
+TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode);
 
-TuiTexture tuiTextureCreateRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode);
+TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode);
 
 void tuiTextureDestroy(TuiTexture texture);
 

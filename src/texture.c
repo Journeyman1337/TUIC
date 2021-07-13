@@ -22,13 +22,8 @@
 
 static int sTextureCount = 0;
 
-TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filter_mode)
+TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode)
 {
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -50,13 +45,8 @@ TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filt
 	return texture;
 }
 
-TuiTexture tuiTextureCreateRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode)
+TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode)
 {
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);

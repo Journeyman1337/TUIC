@@ -10,9 +10,9 @@ extern "C" {
 
 extern const uint8_t kTuiXtermPalette[768];
 
-TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count, uint8_t* color_data);
+TuiPalette tuiPaletteCreate(int channel_count, int color_count, uint8_t* color_data);
 
-TuiPalette tuiPaletteCreateXterm(TuiWindow window, int tui_palette_size);
+TuiPalette tuiPaletteCreateXterm(int tui_palette_size);
 
 void tuiPaletteDestroy(TuiPalette palette);
 

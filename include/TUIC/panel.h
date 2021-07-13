@@ -26,7 +26,7 @@ extern "C" {
 #endif
 #include <TUIC/types.h>
 
-TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height);
+TuiPanel tuiPanelCreate(int pixel_width, int pixel_height);
 
 void tuiPanelDestroy(TuiPanel panel);
 

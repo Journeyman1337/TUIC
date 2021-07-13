@@ -5,13 +5,8 @@
 
 static int sPanelCount = 0;
 
-TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height)
+TuiPanel tuiPanelCreate(int pixel_width, int pixel_height)
 {
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);

@@ -27,21 +27,21 @@ extern "C" {
 #include <TUIC/types.h>
 #include <TUIC/blend_mode.h>
 
-TuiAtlas tuiAtlasCreate(TuiWindow window, TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateRawUVs(TuiWindow window, TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateGrid(TuiWindow window, TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateGrid(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateGridRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateCodepageGrid(TuiWindow window, TuiImage image, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateCodepageGrid(TuiImage image, TuiBlendMode blend_mode);
 
-TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiWindow window, int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateCodepageGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
 
 void tuiAtlasDestroy(TuiAtlas atlas);
 
