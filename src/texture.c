@@ -41,7 +41,6 @@ TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filt
 	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
-	texture->Window = window;
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
@@ -80,7 +79,6 @@ TuiTexture tuiTextureCreateRawPixels(TuiWindow window, int pixel_width, int pixe
 	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
-	texture->Window = window;
 	texture->FilterMode = filter_mode;
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;

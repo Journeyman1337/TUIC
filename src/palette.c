@@ -309,7 +309,6 @@ TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
-	palette->Window = window;
 	palette->ChannelCount = channel_count;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
@@ -332,7 +331,6 @@ TuiPalette tuiPaletteCreateXterm(TuiWindow window, int color_count)
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
-	palette->Window = window;
 	palette->ChannelCount = 3;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
