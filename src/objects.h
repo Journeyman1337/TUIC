@@ -71,25 +71,6 @@ typedef struct TuiWindow_s
 	tuiFileDropFunction FileDropCallback;
 
 	GLFWwindow* GlfwWindow;
-	/*!
-	 * @brief The amount of @ref TuiPanel objects that currently exist attached to this @ref TuiWindow.
-	 */
-	size_t PanelCount;
-	/*!
-	 * @brief The amount of @ref TuiAtlas objects that currently exist attached to this @ref TuiWindow.
-	 */
-	size_t AtlasCount;
-	/*!
-	 * @brief The amount of @ref TuiTexture objects that currently exist attached to this @ref TuiWindow.
-	 */
-	size_t TextureCount;
-	/*!
-	 * @brief The amount of @ref TuiPalette objects that currently exist attached to this @ref TuiWindow.
-	 */
-	size_t PaletteCount;
-	/*!
-	 * @brief The pixel width of the screen of the TuiWindow.
-	 */
 	size_t PixelWidth;
 	/*!
 	 * @brief The pixel height of the screen of the TuiWindow.
@@ -107,7 +88,6 @@ typedef struct TuiWindow_s
  */
 typedef struct TuiAtlas_s
 {
-	TuiWindow Window;
 	/*!
 	 * @brief The @ref TuiBlendMode.
 	 */
@@ -165,10 +145,6 @@ typedef struct TuiAtlas_s
 typedef struct TuiTexture_s
 {
 	/*!
-	 * @brief The @ref TuiWindow that this object is attached to.
-	 */
-	TuiWindow Window;
-	/*!
 	 * @brief The @ref TuiFilterMode.
 	 */
 	TuiFilterMode FilterMode;
@@ -197,10 +173,6 @@ typedef struct TuiTexture_s
 typedef struct TuiPalette_s
 {
 	/*!
-	 * @brief The @ref TuiWindow that this object is attached to.
-	 */
-	TuiWindow Window;
-	/*!
 	 * @brief The channels per color in this @ref TuiPalette.
 	 */
 	int ChannelCount;
@@ -220,10 +192,6 @@ typedef struct TuiPalette_s
  */
 typedef struct TuiPanel_s
 {
-	/*!
-	 * @brief The @ref TuiWindow that this object is attached to.
-	 */
-	TuiWindow Window;
 	/*!
 	 * @brief The width of the framebuffer in pixels.
 	 */

@@ -16,7 +16,7 @@ TuiPalette tuiPaletteCreateXterm(TuiWindow window, int tui_palette_size);
 
 void tuiPaletteDestroy(TuiPalette palette);
 
-TuiWindow tuiPaletteGetWindow(TuiPalette palette);
+int tuiGetPaletteCount();
 
 int tuiPaletteGetColorCount(TuiPalette palette);
 

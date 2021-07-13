@@ -45,7 +45,7 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiWindow window, int pixel_width, 
 
 void tuiAtlasDestroy(TuiAtlas atlas);
 
-TuiWindow tuiAtlasGetWindow(TuiAtlas atlas);
+int tuiGetAtlasCount();
 
 int tuiAtlasGetChannelCount(TuiAtlas atlas);
 

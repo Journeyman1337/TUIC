@@ -145,11 +145,8 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	
 	TuiWindow window = (TuiWindow_s*)tuiAllocate(sizeof(TuiWindow_s));
-	window->PanelCount = 0;
 	window->PixelWidth = (size_t)pixel_width;
 	window->PixelHeight = (size_t)pixel_height;
-	window->AtlasCount = 0;
-	window->PaletteCount = 0;
 	window->GlfwWindow = glfw_window;
 	window->UserPointer = NULL;
 	window->WindowMoveCallback = NULL;
@@ -195,31 +192,6 @@ void tuiWindowDestroy(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-	int dangling = TUI_FALSE;
-	if (window->PanelCount > 0)
-	{
-		tuiDebugError(TUI_ERROR_DANGLING_PANEL, __func__);
-		dangling = TUI_TRUE;
-	}
-	if (window->AtlasCount > 0)
-	{
-		tuiDebugError(TUI_ERROR_DANGLING_ATLAS, __func__);
-		dangling = TUI_TRUE;
-	}
-	if (window->PaletteCount > 0)
-	{
-		tuiDebugError(TUI_ERROR_DANGLING_PALETTE, __func__);
-		dangling = TUI_TRUE;
-	}
-	if (window->TextureCount > 0)
-	{
-		tuiDebugError(TUI_ERROR_DANGLING_TEXTURE, __func__);
-		dangling = TUI_TRUE;
-	}
-	if (dangling == TUI_TRUE)
-	{
 		return;
 	}
 

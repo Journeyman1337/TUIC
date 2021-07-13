@@ -6,7 +6,7 @@
 #include <TUIC/system.h>
 #include <TUIC/boolean.h>
 
-static size_t sCursorCount;
+static int sCursorCount;
 
 TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 {
@@ -56,5 +56,5 @@ void tuiCursorDestroy(TuiCursor cursor)
 
 int tuiGetCursorCount()
 {
-	return (int)sCursorCount;
+	return sCursorCount;
 }

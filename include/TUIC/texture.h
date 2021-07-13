@@ -34,6 +34,8 @@ TuiTexture tuiTextureCreateRawPixels(TuiWindow window, int pixel_width, int pixe
 
 void tuiTextureDestroy(TuiTexture texture);
 
+int tuiGetTextureCount();
+
 void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pixel_height);
 
 int tuiTextureGetPixelWidth(TuiTexture texture);

@@ -30,7 +30,7 @@ TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height);
 
 void tuiPanelDestroy(TuiPanel panel);
 
-TuiWindow tuiPanelGetWindow(TuiPanel panel);
+int tuiGetPanelCount();
 
 TuiImage tuiPanelGetImage(TuiPanel panel);
 
