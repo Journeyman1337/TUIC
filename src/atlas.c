@@ -55,6 +55,7 @@ TuiAtlas tuiAtlasCreate(TuiWindow window, TuiImage image, int glyph_count, uint1
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -112,6 +113,7 @@ TuiAtlas tuiAtlasCreateRawPixels(TuiWindow window, int pixel_width , int pixel_h
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -159,6 +161,7 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiWindow window, TuiImage image, int glyph_count,
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = image->ChannelCount;
@@ -214,6 +217,7 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(TuiWindow window, int pixel_width, int pi
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_COORDS;
 	atlas->ChannelCount = (size_t)channel_count;
@@ -254,6 +258,7 @@ TuiAtlas tuiAtlasCreateGrid(TuiWindow window, TuiImage image, int tile_pixel_wid
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -303,6 +308,7 @@ TuiAtlas tuiAtlasCreateGridRawPixels(TuiWindow window, int pixel_width, int pixe
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)tile_pixel_width;
@@ -345,6 +351,7 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiWindow window, TuiImage image, TuiBlendMo
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = image->PixelWidth / kCodepageGlyphTileDimensions;
@@ -395,6 +402,7 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(TuiWindow window, int pixel_width, 
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
+	atlas->Window = window;
 	atlas->BlendMode = blend_mode;
 	atlas->AtlasType = TUI_ATLAS_GRID;
 	atlas->TileWidth = (size_t)pixel_width / kCodepageGlyphTileDimensions;

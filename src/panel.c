@@ -19,6 +19,7 @@ TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height)
 	}
 
 	TuiPanel panel = tuiAllocate(sizeof(TuiPanel_s));
+	panel->Window = window;
 	panel->FramebufferWidth = (size_t)pixel_width;
 	panel->FramebufferHeight = (size_t)pixel_height;
 	panel->ApiData = NULL;
