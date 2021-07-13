@@ -390,16 +390,6 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (atlas->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
-		return;
-	}
-	if (palette != NULL && palette->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
-		return;
-	}
 	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && batch->TileCount == 0)
 	{
 		return;
@@ -435,16 +425,6 @@ void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (atlas->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
-		return;
-	}
-	if (palette != NULL && palette->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
-		return;
-	}
 	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
 	{
 		return;
@@ -476,16 +456,6 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (atlas->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
-		return;
-	}
-	if (palette != NULL && palette->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
-		return;
-	}
 	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && batch->TileCount == 0)
 	{
 		return;
@@ -514,21 +484,6 @@ void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPale
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
-		return;
-	}
-	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE && palette == NULL)
-	{
-		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
-		return;
-	}
-	if (atlas->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_ATLAS_WINDOW, __func__);
-		return;
-	}
-	if (palette != NULL && palette->Window != window)
-	{
-		tuiDebugError(TUI_ERROR_UNMATCHING_PALETTE_INSTANCE, __func__);
 		return;
 	}
 	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
