@@ -73,6 +73,22 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 
 void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 
+void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel);
+
+void tuiWindowDrawPanelTransformed(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiWindowDrawTexture(TuiWindow window, TuiTexture texture);
+
+void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas);
+
+void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window);
+
+void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
+
 void tuiWindowSwapBuffers(TuiWindow window);
 
 void tuiWindowSwapInterval(TuiWindow window, int interval);

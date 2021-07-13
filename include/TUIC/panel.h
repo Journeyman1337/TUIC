@@ -54,13 +54,21 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 
 void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
 
-void tuiPanelRender(TuiPanel panel);
+void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel);
 
-void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y);
 
-void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel);
+void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture);
 
-void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas);
+
+void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window);
+
+void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y);
 
 #ifdef __cplusplus //extern C guard
 }

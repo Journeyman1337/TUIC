@@ -483,6 +483,134 @@ void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPale
 	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, left_x, right_x, top_y, bottom_y);
 }
 
+void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (panel == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
+		return;
+	}
+
+	tuiWindowDrawPanel_Opengl33(window, panel, 0, window->PixelWidth, 0, window->PixelHeight);
+}
+
+void tuiWindowDrawPanelTransformed(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (panel == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
+		return;
+	}
+
+	tuiWindowDrawPanel_Opengl33(window, panel, left_x, right_x, top_y, bottom_y);
+}
+
+void tuiWindowDrawTexture(TuiWindow window, TuiTexture texture)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (texture == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		return;
+	}
+
+	tuiWindowDrawTexture_Opengl33(window, texture, 0, window->PixelWidth, 0, window->PixelHeight);
+}
+
+void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (texture == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		return;
+	}
+
+	tuiWindowDrawTexture_Opengl33(window, texture, left_x, right_x, top_y, bottom_y);
+}
+
+void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (atlas == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		return;
+	}
+
+	tuiWindowDrawAtlas_Opengl33(window, atlas, 0, window->PixelWidth, 0, window->PixelHeight);
+}
+
+void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (atlas == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
+		return;
+	}
+
+	tuiWindowDrawAtlas_Opengl33(window, atlas, left_x, right_x, top_y, bottom_y);
+}
+
+void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (subject_window == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_SUBJECT_WINDOW, __func__);
+		return;
+	}
+
+	tuiWindowDrawWindow_Opengl33(window, subject_window, 0, window->PixelWidth, 0, window->PixelHeight);
+}
+
+void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (subject_window == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_SUBJECT_WINDOW, __func__);
+		return;
+	}
+
+	tuiWindowDrawWindow_Opengl33(window, subject_window, left_x, right_x, top_y, bottom_y);
+}
+
 void tuiWindowSwapBuffers(TuiWindow window)
 {
 	if (window == NULL)

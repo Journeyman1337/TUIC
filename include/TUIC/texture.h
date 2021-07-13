@@ -48,14 +48,6 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image);
 
 void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels);
 
-void tuiTextureRender(TuiTexture texture);
-
-void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-
-void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel);
-
-void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
-
 #ifdef __cplusplus //extern C guard
 }
 #endif
