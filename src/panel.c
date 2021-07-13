@@ -3,6 +3,8 @@
 #include "image_inline.h"
 #include "opengl33.h"
 
+static int sPanelCount = 0;
+
 TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height)
 {
 	if (window == NULL)
@@ -22,7 +24,7 @@ TuiPanel tuiPanelCreate(TuiWindow window, int pixel_width, int pixel_height)
 	panel->FramebufferHeight = (size_t)pixel_height;
 	panel->ApiData = NULL;
 	tuiPanelCreate_Opengl33(panel);
-	panel->Window->PanelCount++;
+	sPanelCount++;
 	return panel;
 }
 
@@ -35,11 +37,15 @@ void tuiPanelDestroy(TuiPanel panel)
 	}
 
 	tuiPanelDestroy_Opengl33(panel);
-	panel->Window->PanelCount--;
+	sPanelCount--;
 	tuiFree(panel);
 }
 
-TuiWindow tuiPanelGetWindow(TuiPanel panel)
+int tuiGetPanelCount()
+{
+	return sPanelCount;
+}
+
 TuiImage tuiPanelGetImage(TuiPanel panel)
 {
 	if (panel == NULL)

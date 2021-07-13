@@ -283,6 +283,8 @@ const uint8_t kTuiXtermPalette[768] = {
 	238,238,238
 };
 
+static int sPaletteCount = 0;
+
 TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count, uint8_t* color_data)
 {
 	if (window == NULL)
@@ -312,6 +314,7 @@ TuiPalette tuiPaletteCreate(TuiWindow window, int channel_count, int color_count
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
 	tuiPaletteCreate_Opengl33(palette, color_data);
+	sPaletteCount++;
 	return palette;
 }
 
@@ -334,6 +337,7 @@ TuiPalette tuiPaletteCreateXterm(TuiWindow window, int color_count)
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = NULL;
 	tuiPaletteCreate_Opengl33(palette, &kTuiXtermPalette[0]);
+	sPaletteCount++;
 	return palette;
 }
 
@@ -347,17 +351,12 @@ void tuiPaletteDestroy(TuiPalette palette)
 
 	tuiPaletteDestroy_Opengl33(palette);
 	tuiFree(palette);
+	sPaletteCount--;
 }
 
-TuiWindow tuiPaletteGetWindow(TuiPalette palette)
+int tuiGetPaletteCount()
 {
-	if (palette == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
-		return NULL;
-	}
-
-	return palette->Window;
+	return sPaletteCount;
 }
 
 int tuiPaletteGetColorCount(TuiPalette palette)

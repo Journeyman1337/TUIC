@@ -20,6 +20,8 @@
 #include <TUIC/tuic.h>
 #include "objects.h"
 
+static int sTextureCount = 0;
+
 TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filter_mode)
 {
 	if (window == NULL)
@@ -45,7 +47,7 @@ TuiTexture tuiTextureCreate(TuiWindow window, TuiImage image, TuiFilterMode filt
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
 	tuiTextureCreate_Opengl33(texture, image->PixelData);
-	texture->Window->TextureCount++;
+	sTextureCount++;
 	return texture;
 }
 
@@ -84,7 +86,7 @@ TuiTexture tuiTextureCreateRawPixels(TuiWindow window, int pixel_width, int pixe
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
 	tuiTextureCreate_Opengl33(texture, pixels);
-	texture->Window->TextureCount++;
+	sTextureCount++;
 	return texture;
 }
 
@@ -97,8 +99,13 @@ void tuiTextureDestroy(TuiTexture texture)
 	}
 
 	tuiTextureDestroy_Opengl33(texture);
-	texture->Window->TextureCount--;
 	tuiFree(texture);
+	sTextureCount--;
+}
+
+int tuiGetTextureCount()
+{
+	return sTextureCount;
 }
 
 void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pixel_height)
