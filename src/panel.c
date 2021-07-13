@@ -40,6 +40,7 @@ void tuiPanelDestroy(TuiPanel panel)
 }
 
 TuiWindow tuiPanelGetWindow(TuiPanel panel)
+TuiImage tuiPanelGetImage(TuiPanel panel)
 {
 	if (panel == NULL)
 	{
@@ -47,30 +48,27 @@ TuiWindow tuiPanelGetWindow(TuiPanel panel)
 		return NULL;
 	}
 
-	return panel->Window;
+	size_t p_width = 0;
+	size_t p_height = 0;
+	uint8_t* pixel_data = tuiPanelGetPixels_Opengl33(panel, &p_width, &p_height, NULL);
+	TuiImage image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE, __func__);
+	return image;
 }
 
-TuiImage tuiPanelGetImage(TuiPanel panel, TuiImage fill_image)
+void tuiPanelWriteImage(TuiPanel panel, TuiImage image)
 {
 	if (panel == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return NULL;
+		return;
+	}
+	if (image == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
+		return;
 	}
 
-	if (fill_image != NULL)
-	{
-		fill_image->PixelData = tuiPanelGetPixels_Opengl33(panel, &fill_image->PixelWidth, &fill_image->PixelHeight, fill_image->PixelData);
-	}
-	else
-	{
-		size_t p_width = 0;
-		size_t p_height = 0;
-		uint8_t* pixel_data = tuiPanelGetPixels_Opengl33(panel, &p_width, &p_height, NULL);
-		fill_image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE, __func__);
-	}
-
-	return fill_image;
+	image->PixelData = tuiPanelGetPixels_Opengl33(panel, &image->PixelWidth, &image->PixelHeight, image->PixelData);
 }
 
 uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, uint8_t* fill_pixels)
@@ -87,7 +85,6 @@ uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, 
 	*pixel_height = (int)o_height;
 	return fill_pixels;
 } 
-
 
 void tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {

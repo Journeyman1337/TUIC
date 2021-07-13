@@ -32,7 +32,9 @@ void tuiPanelDestroy(TuiPanel panel);
 
 TuiWindow tuiPanelGetWindow(TuiPanel panel);
 
-TuiImage tuiPanelGetImage(TuiPanel panel, TuiImage fill_image);
+TuiImage tuiPanelGetImage(TuiPanel panel);
+
+void tuiPanelWriteImage(TuiPanel panel, TuiImage image);
 
 uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, uint8_t* fill_pixels);
 
