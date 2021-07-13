@@ -31,10 +31,20 @@ extern "C" {
 #include <TUIC/filter_mode.h>
 #include <TUIC/desktop_callback.h>
 
-/*! @} */
-/*! @name Opaque Object Full Declarations
- * These structs are represent the hidden types behind TUIC opaque objects.
- *  @{ */
+typedef struct TuiSystem_s
+{
+	TuiBoolean MultiWindow;
+
+	GLFWwindow* BaseGlfwWindow;
+
+	TuiWindow BaseWindow;
+
+	void* ApiData;
+} TuiSystem_s;
+
+typedef TuiSystem_s* TuiSystem;
+
+TuiSystem tui_get_system();
 
 typedef struct TuiWindow_s
 {
@@ -71,225 +81,118 @@ typedef struct TuiWindow_s
 	tuiFileDropFunction FileDropCallback;
 
 	GLFWwindow* GlfwWindow;
+
 	size_t PixelWidth;
-	/*!
-	 * @brief The pixel height of the screen of the TuiWindow.
-	 */
+
 	size_t PixelHeight;
-	/*!
-	 * @brief A pointer to backend specific API data.
-	 */
+
 	void* ApiData;
 } TuiWindow_s;
-/*
- * @brief The struct behind @ref TuiAtlas opaque objects.
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
+
 typedef struct TuiAtlas_s
 {
-	/*!
-	 * @brief The @ref TuiBlendMode.
-	 */
+
 	TuiBlendMode BlendMode;
-	/*!
-	 * @brief The atlas type that this @ref TuiAtlas uses.
-	 */
+
 	size_t AtlasType;
-	/*!
-	 * @brief The amount of channels in the texture of this @ref TuiAtlas.
-	 */
+
 	size_t ChannelCount;
-	/*!
-	 * @brief The width of the texture in pixels.
-	 */
+
 	size_t PixelWidth;
-	/*!
-	 * @brief The height of the texture in pixels.
-	 */
+
 	size_t PixelHeight;
-	/*!
-	 * @brief The width of a single tile in pixels when rendered to a panel.
-	 */
+
 	size_t TileWidth;
-	/*!
-	 * @brief The height of a single tile in pixels when rendered to a panel.
-	 */
+
 	size_t TileHeight;
-	/*!
-	 * @brief The size of the image pixel data array.
-	 */
+
 	size_t PixelDataSize;
-	/*!
-	 * @brief The amount of glyphs in this atlas.
-	 */
+
 	size_t GlyphCount;
-	/*!
-	 * @brief The amount of glyphs wide, used if this @ref TuiAtlas uses atlas type @ref TUI_ATLAS_GRID.
-	 */
+
 	size_t GridGlyphsWide;
-	/*!
-	 * @brief The amount of glyphs tall, used if this @ref TuiAtlas uses atlas type @ref TUI_ATLAS_GRID.
-	 */
+
 	size_t GridGlyphsTall;
-	/*!
-	 * @brief A pointer to backend specific API data.
-	 */
+
 	void* ApiData;
 } TuiAtlas_s;
-/*
- * @brief The struct behind @ref TuiTexture opaque objects.
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
+
 typedef struct TuiTexture_s
 {
-	/*!
-	 * @brief The @ref TuiFilterMode.
-	 */
+
 	TuiFilterMode FilterMode;
-	/*!
-	 * @brief The width of the texture in pixels.
-	 */
+
 	size_t PixelWidth;
-	/*!
-	 * @brief The height of the texture in pixels.
-	 */
+
 	size_t PixelHeight;
-	/*!
-	 * @brief The amount of channels in the texture of this @ref TuiTexture.
-	 */
+
 	size_t ChannelCount;
-	/*!
-	 * @brief A pointer to backend specific API data.
-	 */
+
 	void* ApiData;
 } TuiTexture_s;
-/*
- * @brief The struct behind @ref TuiPalette opaque objects.
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
+
 typedef struct TuiPalette_s
 {
-	/*!
-	 * @brief The channels per color in this @ref TuiPalette.
-	 */
+
 	int ChannelCount;
-	/*!
-	 * @brief The amount of colors in this @ref TuiPalette.
-	 */
+
 	size_t ColorCount;	
-	/*!
-	 * @brief A pointer to backend specific API data.
-	 */
+
 	void* ApiData;
 } TuiPalette_s;
-/*
- * @brief The struct behind @ref TuiPanel opaque objects.
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
+
 typedef struct TuiPanel_s
 {
-	/*!
-	 * @brief The width of the framebuffer in pixels.
-	 */
+
 	size_t FramebufferWidth;
-	/*!
-	 * @brief The height of the framebuffer in pixels.
-	 */
+
 	size_t FramebufferHeight;
-	/*!
-	 * @brief A pointer to backend specific API data.
-	 */
+
 	void* ApiData;
 } TuiPanel_s;
-/*
- * @brief The struct behind @ref TuiBatch opaque objects.
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
+
 typedef struct TuiBatch_s
 {
-	/*!
-	 * @brief The detail mode that this @ref TuiBatch uses.
-	 */
+
 	size_t DetailMode;
-	/*!
-	 * @brief A pointer to the data array of this @ref TuiBatch.
-	 */
+
 	uint8_t* Data;
-	/*!
-	 * @brief The amount of space in the data array of this @ref TuiBatch that is designated for tiles (BytesPerTile * TilesWide * TilesTall).
-	 */
+
 	size_t UsedDataSize;
-	/*!
-	 * @brief The total amount of allocated space for thie @ref TuiBatch including reserved space not needed for the current batch dimensions.
-	 */
+
 	size_t ReservedDataSize;
-	/*!
-	 * @brief The total bytes per tile.
-	 */
+
 	size_t BytesPerTile;
-	/*!
-	 * @brief The total amount of tiles in this @ref TuiBatch.
-	 */
+
 	size_t TileCount;
-	/*!
-	 * @brief The width of this @ref TuiBatch in tiles.
-	 */
+
 	size_t TilesWide;
-	/*!
-	 * @brief The height of this @ref TuiBatch in tiles.
-	 */
+
 	size_t TilesTall;
-	/*!
-	 * @brief If this is a @ref TuiBatch that uses @ref TUI_LAYOUT_FLAG_SPARSE and requires two bytes for the tile x position instead of one.
-	 */
+
 	TuiBoolean IsLargeSparseWide;
-	/*!
-	 * @brief If this is a @ref TuiBatch that uses @ref TUI_LAYOUT_FLAG_SPARSE and requires two bytes for the tile y position instead of one.
-	 */
+
 	TuiBoolean IsLargeSparseTall;
-	/*!
-	 * @brief A pointer to the used indices 2d array used to prevent sparse batches from rendering to the same tile position twice.
-	 */
+
 	uint16_t* SparseUsedIndices;
-	/*!
-	 * @brief The size of the SparseUsedIndices array.
-	 */
+
 	size_t SparseUsedIndicesSize;
 } TuiBatch_s;
-/*
- * @brief The struct behind @ref TuiImage opaque objects.
- *
- * Properties of this struct are not meant to be edited directly when unless in a backend implementation to avoid undefined behaviour.
- */
+
 typedef struct TuiImage_s
 {
-	/*!
-	 * @brief The amount of channels in this @ref TuiImage.
-	 */
+
 	size_t ChannelCount;
-	/*!
-	 * @brief The width of this @ref TuiImage in pixels
-	 */
+
 	size_t PixelWidth;
-	/*!
-	 * @brief The height of this @ref TuiImage in pixels.
-	 */
+
 	size_t PixelHeight;
-	/*!
-	 * @brief The size of thepixel data of this @ref TuiImage in bytes.
-	 */
+
 	size_t PixelDataSize;
-	/*!
-	 * @brief The pixel data array.
-	 */
+
 	uint8_t* PixelData;
 } TuiImage_s;
-/*! @} */
+
 #ifdef __cplusplus // extern C guard
 }
 #endif

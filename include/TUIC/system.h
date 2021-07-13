@@ -26,9 +26,10 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
-TuiBoolean tuiInit();
+TuiBoolean tuiInit(TuiBoolean multi_window);
 TuiBoolean tuiIsActive();
 void tuiTerminate();
+TuiBoolean tuiMultiWindowDesktop();
 TuiBoolean tuiRawMouseMotionSupported();
 TuiBoolean tuiVulkanSupported();
 
