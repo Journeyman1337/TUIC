@@ -29,8 +29,8 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 
 	sSystem = tuiAllocate(sizeof(TuiSystem_s));
 	sSystem->MultiWindow = multi_window;
-	sSystem->BaseGlfwWindow = NULL;
 	sSystem->BaseWindow = NULL;
+	sSystem->BaseWindowClaimed = TUI_FALSE;
 	sSystem->ApiData = NULL;
 
 	if (multi_window == TUI_TRUE)

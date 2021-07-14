@@ -35,9 +35,9 @@ typedef struct TuiSystem_s
 {
 	TuiBoolean MultiWindow;
 
-	GLFWwindow* BaseGlfwWindow;
+	TuiBoolean BaseWindowClaimed; //for non multi-window systems. if the base window is claimed by the window, this is true.
 
-	TuiWindow BaseWindow;
+	GLFWwindow* BaseWindow;
 
 	void* ApiData;
 } TuiSystem_s;
