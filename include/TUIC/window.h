@@ -42,9 +42,7 @@ typedef struct TuiWindowCreateInfo
 	TuiBoolean topmost;
 	TuiBoolean maximized;
 	TuiBoolean center_cursor;
-	TuiBoolean transparent_framebuffer;
 	TuiBoolean focus_on_show;
-	TuiBoolean scale_to_monitor;
 } TuiWindowCreateInfo;
 
 TuiWindowCreateInfo tuiWindowCreateInfo();
@@ -208,8 +206,6 @@ void tuiWindowSetAutoIconify(TuiWindow window, TuiBoolean auto_iconify);
 TuiBoolean tuiWindowGetTopmost(TuiWindow window);
 
 void tuiWindowSetTopmost(TuiWindow window, TuiBoolean topmost);
-
-TuiBoolean tuiWindowGetTransparentFramebuffer(TuiWindow window);
 
 TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window);
 

@@ -219,9 +219,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.topmost = TUI_FALSE;
 	info.maximized = TUI_FALSE;
 	info.center_cursor = TUI_FALSE;
-	info.transparent_framebuffer = TUI_FALSE;
 	info.focus_on_show = TUI_TRUE;
-	info.scale_to_monitor = TUI_FALSE;
 	return info;
 }
 
