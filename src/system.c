@@ -4,6 +4,7 @@
 #include <TUIC/desktop_callback.h>
 #include "glfw_error_check.h"
 #include "objects.h"
+#include "opengl33.h"
 
 static TuiSystem sSystem;
 
