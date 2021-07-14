@@ -14,8 +14,8 @@ TuiPanel tuiPanelCreate(int pixel_width, int pixel_height)
 	}
 
 	TuiPanel panel = tuiAllocate(sizeof(TuiPanel_s));
-	panel->FramebufferWidth = (size_t)pixel_width;
-	panel->FramebufferHeight = (size_t)pixel_height;
+	panel->PixelWidth = (size_t)pixel_width;
+	panel->PixelHeight = (size_t)pixel_height;
 	panel->ApiData = NULL;
 	tuiPanelCreate_Opengl33(panel);
 	sPanelCount++;
@@ -123,11 +123,11 @@ void tuiPanelGetPixelDimensions(TuiPanel panel, int* pixel_width, int* pixel_hei
 
 	if (pixel_width != NULL)
 	{
-		*pixel_width = (int)panel->FramebufferWidth;
+		*pixel_width = (int)panel->PixelWidth;
 	}
 	if (pixel_height != NULL)
 	{
-		*pixel_height = (int)panel->FramebufferHeight;
+		*pixel_height = (int)panel->PixelHeight;
 	}
 }
 
@@ -139,7 +139,7 @@ int tuiPanelGetPixelWidth(TuiPanel panel)
 		return 0;
 	}
 
-	return panel->FramebufferWidth;
+	return panel->PixelWidth;
 }
 
 int tuiPanelGetPixelHeight(TuiPanel panel)
@@ -150,7 +150,7 @@ int tuiPanelGetPixelHeight(TuiPanel panel)
 		return 0;
 	}
 
-	return panel->FramebufferHeight;
+	return panel->PixelHeight;
 }
 
 
@@ -181,7 +181,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		return;
 	}
 
-	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
+	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, panel->PixelWidth, 0, panel->PixelHeight);
 }
 
 void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
@@ -206,7 +206,7 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 		return;
 	}
 
-	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, 0, panel->FramebufferWidth, 0, panel->FramebufferHeight);
+	tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, 0, panel->PixelWidth, 0, panel->PixelHeight);
 }
 
 void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
@@ -277,7 +277,7 @@ void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel)
 		return;
 	}
 
-	tuiPanelDrawPanel_Opengl33(panel, subject_panel, 0, (int)panel->FramebufferWidth, 0, (int)panel->FramebufferHeight);
+	tuiPanelDrawPanel_Opengl33(panel, subject_panel, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
 }
 
 void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y)
@@ -309,7 +309,7 @@ void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture)
 		return;
 	}
 
-	tuiPanelDrawTexture_Opengl33(panel, texture, 0, (int)panel->FramebufferWidth, 0, (int)panel->FramebufferHeight);
+	tuiPanelDrawTexture_Opengl33(panel, texture, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
 }
 
 void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
@@ -341,7 +341,7 @@ void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas)
 		return;
 	}
 
-	tuiPanelDrawAtlas_Opengl33(panel, atlas, 0, (int)panel->FramebufferWidth, 0, (int)panel->FramebufferHeight);
+	tuiPanelDrawAtlas_Opengl33(panel, atlas, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
 }
 
 void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
@@ -373,7 +373,7 @@ void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window)
 		return;
 	}
 
-	tuiPanelDrawAtlas_Opengl33(panel, window, 0, (int)panel->FramebufferWidth, 0, (int)panel->FramebufferHeight);
+	tuiPanelDrawAtlas_Opengl33(panel, window, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
 }
 
 void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)

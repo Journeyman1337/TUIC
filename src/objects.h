@@ -144,9 +144,9 @@ typedef struct TuiPalette_s
 typedef struct TuiPanel_s
 {
 
-	size_t FramebufferWidth;
+	size_t PixelWidth;
 
-	size_t FramebufferHeight;
+	size_t PixelHeight;
 
 	void* ApiData;
 } TuiPanel_s;
