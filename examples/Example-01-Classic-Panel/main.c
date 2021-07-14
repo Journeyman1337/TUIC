@@ -1,4 +1,3 @@
-/* This example showcases how to use a panel that uses JTUI_DETAIL_G8_C4 detail mode. This detail mode has 8 bits per glyph and 4 bits per color. This allows for up to 256 unique glyphs and for a palette of 16 colors. */
 
 #include <TUIC/tuic.h>
 
@@ -25,7 +24,7 @@ int main()
     int window_width = tiles_wide * glyph_pixel_dimensions * size_multiplier;
     int window_height = tiles_tall * glyph_pixel_dimensions * size_multiplier;
 
-    if (tuiInit() == TUI_FALSE)
+    if (tuiInit(TUI_FALSE) == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return -1;
@@ -57,16 +56,16 @@ int main()
 
     /* Create the Glyph Atlas */
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
-    TuiAtlas atlas = tuiAtlasCreateCodepageGrid(window, atlas_image, blend_mode);
+    TuiAtlas atlas = tuiAtlasCreateCodepageGrid(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
 
     /* Create the palette */
     int palette_color_count = 16;
-    TuiPalette palette = tuiPaletteCreateXterm(window, palette_color_count);
+    TuiPalette palette = tuiPaletteCreateXterm(palette_color_count);
 
     /* Create the panel (graphics framebuffer) */
-    TuiPanel panel = tuiPanelCreate(window, window_width, window_height);
+    TuiPanel panel = tuiPanelCreate(window_width, window_height);
 
     /* Create the batch (tile rendering data container) */
     TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_GLYPH_FLAG_G8 | TUI_COLOR_FLAG_C4 | TUI_LAYOUT_FLAG_FULL)
@@ -120,7 +119,7 @@ int main()
             last_time = currentTime;
         }
 
-        tuiPanelRender(panel);
+        tuiWindowDrawPanel(window, panel);
         //tuiPanelRenderTransformed(panel, window_width/2, window_width, window_height/2, window_height); //Use this function instead to render the panel within the given rect sides.
 
         tuiWindowSwapBuffers(window); //swap the window buffers
