@@ -325,7 +325,6 @@ inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width,
 	{
 		palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
 	}
-	glfwMakeContextCurrent(system->BaseWindow);
 	size_t data_size = 0;
 	int is_sparse = tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE);
 	int glyph_mode = tuiDetailGetGlyphFlag(detail_mode);
@@ -418,7 +417,6 @@ inline void RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebu
 {
 	TuiSystem system = tui_get_system();
 	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
-	glfwMakeContextCurrent(system->BaseWindow);
 	float matrix[16];
 	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
 	TransformMatrix(matrix, render_area_width, render_area_height, left_x, right_x, top_y, bottom_y);
