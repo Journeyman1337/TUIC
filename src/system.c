@@ -34,27 +34,25 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	sSystem->BaseWindowClaimed = TUI_FALSE;
 	sSystem->ApiData = NULL;
 
-	if (multi_window == TUI_TRUE)
-	{
-		glfwDefaultWindowHints();
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwDefaultWindowHints();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-		sSystem->BaseGlfwWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
-		if (sSystem->BaseGlfwWindow == NULL)
-		{
-			tuiFree(sSystem);
-			sSystem = NULL;
-			glfwTerminate();
-			GLFW_CLEAR_ERRORS()
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+	glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
+	sSystem->BaseWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
+	if (sSystem->BaseWindow == NULL)
+	{
+		tuiFree(sSystem);
+		sSystem = NULL;
+		glfwTerminate();
+		GLFW_CLEAR_ERRORS()
 			return TUI_FALSE;
-		}
-		tuiSystemCreate_Opengl33();
 	}
+	tuiSystemCreate_Opengl33();
 
 	GLFW_CLEAR_ERRORS()
 	return TUI_TRUE;
@@ -67,6 +65,11 @@ TuiBoolean tuiIsActive()
 
 void tuiTerminate()
 {
+	if (sSystem == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
 	TuiBoolean failed = TUI_FALSE;
 	if (tuiGetWindowCount() != 0)
 	{
@@ -108,7 +111,9 @@ void tuiTerminate()
 		return;
 	}
 
+
 	tuiSystemDestroy_Opengl33();
+	glfwDestroyWindow(sSystem->BaseWindow);
 	tuiFree(sSystem);
 	
 	glfwTerminate();
