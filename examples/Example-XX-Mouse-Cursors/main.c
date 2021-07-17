@@ -68,12 +68,8 @@ void key_callback(TuiWindow window, TuiKey key, int scancode, TuiButtonState but
 
 int main()
 {
-    int tiles_wide = 50;
-    int tiles_tall = 50;
-    int glyph_pixel_dimensions = 8;
-    int size_multiplier = 2;
-    int window_width = tiles_wide * glyph_pixel_dimensions * size_multiplier;
-    int window_height = tiles_tall * glyph_pixel_dimensions * size_multiplier;
+    int window_width = 100;
+    int window_height = 100;
 
     /* Initialize TUIC. */
     TuiBoolean multi_window = TUI_FALSE;
