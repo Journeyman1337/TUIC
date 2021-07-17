@@ -1,0 +1,177 @@
+
+#include <TUIC/tuic.h>
+
+#include <stdio.h>
+
+void TuiMessageCallback(TuiErrorCode error_code, const char* msg)
+{
+    if (error_code == TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC)
+    {
+        printf("%s : %s backend message: %s\n", tuiErrorCodeToString(error_code), tuiErrorCodeGetDescription(error_code), msg);
+    }
+    else
+    {
+        printf("%s : %s location: %s\n", tuiErrorCodeToString(error_code), tuiErrorCodeGetDescription(error_code), msg);
+    }
+}
+
+void window_move_callback(TuiWindow window, int x_position, int y_position)
+{
+    printf("Window move: ( x = %d, y = %d )\n", x_position, y_position);
+}
+
+void window_close_callback(TuiWindow window)
+{
+    printf("Window close.\n");
+}
+
+void window_refresh_callback(TuiWindow window)
+{
+    printf("Window refresh.\n");
+}
+
+void window_focus_callback(TuiWindow window, TuiBoolean focused)
+{
+    printf("Window focus: focused = %d\n", focused);
+}
+
+void window_iconify_callback(TuiWindow window, TuiBoolean iconified)
+{
+    printf("Window iconify: iconified = %d\n", iconified);
+}
+
+void window_maximize_callback(TuiWindow window, TuiBoolean maximized)
+{
+    printf("Window maximize: maximized = %d\n", maximized);
+}
+
+void window_resize_callback(TuiWindow window, int pixel_width, int pixel_height)
+{
+    printf("Window resize: ( x = %d, y = %d )\n", pixel_width, pixel_height);
+}
+
+void window_content_scale_callback(TuiWindow window, float scale_wide, float scale_tall)
+{
+    printf("Windos content scale: ( scale_wide = %f, scale_tall = %f )\n", scale_wide, scale_tall);
+}
+
+void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+{
+    printf("Mouse button: button = %s state = %s shift = %d control = %d alt = %d super = %d caps = %d num = %d\n",
+        tuiMouseButtonToString(mouse_button),
+        tuiButtonStateToString(button_state),
+        tuiModContainsMod(key_mod, TUI_MOD_SHIFT),
+        tuiModContainsMod(key_mod, TUI_MOD_CONTROL),
+        tuiModContainsMod(key_mod, TUI_MOD_ALT),
+        tuiModContainsMod(key_mod, TUI_MOD_SUPER),
+        tuiModContainsMod(key_mod, TUI_MOD_CAPS_LOCK),
+        tuiModContainsMod(key_mod, TUI_MOD_NUM_LOCK)
+    );
+}
+
+void cursor_move_callback(TuiWindow window, double x_position, double y_position)
+{
+    printf("Cursor move: ( x = %f, y = %f )\n", x_position, y_position);
+}
+
+void cursor_enter_callback(TuiWindow window, TuiBoolean entered)
+{
+    printf("Cursor enter: entered = %d\n", entered);
+}
+
+void mouse_scroll_callback(TuiWindow window, double x_translate, double y_translate)
+{
+    printf("Mouse scroll: ( x = %f, y = %f )\n", x_translate, y_translate);
+}
+
+void keyboard_key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+{
+    printf("Keyboard key: key = %s scancode = %d state = %s shift = %d control = %d alt = %d super = %d caps = %d num = %d\n",
+        tuiKeyboardKeyToString(key),
+        scancode,
+        tuiButtonStateToString(button_state),
+        tuiModContainsMod(key_mod, TUI_MOD_SHIFT),
+        tuiModContainsMod(key_mod, TUI_MOD_CONTROL),
+        tuiModContainsMod(key_mod, TUI_MOD_ALT),
+        tuiModContainsMod(key_mod, TUI_MOD_SUPER),
+        tuiModContainsMod(key_mod, TUI_MOD_CAPS_LOCK),
+        tuiModContainsMod(key_mod, TUI_MOD_NUM_LOCK)
+    );
+}
+
+void char_callback(TuiWindow window, unsigned int codepoint)
+{
+    printf("Char: codepoint = %d (%c)\n", codepoint, (char)codepoint);
+}
+
+void file_drop_callback(TuiWindow window, int path_count, const char* paths[])
+{
+    printf("File drop: count = %d path0 = %s\n", path_count, paths[0]);
+}
+
+void monitor_callback(TuiMonitor monitor, TuiBoolean connected)
+{
+    printf("Monitor: name = %s connected = %d\n", (connected == TUI_TRUE) ? tuiMonitorGetName(monitor) : "(null)", connected);
+}
+
+void joystick_callback(TuiJoystickId joystic_id, TuiBoolean connected)
+{
+    printf("Joystick: name = %s connected = %d\n", (connected == TUI_TRUE) ? tuiJoystickGetName(joystic_id) : "(null)", connected);
+}
+
+int main()
+{
+    int window_width = 500;
+    int window_height = 500;
+
+    /* Initialize TUIC. */
+    TuiBoolean multi_window = TUI_FALSE;
+    TuiBoolean initialization_successful = tuiInit(multi_window);
+    if (initialization_successful == TUI_FALSE)
+    {
+        printf("Failed to initialize TUIC.");
+        return -1;
+    }
+
+    /* Tell TUIC to send all debug messages to our message callback (the function we implemented above main). */
+    tuiSetDebugErrorCallback(TuiMessageCallback);
+
+    /* Create the window. */
+    TuiWindowCreateInfo window_create_info = tuiWindowCreateInfo();
+    window_create_info.resizable = TUI_TRUE;
+    const char* window_title = "Example XX";
+    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, &window_create_info);
+
+    /* Set all of the custom callbacks. */
+    tuiWindowSetMoveCallback(window, window_move_callback);
+    tuiWindowSetCloseCallback(window, window_close_callback);
+    tuiWindowSetRefreshCallback(window, window_refresh_callback);
+    tuiWindowSetFocusCallback(window, window_focus_callback);
+    tuiWindowSetIconifyCallback(window, window_iconify_callback);
+    tuiWindowSetMaximizeCallback(window, window_maximize_callback);
+    tuiWindowSetResizeCallback(window, window_resize_callback);
+    tuiWindowSetContentScaleCallback(window, window_content_scale_callback);
+    tuiWindowSetMouseButtonCallback(window, mouse_button_callback);
+    tuiWindowSetCursorMoveCallback(window, cursor_move_callback);
+    tuiWindowSetMouseScrollCallback(window, mouse_scroll_callback);
+    tuiWindowSetKeyboardKeyCallback(window, keyboard_key_callback);
+    tuiWindowSetCharCallback(window, char_callback);
+    tuiWindowSetFileDropCallback(window, file_drop_callback);
+    tuiSetMonitorCallback(monitor_callback);
+    tuiSetJoystickCallback(joystick_callback);
+
+    //Render loop
+    while (tuiWindowShouldClose(window) == TUI_FALSE)
+    {
+        tuiPollEvents(); //handle input events and call callback functions
+
+        tuiWindowSwapBuffers(window); //swap the window buffers
+    }
+
+    /* Destroy all remaining TUIC objects */
+    tuiWindowDestroy(window); //The instance must always be created first and destroyed last.
+    window = NULL;
+
+    tuiTerminate();
+    return 0;
+}
