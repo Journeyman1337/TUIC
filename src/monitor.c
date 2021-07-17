@@ -26,44 +26,58 @@ TuiMonitor tuiGetPrimaryMonitor()
 	return monitor;
 }
 
-void tuiGetMonitorPos(TuiMonitor monitor, int* xpos, int* ypos)
+
+void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 {
-	glfwGetMonitorPos(monitor, xpos, ypos);
-	GLFW_CHECK_ERROR()
+	glfwGetMonitorWorkarea(monitor, NULL, NULL, width, height);
 }
 
-void tuiGetMonitorWorkarea(TuiMonitor monitor, int* xpos, int* ypos, int* width, int* height)
+int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 {
-	glfwGetMonitorWorkarea(monitor, xpos, ypos, width, height);
-	GLFW_CHECK_ERROR()
+	int width = 0;
+	glfwGetMonitorWorkarea(monitor, NULL, NULL, &width, NULL);
+	return width;
 }
 
-void tuiGetMonitorPhysicalSize(TuiMonitor monitor, int* widthMM, int* heightMM)
+int tuiMonitorGetPixelHeight(TuiMonitor monitor)
+{
+	int height = 0;
+	glfwGetMonitorWorkarea(monitor, NULL, NULL, NULL, &height);
+	return height;
+}
+
+void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* widthMM, int* heightMM)
 {
 	glfwGetMonitorPhysicalSize(monitor, widthMM, heightMM);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiGetMonitorContentScale(TuiMonitor monitor, float* xscale, float* yscale)
+void tuiMonitorGetContentScale(TuiMonitor monitor, float* xscale, float* yscale)
 {
 	glfwGetMonitorContentScale(monitor, xscale, yscale);
 	GLFW_CHECK_ERROR()
 }
 
-const char* tuiGetMonitorName(TuiMonitor monitor)
+int tuiMonitorGetRefreshRate(TuiMonitor monitor)
+{
+	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+	return mode->refreshRate;
+}
+
+const char* tuiMonitorGetName(TuiMonitor monitor)
 {
 	const char* name = glfwGetMonitorName(monitor);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return name;
 }
 
-void tuiSetMonitorUserPointer(TuiMonitor monitor, void* pointer)
+void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer)
 {
 	glfwSetMonitorUserPointer(monitor, pointer);
 	GLFW_CHECK_ERROR()
 }
 
-void* tuiGetMonitorUserPointer(TuiMonitor monitor)
+void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 {
 	void* ptr = glfwGetMonitorUserPointer(monitor);
 	GLFW_CHECK_ERROR_RETURN(NULL)

@@ -29,13 +29,15 @@ extern "C" {
 
 TuiMonitor* tuiGetMonitors(int* count);
 TuiMonitor tuiGetPrimaryMonitor();
-void tuiGetMonitorPos(TuiMonitor monitor, int* xpos, int* ypos);
-void tuiGetMonitorWorkarea(TuiMonitor monitor, int* xpos, int* ypos, int* width, int* height);
-void tuiGetMonitorPhysicalSize(TuiMonitor monitor, int* widthMM, int* heightMM);
-void tuiGetMonitorContentScale(TuiMonitor monitor, float* xscale, float* yscale);
-const char* tuiGetMonitorName(TuiMonitor monitor);
-void tuiSetMonitorUserPointer(TuiMonitor monitor, void* pointer);
-void* tuiGetMonitorUserPointer(TuiMonitor monitor);
+void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height);
+int tuiMonitorGetPixelWidth(TuiMonitor monitor);
+int tuiMonitorGetPixelHeight(TuiMonitor monitor);
+void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* widthMM, int* heightMM);
+void tuiMonitorGetContentScale(TuiMonitor monitor, float* xscale, float* yscale);
+int tuiMonitorGetRefreshRate(TuiMonitor monitor);
+const char* tuiMonitorGetName(TuiMonitor monitor);
+void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer);
+void* tuiMonitorGetUserPointer(TuiMonitor monitor);
 tuiMonitorFunction tuiSetMonitorCallback(tuiMonitorFunction callback);
 
 #ifdef __cplusplus //extern C guard
