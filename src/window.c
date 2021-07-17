@@ -1061,6 +1061,34 @@ void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position)
 	GLFW_CHECK_ERROR()
 }
 
+int tuiWindowGetXPosition(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	int x_position = 0;
+	glfwGetWindowPos(window->GlfwWindow, &x_position, NULL);
+	GLFW_CHECK_ERROR()
+	return x_position;
+}
+
+int tuiWindowGetYPosition(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	int y_position = 0;
+	glfwGetWindowPos(window->GlfwWindow, NULL, &y_position);
+	GLFW_CHECK_ERROR()
+	return y_position;
+}
+
 void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position)
 {
 	if (window == NULL)

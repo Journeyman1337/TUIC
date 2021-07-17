@@ -147,6 +147,10 @@ TuiBoolean tuiWindowIconsSupported();
 
 void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position);
 
+int tuiWindowGetXPosition(TuiWindow window);
+
+int tuiWindowGetYPosition(TuiWindow window);
+
 void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position);
 
 void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height);
