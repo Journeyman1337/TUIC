@@ -34,9 +34,19 @@ TuiCursor tuiCursorCreateStandard(TuiCursorShape shape)
 		tuiDebugError(TUI_ERROR_INVALID_CURSOR_SHAPE, __func__);
 		return NULL;
 	}
-	sCursorCount++;
 	TuiCursor cursor = glfwCreateStandardCursor(shape);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+
+	if (glfwGetError(NULL) == GLFW_NOT_INITIALIZED)
+	{
+		tuiDebugError(TUI_ERROR_DESKTOP_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
+	GLFW_CLEAR_ERRORS()
+	if (cursor == NULL)
+	{
+		tuiDebugError(TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, __func__);
+		return NULL;
+	}
 	sCursorCount++;
 	return cursor;
 }
@@ -51,7 +61,6 @@ void tuiCursorDestroy(TuiCursor cursor)
 	glfwDestroyCursor(cursor);
 	GLFW_CHECK_ERROR()
 	sCursorCount--;
-	
 }
 
 int tuiGetCursorCount()
