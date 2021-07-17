@@ -127,9 +127,8 @@ void tuiTerminate()
 	tuiSystemDestroy_Opengl33();
 	glfwDestroyWindow(sSystem->BaseWindow);
 	tuiFree(sSystem);
-	
-	glfwTerminate();
 	GLFW_CLEAR_ERRORS()
+	glfwTerminate();
 }
 
 TuiBoolean tuiMultiWindowDesktop()
