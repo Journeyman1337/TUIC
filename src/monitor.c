@@ -8,7 +8,7 @@
 
 TuiMonitor* tuiGetMonitors(int* count)
 {
-	int out_count;
+	int out_count = 0;
 	TuiMonitor* monitors = glfwGetMonitors(&out_count);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	if (count != NULL)
@@ -28,11 +28,23 @@ TuiMonitor tuiGetPrimaryMonitor()
 
 void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return;
+	}
+
 	glfwGetMonitorWorkarea(monitor, NULL, NULL, width, height);
 }
 
 int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0;
+	}
+
 	int width = 0;
 	glfwGetMonitorWorkarea(monitor, NULL, NULL, &width, NULL);
 	return width;
@@ -40,6 +52,12 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 
 int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0;
+	}
+
 	int height = 0;
 	glfwGetMonitorWorkarea(monitor, NULL, NULL, NULL, &height);
 	return height;
@@ -47,12 +65,24 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 
 void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* physical_height)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return;
+	}
+
 	glfwGetMonitorPhysicalSize(monitor, physical_width, physical_height);
 	GLFW_CHECK_ERROR()
 }
 
 int tuiMonitorGetPhysicalWidth(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0;
+	}
+
 	int physical_width = 0;
 	glfwGetMonitorPhysicalSize(monitor, &physical_width, NULL);
 	return physical_width;
@@ -60,6 +90,12 @@ int tuiMonitorGetPhysicalWidth(TuiMonitor monitor)
 
 int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0;
+	}
+
 	int physical_height = 0;
 	glfwGetMonitorPhysicalSize(monitor, NULL, &physical_height);
 	return physical_height;
@@ -67,12 +103,24 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
 
 void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* scale_tall)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return;
+	}
+
 	glfwGetMonitorContentScale(monitor, scale_wide, scale_tall);
 	GLFW_CHECK_ERROR()
 }
 
 float tuiMonitorGetContentScaleWide(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0.0f;
+	}
+
 	float scale_wide = 0;
 	glfwGetMonitorContentScale(monitor, &scale_wide, NULL);
 	return scale_wide;
@@ -80,6 +128,12 @@ float tuiMonitorGetContentScaleWide(TuiMonitor monitor)
 
 float tuiMonitorGetContentScaleTall(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0.0f;
+	}
+
 	float scale_tall = 0;
 	glfwGetMonitorContentScale(monitor, NULL, &scale_tall);
 	return scale_tall;
@@ -87,12 +141,24 @@ float tuiMonitorGetContentScaleTall(TuiMonitor monitor)
 
 int tuiMonitorGetRefreshRate(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return 0;
+	}
+
 	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 	return mode->refreshRate;
 }
 
 const char* tuiMonitorGetName(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return NULL;
+	}
+
 	const char* name = glfwGetMonitorName(monitor);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return name;
@@ -100,12 +166,24 @@ const char* tuiMonitorGetName(TuiMonitor monitor)
 
 void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return;
+	}
+
 	glfwSetMonitorUserPointer(monitor, pointer);
 	GLFW_CHECK_ERROR()
 }
 
 void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 {
+	if (monitor == NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return NULL;
+	}
+
 	void* ptr = glfwGetMonitorUserPointer(monitor);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return ptr;
