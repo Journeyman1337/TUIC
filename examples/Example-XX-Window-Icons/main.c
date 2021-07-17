@@ -29,6 +29,7 @@ int main()
         return -1;
     }
 
+    /* Check if window icons are supported on this platform. */
     if (tuiWindowIconsSupported() == TUI_FALSE)
     {
         printf("Window icons are not supported on this platform.");
