@@ -121,7 +121,7 @@ TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window);
 
 void tuiWindowSetRawMouseMotion(TuiWindow window, TuiBoolean raw_mouse_motion);
 
-TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKey key);
+TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKeyboardKey key);
 
 TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_button);
 

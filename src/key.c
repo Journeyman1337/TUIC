@@ -244,7 +244,7 @@ const char* kTuik_Right_Super_Name = "KEY_RIGHT_SUPER";
 
 const char* kTuik_Menu_Name = "KEY_MENU";
 
-TuiBoolean tuiKeyIsValid(TuiKey key)
+TuiBoolean tuiKeyIsValid(TuiKeyboardKey key)
 {
 	if (
 			(key == TUIK_SPACE) ||
@@ -263,7 +263,7 @@ TuiBoolean tuiKeyIsValid(TuiKey key)
 	}
 }
 
-const char* tuiKeyToString(TuiKey key)
+const char* tuiKeyToString(TuiKeyboardKey key)
 {
 	// keys are seperated into groups to encourage compiler to generate lookup tables and speed up debug builds
 	if (key >= TUIK_COMMA && key <= TUIK_GRAVE_ACCENT)
@@ -523,7 +523,7 @@ const char* tuiKeyToString(TuiKey key)
 	}
 }
 
-TuiKey tuiStringToKey(const char* str)
+TuiKeyboardKey tuiStringToKey(const char* str)
 {
 	if (strcmp(str, kTuik_Space_Name) == 0)
 	{
@@ -1008,7 +1008,7 @@ TuiKey tuiStringToKey(const char* str)
 	return TUIK_INVALID;
 }
 
-int tuiKeyGetScancode(TuiKey key)
+int tuiKeyGetScancode(TuiKeyboardKey key)
 {
 	int scancode = glfwGetKeyScancode(key);
 

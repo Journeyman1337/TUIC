@@ -107,7 +107,7 @@ static void glfwWindowContentScaleCallback(GLFWwindow* glfw_window, int pixel_wi
 static void glfwKeyCallback(GLFWwindow* glfw_window, int key, int scancode, int button_state, int key_mod)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->KeyboardKeyCallback(window, (TuiKey)key, scancode, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
+	window->KeyboardKeyCallback(window, (TuiKeyboardKey)key, scancode, (TuiButtonState)button_state, (TuiKeyboardKeyMod)key_mod);
 }
 
 static void glfwCharCallback(GLFWwindow* glfw_window, unsigned int charcode)
@@ -119,7 +119,7 @@ static void glfwCharCallback(GLFWwindow* glfw_window, unsigned int charcode)
 static void glfwMouseButtonCallback(GLFWwindow* glfw_window, int mouse_button, int button_state, int key_mod)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->MouseButtonCallback(window, (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyMod)key_mod);
+	window->MouseButtonCallback(window, (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyboardKeyMod)key_mod);
 }
 
 static void glfwCursorMoveCallback(GLFWwindow* glfw_window, double xpos, double ypos)
@@ -930,7 +930,7 @@ void tuiWindowSetRawMouseMotion(TuiWindow window, TuiBoolean raw_mouse_motion)
 	GLFW_CHECK_ERROR()
 }
 
-TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKey key)
+TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKeyboardKey key)
 {
 	if (window == NULL)
 	{

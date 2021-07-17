@@ -26,7 +26,7 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
-typedef enum TuiKey
+typedef enum TuiKeyboardKey
 {
 	TUIK_INVALID		   = 0,
 	TUIK_SPACE             = 32,
@@ -153,7 +153,7 @@ typedef enum TuiKey
 	TUIK_MENU              = 348,
 
 	TUIK_LAST              = TUIK_MENU
-} TuiKey;
+} TuiKeyboardKey;
 
 extern const char* kTuik_Space_Name;
 extern const char* kTuik_Apostrophe_Name;
@@ -276,10 +276,10 @@ extern const char* kTuik_Right_Alt_Name;
 extern const char* kTuik_Right_Super_Name;
 extern const char* kTuik_Menu_Name;
 
-TuiBoolean tuiKeyIsValid(TuiKey key);
-const char* tuiKeyToString(TuiKey key);
-TuiKey tuiStringToKey(const char* str);
-int tuiKeyGetScancode(TuiKey key);
+TuiBoolean tuiKeyIsValid(TuiKeyboardKey key);
+const char* tuiKeyToString(TuiKeyboardKey key);
+TuiKeyboardKey tuiStringToKey(const char* str);
+int tuiKeyGetScancode(TuiKeyboardKey key);
 
 #ifdef __cplusplus //extern C guard
 }

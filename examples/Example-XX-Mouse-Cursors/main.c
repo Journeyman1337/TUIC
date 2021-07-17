@@ -43,7 +43,7 @@ TuiCursorShape increment_cursor_shape(TuiCursorShape current_shape)
     }
 }
 
-void key_callback(TuiWindow window, TuiKey key, int scancode, TuiButtonState button_state, TuiKeyMod key_mod)
+void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
 {
     if (key == TUIK_C && button_state == TUI_BUTTON_PRESS)
     {
