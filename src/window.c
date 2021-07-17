@@ -965,11 +965,16 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetIcon(TuiWindow window, int count, const TuiImage* images)
+void tuiWindowSetIcon(TuiWindow window, TuiImage image)
 {
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (image == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
 	}
 	TuiSystem system = tui_get_system();
@@ -984,19 +989,9 @@ void tuiWindowSetIcon(TuiWindow window, int count, const TuiImage* images)
 		return;
 	}
 
-	GLFWimage icon_images[16];
+	GLFWimage icon_image = _TuiImageToGlfwImage(image, __func__);
 
-	for (size_t image_i = 0; image_i < (size_t)count; image_i++)
-	{
-		if (images[image_i]->ChannelCount != 4)
-		{
-			tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-			return;
-		}
-		icon_images[image_i] = _TuiImageToGlfwImage(images[image_i], __func__);
-	}
-
-	glfwSetWindowIcon(window, count, icon_images);
+	glfwSetWindowIcon(window, 1, &icon_image);
 	GLFW_CLEAR_ERRORS()
 }
 

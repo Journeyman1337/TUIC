@@ -137,7 +137,7 @@ void tuiWindowSetTitle(TuiWindow window, const char* title);
 
 void tuiWindowSetDefaultIcon(TuiWindow window);
 
-void tuiWindowSetIcon(TuiWindow window, int count, const TuiImage* images);
+void tuiWindowSetIcon(TuiWindow window, TuiImage image);
 
 TuiBoolean tuiWindowIconsSupported();
 
