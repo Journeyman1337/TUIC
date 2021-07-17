@@ -1159,6 +1159,34 @@ void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_
 	GLFW_CHECK_ERROR()
 }
 
+float tuiWindowGetContentScaleWide(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	float scale_wide = 0.0f;
+	glfwGetWindowContentScale(window->GlfwWindow, &scale_wide, NULL);
+	GLFW_CHECK_ERROR()
+	return scale_wide;
+}
+
+float tuiWindowGetContentScaleTall(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	float scale_tall = 0.0f;
+	glfwGetWindowContentScale(window->GlfwWindow, NULL, &scale_tall);
+	GLFW_CHECK_ERROR()
+	return scale_tall;
+}
+
 float tuiWindowGetOpacity(TuiWindow window)
 {
 	if (window == NULL)

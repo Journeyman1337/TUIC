@@ -161,6 +161,10 @@ void tuiWindowDisableFixedAspectRatio(TuiWindow window);
 
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall);
 
+float tuiWindowGetContentScaleWide(TuiWindow window);
+
+float tuiWindowGetContentScaleTall(TuiWindow window);
+
 float tuiWindowGetOpacity(TuiWindow window);
 
 void tuiWindowSetOpacity(TuiWindow window, float opacity);
