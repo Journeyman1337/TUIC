@@ -14,7 +14,7 @@ TuiBoolean tuiJoystickIsPresent(TuiJoystickId joystick_id)
 	return TUI_FALSE;
 }
 
-const float* tuiGetJoystickAxes(TuiJoystickId joystick_id, int* count)
+const float* tuiJoystickGetAxes(TuiJoystickId joystick_id, int* count)
 {
 	int out_count = 0;
 	const float* axes = glfwGetJoystickAxes(joystick_id, &out_count);
@@ -26,7 +26,7 @@ const float* tuiGetJoystickAxes(TuiJoystickId joystick_id, int* count)
 	return axes;
 }
 
-const unsigned char* tuiGetJoystickButtons(TuiJoystickId joystick_id, int* count)
+const unsigned char* tuiJoystickGetButtons(TuiJoystickId joystick_id, int* count)
 {
 	int out_count = 0;
 	const unsigned char* buttons = glfwGetJoystickButtons(joystick_id, count);
@@ -38,7 +38,7 @@ const unsigned char* tuiGetJoystickButtons(TuiJoystickId joystick_id, int* count
 	return buttons;
 }
 
-const unsigned char* tuiGetJoystickHats(TuiJoystickId joystick_id, int* count)
+const unsigned char* tuiJoystickGetHats(TuiJoystickId joystick_id, int* count)
 {
 	int out_count = 0;
 	const unsigned char* hats = glfwGetJoystickHats(joystick_id, count);
@@ -50,27 +50,27 @@ const unsigned char* tuiGetJoystickHats(TuiJoystickId joystick_id, int* count)
 	return hats;
 }
 
-const char* tuiGetJoystickName(TuiJoystickId joystick_id)
+const char* tuiJoystickGetName(TuiJoystickId joystick_id)
 {
 	const char* name = glfwGetJoystickName(joystick_id);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return name;
 }
 
-const char* tuiGetJoystickGUID(TuiJoystickId joystick_id)
+const char* tuiJoystickGetGUID(TuiJoystickId joystick_id)
 {
 	const char* guid = glfwGetJoystickGUID(joystick_id);
 	GLFW_CHECK_ERROR(NULL)
 	return guid;
 }
 
-void tuiSetJoystickUserPointer(TuiJoystickId joystick_id, void* pointer)
+void tuiJoystickSetUserPointer(TuiJoystickId joystick_id, void* pointer)
 {
 	glfwSetJoystickUserPointer(joystick_id, pointer);
 	GLFW_CHECK_ERROR()
 }
 
-void* tuiGetJoystickUserPointer(TuiJoystickId joystick_id)
+void* tuiJoystickGetUserPointer(TuiJoystickId joystick_id)
 {
 	void* ptr = glfwGetJoystickUserPointer(joystick_id);
 	GLFW_CHECK_ERROR_RETURN(NULL)
@@ -88,7 +88,7 @@ TuiBoolean tuiJoystickIsGamepad(TuiJoystickId joystick_id)
 	return TUI_FALSE;
 }
 
-TuiBoolean tuiUpdateGamepadMappings(const char* string)
+TuiBoolean tuiJoystickUpdateMappings(const char* string)
 {
 	int updated = glfwUpdateGamepadMappings(string);
 	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
@@ -99,7 +99,7 @@ TuiBoolean tuiUpdateGamepadMappings(const char* string)
 	return TUI_FALSE;
 }
 
-const char* tuiGetGamepadName(TuiJoystickId joystick_id)
+const char* tuiJoystickGetGamepadName(TuiJoystickId joystick_id)
 {
 	const char* name = glfwGetGamepadName(joystick_id);
 	GLFW_CHECK_ERROR_RETURN(NULL)

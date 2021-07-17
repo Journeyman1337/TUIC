@@ -30,16 +30,16 @@ extern "C" {
 #include <TUIC/desktop_callback.h>
 
 TuiBoolean tuiJoystickIsPresent(TuiJoystickId joystick_id);
-const float* tuiGetJoystickAxes(TuiJoystickId joystick_id, int* count);
-const unsigned char* tuiGetJoystickButtons(TuiJoystickId joystick_id, int* count);
-const unsigned char* tuiGetJoystickHats(TuiJoystickId joystick_id, int* count);
-const char* tuiGetJoystickName(TuiJoystickId joystick_id);
-const char* tuiGetJoystickGUID(TuiJoystickId joystick_id);
-void tuiSetJoystickUserPointer(TuiJoystickId joystick_id, void* pointer);
-void* tuiGetJoystickUserPointer(TuiJoystickId joystick_id);
+const float* tuiJoystickGetAxes(TuiJoystickId joystick_id, int* count);
+const unsigned char* tuiJoystickGetButtons(TuiJoystickId joystick_id, int* count);
+const unsigned char* tuiJoystickGetHats(TuiJoystickId joystick_id, int* count);
+const char* tuiJoystickGetName(TuiJoystickId joystick_id);
+const char* tuiJoystickGetGUID(TuiJoystickId joystick_id);
+void tuiJoystickSetUserPOinter(TuiJoystickId joystick_id, void* pointer);
+void* tuiJoystickGetUserPointer(TuiJoystickId joystick_id);
 TuiBoolean tuiJoystickIsGamepad(TuiJoystickId joystick_id);
-TuiBoolean tuiUpdateGamepadMappings(const char* string);
-const char* tuiGetGamepadName(TuiJoystickId joystick_id);
+TuiBoolean tuiJoystickUpdateMappings(const char* string);
+const char* tuiJoystickGetGamepadName(TuiJoystickId joystick_id);
 tuiJoysticFunction tuiSetJoystickCallback(tuiJoysticFunction callback);
 
 #ifdef __cplusplus //extern C guard
