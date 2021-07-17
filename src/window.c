@@ -912,7 +912,7 @@ TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_bu
 	return button_state;
 }
 
-void tuiWindowGetCursorPosition(TuiWindow window, double* xpos, double* ypos)
+void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_position)
 {
 	if (window == NULL)
 	{
@@ -920,11 +920,11 @@ void tuiWindowGetCursorPosition(TuiWindow window, double* xpos, double* ypos)
 		return;
 	}
 
-	glfwGetCursorPos(window->GlfwWindow, xpos, ypos);
+	glfwGetCursorPos(window->GlfwWindow, x_position, y_position);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetCursorPosition(TuiWindow window, double xpos, double ypos)
+void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position)
 {
 	if (window == NULL)
 	{
@@ -932,7 +932,7 @@ void tuiWindowSetCursorPosition(TuiWindow window, double xpos, double ypos)
 		return;
 	}
 
-	glfwSetCursorPos(window->GlfwWindow, xpos, ypos);
+	glfwSetCursorPos(window->GlfwWindow, x_position, y_position);
 	GLFW_CHECK_ERROR()
 }
 
@@ -1021,7 +1021,7 @@ TuiBoolean tuiWindowIconsSupported()
 	return system->WindowIconsSupported;
 }
 
-void tuiWindowGetPosition(TuiWindow window, int* xpos, int* ypos)
+void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position)
 {
 	if (window == NULL)
 	{
@@ -1029,11 +1029,11 @@ void tuiWindowGetPosition(TuiWindow window, int* xpos, int* ypos)
 		return;
 	}
 
-	glfwGetWindowPos(window->GlfwWindow, xpos, ypos);
+	glfwGetWindowPos(window->GlfwWindow, x_position, y_position);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetPosition(TuiWindow window, int xpos, int ypos)
+void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position)
 {
 	if (window == NULL)
 	{
@@ -1041,41 +1041,41 @@ void tuiWindowSetPosition(TuiWindow window, int xpos, int ypos)
 		return;
 	}
 
-	glfwSetWindowPos(window->GlfwWindow, xpos, ypos);
+	glfwSetWindowPos(window->GlfwWindow, x_position, y_position);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetSizeLimits(TuiWindow window, int minwidth, int minheight, int maxwidth, int maxheight)
+void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height)
 {
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (minwidth <= 0 || minheight <= 0 || maxwidth <= 0 || maxheight <= 0 || maxwidth < minwidth || maxheight < minheight)
+	if (min_width <= 0 || min_height <= 0 || max_width <= 0 || max_height <= 0 || max_width < min_width || max_height < min_height)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
 		return;
 	}
 
-	glfwSetWindowSizeLimits(window->GlfwWindow, minwidth, minheight, maxwidth, maxheight);
+	glfwSetWindowSizeLimits(window->GlfwWindow, min_width, min_height, max_width, max_height);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowEnableFixedAspectRatio(TuiWindow window, int numer, int denom)
+void tuiWindowEnableFixedAspectRatio(TuiWindow window, int numerator, int denominator)
 {
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (numer <= 0 || denom <= 0)
+	if (numerator <= 0 || denominator <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_ASPECT_RATIO, __func__);
 		return;
 	}
 
-	glfwSetWindowAspectRatio(window->GlfwWindow, numer, denom);
+	glfwSetWindowAspectRatio(window->GlfwWindow, numerator, denominator);
 	GLFW_CHECK_ERROR()
 }
 
@@ -1091,7 +1091,7 @@ void tuiWindowDisableFixedAspectRatio(TuiWindow window)
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowGetContentScale(TuiWindow window, float* xscale, float* yscale)
+void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall)
 {
 	if (window == NULL)
 	{
@@ -1099,7 +1099,7 @@ void tuiWindowGetContentScale(TuiWindow window, float* xscale, float* yscale)
 		return;
 	}
 
-	glfwGetWindowContentScale(window->GlfwWindow, xscale, yscale);
+	glfwGetWindowContentScale(window->GlfwWindow, scale_wide, scale_tall);
 	GLFW_CHECK_ERROR()
 }
 
@@ -1323,7 +1323,7 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int refresh_rate, int pixel_width, int pixel_height)
+void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate)
 {
 	if (monitor == NULL)
 	{
@@ -1335,15 +1335,15 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int refr
 	_WindowFramebufferResize(window, pixel_width, pixel_height);
 }
 
-void tuiWindowSetWindowed(TuiWindow window, int xpos, int ypos)
+void tuiWindowSetWindowed(TuiWindow window, int x_position, int y_position)
 {
-	glfwSetWindowMonitor(window->GlfwWindow, NULL, xpos, ypos, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
+	glfwSetWindowMonitor(window->GlfwWindow, NULL, x_position, y_position, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetWindowedResize(TuiWindow window, int xpos, int ypos, int pixel_width, int pixel_height)
+void tuiWindowSetWindowedResize(TuiWindow window, int x_position, int y_position, int pixel_width, int pixel_height)
 {
-	glfwSetWindowMonitor(window->GlfwWindow, NULL, xpos, ypos, pixel_width, pixel_height, GLFW_DONT_CARE);
+	glfwSetWindowMonitor(window->GlfwWindow, NULL, x_position, y_position, pixel_width, pixel_height, GLFW_DONT_CARE);
 	GLFW_CHECK_ERROR()
 	_WindowFramebufferResize(window, pixel_width, pixel_height);
 }

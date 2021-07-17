@@ -125,9 +125,9 @@ TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKey key);
 
 TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_button);
 
-void tuiWindowGetCursorPosition(TuiWindow window, double *xpos, double *ypos);
+void tuiWindowGetCursorPosition(TuiWindow window, double *x_position, double *y_position);
 
-void tuiWindowSetCursorPosition(TuiWindow window, double xpos, double ypos);
+void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position);
 
 TuiBoolean tuiWindowShouldClose(TuiWindow window);
 
@@ -141,17 +141,17 @@ void tuiWindowSetIcon(TuiWindow window, TuiImage image);
 
 TuiBoolean tuiWindowIconsSupported();
 
-void tuiWindowGetPosition(TuiWindow window, int* xpos, int* ypos);
+void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position);
 
-void tuiWindowSetPosition(TuiWindow window, int xpos, int ypos); 
+void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position);
 
-void tuiWindowSetSizeLimits(TuiWindow window, int minwidth, int minheight, int maxwidth, int maxheight);
+void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height);
 
-void tuiWindowEnableFixedAspectRatio(TuiWindow window, int numer, int denom);
+void tuiWindowEnableFixedAspectRatio(TuiWindow window, int numerator, int denominator);
 
 void tuiWindowDisableFixedAspectRatio(TuiWindow window);
 
-void tuiWindowGetContentScale(TuiWindow window, float* xscale, float* yscale);
+void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall);
 
 float tuiWindowGetOpacity(TuiWindow window);
 
@@ -175,11 +175,11 @@ TuiMonitor tuiWindowGetMonitor(TuiWindow window);
 
 void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate);
 
-void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int refresh_rate, int pixel_width, int pixel_height);
+void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate);
 
-void tuiWindowSetWindowed(TuiWindow window, int xpos, int ypos);
+void tuiWindowSetWindowed(TuiWindow window, int x_position, int y_position);
 
-void tuiWindowSetWindowedResize(TuiWindow window, int xpos, int ypos, int pixel_width, int pixel_height);
+void tuiWindowSetWindowedResize(TuiWindow window, int x_position, int y_position, int pixel_width, int pixel_height);
 
 TuiBoolean tuiWindowIsFullscreen(TuiWindow window);
 
