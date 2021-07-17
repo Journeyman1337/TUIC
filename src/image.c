@@ -99,7 +99,7 @@ TuiImage tuiImageClone(TuiImage image)
 	return _CreateImage(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE, __func__);
 }
 
-void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height)
+void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height, int* channel_count)
 {
 	if (image == NULL)
 	{
@@ -114,6 +114,10 @@ void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height)
 	if (height != NULL)
 	{
 		*height = (int)image->PixelHeight;
+	}
+	if (channel_count != NULL)
+	{
+		*channel_count = (int)image->ChannelCount;
 	}
 }
 

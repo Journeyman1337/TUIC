@@ -89,16 +89,8 @@ void tuiImageSave(TuiImage image, const char* path);
  * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
  */
 TuiImage tuiImageClone(TuiImage image);
-/*!
- * @brief  Get the pixel dimensions of a @ref TuiImage.
- *
- * @param image The @ref TuiImage.
- * @param width A pointer to where the width will be stored. If this is NULL or an error occurs, it is ignored.
- * @param height A pointer to where the height will be stored. If this is NULL or an error occurs, it is ignored.
- * 
- * @errors Throws @TUI_ERROR_NULL_IMAGE if image is NULL.
- */
-void tuiImageGetPixelDimensions(TuiImage image, int* pixel_width, int* pixel_height);
+
+void tuiImageGetPixelDimensions(TuiImage image, int* pixel_width, int* pixel_height, int* channel_count);
 /*!
  * @brief  Get the pixel width of a @ref TuiImage.
  *
