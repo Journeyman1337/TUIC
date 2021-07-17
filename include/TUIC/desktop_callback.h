@@ -46,15 +46,15 @@ typedef void (* tuiWindowMaximizeFunction)(TuiWindow window, TuiBoolean maximize
 
 typedef void (* tuiWindowResizeFunction)(TuiWindow window, int pixel_width, int pixel_height);
 
-typedef void (* tuiWindowContentScaleFunction)(TuiWindow window, float xscale, float yscale);
+typedef void (* tuiWindowContentScaleFunction)(TuiWindow window, float scale_wide, float scale_tall);
 
 typedef void (* tuiMouseButtonFunction)(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyMod key_mod);
 
-typedef void (* tuiCursorMoveFunction)(TuiWindow window, double xpos, double ypos);
+typedef void (* tuiCursorMoveFunction)(TuiWindow window, double x_position, double y_position);
 
 typedef void (* tuiCursorEnterFunction)(TuiWindow window, TuiBoolean entered);
 
-typedef void (* tuiMouseScrollFunction)(TuiWindow window, double xscroll, double yscroll);
+typedef void (* tuiMouseScrollFunction)(TuiWindow window, double x_translate, double y_translate);
 
 typedef void (* tuiKeyboardKeyFunction)(TuiWindow window, TuiKey key, int scancode, TuiButtonState button_state, TuiKeyMod key_mod);
 
