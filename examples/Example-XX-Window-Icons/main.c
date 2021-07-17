@@ -42,6 +42,10 @@ int main()
     /* Set the window icon. */
     tuiWindowSetIcon(window, window_icon_image);
 
+    /* Destroy the window icon image. */
+    tuiImageDestroy(window_icon_image);
+    window_icon_image = NULL;
+
     //Render loop
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
