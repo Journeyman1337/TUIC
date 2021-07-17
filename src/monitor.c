@@ -71,16 +71,16 @@ void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* sca
 	GLFW_CHECK_ERROR()
 }
 
-int tuiMonitorGetContentScaleWide(TuiMonitor monitor)
+float tuiMonitorGetContentScaleWide(TuiMonitor monitor)
 {
-	int scale_wide = 0;
+	float scale_wide = 0;
 	glfwGetMonitorContentScale(monitor, &scale_wide, NULL);
 	return scale_wide;
 }
 
-int tuiMonitorGetContentScaleTall(TuiMonitor monitor)
+float tuiMonitorGetContentScaleTall(TuiMonitor monitor)
 {
-	int scale_tall = 0;
+	float scale_tall = 0;
 	glfwGetMonitorContentScale(monitor, NULL, &scale_tall);
 	return scale_tall;
 }
