@@ -62,7 +62,7 @@ void key_callback(TuiWindow window, TuiKey key, int scancode, TuiButtonState but
             tuiCursorDestroy(current_cursor);
             current_cursor = next_cursor;
         }
-        printf("Cursor changed!\n");
+        printf("Cursor changed to %s!\n", (current_cursor_shape == 0) ? "custom" : tuiCursorShapeToString(current_cursor_shape));
     }
 }
 
