@@ -127,6 +127,10 @@ TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_bu
 
 void tuiWindowGetCursorPosition(TuiWindow window, double *x_position, double *y_position);
 
+int tuiWindowGetCursorXPosition(TuiWindow window);
+
+int tuiWindowGetCursorYPosition(TuiWindow window);
+
 void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position);
 
 TuiBoolean tuiWindowShouldClose(TuiWindow window);

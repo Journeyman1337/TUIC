@@ -924,6 +924,34 @@ void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_
 	GLFW_CHECK_ERROR()
 }
 
+int tuiWindowGetCursorXPosition(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	int x_position = 0;
+	glfwGetCursorPos(window->GlfwWindow, &x_position, NULL);
+	GLFW_CHECK_ERROR()
+	return x_position;
+}
+
+int tuiWindowGetCursorYPosition(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	int y_position = 0;
+	glfwGetCursorPos(window->GlfwWindow, &y_position, NULL);
+	GLFW_CHECK_ERROR()
+	return y_position;
+}
+
 void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position)
 {
 	if (window == NULL)
