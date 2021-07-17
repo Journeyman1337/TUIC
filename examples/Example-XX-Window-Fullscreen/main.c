@@ -68,11 +68,16 @@ int main()
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
         tuiPollEvents(); //handle input events and call callback functions
-        tuiWindowClearColor(window, 255, 0, 255, 255); //clear the window color
+       
         if (tuiWindowIsFullscreen(window))
         {
-            tuiWindowClearColor(window, 255, 0, 0, 255);
+            tuiWindowClearColor(window, 255, 0, 0, 255); //red clear color
         }
+        else
+        {
+            tuiWindowClearColor(window, 0, 0, 255, 255); //blue clear color
+        }
+
         tuiWindowSwapBuffers(window); //swap the window buffers
     }
 
