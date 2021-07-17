@@ -1,5 +1,7 @@
 #include <TUIC/cursor_shape.h>
 #include <stddef.h>
+#include <GLFW/glfw3.h>
+#include "glfw_error_check.h"
 
 const char* kTui_Cursor_Shape_Arrow_Name = "CURSOR_SHAPE_ARROW";
 
@@ -34,6 +36,19 @@ TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape)
 	{
 		return TUI_FALSE;
 	}
+}
+
+TuiBoolean tuiCursorShapeIsSupported(TuiCursorShape cursor_shape)
+{
+	GLFWcursor* cursor = glfwCreateStandardCursor((int)cursor_shape);
+	if (cursor != NULL)
+	{
+		glfwDestroyCursor(cursor);
+		GLFW_CLEAR_ERRORS()
+		return TUI_TRUE;
+	}
+	GLFW_CLEAR_ERRORS()
+	return TUI_FALSE;
 }
 
 const char* tuiCursorShapeToString(TuiCursorShape cursor_shape)

@@ -58,6 +58,7 @@ extern const char* kTui_Cursor_Shape_Resize_All_Name;
 extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
 
 TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
+TuiBoolean tuiCursorShapeIsSupported(TuiCursorShape cursor_shape);
 const char* tuiCursorShapeToString(TuiCursorShape cursor_shape);
 TuiCursorShape tuiStringToCursorShape(const char* str);
 
