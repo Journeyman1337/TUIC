@@ -79,6 +79,7 @@ static inline GLFWimage _TuiImageToGlfwImage(TuiImage image, const char* func_na
 	glfw_image.width = image->PixelWidth;
 	glfw_image.height = image->PixelHeight;
 	glfw_image.pixels = image->PixelData;
+	return glfw_image;
 }
 
 static inline TuiImage _GlfwImageToTuiImage(GLFWimage image, const char* func_name)
