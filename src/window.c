@@ -988,6 +988,11 @@ void tuiWindowSetIcon(TuiWindow window, int count, const TuiImage* images)
 
 	for (size_t image_i = 0; image_i < (size_t)count; image_i++)
 	{
+		if (images[image_i]->ChannelCount != 4)
+		{
+			tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+			return;
+		}
 		icon_images[image_i] = _TuiImageToGlfwImage(images[image_i], __func__);
 	}
 
