@@ -96,6 +96,9 @@ int main()
     /* Set the window key callback. */
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
 
+    /* Print prompt to console. */
+    printf("Press C to change mouse cursors.\n");
+
     //Render loop
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
