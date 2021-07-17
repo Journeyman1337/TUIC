@@ -172,22 +172,6 @@ size_t tuiImageGetPixelDataSize(TuiImage image)
 	return image->PixelDataSize;
 }
 
-static inline uint8_t* get_resized_data(TuiImage image, int new_size, int new_width, int new_height, const char* func_name)
-{
-	uint8_t* output_pixels = tuiAllocate(new_size);
-	int stb_result = stbir_resize_uint8(image->PixelData, image->PixelWidth, image->PixelHeight, 0,
-		output_pixels, new_width, new_height, 0,
-		image->ChannelCount);
-	if (stb_result == 0)
-	{
-		tuiFree(output_pixels);
-		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, func_name);
-		return NULL;
-	}
-
-	return output_pixels;
-}
-
 void tuiImageResize(TuiImage image, int new_width, int new_height)
 {
 	if (image == NULL)
@@ -202,7 +186,7 @@ void tuiImageResize(TuiImage image, int new_width, int new_height)
 	}
 
 	size_t new_size = (size_t)new_width * (size_t)new_height * image->ChannelCount;
-	uint8_t* new_pixels = get_resized_data(image, new_size, new_width, new_height, __func__);
+	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, __func__);
 	if (new_pixels == NULL)
 	{
 		return;
@@ -227,7 +211,7 @@ TuiImage tuiImageCloneResize(TuiImage image, int new_width, int new_height)
 	}
 
 	size_t new_size = (size_t)new_width * (size_t)new_height * image->ChannelCount;
-	uint8_t* new_pixels = get_resized_data(image, new_size, new_width, new_height, __func__);
+	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, __func__);
 	if (new_pixels == NULL)
 	{
 		return NULL;

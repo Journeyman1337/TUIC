@@ -65,6 +65,21 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 	return image;
 }
 
+static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, int pixel_height, int channel_count, int new_pixel_width, int new_pixel_height, const char* func_name)
+{
+	uint8_t* output_pixels = tuiAllocate((size_t)(new_pixel_width * new_pixel_height * channel_count));
+	int stb_result = stbir_resize_uint8(pixels, pixel_width, pixel_height, 0,
+		output_pixels, new_pixel_width, new_pixel_height, 0,
+		channel_count);
+	if (stb_result == 0)
+	{
+		tuiFree(output_pixels);
+		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, func_name);
+		return NULL;
+	}
+	return output_pixels;
+}
+
 static inline GLFWimage _TuiImageToGlfwImage(TuiImage image, const char* func_name)
 {
 	GLFWimage glfw_image;
