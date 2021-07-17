@@ -186,7 +186,7 @@ void tuiImageResize(TuiImage image, int new_width, int new_height)
 	}
 
 	size_t new_size = (size_t)new_width * (size_t)new_height * image->ChannelCount;
-	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, __func__);
+	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, NULL, __func__);
 	if (new_pixels == NULL)
 	{
 		return;
@@ -211,7 +211,7 @@ TuiImage tuiImageCloneResize(TuiImage image, int new_width, int new_height)
 	}
 
 	size_t new_size = (size_t)new_width * (size_t)new_height * image->ChannelCount;
-	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, __func__);
+	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, NULL, __func__);
 	if (new_pixels == NULL)
 	{
 		return NULL;
