@@ -101,7 +101,8 @@ typedef enum TuiErrorCode
 	TUI_ERROR_UNMATCHING_ATLAS_WINDOW = 69,
 	TUI_ERROR_UNMATCHING_PALETTE_INSTANCE = 70,
 	TUI_ERROR_UNMATCHING_PANEL_WINDOW = 71,
-	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 72,
+	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 72,
+	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 73,
 	TUI_ERROR_FIRST = TUI_ERROR_UNKNOWN,
 	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION
 } TuiErrorCode;
@@ -179,6 +180,7 @@ extern const char* kTui_Error_Unavailable_Graphics_API_Version_Name;
 extern const char* kTui_Error_Unmatching_Atlas_Window_Name;
 extern const char* kTui_Error_Unmatching_Palette_Window_Name;
 extern const char* kTui_Error_Unmatching_Panel_Window_Name;
+extern const char* kTui_Error_Unsupported_Cursor_Shape_Name;
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name;
 
 extern const char* kTui_Error_Unknown_Description;
@@ -255,6 +257,7 @@ extern const char* kTui_Error_Unavailable_Graphics_API_Version_Description;
 extern const char* kTui_Error_Unmatching_Atlas_Type_Description;
 extern const char* kTui_Error_Unmatching_Palette_Window_Description;
 extern const char* kTui_Error_Unmatching_Panel_Window_Description;
+extern const char* kTui_Error_Unsupported_Cursor_Shape_Description;
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
 
 TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code);
