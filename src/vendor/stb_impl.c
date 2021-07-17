@@ -34,6 +34,6 @@
 #include <stb_image_write.h>
 
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
-#define STBIR_MALLOC(size, context) tuiAllocate(size)
-#define STBIR_FREE(ptr, context) tuiFree(ptr)
+#define STBIR_MALLOC(size, context)  ((void)(context), tuiAllocate(size))
+#define STBIR_FREE(ptr, context)  ((void)(context), tuiFree(ptr))
 #include <stb_image_resize.h>
