@@ -46,15 +46,15 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 	return height;
 }
 
-void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* widthMM, int* heightMM)
+void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* physical_height)
 {
-	glfwGetMonitorPhysicalSize(monitor, widthMM, heightMM);
+	glfwGetMonitorPhysicalSize(monitor, physical_width, physical_height);
 	GLFW_CHECK_ERROR()
 }
 
-void tuiMonitorGetContentScale(TuiMonitor monitor, float* xscale, float* yscale)
+void tuiMonitorGetContentScale(TuiMonitor monitor, float* content_width, float* content_height)
 {
-	glfwGetMonitorContentScale(monitor, xscale, yscale);
+	glfwGetMonitorContentScale(monitor, content_width, content_height);
 	GLFW_CHECK_ERROR()
 }
 
