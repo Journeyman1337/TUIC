@@ -220,7 +220,7 @@ TuiImage tuiImageCloneResize(TuiImage image, int new_width, int new_height)
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return NULL;
 	}
-	if (new_width >= 0 || new_height >= 0)
+	if (new_width <= 0 || new_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, __func__);
 		return NULL;
