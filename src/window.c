@@ -1006,7 +1006,7 @@ void tuiWindowSetIcon(TuiWindow window, TuiImage image)
 	icon_images[2].height = 48;
 	icon_images[2].pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, 48, 48, level3pixels, __func__);
 
-	glfwSetWindowIcon(window, 3, &icon_images[0]);
+	glfwSetWindowIcon(window->GlfwWindow, 3, icon_images);
 	GLFW_CHECK_ERROR()
 }
 
