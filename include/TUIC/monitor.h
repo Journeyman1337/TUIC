@@ -33,7 +33,11 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* pixel_width, int* pix
 int tuiMonitorGetPixelWidth(TuiMonitor monitor);
 int tuiMonitorGetPixelHeight(TuiMonitor monitor);
 void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* physical_height);
+int tuiMonitorGetPhysicalWidth(TuiMonitor monitor);
+int tuiMonitorGetPhysicalHeight(TuiMonitor monitor);
 void tuiMonitorGetContentScale(TuiMonitor monitor, float* content_width, float* content_height);
+int tuiMonitorGetContentWidth(TuiMonitor monitor);
+int tuiMonitorGetContentHeight(TuiMonitor monitor);
 int tuiMonitorGetRefreshRate(TuiMonitor monitor);
 const char* tuiMonitorGetName(TuiMonitor monitor);
 void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer);

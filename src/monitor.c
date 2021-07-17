@@ -26,7 +26,6 @@ TuiMonitor tuiGetPrimaryMonitor()
 	return monitor;
 }
 
-
 void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 {
 	glfwGetMonitorWorkarea(monitor, NULL, NULL, width, height);
@@ -52,10 +51,38 @@ void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* phy
 	GLFW_CHECK_ERROR()
 }
 
+int tuiMonitorGetPhysicalWidth(TuiMonitor monitor)
+{
+	int physical_width = 0;
+	glfwGetMonitorPhysicalSize(monitor, &physical_width, NULL);
+	return physical_width;
+}
+
+int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
+{
+	int physical_height = 0;
+	glfwGetMonitorPhysicalSize(monitor, NULL, &physical_height);
+	return physical_height;
+}
+
 void tuiMonitorGetContentScale(TuiMonitor monitor, float* content_width, float* content_height)
 {
 	glfwGetMonitorContentScale(monitor, content_width, content_height);
 	GLFW_CHECK_ERROR()
+}
+
+int tuiMonitorGetContentWidth(TuiMonitor monitor)
+{
+	int content_width = 0;
+	glfwGetMonitorContentScale(monitor, &content_width, NULL);
+	return content_width;
+}
+
+int tuiMonitorGetContentHeight(TuiMonitor monitor)
+{
+	int content_height = 0;
+	glfwGetMonitorContentScale(monitor, NULL, &content_height);
+	return content_height;
 }
 
 int tuiMonitorGetRefreshRate(TuiMonitor monitor)
