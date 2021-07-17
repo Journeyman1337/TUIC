@@ -25,3 +25,4 @@ endfunction()
 
 add_example(Example-01-Classic-Panel)
 add_example(Example-XX-Multiple-Window)
+add_example(Example-XX-Mouse-Cursors)
