@@ -32,7 +32,7 @@ extern "C" {
 #include <TUIC/joystick_id.h>
 #include <TUIC/types.h>
 
-typedef void (* tuiWindowMoveFunction)(TuiWindow window, int xpos, int ypos);
+typedef void (* tuiWindowMoveFunction)(TuiWindow window, int x_position, int y_position);
 
 typedef void (* tuiWindowCloseFunction)(TuiWindow window);
 

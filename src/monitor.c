@@ -65,24 +65,24 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
 	return physical_height;
 }
 
-void tuiMonitorGetContentScale(TuiMonitor monitor, float* content_width, float* content_height)
+void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* scale_tall)
 {
-	glfwGetMonitorContentScale(monitor, content_width, content_height);
+	glfwGetMonitorContentScale(monitor, scale_wide, scale_tall);
 	GLFW_CHECK_ERROR()
 }
 
-int tuiMonitorGetContentWidth(TuiMonitor monitor)
+int tuiMonitorGetContentScaleWide(TuiMonitor monitor)
 {
-	int content_width = 0;
-	glfwGetMonitorContentScale(monitor, &content_width, NULL);
-	return content_width;
+	int scale_wide = 0;
+	glfwGetMonitorContentScale(monitor, &scale_wide, NULL);
+	return scale_wide;
 }
 
-int tuiMonitorGetContentHeight(TuiMonitor monitor)
+int tuiMonitorGetContentScaleTall(TuiMonitor monitor)
 {
-	int content_height = 0;
-	glfwGetMonitorContentScale(monitor, NULL, &content_height);
-	return content_height;
+	int scale_tall = 0;
+	glfwGetMonitorContentScale(monitor, NULL, &scale_tall);
+	return scale_tall;
 }
 
 int tuiMonitorGetRefreshRate(TuiMonitor monitor)
