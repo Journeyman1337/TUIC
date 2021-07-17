@@ -29,6 +29,12 @@ int main()
         return -1;
     }
 
+    if (tuiWindowIconsSupported() == TUI_FALSE)
+    {
+        printf("Window icons are not supported on this platform.");
+        return -1;
+    }
+
     /* Tell TUIC to send all debug messages to our message callback (the function we implemented above main). */
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
