@@ -276,10 +276,10 @@ extern const char* kTuik_Right_Alt_Name;
 extern const char* kTuik_Right_Super_Name;
 extern const char* kTuik_Menu_Name;
 
-TuiBoolean tuiKeyIsValid(TuiKeyboardKey key);
-const char* tuiKeyToString(TuiKeyboardKey key);
+TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey key);
+const char* tuiKeyboardKeyToString(TuiKeyboardKey key);
 TuiKeyboardKey tuiStringToKey(const char* str);
-int tuiKeyGetScancode(TuiKeyboardKey key);
+int tuiKeyboardKeyGetScancode(TuiKeyboardKey key);
 
 #ifdef __cplusplus //extern C guard
 }

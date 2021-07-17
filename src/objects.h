@@ -76,7 +76,7 @@ typedef struct TuiWindow_s
 
 	tuiMouseScrollFunction MouseScrollCallback;
 
-	tuiKeyboardKeyFunction KeyboardKeyCallback;
+	tuiKeyboardKeyboardKeyFunction KeyboardKeyCallback;
 
 	tuiCharFunction CharCallback;
 

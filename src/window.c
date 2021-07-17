@@ -937,7 +937,7 @@ TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKeyboardKey key)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return TUI_BUTTON_INVALID;
 	}
-	if (tuiKeyIsValid(key) == TUI_FALSE)
+	if (tuiKeyboardKeyIsValid(key) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_KEY, __func__);
 		return TUI_BUTTON_INVALID;
@@ -1918,7 +1918,7 @@ tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window,
 	return old_callback;
 }
 
-tuiKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyboardKeyFunction callback)
+tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyboardKeyboardKeyFunction callback)
 {
 	if (window == NULL)
 	{
@@ -1926,7 +1926,7 @@ tuiKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyb
 		return;
 	}
 
-	tuiKeyboardKeyFunction old_callback = window->KeyboardKeyCallback;
+	tuiKeyboardKeyboardKeyFunction old_callback = window->KeyboardKeyCallback;
 	window->KeyboardKeyCallback = callback;
 	if (callback == NULL)
 	{

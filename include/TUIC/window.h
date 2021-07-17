@@ -247,7 +247,7 @@ tuiWindowResizeFunction tuiWindowSetResizeCallback(TuiWindow window, tuiWindowRe
 
 tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window, tuiWindowContentScaleFunction callback);
 
-tuiKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyboardKeyFunction callback);
+tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyboardKeyboardKeyFunction callback);
 
 tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callback);
 
