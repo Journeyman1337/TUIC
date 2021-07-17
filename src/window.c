@@ -5,6 +5,57 @@
 #include "glfw_error_check.h"
 #include "image_inline.h"
 
+static int mini(int x, int y)
+{
+	return x < y ? x : y;
+}
+
+static int maxi(int x, int y)
+{
+	return x > y ? x : y;
+}
+
+//taken from https://stackoverflow.com/a/31526753
+static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
+{
+	GLFWmonitor* monitor = glfwGetWindowMonitor(window);
+	if (monitor != NULL)
+	{
+		return (TuiMonitor)monitor;
+	}
+
+	int nmonitors, i;
+	int wx, wy, ww, wh;
+	int mx, my, mw, mh;
+	int overlap, bestoverlap;
+
+	GLFWmonitor** monitors;
+	const GLFWvidmode* mode;
+
+	bestoverlap = 0;
+
+	glfwGetWindowPos(window, &wx, &wy);
+	glfwGetWindowSize(window, &ww, &wh);
+	monitors = glfwGetMonitors(&nmonitors);
+
+	for (i = 0; i < nmonitors; i++) {
+		mode = glfwGetVideoMode(monitors[i]);
+		glfwGetMonitorPos(monitors[i], &mx, &my);
+		mw = mode->width;
+		mh = mode->height;
+
+		overlap =
+			maxi(0, mini(wx + ww, mx + mw) - maxi(wx, mx)) *
+			maxi(0, mini(wy + wh, my + mh) - maxi(wy, my));
+
+		if (bestoverlap < overlap) {
+			bestoverlap = overlap;
+			monitor = monitors[i];
+		}
+	}
+	return (TuiMonitor)monitor;
+}
+
 static void glfwWindowPosCallback(GLFWwindow* glfw_window, int xpos, int ypos)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
@@ -218,6 +269,9 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	window->PixelWidth = (size_t)pixel_width;
 	window->PixelHeight = (size_t)pixel_height;
 	window->GlfwWindow = glfw_window;
+	window->IsFullscreen = TUI_FALSE;
+	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
+	glfwGetWindowPos(glfw_window, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	window->UserPointer = NULL;
 	window->WindowMoveCallback = NULL;
 	window->WindowRefreshCallback = NULL;
@@ -1333,57 +1387,6 @@ void tuiWindowRequestAttention(TuiWindow window)
 	GLFW_CHECK_ERROR()
 }
 
-static int mini(int x, int y)
-{
-	return x < y ? x : y;
-}
-
-static int maxi(int x, int y)
-{
-	return x > y ? x : y;
-}
-
-//taken from https://stackoverflow.com/a/31526753
-static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
-{
-	GLFWmonitor* monitor = glfwGetWindowMonitor(window);
-	if (monitor != NULL)
-	{
-		return (TuiMonitor)monitor;
-	}
-
-	int nmonitors, i;
-	int wx, wy, ww, wh;
-	int mx, my, mw, mh;
-	int overlap, bestoverlap;
-
-	GLFWmonitor** monitors;
-	const GLFWvidmode* mode;
-
-	bestoverlap = 0;
-
-	glfwGetWindowPos(window, &wx, &wy);
-	glfwGetWindowSize(window, &ww, &wh);
-	monitors = glfwGetMonitors(&nmonitors);
-
-	for (i = 0; i < nmonitors; i++) {
-		mode = glfwGetVideoMode(monitors[i]);
-		glfwGetMonitorPos(monitors[i], &mx, &my);
-		mw = mode->width;
-		mh = mode->height;
-
-		overlap =
-			maxi(0, mini(wx + ww, mx + mw) - maxi(wx, mx)) *
-			maxi(0, mini(wy + wh, my + mh) - maxi(wy, my));
-
-		if (bestoverlap < overlap) {
-			bestoverlap = overlap;
-			monitor = monitors[i];
-		}
-	}
-	return (TuiMonitor)monitor;
-}
-
 TuiMonitor tuiWindowGetMonitor(TuiWindow window)
 {
 	if (window == NULL)
@@ -1403,8 +1406,10 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 	{
 		monitor = _GetCurrentMonitor(window->GlfwWindow);
 	}
+	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, window->PixelWidth, window->PixelHeight, refresh_rate);
 	GLFW_CHECK_ERROR()
+	window->IsFullscreen = TUI_TRUE;
 }
 
 void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate)
@@ -1414,33 +1419,44 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixe
 		monitor = _GetCurrentMonitor(window->GlfwWindow);
 		GLFW_CHECK_ERROR()
 	}
+	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, pixel_width, pixel_height, refresh_rate);
 	GLFW_CHECK_ERROR()
 	_WindowFramebufferResize(window, pixel_width, pixel_height);
+	window->IsFullscreen = TUI_TRUE;
 }
 
-void tuiWindowSetWindowed(TuiWindow window, int x_position, int y_position)
+void tuiWindowSetWindowed(TuiWindow window)
 {
-	glfwSetWindowMonitor(window->GlfwWindow, NULL, x_position, y_position, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
-	GLFW_CHECK_ERROR()
+	if (window->IsFullscreen == TUI_TRUE)
+	{
+		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
+		GLFW_CHECK_ERROR()
+		window->IsFullscreen = TUI_FALSE;
+	}
 }
 
-void tuiWindowSetWindowedResize(TuiWindow window, int x_position, int y_position, int pixel_width, int pixel_height)
+void tuiWindowSetWindowedResize(TuiWindow window, int pixel_width, int pixel_height)
 {
-	glfwSetWindowMonitor(window->GlfwWindow, NULL, x_position, y_position, pixel_width, pixel_height, GLFW_DONT_CARE);
-	GLFW_CHECK_ERROR()
-	_WindowFramebufferResize(window, pixel_width, pixel_height);
+	if (window->IsFullscreen == TUI_TRUE)
+	{
+		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, pixel_width, pixel_height, GLFW_DONT_CARE);
+		GLFW_CHECK_ERROR()
+		_WindowFramebufferResize(window, pixel_width, pixel_height);
+		window->IsFullscreen = TUI_FALSE;
+	}
+
 }
 
 TuiBoolean tuiWindowIsFullscreen(TuiWindow window)
 {
-	TuiMonitor monitor = glfwGetWindowMonitor(window->GlfwWindow);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
-	if (monitor == NULL)
+	if (window == NULL)
 	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return TUI_FALSE;
 	}
-	return TUI_TRUE;
+
+	return window->IsFullscreen;
 }
 
 TuiBoolean tuiWindowGetFocused(TuiWindow window)

@@ -189,9 +189,9 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 
 void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate);
 
-void tuiWindowSetWindowed(TuiWindow window, int x_position, int y_position);
+void tuiWindowSetWindowed(TuiWindow window);
 
-void tuiWindowSetWindowedResize(TuiWindow window, int x_position, int y_position, int pixel_width, int pixel_height);
+void tuiWindowSetWindowedResize(TuiWindow window, int pixel_width, int pixel_height);
 
 TuiBoolean tuiWindowIsFullscreen(TuiWindow window);
 

@@ -88,6 +88,12 @@ typedef struct TuiWindow_s
 
 	size_t PixelHeight;
 
+	TuiBoolean IsFullscreen;
+
+	int FullscreenLastWindowedPositionX;
+
+	int FullscreenLastWindowedPositionY;
+
 	void* ApiData;
 } TuiWindow_s;
 
