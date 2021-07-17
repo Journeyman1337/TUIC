@@ -37,6 +37,8 @@ typedef struct TuiSystem_s
 
 	TuiBoolean BaseWindowClaimed; //for non multi-window systems. if the base window is claimed by the window, this is true.
 
+	TuiBoolean WindowIconsSupported;
+
 	GLFWwindow* BaseWindow;
 
 	void* ApiData;

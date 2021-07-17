@@ -973,7 +973,25 @@ void tuiWindowSetIcon(TuiWindow window, int count, const TuiImage* images)
 		return;
 	}
 
-	// TODO glfwSetWindowIcon(window->window, count, );
+	GLFWimage icon_image[16];
+
+	for (size_t image_i = 0; image_i < (size_t)count; image_i++)
+	{
+		icon_image[image_i] = _TuiImageToGlfwImage(images[image_i], __func__);
+	}
+
+	glfwSetWindowIcon(window->window, count, );
+}
+
+TuiBoolean tuiWindowIconsSupported()
+{
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_DESKTOP_NOT_INITIALIZED, __func__);
+		return;
+	}
+	return system->WindowIconsSupported;
 }
 
 void tuiWindowGetPosition(TuiWindow window, int* xpos, int* ypos)

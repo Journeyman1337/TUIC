@@ -139,6 +139,8 @@ void tuiWindowSetDefaultIcon(TuiWindow window);
 
 void tuiWindowSetIcon(TuiWindow window, int count, const TuiImage* images);
 
+TuiBoolean tuiWindowIconsSupported();
+
 void tuiWindowGetPosition(TuiWindow window, int* xpos, int* ypos);
 
 void tuiWindowSetPosition(TuiWindow window, int xpos, int ypos); 

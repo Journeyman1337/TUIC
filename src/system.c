@@ -32,6 +32,7 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	sSystem->MultiWindow = multi_window;
 	sSystem->BaseWindow = NULL;
 	sSystem->BaseWindowClaimed = TUI_FALSE;
+	sSystem->WindowIconsSupported = TUI_FALSE;
 	sSystem->ApiData = NULL;
 
 	glfwDefaultWindowHints();
@@ -52,8 +53,19 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 		GLFW_CLEAR_ERRORS()
 			return TUI_FALSE;
 	}
+	GLFW_CLEAR_ERRORS()
+	unsigned char image_pixels[16] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	GLFWimage test_icon_image;
+	test_icon_image.width = 2;
+	test_icon_image.height = 2;
+	test_icon_image.pixels = image_pixels;
+	glfwSetWindowIcon(sSystem->BaseWindow, 1, &test_icon_image); // try setting a dummy icon
+	if (glfwGetError(NULL) == GLFW_NO_ERROR) //if it was set successfully...
+	{
+		sSystem->WindowIconsSupported = TUI_TRUE; //icons are supported on this platform.
+		glfwSetWindowIcon(sSystem->BaseWindow, 0, NULL); //set the icon back to default.
+	}
 	tuiSystemCreate_Opengl33();
-
 	GLFW_CLEAR_ERRORS()
 	return TUI_TRUE;
 }
