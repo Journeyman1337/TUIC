@@ -68,8 +68,8 @@ void key_callback(TuiWindow window, TuiKey key, int scancode, TuiButtonState but
 
 int main()
 {
-    int window_width = 100;
-    int window_height = 100;
+    int window_width = 500;
+    int window_height = 500;
 
     /* Initialize TUIC. */
     TuiBoolean multi_window = TUI_FALSE;
