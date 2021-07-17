@@ -84,7 +84,8 @@ int main()
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
     /* Load the custom cursor image. */
-    custom_cursor_image  = tuiImageLoad("custom_cursor.png", 0);
+    int expected_channel_count = 4;
+    custom_cursor_image  = tuiImageLoad("custom_cursor.png", expected_channel_count);
 
     /* Initialize the current cursor. */
     current_cursor = tuiCursorCreateStandard(current_cursor_shape);
