@@ -103,6 +103,7 @@ typedef enum TuiErrorCode
 	TUI_ERROR_UNMATCHING_PANEL_WINDOW = 71,
 	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 72,
 	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 73,
+	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 74,
 	TUI_ERROR_FIRST = TUI_ERROR_UNKNOWN,
 	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION
 } TuiErrorCode;
@@ -182,6 +183,7 @@ extern const char* kTui_Error_Unmatching_Palette_Window_Name;
 extern const char* kTui_Error_Unmatching_Panel_Window_Name;
 extern const char* kTui_Error_Unsupported_Cursor_Shape_Name;
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name;
+extern const char* kTui_Error_Unsupported_Window_Icons_Name;
 
 extern const char* kTui_Error_Unknown_Description;
 extern const char* kTui_Error_None_Description;
@@ -259,6 +261,7 @@ extern const char* kTui_Error_Unmatching_Palette_Window_Description;
 extern const char* kTui_Error_Unmatching_Panel_Window_Description;
 extern const char* kTui_Error_Unsupported_Cursor_Shape_Description;
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
+extern const char* kTui_Error_Unsupported_Window_Icons_Description;
 
 TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code);
 

@@ -78,6 +78,7 @@ const char* kTui_Error_Unmatching_Palette_Window_Name = TO_STRING(TUI_ERROR_UNMA
 const char* kTui_Error_Unmatching_Panel_Window_Name = TO_STRING(TUI_ERROR_UNMATCHING_PANEL_WINDOW);
 const char* kTui_Error_Unsupported_Cursor_Shape_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE);
 const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION);
+const char* kTui_Error_Unsupported_Window_Icons_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_WINDOW_ICONS);
 
 const char* kTui_Error_Unknown_Description = "An unkown error has occured. This may be a bug with TUIC library.";
 const char* kTui_Error_None_Description = "No error has occured.";
@@ -154,6 +155,7 @@ const char* kTui_Error_Unmatching_Palette_Window_Description = "The TuiPalette b
 const char* kTui_Error_Unmatching_Panel_Window_Description = "The TuiPanel belongs to the graphics context of a different TuiWindow.";
 const char* kTui_Error_Unsupported_Cursor_Shape_Description = "The current desktop platform does not support the given standard TuiCursorShape.";
 const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description = "Raw mouse motion is not supported on this device.";
+const char* kTui_Error_Unsupported_Window_Icons_Description = "Window icons can not be set because they are not supported on this device.";
 
 TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code)
 {
@@ -313,6 +315,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Unsupported_Cursor_Shape_Name;
 	case TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION:
 		return kTui_Error_Unsupported_Raw_Mouse_Motion_Name;
+	case TUI_ERROR_UNSUPPORTED_WINDOW_ICONS:
+		return kTui_Error_Unsupported_Window_Icons_Name;
 	default:
 		return kTui_Error_Unknown_Name;
 	}
@@ -620,7 +624,10 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION;
 	}
-
+	else if (strcmp(str, kTui_Error_Unsupported_Window_Icons_Name) == 0)
+	{
+		return TUI_ERROR_UNSUPPORTED_WINDOW_ICONS;
+	}
 	return TUI_ERROR_UNKNOWN;
 }
 
@@ -770,6 +777,8 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Unsupported_Cursor_Shape_Description;
 	case TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION:
 		return kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
+	case TUI_ERROR_UNSUPPORTED_WINDOW_ICONS:
+		return kTui_Error_Unsupported_Window_Icons_Description;
 	default:
 		return kTui_Error_Unknown_Description;
 	}
