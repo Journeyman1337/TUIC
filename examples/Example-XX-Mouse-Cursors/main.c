@@ -86,8 +86,6 @@ int main()
     /* Tell TUIC to send all debug messages to our message callback (the function we implemented above main). */
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
-
-
     /* Load the custom cursor image. */
     custom_cursor_image  = tuiImageLoad("custom_cursor.png", 0);
 
