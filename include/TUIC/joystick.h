@@ -35,7 +35,7 @@ const unsigned char* tuiJoystickGetButtons(TuiJoystickId joystick_id, int* count
 const unsigned char* tuiJoystickGetHats(TuiJoystickId joystick_id, int* count);
 const char* tuiJoystickGetName(TuiJoystickId joystick_id);
 const char* tuiJoystickGetGUID(TuiJoystickId joystick_id);
-void tuiJoystickSetUserPOinter(TuiJoystickId joystick_id, void* pointer);
+void tuiJoystickSetUserPointer(TuiJoystickId joystick_id, void* pointer);
 void* tuiJoystickGetUserPointer(TuiJoystickId joystick_id);
 TuiBoolean tuiJoystickIsGamepad(TuiJoystickId joystick_id);
 TuiBoolean tuiJoystickUpdateMappings(const char* string);
