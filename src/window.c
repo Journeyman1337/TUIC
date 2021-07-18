@@ -1420,6 +1420,36 @@ TuiBoolean tuiWindowHasSizeLimits(TuiWindow window)
 	return _WindowHasSizeLimits(window);
 }
 
+TuiBoolean tuiWindowHasMinSizeLimits(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return TUI_FALSE;
+	}
+
+	if (window->MinWidth != 0 || window->MinHeight != 0)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+
+TuiBoolean tuiWindowHasMaxSizeLimits(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return TUI_FALSE;
+	}
+
+	if (window->MaxWidth != 0 || window->MaxHeight != 0)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+
 void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominator)
 {
 	if (window == NULL)

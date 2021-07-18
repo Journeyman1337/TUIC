@@ -179,6 +179,10 @@ int tuiWindowGetMaxHeight(TuiWindow window);
 
 TuiBoolean tuiWindowHasSizeLimits(TuiWindow window);
 
+TuiBoolean tuiWindowHasMinSizeLimits(TuiWindow window);
+
+TuiBoolean tuiWindowHasMaxSizeLimits(TuiWindow window);
+
 void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominator);
 
 void tuiWindowFixCurrentAspectRatio(TuiWindow window);
