@@ -56,11 +56,20 @@ static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 	return (TuiMonitor)monitor;
 }
 
-int gcf(int a, int b)
+static inline int _GCF(int n, int m)
 {
-	if (b == 0)
-		return a;
-	return gcf(b, a % b);
+	int gcf, remainder;
+
+	while (n != 0)
+	{
+		remainder = m % n;
+		m = n;
+		n = remainder;
+	}
+
+	gcf = m;
+
+	return gcf;
 }
 
 static inline TuiBoolean _WindowHasFixedAspect(TuiWindow window)
@@ -1225,9 +1234,9 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 		return;
 	}
 
-	int greatest_common_factor = gcf(window->PixelWidth, window->PixelHeight);
 	window->FixedAspectRatioNumerator = window->PixelHeight / greatest_common_factor;
 	window->FixedAspectRatioDenominator = window->PixelWidth / greatest_common_factor;
+	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
 	glfwSetWindowAspectRatio(window->GlfwWindow, window->FixedAspectRatioNumerator, window->FixedAspectRatioDenominator);
 	GLFW_CHECK_ERROR()
 }
