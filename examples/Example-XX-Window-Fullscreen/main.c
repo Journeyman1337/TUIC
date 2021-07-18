@@ -30,7 +30,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         else
         {
             TuiMonitor window_monitor = tuiWindowGetMonitor(window);
-            tuiWindowSetFullscreenResize(window, window_monitor, -1, -1, -1);
+            tuiWindowSetFullscreenResize(window, window_monitor, 0, 0, 0);
             printf("Window is now fullscreen in monitor: \"%s\"!\n", tuiMonitorGetName(window_monitor));
         }
     }
