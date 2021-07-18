@@ -1234,9 +1234,9 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 		return;
 	}
 
-	window->FixedAspectRatioNumerator = window->PixelHeight / greatest_common_factor;
-	window->FixedAspectRatioDenominator = window->PixelWidth / greatest_common_factor;
 	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
+	window->FixedAspectRatioNumerator = window->PixelWidth / greatest_common_factor;
+	window->FixedAspectRatioDenominator = window->PixelHeight / greatest_common_factor;
 	glfwSetWindowAspectRatio(window->GlfwWindow, window->FixedAspectRatioNumerator, window->FixedAspectRatioDenominator);
 	GLFW_CHECK_ERROR()
 }
