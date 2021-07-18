@@ -347,7 +347,7 @@ void tuiWindowDestroy(TuiWindow window)
 		glfwHideWindow(system->BaseWindow);
 		if (_WindowHasFixedAspect(window) == TUI_TRUE)
 		{
-			glfwSetWindowAspectRatio(system->BaseWindow, 0, 0);
+			glfwSetWindowAspectRatio(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
 		}
 		system->BaseWindowClaimed == TUI_FALSE;
 	}
@@ -1238,7 +1238,7 @@ void tuiWindowUnfixAspectRatio(TuiWindow window)
 	{
 		window->FixedAspectRatioNumerator = 0;
 		window->FixedAspectRatioDenominator = 0;
-		glfwSetWindowAspectRatio(window->GlfwWindow, 0, 0);
+		glfwSetWindowAspectRatio(window->GlfwWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
 		GLFW_CHECK_ERROR()
 	}
 }
