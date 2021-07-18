@@ -1243,7 +1243,18 @@ void tuiWindowUnfixAspectRatio(TuiWindow window)
 	}
 }
 
-TuiBoolean tuiWindowGetFixedAspectRatioIsEnabled(TuiWindow window)
+TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return TUI_FALSE;
+	}
+
+	return fixed_aspect_enabled(window);
+}
+
+void tuiWindowGetFixedAspectRatio(TuiWindow window, int* numerator, int* denominator)
 {
 	if (window == NULL)
 	{
@@ -1251,7 +1262,36 @@ TuiBoolean tuiWindowGetFixedAspectRatioIsEnabled(TuiWindow window)
 		return;
 	}
 
-	return fixed_aspect_enabled(window);
+	if (numerator != NULL)
+	{
+		*numerator = window->FixedAspectRatioNumerator;
+	}
+	if (denominator != NULL)
+	{
+		*denominator = window->FixedAspectRatioDenominator;
+	}
+}
+
+int tuiWindowGetFixedAspectRatioNumerator(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	return window->FixedAspectRatioNumerator;
+}
+
+int tuiWindowGetFixedAspectRatioDenominator(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	return window->FixedAspectRatioDenominator;
 }
 
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall)
