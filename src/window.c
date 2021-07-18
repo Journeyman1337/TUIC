@@ -77,6 +77,16 @@ static inline TuiBoolean _WindowHasFixedAspect(TuiWindow window)
 	return window->FixedAspectRatioNumerator != 0 && window->FixedAspectRatioDenominator != 0;
 }
 
+static inline TuiBoolean _WindowHasSizeLimits(TuiWindow window)
+{
+	return window->MinWidth != 0 && window->MinHeight != 0 && window->MaxWidth != 0 && window->MaxHeight != 0;
+}
+
+static inline void _WindowUpdateSizeLimits(TuiWindow window)
+{
+	glfwSetWindowSizeLimits(window->GlfwWindow, window->MinWidth, window->MinHeight, (window->MaxWidth == 0) ? GLFW_DONT_CARE : window->MaxWidth, (window->MaxHeight == 0) ? GLFW_DONT_CARE : window->MaxHeight);
+}
+
 static void glfwWindowPosCallback(GLFWwindow* glfw_window, int xpos, int ypos)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
@@ -363,6 +373,10 @@ void tuiWindowDestroy(TuiWindow window)
 		if (_WindowHasFixedAspect(window) == TUI_TRUE)
 		{
 			glfwSetWindowAspectRatio(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
+		}
+		if (_WindowHasSizeLimits(window) == TUI_TRUE)
+		{
+			glfwSetWindowSizeLimits(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE, GLFW_DONT_CARE, GLFW_DONT_CARE);
 		}
 		system->BaseWindowClaimed == TUI_FALSE;
 	}
@@ -1195,14 +1209,215 @@ void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (min_width <= 0 || min_height <= 0 || max_width <= 0 || max_height <= 0 || max_width < min_width || max_height < min_height)
+	if (min_width < 0 ||
+		min_height < 0 ||
+		max_width < 0 ||
+		max_height < 0 ||
+		((max_width != 0) && (max_width < min_width)) ||
+		((max_height != 0) && max_height < min_height)
+		)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
 		return;
 	}
 
-	glfwSetWindowSizeLimits(window->GlfwWindow, min_width, min_height, max_width, max_height);
+	window->MinWidth = min_width;
+	window->MinHeight = min_height;
+	window->MaxWidth = max_width;
+	window->MaxHeight = max_height;
+	_WindowUpdateSizeLimits(window);
 	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowSetMinSizeLimit(TuiWindow window, int min_width, int min_height)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (min_width < 0 || min_height < 0 || min_width > window->MaxWidth || min_height > window->MaxHeight)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
+	window->MinWidth = min_width;
+	window->MinHeight = min_height;
+	_WindowUpdateSizeLimits(window);
+	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowSetMaxSizeLimit(TuiWindow window, int max_width, int max_height)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (max_width < 0 || max_height < 0 || ((max_width != 0) && (max_width < window->MinWidth)) ||	((max_height != 0) && max_height < window->MinHeight))
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
+	window->MaxWidth = max_width;
+	window->MaxHeight = max_height;
+	_WindowUpdateSizeLimits(window);
+	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowSetMinWidth(TuiWindow window, int min_width)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (min_width < 0 || ((window->MaxWidth != 0) && (window->MaxWidth < window->MinWidth)))
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
+	window->MinWidth = min_width;
+	_WindowUpdateSizeLimits(window);
+	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowSetMinHeight(TuiWindow window, int min_height)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (min_height < 0 || ((window->MaxHeight != 0) && (window->MaxHeight < min_height)))
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
+	window->MinHeight = min_height;
+	_WindowUpdateSizeLimits(window);
+	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowSetMaxWidth(TuiWindow window, int max_width)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (max_width < 0 || ((max_width != 0) && (max_width < window->MinWidth)))
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
+	window->MaxWidth = max_width;
+	_WindowUpdateSizeLimits(window);
+	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowSetMaxHeight(TuiWindow window, int max_height)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (max_height < 0 || ((max_height != 0) && (max_height < window->MinHeight)))
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
+		return;
+	}
+
+	window->MaxHeight = max_height;
+	_WindowUpdateSizeLimits(window);
+	GLFW_CHECK_ERROR()
+}
+
+void tuiWindowGetSizeLimits(TuiWindow window, int* min_width, int* min_height, int* max_width, int* max_height)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	if (min_width != NULL)
+	{
+		*min_width = window->MinWidth;
+	}
+	if (min_height != NULL)
+	{
+		*min_height = window->MinHeight;
+	}
+	if (max_width != NULL)
+	{
+		*max_width = window->MaxWidth;
+	}
+	if (max_height != NULL)
+	{
+		*max_height = window->MaxHeight;
+	}
+}
+
+int tuiWindowGetMinWidth(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return window->MinWidth;
+}
+
+int tuiWindowGetMinHeight(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return window->MinHeight;
+}
+
+int tuiWindowGetMaxWidth(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return window->MaxWidth;
+}
+
+int tuiWindowGetMaxHeight(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return window->MaxHeight;
+}
+
+TuiBoolean tuiWindowHasSizeLimits(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return TUI_FALSE;
+	}
+
+	return _WindowHasSizeLimits(window);
 }
 
 void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominator)
@@ -1223,8 +1438,6 @@ void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominat
 	glfwSetWindowAspectRatio(window->GlfwWindow, numerator, denominator);
 	GLFW_CHECK_ERROR()
 }
-
-
 
 void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 {
@@ -1535,15 +1748,15 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixe
 	}
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
-	if (pixel_width == -1)
+	if (pixel_width == 0)
 	{
 		pixel_width = vid_mode->width;
 	}
-	if (pixel_height == -1)
+	if (pixel_height == 0)
 	{
 		pixel_height = vid_mode->height;
 	}
-	if (refresh_rate == -1)
+	if (refresh_rate == 0)
 	{
 		refresh_rate = vid_mode->refreshRate;
 	}

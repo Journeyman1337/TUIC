@@ -155,6 +155,30 @@ void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position);
 
 void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height);
 
+void tuiWindowSetMinSizeLimit(TuiWindow window, int min_width, int min_height);
+
+void tuiWindowSetMaxSizeLimit(TuiWindow window, int max_width, int max_height);
+
+void tuiWindowSetMinWidth(TuiWindow window, int min_width);
+
+void tuiWindowSetMinHeight(TuiWindow window, int min_height);
+
+void tuiWindowSetMaxWidth(TuiWindow window, int max_width);
+
+void tuiWindowSetMaxHeight(TuiWindow window, int max_height);
+
+void tuiWindowGetSizeLimits(TuiWindow window, int* min_width, int* min_height, int* max_width, int* max_height);
+
+int tuiWindowGetMinWidth(TuiWindow window);
+
+int tuiWindowGetMinHeight(TuiWindow window);
+
+int tuiWindowGetMaxWidth(TuiWindow window);
+
+int tuiWindowGetMaxHeight(TuiWindow window);
+
+TuiBoolean tuiWindowHasSizeLimits(TuiWindow window);
+
 void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominator);
 
 void tuiWindowFixCurrentAspectRatio(TuiWindow window);

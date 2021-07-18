@@ -98,6 +98,14 @@ typedef struct TuiWindow_s
 
 	int FixedAspectRatioDenominator;
 
+	int MinWidth;
+
+	int MinHeight;
+
+	int MaxWidth;
+
+	int MaxHeight;
+
 	void* ApiData;
 } TuiWindow_s;
 
