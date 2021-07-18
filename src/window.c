@@ -272,6 +272,7 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	window->IsFullscreen = TUI_FALSE;
 	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
 	glfwGetWindowPos(glfw_window, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
+	window->FixedAspectIsEnabled = TUI_FALSE;
 	window->UserPointer = NULL;
 	window->WindowMoveCallback = NULL;
 	window->WindowRefreshCallback = NULL;
@@ -331,6 +332,10 @@ void tuiWindowDestroy(TuiWindow window)
 	if (system->MultiWindow == TUI_FALSE)
 	{
 		glfwHideWindow(system->BaseWindow);
+		if (window->FixedAspectIsEnabled == TUI_TRUE)
+		{
+			glfwSetWindowAspectRatio(system->BaseWindow, 0, 0);
+		}
 		system->BaseWindowClaimed == TUI_FALSE;
 	}
 
@@ -1185,6 +1190,7 @@ void tuiWindowEnableFixedAspectRatio(TuiWindow window, int numerator, int denomi
 		return;
 	}
 
+	window->FixedAspectIsEnabled = TUI_TRUE;
 	glfwSetWindowAspectRatio(window->GlfwWindow, numerator, denominator);
 	GLFW_CHECK_ERROR()
 }
@@ -1196,9 +1202,24 @@ void tuiWindowDisableFixedAspectRatio(TuiWindow window)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
+	
+	if (window->FixedAspectIsEnabled = TUI_TRUE)
+	{
+		window->FixedAspectIsEnabled = TUI_FALSE;
+		glfwSetWindowAspectRatio(window->GlfwWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
+		GLFW_CHECK_ERROR()
+	}
+}
 
-	glfwSetWindowAspectRatio(window->GlfwWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
-	GLFW_CHECK_ERROR()
+TuiBoolean tuiWindowGetFixedAspectRatioIsEnabled(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	return window->FixedAspectIsEnabled;
 }
 
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall)

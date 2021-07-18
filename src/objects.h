@@ -94,6 +94,8 @@ typedef struct TuiWindow_s
 
 	int FullscreenLastWindowedPositionY;
 
+	TuiBoolean FixedAspectIsEnabled;
+
 	void* ApiData;
 } TuiWindow_s;
 
