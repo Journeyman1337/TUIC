@@ -107,7 +107,11 @@ static void glfwWindowMaximizeCallback(GLFWwindow* glfw_window, int maximized)
 static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->WindowResizeCallback(window, pixel_width, pixel_height);
+	tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
+	if (window->WindowResizeCallback != NULL)
+	{
+		window->WindowResizeCallback(window, pixel_width, pixel_height);
+	}
 }
 
 static void glfwWindowContentScaleCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
@@ -276,6 +280,8 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		// TODO tuiDebugError(TUI_ERROR_WINDOW_CREATION_FAILED, __func__);
 		return NULL;
 	}
+
+	glfwSetFramebufferSizeCallback(glfw_window, glfwWindowFramebufferSizeCallback);
 
 	TuiWindow window = (TuiWindow_s*)tuiAllocate(sizeof(TuiWindow_s));
 	window->PixelWidth = (size_t)pixel_width;
@@ -1977,14 +1983,6 @@ tuiWindowResizeFunction tuiWindowSetResizeCallback(TuiWindow window, tuiWindowRe
 
 	tuiWindowResizeFunction old_callback = window->WindowResizeCallback;
 	window->WindowResizeCallback = callback;
-	if (callback == NULL)
-	{
-		glfwSetFramebufferSizeCallback(window->GlfwWindow, NULL);
-	}
-	else
-	{
-		glfwSetFramebufferSizeCallback(window->GlfwWindow, glfwWindowFramebufferSizeCallback);
-	}
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
 }
