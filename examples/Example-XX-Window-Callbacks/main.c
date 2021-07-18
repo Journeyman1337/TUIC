@@ -153,6 +153,7 @@ int main()
     tuiWindowSetContentScaleCallback(window, window_content_scale_callback);
     tuiWindowSetMouseButtonCallback(window, mouse_button_callback);
     tuiWindowSetCursorMoveCallback(window, cursor_move_callback);
+    tuiWindowSetCursorEnterCallback(window, cursor_enter_callback);
     tuiWindowSetMouseScrollCallback(window, mouse_scroll_callback);
     tuiWindowSetKeyboardKeyCallback(window, keyboard_key_callback);
     tuiWindowSetCharCallback(window, char_callback);
