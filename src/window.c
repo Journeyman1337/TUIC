@@ -1229,7 +1229,7 @@ void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetMinSizeLimit(TuiWindow window, int min_width, int min_height)
+void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height)
 {
 	if (window == NULL)
 	{
@@ -1248,7 +1248,7 @@ void tuiWindowSetMinSizeLimit(TuiWindow window, int min_width, int min_height)
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSetMaxSizeLimit(TuiWindow window, int max_width, int max_height)
+void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height)
 {
 	if (window == NULL)
 	{

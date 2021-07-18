@@ -155,9 +155,9 @@ void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position);
 
 void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height);
 
-void tuiWindowSetMinSizeLimit(TuiWindow window, int min_width, int min_height);
+void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height);
 
-void tuiWindowSetMaxSizeLimit(TuiWindow window, int max_width, int max_height);
+void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height);
 
 void tuiWindowSetMinWidth(TuiWindow window, int min_width);
 
