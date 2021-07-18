@@ -1236,7 +1236,7 @@ void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (min_width < 0 || min_height < 0 || min_width > window->MaxWidth || min_height > window->MaxHeight)
+	if (min_width < 0 || min_height < 0 || ((window->MaxWidth != 0) && min_width > window->MaxWidth) || ((window->MaxHeight != 0) && min_height > window->MaxHeight))
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS, __func__);
 		return;
