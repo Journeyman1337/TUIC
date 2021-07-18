@@ -63,7 +63,7 @@ int gcf(int a, int b)
 	return gcf(b, a % b);
 }
 
-static inline TuiBoolean window_fixed_aspect_enabled(TuiWindow window)
+static inline TuiBoolean _WindowHasFixedAspect(TuiWindow window)
 {
 	return window->FixedAspectRatioNumerator != 0 && window->FixedAspectRatioDenominator != 0;
 }
@@ -345,7 +345,7 @@ void tuiWindowDestroy(TuiWindow window)
 	if (system->MultiWindow == TUI_FALSE)
 	{
 		glfwHideWindow(system->BaseWindow);
-		if (window_fixed_aspect_enabled(window) == TUI_TRUE)
+		if (_WindowHasFixedAspect(window) == TUI_TRUE)
 		{
 			glfwSetWindowAspectRatio(system->BaseWindow, 0, 0);
 		}
@@ -1234,7 +1234,7 @@ void tuiWindowUnfixAspectRatio(TuiWindow window)
 		return;
 	}
 	
-	if (fixed_aspect_enabled(window) == TUI_TRUE)
+	if (_WindowHasFixedAspect(window) == TUI_TRUE)
 	{
 		window->FixedAspectRatioNumerator = 0;
 		window->FixedAspectRatioDenominator = 0;
@@ -1251,7 +1251,7 @@ TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
 		return TUI_FALSE;
 	}
 
-	return fixed_aspect_enabled(window);
+	return _WindowHasFixedAspect(window);
 }
 
 void tuiWindowGetFixedAspectRatio(TuiWindow window, int* numerator, int* denominator)
