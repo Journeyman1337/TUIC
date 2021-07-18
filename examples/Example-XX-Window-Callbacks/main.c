@@ -161,6 +161,22 @@ int main()
     tuiSetMonitorCallback(monitor_callback);
     tuiSetJoystickCallback(joystick_callback);
 
+    printf("Try the following to see the callback messages:\n"
+        " * move your mouse inside the window\n"
+        " * move mouse in and out of the window area\n"
+        " * click and hold a mouse button inside the window and drag your mouse outside (external mouse position capture)\n"
+        " * resize the window by dragging the edges\n"
+        " * click outside the window to lose focus, and click inside to gain it again\n"
+        " * minimize the window then restore it\n"
+        " * maximize the window then restore it\n"
+        " * move the window between monitors with different DPI to see the content scale change\n"
+        " * press and release mouse buttons\n"
+        " * scroll your scroll wheel\n"
+        " * press keys on your keyboard\n"
+        " * drag and drop files into the window area\n"
+        " * plug and unplug monitors and joysticks/gamepads\n"
+    );
+
     //Render loop
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
