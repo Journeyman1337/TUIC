@@ -159,6 +159,8 @@ void tuiWindowEnableFixedAspectRatio(TuiWindow window, int numerator, int denomi
 
 void tuiWindowDisableFixedAspectRatio(TuiWindow window);
 
+TuiBoolean tuiWindowGetFixedAspectRatioIsEnabled(TuiWindow window);
+
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall);
 
 float tuiWindowGetContentScaleWide(TuiWindow window);
