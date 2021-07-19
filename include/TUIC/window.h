@@ -191,11 +191,11 @@ void tuiWindowUnfixAspectRatio(TuiWindow window);
 
 TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window);
 
-void tuiWindowGetFixedAspectRatio(TuiWindow, int* numerator, int* denominator);
+void tuiWindowGetAspectRatio(TuiWindow, int* numerator, int* denominator);
 
-int tuiWindowGetFixedAspectRatioNumerator(TuiWindow window);
+int tuiWindowGetAspectRatioNumerator(TuiWindow window);
 
-int tuiWindowGetFixedAspectRatioDenominator(TuiWindow window);
+int tuiWindowGetAspectRatioDenominator(TuiWindow window);
 
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall);
 

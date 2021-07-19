@@ -94,9 +94,7 @@ typedef struct TuiWindow_s
 
 	int FullscreenLastWindowedPositionY;
 
-	int FixedAspectRatioNumerator;
-
-	int FixedAspectRatioDenominator;
+	TuiBoolean IsFixedAspectRatio;
 
 	int MinWidth;
 

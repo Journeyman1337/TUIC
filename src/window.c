@@ -72,11 +72,6 @@ static inline int _GCF(int n, int m)
 	return gcf;
 }
 
-static inline TuiBoolean _WindowHasFixedAspect(TuiWindow window)
-{
-	return window->FixedAspectRatioNumerator != 0 && window->FixedAspectRatioDenominator != 0;
-}
-
 static inline TuiBoolean _WindowHasSizeLimits(TuiWindow window)
 {
 	return window->MinWidth != 0 && window->MinHeight != 0 && window->MaxWidth != 0 && window->MaxHeight != 0;
@@ -309,8 +304,7 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	window->IsFullscreen = TUI_FALSE;
 	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
 	glfwGetWindowPos(glfw_window, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
-	window->FixedAspectRatioNumerator = 0;
-	window->FixedAspectRatioDenominator = 0;
+	window->IsFixedAspectRatio = TUI_FALSE;
 	window->UserPointer = NULL;
 	window->WindowMoveCallback = NULL;
 	window->WindowRefreshCallback = NULL;
@@ -1463,8 +1457,7 @@ void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominat
 		return;
 	}
 
-	window->FixedAspectRatioNumerator = numerator;
-	window->FixedAspectRatioDenominator = denominator;
+	window->IsFixedAspectRatio = TUI_TRUE;
 	glfwSetWindowAspectRatio(window->GlfwWindow, numerator, denominator);
 	GLFW_CHECK_ERROR()
 }
@@ -1477,10 +1470,9 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 		return;
 	}
 
+	window->IsFixedAspectRatio = TUI_TRUE;
 	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
-	window->FixedAspectRatioNumerator = window->PixelWidth / greatest_common_factor;
-	window->FixedAspectRatioDenominator = window->PixelHeight / greatest_common_factor;
-	glfwSetWindowAspectRatio(window->GlfwWindow, window->FixedAspectRatioNumerator, window->FixedAspectRatioDenominator);
+	glfwSetWindowAspectRatio(window->GlfwWindow, window->PixelWidth / greatest_common_factor, window->PixelHeight / greatest_common_factor);
 	GLFW_CHECK_ERROR()
 }
 
@@ -1492,13 +1484,9 @@ void tuiWindowUnfixAspectRatio(TuiWindow window)
 		return;
 	}
 	
-	if (_WindowHasFixedAspect(window) == TUI_TRUE)
-	{
-		window->FixedAspectRatioNumerator = 0;
-		window->FixedAspectRatioDenominator = 0;
-		glfwSetWindowAspectRatio(window->GlfwWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
-		GLFW_CHECK_ERROR()
-	}
+	window->IsFixedAspectRatio = TUI_FALSE;
+	glfwSetWindowAspectRatio(window->GlfwWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
+	GLFW_CHECK_ERROR()
 }
 
 TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
@@ -1509,10 +1497,10 @@ TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
 		return TUI_FALSE;
 	}
 
-	return _WindowHasFixedAspect(window);
+	return window->IsFixedAspectRatio;
 }
 
-void tuiWindowGetFixedAspectRatio(TuiWindow window, int* numerator, int* denominator)
+void tuiWindowGetAspectRatio(TuiWindow window, int* numerator, int* denominator)
 {
 	if (window == NULL)
 	{
@@ -1520,17 +1508,18 @@ void tuiWindowGetFixedAspectRatio(TuiWindow window, int* numerator, int* denomin
 		return;
 	}
 
+	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
 	if (numerator != NULL)
 	{
-		*numerator = window->FixedAspectRatioNumerator;
+		*numerator = window->PixelWidth / greatest_common_factor;
 	}
 	if (denominator != NULL)
 	{
-		*denominator = window->FixedAspectRatioDenominator;
+		*denominator = window->PixelHeight / greatest_common_factor;
 	}
 }
 
-int tuiWindowGetFixedAspectRatioNumerator(TuiWindow window)
+int tuiWindowGetAspectRatioNumerator(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -1538,10 +1527,11 @@ int tuiWindowGetFixedAspectRatioNumerator(TuiWindow window)
 		return;
 	}
 
-	return window->FixedAspectRatioNumerator;
+	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
+	return window->PixelWidth / greatest_common_factor;
 }
 
-int tuiWindowGetFixedAspectRatioDenominator(TuiWindow window)
+int tuiWindowGetAspectRatioDenominator(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -1549,7 +1539,8 @@ int tuiWindowGetFixedAspectRatioDenominator(TuiWindow window)
 		return;
 	}
 
-	return window->FixedAspectRatioDenominator;
+	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
+	return window->PixelHeight / greatest_common_factor;
 }
 
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall)
