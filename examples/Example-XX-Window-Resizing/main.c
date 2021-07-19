@@ -218,7 +218,7 @@ int main()
     {
         tuiPollEvents(); //handle input events and call callback function.
 
-        tuiWindowSwapBuffers(window); //swap the window buffers
+        tuiWindowFrameBuffers(window); //swap the window buffers
     }
 
     /* Destroy all remaining TUIC objects */

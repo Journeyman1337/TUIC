@@ -93,9 +93,9 @@ void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window);
 
 void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
 
-void tuiWindowSwapBuffers(TuiWindow window);
+void tuiWindowFrame(TuiWindow window);
 
-void tuiWindowSwapInterval(TuiWindow window, int interval);
+void tuiWindowFrameInterval(TuiWindow window, int interval);
 
 const char* tuiWindowGetClipboardString(TuiWindow window);
 
@@ -127,9 +127,9 @@ TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_bu
 
 void tuiWindowGetCursorPosition(TuiWindow window, double *x_position, double *y_position);
 
-int tuiWindowGetCursorXPosition(TuiWindow window);
+double tuiWindowGetCursorXPosition(TuiWindow window);
 
-int tuiWindowGetCursorYPosition(TuiWindow window);
+double tuiWindowGetCursorYPosition(TuiWindow window);
 
 void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position);
 
