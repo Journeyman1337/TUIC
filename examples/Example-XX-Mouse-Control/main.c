@@ -172,7 +172,6 @@ int main()
        
         //checking state in the loop will get the state when the button is held down. This is different then mouse_button_callback (see above).
         TuiButtonState left_mouse_state = tuiWindowGetMouseButton(window, TUI_MOUSE_BUTTON_LEFT);
-
         if (left_mouse_state == TUI_BUTTON_PRESS)
         {
             double mouse_x = tuiWindowGetCursorXPosition(window);
@@ -184,11 +183,9 @@ int main()
             uint8_t colors_byte = tuiClassicColorCombine(foreground_color, background_color);
             tuiBatchSetTile_G8_C4_SPARSE(batch, tile_x, tile_y, glyph, colors_byte);
             tuiWindowDrawBatch(window, atlas, palette, batch);
-            
         }
-
-        tuiWindowFrameBuffers(window); //swap the window buffers
-        }
+        tuiWindowFrame(window); //swap the window buffers
+    }
 
 
     /* Destroy all remaining TUIC objects */

@@ -772,7 +772,7 @@ void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, 
 	tuiWindowDrawWindow_Opengl33(window, subject_window, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiWindowFrameBuffers(TuiWindow window)
+void tuiWindowFrame(TuiWindow window)
 {
 	if (window == NULL)
 	{

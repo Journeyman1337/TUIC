@@ -122,7 +122,7 @@ int main()
         tuiWindowDrawPanel(window, panel);
         //tuiPanelRenderTransformed(panel, window_width/2, window_width, window_height/2, window_height); //Use this function instead to render the panel within the given rect sides.
 
-        tuiWindowFrameBuffers(window); //swap the window buffers
+        tuiWindowFrame(window); //swap the window buffers
     }
 
     /* Destroy all remaining TUIC objects */

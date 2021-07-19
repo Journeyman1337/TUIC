@@ -78,7 +78,7 @@ int main()
             tuiWindowClearColor(window, 0, 0, 255, 255); //blue clear color
         }
 
-        tuiWindowFrameBuffers(window); //swap the window buffers
+        tuiWindowFrame(window); //swap the window buffers
     }
 
     /* Destroy all remaining TUIC objects */
