@@ -87,6 +87,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         tuiImageSave(screenshot, screenshot_file_name);
         printf("Screenshot saved to \"mouse_control_screenshot.png\".\n");
         tuiImageDestroy(screenshot);
+        screenshot = NULL;
     }
 }
 
