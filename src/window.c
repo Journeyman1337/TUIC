@@ -364,7 +364,7 @@ void tuiWindowDestroy(TuiWindow window)
 	if (system->MultiWindow == TUI_FALSE)
 	{
 		glfwHideWindow(system->BaseWindow);
-		if (_WindowHasFixedAspect(window) == TUI_TRUE)
+		if (window->IsFixedAspectRatio == TUI_TRUE)
 		{
 			glfwSetWindowAspectRatio(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
 		}
