@@ -193,10 +193,6 @@ TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window);
 
 void tuiWindowGetAspectRatio(TuiWindow, int* numerator, int* denominator);
 
-int tuiWindowGetAspectRatioNumerator(TuiWindow window);
-
-int tuiWindowGetAspectRatioDenominator(TuiWindow window);
-
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall);
 
 float tuiWindowGetContentScaleWide(TuiWindow window);

@@ -1519,30 +1519,6 @@ void tuiWindowGetAspectRatio(TuiWindow window, int* numerator, int* denominator)
 	}
 }
 
-int tuiWindowGetAspectRatioNumerator(TuiWindow window)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-
-	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
-	return window->PixelWidth / greatest_common_factor;
-}
-
-int tuiWindowGetAspectRatioDenominator(TuiWindow window)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-
-	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
-	return window->PixelHeight / greatest_common_factor;
-}
-
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall)
 {
 	if (window == NULL)
