@@ -25,7 +25,7 @@ endfunction()
 
 add_example(Example-01-Classic-Panel)
 add_example(Example-XX-Multiple-Window)
-add_example(Example-XX-Mouse-Cursors)
+add_example(Example-XX-Mouse-Control)
 add_example(Example-XX-Window-Icons)
 add_example(Example-XX-Window-Fullscreen)
 add_example(Example-XX-Window-Callbacks)
