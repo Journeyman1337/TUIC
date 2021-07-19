@@ -22,7 +22,10 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         if(tuiWindowGetAspectRatioIsFixed(window) == TUI_FALSE)
         {
             tuiWindowFixCurrentAspectRatio(window);
-            printf("Aspect ratio fixed at ( %d/%d ).\n", tuiWindowGetFixedAspectRatioNumerator(window), tuiWindowGetFixedAspectRatioDenominator(window));
+            int aspect_numerator = 0;
+            int aspect_denominator = 0;
+            tuiWindowGetAspectRatio(window, &aspect_numerator, &aspect_denominator);
+            printf("Aspect ratio fixed at ( %d/%d ).\n", aspect_numerator, aspect_denominator);
         }
         else
         {
