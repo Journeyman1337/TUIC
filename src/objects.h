@@ -52,6 +52,8 @@ typedef struct TuiWindow_s
 {
 	void* UserPointer;
 
+	char* Title;
+
 	tuiWindowMoveFunction WindowMoveCallback;
 
 	tuiWindowCloseFunction WindowCloseCallback;

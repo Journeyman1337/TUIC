@@ -197,6 +197,11 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		return NULL;
 	}
 
+	if (title == NULL)
+	{
+		title = "";
+	}
+
 	GLFWwindow* glfw_window = NULL;
 
 	if (system->MultiWindow == TUI_FALSE) //recruit system GLFWwindow as this TuiWindow's window
@@ -320,6 +325,8 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	window->KeyboardKeyCallback = NULL;
 	window->CharCallback = NULL;
 	window->FileDropCallback = NULL;
+	window->Title = tuiAllocate((strlen(title) + 1) * sizeof(char));
+	strcpy(window->Title, title);
 	glfwSetWindowUserPointer(glfw_window, window);
 	glfwMakeContextCurrent(glfw_window);
 	tuiWindowCreate_Opengl33(window);
@@ -376,6 +383,7 @@ void tuiWindowDestroy(TuiWindow window)
 	}
 
 	tuiWindowDestroy_Opengl33(window);
+	tuiFree(window->Title);
 	tuiFree(window);
 	sWindowCount--;
 }
@@ -1072,8 +1080,27 @@ void tuiWindowSetTitle(TuiWindow window, const char* title)
 		return;
 	}
 
+	if (title == NULL)
+	{
+		title = "";
+	}
+
+	tuiFree(window->Title);
+	window->Title = tuiAllocate(strlen(title) * sizeof(char));
+	strcpy(window->Title, title);
 	glfwSetWindowTitle(window->GlfwWindow, title);
 	GLFW_CHECK_ERROR()
+}
+
+const char* tuiWindowGetTitle(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	return window->Title;
 }
 
 void tuiWindowSetDefaultIcon(TuiWindow window)

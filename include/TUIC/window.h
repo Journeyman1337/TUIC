@@ -139,6 +139,8 @@ void tuiWindowSetShouldClose(TuiWindow window, TuiBoolean should_close);
 
 void tuiWindowSetTitle(TuiWindow window, const char* title);
 
+const char* tuiWindowGetTitle(TuiWindow window);
+
 void tuiWindowSetDefaultIcon(TuiWindow window);
 
 void tuiWindowSetIcon(TuiWindow window, TuiImage image);
