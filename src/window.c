@@ -2355,11 +2355,11 @@ tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCurs
 	window->CursorEnterCallback = callback;
 	if (callback == NULL)
 	{
-		glfwCursorEnterCallback(window->GlfwWindow, NULL);
+		glfwSetCursorEnterCallback(window->GlfwWindow, NULL);
 	}
 	else
 	{
-		glfwCursorEnterCallback(window->GlfwWindow, glfwCursorEnterCallback);
+		glfwSetCursorEnterCallback(window->GlfwWindow, glfwCursorEnterCallback);
 	}
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return old_callback;
