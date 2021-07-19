@@ -772,7 +772,7 @@ void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, 
 	tuiWindowDrawWindow_Opengl33(window, subject_window, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiWindowSwapBuffers(TuiWindow window)
+void tuiWindowFrameBuffers(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -785,7 +785,7 @@ void tuiWindowSwapBuffers(TuiWindow window)
 	GLFW_CHECK_ERROR()
 }
 
-void tuiWindowSwapInterval(TuiWindow window, int interval)
+void tuiWindowFrameInterval(TuiWindow window, int interval)
 {
 	if (window == NULL)
 	{
