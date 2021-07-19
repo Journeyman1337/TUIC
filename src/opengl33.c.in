@@ -655,7 +655,7 @@ void tuiWindowDrawBatchData_Opengl33(TuiWindow window, TuiAtlas atlas, TuiPalett
 	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
 	TransformMatrix(matrix, window->PixelWidth, window->PixelHeight, left_x, right_x, top_y, bottom_y);
 	glfwMakeContextCurrent(system->BaseWindow);
-	DrawBatchData(window_data->FramebufferHandle, window->PixelWidth, window->PixelHeight, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, &kOpenglScreenMatrix[0]);
+	DrawBatchData(window_data->FramebufferHandle, window->PixelWidth, window->PixelHeight, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, matrix);
 }
 void tuiWindowDrawPanel_Opengl33(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
 {
