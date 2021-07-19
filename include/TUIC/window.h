@@ -28,7 +28,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 #include <TUIC/detail_mode.h>
 #include <TUIC/mouse_button.h>
-#include <TUIC/key.h>
+#include <TUIC/keyboard_key.h>
 #include <TUIC/button_state.h>
 #include <TUIC/cursor_mode.h>
 
@@ -115,7 +115,7 @@ void tuiWindowSetStickyMouseButtons(TuiWindow window, TuiBoolean sticky_mouse_bu
 
 TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window);
 
-void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_key_mods);
+void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_mods);
 
 TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window);
 

@@ -296,7 +296,7 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
 	return 0;
 }
 
-TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_mode)
+TuiBoolean tuiKeyboardKeyboardModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_mode)
 {
 	if (blend_mode == TUI_BLEND_NORMAL)
 	{

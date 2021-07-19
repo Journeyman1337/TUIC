@@ -41,8 +41,8 @@
 #include <TUIC/joystick.h>
 #include <TUIC/joystick_hat_state.h>
 #include <TUIC/joystick_id.h>
-#include <TUIC/key.h>
-#include <TUIC/key_mod.h>
+#include <TUIC/keyboard_key.h>
+#include <TUIC/keyboard_mod.h>
 #include <TUIC/monitor.h>
 #include <TUIC/mouse_button.h>
 #include <TUIC/palette.h>

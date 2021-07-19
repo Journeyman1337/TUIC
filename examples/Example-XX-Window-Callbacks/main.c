@@ -55,17 +55,17 @@ void window_content_scale_callback(TuiWindow window, float scale_wide, float sca
     printf("Windos content scale: ( scale_wide = %f, scale_tall = %f )\n", scale_wide, scale_tall);
 }
 
-void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     printf("Mouse button: button = %s state = %s shift = %d control = %d alt = %d super = %d caps = %d num = %d\n",
         tuiMouseButtonToString(mouse_button),
         tuiButtonStateToString(button_state),
-        tuiModContainsMod(key_mod, TUI_MOD_SHIFT),
-        tuiModContainsMod(key_mod, TUI_MOD_CONTROL),
-        tuiModContainsMod(key_mod, TUI_MOD_ALT),
-        tuiModContainsMod(key_mod, TUI_MOD_SUPER),
-        tuiModContainsMod(key_mod, TUI_MOD_CAPS_LOCK),
-        tuiModContainsMod(key_mod, TUI_MOD_NUM_LOCK)
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SHIFT),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CONTROL),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_ALT),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SUPER),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CAPS_LOCK),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_NUM_LOCK)
     );
 }
 
@@ -84,18 +84,18 @@ void mouse_scroll_callback(TuiWindow window, double x_translate, double y_transl
     printf("Mouse scroll: ( x = %f, y = %f )\n", x_translate, y_translate);
 }
 
-void keyboard_key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+void keyboard_key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     printf("Keyboard key: key = %s scancode = %d state = %s shift = %d control = %d alt = %d super = %d caps = %d num = %d\n",
         tuiKeyboardKeyToString(key),
         scancode,
         tuiButtonStateToString(button_state),
-        tuiModContainsMod(key_mod, TUI_MOD_SHIFT),
-        tuiModContainsMod(key_mod, TUI_MOD_CONTROL),
-        tuiModContainsMod(key_mod, TUI_MOD_ALT),
-        tuiModContainsMod(key_mod, TUI_MOD_SUPER),
-        tuiModContainsMod(key_mod, TUI_MOD_CAPS_LOCK),
-        tuiModContainsMod(key_mod, TUI_MOD_NUM_LOCK)
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SHIFT),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CONTROL),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_ALT),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SUPER),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CAPS_LOCK),
+        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_NUM_LOCK)
     );
 }
 

@@ -1,4 +1,4 @@
-#include <TUIC/key.h>
+#include <TUIC/keyboard_key.h>
 #include <GLFW/glfw3.h>
 #include <stddef.h>
 #include <TUIC/system.h>

@@ -151,7 +151,7 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
 TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode);
 TuiBoolean tuiDetailIsValid(TuiDetailMode detail_mode);
 TuiBoolean tuiDetailHasFlag(TuiDetailMode detail_mode, TuiDetailFlag detail_flag);
-TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_mode);
+TuiBoolean tuiKeyboardKeyboardModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_mode);
 const char* tuiDetailModeToString(TuiDetailMode detail_mode);
 TuiDetailMode tuiStringToDetailMode(const char* string);
 

@@ -17,10 +17,10 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*! \file key.h
+/*! \file keyboard_key.h
  */
-#ifndef TUIC_KEY_H //header guard
-#define TUIC_KEY_H
+#ifndef TUIC_KEYBOARD_KEY //header guard
+#define TUIC_KEYBOARD_KEY
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif

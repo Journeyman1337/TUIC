@@ -134,10 +134,10 @@ static void glfwWindowContentScaleCallback(GLFWwindow* glfw_window, int pixel_wi
 	window->WindowContentScaleCallback(window, pixel_width, pixel_height);
 }
 
-static void glfwKeyCallback(GLFWwindow* glfw_window, int key, int scancode, int button_state, int key_mod)
+static void glfwKeyCallback(GLFWwindow* glfw_window, int key, int scancode, int button_state, int mod)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->KeyboardKeyCallback(window, (TuiKeyboardKey)key, scancode, (TuiButtonState)button_state, (TuiKeyboardKeyMod)key_mod);
+	window->KeyboardKeyCallback(window, (TuiKeyboardKey)key, scancode, (TuiButtonState)button_state, (TuiKeyboardMod)mod);
 }
 
 static void glfwCharCallback(GLFWwindow* glfw_window, unsigned int charcode)
@@ -146,10 +146,10 @@ static void glfwCharCallback(GLFWwindow* glfw_window, unsigned int charcode)
 	window->CharCallback(window, charcode);
 }
 
-static void glfwMouseButtonCallback(GLFWwindow* glfw_window, int mouse_button, int button_state, int key_mod)
+static void glfwMouseButtonCallback(GLFWwindow* glfw_window, int mouse_button, int button_state, int mod)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->MouseButtonCallback(window, (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyboardKeyMod)key_mod);
+	window->MouseButtonCallback(window, (TuiMouseButton)mouse_button, (TuiButtonState)button_state, (TuiKeyboardMod)mod);
 }
 
 static void glfwCursorMoveCallback(GLFWwindow* glfw_window, double xpos, double ypos)
@@ -924,16 +924,16 @@ TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window)
 		return TUI_FALSE;
 	}
 
-	int lock_key_mods = glfwGetInputMode(window->GlfwWindow, GLFW_LOCK_KEY_MODS);
+	int lock_mods = glfwGetInputMode(window->GlfwWindow, GLFW_LOCK_KEY_MODS);
 	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
-	if (lock_key_mods == GLFW_TRUE)
+	if (lock_mods == GLFW_TRUE)
 	{
 		return TUI_TRUE;
 	}
 	return TUI_FALSE;
 }
 
-void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_key_mods)
+void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_mods)
 {
 	if (window == NULL)
 	{
@@ -941,7 +941,7 @@ void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_key_mods)
 		return;
 	}
 
-	glfwSetInputMode(window->GlfwWindow, GLFW_LOCK_KEY_MODS, (int)lock_key_mods);
+	glfwSetInputMode(window->GlfwWindow, GLFW_LOCK_KEY_MODS, (int)lock_mods);
 	GLFW_CHECK_ERROR()
 }
 

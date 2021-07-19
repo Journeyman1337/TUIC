@@ -18,7 +18,7 @@ void TuiMessageCallback(TuiErrorCode error_code, const char* msg)
     }
 }
 
-void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     if (key == TUIK_F && button_state == TUI_BUTTON_PRESS)
     {

@@ -17,16 +17,16 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*! \file key_mod.h
+/*! \file keyboard_mod.h
  */
-#ifndef TUIC_KEY_MOD_H //header guard
-#define TUIC_KEY_MOD_H
+#ifndef TUIC_KEYBOARD_MOD_H //header guard
+#define TUIC_KEYBOARD_MOD_H
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
-typedef enum TuiKeyboardKeyMod
+typedef enum TuiKeyboardMod
 {
 	TUI_MOD_INVALID	 	    = 0x0040,
 	TUI_MOD_SHIFT           = 0x0001,
@@ -37,22 +37,22 @@ typedef enum TuiKeyboardKeyMod
 	TUI_MOD_NUM_LOCK        = 0x0020,
 	TUI_MOD_NONE			= 0,
 	TUI_MOD_ALL				= (TUI_MOD_SHIFT | TUI_MOD_CONTROL | TUI_MOD_ALT | TUI_MOD_SUPER | TUI_MOD_CAPS_LOCK | TUI_MOD_NUM_LOCK)
-} TuiKeyboardKeyMod;
+} TuiKeyboardMod;
 
 
-extern const char* kTui_Mod_Shift_Name;
-extern const char* kTui_Mod_Control_Name;
-extern const char* kTui_Mod_Alt_Name;
-extern const char* kTui_Mod_Super_Name;
-extern const char* kTui_Mod_Caps_Lock_Name;
-extern const char* kTui_Mod_Num_Lock_Name;
-extern const char* kTui_Mod_None_Name;
-extern const char* kTui_Mod_All_Name;
+extern const char* kTui_Keyboard_Mod_Shift_Name;
+extern const char* kTui_Keyboard_Mod_Control_Name;
+extern const char* kTui_Keyboard_Mod_Alt_Name;
+extern const char* kTui_Keyboard_Mod_Super_Name;
+extern const char* kTui_Keyboard_Mod_Caps_Lock_Name;
+extern const char* kTui_Keyboard_Mod_Num_Lock_Name;
+extern const char* kTui_Keyboard_Mod_None_Name;
+extern const char* kTui_Keyboard_Mod_All_Name;
 
-TuiBoolean tuiModIsValid(TuiKeyboardKeyMod mod);
-const char* tuiModToString(TuiKeyboardKeyMod mod);
-TuiKeyboardKeyMod tuiStringToMod(const char* str);
-TuiBoolean tuiModContainsMod(TuiKeyboardKeyMod mod, TuiKeyboardKeyMod contains_mod);
+TuiBoolean tuiKeyboardKeyboardModIsValid(TuiKeyboardMod mod);
+const char* tuiKeyboardKeyboardModToString(TuiKeyboardMod mod);
+TuiKeyboardMod tuiStringToMod(const char* str);
+TuiBoolean tuiKeyboardKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod);
 
 #ifdef __cplusplus //extern C guard
 }

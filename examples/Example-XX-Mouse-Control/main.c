@@ -59,7 +59,7 @@ uint8_t increment_foreground_color(uint8_t foreground_color)
     return foreground_color;
 }
 
-void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     if (key == TUIK_C && button_state == TUI_BUTTON_PRESS)
     {
@@ -91,7 +91,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     }
 }
 
-void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardKeyMod key_mod)
+void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     //checking the button state in a callback only gets checked when the state changes. This is different than the render loop (see bellow).
     if (mouse_button == TUI_MOUSE_BUTTON_RIGHT && button_state == TUI_BUTTON_PRESS)

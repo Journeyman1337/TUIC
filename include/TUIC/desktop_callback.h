@@ -27,8 +27,8 @@ extern "C" {
 #include <TUIC/boolean.h>
 #include <TUIC/mouse_button.h>
 #include <TUIC/button_state.h>
-#include <TUIC/key_mod.h>
-#include <TUIC/key.h>
+#include <TUIC/keyboard_mod.h>
+#include <TUIC/keyboard_key.h>
 #include <TUIC/joystick_id.h>
 #include <TUIC/types.h>
 
@@ -48,7 +48,7 @@ typedef void (* tuiWindowResizeFunction)(TuiWindow window, int pixel_width, int 
 
 typedef void (* tuiWindowContentScaleFunction)(TuiWindow window, float scale_wide, float scale_tall);
 
-typedef void (* tuiMouseButtonFunction)(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardKeyMod key_mod);
+typedef void (* tuiMouseButtonFunction)(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardMod mod);
 
 typedef void (* tuiCursorMoveFunction)(TuiWindow window, double x_position, double y_position);
 
@@ -56,7 +56,7 @@ typedef void (* tuiCursorEnterFunction)(TuiWindow window, TuiBoolean entered);
 
 typedef void (* tuiMouseScrollFunction)(TuiWindow window, double x_translate, double y_translate);
 
-typedef void (* tuiKeyboardKeyboardKeyFunction)(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardKeyMod key_mod);
+typedef void (* tuiKeyboardKeyboardKeyFunction)(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod);
 
 typedef void (* tuiCharFunction)(TuiWindow window, unsigned int codepoint);
 
