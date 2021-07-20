@@ -97,7 +97,6 @@ int main()
     TuiMonitor monitor = tuiGetPrimaryMonitor();
     int monitor_width = tuiMonitorGetPixelWidth(monitor);
     int monitor_height = tuiMonitorGetPixelHeight(monitor);
-    printf("%d\n", monitor_height);
     int tiles_wide = monitor_width / (kTilePixelWidth * kTileSizeMultiplier);
     int tiles_tall = monitor_height / (kTilePixelHeight * kTileSizeMultiplier);
     int extra_pixels_wide = monitor_width - (tiles_wide * kTilePixelWidth * kTileSizeMultiplier);
