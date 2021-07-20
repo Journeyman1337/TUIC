@@ -34,7 +34,16 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 		return;
 	}
 
-	glfwGetMonitorWorkarea(monitor, NULL, NULL, width, height);
+	GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+	GLFW_CHECK_ERROR()
+	if (width != NULL)
+	{
+		*width = vidmode->width;
+	}
+	if (height != NULL)
+	{
+		*height = vidmode->height;
+	}
 }
 
 int tuiMonitorGetPixelWidth(TuiMonitor monitor)
@@ -45,9 +54,9 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 		return 0;
 	}
 
-	int width = 0;
-	glfwGetMonitorWorkarea(monitor, NULL, NULL, &width, NULL);
-	return width;
+	GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return vidmode->width;
 }
 
 int tuiMonitorGetPixelHeight(TuiMonitor monitor)
@@ -58,9 +67,9 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 		return 0;
 	}
 
-	int height = 0;
-	glfwGetMonitorWorkarea(monitor, NULL, NULL, NULL, &height);
-	return height;
+	GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+	GLFW_CHECK_ERROR_RETURN(NULL)
+	return vidmode->height;
 }
 
 void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* physical_height)
