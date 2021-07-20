@@ -230,7 +230,7 @@ int main()
                     trails[new_trail_i].active = 1;
                     trails[new_trail_i].head_y = 0;
                     trails[new_trail_i].length = ((rand() % kTrailLenghtMultiplierMax) + 1) * kTrailLength;
-                    glyphs[new_trail_i] = rand() % 256;
+                    glyphs[new_trail_i] = (rand() % 255) + 1;
                     active_trails++;
                 }
             }
@@ -252,7 +252,7 @@ int main()
                     }
                     if (trails[trail_i].head_y < tiles_tall)
                     {
-                        glyphs[trail_i + trails[trail_i].head_y * tiles_wide] = rand() % 256;
+                        glyphs[trail_i + trails[trail_i].head_y * tiles_wide] = (rand() % 255) + 1;
                     }
 
                     for (int part_i = 0; part_i < length; part_i++)
