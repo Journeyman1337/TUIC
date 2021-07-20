@@ -26,6 +26,27 @@ const int kTrailLenghtMultiplierMax = 1;
 const int kTrailCreateChance = 20;
 const double kUpdateDelta = 0.01;
 
+typedef struct MatrixTrail
+{
+    TuiBoolean active;
+    int head_y;
+    int length;
+} MatrixTrail;
+
+typedef struct WindowUserPointer
+{
+    TuiBatch batch;
+    TuiAtlas atlas;
+    TuiPalette palette;
+    uint8_t* glyphs;
+    int monitor_width;
+    int monitor_height;
+    int extra_pixels_wide;
+    int extra_pixels_tall;
+    int tiles_wide;
+    int tiles_tall;
+} WindowUserPointer;
+
 void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     if (key == TUIK_F && button_state == TUI_BUTTON_PRESS)
@@ -42,12 +63,27 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     }
 }
 
-typedef struct MatrixTrail
+void refresh_callback(TuiWindow window)
 {
-    TuiBoolean active;
-    int head_y;
-    int length;
-} MatrixTrail;
+    WindowUserPointer* user_pointer = (WindowUserPointer*)tuiWindowGetUserPointer(window);
+    
+    tuiBatchClear(user_pointer->batch);
+    uint8_t backcolor = 0;
+    uint8_t forecolor = 1;
+    uint8_t color_byte = tuiClassicColorCombine(forecolor, backcolor);
+    for (int tile_x = 0; tile_x < user_pointer->tiles_wide; tile_x++)
+    {
+        for (int tile_y = 0; tile_y < user_pointer->tiles_tall; tile_y++)
+        {
+            size_t glyph_i = (size_t)tile_y * user_pointer->tiles_wide + tile_x;
+            if (user_pointer->glyphs[glyph_i] != 0)
+            {
+                tuiBatchSetTile_G8_C4_SPARSE(user_pointer->batch, tile_x, tile_y, user_pointer->glyphs[glyph_i], color_byte);
+            }
+        }
+    }
+    tuiWindowDrawBatchTransformed(window, user_pointer->atlas, user_pointer->palette, user_pointer->batch, 0, user_pointer->monitor_width - user_pointer->extra_pixels_wide, 0, user_pointer->monitor_height - user_pointer->extra_pixels_tall);
+}
 
 int main()
 {
@@ -72,9 +108,6 @@ int main()
     /* Create the window. */
     const char* window_title = "Example 1";
     TuiWindow window = tuiWindowCreate(monitor_width, monitor_height, window_title, NULL);
-
-    /* Set the window callbacks. */
-    tuiWindowSetKeyboardKeyCallback(window, key_callback);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
@@ -125,7 +158,7 @@ int main()
     /* Print prompt to console */
     printf("Enjoy the TUI matrix rain animation with codepage atlas and 16 color palette. Press F to toggle fulscreen.\n");
 
-    //init data
+    /* init data */
     double last_frame = 0.0;
     double total_time = 0.0f;
     uint8_t* glyphs = tuiAllocate((size_t)tiles_wide * tiles_tall);
@@ -133,6 +166,24 @@ int main()
     MatrixTrail* trails = tuiAllocate(tiles_wide * sizeof(MatrixTrail));
     memset(trails, 0, tiles_wide * sizeof(MatrixTrail));
     size_t active_trails = 0;
+
+    /* Setup the window user pointer */
+    WindowUserPointer window_user_pointer;
+    window_user_pointer.batch = batch;
+    window_user_pointer.atlas = atlas;
+    window_user_pointer.palette = palette;
+    window_user_pointer.tiles_wide = tiles_wide;
+    window_user_pointer.tiles_tall = tiles_tall;
+    window_user_pointer.monitor_width = monitor_width;
+    window_user_pointer.monitor_height = monitor_height;
+    window_user_pointer.extra_pixels_wide = extra_pixels_wide;
+    window_user_pointer.extra_pixels_tall = extra_pixels_tall;
+    window_user_pointer.glyphs = glyphs;
+    tuiWindowSetUserPointer(window, &window_user_pointer);
+
+    /* Set the window callbacks. */
+    tuiWindowSetKeyboardKeyCallback(window, key_callback);
+    tuiWindowSetRefreshCallback(window, refresh_callback);
 
     /* fps tracking setup */
     double last_time = 0;
