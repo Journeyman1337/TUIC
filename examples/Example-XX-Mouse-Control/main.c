@@ -184,7 +184,8 @@ int main()
             tuiBatchSetTile_G8_C4_SPARSE(batch, tile_x, tile_y, glyph, colors_byte);
             tuiWindowDrawBatch(window, atlas, palette, batch);
         }
-        tuiWindowFrame(window); //swap the window buffers
+
+        tuiWindowFrame(window); //draw the next frame from the window framebuffer
     }
 
 

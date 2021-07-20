@@ -107,10 +107,14 @@ int main()
     TuiPalette palette = NULL; //no palette for this detail mode
     tuiWindowDrawBatch(window, atlas, palette, batch);
 
+    //Destroy the batch. We rendered it to the panel so we can render the panel instead of re-rendering the batch every frame.
+    tuiBatchDestroy(batch);
+    batch = NULL;
+
     /* Print prompt to console */
-    printf("TUI rendered using a cutom glyph atlas and 24 bit fullcolor.");
+    printf("TUI rendered using a cutom glyph atlas and 24 bit fullcolor.\n");
     
-    /*  fps tracking setup */
+    /* fps tracking setup */
     double last_time = 0;
     int nbFrame = 0;
 
@@ -131,7 +135,7 @@ int main()
             last_time = currentTime;
         }
 
-        tuiWindowFrame(window); //swap the window buffers
+        tuiWindowFrame(window); //draw the next frame from the window framebuffer
     }
 
 

@@ -155,7 +155,7 @@ int main()
     {
         tuiPollEvents(); //handle input events and call callback function.
        
-        tuiWindowFrame(sWindow); //swap the window buffers
+        tuiWindowFrame(sWindow); //draw the next frame from the window framebuffer
     }
 
 

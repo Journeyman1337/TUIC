@@ -118,11 +118,12 @@ int main()
             last_time = currentTime;
         }
 
+        // draw the panel to the window
         tuiWindowDrawPanel(window1, panel);
         tuiWindowDrawPanel(window2, panel);
-        //tuiPanelRenderTransformed(panel, window_width/2, window_width, window_height/2, window_height); //Use this function instead to render the panel within the given rect sides.
-
-        tuiWindowFrame(window1); //swap the window buffers
+        // you can also render the contents of a window's framebuffer to a different window's framebuffer using tuiWindowDrawWindow() function
+       
+        tuiWindowFrame(window1); //draw the next frame from the window framebuffer
         tuiWindowFrame(window2);
     }
 
