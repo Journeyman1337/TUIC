@@ -194,7 +194,7 @@ typedef struct TuiBatch_s
 
 	TuiBoolean IsLargeSparseTall;
 
-	uint16_t* SparseUsedIndices;
+	size_t* SparseUsedIndices;
 
 	size_t SparseUsedIndicesSize;
 } TuiBatch_s;

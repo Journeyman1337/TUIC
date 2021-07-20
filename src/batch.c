@@ -58,7 +58,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 			batch->IsLargeSparseTall = TUI_TRUE;
 			batch->BytesPerTile++;
 		}
-		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(uint16_t);
+		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
 		batch->SparseUsedIndices = tuiAllocate(batch->SparseUsedIndicesSize);
 	}
 	else
@@ -133,7 +133,7 @@ void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean r
 			batch->IsLargeSparseTall = TUI_TRUE;
 			batch->BytesPerTile++;
 		}
-		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(uint16_t);
+		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
 		batch->SparseUsedIndices = tuiReallocate(batch->SparseUsedIndices, batch->SparseUsedIndicesSize);
 	}
 	else
@@ -801,7 +801,7 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
 	size_t used_tile_index = ((size_t)batch->TilesTall * (size_t)y) + (size_t)x;
 	if (batch->SparseUsedIndices[used_tile_index] != 0)
 	{
-		tile_index = (size_t)batch->SparseUsedIndices[used_tile_index] - 1;
+		tile_index = batch->SparseUsedIndices[used_tile_index] - 1;
 		batch->TileCount++;
 	}
 	else
@@ -844,12 +844,12 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 	size_t used_tile_index = ((size_t)batch->TilesWide * (size_t)y) + (size_t)x;
 	if (batch->SparseUsedIndices[used_tile_index] != 0)
 	{
-		tile_index = (size_t)batch->SparseUsedIndices[used_tile_index] - 1;
+		tile_index = batch->SparseUsedIndices[used_tile_index] - 1;
 	}
 	else
 	{
 		tile_index = batch->TileCount * batch->BytesPerTile;
-		batch->SparseUsedIndices[used_tile_index] = (uint16_t)tile_index + 1;
+		batch->SparseUsedIndices[used_tile_index] = tile_index + 1;
 		batch->TileCount++;
 	}
 	batch->Data[tile_index++] = ((unsigned int)x) & 0xff;
