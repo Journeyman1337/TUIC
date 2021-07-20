@@ -63,6 +63,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     }
 }
 
+//To make this example very fast, dead tiles are saved on the window's framebuffer. If the window is refreshed, all framebuffers are cleared to black. This callback will restore the dead tiles by rendering them if a refresh occurs.
 void refresh_callback(TuiWindow window)
 {
     WindowUserPointer* user_pointer = (WindowUserPointer*)tuiWindowGetUserPointer(window);
