@@ -54,7 +54,7 @@ int main()
         return -1;
     }
 
-    /* Create the Glyph Atlas */
+    /* Create the atlas */
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
     TuiAtlas atlas = tuiAtlasCreateCodepageGrid(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
@@ -64,14 +64,11 @@ int main()
     int palette_color_count = 16;
     TuiPalette palette = tuiPaletteCreateXterm(palette_color_count);
 
-    /* Create the panel (graphics framebuffer) */
-    TuiPanel panel = tuiPanelCreate(window_width, window_height);
-
     /* Create the batch (tile rendering data container) */
     TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_GLYPH_FLAG_G8 | TUI_COLOR_FLAG_C4 | TUI_LAYOUT_FLAG_FULL)
     TuiBatch batch = tuiBatchCreate(detail_mode, tiles_wide, tiles_tall);
 
-    //Fill the batch with tile data.
+    /* Fill the batch with tile data. */
     for (int x = 0; x < tiles_wide; x++)
     {
         for (int y = 0; y < tiles_tall; y++)
@@ -84,21 +81,16 @@ int main()
         }
     }
 
-    //Render the batch to the panel
-    tuiPanelDrawBatch(panel, atlas, palette, batch);
+    /* Render initial clear color to window. */
+    tuiWindowClearColor(window, 0, 0, 0, 255); //black
 
-    //Destroy the batch. We rendered it to the panel so we can render the panel instead of re-rendering the batch every frame.
-    tuiBatchDestroy(batch);
-    batch = NULL;
+    /* Render the batch to the window */
+    tuiWindowDrawBatch(window, atlas, palette, batch);
 
-    //Render panel to a png image file
-    TuiImage out_image = tuiPanelGetImage(panel, NULL);
-    const char* out_image_name = "example-1-screenshot.png";
-    tuiImageSave(out_image, out_image_name);
-    tuiImageDestroy(out_image);
-    out_image = NULL;
+    /* Print prompt to console */
+    printf("TUI rendered using a codepage glyph atlas and a 16 color XTerm palette.\n");
 
-    //fps tracking setup
+    /* fps tracking setup */
     double last_time = 0;
     int nbFrame = 0;
 
@@ -119,21 +111,16 @@ int main()
             last_time = currentTime;
         }
 
-        tuiWindowDrawPanel(window, panel);
-        //tuiPanelRenderTransformed(panel, window_width/2, window_width, window_height/2, window_height); //Use this function instead to render the panel within the given rect sides.
-
-        tuiWindowFrame(window); //swap the window buffers
+        tuiWindowFrame(window); //draw the next frame from the window framebuffer
     }
 
     /* Destroy all remaining TUIC objects */
-    tuiPanelDestroy(panel);
-    panel = NULL;
+    tuiWindowDestroy(window);
+    window = NULL;
     tuiPaletteDestroy(palette);
     palette = NULL;
     tuiAtlasDestroy(atlas);
     atlas = NULL;
-    tuiWindowDestroy(window); //The instance must always be created first and destroyed last.
-    window = NULL;
 
     tuiTerminate();
     return 0;
