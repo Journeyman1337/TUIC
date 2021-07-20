@@ -156,7 +156,7 @@ int main()
     tuiWindowClearColor(window, 0, 0, 0, 255); //black
 
     /* Print prompt to console */
-    printf("Enjoy the TUI matrix rain animation with codepage atlas and 16 color palette. Press F to toggle fulscreen.\n");
+    printf("Enjoy the TUI matrix rain animation with codepage atlas and 16 color palette. Press F to toggle fulscreen (in primary monitor only).\n");
 
     /* init data */
     double last_frame = 0.0;
