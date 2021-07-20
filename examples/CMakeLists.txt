@@ -24,6 +24,7 @@ function(add_example Name)
 endfunction()
 
 add_example(Example-01-Classic-Panel)
+add_example(Example-02-Custom-Panel)
 add_example(Example-XX-Multiple-Window)
 add_example(Example-XX-Mouse-Control)
 add_example(Example-XX-Window-Icons)
