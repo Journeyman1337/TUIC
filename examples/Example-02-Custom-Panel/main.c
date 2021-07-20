@@ -109,11 +109,27 @@ int main()
 
     /* Print prompt to console */
     printf("TUI rendered using a cutom glyph atlas and 24 bit fullcolor.");
+    
+    /*  fps tracking setup */
+    double last_time = 0;
+    int nbFrame = 0;
 
     //Render loop
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
         tuiPollEvents(); //handle input events and call callback function.
+
+        /* Print fps to console */
+        double currentTime = tuiGetTime();
+        double delta = currentTime - last_time;
+        nbFrame++;
+        if (delta >= 1.0) { // If last fps print was more than 1 sec ago
+
+            double fps = nbFrame / delta;
+            printf("%f FPS\n", fps);
+            nbFrame = 0;
+            last_time = currentTime;
+        }
 
         tuiWindowFrame(window); //swap the window buffers
     }
