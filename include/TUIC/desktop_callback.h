@@ -29,7 +29,6 @@ extern "C" {
 #include <TUIC/button_state.h>
 #include <TUIC/keyboard_mod.h>
 #include <TUIC/keyboard_key.h>
-#include <TUIC/joystick_id.h>
 #include <TUIC/types.h>
 
 typedef void (* tuiWindowMoveFunction)(TuiWindow window, int x_position, int y_position);
@@ -63,8 +62,6 @@ typedef void (* tuiCharFunction)(TuiWindow window, unsigned int codepoint);
 typedef void (* tuiFileDropFunction)(TuiWindow window, int path_count, const char* paths[]);
 
 typedef void (* tuiMonitorFunction)(TuiMonitor monitor, TuiBoolean connected);
-
-typedef void (* tuiJoysticFunction)(TuiJoystickId joystic_id, TuiBoolean connected);
 
 #ifdef __cplusplus //extern C guard
 }

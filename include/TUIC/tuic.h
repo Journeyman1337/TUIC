@@ -38,9 +38,6 @@
 #include <TUIC/filter_mode.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
-#include <TUIC/joystick.h>
-#include <TUIC/joystick_hat_state.h>
-#include <TUIC/joystick_id.h>
 #include <TUIC/keyboard_key.h>
 #include <TUIC/keyboard_mod.h>
 #include <TUIC/monitor.h>

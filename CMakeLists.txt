@@ -36,9 +36,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_hat_state.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/joystick_id.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_key.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_mod.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/monitor.c
@@ -72,9 +69,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_hat_state.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/joystick_id.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_key.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_mod.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/monitor.h
