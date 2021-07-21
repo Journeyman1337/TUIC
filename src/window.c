@@ -979,7 +979,7 @@ void tuiWindowSetRawMouseMotion(TuiWindow window, TuiBoolean raw_mouse_motion)
 	GLFW_CHECK_ERROR()
 }
 
-TuiButtonState tuiWindowGetKey(TuiWindow window, TuiKeyboardKey key)
+TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key)
 {
 	if (window == NULL)
 	{
