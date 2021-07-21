@@ -122,6 +122,7 @@ void window_resize_callback(TuiWindow window, int pixel_width, int pixel_height)
         0,
         pixel_height - extra_pixels_tall
     );
+    tuiWindowFrame(window);
 }
 
 int main()
