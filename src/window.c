@@ -126,6 +126,9 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel
 	{
 		window->WindowResizeCallback(window, pixel_width, pixel_height);
 	}
+	// render window framebuffer again right after resizing. this prevents flickering.
+	tuiWindowRender_Opengl33(window);
+	glfwSwapBuffers(glfw_window);
 }
 
 static void glfwWindowContentScaleCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
