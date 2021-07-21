@@ -35,6 +35,16 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	sSystem->WindowIconsSupported = TUI_FALSE;
 	sSystem->ApiData = NULL;
 
+	int glfw_version_major = 0;
+	int glfw_version_minor = 0;
+
+	glfwGetVersion(&glfw_version_major, &glfw_version_minor, NULL);
+	if (glfw_version_major != 3 && glfw_version_minor != 3)
+	{
+		// todo tuiDebugError(TUI_ERROR_INVALID_GLFW_VERSION, __func__);
+		return TUI_FALSE;
+	}
+
 	glfwDefaultWindowHints();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
