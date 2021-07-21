@@ -42,30 +42,19 @@ void tuiImageDestroy(TuiImage image)
 	tuiFree(image);
 }
 
-TuiImage tuiImageLoad(const char* path, int expected_channel_count)
+TuiImage tuiImageLoad(const char* path)
 {;
 	if (path == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PATH, __func__);
 		return NULL;
 	}
-	if (expected_channel_count != 0 && expected_channel_count != 3 && expected_channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
-	}
 
 	int i_width, i_height, i_channels;
-	uint8_t* pixels = stbi_load(path, &i_width, &i_height, &i_channels, expected_channel_count);
+	uint8_t* pixels = stbi_load(path, &i_width, &i_height, &i_channels, 0);
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_LOAD_IMAGE_FAILURE, __func__);
-		return NULL;
-	}
-	if (expected_channel_count != 0 && i_channels != expected_channel_count)
-	{
-		stbi_image_free(pixels);
-		tuiDebugError(TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS, __func__);
 		return NULL;
 	}
 	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE, __func__);

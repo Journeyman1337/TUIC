@@ -55,20 +55,8 @@ TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, ui
  * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
  */
 void tuiImageDestroy(TuiImage image);
-/*!
- * @brief Load a @ref TuiImage from an image file.
- *
- * @param path The path to the file.
- * @param expected_channel_count The expected image channel count. If 0, none is expected.
- * 
- * @return The @ref TuiImage. NULL is returned on error.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PATH if path is NULL.
- * Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT if expected_channel_count is not 0, 3, or 4.
- * Throws @ref TUI_ERROR_LOAD_IMAGE_FAILURE if image fails to load from the file.
- * Throws @ref TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS if expected_channel_count is not 0 and does not match the loaded image channel count.
- */
-TuiImage tuiImageLoad(const char* path, int expected_channel_count);
+
+TuiImage tuiImageLoad(const char* path);
 /*!
  * @brief  Save a @ref TuiImage to an image file.
  *

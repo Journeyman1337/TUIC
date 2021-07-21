@@ -51,8 +51,7 @@ int main()
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
     /* Load the custom window icon image. */
-    int expected_channel_count = 4;
-    TuiImage window_icon_image = tuiImageLoad("sushi.png", expected_channel_count);
+    TuiImage window_icon_image = tuiImageLoad("sushi.png");
 
     /* Create the window. */
     const char* window_title = "Example XX";

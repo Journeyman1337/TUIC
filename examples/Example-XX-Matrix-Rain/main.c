@@ -111,8 +111,7 @@ int main()
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
-    int atlas_image_expected_channel_count = 3;
-    TuiImage atlas_image = tuiImageLoad(atlas_image_name, atlas_image_expected_channel_count);
+    TuiImage atlas_image = tuiImageLoad(atlas_image_name);
     if (atlas_image == NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
