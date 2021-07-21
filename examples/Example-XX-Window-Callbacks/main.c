@@ -114,11 +114,6 @@ void monitor_callback(TuiMonitor monitor, TuiBoolean connected)
     printf("Monitor: name = %s connected = %d\n", (connected == TUI_TRUE) ? tuiMonitorGetName(monitor) : "(null)", connected);
 }
 
-void joystick_callback(TuiJoystickId joystic_id, TuiBoolean connected)
-{
-    printf("Joystick: name = %s connected = %d\n", (connected == TUI_TRUE) ? tuiJoystickGetName(joystic_id) : "(null)", connected);
-}
-
 int main()
 {
     int window_width = 500;
@@ -159,7 +154,6 @@ int main()
     tuiWindowSetCharCallback(window, char_callback);
     tuiWindowSetFileDropCallback(window, file_drop_callback);
     tuiSetMonitorCallback(monitor_callback);
-    tuiSetJoystickCallback(joystick_callback);
 
     printf("Try the following to see the callback messages:\n"
         " * move your mouse inside the window\n"
