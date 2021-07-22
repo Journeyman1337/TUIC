@@ -1016,7 +1016,7 @@ int tuiKeyboardKeyGetScancode(TuiKeyboardKey key)
 	if (system == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return 0;
 	}
 
 	int scancode = glfwGetKeyScancode(key);
@@ -1024,5 +1024,5 @@ int tuiKeyboardKeyGetScancode(TuiKeyboardKey key)
 	int glfw_error = glfwGetError(NULL);
 	GLFW_CHECK_ERROR_RETURN(0)
 
-	return -1;
+	return scancode;
 }
