@@ -33,6 +33,7 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	sSystem->BaseWindow = NULL;
 	sSystem->BaseWindowClaimed = TUI_FALSE;
 	sSystem->WindowIconsSupported = TUI_FALSE;
+	sSystem->MonitorConnectedCallback = NULL;
 	sSystem->ApiData = NULL;
 
 	int glfw_version_major = 0;

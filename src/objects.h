@@ -41,6 +41,8 @@ typedef struct TuiSystem_s
 
 	GLFWwindow* BaseWindow;
 
+	tuiMonitorConnectedFunction MonitorConnectedCallback;
+
 	void* ApiData;
 } TuiSystem_s;
 

@@ -6,6 +6,12 @@
 #include <TUIC/debug.h>
 #include "objects.h"
 
+static void glfwMonitorCallback(GLFWmonitor* monitor, int connected)
+{
+	TuiSystem system = tui_get_system();
+	system->MonitorConnectedCallback(monitor, (TuiBoolean)connected);
+}
+
 TuiMonitor* tuiGetMonitors(int* count)
 {
 	TuiSystem system = tui_get_system();
@@ -212,7 +218,7 @@ void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 	return ptr;
 }
 
-tuiMonitorFunction tuiSetMonitorCallback(tuiMonitorFunction callback)
+tuiMonitorConnectedFunction tuiSetMonitorCallback(tuiMonitorConnectedFunction callback)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -220,7 +226,12 @@ tuiMonitorFunction tuiSetMonitorCallback(tuiMonitorFunction callback)
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return NULL;
 	}
-	tuiMonitorFunction monitor_function = (tuiMonitorFunction)glfwSetMonitorCallback(callback);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	tuiMonitorConnectedFunction monitor_function = system->MonitorConnectedCallback;
+	system->MonitorConnectedCallback = callback;
+	if (callback != NULL)
+	{
+		GLFW_CHECK_ERROR_RETURN(NULL)
+		glfwSetMonitorCallback(glfwMonitorCallback);
+	}
 	return monitor_function;
 }

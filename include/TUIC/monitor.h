@@ -42,7 +42,7 @@ int tuiMonitorGetRefreshRate(TuiMonitor monitor);
 const char* tuiMonitorGetName(TuiMonitor monitor);
 void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer);
 void* tuiMonitorGetUserPointer(TuiMonitor monitor);
-tuiMonitorFunction tuiSetMonitorCallback(tuiMonitorFunction callback);
+tuiMonitorConnectedFunction tuiSetMonitorCallback(tuiMonitorConnectedFunction callback);
 
 #ifdef __cplusplus //extern C guard
 }

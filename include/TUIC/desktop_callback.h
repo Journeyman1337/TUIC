@@ -61,7 +61,7 @@ typedef void (* tuiCharFunction)(TuiWindow window, unsigned int codepoint);
 
 typedef void (* tuiFileDropFunction)(TuiWindow window, int path_count, const char* paths[]);
 
-typedef void (* tuiMonitorFunction)(TuiMonitor monitor, TuiBoolean connected);
+typedef void (*tuiMonitorConnectedFunction)(TuiMonitor monitor, TuiBoolean connected);
 
 #ifdef __cplusplus //extern C guard
 }
