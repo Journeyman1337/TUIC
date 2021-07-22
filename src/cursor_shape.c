@@ -41,7 +41,7 @@ TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape)
 
 TuiBoolean tuiCursorShapeIsSupported(TuiCursorShape cursor_shape) // glfw has no function for this purpose, so we need to improvise
 {
-	TuiSystem system = tui_system_create();
+	TuiSystem system = tui_get_system();
 	if (system == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
