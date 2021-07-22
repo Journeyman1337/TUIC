@@ -1030,9 +1030,9 @@ double tuiWindowGetCursorXPosition(TuiWindow window)
 		return 0.0;
 	}
 
-	double x_position = 0;
+	double x_position = 0.0;
 	glfwGetCursorPos(window->GlfwWindow, &x_position, NULL);
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(0.0)
 	return x_position;
 }
 
@@ -1044,9 +1044,9 @@ double tuiWindowGetCursorYPosition(TuiWindow window)
 		return 0.0;
 	}
 
-	double y_position = 0;
+	double y_position = 0.0;
 	glfwGetCursorPos(window->GlfwWindow, NULL, &y_position);
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(0.0)
 	return y_position;
 }
 
@@ -1188,7 +1188,7 @@ int tuiWindowGetXPosition(TuiWindow window)
 
 	int x_position = 0;
 	glfwGetWindowPos(window->GlfwWindow, &x_position, NULL);
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(0)
 	return x_position;
 }
 
@@ -1202,7 +1202,7 @@ int tuiWindowGetYPosition(TuiWindow window)
 
 	int y_position = 0;
 	glfwGetWindowPos(window->GlfwWindow, NULL, &y_position);
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(0)
 	return y_position;
 }
 
@@ -1563,7 +1563,7 @@ float tuiWindowGetContentScaleWide(TuiWindow window)
 
 	float scale_wide = 0.0f;
 	glfwGetWindowContentScale(window->GlfwWindow, &scale_wide, NULL);
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(0.0f)
 	return scale_wide;
 }
 
@@ -1577,7 +1577,7 @@ float tuiWindowGetContentScaleTall(TuiWindow window)
 
 	float scale_tall = 0.0f;
 	glfwGetWindowContentScale(window->GlfwWindow, NULL, &scale_tall);
-	GLFW_CHECK_ERROR()
+	GLFW_CHECK_ERROR_RETURN(0.0f)
 	return scale_tall;
 }
 

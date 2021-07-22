@@ -54,7 +54,7 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 		return;
 	}
 
-	GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
 	GLFW_CHECK_ERROR()
 	if (width != NULL)
 	{
@@ -74,8 +74,9 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 		return 0;
 	}
 
-	GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
 	GLFW_CHECK_ERROR_RETURN(NULL)
+	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+	GLFW_CHECK_ERROR_RETURN(0)
 	return vidmode->width;
 }
 
@@ -87,7 +88,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 		return 0;
 	}
 
-	GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return vidmode->height;
 }
