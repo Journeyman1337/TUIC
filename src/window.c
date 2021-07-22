@@ -1161,7 +1161,7 @@ TuiBoolean tuiWindowIconsSupported()
 	if (system == NULL)
 	{
 		tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__);
-		return;
+		return TUI_FALSE;
 	}
 	return system->WindowIconsSupported;
 }
