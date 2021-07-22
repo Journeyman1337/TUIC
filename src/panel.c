@@ -379,7 +379,7 @@ void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window)
 		return;
 	}
 
-	tuiPanelDrawAtlas_Opengl33(panel, window, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
+	tuiPanelDrawWindow_Opengl33(panel, window, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
 }
 
 void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
@@ -395,5 +395,5 @@ void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x,
 		return;
 	}
 
-	tuiPanelDrawAtlas_Opengl33(panel, window, left_x, right_x, top_y, bottom_y);
+	tuiPanelDrawWindow_Opengl33(panel, window, left_x, right_x, top_y, bottom_y);
 }
