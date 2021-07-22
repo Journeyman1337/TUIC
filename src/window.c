@@ -191,12 +191,6 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_DIMENSIONS, __func__);
 		return NULL;
 	}
-	TuiSystem system = tui_get_system();
-	if (system == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
-	}
 	if (system->MultiWindow == TUI_FALSE && system->BaseWindowClaimed == TUI_TRUE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_COUNT, __func__);
