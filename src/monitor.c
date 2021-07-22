@@ -88,7 +88,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 	}
 
 	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	GLFW_CHECK_ERROR_RETURN(0)
 	return vidmode->height;
 }
 

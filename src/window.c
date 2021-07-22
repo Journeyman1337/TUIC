@@ -1211,7 +1211,7 @@ void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return 0;
+		return;
 	}
 
 	glfwSetWindowPos(window->GlfwWindow, x_position, y_position);
