@@ -230,7 +230,7 @@ void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int sta
 		return;
 	}
 
-	size_t sx = 0;
+	size_t sx = 0; // obviously, this is subject to testing...
 	size_t sy = 0;
 	if (start_x > 0)
 	{

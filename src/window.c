@@ -56,7 +56,7 @@ static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 	return (TuiMonitor)monitor;
 }
 
-static inline int _GCF(int n, int m)
+static inline int _GCF(int n, int m) //returns the greatest common factor of the two values
 {
 	int gcf, remainder;
 
@@ -1999,7 +1999,7 @@ TuiBoolean tuiWindowGetTopmost(TuiWindow window)
 		return TUI_FALSE;
 	}
 
-	int topmost =glfwGetWindowAttrib(window->GlfwWindow, GLFW_FLOATING);
+	int topmost =glfwGetWindowAttrib(window->GlfwWindow, GLFW_FLOATING); //"topmost" is easier to understand than "floating"
 	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
 	if (topmost == GLFW_TRUE)
 	{
@@ -2057,7 +2057,7 @@ void tuiWindowSetUserPointer(TuiWindow window, void* ptr)
 		return;
 	}
 
-	window->UserPointer = ptr;
+	window->UserPointer = ptr; //use a member variable instead of the GLFWwindow user pointer, because that pointer contains a pointer to this TuiWindow for internal uses.
 }
 
 void* tuiWindowGetUserPointer(TuiWindow window)

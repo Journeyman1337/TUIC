@@ -64,8 +64,8 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 			return TUI_FALSE;
 	}
 	GLFW_CLEAR_ERRORS()
-	unsigned char image_pixels[16] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	GLFWimage test_icon_image;
+	unsigned char image_pixels[16] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }; //we need to test if icons are supported now so tuiWindowIconsSupported function can work later
+	GLFWimage test_icon_image; //this is because GLFW does not have a function for this purpose, so we need to be creative
 	test_icon_image.width = 2;
 	test_icon_image.height = 2;
 	test_icon_image.pixels = image_pixels;

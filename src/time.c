@@ -25,7 +25,7 @@ void tuiSetTime(double time)
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
 	}
-	if (time <= 0 || time >= 18446744073.0)
+	if (time <= 0 || time >= 18446744073.0) //this is also enforced by GLFW, but better to enforce it explicitly ourselves
 	{
 		tuiDebugError(TUI_ERROR_INVALID_TIME, __func__);
 		return;

@@ -44,11 +44,11 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 	batch->IsLargeSparseTall = TUI_FALSE;
 	batch->SparseUsedIndices = NULL;
 	batch->SparseUsedIndicesSize = 0;
-	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE)
+	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE) 
 	{
 		batch->TileCount = 0;
-		batch->BytesPerTile += 2;
-		if (tiles_wide > 256)
+		batch->BytesPerTile += 2; //Sparse batches have at least two extra bytes per tile for the coordinates of each tile
+		if (tiles_wide > 256) //if the width or the height is greater than 256, two bytes are needed for each respective coordinate to store values large enough
 		{
 			batch->IsLargeSparseWide = TUI_TRUE;
 			batch->BytesPerTile++;
@@ -58,12 +58,12 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 			batch->IsLargeSparseTall = TUI_TRUE;
 			batch->BytesPerTile++;
 		}
-		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
+		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t); //used indices keep track of tiles set since the last clear, so that two tiles are not set in the same position by mistake
 		batch->SparseUsedIndices = tuiAllocate(batch->SparseUsedIndicesSize);
 	}
 	else if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_FULL) == TUI_TRUE)
 	{
-		batch->TileCount = batch->TilesWide * batch->TilesTall;
+		batch->TileCount = batch->TilesWide * batch->TilesTall; //if the batch is full, the itle count is always every tile.
 	}
 	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall * sizeof(uint8_t);
 	batch->ReservedDataSize = batch->UsedDataSize;
@@ -842,18 +842,18 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 	
 	size_t tile_index;
 	size_t used_tile_index = ((size_t)batch->TilesWide * (size_t)y) + (size_t)x;
-	if (batch->SparseUsedIndices[used_tile_index] != 0)
+	if (batch->SparseUsedIndices[used_tile_index] != 0) // if the tile already is already set
 	{
-		tile_index = batch->SparseUsedIndices[used_tile_index] - 1;
+		tile_index = batch->SparseUsedIndices[used_tile_index] - 1; // override previously set index
 	}
 	else
 	{
-		tile_index = batch->TileCount * batch->BytesPerTile;
+		tile_index = batch->TileCount * batch->BytesPerTile; //create a new tile and increment the total tile count since last clear
 		batch->SparseUsedIndices[used_tile_index] = tile_index + 1;
 		batch->TileCount++;
 	}
 	batch->Data[tile_index++] = ((unsigned int)x) & 0xff;
-	if (batch->IsLargeSparseWide)
+	if (batch->IsLargeSparseWide) // if two bytes for x or y coordinate, store extra data
 	{
 		batch->Data[tile_index++] = ((unsigned int)x >> 8) & 0xff;
 	}

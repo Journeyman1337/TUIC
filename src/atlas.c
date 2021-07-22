@@ -526,19 +526,19 @@ int tuiAtlasGetGlyphCount(TuiAtlas atlas)
 
 float* tuiGenerateUVCoordinatesFromPixelCooordinates(int glyph_count, uint16_t* pixel_coordinates, int texture_width, int texture_height, float* out_ptr)
 {
-	size_t glyphBoundingBoxesParameterCount = (size_t)glyph_count * 4;
+	size_t glyphBoundingBoxesParameterCount = (size_t)glyph_count * 4; // amount of glyphs times 4 for STPQ coordinates
 	float* glyphBoundingBoxesUVCoordinates = out_ptr;
-	if (out_ptr == NULL)
+	if (out_ptr == NULL) //If out_ptr is NULL, allocate memory that fits the data
 	{
-		glyphBoundingBoxesUVCoordinates = (float*)tuiAllocate(sizeof(float) * glyphBoundingBoxesParameterCount);
+		glyphBoundingBoxesUVCoordinates = (float*)tuiAllocate(sizeof(float) * glyphBoundingBoxesParameterCount); 
 	}
 	for (size_t coord = 0; coord < glyphBoundingBoxesParameterCount; coord++)
 	{
-		if (coord % 4 < 2)
+		if (coord % 4 < 2) // for coordinates ST (U coordinates of right and left edges)
 		{
 			glyphBoundingBoxesUVCoordinates[coord] = (float)((float)pixel_coordinates[coord] / (float)texture_width);
 		}
-		else
+		else // for coordinates PQ (V coordinates of top and bottom edges)
 		{
 			glyphBoundingBoxesUVCoordinates[coord] = (float)((float)pixel_coordinates[coord] / (float)texture_height);
 		}
