@@ -2082,7 +2082,7 @@ tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFu
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowMoveFunction old_callback = window->WindowMoveCallback;
@@ -2104,7 +2104,7 @@ tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowClos
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowCloseFunction old_callback = window->WindowCloseCallback;
@@ -2126,7 +2126,7 @@ tuiWindowRefreshFunction tuiWindowSetRefreshCallback(TuiWindow window, tuiWindow
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowRefreshFunction old_callback = window->WindowRefreshCallback;
@@ -2148,7 +2148,7 @@ tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocu
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowRefreshFunction old_callback = window->WindowFocusCallback;
@@ -2170,7 +2170,7 @@ tuiWindowIconifyFunction tuiWindowSetIconifyCallback(TuiWindow window, tuiWindow
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowIconifyFunction old_callback = window->WindowIconifyCallback;
@@ -2192,7 +2192,7 @@ tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWind
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowMaximizeFunction old_callback = window->WindowMaximizeCallback;
@@ -2214,7 +2214,7 @@ tuiWindowResizeFunction tuiWindowSetResizeCallback(TuiWindow window, tuiWindowRe
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowResizeFunction old_callback = window->WindowResizeCallback;
@@ -2228,7 +2228,7 @@ tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window,
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiWindowContentScaleFunction old_callback = window->WindowContentScaleCallback;
@@ -2250,7 +2250,7 @@ tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window,
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiKeyboardKeyboardKeyFunction old_callback = window->KeyboardKeyCallback;
@@ -2272,7 +2272,7 @@ tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callb
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiCharFunction old_callback = window->CharCallback;
@@ -2294,7 +2294,7 @@ tuiMouseButtonFunction tuiWindowSetMouseButtonCallback(TuiWindow window, tuiMous
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiMouseButtonFunction old_callback = window->MouseButtonCallback;
@@ -2316,7 +2316,7 @@ tuiCursorMoveFunction tuiWindowSetCursorMoveCallback(TuiWindow window, tuiCursor
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiCursorMoveFunction old_callback = window->CursorMoveCallback;
@@ -2338,7 +2338,7 @@ tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCurs
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiCursorEnterFunction old_callback = window->CursorEnterCallback;
@@ -2360,7 +2360,7 @@ tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMous
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiMouseScrollFunction old_callback = window->MouseScrollCallback;
@@ -2382,7 +2382,7 @@ tuiFileDropFunction tuiWindowSetFileDropCallback(TuiWindow window, tuiFileDropFu
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	tuiFileDropFunction old_callback = window->FileDropCallback;
