@@ -61,7 +61,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
 		batch->SparseUsedIndices = tuiAllocate(batch->SparseUsedIndicesSize);
 	}
-	else
+	else if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_FULL) == TUI_TRUE)
 	{
 		batch->TileCount = batch->TilesWide * batch->TilesTall;
 	}
