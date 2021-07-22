@@ -2151,7 +2151,7 @@ tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocu
 		return NULL;
 	}
 
-	tuiWindowRefreshFunction old_callback = window->WindowFocusCallback;
+	tuiWindowFocusFunction old_callback = window->WindowFocusCallback;
 	window->WindowFocusCallback = callback;
 	if (callback == NULL)
 	{
