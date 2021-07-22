@@ -7,6 +7,12 @@ static int sPanelCount = 0;
 
 TuiPanel tuiPanelCreate(int pixel_width, int pixel_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
@@ -273,7 +279,7 @@ void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel)
 	}
 	if (subject_panel == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_SUBJECT_PANEL, __func__);
+		tuiDebugError(TUI_ERROR_NULL_SUBJECT_PANEL, __func__);
 		return;
 	}
 
@@ -289,7 +295,7 @@ void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int le
 	}
 	if (subject_panel == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_SUBJECT_PANEL, __func__);
+		tuiDebugError(TUI_ERROR_NULL_SUBJECT_PANEL, __func__);
 		return;
 	}
 

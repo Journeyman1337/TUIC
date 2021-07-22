@@ -41,7 +41,7 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	glfwGetVersion(&glfw_version_major, &glfw_version_minor, NULL);
 	if (glfw_version_major != 3 && glfw_version_minor != 3)
 	{
-		// todo tuiDebugError(TUI_ERROR_INVALID_GLFW_VERSION, __func__);
+		tuiDebugError(TUI_ERROR_GLFW_INVALID_VERSION, __func__);
 		return TUI_FALSE;
 	}
 
@@ -89,7 +89,7 @@ void tuiTerminate()
 {
 	if (sSystem == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
 	}
 	TuiBoolean failed = TUI_FALSE;
@@ -123,11 +123,6 @@ void tuiTerminate()
 		tuiDebugError(TUI_ERROR_DANGLING_TEXTURE, __func__);
 		failed = TUI_TRUE;
 	}
-	if (sSystem == NULL)
-	{
-		tuiDebugError(TUI_ERROR_DESKTOP_NOT_INITIALIZED, __func__);
-		failed = TUI_TRUE;
-	}
 	if (failed == TUI_TRUE)
 	{
 		return;
@@ -145,6 +140,7 @@ TuiBoolean tuiMultiWindowDesktop()
 {
 	if (sSystem == NULL)
 	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
 	}
 	return sSystem->MultiWindow;
@@ -152,6 +148,11 @@ TuiBoolean tuiMultiWindowDesktop()
 
 TuiBoolean tuiRawMouseMotionSupported()
 {
+	if (sSystem == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
 	int supported = glfwRawMouseMotionSupported();
 	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
 	if (supported == GLFW_TRUE)
@@ -163,6 +164,11 @@ TuiBoolean tuiRawMouseMotionSupported()
 
 TuiBoolean tuiVulkanSupported()
 {
+	if (sSystem == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
 	int supported = glfwVulkanSupported();
 	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
 	if (supported == GLFW_TRUE)

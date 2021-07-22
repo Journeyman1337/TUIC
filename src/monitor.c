@@ -4,10 +4,17 @@
 #include "glfw_error_check.h"
 #include <TUIC/boolean.h>
 #include <TUIC/debug.h>
-
+#include "objects.h"
 
 TuiMonitor* tuiGetMonitors(int* count)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
+
 	int out_count = 0;
 	TuiMonitor* monitors = glfwGetMonitors(&out_count);
 	GLFW_CHECK_ERROR_RETURN(NULL)
@@ -21,6 +28,13 @@ TuiMonitor* tuiGetMonitors(int* count)
 
 TuiMonitor tuiGetPrimaryMonitor()
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
+
 	TuiMonitor monitor = glfwGetPrimaryMonitor();
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return monitor;
@@ -30,7 +44,7 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return;
 	}
 
@@ -50,7 +64,7 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0;
 	}
 
@@ -63,7 +77,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0;
 	}
 
@@ -76,7 +90,7 @@ void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* phy
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return;
 	}
 
@@ -88,7 +102,7 @@ int tuiMonitorGetPhysicalWidth(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0;
 	}
 
@@ -101,7 +115,7 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0;
 	}
 
@@ -114,7 +128,7 @@ void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* sca
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return;
 	}
 
@@ -126,7 +140,7 @@ float tuiMonitorGetContentScaleWide(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0.0f;
 	}
 
@@ -139,7 +153,7 @@ float tuiMonitorGetContentScaleTall(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0.0f;
 	}
 
@@ -152,7 +166,7 @@ int tuiMonitorGetRefreshRate(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return 0;
 	}
 
@@ -164,7 +178,7 @@ const char* tuiMonitorGetName(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return NULL;
 	}
 
@@ -177,7 +191,7 @@ void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return;
 	}
 
@@ -189,7 +203,7 @@ void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 {
 	if (monitor == NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
 		return NULL;
 	}
 
@@ -200,6 +214,12 @@ void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 
 tuiMonitorFunction tuiSetMonitorCallback(tuiMonitorFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	tuiMonitorFunction monitor_function = (tuiMonitorFunction)glfwSetMonitorCallback(callback);
 	GLFW_CHECK_ERROR_RETURN(NULL)
 	return monitor_function;

@@ -10,6 +10,12 @@ static int sCursorCount;
 
 TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -29,6 +35,12 @@ TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot)
 
 TuiCursor tuiCursorCreateStandard(TuiCursorShape shape)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (tuiCursorShapeIsValid(shape) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CURSOR_SHAPE, __func__);
@@ -36,11 +48,6 @@ TuiCursor tuiCursorCreateStandard(TuiCursorShape shape)
 	}
 	TuiCursor cursor = glfwCreateStandardCursor(shape);
 
-	if (glfwGetError(NULL) == GLFW_NOT_INITIALIZED)
-	{
-		tuiDebugError(TUI_ERROR_DESKTOP_NOT_INITIALIZED, __func__);
-		return NULL;
-	}
 	GLFW_CLEAR_ERRORS()
 	if (cursor == NULL)
 	{

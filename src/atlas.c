@@ -28,6 +28,12 @@ static int sAtlasCount = 0;
 
 TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -70,6 +76,12 @@ TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_boundin
 
 TuiAtlas tuiAtlasCreateRawPixels(int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
@@ -122,6 +134,12 @@ TuiAtlas tuiAtlasCreateRawPixels(int pixel_width , int pixel_height, int channel
 
 TuiAtlas tuiAtlasCreateRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -162,6 +180,12 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiImage image, int glyph_count, float* raw_glyph_
 
 TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
@@ -212,6 +236,12 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int ch
 
 TuiAtlas tuiAtlasCreateGrid(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -246,6 +276,12 @@ TuiAtlas tuiAtlasCreateGrid(TuiImage image, int tile_pixel_width, int tile_pixel
 
 TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
@@ -293,6 +329,12 @@ const size_t kCodepageGlyphTileDimensions = 16;
 
 TuiAtlas tuiAtlasCreateCodepageGrid(TuiImage image, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
@@ -328,6 +370,12 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiImage image, TuiBlendMode blend_mode)
 
 TuiAtlas tuiAtlasCreateCodepageGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (pixels == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);

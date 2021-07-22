@@ -287,6 +287,12 @@ static int sPaletteCount = 0;
 
 TuiPalette tuiPaletteCreate(int channel_count, int color_count, uint8_t* color_data)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);
@@ -314,6 +320,12 @@ TuiPalette tuiPaletteCreate(int channel_count, int color_count, uint8_t* color_d
 
 TuiPalette tuiPaletteCreateXterm(int color_count)
 {
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return NULL;
+	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);

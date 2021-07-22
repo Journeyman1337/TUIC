@@ -31,20 +31,23 @@
 				switch (glfw_error_code) \
 				{ \
 				case GLFW_NOT_INITIALIZED: \
-					tuiDebugError(TUI_ERROR_DESKTOP_NOT_INITIALIZED, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_NO_CURRENT_CONTEXT: \
-					tuiDebugError(TUI_ERROR_NO_CURRENT_CONTEXT, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_INVALID_ENUM: \
+					tuiDebugError(TUI_ERROR_GLFW_ENUM, __func__); \
+					error_occured = TUI_TRUE; \
+					break; \
 				case GLFW_INVALID_VALUE: \
-					tuiDebugError(TUI_ERROR_UNKNOWN, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_VALUE, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_OUT_OF_MEMORY: \
-					tuiDebugError(TUI_ERROR_DESKTOP_OUT_OF_MEMORY, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_OUT_OF_MEMORY, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_API_UNAVAILABLE: \
@@ -56,15 +59,15 @@
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_PLATFORM_ERROR: \
-					tuiDebugError(TUI_ERROR_DESKTOP_PLATFORM, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_PLATFORM, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_FORMAT_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_DESKTOP_FORMAT_UNAVAILABLE, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_FORMAT_UNAVAILABLE, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_NO_WINDOW_CONTEXT: \
-					tuiDebugError(TUI_ERROR_DESKTOP_NO_GRAPHICS_CONTEXT, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				} \
@@ -83,20 +86,23 @@
 				switch (glfw_error_code) \
 				{ \
 				case GLFW_NOT_INITIALIZED: \
-					tuiDebugError(TUI_ERROR_DESKTOP_NOT_INITIALIZED, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_NO_CURRENT_CONTEXT: \
-					tuiDebugError(TUI_ERROR_NO_CURRENT_CONTEXT, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_INVALID_ENUM: \
+					tuiDebugError(TUI_ERROR_GLFW_ENUM, __func__); \
+					error_occured = TUI_TRUE; \
+					break; \
 				case GLFW_INVALID_VALUE: \
-					tuiDebugError(TUI_ERROR_UNKNOWN, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_VALUE, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_OUT_OF_MEMORY: \
-					tuiDebugError(TUI_ERROR_DESKTOP_OUT_OF_MEMORY, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_OUT_OF_MEMORY, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_API_UNAVAILABLE: \
@@ -108,15 +114,15 @@
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_PLATFORM_ERROR: \
-					tuiDebugError(TUI_ERROR_DESKTOP_PLATFORM, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_PLATFORM, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_FORMAT_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_DESKTOP_FORMAT_UNAVAILABLE, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_FORMAT_UNAVAILABLE, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				case GLFW_NO_WINDOW_CONTEXT: \
-					tuiDebugError(TUI_ERROR_DESKTOP_NO_GRAPHICS_CONTEXT, __func__); \
+					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
 					error_occured = TUI_TRUE; \
 					break; \
 				} \
