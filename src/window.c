@@ -1027,7 +1027,7 @@ double tuiWindowGetCursorXPosition(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return 0.0;
 	}
 
 	double x_position = 0;
@@ -1041,7 +1041,7 @@ double tuiWindowGetCursorYPosition(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return 0.0;
 	}
 
 	double y_position = 0;
@@ -1558,7 +1558,7 @@ float tuiWindowGetContentScaleWide(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return 0.0f;
 	}
 
 	float scale_wide = 0.0f;
@@ -1572,7 +1572,7 @@ float tuiWindowGetContentScaleTall(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return 0.0f;
 	}
 
 	float scale_tall = 0.0f;
@@ -1586,7 +1586,7 @@ float tuiWindowGetOpacity(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return 0.0f;
 	}
 
 	float opacity = glfwGetWindowOpacity(window->GlfwWindow);
