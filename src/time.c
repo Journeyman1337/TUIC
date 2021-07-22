@@ -13,7 +13,7 @@ double tuiGetTime()
 		return 0.0;
 	}
 	double time = glfwGetTime();
-	GLFW_CHECK_ERROR_RETURN(time, 0.0)
+	GLFW_CHECK_ERROR_RETURN(0.0)
 	return time;
 }
 
