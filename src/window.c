@@ -1092,7 +1092,7 @@ const char* tuiWindowGetTitle(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return NULL;
 	}
 
 	return window->Title;
@@ -1183,7 +1183,7 @@ int tuiWindowGetXPosition(TuiWindow window)
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
+		return 0;
 	}
 
 	int x_position = 0;
