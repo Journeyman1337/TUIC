@@ -57,4 +57,5 @@ uint64_t tuiGetTimerFrequency()
 	}
 	uint64_t timer_frequency = glfwGetTimerFrequency();
 	GLFW_CHECK_ERROR_RETURN(0)
+	return timer_frequency;
 }
