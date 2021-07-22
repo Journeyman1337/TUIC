@@ -128,10 +128,10 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel
 	}
 }
 
-static void glfwWindowContentScaleCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
+static void glfwWindowContentScaleCallback(GLFWwindow* glfw_window, float scale_wide, float scale_tall)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->WindowContentScaleCallback(window, pixel_width, pixel_height);
+	window->WindowContentScaleCallback(window, scale_wide, scale_tall);
 }
 
 static void glfwKeyCallback(GLFWwindow* glfw_window, int key, int scancode, int button_state, int mod)
