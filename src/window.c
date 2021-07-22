@@ -374,7 +374,7 @@ void tuiWindowDestroy(TuiWindow window)
 		{
 			glfwSetWindowSizeLimits(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE, GLFW_DONT_CARE, GLFW_DONT_CARE);
 		}
-		system->BaseWindowClaimed == TUI_FALSE;
+		system->BaseWindowClaimed = TUI_FALSE;
 	}
 
 	tuiWindowDestroy_Opengl33(window);
