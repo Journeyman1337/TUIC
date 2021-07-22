@@ -340,7 +340,7 @@ inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width,
 	int large_sparse_tall = (tiles_tall > 256) ? 1 : 0;
 	if (is_sparse == TUI_TRUE)
 	{
-		bytes_per_tile += large_sparse_wide + large_sparse_tall + 2;
+		bytes_per_tile += (size_t)large_sparse_wide + (size_t)large_sparse_tall + 2;
 		data_size = sparse_index * bytes_per_tile;
 	}
 	else
