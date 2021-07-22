@@ -65,7 +65,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 	return image;
 }
 
-static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, int pixel_height, int channel_count, int new_pixel_width, int new_pixel_height, const uint8_t* out_pixels, const char* func_name)
+static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, int pixel_height, int channel_count, int new_pixel_width, int new_pixel_height, uint8_t* out_pixels, const char* func_name)
 {
 	uint8_t* output_pixels = out_pixels;
 	if (output_pixels == NULL)
