@@ -90,7 +90,7 @@ void tuiTerminate()
 	if (sSystem == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
+		return;
 	}
 	TuiBoolean failed = TUI_FALSE;
 	if (tuiGetWindowCount() != 0)
