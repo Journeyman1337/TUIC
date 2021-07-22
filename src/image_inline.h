@@ -39,7 +39,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 		return NULL;
 	}
 
-	TuiImage image = (TuiImage*)tuiAllocate(sizeof(TuiImage_s));
+	TuiImage image = (TuiImage)tuiAllocate(sizeof(TuiImage_s));
 	image->PixelWidth = pixel_width;
 	image->PixelHeight = pixel_height;
 	image->ChannelCount = channel_count;
