@@ -1609,11 +1609,6 @@ void tuiWindowSetOpacity(TuiWindow window, float opacity)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (opacity != 1.0f && glfwGetWindowAttrib(window->GlfwWindow, GLFW_TRANSPARENT_FRAMEBUFFER) == GLFW_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_TRANSPARENT_FRAMEBUFFER_OPACITY, __func__);
-		return;
-	}
 	GLFW_CHECK_ERROR()
 	glfwSetWindowOpacity(window->GlfwWindow, opacity);
 	GLFW_CHECK_ERROR()
