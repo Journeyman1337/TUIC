@@ -74,7 +74,6 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 		return 0;
 	}
 
-	GLFW_CHECK_ERROR_RETURN(NULL)
 	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
 	GLFW_CHECK_ERROR_RETURN(0)
 	return vidmode->width;
