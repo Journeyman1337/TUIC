@@ -439,15 +439,15 @@ inline void RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebu
 	GLD_CALL(glViewport(0, 0, render_area_width, render_area_height));
 	GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
-inline void VerticalFlipPixels(uint8_t* pixels, int w, int h, int c)
+inline void _VerticalFlipPixels(uint8_t* pixels, size_t w, size_t h, size_t c)
 {
-   int row;
+   size_t row;
    size_t bytes_per_row = (size_t)w * c;
    uint8_t temp[2048];
 
    for (row = 0; row < (h>>1); row++) {
-      uint8_t *row0 = pixels + row*bytes_per_row;
-      uint8_t *row1 = pixels + (h - row - 1)*bytes_per_row;
+      size_t *row0 = pixels + row*bytes_per_row;
+      size_t *row1 = pixels + (h - row - 1)*bytes_per_row;
       // swap row0 with row1
       size_t bytes_left = bytes_per_row;
       while (bytes_left) {
@@ -632,7 +632,7 @@ uint8_t* tuiWindowGetPixels_Opengl33(TuiWindow window, size_t* pixel_width, size
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, window_data->FramebufferHandle));
 	GLD_CALL(glReadPixels(0, 0, window->PixelWidth, window->PixelHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixel_ptr));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-	VerticalFlipPixels(pixel_ptr, *pixel_width, *pixel_height, 4);
+	_VerticalFlipPixels(pixel_ptr, (size_t)*pixel_width, (size_t)*pixel_height, 4);
 	return pixel_ptr;
 }
 void tuiWindowClearColor_Opengl33(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
@@ -876,7 +876,7 @@ uint8_t* tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* pixel_width, size_t*
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, panel_data->FramebufferHandle));
 	GLD_CALL(glReadPixels(0, 0, panel->PixelWidth, panel->PixelHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixel_ptr));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-	VerticalFlipPixels(pixel_ptr, *pixel_width, *pixel_height, 4);
+	_VerticalFlipPixels(pixel_ptr, (size_t)*pixel_width, (size_t)*pixel_height, 4);
 	return pixel_ptr;
 }
 void tuiPanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
