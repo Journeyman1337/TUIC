@@ -921,7 +921,7 @@ void tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, int left
 {
 	TuiSystem system = tui_get_system();
 	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
-	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33WindowApiData*)panel->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	TuiOpengl33PanelApiData* subject_panel_data = (TuiOpengl33PanelApiData*)subject_panel->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
 	RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, subject_panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
