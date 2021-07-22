@@ -49,7 +49,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 	{
 		if (copy_data == TUI_TRUE)
 		{
-			image->PixelData = tuiAllocate(image->PixelDataSize);
+			image->PixelData = (uint8_t*)tuiAllocate(image->PixelDataSize);
 			memcpy(image->PixelData, pixel_data, image->PixelDataSize);
 		}
 		else
@@ -59,7 +59,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 	}
 	else
 	{
-		image->PixelData = tuiAllocate(image->PixelDataSize);
+		image->PixelData = (uint8_t*)tuiAllocate(image->PixelDataSize);
 		memset(image->PixelData, 0, image->PixelDataSize);
 	}
 	return image;
@@ -70,7 +70,7 @@ static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, 
 	uint8_t* output_pixels = out_pixels;
 	if (output_pixels == NULL)
 	{
-		output_pixels = tuiAllocate((size_t)new_pixel_width * new_pixel_height * channel_count);
+		output_pixels = (uint8_t*)tuiAllocate((size_t)new_pixel_width * new_pixel_height * channel_count);
 	}
 	int stb_result = stbir_resize_uint8(pixels, pixel_width, pixel_height, 0,
 		output_pixels, new_pixel_width, new_pixel_height, 0,
