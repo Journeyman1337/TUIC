@@ -51,7 +51,7 @@ extern const char* kTui_Keyboard_Mod_All_Name;
 
 TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod);
 const char* tuiKeyboardModToString(TuiKeyboardMod mod);
-TuiKeyboardMod tuiStringToMod(const char* str);
+TuiKeyboardMod tuiStringToKeyboardMod(const char* str);
 TuiBoolean tuiKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod);
 
 #ifdef __cplusplus //extern C guard

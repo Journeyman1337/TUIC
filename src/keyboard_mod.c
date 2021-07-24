@@ -54,7 +54,7 @@ const char* tuiKeyboardModToString(TuiKeyboardMod mod)
 	}
 }
 
-TuiKeyboardMod tuiStringToMod(const char* str)
+TuiKeyboardMod tuiStringToKeyboardMod(const char* str)
 {
 	if (strcmp(str, kTui_Keyboard_Mod_Shift_Name) == 0)
 	{
