@@ -1,9 +1,19 @@
 cmake_minimum_required(VERSION 3.19)
 find_package(Catch2 CONFIG REQUIRED)
 add_executable(TUIC_TESTS_AUTO
-	constants_test.cpp
-	debug_test.cpp
+	atlas_type_test.cpp
+	blend_mode_test.cpp
+	button_state_test.cpp
+	cursor_mode_test.cpp
+	cursor_shape_test.cpp
+	detail_flag_test.cpp
+	detail_mode_test.cpp
+	error_code_test.cpp
+	filter_mode_test.cpp
 	image_test.cpp
+	keyboard_key_test.cpp
+	keyboard_mod_test.cpp
+	mouse_button_test.cpp
 	palette_test.cpp
 	test.cpp
 )
