@@ -28,6 +28,7 @@ extern "C" {
 
 typedef enum TuiFilterMode
 {
+	TUI_FILTER_INVALID = 0,
 	TUI_FILTER_POINT = 1,
 	TUI_FILTER_BILINEAR = 2
 } TuiFilterMode;

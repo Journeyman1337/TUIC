@@ -47,5 +47,5 @@ TuiFilterMode tuiStringToFilterMode(const char* string)
 	{
 		return TUI_FILTER_BILINEAR;
 	}
-	return 0;
+	return TUI_FILTER_INVALID;
 }
