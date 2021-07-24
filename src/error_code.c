@@ -208,9 +208,9 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 	case TUI_ERROR_GLFW_PLATFORM:
 		return kTui_Error_Glfw_Platform_Name;
 	case TUI_ERROR_GLFW_WINDOW_CREATION_FAILED:
-		return kTui_Error_Glfw_Value_Name;
+		return kTui_Error_Glfw_Window_Creation_Failed_Name;
 	case TUI_ERROR_GLFW_VALUE:
-		return kTui_Error_Incompatible_Blend_Mode_Name;
+		return kTui_Error_Glfw_Value_Name;
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
 		return kTui_Error_Incompatible_Blend_Mode_Name;
 	case TUI_ERROR_INCOMPATIBLE_IMAGES:
@@ -306,7 +306,7 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 	case TUI_ERROR_NULL_TARGET_IMAGE:
 		return kTui_Error_Null_Target_Image_Name;
 	case TUI_ERROR_NULL_TEXTURE:
-		return kTui_Error_Null_Target_Image_Name;
+		return kTui_Error_Null_Texture_Name;
 	case TUI_ERROR_NULL_TEXTURE_COORDINATES:
 		return kTui_Error_Null_Texture_Coordinates_Name;
 	case TUI_ERROR_NULL_WINDOW:
@@ -678,9 +678,9 @@ const char* tuiErrorCodeGetDescription(int error_code)
 	case TUI_ERROR_GLFW_PLATFORM:
 		return kTui_Error_Glfw_Platform_Description;
 	case TUI_ERROR_GLFW_WINDOW_CREATION_FAILED:
-		return kTui_Error_Glfw_Value_Description;
+		return kTui_Error_Glfw_Window_Creation_Failed_Description;
 	case TUI_ERROR_GLFW_VALUE:
-		return kTui_Error_Incompatible_Blend_Mode_Description;
+		return kTui_Error_Glfw_Value_Description;
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
 		return kTui_Error_Incompatible_Blend_Mode_Description;
 	case TUI_ERROR_INCOMPATIBLE_IMAGES:
@@ -776,7 +776,7 @@ const char* tuiErrorCodeGetDescription(int error_code)
 	case TUI_ERROR_NULL_TARGET_IMAGE:
 		return kTui_Error_Null_Target_Image_Description;
 	case TUI_ERROR_NULL_TEXTURE:
-		return kTui_Error_Null_Target_Image_Description;
+		return kTui_Error_Null_Texture_Description;
 	case TUI_ERROR_NULL_TEXTURE_COORDINATES:
 		return kTui_Error_Null_Texture_Coordinates_Description;
 	case TUI_ERROR_NULL_WINDOW:
