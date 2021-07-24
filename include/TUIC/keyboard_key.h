@@ -278,7 +278,7 @@ extern const char* kTuik_Menu_Name;
 
 TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey key);
 const char* tuiKeyboardKeyToString(TuiKeyboardKey key);
-TuiKeyboardKey tuiStringToKey(const char* str);
+TuiKeyboardKey tuiStringToKeyboardKey(const char* str);
 int tuiKeyboardKeyGetScancode(TuiKeyboardKey key);
 
 #ifdef __cplusplus //extern C guard

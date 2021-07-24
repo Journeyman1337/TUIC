@@ -525,7 +525,7 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey key)
 	}
 }
 
-TuiKeyboardKey tuiStringToKey(const char* str)
+TuiKeyboardKey tuiStringToKeyboardKey(const char* str)
 {
 	if (strcmp(str, kTuik_Space_Name) == 0)
 	{
