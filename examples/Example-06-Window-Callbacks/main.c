@@ -60,12 +60,12 @@ void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiBut
     printf("Mouse button: button = %s state = %s shift = %d control = %d alt = %d super = %d caps = %d num = %d\n",
         tuiMouseButtonToString(mouse_button),
         tuiButtonStateToString(button_state),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SHIFT),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CONTROL),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_ALT),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SUPER),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CAPS_LOCK),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_NUM_LOCK)
+        tuiKeyboardModContainsMod(mod, TUI_MOD_SHIFT),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_CONTROL),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_ALT),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_SUPER),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_CAPS_LOCK),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_NUM_LOCK)
     );
 }
 
@@ -90,12 +90,12 @@ void keyboard_key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, T
         tuiKeyboardKeyToString(key),
         scancode,
         tuiButtonStateToString(button_state),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SHIFT),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CONTROL),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_ALT),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_SUPER),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_CAPS_LOCK),
-        tuiKeyboardKeyboardModContainsMod(mod, TUI_MOD_NUM_LOCK)
+        tuiKeyboardModContainsMod(mod, TUI_MOD_SHIFT),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_CONTROL),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_ALT),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_SUPER),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_CAPS_LOCK),
+        tuiKeyboardModContainsMod(mod, TUI_MOD_NUM_LOCK)
     );
 }
 
