@@ -49,10 +49,10 @@ extern const char* kTui_Keyboard_Mod_Num_Lock_Name;
 extern const char* kTui_Keyboard_Mod_None_Name;
 extern const char* kTui_Keyboard_Mod_All_Name;
 
-TuiBoolean tuiKeyboardKeyboardModIsValid(TuiKeyboardMod mod);
-const char* tuiKeyboardKeyboardModToString(TuiKeyboardMod mod);
+TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod);
+const char* tuiKeyboardModToString(TuiKeyboardMod mod);
 TuiKeyboardMod tuiStringToMod(const char* str);
-TuiBoolean tuiKeyboardKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod);
+TuiBoolean tuiKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod);
 
 #ifdef __cplusplus //extern C guard
 }

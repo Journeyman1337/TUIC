@@ -17,7 +17,7 @@ const char* kTui_Keyboard_Mod_None_Name = "MOD_NONE";
 
 const char* kTui_Keyboard_Mod_All_Name = "MOD_ALL";
 
-TuiBoolean tuiKeyboardKeyboardModIsValid(TuiKeyboardMod mod)
+TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod)
 {
 	if (
 			(mod >= TUI_MOD_NONE) &&
@@ -29,7 +29,7 @@ TuiBoolean tuiKeyboardKeyboardModIsValid(TuiKeyboardMod mod)
 	return TUI_FALSE;
 }
 
-const char* tuiKeyboardKeyboardModToString(TuiKeyboardMod mod)
+const char* tuiKeyboardModToString(TuiKeyboardMod mod)
 {
 	switch (mod)
 	{
@@ -91,7 +91,7 @@ TuiKeyboardMod tuiStringToMod(const char* str)
 	return TUI_MOD_INVALID;
 }
 
-TuiBoolean tuiKeyboardKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod)
+TuiBoolean tuiKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod)
 {
 	if ((mod & contains_mod) == contains_mod)
 	{
