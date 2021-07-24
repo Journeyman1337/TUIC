@@ -2,21 +2,14 @@ cmake_minimum_required(VERSION 3.19)
 add_executable(TUIC_TESTS_MANUAL
 	common_test.cpp
 	common_test.hpp
-	opengl33_test.cpp
-	opengl33_test.hpp
 	test.cpp
-	test_impl.cpp
-)
-find_package(glfw3 CONFIG REQUIRED)
-find_package(glad CONFIG REQUIRED)
-target_link_libraries(TUIC_TESTS_MANUAL
-	PUBLIC
-		${PROJECT_NAME}
-		glfw
-		glad::glad
 )
 file(GLOB asset_files
 	assets/*
+)
+target_link_libraries(TUIC_TESTS_MANUAL
+	PUBLIC
+		${PROJECT_NAME}
 )
 # copy the content files to the executable output folder post build
 add_custom_command(TARGET TUIC_TESTS_MANUAL POST_BUILD    

@@ -5,45 +5,45 @@
 
 const char* kOutDirectoryPath = "test_out/";
 
-TuiAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode)
+TuiAtlas test_CreateCodepageAtlas(TuiBlendMode blend_mode)
 {
 	TuiImage image = nullptr;
 	switch (blend_mode)
 	{
 		case TUI_BLEND_BG_ALPHA:
-			image = tuiImageLoad("cp_8x8_rgba_bg_alpha.png", 0);
+			image = tuiImageLoad("cp_8x8_rgba_bg_alpha.png");
 			break;
 		case TUI_BLEND_FG_ALPHA:
-			image = tuiImageLoad("cp_8x8_rgba_fg_alpha.png", 0);
+			image = tuiImageLoad("cp_8x8_rgba_fg_alpha.png");
 			break;
 		case TUI_BLEND_BG_RED:
-			image = tuiImageLoad("cp_8x8_rgb_bg_red.png", 0);
+			image = tuiImageLoad("cp_8x8_rgb_bg_red.png");
 			break;
 		case TUI_BLEND_FG_RED:
-			image = tuiImageLoad("cp_8x8_rgb_fg_red.png", 0);
+			image = tuiImageLoad("cp_8x8_rgb_fg_red.png");
 			break;
 		case TUI_BLEND_BG_GREEN:
-			image = tuiImageLoad("cp_8x8_rgb_bg_green.png", 0);
+			image = tuiImageLoad("cp_8x8_rgb_bg_green.png");
 			break;
 		case TUI_BLEND_FG_GREEN:
-			image = tuiImageLoad("cp_8x8_rgb_fg_green.png", 0);
+			image = tuiImageLoad("cp_8x8_rgb_fg_green.png");
 			break;
 		case TUI_BLEND_BG_BLUE:
-			image = tuiImageLoad("cp_8x8_rgb_bg_blue.png", 0);
+			image = tuiImageLoad("cp_8x8_rgb_bg_blue.png");
 			break;
 		case TUI_BLEND_FG_BLUE:
-			image = tuiImageLoad("cp_8x8_rgb_fg_blue.png", 0);
+			image = tuiImageLoad("cp_8x8_rgb_fg_blue.png");
 			break;
 		case TUI_BLEND_NORMAL:
-			image = tuiImageLoad("cp_8x8_rgba_bg_alpha.png", 0);
+			image = tuiImageLoad("cp_8x8_rgba_bg_alpha.png");
 			break;
 	}
-	TuiAtlas atlas = tuiGlyphAtlasCreateCodepageGrid(instance, image, blend_mode);
+	TuiAtlas atlas = tuiAtlasCreateCodepageGrid(image, blend_mode);
 	tuiImageDestroy(image);
 	return atlas;
 }
 
-TuiBatch test_GetTestPatternBatch(int detail_mode)
+TuiBatch test_GetTestPatternBatch(TuiDetailMode detail_mode)
 {
 	TuiBatch batch = tuiBatchCreate(detail_mode, TEST_DIMENSIONS, TEST_DIMENSIONS);
 	for (int x = 0; x < TEST_DIMENSIONS; x++)
@@ -193,16 +193,16 @@ TuiBatch test_GetTestPatternBatch(int detail_mode)
 	return batch;
 }
 
-void test_BlendMode(TuiInstance instance, int blend_mode, TuiPanel panel)
+void test_BlendMode(TuiBlendMode blend_mode, TuiPanel panel)
 {
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	const char* blend_name = tuiBlendModeToString(blend_mode);
 	TuiBatch batch = test_GetTestPatternBatch(TUI_DETAIL_G8_C4_FULL);
-	TuiPalette palette = tuiPaletteCreateXterm(instance, 16);  
-	TuiAtlas atlas = test_CreateCodepageAtlas(instance, blend_mode);
+	TuiPalette palette = tuiPaletteCreateXterm(16);  
+	TuiAtlas atlas = test_CreateCodepageAtlas(blend_mode);
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	tuiPanelDrawBatch(panel, atlas, palette, batch);
-	TuiImage out_image = tuiPanelGetImage(panel, NULL);
+	TuiImage out_image = tuiPanelGetImage(panel);
 	char out_path[128];
 	strcpy(out_path, kOutDirectoryPath);
 	strcpy(out_path, blend_name);
@@ -210,12 +210,12 @@ void test_BlendMode(TuiInstance instance, int blend_mode, TuiPanel panel)
 	tuiImageSave(out_image, out_path);
 	tuiBatchDestroy(batch);
 	tuiPaletteDestroy(palette);
-	tuiGlyphAtlasDestroy(atlas);
+	tuiAtlasDestroy(atlas);
 	tuiImageDestroy(out_image);	
 	printf("%s\n", blend_name);
 }
 
-void test_DetailMode(TuiInstance instance, int detail_mode, TuiPanel panel)
+void test_DetailMode(TuiDetailMode detail_mode, TuiPanel panel)
 {
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	const char* detail_name = tuiDetailModeToString(detail_mode);
@@ -223,17 +223,17 @@ void test_DetailMode(TuiInstance instance, int detail_mode, TuiPanel panel)
 	TuiPalette palette = NULL;
 	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE)
 	{
-		 palette = tuiPaletteCreateXterm(instance, 256);
+		 palette = tuiPaletteCreateXterm(256);
 	}
-	size_t blend_mode = TUI_BLEND_FG_GREEN;
+	TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
 	if (tuiModesAreCompatible(detail_mode, TUI_BLEND_FG_GREEN) == TUI_FALSE)
 	{
 		 blend_mode = TUI_BLEND_NORMAL;
 	}
-	TuiAtlas atlas = test_CreateCodepageAtlas(instance, blend_mode);
+	TuiAtlas atlas = test_CreateCodepageAtlas(blend_mode);
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	tuiPanelDrawBatch(panel, atlas, palette, batch);
-	TuiImage out_image = tuiPanelGetImage(panel, NULL);
+	TuiImage out_image = tuiPanelGetImage(panel);
 	char out_path[128];
 	strcpy(out_path, kOutDirectoryPath);
 	strcpy(out_path, detail_name);
@@ -244,12 +244,12 @@ void test_DetailMode(TuiInstance instance, int detail_mode, TuiPanel panel)
 	{
 		tuiPaletteDestroy(palette);
 	}
-	tuiGlyphAtlasDestroy(atlas);
+	tuiAtlasDestroy(atlas);
 	tuiImageDestroy(out_image);	
 	printf("%s\n",detail_name);
 }
 
-void test_PaletteType(TuiInstance instance, int palette_channel_count, TuiPanel panel)
+void test_Palette(int palette_channel_count, TuiPanel panel)
 {
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	char palette_type_name[16];
@@ -267,12 +267,12 @@ void test_PaletteType(TuiInstance instance, int palette_channel_count, TuiPanel 
 			palette_colors[++channel_i] = 15 * (256 % (color_i + 1));
 		}
 	}
-	TuiPalette palette = tuiPaletteCreate(instance, palette_channel_count, 16, palette_colors);
+	TuiPalette palette = tuiPaletteCreate(palette_channel_count, 16, palette_colors);
 	delete[] palette_colors;
-	TuiAtlas atlas = test_CreateCodepageAtlas(instance, TUI_BLEND_BG_ALPHA);
+	TuiAtlas atlas = test_CreateCodepageAtlas(TUI_BLEND_BG_ALPHA);
 	tuiPanelClearColor(panel, 0, 0, 255, 255);
 	tuiPanelDrawBatch(panel, atlas, palette, batch);
-	TuiImage out_image = tuiPanelGetImage(panel, NULL);
+	TuiImage out_image = tuiPanelGetImage(panel);
 	char out_path[128];
 	strcpy(out_path, kOutDirectoryPath);
 	strcpy(out_path, palette_type_name);
@@ -280,7 +280,7 @@ void test_PaletteType(TuiInstance instance, int palette_channel_count, TuiPanel 
 	tuiImageSave(out_image, out_path);
 	tuiBatchDestroy(batch);
 	tuiPaletteDestroy(palette );
-	tuiGlyphAtlasDestroy(atlas);
+	tuiAtlasDestroy(atlas);
 	tuiImageDestroy(out_image);
 	printf("%s\n",palette_type_name);
 }

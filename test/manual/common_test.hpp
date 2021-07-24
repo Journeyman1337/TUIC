@@ -7,10 +7,10 @@
 
 extern const char* kOutDirectoryPath;
 
-TuiAtlas test_CreateCodepageAtlas(TuiInstance instance, int blend_mode);
-TuiBatch test_GetTestPatternBatch(int detail_mode);
-void test_BlendMode(TuiInstance instance, int blend_mode, TuiPanel panel);
-void test_DetailMode(TuiInstance instance, int detail_mode, TuiPanel panel);
-void test_PaletteType(TuiInstance instance, int palette_channel_count, TuiPanel panel);
+TuiAtlas test_CreateCodepageAtlas(TuiBlendMode blend_mode);
+TuiBatch test_GetTestPatternBatch(TuiDetailMode detail_mode);
+void test_BlendMode(TuiBlendMode blend_mode, TuiPanel panel);
+void test_DetailMode(TuiDetailMode detail_mode, TuiPanel panel);
+void test_Palette(int palette_channel_count, TuiPanel panel);
 
 #endif //header guard
