@@ -8,7 +8,7 @@
 
 const char* kTuik_Space_Name = "KEY_SPACE";
 
-const char* kTuik_Apostrophe_Name = "KEY_POSTROPHE";
+const char* kTuik_Apostrophe_Name = "KEY_APOSTROPHE";
 
 const char* kTuik_Comma_Name = "KEY_COMMA";
 
@@ -96,7 +96,7 @@ const char* kTuik_Z_Name = "KEY_Z";
 
 const char* kTuik_Left_Bracket_Name = "KEY_LEFT_BRACKET";
 
-const char* kTuik_Backslash_Name = "KEY_BAKCSLASH";
+const char* kTuik_Backslash_Name = "KEY_BACKSLASH";
 
 const char* kTuik_Right_Bracket_Name = "KEY_RIGHT_BRACKET";
 
@@ -176,7 +176,7 @@ const char* kTuik_F15_Name = "KEY_F15";
 
 const char* kTuik_F16_Name = "KEY_F16";
 
-const char* kTuik_F17_Name = "KEY_F16";
+const char* kTuik_F17_Name = "KEY_F17";
 
 const char* kTuik_F18_Name = "KEY_F18";
 
@@ -194,7 +194,7 @@ const char* kTuik_F24_Name = "KEY_F24";
 
 const char* kTuik_F25_Name = "KEY_F25";
 
-const char* kTuik_KP_0_Name = "KEY_F26";
+const char* kTuik_KP_0_Name = "KEY_KP_0";
 
 const char* kTuik_KP_1_Name = "KEY_KP_1";
 
@@ -333,7 +333,7 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey key)
 		case TUIK_N:
 			return kTuik_N_Name;
 		case TUIK_O:
-			return kTuik_0_Name;
+			return kTuik_O_Name;
 		case TUIK_P:
 			return kTuik_P_Name;
 		case TUIK_Q:
@@ -405,6 +405,8 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey key)
 		case TUIK_NUM_LOCK:
 			return kTuik_Num_Lock_Name;
 		case TUIK_PRINT_SCREEN:
+			return kTuik_Print_Screen_Name;
+		case TUIK_PAUSE:
 			return kTuik_Pause_Name;
 		case TUIK_F1:
 			return kTuik_F1_Name;
@@ -875,7 +877,7 @@ TuiKeyboardKey tuiStringToKeyboardKey(const char* str)
 	{
 		return TUIK_F18;
 	}
-	else if (strcmp(str, kTuik_F18_Name) == 0)
+	else if (strcmp(str, kTuik_F19_Name) == 0)
 	{
 		return TUIK_F19;
 	}
@@ -937,7 +939,7 @@ TuiKeyboardKey tuiStringToKeyboardKey(const char* str)
 	}
 	else if (strcmp(str, kTuik_KP_8_Name) == 0)
 	{
-		return TUIK_KP_9;
+		return TUIK_KP_8;
 	}
 	else if (strcmp(str, kTuik_KP_9_Name) == 0)
 	{
