@@ -69,7 +69,7 @@ int main()
         }
     }
     TuiBlendMode blend_mode = TUI_BLEND_BG_ALPHA;
-    TuiAtlas atlas = tuiAtlasCreate(atlas_image, glyph_count, glyph_bounding_boxes, blend_mode);
+    TuiAtlas atlas = tuiAtlasCreateCoordinateImagePixelBoundingBoxes(atlas_image, glyph_count, glyph_bounding_boxes, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
     tuiFree(glyph_bounding_boxes);

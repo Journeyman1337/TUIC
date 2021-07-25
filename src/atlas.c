@@ -26,7 +26,7 @@
 
 static int sAtlasCount = 0;
 
-TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -74,7 +74,7 @@ TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_boundin
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateRawPixels(int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -132,7 +132,7 @@ TuiAtlas tuiAtlasCreateRawPixels(int pixel_width , int pixel_height, int channel
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -178,7 +178,7 @@ TuiAtlas tuiAtlasCreateRawUVs(TuiImage image, int glyph_count, float* raw_glyph_
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -234,7 +234,7 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int ch
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateGrid(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -327,7 +327,7 @@ TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int chan
 const size_t kCodepageGlyphCount = 256;
 const size_t kCodepageGlyphTileDimensions = 16;
 
-TuiAtlas tuiAtlasCreateCodepageGrid(TuiImage image, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -368,7 +368,7 @@ TuiAtlas tuiAtlasCreateCodepageGrid(TuiImage image, TuiBlendMode blend_mode)
 	return atlas;
 }
 
-TuiAtlas tuiAtlasCreateCodepageGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
+TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)

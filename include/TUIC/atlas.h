@@ -26,23 +26,13 @@ extern "C" {
 #endif
 #include <TUIC/types.h>
 #include <TUIC/blend_mode.h>
-
-TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
-
-TuiAtlas tuiAtlasCreateRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
-
-TuiAtlas tuiAtlasCreateRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
-
-TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
-
-TuiAtlas tuiAtlasCreateGrid(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
-
+TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
 TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
-
-TuiAtlas tuiAtlasCreateCodepageGrid(TuiImage image, TuiBlendMode blend_mode);
-
-TuiAtlas tuiAtlasCreateCodepageGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
-
+TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode);
+TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
 void tuiAtlasDestroy(TuiAtlas atlas);
 
 int tuiGetAtlasCount();

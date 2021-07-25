@@ -123,7 +123,7 @@ int main()
 
     /* Create the atlas */
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
-    sAtlas = tuiAtlasCreateCodepageGrid(atlas_image, blend_mode);
+    sAtlas = tuiAtlasCreateCodepageImage(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
     atlas_image = NULL;
 

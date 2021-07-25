@@ -38,7 +38,7 @@ TuiAtlas test_CreateCodepageAtlas(TuiBlendMode blend_mode)
 			image = tuiImageLoad("cp_8x8_rgba_bg_alpha.png");
 			break;
 	}
-	TuiAtlas atlas = tuiAtlasCreateCodepageGrid(image, blend_mode);
+	TuiAtlas atlas = tuiAtlasCreateCodepageImage(image, blend_mode);
 	tuiImageDestroy(image);
 	return atlas;
 }
