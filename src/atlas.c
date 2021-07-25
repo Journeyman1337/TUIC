@@ -92,6 +92,11 @@ TuiAtlas tuiAtlasCreateRawPixels(int pixel_width , int pixel_height, int channel
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
 		return NULL;
 	}
+	if (channel_count != 3 && channel_count != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return NULL;
+	}
 	if (glyph_bounding_boxes == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES, __func__);
@@ -100,11 +105,6 @@ TuiAtlas tuiAtlasCreateRawPixels(int pixel_width , int pixel_height, int channel
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
-		return NULL;
-	}
-	if (channel_count != 3 && channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
 		return NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
@@ -196,6 +196,11 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int ch
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
 		return NULL;
 	}
+	if (channel_count != 3 && channel_count != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return NULL;
+	}
 	if (raw_glyph_uvs == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE_COORDINATES, __func__);
@@ -204,11 +209,6 @@ TuiAtlas tuiAtlasCreateRawPixelsRawUVs(int pixel_width, int pixel_height, int ch
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
-		return NULL;
-	}
-	if (channel_count != 3 && channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
 		return NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
@@ -386,14 +386,14 @@ TuiAtlas tuiAtlasCreateCodepageGridRawPixels(int pixel_width, int pixel_height, 
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (pixel_width % kCodepageGlyphTileDimensions != 0 || pixel_height % kCodepageGlyphTileDimensions != 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS, __func__);
-		return NULL;
-	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return NULL;
+	}
+	if (pixel_width % kCodepageGlyphTileDimensions != 0 || pixel_height % kCodepageGlyphTileDimensions != 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS, __func__);
 		return NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
