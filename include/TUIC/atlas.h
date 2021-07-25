@@ -53,7 +53,7 @@ int tuiAtlasGetPixelWidth(TuiAtlas atlas);
 
 int tuiAtlasGetPixelHeight(TuiAtlas atlas);
 
-void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height);
+void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height, int* out_channel_count);
 
 TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas);
 

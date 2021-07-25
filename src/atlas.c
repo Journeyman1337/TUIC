@@ -470,21 +470,25 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas)
 	return atlas->PixelHeight;
 }
 
-void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height)
+void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height, int* out_channel_count)
 {
 	if (atlas == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
+
 	if (out_pixel_width != NULL)
 	{
 		*out_pixel_width = (int)atlas->PixelWidth;
 	}
-	
 	if (out_pixel_height != NULL)
 	{
 		*out_pixel_height = (int)atlas->PixelHeight;
+	}
+	if (out_channel_count != NULL)
+	{
+		*out_channel_count = (int)atlas->ChannelCount;
 	}
 }
 
