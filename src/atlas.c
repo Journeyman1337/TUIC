@@ -292,14 +292,14 @@ TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int chan
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (tile_pixel_width <= 0 || tile_pixel_height <= 0 || pixel_width % tile_pixel_width != 0 || pixel_height % tile_pixel_height != 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_GLYPH_DIMENSIONS, __func__);
-		return NULL;
-	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return NULL;
+	}
+	if (tile_pixel_width <= 0 || tile_pixel_height <= 0 || pixel_width % tile_pixel_width != 0 || pixel_height % tile_pixel_height != 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_GLYPH_DIMENSIONS, __func__);
 		return NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
