@@ -39,11 +39,6 @@ TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_boundin
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return NULL;
 	}
-	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
-	}
 	if (glyph_bounding_boxes == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES, __func__);
@@ -52,6 +47,11 @@ TuiAtlas tuiAtlasCreate(TuiImage image, int glyph_count, uint16_t* glyph_boundin
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
+		return NULL;
+	}
+	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
 		return NULL;
 	}
 
