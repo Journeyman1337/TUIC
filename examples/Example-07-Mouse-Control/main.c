@@ -66,14 +66,14 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         current_cursor_shape = increment_cursor_shape(current_cursor_shape);
         if (current_cursor_shape == 0)
         {
-            TuiCursor next_cursor = tuiCursorCreate(custom_cursor_image, 8, 8);
+            TuiCursor next_cursor = tuiCursorCreateImage(custom_cursor_image, 8, 8);
             tuiWindowSetCursor(window, next_cursor);
             tuiCursorDestroy(current_cursor);
             current_cursor = next_cursor;
         }
         else
         {
-            TuiCursor next_cursor = tuiCursorCreateStandard(current_cursor_shape);
+            TuiCursor next_cursor = tuiCursorCreateShape(current_cursor_shape);
             tuiWindowSetCursor(window, next_cursor);
             tuiCursorDestroy(current_cursor);
             current_cursor = next_cursor;
@@ -124,7 +124,7 @@ int main()
     custom_cursor_image  = tuiImageLoad("custom_cursor.png", expected_channel_count);
 
     /* Initialize the current cursor. */
-    current_cursor = tuiCursorCreateStandard(current_cursor_shape);
+    current_cursor = tuiCursorCreateShape(current_cursor_shape);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
