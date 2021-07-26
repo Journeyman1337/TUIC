@@ -100,7 +100,7 @@ void window_resize_callback(TuiWindow window, int pixel_width, int pixel_height)
     if (new_tiles_wide != tuiBatchGetTilesWide(window_user_pointer->batch) || new_tiles_tall != tuiBatchGetTilesTall(window_user_pointer->batch)) //if the new size is different than the previous batch size...
     {
         TuiBoolean reserve_leftover_batch_space = TUI_TRUE; //reserve the leftover space if less space is needed for the new size. This can lower allocations/increase performance.
-        tuiBatchResize(window_user_pointer->batch, new_tiles_wide, new_tiles_tall, reserve_leftover_batch_space);
+        tuiBatchSetTileDimensions(window_user_pointer->batch, new_tiles_wide, new_tiles_tall, reserve_leftover_batch_space);
         for (int x = 0; x < new_tiles_wide; x++)
         {
             for (int y = 0; y < new_tiles_tall; y++)

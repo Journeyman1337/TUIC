@@ -75,7 +75,7 @@ TuiDetailMode tuiBatchGetDetail(TuiBatch batch);
  * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
  * Throws @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
  */
-void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra);
+void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra);
 /*!
  * @brief Get the size of a @ref TuiBatch in tile dimensions.
  *

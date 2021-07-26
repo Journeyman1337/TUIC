@@ -99,7 +99,7 @@ TuiDetailMode tuiBatchGetDetail(TuiBatch batch)
 	return batch->DetailMode;
 }
 
-void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra)
+void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra)
 {
 	if (batch == NULL)
 	{
