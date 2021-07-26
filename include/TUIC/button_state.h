@@ -26,23 +26,107 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
+/*! @nam Button states
+ *  @{ */
+/*!
+ * @brief The position of a button or key.
+ */
 typedef enum TuiButtonState
 {
+	/*!
+	 * \brief The button state is invalid.
+	 *
+	 * This button state is returned when an error occurs, and is also used to specify that no button state is
+	 * defined.
+	 */
 	TUI_BUTTON_INVALID = 3,
+	/*!
+	 * \brief The button is released.
+	 */
 	TUI_BUTTON_RELEASE = 0,
+	/*!
+	 * \brief The button is pressed.
+	 */
 	TUI_BUTTON_PRESS = 1,
+	/*!
+	 * \brief The button is pressed and is repeating.
+	 */
 	TUI_BUTTON_REPEAT = 2,
+	/*!
+	 * \brief The first valid button state.
+	 */
 	TUI_BUTTON_FIRST = TUI_BUTTON_RELEASE,
+	/*!
+	 * \brief The last valid button state.
+	 */
 	TUI_BUTTON_LAST = TUI_BUTTON_REPEAT
 }TuiButtonState;
+/*! @} */
 
+/*! @name TuiButtonState names
+ *  @{ */
+/*!
+ * @brief String name of @ref TUI_BUTTON_RELEASE.
+ */
 extern const char* kTui_Button_Release_Name;
+/*!
+ * @brief String name of @ref TUI_BUTTON_PRESS.
+ */
 extern const char* kTui_Button_Press_Name;
+/*!
+ * @brief String name of @ref TUI_BUTTON_REPEAT.
+ */
 extern const char* kTui_Button_Repeat_Name;
+/*! @} */
 
+/*! @name TuiButtonState functions
+ *
+ * Functions for dealing with @ref TuiButtonState enum values.
+ *  @{ */
+/*!
+ * @brief Determine if a @ref TuiButtonState enum is valid.
+ *
+ * @param atlas_type The @ref TuiButtonState to check.
+ *
+ * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiButtonState, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiBoolean tuiButtonStateIsValid(TuiButtonState button_state);
+/*!
+ * @brief Retrieve the string name associated with a @ref TuiButtonState enum.
+ *
+ * @param atlas_type The TuiButtonState to get the name of.
+ *
+ * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiButtonState.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 const char* tuiButtonStateToString(TuiButtonState button_state);
+/*!
+ * @brief Determine the TuiButtonState enum value associated with a string name.
+ *
+ * @param str The string name.
+ *
+ * @returns The TuiBlendMode. @ref TUI_BUTTON_INVALID is returned if no match is found.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiButtonState tuiStringToButtonState(const char* str);
+/*! @} */
 
 #ifdef __cplusplus //extern C guard
 }
