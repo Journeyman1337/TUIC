@@ -45,7 +45,6 @@ typedef enum TuiBlendMode
 	 */
 	TUI_BLEND_NORMAL = 1,
 	/*!
-	/*!
 	 * \brief Blend mode that blends the glyph foreground color with the red color component of the atlas texture.
 	 */
 	TUI_BLEND_FG_RED = 2,
@@ -65,7 +64,7 @@ typedef enum TuiBlendMode
 	 * \brief Blend mode that blends the glyph background color with the red color component of the glyph texture.
 	 */
 	TUI_BLEND_BG_RED = 6,
-		/*!
+	/*!
 	 * \brief Blend mode that blends the glyph background color with the red color component of the glyph texture.
 	 */
 	TUI_BLEND_BG_GREEN = 7,
@@ -86,8 +85,9 @@ typedef enum TuiBlendMode
 	 */
 	TUI_BLEND_LAST = TUI_BLEND_BG_ALPHA
 } TuiBlendMode;
+/*! @} */
 
-/*! @name Blend Mode Names
+/*! @name TuiBlendMode names
  *  @{ */
 /*!
  * @brief String name of @ref TUI_BLEND_NORMAL.
