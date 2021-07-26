@@ -148,7 +148,7 @@ void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean r
 	}
 }
 
-void tuiBatchGetSize(TuiBatch batch, int* tiles_wide, int* tiles_tall)
+void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
 {	
 	if (batch == NULL)
 	{

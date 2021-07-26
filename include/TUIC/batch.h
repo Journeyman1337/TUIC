@@ -85,7 +85,7 @@ void tuiBatchResize(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean r
  *
  * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
  */
-void tuiBatchGetSize(TuiBatch batch, int* tiles_wide, int* tiles_tall);
+void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall);
 /*!
  * @brief Get the width of a @ref TuiBatch in tiles.
  *
