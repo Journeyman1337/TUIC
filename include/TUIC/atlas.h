@@ -26,6 +26,11 @@ extern "C" {
 #endif
 #include <TUIC/types.h>
 #include <TUIC/blend_mode.h>
+
+/*! @name @ref TuiAtlas functions
+ *
+ * Functions for manipulating @ref TuiAtlas opaque objects.
+ *  @{ */
 /*!
  * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture from a @ref TuiImage and glyph coordinates from a raw glyph bouning box array
  *
@@ -264,7 +269,7 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas);
  * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
  *
  * @thread_safety For each @ref TuiAtlas, this function must only be called on one thread at a time to ensure safe memory access.
- */
+ */ 
 void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height, int* out_channel_count);
 /*!
  * @brief Get the @ref TuiBlendMode used when drawing batch data with a @ref TuiAtlas.
@@ -307,6 +312,9 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiAtlasGetGlyphCount(TuiAtlas atlas);
+/*! @} */
+
+
 /*!
  * @brief Get a raw UV texture coordinate STPQ array from a raw pixel coordinate STPQ array.
  *
