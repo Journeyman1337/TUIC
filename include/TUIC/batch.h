@@ -28,10 +28,10 @@ extern "C" {
 #include <TUIC/detail_mode.h>
 #include <TUIC/boolean.h>
 
+
 /*! @name TuiBatch functions
  *
  * These functions are used for manipulating @ref TuiBatch opaque objects.
- *
  *  @{ */
 /*!
  * @brief Create a new @ref TuiBatch.
@@ -40,18 +40,25 @@ extern "C" {
  * @param tiles_wide The amount of tiles wide of the @ref TuiBatch data.
  * @param tiles_tall The amount of tiles tall of the @ref TuiBatch data.
  *
- * @returns The created @ref TuiBatch object. NULL is returned on error.
+ * @returns The created @ref TuiBatch. NULL is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
- * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS and @ref TUI_ERROR_INVALID_DETAIL_MODE. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall);
 /*!
- * @brief  Destroy @ref TuiBatch and correctly dispose of all of its resources.
+ * @brief  Destroy @ref TuiBatch and correctly dispose of of its internally managed resources.
  *
- * @param batch The @ref TuiBatch object to destroy.
+ * @param batch The @ref TuiBatch to destroy.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 void tuiBatchDestroy(TuiBatch batch);
 /*!
@@ -59,31 +66,42 @@ void tuiBatchDestroy(TuiBatch batch);
  *
  * @param batch The @ref TuiBatch.
  *
- * @returns The @ref TuiDetailMode. 0 is returned on error.
+ * @returns The @ref TuiDetailMode of the batch. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 TuiDetailMode tuiBatchGetDetail(TuiBatch batch);
 /*!
- * @brief Resize the tile dimensions of a @ref TuiBatch and clear its data.
+ * @brief Set new tile dimensions of a @ref TuiBatch and clear its data.
  *
- * @param batch The @ref TuiBatch.
+ * @param batch The @ref TuiBatch to resize.
  * @param tiles_wide The new batch tiles wide.
  * @param tiles_height The new batch tiles tall.
- * @param reserve_extra A @ref TuiBoolean enum that specifies if extra space in the data array should be deallocated or saved for future resizes.
+ * @param reserve_extra A @ref TuiBoolean enum that specifies if extra space in the data array should be rserved for future resizes instead of deallocated.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra);
 /*!
- * @brief Get the size of a @ref TuiBatch in tile dimensions.
+ * @brief Get the tile dimensions of a @ref TuiBatch.
  *
- * @param batch The @ref TuiBatch.
- * @param tiles_wide A pointer to where the width of the @ref TuiBatch will be stored. If NULL or an error occurs, it is ignored.
- * @param tiles_height A pointer to where the height of the @ref TuiBatch will be stored. If NULL or an error occurs, it is ignored.
+ * @param batch The @ref TuiBatch to get the tile dimensions of.
+ * @param tiles_wide A pointer to where the tile width of the @ref TuiBatch will be stored. If NULL or an error occurs, it is ignored.
+ * @param tiles_height A pointer to where the tile height of the @ref TuiBatch will be stored. If NULL or an error occurs, it is ignored.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall);
 /*!
@@ -91,9 +109,13 @@ void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
  *
  * @param batch The @ref TuiBatch.
  *
- * @returns The tiles wide. 0 is returned on error.
+ * @returns The tiles wide. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 int tuiBatchGetTilesWide(TuiBatch batch);
 /*!
@@ -101,9 +123,13 @@ int tuiBatchGetTilesWide(TuiBatch batch);
  *
  * @param batch The @ref TuiBatch.
  *
- * @returns The tiles tall. 0 is returned on error.
+ * @returns The tiles tall. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 int tuiBatchGetTilesTall(TuiBatch batch);
 /*!
@@ -111,9 +137,13 @@ int tuiBatchGetTilesTall(TuiBatch batch);
  *
  * @param batch The @ref TuiBatch.
  *
- * @returns The size in bytes. 0 is returned on error.
+ * @returns The size of the data array in bytes. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 int tuiBatchGetDataSize(TuiBatch batch);
 /*!
@@ -121,9 +151,13 @@ int tuiBatchGetDataSize(TuiBatch batch);
  *
  * @param batch The @ref TuiBatch.
  *
- * @returns The size in bytes. 0 is returned on error.
+ * @returns The size of the data array in bytes, including reserved space. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 int tuiBatchGetReservedSize(TuiBatch batch);
 /*!
@@ -131,15 +165,25 @@ int tuiBatchGetReservedSize(TuiBatch batch);
  *
  * @param batch The @ref TuiBatch.
  *
- * @returns The amount of tiles. 0 is returned on error.
+ * @returns The amount of tiles that are currently set. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access. 
  */
 int tuiBatchGetTileCount(TuiBatch batch);
 /*!
- * @brief Clear the data of a @ref TuiBatch.
+ * @brief Clear the data of a @ref TuiBatch to 0.
  *
- * @param batch The @ref TuiBatch.
+ * @param batch The @ref TuiBatch to clear.
+ *
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
 void tuiBatchClear(TuiBatch batch);
 /*!
@@ -150,8 +194,11 @@ void tuiBatchClear(TuiBatch batch);
  * @param y The y coordinate of the tile.
  * @param glyph The 8 bit glyph id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C0_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph);
 /*!
@@ -163,8 +210,11 @@ void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph);
  * @param glyph The 8 bit glyph id.
  * @param fg_and_bg The 8 bit value that contains both the foreground and background color palette ids.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C4_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors);
 /*!
@@ -177,8 +227,11 @@ void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
  * @param fg The 8 bit value that contains the foreground color palette id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C8_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg);
 /*!
@@ -190,8 +243,11 @@ void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
  * @param glyph The 8 bit glyph id.
  * @param fg The 8 bit value that contains the foreground color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C8NBG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg);
 /*!
@@ -203,8 +259,11 @@ void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
  * @param glyph The 8 bit glyph id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C8NFG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg);
 /*!
@@ -221,8 +280,11 @@ void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C24_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -236,8 +298,11 @@ void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
  * @param fg_g The 8 bit value that contains the foreground color green color value.
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C24NBG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
@@ -251,8 +316,11 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C24NFG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -271,8 +339,11 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -287,8 +358,11 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  * @param fg_a The 8 bit value that contains the foreground color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32NBG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
@@ -303,8 +377,11 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32NFG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -315,8 +392,11 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  * @param y The y coordinate of the tile.
  * @param glyph The 16 bit glyph id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C0_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph);
 /*!
@@ -328,8 +408,11 @@ void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph);
  * @param glyph The 16 bit glyph id.
  * @param fg_and_bg The 8 bit value that contains both the foreground and background color palette ids.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C4_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors);
 /*!
@@ -342,8 +425,11 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
  * @param fg The 8 bit value that contains the foreground color palette id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C8_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg);
 /*!
@@ -355,8 +441,11 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
  * @param glyph The 16 bit glyph id.
  * @param fg The 8 bit value that contains the foreground color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C8_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg);
 /*!
@@ -368,8 +457,11 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
  * @param glyph The 16 bit glyph id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C8NFG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg);
 /*!
@@ -386,8 +478,11 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C24_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -401,8 +496,11 @@ void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
  * @param fg_g The 8 bit value that contains the foreground color green color value.
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C24NBG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
@@ -416,8 +514,11 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C24NFG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -436,8 +537,11 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C32_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -452,8 +556,11 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  * @param fg_a The 8 bit value that contains the foreground color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C32NBG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
@@ -468,8 +575,11 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C32NFG_FULL detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -480,8 +590,11 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  * @param y The y coordinate of the tile.
  * @param glyph The 8 bit glyph id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C0_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph);
 /*!
@@ -493,8 +606,11 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph);
  * @param glyph The 8 bit glyph id.
  * @param fg_and_bg The 8 bit value that contains both the foreground and background color palette ids.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C4_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors);
 /*!
@@ -507,8 +623,11 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
  * @param fg The 8 bit value that contains the foreground color palette id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C8_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg);
 /*!
@@ -520,8 +639,11 @@ void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
  * @param glyph The 8 bit glyph id.
  * @param fg The 8 bit value that contains the foreground color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C8NBG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg);
 /*!
@@ -533,8 +655,11 @@ void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
  * @param glyph The 8 bit glyph id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C8NFG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg);
 /*!
@@ -551,8 +676,11 @@ void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C24_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -566,8 +694,11 @@ void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
  * @param fg_g The 8 bit value that contains the foreground color green color value.
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C24NBG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
@@ -581,8 +712,11 @@ void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C24NFG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -601,8 +735,11 @@ void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -617,8 +754,11 @@ void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  * @param fg_a The 8 bit value that contains the foreground color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32NBG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
@@ -633,8 +773,11 @@ void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32NFG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -645,8 +788,11 @@ void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  * @param y The y coordinate of the tile.
  * @param glyph The 16 bit glyph id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C0_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph);
 /*!
@@ -658,8 +804,11 @@ void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
  * @param glyph The 16 bit glyph id.
  * @param fg_and_bg The 8 bit value that contains both the foreground and background color palette ids.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C4_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors);
 /*!
@@ -672,8 +821,11 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
  * @param fg The 8 bit value that contains the foreground color palette id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C8_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg);
 /*!
@@ -685,8 +837,11 @@ void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
  * @param glyph The 16 bit glyph id.
  * @param fg The 8 bit value that contains the foreground color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C8NBG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg);
 /*!
@@ -698,8 +853,11 @@ void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
  * @param glyph The 16 bit glyph id.
  * @param bg The 8 bit value that contains the background color palette id.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C8NFG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg);
 /*!
@@ -716,8 +874,11 @@ void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C24_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -731,8 +892,11 @@ void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
  * @param fg_g The 8 bit value that contains the foreground color green color value.
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C24NBG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
@@ -746,8 +910,11 @@ void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
  * @param bg_g The 8 bit value that contains the background color green color value.
  * @param bg_b The 8 bit value that contains the background color blue color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C24NFG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
@@ -766,8 +933,11 @@ void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G8_C32_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
@@ -782,8 +952,11 @@ void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
  * @param fg_b The 8 bit value that contains the foreground color blue color value.
  * @param fg_a The 8 bit value that contains the foreground color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C32NBG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
@@ -798,8 +971,11 @@ void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
  * @param bg_b The 8 bit value that contains the background color blue color value.
  * @param bg_a The 8 bit value that contains the background color alpha color value.
  *
- * @errors Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_SETTER if batch does not use @ref TUI_DETAIL_G16_C32NFG_SPARSE detail mode.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERRO_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
  */
 void tuiBatchSetTile_G16_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*! @} */
