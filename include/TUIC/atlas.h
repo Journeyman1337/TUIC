@@ -313,9 +313,6 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiAtlasGetGlyphCount(TuiAtlas atlas);
-/*! @} */
-
-
 /*!
  * @brief Get a raw UV texture coordinate STPQ array from a raw pixel coordinate STPQ array.
  *
@@ -336,6 +333,8 @@ int tuiAtlasGetGlyphCount(TuiAtlas atlas);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 float* tuiGenerateUVCoordinatesFromPixelCooordinates(int glyph_count, uint16_t* pixel_coordinates, int texture_width, int texture_height, float* out_ptr);
+/*! @} */
+
 #ifdef __cplusplus //extern C guard
 }
 #endif
