@@ -30,7 +30,7 @@ extern "C" {
 /*! @name Atlas types
  *  @{ */
 /*!
-* @brief How the glyph locations within a TuiAtlas are stored. 
+* @brief How the glyph locations within a @ref TuiAtlas are stored. 
 */
 typedef enum TuiAtlasType
 {
@@ -41,7 +41,6 @@ typedef enum TuiAtlasType
 	 * defined.
 	 */
 	TUI_ATLAS_INVALID = 0,
-
 	/*!
 	 * \brief The atlas uses an STPQ texture coordinate array to store the locations of each glyph.
 	 * 
@@ -49,7 +48,6 @@ typedef enum TuiAtlasType
 	 * elemeents in the array being the STPQ coordinates of the glyph of index 0.
 	 */
 	TUI_ATLAS_COORDS = 1,
-
 	/*!
 	 * \brief The glyphs are layed out in a grid pattern where each glyph has the same pixel width
 	 * and pixel height.
@@ -58,18 +56,19 @@ typedef enum TuiAtlasType
 	 * the upper right corner of the texture.
 	 */
 	TUI_ATLAS_GRID = 2,
-
-	TUI_ATLAS_FIRST = TUI_ATLAS_COORDS,
-
 	/*!
-	 * \brief The last valid value of TuiAtlasType.
+	 * \brief The first atlas type value.
+	 */
+	TUI_ATLAS_FIRST = TUI_ATLAS_COORDS,
+	/*!
+	 * \brief The last valid atlas type value.
 	 */
 	TUI_ATLAS_LAST = TUI_ATLAS_GRID
 } TuiAtlasType;
 /*! @} */
 
 
-/*! @name TuiAtlasType names
+/*! @name @ref TuiAtlasType names
  *
  * Constant string names of each atlas type.
  *  @{ */
@@ -77,7 +76,6 @@ typedef enum TuiAtlasType
  * @brief String name of TUI_ATLAS_COORDS.
  */
 extern const char* kTui_Atlas_Coords_Name;
-
 /*!
  * @brief String name of TUI_ATLAS_GRID.
  */
@@ -87,41 +85,49 @@ extern const char* kTui_Atlas_Grid_Name;
 
 /*! @name TuiAtlasType functions
  *
- * Functions for dealing with TuiAtlasType enum values.
+ * Functions for dealing with @ref TuiAtlasType enum values.
  *  @{ */
 /*!
- * @brief Determine if a TuiAtlasType enum is valid.
+ * @brief Determine if a @ref TuiAtlasType enum is valid.
  * 
- * This function determines if a value is a valid TuiAtlasType enum value. If it is valid, it
- * returns TuiTrue. Otherwise, it returns TuiFalse.
+ * @param atlas_type The @ref TuiAtlasType to check.
  * 
- * @param atlas_type The TuiAtlasType to check.
- * 
- * @returns The TuiBoolean result.
+ * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiAtlasType, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type);
-
 /*!
- * @brief Retrieve the string name of a TuiAtlasType enum.
- *
- * This function retrieves the constant string name associated with a TuiAtlasType enum value.
+ * @brief Retrieve the string name associated with a @ref TuiAtlasType enum.
  *
  * @param atlas_type The TuiAtlasType to get the name of.
  *
- * @returns The string name. NULL is returned if an error occurs.
+ * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiAtlasType.
  * 
- * @errors Throws TUI_ERROR_INVALID_ATLAS_TYPE if atlas_type is not a TuiAtlasType enum value.
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 const char* tuiAtlasTypeToString(TuiAtlasType atlas_type);
-
 /*!
  * @brief Determine the TuiAtlasType enum value associated with a string name.
  *
- * This function determine what TuiAtlasType a string name represents.
- *
  * @param str The string name.
  *
- * @returns The TuiAtlasType. TUI_ATLAS_INVALID is returned if no match is found.
+ * @returns The TuiAtlasType. @ref TUI_ATLAS_INVALID is returned if no match is found.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiAtlasType tuiStringToAtlasType(const char* str);
 /*! @} */
