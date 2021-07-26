@@ -27,6 +27,7 @@ extern "C" {
 #include <TUIC/types.h>
 #include <TUIC/blend_mode.h>
 
+
 /*! @name @ref TuiAtlas functions
  *
  * Functions for manipulating @ref TuiAtlas opaque objects.
