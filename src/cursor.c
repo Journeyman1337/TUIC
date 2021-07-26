@@ -21,6 +21,11 @@ TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y)
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return NULL;
 	}
+	if (image->ChannelCount != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return NULL;
+	}
 
 	GLFWimage glfw_image = _TuiImageToGlfwImage(image, __func__);
 	if (glfw_image.width == 0)
@@ -33,7 +38,7 @@ TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y)
 	return cursor;
 }
 
-TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int hotspot_x, int hotspot_y)
+TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* pixels, int hotspot_x, int hotspot_y)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
