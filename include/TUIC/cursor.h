@@ -27,9 +27,8 @@ extern "C" {
 #include <TUIC/types.h>
 #include <TUIC/cursor_shape.h>
 
-TuiCursor tuiCursorCreate(TuiImage image, int xhot, int yhot);
 
-TuiCursor tuiCursorCreateStandard(TuiCursorShape shape);
+TuiCursor tuiCursorCreateShape(TuiCursorShape shape);
 
 void tuiCursorDestroy(TuiCursor cursor);
 
