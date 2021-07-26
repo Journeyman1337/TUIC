@@ -57,7 +57,7 @@ typedef enum TuiAtlasType
 	 */
 	TUI_ATLAS_GRID = 2,
 	/*!
-	 * \brief The first atlas type value.
+	 * \brief The first valid atlas type value.
 	 */
 	TUI_ATLAS_FIRST = TUI_ATLAS_COORDS,
 	/*!
