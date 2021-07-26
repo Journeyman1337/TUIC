@@ -56,11 +56,6 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (channel_count != 3 && channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
-	}
 	
 	GLFWimage glfw_image;
 	glfw_image.width = pixel_width;
