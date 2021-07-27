@@ -24,7 +24,7 @@ int main()
     int window_width = tiles_wide * glyph_pixel_dimensions * size_multiplier;
     int window_height = tiles_tall * glyph_pixel_dimensions * size_multiplier;
 
-    if (tuiInit(TUI_FALSE) == TUI_FALSE)
+    if (tuiInit() == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return -1;

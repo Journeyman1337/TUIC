@@ -144,8 +144,7 @@ int main()
     WindowUserPointer window_user_pointer;
 
     /* Initialize TUIC. */
-    TuiBoolean multi_window = TUI_FALSE;
-    TuiBoolean initialization_successful = tuiInit(multi_window);
+    TuiBoolean initialization_successful = tuiInit();
     if (initialization_successful == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");

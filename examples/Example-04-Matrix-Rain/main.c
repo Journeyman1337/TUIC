@@ -88,7 +88,7 @@ void refresh_callback(TuiWindow window)
 
 int main()
 {
-    if (tuiInit(TUI_FALSE) == TUI_FALSE)
+    if (tuiInit() == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return -1;
@@ -108,6 +108,7 @@ int main()
     /* Create the window. */
     const char* window_title = "Example 1";
     TuiWindow window = tuiWindowCreate(monitor_width, monitor_height, window_title, NULL);
+    TuiWindow window2 = tuiWindowCreate(244, 244, window_title, NULL);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
@@ -268,8 +269,10 @@ int main()
         }
 
         tuiWindowDrawBatchTransformed(window, atlas, palette, batch, 0, monitor_width - extra_pixels_wide, 0, monitor_height - extra_pixels_tall);
+        tuiWindowDrawBatchTransformed(window2, atlas, palette, batch, 0, monitor_width - extra_pixels_wide, 0, monitor_height - extra_pixels_tall);
 
         tuiWindowFrame(window); //draw the next frame from the window framebuffer
+        tuiWindowFrame(window2);
     }
 
     /* Destroy all remaining TUIC objects */

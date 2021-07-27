@@ -194,11 +194,6 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (system->MultiWindow == TUI_FALSE && system->BaseWindowClaimed == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_WINDOW_COUNT, __func__);
-		return NULL;
-	}
 
 	if (title == NULL)
 	{
@@ -207,94 +202,40 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 
 	GLFWwindow* glfw_window = NULL;
 
-	if (system->MultiWindow == TUI_FALSE) //recruit system GLFWwindow as this TuiWindow's window
-	{
-		glfw_window = system->BaseWindow;
-		glfwSetWindowSize(glfw_window, pixel_width, pixel_height);
-		glfwSetWindowTitle(glfw_window, title);
-		
-		if (create_info == NULL)
-		{
-			glfwSetWindowAttrib(glfw_window, GLFW_RESIZABLE, GLFW_FALSE);
-			glfwShowWindow(glfw_window);
-			glfwSetWindowAttrib(glfw_window, GLFW_DECORATED, GLFW_TRUE);
-			glfwFocusWindow(glfw_window);
-			glfwSetWindowAttrib(glfw_window, GLFW_AUTO_ICONIFY, GLFW_TRUE);
-			glfwSetWindowAttrib(glfw_window, GLFW_FLOATING, GLFW_FALSE);
-			glfwRestoreWindow(glfw_window);
-			glfwSetWindowAttrib(glfw_window, GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
-		}
-		else
-		{
-			int glfw_resizable = (create_info->resizable == TUI_TRUE) ? GLFW_TRUE : GLFW_FALSE;
-			glfwSetWindowAttrib(glfw_window, GLFW_RESIZABLE, glfw_resizable);
-			if (create_info->visible == TUI_TRUE)
-			{
-				glfwShowWindow(glfw_window);
-			}
-			int glfw_decorated = (create_info->decorated == TUI_TRUE) ? GLFW_TRUE : GLFW_FALSE;
-			glfwSetWindowAttrib(glfw_window, GLFW_DECORATED, glfw_decorated);
-			if (create_info->focused == TUI_TRUE)
-			{
-				glfwFocusWindow(glfw_window);
-			}
-			int glfw_auto_iconify = (create_info->auto_iconify == TUI_TRUE) ? GLFW_TRUE : GLFW_FALSE;
-			glfwSetWindowAttrib(glfw_window, GLFW_AUTO_ICONIFY, glfw_auto_iconify);
-			int glfw_floating = (create_info->topmost == TUI_TRUE) ? GLFW_TRUE : GLFW_FALSE;
-			glfwSetWindowAttrib(glfw_window, GLFW_FLOATING, glfw_floating);
-			if (create_info->maximized == TUI_TRUE)
-			{
-				glfwMaximizeWindow(glfw_window);
-			}
-			else //if (create_info->maximized == TUI_FALSE)
-			{
-				glfwRestoreWindow(glfw_window);
-			}
-			if (create_info->center_cursor)
-			{
-				glfwSetCursorPos(glfw_window, ((double)pixel_width) / 2.0, ((double)pixel_height) / 2.0);
-			}
-			int glfw_focus_on_show = (create_info->focus_on_show == TUI_TRUE) ? GLFW_TRUE : GLFW_FALSE;
-			glfwSetWindowAttrib(glfw_window, GLFW_FOCUS_ON_SHOW, glfw_focus_on_show);
-		}
-	}
-	else //if (system->MultiWindow == TUI_TRUE)
-	{
-		glfwDefaultWindowHints();
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-		glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
+	glfwDefaultWindowHints();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
 #ifdef __APPLE__
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-		if (create_info != NULL)
-		{
-			glfwWindowHint(GLFW_RESIZABLE, create_info->resizable);
-			glfwWindowHint(GLFW_VISIBLE, create_info->visible);
-			glfwWindowHint(GLFW_DECORATED, create_info->decorated);
-			glfwWindowHint(GLFW_FOCUSED, create_info->focused);
-			glfwWindowHint(GLFW_AUTO_ICONIFY, create_info->auto_iconify);
-			glfwWindowHint(GLFW_FLOATING, create_info->topmost);
-			glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
-			glfwWindowHint(GLFW_CENTER_CURSOR, create_info->center_cursor);
-			glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info->focus_on_show);
-		}
-		else
-		{
-			glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-			glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
-			glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
-			glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
-			glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_TRUE);
-			glfwWindowHint(GLFW_FLOATING, GLFW_FALSE);
-			glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
-			glfwWindowHint(GLFW_CENTER_CURSOR, GLFW_FALSE);
-			glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
-		}
-
-		glfw_window = glfwCreateWindow(pixel_width, pixel_height, title, NULL, system->BaseWindow);
+	if (create_info != NULL)
+	{
+		glfwWindowHint(GLFW_RESIZABLE, create_info->resizable);
+		glfwWindowHint(GLFW_VISIBLE, create_info->visible);
+		glfwWindowHint(GLFW_DECORATED, create_info->decorated);
+		glfwWindowHint(GLFW_FOCUSED, create_info->focused);
+		glfwWindowHint(GLFW_AUTO_ICONIFY, create_info->auto_iconify);
+		glfwWindowHint(GLFW_FLOATING, create_info->topmost);
+		glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
+		glfwWindowHint(GLFW_CENTER_CURSOR, create_info->center_cursor);
+		glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info->focus_on_show);
 	}
+	else
+	{
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
+		glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
+		glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_TRUE);
+		glfwWindowHint(GLFW_FLOATING, GLFW_FALSE);
+		glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
+		glfwWindowHint(GLFW_CENTER_CURSOR, GLFW_FALSE);
+		glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
+	}
+
+	glfw_window = glfwCreateWindow(pixel_width, pixel_height, title, NULL, system->BaseWindow);
 	
 	if (glfw_window == NULL)
 	{
@@ -335,10 +276,6 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	glfwSetWindowUserPointer(glfw_window, window);
 	glfwMakeContextCurrent(glfw_window);
 	tuiWindowCreate_Opengl33(window);
-	if (system->MultiWindow == TUI_FALSE)
-	{
-		system->BaseWindowClaimed = TUI_TRUE;
-	}
 	sWindowCount++;
 	_GlfwClearErrors();
 	return window;
@@ -368,21 +305,9 @@ void tuiWindowDestroy(TuiWindow window)
 		return;
 	}
 
-	if (system->MultiWindow == TUI_FALSE)
-	{
-		glfwHideWindow(system->BaseWindow);
-		if (window->IsFixedAspectRatio == TUI_TRUE)
-		{
-			glfwSetWindowAspectRatio(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
-		}
-		if (_WindowHasSizeLimits(window) == TUI_TRUE)
-		{
-			glfwSetWindowSizeLimits(system->BaseWindow, GLFW_DONT_CARE, GLFW_DONT_CARE, GLFW_DONT_CARE, GLFW_DONT_CARE);
-		}
-		system->BaseWindowClaimed = TUI_FALSE;
-	}
-
 	tuiWindowDestroy_Opengl33(window);
+	glfwDestroyWindow(window->GlfwWindow);
+	_GlfwClearErrors();
 	tuiFree(window->Title);
 	tuiFree(window);
 	sWindowCount--;

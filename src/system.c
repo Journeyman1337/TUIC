@@ -13,7 +13,7 @@ TuiSystem tui_get_system()
 	return sSystem;
 }
 
-TuiBoolean tuiInit(TuiBoolean multi_window)
+TuiBoolean tuiInit()
 {
 	if (sSystem != NULL)
 	{
@@ -29,9 +29,7 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	}
 
 	sSystem = tuiAllocate(sizeof(TuiSystem_s));
-	sSystem->MultiWindow = multi_window;
 	sSystem->BaseWindow = NULL;
-	sSystem->BaseWindowClaimed = TUI_FALSE;
 	sSystem->WindowIconsSupported = TUI_FALSE;
 	sSystem->MonitorConnectedCallback = NULL;
 	sSystem->ApiData = NULL;
@@ -143,16 +141,6 @@ void tuiTerminate()
 	tuiFree(sSystem);
 	_GlfwClearErrors();
 	glfwTerminate();
-}
-
-TuiBoolean tuiMultiWindowDesktop()
-{
-	if (sSystem == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
-	}
-	return sSystem->MultiWindow;
 }
 
 TuiBoolean tuiRawMouseMotionSupported()

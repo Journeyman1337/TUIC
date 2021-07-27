@@ -39,8 +39,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 int main()
 {
     /* Initialize TUIC. */
-    TuiBoolean multi_window = TUI_FALSE;
-    TuiBoolean initialization_successful = tuiInit(multi_window);
+    TuiBoolean initialization_successful = tuiInit();
     if (initialization_successful == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");

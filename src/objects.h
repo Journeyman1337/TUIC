@@ -33,10 +33,6 @@ extern "C" {
 
 typedef struct TuiSystem_s
 {
-	TuiBoolean MultiWindow;
-
-	TuiBoolean BaseWindowClaimed; //for non multi-window systems. if the base window is claimed by the window, this is true.
-
 	TuiBoolean WindowIconsSupported;
 
 	GLFWwindow* BaseWindow;
