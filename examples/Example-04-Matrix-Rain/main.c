@@ -63,29 +63,6 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     }
 }
 
-//To make this example very fast, dead tiles are saved on the window's framebuffer. If the window is refreshed, all framebuffers are cleared to black. This callback will restore the dead tiles by rendering them if a refresh occurs.
-void refresh_callback(TuiWindow window)
-{
-    WindowUserPointer* user_pointer = (WindowUserPointer*)tuiWindowGetUserPointer(window);
-    
-    tuiBatchClear(user_pointer->batch);
-    uint8_t backcolor = 0;
-    uint8_t forecolor = 1;
-    uint8_t color_byte = tuiClassicColorCombine(forecolor, backcolor);
-    for (int tile_x = 0; tile_x < user_pointer->tiles_wide; tile_x++)
-    {
-        for (int tile_y = 0; tile_y < user_pointer->tiles_tall; tile_y++)
-        {
-            size_t glyph_i = (size_t)tile_y * user_pointer->tiles_wide + tile_x;
-            if (user_pointer->glyphs[glyph_i] != 0)
-            {
-                tuiBatchSetTile_G8_C4_SPARSE(user_pointer->batch, tile_x, tile_y, user_pointer->glyphs[glyph_i], color_byte);
-            }
-        }
-    }
-    tuiWindowDrawBatchTransformed(window, user_pointer->atlas, user_pointer->palette, user_pointer->batch, 0, user_pointer->monitor_width - user_pointer->extra_pixels_wide, 0, user_pointer->monitor_height - user_pointer->extra_pixels_tall);
-}
-
 int main()
 {
     if (tuiInit() == TUI_FALSE)
@@ -108,7 +85,6 @@ int main()
     /* Create the window. */
     const char* window_title = "Example 1";
     TuiWindow window = tuiWindowCreate(monitor_width, monitor_height, window_title, NULL);
-    TuiWindow window2 = tuiWindowCreate(244, 244, window_title, NULL);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
@@ -183,7 +159,6 @@ int main()
 
     /* Set the window callbacks. */
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
-    tuiWindowSetRefreshCallback(window, refresh_callback);
 
     /* fps tracking setup */
     double last_time = 0;
@@ -269,10 +244,8 @@ int main()
         }
 
         tuiWindowDrawBatchTransformed(window, atlas, palette, batch, 0, monitor_width - extra_pixels_wide, 0, monitor_height - extra_pixels_tall);
-        tuiWindowDrawBatchTransformed(window2, atlas, palette, batch, 0, monitor_width - extra_pixels_wide, 0, monitor_height - extra_pixels_tall);
 
         tuiWindowFrame(window); //draw the next frame from the window framebuffer
-        tuiWindowFrame(window2);
     }
 
     /* Destroy all remaining TUIC objects */
