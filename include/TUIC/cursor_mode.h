@@ -36,7 +36,7 @@ typedef enum TuiCursorMode
 	/*!
 	 * \brief The cursor mode is invalid.
 	 *
-	 * This cursor mode is returned when an error occurs, and is also used to specify that no button state is
+	 * This cursor mode is returned when an error occurs, and is also used to specify that no cursor mode is
 	 * defined.
 	 */
 	TUI_CURSOR_MODE_INVALID = 0,
