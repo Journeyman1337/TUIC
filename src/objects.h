@@ -88,6 +88,10 @@ typedef struct TuiWindow_s
 
 	GLFWwindow* GlfwWindow;
 
+	size_t PhysicalPixelWidth;
+
+	size_t PhysicalPixelHeight;
+
 	size_t PixelWidth;
 
 	size_t PixelHeight;

@@ -121,7 +121,10 @@ static void glfwWindowMaximizeCallback(GLFWwindow* glfw_window, int maximized)
 static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
+	if (window->IsFullscreen == TUI_FALSE)
+	{
+		tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
+	}
 	if (window->WindowResizeCallback != NULL)
 	{
 		window->WindowResizeCallback(window, pixel_width, pixel_height);
@@ -1748,9 +1751,12 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 	{
 		refresh_rate = vid_mode->refreshRate;
 	}
-	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, window->PixelWidth, window->PixelHeight, refresh_rate);
-	GLFW_CHECK_ERROR()
 	window->IsFullscreen = TUI_TRUE;
+	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, refresh_rate);
+	GLFW_CHECK_ERROR()
+	window->PhysicalPixelWidth = vid_mode->width;
+	window->PhysicalPixelHeight = vid_mode->height;
+
 }
 
 void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate)
@@ -1774,10 +1780,12 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixe
 	{
 		refresh_rate = vid_mode->refreshRate;
 	}
-	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, pixel_width, pixel_height, refresh_rate);
-	GLFW_CHECK_ERROR()
-	_WindowFramebufferResize(window, pixel_width, pixel_height);
 	window->IsFullscreen = TUI_TRUE;
+	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, refresh_rate);
+	GLFW_CHECK_ERROR()
+	window->PhysicalPixelWidth = vid_mode->width;
+	window->PhysicalPixelHeight = vid_mode->height;
+	_WindowFramebufferResize(window, pixel_width, pixel_height);
 }
 
 void tuiWindowSetWindowed(TuiWindow window)
@@ -1787,6 +1795,8 @@ void tuiWindowSetWindowed(TuiWindow window)
 		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
 		GLFW_CHECK_ERROR()
 		window->IsFullscreen = TUI_FALSE;
+		window->PhysicalPixelWidth = window->PixelWidth;
+		window->PhysicalPixelHeight = window->PixelHeight;
 	}
 }
 
@@ -1798,8 +1808,9 @@ void tuiWindowSetWindowedResize(TuiWindow window, int pixel_width, int pixel_hei
 		GLFW_CHECK_ERROR()
 		_WindowFramebufferResize(window, pixel_width, pixel_height);
 		window->IsFullscreen = TUI_FALSE;
+		window->PhysicalPixelWidth = window->PixelWidth;
+		window->PhysicalPixelHeight = window->PixelHeight;
 	}
-
 }
 
 TuiBoolean tuiWindowIsFullscreen(TuiWindow window)

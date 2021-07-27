@@ -413,7 +413,7 @@ inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width,
 		GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, sparse_index * kVertsPerTile));
 	}
 }
-inline void RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebuffer_handle, size_t render_area_width, size_t render_area_height, int left_x, int right_x, int top_y, int bottom_y, uint32_t override_vao)
+inline void RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebuffer_handle, size_t render_area_width, size_t render_area_height, size_t viewport_width, size_t viewport_height, size_t int left_x, int right_x, int top_y, int bottom_y, uint32_t override_vao)
 {
 	TuiSystem system = tui_get_system();
 	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
@@ -436,7 +436,7 @@ inline void RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebu
 	GLD_CALL(glActiveTexture(GL_TEXTURE0));
 	GLD_CALL(glBindTexture(GL_TEXTURE_2D, texture_handle));
 	GLD_CALL(glUniformMatrix4fv(system_data->FramebufferRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
-	GLD_CALL(glViewport(0, 0, render_area_width, render_area_height));
+	GLD_CALL(glViewport(0, 0, viewport_width, viewport_height));
 	GLD_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
 inline void _VerticalFlipPixels(uint8_t* pixels, size_t w, size_t h, size_t c)
@@ -668,7 +668,7 @@ void tuiWindowDrawPanel_Opengl33(TuiWindow window, TuiPanel panel, int left_x, i
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, window_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, window_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -677,7 +677,7 @@ void tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture, int lef
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, texture->PixelWidth, texture->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, texture->PixelWidth, texture->PixelHeight, texture->PixelWidth, texture->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -686,7 +686,7 @@ void tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, i
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, atlas->PixelWidth, atlas->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, atlas->PixelWidth, atlas->PixelHeight, atlas->PixelWidth, atlas->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -695,14 +695,14 @@ void tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, in
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	TuiOpengl33WindowApiData* subject_window_data = (TuiOpengl33WindowApiData*)subject_window->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(subject_window_data->FramebufferTextureHandle, window_data->FramebufferHandle, subject_window->PixelWidth, subject_window->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(subject_window_data->FramebufferTextureHandle, window_data->FramebufferHandle, subject_window->PixelWidth, subject_window->PixelHeight, subject_window->PixelWidth, subject_window->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiWindowRender_Opengl33(TuiWindow window)
 {
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	glfwMakeContextCurrent(window->GlfwWindow);
 	GLD_CLEAR();
-	RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->PixelWidth, window->PixelHeight, 0, window->PixelWidth, 0, window->PixelHeight, window_data->VaoHandle);
+	RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->PixelWidth, window->PixelHeight, window->PhysicalPixelWidth, window->PhysicalPixelHeight, 0, window->PixelWidth, 0, window->PixelHeight, window_data->VaoHandle);
 }
 void tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
 {
@@ -928,7 +928,7 @@ void tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, int left
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	TuiOpengl33PanelApiData* subject_panel_data = (TuiOpengl33PanelApiData*)subject_panel->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, subject_panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, subject_panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -937,7 +937,7 @@ void tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, texture->PixelWidth, texture->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, texture->PixelWidth, texture->PixelHeight, texture->PixelWidth, texture->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -946,7 +946,7 @@ void tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int 
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, atlas->PixelWidth, atlas->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, atlas->PixelWidth, atlas->PixelHeight, atlas->PixelWidth, atlas->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 void tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -955,5 +955,5 @@ void tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, i
 	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	glfwMakeContextCurrent(system->BaseWindow);
-	RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, panel_data->FramebufferHandle, window->PixelWidth, window->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, panel_data->FramebufferHandle, window->PixelWidth, window->PixelHeight, window->PixelWidth, window->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
