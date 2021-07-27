@@ -1024,7 +1024,12 @@ int tuiKeyboardKeyGetScancode(TuiKeyboardKey key)
 	int scancode = glfwGetKeyScancode(key);
 
 	int glfw_error = glfwGetError(NULL);
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 
 	return scancode;
 }

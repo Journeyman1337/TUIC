@@ -33,7 +33,12 @@ TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y)
 		return NULL;
 	}
 	TuiCursor cursor = glfwCreateCursor(&glfw_image, hotspot_x, hotspot_y);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	sCursorCount++;
 	return cursor;
 }
@@ -66,7 +71,12 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
 		return NULL;
 	}
 	TuiCursor cursor = glfwCreateCursor(&glfw_image, hotspot_x, hotspot_y);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	sCursorCount++;
 	return cursor;
 }
@@ -84,9 +94,14 @@ TuiCursor tuiCursorCreateShape(TuiCursorShape shape)
 		tuiDebugError(TUI_ERROR_INVALID_CURSOR_SHAPE, __func__);
 		return NULL;
 	}
-	TuiCursor cursor = glfwCreateStandardCursor(shape);
 
-	GLFW_CLEAR_ERRORS()
+	TuiCursor cursor = glfwCreateStandardCursor(shape);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	if (cursor == NULL)
 	{
 		tuiDebugError(TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, __func__);
@@ -104,7 +119,12 @@ void tuiCursorDestroy(TuiCursor cursor)
 		return;
 	}
 	glfwDestroyCursor(cursor);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 	sCursorCount--;
 }
 

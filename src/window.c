@@ -298,7 +298,7 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	
 	if (glfw_window == NULL)
 	{
-		GLFW_CLEAR_ERRORS()
+		_GlfwClearErrors();
 		tuiDebugError(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED, __func__);
 		return NULL;
 	}
@@ -340,7 +340,7 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		system->BaseWindowClaimed = TUI_TRUE;
 	}
 	sWindowCount++;
-	GLFW_CLEAR_ERRORS()
+	_GlfwClearErrors();
 	return window;
 }
 
@@ -428,7 +428,12 @@ void tuiWindowResize(TuiWindow window, int pixel_width, int pixel_height)
 	}
 
 	glfwSetWindowSize(window->GlfwWindow, pixel_width, pixel_height);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 	_WindowFramebufferResize(window, pixel_width, pixel_height);
 }
 
@@ -782,7 +787,7 @@ void tuiWindowFrame(TuiWindow window)
 
 	tuiWindowRender_Opengl33(window);
 	glfwSwapBuffers(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	
 }
 
 void tuiWindowFrameInterval(TuiWindow window, int interval)
@@ -795,7 +800,12 @@ void tuiWindowFrameInterval(TuiWindow window, int interval)
 
 	glfwMakeContextCurrent(window->GlfwWindow);
 	glfwSwapInterval(interval);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 const char* tuiWindowGetClipboardString(TuiWindow window)
@@ -807,7 +817,12 @@ const char* tuiWindowGetClipboardString(TuiWindow window)
 	}
 
 	const char* str = glfwGetClipboardString(window->GlfwWindow);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return str;
 }
 
@@ -825,7 +840,12 @@ void tuiWindowSetClipboardString(TuiWindow window, const char* string)
 	}
 
 	glfwSetClipboardString(window->GlfwWindow, string);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiCursorMode tuiWindowGetCursorMode(TuiWindow window)
@@ -837,7 +857,12 @@ TuiCursorMode tuiWindowGetCursorMode(TuiWindow window)
 	}
 
 	TuiCursorMode cursor_mode = (TuiCursorMode)glfwGetInputMode(window->GlfwWindow, GLFW_CURSOR);
-	GLFW_CHECK_ERROR_RETURN(TUI_CURSOR_MODE_INVALID)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_CURSOR_MODE_INVALID;
+	}
 	return cursor_mode;
 }
 
@@ -855,7 +880,12 @@ void tuiWindowSetCursorMode(TuiWindow window, TuiCursorMode cursor_mode)
 	}
 
 	glfwSetInputMode(window->GlfwWindow, GLFW_CURSOR, (int)cursor_mode);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetStickyKeys(TuiWindow window)
@@ -867,7 +897,12 @@ TuiBoolean tuiWindowGetStickyKeys(TuiWindow window)
 	}
 
 	int sticky_keys = glfwGetInputMode(window->GlfwWindow, GLFW_STICKY_KEYS);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (sticky_keys == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -884,7 +919,12 @@ void tuiWindowSetStickyKeys(TuiWindow window, TuiBoolean sticky_keys_mode)
 	}
 
 	glfwSetInputMode(window->GlfwWindow, GLFW_STICKY_KEYS, (int)sticky_keys_mode);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetStickyMouseButtons(TuiWindow window)
@@ -896,7 +936,12 @@ TuiBoolean tuiWindowGetStickyMouseButtons(TuiWindow window)
 	}
 
 	int sticky_mouse_buttons = glfwGetInputMode(window->GlfwWindow, GLFW_STICKY_MOUSE_BUTTONS);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (sticky_mouse_buttons == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -913,7 +958,12 @@ void tuiWindowSetStickyMouseButtons(TuiWindow window, TuiBoolean sticky_mouse_bu
 	}
 
 	glfwSetInputMode(window->GlfwWindow, GLFW_STICKY_MOUSE_BUTTONS, (int)sticky_mouse_buttons);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window)
@@ -925,7 +975,12 @@ TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window)
 	}
 
 	int lock_mods = glfwGetInputMode(window->GlfwWindow, GLFW_LOCK_KEY_MODS);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (lock_mods == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -942,7 +997,12 @@ void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_mods)
 	}
 
 	glfwSetInputMode(window->GlfwWindow, GLFW_LOCK_KEY_MODS, (int)lock_mods);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window)
@@ -954,7 +1014,12 @@ TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window)
 	}
 
 	int raw_mouse_motion = glfwGetInputMode(window->GlfwWindow, GLFW_RAW_MOUSE_MOTION);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (raw_mouse_motion == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -976,7 +1041,12 @@ void tuiWindowSetRawMouseMotion(TuiWindow window, TuiBoolean raw_mouse_motion)
 	}
 
 	glfwSetInputMode(window->GlfwWindow, GLFW_RAW_MOUSE_MOTION, (int)raw_mouse_motion);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key)
@@ -993,7 +1063,12 @@ TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key)
 	}
 	
 	TuiButtonState button_state = (TuiButtonState)glfwGetKey(window->GlfwWindow, key);
-	GLFW_CHECK_ERROR_RETURN(TUI_BUTTON_INVALID)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_BUTTON_INVALID;
+	}
 	return button_state;
 }
 
@@ -1011,7 +1086,12 @@ TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_bu
 	}
 
 	TuiButtonState button_state = (TuiButtonState)glfwGetMouseButton(window->GlfwWindow, mouse_button);
-	GLFW_CHECK_ERROR_RETURN(TUI_BUTTON_INVALID);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_BUTTON_INVALID;
+	}
 	return button_state;
 }
 
@@ -1024,7 +1104,12 @@ void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_
 	}
 
 	glfwGetCursorPos(window->GlfwWindow, x_position, y_position);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 double tuiWindowGetCursorXPosition(TuiWindow window)
@@ -1037,7 +1122,12 @@ double tuiWindowGetCursorXPosition(TuiWindow window)
 
 	double x_position = 0.0;
 	glfwGetCursorPos(window->GlfwWindow, &x_position, NULL);
-	GLFW_CHECK_ERROR_RETURN(0.0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0.0;
+	}
 	return x_position;
 }
 
@@ -1051,7 +1141,12 @@ double tuiWindowGetCursorYPosition(TuiWindow window)
 
 	double y_position = 0.0;
 	glfwGetCursorPos(window->GlfwWindow, NULL, &y_position);
-	GLFW_CHECK_ERROR_RETURN(0.0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0.0;
+	}
 	return y_position;
 }
 
@@ -1064,7 +1159,12 @@ void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_po
 	}
 
 	glfwSetCursorPos(window->GlfwWindow, x_position, y_position);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetTitle(TuiWindow window, const char* title)
@@ -1089,7 +1189,12 @@ void tuiWindowSetTitle(TuiWindow window, const char* title)
 	window->Title = tuiAllocate(strlen(title) * sizeof(char));
 	strcpy(window->Title, title);
 	glfwSetWindowTitle(window->GlfwWindow, title);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 const char* tuiWindowGetTitle(TuiWindow window)
@@ -1112,7 +1217,12 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 	}
 
 	glfwSetWindowIcon(window->GlfwWindow, 0, NULL);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetIcon(TuiWindow window, TuiImage image)
@@ -1157,7 +1267,12 @@ void tuiWindowSetIcon(TuiWindow window, TuiImage image)
 	icon_images[2].pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, 48, 48, level3pixels, __func__);
 
 	glfwSetWindowIcon(window->GlfwWindow, 3, icon_images);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowIconsSupported()
@@ -1180,7 +1295,12 @@ void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position)
 	}
 
 	glfwGetWindowPos(window->GlfwWindow, x_position, y_position);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 int tuiWindowGetXPosition(TuiWindow window)
@@ -1193,7 +1313,12 @@ int tuiWindowGetXPosition(TuiWindow window)
 
 	int x_position = 0;
 	glfwGetWindowPos(window->GlfwWindow, &x_position, NULL);
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 	return x_position;
 }
 
@@ -1207,7 +1332,12 @@ int tuiWindowGetYPosition(TuiWindow window)
 
 	int y_position = 0;
 	glfwGetWindowPos(window->GlfwWindow, NULL, &y_position);
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 	return y_position;
 }
 
@@ -1220,7 +1350,12 @@ void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position)
 	}
 
 	glfwSetWindowPos(window->GlfwWindow, x_position, y_position);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height)
@@ -1247,7 +1382,12 @@ void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int
 	window->MaxWidth = max_width;
 	window->MaxHeight = max_height;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height)
@@ -1266,7 +1406,12 @@ void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height)
 	window->MinWidth = min_width;
 	window->MinHeight = min_height;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height)
@@ -1285,7 +1430,12 @@ void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height)
 	window->MaxWidth = max_width;
 	window->MaxHeight = max_height;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetMinWidth(TuiWindow window, int min_width)
@@ -1303,7 +1453,12 @@ void tuiWindowSetMinWidth(TuiWindow window, int min_width)
 
 	window->MinWidth = min_width;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetMinHeight(TuiWindow window, int min_height)
@@ -1321,7 +1476,12 @@ void tuiWindowSetMinHeight(TuiWindow window, int min_height)
 
 	window->MinHeight = min_height;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetMaxWidth(TuiWindow window, int max_width)
@@ -1339,7 +1499,12 @@ void tuiWindowSetMaxWidth(TuiWindow window, int max_width)
 
 	window->MaxWidth = max_width;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetMaxHeight(TuiWindow window, int max_height)
@@ -1357,7 +1522,12 @@ void tuiWindowSetMaxHeight(TuiWindow window, int max_height)
 
 	window->MaxHeight = max_height;
 	_WindowUpdateSizeLimits(window);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowGetSizeLimits(TuiWindow window, int* min_width, int* min_height, int* max_width, int* max_height)
@@ -1486,7 +1656,12 @@ void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominat
 
 	window->IsFixedAspectRatio = TUI_TRUE;
 	glfwSetWindowAspectRatio(window->GlfwWindow, numerator, denominator);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowFixCurrentAspectRatio(TuiWindow window)
@@ -1500,7 +1675,12 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 	window->IsFixedAspectRatio = TUI_TRUE;
 	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
 	glfwSetWindowAspectRatio(window->GlfwWindow, window->PixelWidth / greatest_common_factor, window->PixelHeight / greatest_common_factor);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowUnfixAspectRatio(TuiWindow window)
@@ -1513,7 +1693,12 @@ void tuiWindowUnfixAspectRatio(TuiWindow window)
 	
 	window->IsFixedAspectRatio = TUI_FALSE;
 	glfwSetWindowAspectRatio(window->GlfwWindow, GLFW_DONT_CARE, GLFW_DONT_CARE);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
@@ -1555,7 +1740,12 @@ void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_
 	}
 
 	glfwGetWindowContentScale(window->GlfwWindow, scale_wide, scale_tall);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 float tuiWindowGetContentScaleWide(TuiWindow window)
@@ -1568,7 +1758,12 @@ float tuiWindowGetContentScaleWide(TuiWindow window)
 
 	float scale_wide = 0.0f;
 	glfwGetWindowContentScale(window->GlfwWindow, &scale_wide, NULL);
-	GLFW_CHECK_ERROR_RETURN(0.0f)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0.0f;
+	}
 	return scale_wide;
 }
 
@@ -1582,7 +1777,12 @@ float tuiWindowGetContentScaleTall(TuiWindow window)
 
 	float scale_tall = 0.0f;
 	glfwGetWindowContentScale(window->GlfwWindow, NULL, &scale_tall);
-	GLFW_CHECK_ERROR_RETURN(0.0f)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0.0f;
+	}
 	return scale_tall;
 }
 
@@ -1595,7 +1795,12 @@ float tuiWindowGetOpacity(TuiWindow window)
 	}
 
 	float opacity = glfwGetWindowOpacity(window->GlfwWindow);
-	GLFW_CHECK_ERROR_RETURN(-1.0f)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0.0f;
+	}
 	return opacity;
 }
 
@@ -1608,9 +1813,19 @@ void tuiWindowSetOpacity(TuiWindow window, float opacity)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 	glfwSetWindowOpacity(window->GlfwWindow, opacity);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowIconify(TuiWindow window)
@@ -1622,7 +1837,12 @@ void tuiWindowIconify(TuiWindow window)
 	}
 
 	glfwIconifyWindow(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowRestore(TuiWindow window)
@@ -1634,7 +1854,12 @@ void tuiWindowRestore(TuiWindow window)
 	}
 
 	glfwRestoreWindow(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 
@@ -1647,7 +1872,12 @@ TuiBoolean tuiWindowShouldClose(TuiWindow window)
 	}
 
 	int should_close = glfwWindowShouldClose(window->GlfwWindow);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (should_close == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1664,7 +1894,12 @@ void tuiWindowSetShouldClose(TuiWindow window, TuiBoolean should_close)
 	}
 
 	glfwSetWindowShouldClose(window->GlfwWindow, should_close);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowMaximize(TuiWindow window)
@@ -1676,7 +1911,12 @@ void tuiWindowMaximize(TuiWindow window)
 	}
 
 	glfwMaximizeWindow(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowShow(TuiWindow window)
@@ -1688,7 +1928,12 @@ void tuiWindowShow(TuiWindow window)
 	}
 
 	glfwShowWindow(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowHide(TuiWindow window)
@@ -1700,7 +1945,12 @@ void tuiWindowHide(TuiWindow window)
 	}
 
 	glfwHideWindow(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowFocus(TuiWindow window)
@@ -1712,7 +1962,12 @@ void tuiWindowFocus(TuiWindow window)
 	}
 
 	glfwFocusWindow(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowRequestAttention(TuiWindow window)
@@ -1724,7 +1979,12 @@ void tuiWindowRequestAttention(TuiWindow window)
 	}
 
 	glfwRequestWindowAttention(window->GlfwWindow);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiMonitor tuiWindowGetMonitor(TuiWindow window)
@@ -1736,7 +1996,12 @@ TuiMonitor tuiWindowGetMonitor(TuiWindow window)
 	}
 
 	TuiMonitor monitor = _GetCurrentMonitor(window->GlfwWindow);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return monitor;
 }
 
@@ -1745,7 +2010,12 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 	if (monitor == NULL)
 	{
 		monitor = _GetCurrentMonitor(window->GlfwWindow);
-		GLFW_CHECK_ERROR()
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			tuiDebugError(glfw_error, __func__);
+			return;
+		}
 	}
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
@@ -1755,7 +2025,12 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 	}
 	window->IsFullscreen = TUI_TRUE;
 	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, refresh_rate);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 	window->PhysicalPixelWidth = vid_mode->width;
 	window->PhysicalPixelHeight = vid_mode->height;
 
@@ -1766,7 +2041,12 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixe
 	if (monitor == NULL)
 	{
 		monitor = _GetCurrentMonitor(window->GlfwWindow);
-		GLFW_CHECK_ERROR()
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			tuiDebugError(glfw_error, __func__);
+			return;
+		}
 	}
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
@@ -1784,7 +2064,12 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixe
 	}
 	window->IsFullscreen = TUI_TRUE;
 	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, refresh_rate);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 	window->PhysicalPixelWidth = vid_mode->width;
 	window->PhysicalPixelHeight = vid_mode->height;
 	_WindowFramebufferResize(window, pixel_width, pixel_height);
@@ -1795,7 +2080,12 @@ void tuiWindowSetWindowed(TuiWindow window)
 	if (window->IsFullscreen == TUI_TRUE)
 	{
 		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
-		GLFW_CHECK_ERROR()
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			tuiDebugError(glfw_error, __func__);
+			return;
+		}
 		window->IsFullscreen = TUI_FALSE;
 		window->PhysicalPixelWidth = window->PixelWidth;
 		window->PhysicalPixelHeight = window->PixelHeight;
@@ -1807,7 +2097,12 @@ void tuiWindowSetWindowedResize(TuiWindow window, int pixel_width, int pixel_hei
 	if (window->IsFullscreen == TUI_TRUE)
 	{
 		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, pixel_width, pixel_height, GLFW_DONT_CARE);
-		GLFW_CHECK_ERROR()
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			tuiDebugError(glfw_error, __func__);
+			return;
+		}
 		_WindowFramebufferResize(window, pixel_width, pixel_height);
 		window->IsFullscreen = TUI_FALSE;
 		window->PhysicalPixelWidth = window->PixelWidth;
@@ -1835,7 +2130,12 @@ TuiBoolean tuiWindowGetFocused(TuiWindow window)
 	}
 
 	int focused = glfwGetWindowAttrib(window->GlfwWindow, GLFW_FOCUSED);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (focused == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1852,7 +2152,12 @@ TuiBoolean tuiWindowGetIconified(TuiWindow window)
 	}
 
 	int iconified = glfwGetWindowAttrib(window->GlfwWindow, GLFW_ICONIFIED);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (iconified == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1869,7 +2174,12 @@ TuiBoolean tuiWindowGetMaximized(TuiWindow window)
 	}
 
 	int maximized = glfwGetWindowAttrib(window->GlfwWindow, GLFW_MAXIMIZED);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (maximized == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1886,7 +2196,12 @@ TuiBoolean tuiWindowGetMouseEntered(TuiWindow window)
 	}
 
 	int mouse_entered = glfwGetWindowAttrib(window->GlfwWindow, GLFW_HOVERED);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (mouse_entered == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1903,7 +2218,12 @@ TuiBoolean tuiWindowGetVisible(TuiWindow window)
 	}
 
 	int visible = glfwGetWindowAttrib(window->GlfwWindow, GLFW_VISIBLE);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (visible == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1920,7 +2240,12 @@ TuiBoolean tuiWindowGetResizable(TuiWindow window)
 	}
 
 	int resizable = glfwGetWindowAttrib(window->GlfwWindow, GLFW_RESIZABLE);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (resizable == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1937,7 +2262,12 @@ void tuiWindowSetResizable(TuiWindow window, TuiBoolean resizable)
 	}
 
 	glfwSetWindowAttrib(window->GlfwWindow, GLFW_RESIZABLE, (int)resizable);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetDecorated(TuiWindow window)
@@ -1949,7 +2279,12 @@ TuiBoolean tuiWindowGetDecorated(TuiWindow window)
 	}
 
 	int decorated = glfwGetWindowAttrib(window->GlfwWindow, GLFW_DECORATED);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (decorated == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1966,7 +2301,12 @@ void tuiWindowSetDecorated(TuiWindow window, TuiBoolean decorated)
 	}
 
 	glfwSetWindowAttrib(window->GlfwWindow, GLFW_DECORATED, (int)decorated);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetAutoIconify(TuiWindow window)
@@ -1978,7 +2318,12 @@ TuiBoolean tuiWindowGetAutoIconify(TuiWindow window)
 	}
 
 	int auto_iconify = glfwGetWindowAttrib(window->GlfwWindow, GLFW_AUTO_ICONIFY);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (auto_iconify == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -1995,7 +2340,12 @@ void tuiWindowSetAutoIconify(TuiWindow window, TuiBoolean auto_iconify)
 	}
 
 	glfwSetWindowAttrib(window->GlfwWindow, GLFW_AUTO_ICONIFY, (int)auto_iconify);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetTopmost(TuiWindow window)
@@ -2007,7 +2357,12 @@ TuiBoolean tuiWindowGetTopmost(TuiWindow window)
 	}
 
 	int topmost =glfwGetWindowAttrib(window->GlfwWindow, GLFW_FLOATING); //"topmost" is easier to understand than "floating"
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (topmost == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -2024,7 +2379,12 @@ void tuiWindowSetTopmost(TuiWindow window, TuiBoolean topmost)
 	}
 
 	glfwSetWindowAttrib(window->GlfwWindow, GLFW_FLOATING, (int)topmost);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window)
@@ -2036,7 +2396,12 @@ TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window)
 	}
 
 	int focus_on_show = glfwGetWindowAttrib(window->GlfwWindow, GLFW_FOCUS_ON_SHOW);
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	if (focus_on_show == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -2053,7 +2418,12 @@ void tuiWindowSetFocusOnShow(TuiWindow window, TuiBoolean focus_on_show)
 	}
 
 	glfwSetWindowAttrib(window->GlfwWindow, GLFW_FOCUS_ON_SHOW, (int)focus_on_show);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void tuiWindowSetUserPointer(TuiWindow window, void* ptr)
@@ -2087,7 +2457,12 @@ void tuiWindowSetCursor(TuiWindow window, TuiCursor cursor)
 	}
 
 	glfwSetCursor(window->GlfwWindow, cursor);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFunction callback)
@@ -2108,7 +2483,12 @@ tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFu
 	{
 		glfwSetWindowPosCallback(window->GlfwWindow, glfwWindowPosCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2130,7 +2510,12 @@ tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowClos
 	{
 		glfwSetWindowCloseCallback(window->GlfwWindow, glfwWindowCloseCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2152,7 +2537,12 @@ tuiWindowRefreshFunction tuiWindowSetRefreshCallback(TuiWindow window, tuiWindow
 	{
 		glfwSetWindowRefreshCallback(window->GlfwWindow, glfwWindowRefreshCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2174,7 +2564,12 @@ tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocu
 	{
 		glfwSetWindowFocusCallback(window->GlfwWindow, glfwWindowFocusCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2196,7 +2591,12 @@ tuiWindowIconifyFunction tuiWindowSetIconifyCallback(TuiWindow window, tuiWindow
 	{
 		glfwSetWindowIconifyCallback(window->GlfwWindow, glfwWindowIconifyCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2218,7 +2618,12 @@ tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWind
 	{
 		glfwSetWindowMaximizeCallback(window->GlfwWindow, glfwWindowMaximizeCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2232,7 +2637,12 @@ tuiWindowResizeFunction tuiWindowSetResizeCallback(TuiWindow window, tuiWindowRe
 
 	tuiWindowResizeFunction old_callback = window->WindowResizeCallback;
 	window->WindowResizeCallback = callback;
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2254,7 +2664,12 @@ tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window,
 	{
 		glfwSetWindowContentScaleCallback(window->GlfwWindow, glfwWindowContentScaleCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2276,7 +2691,12 @@ tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window,
 	{
 		glfwSetKeyCallback(window->GlfwWindow, glfwKeyCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2298,7 +2718,12 @@ tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callb
 	{
 		glfwSetCharCallback(window->GlfwWindow, glfwCharCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2320,7 +2745,12 @@ tuiMouseButtonFunction tuiWindowSetMouseButtonCallback(TuiWindow window, tuiMous
 	{
 		glfwSetMouseButtonCallback(window->GlfwWindow, glfwMouseButtonCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2342,7 +2772,12 @@ tuiCursorMoveFunction tuiWindowSetCursorMoveCallback(TuiWindow window, tuiCursor
 	{
 		glfwSetCursorPosCallback(window->GlfwWindow, glfwCursorMoveCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2364,7 +2799,12 @@ tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCurs
 	{
 		glfwSetCursorEnterCallback(window->GlfwWindow, glfwCursorEnterCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2386,7 +2826,12 @@ tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMous
 	{
 		glfwSetScrollCallback(window->GlfwWindow, glfwScrollCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }
 
@@ -2408,6 +2853,11 @@ tuiFileDropFunction tuiWindowSetFileDropCallback(TuiWindow window, tuiFileDropFu
 	{
 		glfwSetDropCallback(window->GlfwWindow, glfwDropCallback);
 	}
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return old_callback;
 }

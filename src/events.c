@@ -6,23 +6,39 @@
 void tuiPollEvents()
 {
 	glfwPollEvents();
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+	}
 }
 
 void tuiWaitEvents()
 {
 	glfwWaitEvents();
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+	}
 }
 
 void tuiWaitEventsTimeout(double timeout)
 {
 	glfwWaitEventsTimeout(timeout);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+	}
 }
 
 void tuiPostEmptyEvent()
 {
 	glfwPostEmptyEvent();
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+	}
 }

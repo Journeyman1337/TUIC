@@ -56,15 +56,22 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 	glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
 	sSystem->BaseWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		tuiFree(sSystem);
+		sSystem = NULL;
+		glfwTerminate();
+		return TUI_FALSE;
+	}
 	if (sSystem->BaseWindow == NULL)
 	{
 		tuiFree(sSystem);
 		sSystem = NULL;
 		glfwTerminate();
-		GLFW_CLEAR_ERRORS()
-			return TUI_FALSE;
+		return TUI_FALSE;
 	}
-	GLFW_CLEAR_ERRORS()
 	unsigned char image_pixels[16] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }; //we need to test if icons are supported now so tuiWindowIconsSupported function can work later
 	GLFWimage test_icon_image; //this is because GLFW does not have a function for this purpose, so we need to be creative
 	test_icon_image.width = 2;
@@ -75,9 +82,10 @@ TuiBoolean tuiInit(TuiBoolean multi_window)
 	{
 		sSystem->WindowIconsSupported = TUI_TRUE; //icons are supported on this platform.
 		glfwSetWindowIcon(sSystem->BaseWindow, 0, NULL); //set the icon back to default.
+		_GlfwClearErrors();
 	}
 	tuiSystemCreate_Opengl33();
-	GLFW_CLEAR_ERRORS()
+	
 	return TUI_TRUE;
 }
 
@@ -133,7 +141,7 @@ void tuiTerminate()
 	tuiSystemDestroy_Opengl33();
 	glfwDestroyWindow(sSystem->BaseWindow);
 	tuiFree(sSystem);
-	GLFW_CLEAR_ERRORS()
+	_GlfwClearErrors();
 	glfwTerminate();
 }
 
@@ -155,7 +163,12 @@ TuiBoolean tuiRawMouseMotionSupported()
 		return TUI_FALSE;
 	}
 	int supported = glfwRawMouseMotionSupported();
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (supported == GLFW_TRUE)
 	{
 		return TUI_TRUE;
@@ -171,7 +184,12 @@ TuiBoolean tuiVulkanSupported()
 		return TUI_FALSE;
 	}
 	int supported = glfwVulkanSupported();
-	GLFW_CHECK_ERROR_RETURN(TUI_FALSE)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return TUI_FALSE;
+	}
 	if (supported == GLFW_TRUE)
 	{
 		return TUI_TRUE;

@@ -13,7 +13,12 @@ double tuiGetTime()
 		return 0.0;
 	}
 	double time = glfwGetTime();
-	GLFW_CHECK_ERROR_RETURN(0.0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0.0;
+	}
 	return time;
 }
 
@@ -31,7 +36,12 @@ void tuiSetTime(double time)
 		return;
 	}
 	glfwSetTime(time);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 uint64_t tuiGetTimerValue()
@@ -43,7 +53,12 @@ uint64_t tuiGetTimerValue()
 		return 0;
 	}
 	uint64_t timer_value = glfwGetTimerValue();
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 	return timer_value;
 }
 
@@ -56,6 +71,11 @@ uint64_t tuiGetTimerFrequency()
 		return 0;
 	}
 	uint64_t timer_frequency = glfwGetTimerFrequency();
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 	return timer_frequency;
 }

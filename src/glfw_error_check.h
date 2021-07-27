@@ -23,116 +23,40 @@
 #include <GLFW/glfw3.h>
 #include <TUIC/boolean.h>
 
-#define GLFW_CHECK_ERROR_RETURN(error_return) { \
-			int glfw_error_code = GLFW_NO_ERROR; \
-			TuiBoolean error_occured = TUI_FALSE; \
-			while ((glfw_error_code = glfwGetError(NULL)) != GLFW_NO_ERROR) \
-			{ \
-				switch (glfw_error_code) \
-				{ \
-				case GLFW_NOT_INITIALIZED: \
-					tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_NO_CURRENT_CONTEXT: \
-					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_INVALID_ENUM: \
-					tuiDebugError(TUI_ERROR_GLFW_ENUM, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_INVALID_VALUE: \
-					tuiDebugError(TUI_ERROR_GLFW_VALUE, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_OUT_OF_MEMORY: \
-					tuiDebugError(TUI_ERROR_GLFW_OUT_OF_MEMORY, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_API_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_UNAVAILABLE_GRAPHICS_API, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_VERSION_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_PLATFORM_ERROR: \
-					tuiDebugError(TUI_ERROR_GLFW_PLATFORM, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_FORMAT_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_GLFW_FORMAT_UNAVAILABLE, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_NO_WINDOW_CONTEXT: \
-					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				} \
-			} \
-			if (error_occured == TUI_TRUE) \
-			{ \
-				return error_return; \
-			} \
-		}
+static inline void _GlfwClearErrors()
+{
+	while (glfwGetError(NULL) != GLFW_NO_ERROR);
+}
 
-#define GLFW_CHECK_ERROR() { \
-			int glfw_error_code = GLFW_NO_ERROR; \
-			TuiBoolean error_occured = TUI_FALSE; \
-			while ((glfw_error_code = glfwGetError(NULL)) != GLFW_NO_ERROR) \
-			{ \
-				switch (glfw_error_code) \
-				{ \
-				case GLFW_NOT_INITIALIZED: \
-					tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_NO_CURRENT_CONTEXT: \
-					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_INVALID_ENUM: \
-					tuiDebugError(TUI_ERROR_GLFW_ENUM, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_INVALID_VALUE: \
-					tuiDebugError(TUI_ERROR_GLFW_VALUE, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_OUT_OF_MEMORY: \
-					tuiDebugError(TUI_ERROR_GLFW_OUT_OF_MEMORY, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_API_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_UNAVAILABLE_GRAPHICS_API, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_VERSION_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_PLATFORM_ERROR: \
-					tuiDebugError(TUI_ERROR_GLFW_PLATFORM, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_FORMAT_UNAVAILABLE: \
-					tuiDebugError(TUI_ERROR_GLFW_FORMAT_UNAVAILABLE, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				case GLFW_NO_WINDOW_CONTEXT: \
-					tuiDebugError(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT, __func__); \
-					error_occured = TUI_TRUE; \
-					break; \
-				} \
-			} \
-			if (error_occured == TUI_TRUE) \
-			{ \
-				return; \
-			} \
+static inline TuiErrorCode _GlfwErrorCheck()
+{
+	int error = glfwGetError(NULL);
+	if (error != GLFW_NO_ERROR)
+	{
+		_GlfwClearErrors();
+		switch (error)
+		{
+		case GLFW_FORMAT_UNAVAILABLE:
+			return TUI_ERROR_GLFW_FORMAT_UNAVAILABLE;
+		case GLFW_VERSION_UNAVAILABLE:
+			return TUI_ERROR_GLFW_INVALID_VERSION;
+		case GLFW_NO_WINDOW_CONTEXT:
+			return TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT;
+		case GLFW_NOT_INITIALIZED:
+			return TUI_ERROR_GLFW_NOT_INITIALIZED;
+		case GLFW_OUT_OF_MEMORY:
+			return TUI_ERROR_GLFW_OUT_OF_MEMORY;
+		case GLFW_PLATFORM_ERROR:
+			return TUI_ERROR_GLFW_PLATFORM;
+		case GLFW_INVALID_VALUE:
+			return TUI_ERROR_GLFW_VALUE;
+		case GLFW_INVALID_ENUM:
+			return TUI_ERROR_GLFW_ENUM;
+		default:
+			return TUI_ERROR_UNKNOWN;
 		}
-
-#define GLFW_CLEAR_ERRORS()	while(glfwGetError(NULL)) {}
+	}
+	return TUI_ERROR_NONE;
+}
 
 #endif //header guard

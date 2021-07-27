@@ -23,7 +23,12 @@ TuiMonitor* tuiGetMonitors(int* count)
 
 	int out_count = 0;
 	TuiMonitor* monitors = glfwGetMonitors(&out_count);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	if (count != NULL)
 	{
 		*count = out_count;
@@ -42,7 +47,12 @@ TuiMonitor tuiGetPrimaryMonitor()
 	}
 
 	TuiMonitor monitor = glfwGetPrimaryMonitor();
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return monitor;
 }
 
@@ -55,7 +65,12 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 	}
 
 	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 	if (width != NULL)
 	{
 		*width = vidmode->width;
@@ -75,7 +90,12 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 	}
 
 	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 	return vidmode->width;
 }
 
@@ -88,7 +108,12 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 	}
 
 	const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
-	GLFW_CHECK_ERROR_RETURN(0)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return 0;
+	}
 	return vidmode->height;
 }
 
@@ -101,7 +126,12 @@ void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* phy
 	}
 
 	glfwGetMonitorPhysicalSize(monitor, physical_width, physical_height);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 int tuiMonitorGetPhysicalWidth(TuiMonitor monitor)
@@ -139,7 +169,12 @@ void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* sca
 	}
 
 	glfwGetMonitorContentScale(monitor, scale_wide, scale_tall);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 float tuiMonitorGetContentScaleWide(TuiMonitor monitor)
@@ -189,7 +224,12 @@ const char* tuiMonitorGetName(TuiMonitor monitor)
 	}
 
 	const char* name = glfwGetMonitorName(monitor);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return name;
 }
 
@@ -202,7 +242,12 @@ void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer)
 	}
 
 	glfwSetMonitorUserPointer(monitor, pointer);
-	GLFW_CHECK_ERROR()
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
 }
 
 void* tuiMonitorGetUserPointer(TuiMonitor monitor)
@@ -214,7 +259,12 @@ void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 	}
 
 	void* ptr = glfwGetMonitorUserPointer(monitor);
-	GLFW_CHECK_ERROR_RETURN(NULL)
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	return ptr;
 }
 
@@ -230,8 +280,13 @@ tuiMonitorConnectedFunction tuiSetMonitorCallback(tuiMonitorConnectedFunction ca
 	system->MonitorConnectedCallback = callback;
 	if (callback != NULL)
 	{
-		GLFW_CHECK_ERROR_RETURN(NULL)
 		glfwSetMonitorCallback(glfwMonitorCallback);
+	}
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
 	}
 	return monitor_function;
 }
