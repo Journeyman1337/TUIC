@@ -125,6 +125,8 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel
 	{
 		tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
 	}
+	window->PhysicalPixelWidth = pixel_width;
+	window->PhysicalPixelHeight = pixel_height;
 	if (window->WindowResizeCallback != NULL)
 	{
 		window->WindowResizeCallback(window, pixel_width, pixel_height);
