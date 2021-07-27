@@ -588,6 +588,10 @@ void tuiWindowDestroy_Opengl33(TuiWindow window)
 }
 void tuiWindowSetSize_Opengl33(TuiWindow window, size_t new_width, size_t new_height)
 {
+	if (new_width == 0|| new_height == 0)
+	{
+		return;
+	}
 	TuiSystem system = tui_get_system();
 	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
