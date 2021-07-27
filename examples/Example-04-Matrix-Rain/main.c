@@ -88,7 +88,7 @@ void refresh_callback(TuiWindow window)
 
 int main()
 {
-    if (tuiInit(TUI_FALSE) == TUI_FALSE)
+    if (tuiInit(TUI_TRUE) == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return -1;
@@ -136,7 +136,7 @@ int main()
     palette_colors[2] = kBackColor[2];
     for (size_t color_i = 1; color_i <= palette_color_count; color_i++)
     {
-        for (size_t channel_i = 0; channel_i < 3; channel_i++)
+        for (size_t channel_i = 0; channel_i < palette_channel_count; channel_i++)
         {
             float channel_color_max = ((float)kTrailHeadColor[channel_i]);
             float channel_color_min = ((float)kBackColor[channel_i]);
