@@ -134,7 +134,7 @@ int main()
     palette_colors[0] = kBackColor[0];
     palette_colors[1] = kBackColor[1];
     palette_colors[2] = kBackColor[2];
-    for (size_t color_i = 1; color_i <= palette_color_count; color_i++)
+    for (size_t color_i = 1; color_i < palette_color_count; color_i++)
     {
         for (size_t channel_i = 0; channel_i < palette_channel_count; channel_i++)
         {
