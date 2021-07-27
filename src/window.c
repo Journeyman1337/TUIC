@@ -1820,7 +1820,7 @@ void tuiWindowSetOpacity(TuiWindow window, float opacity)
 		return;
 	}
 	glfwSetWindowOpacity(window->GlfwWindow, opacity);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
@@ -2400,7 +2400,7 @@ TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window)
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
-		return NULL;
+		return TUI_FALSE;
 	}
 	if (focus_on_show == GLFW_TRUE)
 	{

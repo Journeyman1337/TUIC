@@ -1023,7 +1023,6 @@ int tuiKeyboardKeyGetScancode(TuiKeyboardKey key)
 
 	int scancode = glfwGetKeyScancode(key);
 
-	int glfw_error = glfwGetError(NULL);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
