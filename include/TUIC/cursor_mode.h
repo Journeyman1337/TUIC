@@ -26,23 +26,107 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
+/*! @name Cursor mode
+ *  @{ */
+/*!
+ * @brief The state of the mouse cursor.
+ */
 typedef enum TuiCursorMode
-{
+{ 
+	/*!
+	 * \brief The cursor mode is invalid.
+	 *
+	 * This cursor mode is returned when an error occurs, and is also used to specify that no button state is
+	 * defined.
+	 */
 	TUI_CURSOR_MODE_INVALID = 0,
+	/*!
+	 * \brief The cursor is visilble and behaves normally.
+	 */
 	TUI_CURSOR_MODE_NORMAL		= 0x00034001,
+	/*!
+	 * \brief The cursor is hidden while over the window and behaves normally outside the window.
+	 */
 	TUI_CURSOR_MODE_HIDDEN		= 0x00034002,
+	/*!
+	 * \brief The cursor is hidden and unable to be removed from the window.
+	 */
 	TUI_CURSOR_MODE_DISABLED	= 0x00034003,
+	/*!
+	 * \brief The first valid cursor mode.
+	 */
 	TUI_CURSOR_MODE_FIRST		= TUI_CURSOR_MODE_NORMAL,
+	/*!
+	 * \brief The last valid cursor mode.
+	 */
 	TUI_CURSOR_MODE_LAST		= TUI_CURSOR_MODE_DISABLED
 } TuiCursorMode;
+/*! @} */
 
+/*! @name TuiCursorMode names
+ *  @{ */
+/*!
+ * @brief String name of @ref TUI_CURSOR_MODE_NORMAL.
+ */
 extern const char* kTui_Cursor_Mode_Normal_Name;
+/*!
+ * @brief String name of @ref TUI_CURSOR_MODE_HIDDEN.
+ */
 extern const char* kTui_Cursor_Mode_Hidden_Name;
+/*!
+ * @brief String name of @ref TUI_CURSOR_MODE_DISABLED.
+ */
 extern const char* kTui_Cursor_Mode_Disabled_Name;
+/*! @} */
 
+/*! @name TuiButtonState functions
+ *
+ * Functions for dealing with @ref TuiCursorMode enum values.
+ *  @{ */
+ /*!
+  * @brief Determine if a @ref TuiCursorMode enum is valid.
+  *
+  * @param atlas_type The @ref TuiCursorMode to check.
+  *
+  * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiCursorMode, it
+  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+  *
+  * @errors This function can have no errors.
+  *
+  * @requirements This function can be called freely, even if TUIC is not currently initialized.
+  *
+  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+  */
 TuiBoolean tuiCursorModeIsValid(TuiCursorMode cursor_mode);
+/*!
+ * @brief Retrieve the string name associated with a @ref TuiCursorMode enum.
+ *
+ * @param atlas_type The TuiCursorMode to get the name of.
+ *
+ * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiCursorMode.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 const char* tuiCursorModeToString(TuiCursorMode cursor_mode);
+/*!
+ * @brief Determine the TuiCursorMode enum value associated with a string name.
+ *
+ * @param str The string name.
+ *
+ * @returns The TuiCursorMode. @ref TUI_CURSOR_MODE_INVALID is returned if no match is found.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiCursorMode tuiStringToCursorMode(const char* str);
+/*! @} */
 
 #ifdef __cplusplus //extern C guard
 }
