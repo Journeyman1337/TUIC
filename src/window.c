@@ -308,6 +308,8 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	TuiWindow window = (TuiWindow_s*)tuiAllocate(sizeof(TuiWindow_s));
 	window->PixelWidth = (size_t)pixel_width;
 	window->PixelHeight = (size_t)pixel_height;
+	window->PhysicalPixelWidth = window->PixelWidth;
+	window->PhysicalPixelHeight = window->PixelHeight;
 	window->GlfwWindow = glfw_window;
 	window->IsFullscreen = TUI_FALSE;
 	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
