@@ -48,7 +48,7 @@ typedef struct TuiWindowCreateInfo
 	TuiBoolean custom_window_position;
 	int windowed_x_position;
 	int windowed_y_position;
-	TuiBoolean framebuffer_match_viewport_pixel_dimensions;
+	TuiBoolean framebuffer_match_viewport_size;
 	int unmatching_viewport_pixel_width;
 	int umnatching_viewport_pixel_height;
 } TuiWindowCreateInfo;

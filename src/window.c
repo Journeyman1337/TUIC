@@ -190,7 +190,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (create_info != NULL && create_info->framebuffer_match_viewport_pixel_dimensions == TUI_FALSE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
+	if (create_info != NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return NULL;
@@ -202,6 +202,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	}
 
 	TuiBoolean is_fullscreen = TUI_FALSE;
+	TuiBoolean framebuffer_matches_viewport_size = TUI_TRUE;
 	int window_width = framebuffer_pixel_width;
 	int window_height = framebuffer_pixel_height;
 
@@ -240,8 +241,9 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 			}
 		}
 
-		if (create_info->framebuffer_match_viewport_pixel_dimensions == TUI_FALSE)
+		if (create_info->framebuffer_match_viewport_size == TUI_FALSE)
 		{
+			framebuffer_matches_viewport_size = create_info->framebuffer_match_viewport_size;
 			window_width = create_info->unmatching_viewport_pixel_width;
 			window_height = create_info->umnatching_viewport_pixel_height;
 		}
@@ -297,6 +299,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	window->ViewportPixelHeight = window_height;
 	window->GlfwWindow = glfw_window;
 	window->IsFullscreen = TUI_FALSE;
+	window->FramebufferMatchViewportSize = framebuffer_matches_viewport_size;
 	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
 	glfwGetWindowPos(glfw_window, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	window->IsFixedAspectRatio = TUI_FALSE;
@@ -341,7 +344,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.custom_window_position = TUI_FALSE;
 	info.windowed_x_position = 0;
 	info.windowed_y_position = 0;
-	info.framebuffer_match_viewport_pixel_dimensions = TUI_TRUE;
+	info.framebuffer_match_viewport_size = TUI_TRUE;
 	info.unmatching_viewport_pixel_width = 0;
 	info.unmatching_viewport_pixel_width = 0;
 	return info;
