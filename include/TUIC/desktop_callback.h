@@ -35,8 +35,6 @@ typedef void (* tuiWindowMoveFunction)(TuiWindow window, int x_position, int y_p
 
 typedef void (* tuiWindowCloseFunction)(TuiWindow window);
 
-typedef void (* tuiWindowRefreshFunction)(TuiWindow window);
-
 typedef void (* tuiWindowFocusFunction)(TuiWindow window, TuiBoolean focused);
 
 typedef void (* tuiWindowIconifyFunction)(TuiWindow window,TuiBoolean iconified);

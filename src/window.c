@@ -94,12 +94,6 @@ static void glfwWindowCloseCallback(GLFWwindow* glfw_window)
 	window->WindowCloseCallback(window);
 }
 
-static void glfwWindowRefreshCallback(GLFWwindow* glfw_window)
-{
-	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	window->WindowRefreshCallback(window);
-}
-
 static void glfwWindowFocusCallback(GLFWwindow* glfw_window, int focused)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
@@ -308,7 +302,6 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	window->IsFixedAspectRatio = TUI_FALSE;
 	window->UserPointer = NULL;
 	window->WindowMoveCallback = NULL;
-	window->WindowRefreshCallback = NULL;
 	window->WindowFocusCallback = NULL;
 	window->WindowIconifyCallback = NULL;
 	window->WindowMaximizeCallback = NULL;
@@ -2562,33 +2555,6 @@ tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowClos
 	else
 	{
 		glfwSetWindowCloseCallback(window->GlfwWindow, glfwWindowCloseCallback);
-	}
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return NULL;
-	}
-	return old_callback;
-}
-
-tuiWindowRefreshFunction tuiWindowSetRefreshCallback(TuiWindow window, tuiWindowRefreshFunction callback)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
-
-	tuiWindowRefreshFunction old_callback = window->WindowRefreshCallback;
-	window->WindowRefreshCallback = callback;
-	if (callback == NULL)
-	{
-		glfwSetWindowRefreshCallback(window->GlfwWindow, NULL);
-	}
-	else
-	{
-		glfwSetWindowRefreshCallback(window->GlfwWindow, glfwWindowRefreshCallback);
 	}
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)

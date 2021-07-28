@@ -56,8 +56,6 @@ typedef struct TuiWindow_s
 
 	tuiWindowCloseFunction WindowCloseCallback;
 
-	tuiWindowRefreshFunction WindowRefreshCallback;
-
 	tuiWindowFocusFunction WindowFocusCallback;
 
 	tuiWindowIconifyFunction WindowIconifyCallback;
