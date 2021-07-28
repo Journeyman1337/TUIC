@@ -117,11 +117,11 @@ TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type);
  */
 const char* tuiAtlasTypeToString(TuiAtlasType atlas_type);
 /*!
- * @brief Determine the TuiAtlasType enum value associated with a string name.
+ * @brief Determine the @ref TuiAtlasType enum value associated with a string name.
  *
  * @param str The string name.
  *
- * @returns The TuiAtlasType. @ref TUI_ATLAS_INVALID is returned if no match is found.
+ * @returns The @ref TuiAtlasType. @ref TUI_ATLAS_INVALID is returned if no match is found.
  *
  * @errors This function can have no errors.
  *
