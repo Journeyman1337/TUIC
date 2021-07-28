@@ -702,7 +702,7 @@ void tuiWindowRender_Opengl33(TuiWindow window)
 	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
 	glfwMakeContextCurrent(window->GlfwWindow);
 	GLD_CLEAR();
-	RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->FramebufferPixelWidth, window->FramebufferPixelHeight, window->FramebufferPixelWidth, window->FramebufferPixelHeight, 0, window->ViewportPixelWidth, 0, window->ViewportPixelHeight, window_data->VaoHandle);
+	RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->FramebufferPixelWidth, window->FramebufferPixelHeight, window->ViewportPixelWidth, window->ViewportPixelHeight, 0, window->ViewportPixelWidth, 0, window->ViewportPixelHeight, window_data->VaoHandle);
 }
 void tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
 {
