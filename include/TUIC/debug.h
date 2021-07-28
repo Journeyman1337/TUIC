@@ -26,6 +26,7 @@ extern "C" {
 #endif
 #include <TUIC/error_code.h>
 
+
 /*! @name Debug Output
  *
  * These functions and callbacks are used for controling how TUIC handles debug output.
@@ -51,6 +52,8 @@ void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback);
  */
 void tuiDebugError(TuiErrorCode error_code, const char* msg);
 /*! @} */
+
+
 #ifdef __cplusplus //extern C guard
 }
 #endif
