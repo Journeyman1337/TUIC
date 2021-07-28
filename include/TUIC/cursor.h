@@ -41,7 +41,7 @@ extern "C" {
  *
  * @returns The created @ref TuiCursor. NULL is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED ,@ref TUI_ERROR_NULL_IMAGE, and @ref TUI_ERROR_INVALID_CHANNEL_COUNT. The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED ,@ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -61,7 +61,7 @@ TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y);
  *
  * @returns The created @ref TuiCursor. NULL is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED,  @ref TUI_ERROR_NULL_PIXELS, and @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS. The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.  Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED,  @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -77,7 +77,7 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
  *
  * @returns The created @ref TuiCursor. NULL is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_CURSOR_SHAPE, and @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE.The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_CURSOR_SHAPE, @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, and GLFW errors, The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.
  *
  *@requirements This function must be called only while TUIC is initialized.
  *
