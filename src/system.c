@@ -80,6 +80,9 @@ TuiBoolean tuiInit()
 	{
 		sSystem->WindowIconsSupported = TUI_TRUE; //icons are supported on this platform.
 		glfwSetWindowIcon(sSystem->BaseWindow, 0, NULL); //set the icon back to default.
+	}
+	else
+	{
 		_GlfwClearErrors();
 	}
 	tuiSystemCreate_Opengl33();
