@@ -26,6 +26,7 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
+
 /*! @name Blend modes
  *  @{ */
 /*!
@@ -87,6 +88,7 @@ typedef enum TuiBlendMode
 } TuiBlendMode;
 /*! @} */
 
+
 /*! @name TuiBlendMode names
  *  @{ */
 /*!
@@ -127,6 +129,7 @@ extern const char* kTui_Blend_BG_BLUE_Name;
 extern const char* kTui_Blend_BG_ALPHA_Name;
 /*! @} */
 
+
 /*! @name TuiBlendMode functions
  *
  * Functions for dealing with @ref TuiBlendMode enum values.
@@ -134,7 +137,7 @@ extern const char* kTui_Blend_BG_ALPHA_Name;
 /*!
  * @brief Determine if a @ref TuiBlendMode enum is valid.
  * 
- * @param atlas_type The @ref TuiBlendMode to check.
+ * @param blend_mode The @ref TuiBlendMode to check.
  * 
  * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiBlendMode, it
  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
@@ -149,9 +152,9 @@ TuiBoolean tuiBlendIsValid(TuiBlendMode blend_mode);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiBlendMode enum.
  *
- * @param atlas_type The TuiBlendMode to get the name of.
+ * @param blend_mode The TuiBlendMode to get the name of.
  *
- * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiBlendMode.
+ * @returns The string name. NULL is returned if blend_mode is an invalid @ref TuiBlendMode.
  * 
  * @errors This function can have no errors.
  *
@@ -161,11 +164,11 @@ TuiBoolean tuiBlendIsValid(TuiBlendMode blend_mode);
  */
 const char* tuiBlendModeToString(TuiBlendMode blend_mode);
 /*!
- * @brief Determine the TuiBlendMode enum value associated with a string name.
+ * @brief Determine the @ref TuiBlendMode enum value associated with a string name.
  *
  * @param str The string name.
  *
- * @returns The TuiBlendMode. @ref TUI_BLEND_INVALID is returned if no match is found.
+ * @returns The @ref TuiBlendMode. @ref TUI_BLEND_INVALID is returned if no match is found.
  *
  * @errors This function can have no errors.
  *
@@ -175,6 +178,7 @@ const char* tuiBlendModeToString(TuiBlendMode blend_mode);
  */
 TuiBlendMode tuiStringToBlendMode(const char* string);
 /*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }
