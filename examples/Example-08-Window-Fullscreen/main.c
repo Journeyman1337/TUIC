@@ -22,16 +22,16 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 {
     if (key == TUIK_F && button_state == TUI_BUTTON_PRESS)
     {
-        if (tuiWindowIsFullscreen(window))
+        if (tuiWindowGetIsFullscreen(window))
         {
-            tuiWindowSetWindowedResize(window, windowed_window_width, windowed_window_height, windowed_window_width, windowed_window_height);
+            tuiWindowSetWindowedViewportSize(window, windowed_window_width, windowed_window_height);
             printf("Window is now windowed!\n");
         }
         else
         {
             TuiMonitor window_monitor = tuiWindowGetMonitor(window);
-            tuiWindowSetFullscreenResize(window, window_monitor, 0, 0, 0);
-            printf("Window is now fullscreen in monitor: \"%s\"!\n", tuiMonitorGetName(window_monitor));
+            tuiWindowSetFullscreenCurrentMonitor(window);
+            printf("Window is now fullscreen in monitor: \"%s\"! %d %d \n", tuiMonitorGetName(window_monitor), tuiWindowGetFramebufferPixelWidth(window), tuiWindowGetFramebufferPixelHeight(window));
         }
     }
 }
@@ -62,12 +62,13 @@ int main()
     /* Print prompt to console. */
     printf("Press F to swap between windowed and fullscreen mode.\n");
 
+    printf("%d\n", tuiWindowGetFramebufferMatchesViewportSize(window));
     //Render loop
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
         tuiPollEvents(); //handle input events and call callback functions
        
-        if (tuiWindowIsFullscreen(window))
+        if (tuiWindowGetIsFullscreen(window))
         {
             tuiWindowClearColor(window, 255, 0, 0, 255); //red clear color
         }

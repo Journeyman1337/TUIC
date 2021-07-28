@@ -51,10 +51,9 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 {
     if (key == TUIK_F && button_state == TUI_BUTTON_PRESS)
     {
-        if (tuiWindowIsFullscreen(window) == TUI_FALSE)
+        if (tuiWindowGetIsFullscreen(window) == TUI_FALSE)
         {
-            TuiMonitor monitor = tuiGetPrimaryMonitor();
-            tuiWindowSetFullscreen(window, monitor, 0);
+            tuiWindowSetFullscreenCurrentMonitor(window);
         }
         else
         {
@@ -132,7 +131,7 @@ int main()
     tuiWindowClearColor(window, 0, 0, 0, 255); //black
 
     /* Print prompt to console */
-    printf("Enjoy the TUI matrix rain animation with codepage atlas and 16 color palette. Press F to toggle fulscreen (in primary monitor only).\n");
+    printf("Enjoy the TUI matrix rain animation with codepage atlas and 16 color palette. Press F to toggle fulscreen.\n");
 
     /* init data */
     double last_frame = 0.0;

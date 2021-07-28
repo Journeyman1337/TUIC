@@ -42,8 +42,8 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         }
         else
         {
-            int width = tuiWindowGetPixelWidth(window);
-            int height = tuiWindowGetPixelHeight(window);
+            int width = tuiWindowGetFramebufferPixelWidth(window);
+            int height = tuiWindowGetFramebufferPixelHeight(window);
             tuiWindowSetMinSizeLimits(window, width, height);
             printf("Min size limits set to ( %d, %d ).\n", width, height);
         }
@@ -57,8 +57,8 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         }
         else
         {
-            int width = tuiWindowGetPixelWidth(window);
-            int height = tuiWindowGetPixelHeight(window);
+            int width = tuiWindowGetFramebufferPixelWidth(window);
+            int height = tuiWindowGetFramebufferPixelHeight(window);
             tuiWindowSetMaxSizeLimits(window, width, height);
             printf("Max size limits set to ( %d, %d ).\n", width, height);
         }
@@ -110,17 +110,10 @@ void window_resize_callback(TuiWindow window, int pixel_width, int pixel_height)
             }
         }
     }
-}
 
-void refresh_callback(TuiWindow window)
-{
-    WindowUserPointer* window_user_pointer = (WindowUserPointer*)tuiWindowGetUserPointer(window);
-
-    int pixel_width = tuiWindowGetPixelWidth(window);
-    int pixel_height = tuiWindowGetPixelHeight(window);
     int extra_pixels_wide = pixel_width % (kTilePixelWidth * kTileSizeMultiplier);
     int extra_pixels_tall = pixel_height % (kTilePixelHeight * kTileSizeMultiplier);
-    tuiWindowClearColor(window, 255, 255, 255, 255);
+    tuiWindowClearColor(window, 255, 255, 255, 255); //white clear color
     tuiWindowDrawBatchTransformed(window,
         window_user_pointer->atlas,
         window_user_pointer->palette,
@@ -213,7 +206,6 @@ int main()
     /* Set the window callbacks. */
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
     tuiWindowSetResizeCallback(window, window_resize_callback);
-    tuiWindowSetRefreshCallback(window, refresh_callback);
 
     /* Set the window user ptr. */
     tuiWindowSetUserPointer(window, &window_user_pointer);
@@ -226,7 +218,7 @@ int main()
     {
         tuiPollEvents(); //handle input events and call callback function.
 
-        tuiWindowFrame(window); //swap the window buffers
+        tuiWindowFrame(window);
     }
 
     /* Destroy all remaining TUIC objects */

@@ -25,11 +25,6 @@ void window_close_callback(TuiWindow window)
     printf("Window close.\n");
 }
 
-void window_refresh_callback(TuiWindow window)
-{
-    printf("Window refresh.\n");
-}
-
 void window_focus_callback(TuiWindow window, TuiBoolean focused)
 {
     printf("Window focus: focused = %d\n", focused);
@@ -139,7 +134,6 @@ int main()
     /* Set all of the custom callbacks. */
     tuiWindowSetMoveCallback(window, window_move_callback);
     tuiWindowSetCloseCallback(window, window_close_callback);
-    tuiWindowSetRefreshCallback(window, window_refresh_callback);
     tuiWindowSetFocusCallback(window, window_focus_callback);
     tuiWindowSetIconifyCallback(window, window_iconify_callback);
     tuiWindowSetMaximizeCallback(window, window_maximize_callback);
