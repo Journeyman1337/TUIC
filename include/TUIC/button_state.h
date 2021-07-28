@@ -26,6 +26,7 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
+
 /*! @nam Button states
  *  @{ */
 /*!
@@ -63,6 +64,7 @@ typedef enum TuiButtonState
 }TuiButtonState;
 /*! @} */
 
+
 /*! @name TuiButtonState names
  *  @{ */
 /*!
@@ -79,6 +81,7 @@ extern const char* kTui_Button_Press_Name;
 extern const char* kTui_Button_Repeat_Name;
 /*! @} */
 
+
 /*! @name TuiButtonState functions
  *
  * Functions for dealing with @ref TuiButtonState enum values.
@@ -86,7 +89,7 @@ extern const char* kTui_Button_Repeat_Name;
 /*!
  * @brief Determine if a @ref TuiButtonState enum is valid.
  *
- * @param atlas_type The @ref TuiButtonState to check.
+ * @param button_state The @ref TuiButtonState to check.
  *
  * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiButtonState, it
  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
@@ -101,9 +104,9 @@ TuiBoolean tuiButtonStateIsValid(TuiButtonState button_state);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiButtonState enum.
  *
- * @param atlas_type The TuiButtonState to get the name of.
+ * @param button_state The TuiButtonState to get the name of.
  *
- * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiButtonState.
+ * @returns The string name. NULL is returned if button_state is an invalid @ref TuiButtonState.
  *
  * @errors This function can have no errors.
  *
@@ -113,7 +116,7 @@ TuiBoolean tuiButtonStateIsValid(TuiButtonState button_state);
  */
 const char* tuiButtonStateToString(TuiButtonState button_state);
 /*!
- * @brief Determine the TuiButtonState enum value associated with a string name.
+ * @brief Determine the @ref TuiButtonState enum value associated with a string name.
  *
  * @param str The string name.
  *
@@ -127,6 +130,7 @@ const char* tuiButtonStateToString(TuiButtonState button_state);
  */
 TuiButtonState tuiStringToButtonState(const char* str);
 /*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }
