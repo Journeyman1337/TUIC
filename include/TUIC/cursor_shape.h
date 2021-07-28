@@ -175,7 +175,7 @@ TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
  *
  * @errors This function can have no errors.
  *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
