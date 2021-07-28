@@ -646,6 +646,7 @@ void tuiWindowClearColor_Opengl33(TuiWindow window, uint8_t r, uint8_t g, uint8_
 	glfwMakeContextCurrent(system->BaseWindow);
 	GLD_CLEAR();
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, window_data->FramebufferHandle));
+	GLD_CALL(glViewport(0, 0, window->FramebufferPixelWidth, window->FramebufferPixelHeight));
 	GLD_CALL(glClearColor((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f));
 	GLD_CALL(glClear(GL_COLOR_BUFFER_BIT));
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
