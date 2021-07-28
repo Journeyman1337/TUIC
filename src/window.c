@@ -190,7 +190,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (create_info != NULL && create_info->framebuffer_match_viewport_pixel_dimensions == TUI_TRUE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
+	if (create_info != NULL && create_info->framebuffer_match_viewport_pixel_dimensions == TUI_FALSE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return NULL;
@@ -247,7 +247,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		}
 		if (create_info->fullscreen == TUI_TRUE)
 		{
-			GLFWvidmode* vid_mode = glfwGetVideoMode(window_monitor);
+			const GLFWvidmode* vid_mode = glfwGetVideoMode(window_monitor);
 			window_width = vid_mode->width;
 			window_height = vid_mode->height;
 		}
@@ -1990,7 +1990,7 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
 	window->IsFullscreen = TUI_TRUE;
 	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, vid_mode->refreshRate);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
@@ -2135,7 +2135,7 @@ void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean fra
 	if (window == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return 0;
+		return;
 	}
 
 	window->FramebufferMatchViewportSize = framebuffer_matches_viewport_size;
