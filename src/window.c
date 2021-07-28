@@ -1978,7 +1978,7 @@ TuiMonitor tuiWindowGetMonitor(TuiWindow window)
 	return monitor;
 }
 
-void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window, int refresh_rate)
+void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -1995,12 +1995,8 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window, int refresh_rate)
 	}
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
-	if (refresh_rate == -1)
-	{
-		refresh_rate = vid_mode->refreshRate;
-	}
 	window->IsFullscreen = TUI_TRUE;
-	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, refresh_rate);
+	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, vid_mode->refreshRate);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -2015,7 +2011,7 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window, int refresh_rate)
 	}
 }
 
-void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate)
+void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor)
 {
 	if (window == NULL)
 	{
@@ -2030,12 +2026,8 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
-	if (refresh_rate == -1)
-	{
-		refresh_rate = vid_mode->refreshRate;
-	}
 	window->IsFullscreen = TUI_TRUE;
-	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, refresh_rate);
+	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, vid_mode->refreshRate);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{

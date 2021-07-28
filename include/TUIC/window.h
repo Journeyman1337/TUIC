@@ -229,9 +229,9 @@ void tuiWindowRequestAttention(TuiWindow window);
 
 TuiMonitor tuiWindowGetMonitor(TuiWindow window);
 
-void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window, int refresh_rate);
+void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window);
 
-void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate);
+void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor);
 
 void tuiWindowSetWindowed(TuiWindow window);
 
