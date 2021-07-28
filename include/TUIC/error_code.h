@@ -38,72 +38,76 @@ typedef enum TuiErrorCode
 	TUI_ERROR_DANGLING_PANEL = 6,
 	TUI_ERROR_DANGLING_TEXTURE = 7,
 	TUI_ERROR_DANGLING_WINDOW = 8,
-	TUI_ERROR_GLFW_ENUM = 9,
+	TUI_ERROR_GLFW_API_UNAVAILABLE = 9,
 	TUI_ERROR_GLFW_FORMAT_UNAVAILABLE = 10,
-	TUI_ERROR_GLFW_INVALID_VERSION = 11,
-	TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT = 12,
+	TUI_ERROR_GLFW_INVALID_ENUM = 11,
+	TUI_ERROR_GLFW_INVALID_VALUE = 12,
 	TUI_ERROR_GLFW_NOT_INITIALIZED = 13,
-	TUI_ERROR_GLFW_OUT_OF_MEMORY = 14,
-	TUI_ERROR_GLFW_PLATFORM = 15,
-	TUI_ERROR_GLFW_WINDOW_CREATION_FAILED = 16,
-	TUI_ERROR_GLFW_VALUE = 17,
-	TUI_ERROR_INCOMPATIBLE_BLEND_MODE = 18,
-	TUI_ERROR_INCOMPATIBLE_IMAGES = 19,
-	TUI_ERROR_INVALID_ASPECT_RATIO = 20,
-	TUI_ERROR_INVALID_ATLAS_TYPE = 21,
-	TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS = 22,
-	TUI_ERROR_INVALID_BATCH_DIMENSIONS = 23,
-	TUI_ERROR_INVALID_BATCH_SETTER = 24,
-	TUI_ERROR_INVALID_BLEND_MODE = 25,
-	TUI_ERROR_INVALID_BUTTON_STATE = 26,
-	TUI_ERROR_INVALID_CHANNEL_COUNT = 27,
-	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 28,
-	TUI_ERROR_INVALID_CURSOR_MODE = 29,
-	TUI_ERROR_INVALID_CURSOR_SHAPE = 30,
-	TUI_ERROR_INVALID_DETAIL_FLAG = 31,
-	TUI_ERROR_INVALID_DETAIL_MODE = 32,
-	TUI_ERROR_INVALID_FILTER_MODE = 33,
-	TUI_ERROR_INVALID_GLYPH_COUNT = 34,
-	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 35,
-	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 36,
-	TUI_ERROR_INVALID_KEYBOARD_KEY = 37,
-	TUI_ERROR_INVALID_KEYBOARD_MOD = 38,
-	TUI_ERROR_INVALID_MOUSE_BUTTON = 39,
-	TUI_ERROR_INVALID_PALETTE_COLOR_COUNT = 40,
-	TUI_ERROR_INVALID_PANEL_DIMENSIONS = 41,
-	TUI_ERROR_INVALID_PIXEL_DIMENSIONS = 42,
-	TUI_ERROR_INVALID_TIME = 43,
-	TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS = 44,
-	TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS = 45,
-	TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS = 46,
-	TUI_ERROR_LOAD_IMAGE_FAILURE = 47,
-	TUI_ERROR_NOT_INITIALIZED = 48,
-	TUI_ERROR_NULL_ATLAS = 49,
-	TUI_ERROR_NULL_BATCH = 50,
-	TUI_ERROR_NULL_BATCH_DATA = 51,
-	TUI_ERROR_NULL_COLORS = 52,
-	TUI_ERROR_NULL_CURSOR = 53,
-	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 54,
-	TUI_ERROR_NULL_IMAGE = 55,
-	TUI_ERROR_NULL_MONITOR = 56,
-	TUI_ERROR_NULL_PALETTE = 57,
-	TUI_ERROR_NULL_PANEL = 58,
-	TUI_ERROR_NULL_PATH = 59,
-	TUI_ERROR_NULL_PIXELS = 60,
-	TUI_ERROR_NULL_STRING = 61,
-	TUI_ERROR_NULL_SUBJECT_PANEL = 62,
-	TUI_ERROR_NULL_SUBJECT_WINDOW = 63,
-	TUI_ERROR_NULL_TARGET_IMAGE = 64,
-	TUI_ERROR_NULL_TEXTURE = 65,
-	TUI_ERROR_NULL_TEXTURE_COORDINATES = 66,
-	TUI_ERROR_NULL_WINDOW = 67,
-	TUI_ERROR_PALETTE_REQUIRED = 68,
-	TUI_ERROR_RESIZE_IMAGE_FAILURE = 69,
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 70,
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 71,
-	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 72,
-	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 73,
-	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 74,
+	TUI_ERROR_GLFW_NO_CURRENT_CONTEXT = 14,
+	TUI_ERROR_GLFW_NO_WINDOW_CONTEXT = 15,
+	TUI_ERROR_GLFW_OUT_OF_MEMORY = 16,
+	TUI_ERROR_GLFW_PLATFORM_ERROR = 17,
+	TUI_ERROR_GLFW_VERSION_UNAVAILABLE = 18,
+	TUI_ERROR_INCOMPATIBLE_BLEND_MODE = 19,
+	TUI_ERROR_INCOMPATIBLE_IMAGES = 20,
+	TUI_ERROR_INVALID_ASPECT_RATIO = 21,
+	TUI_ERROR_INVALID_ATLAS_TYPE = 22,
+	TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS = 23,
+	TUI_ERROR_INVALID_BATCH_DIMENSIONS = 24,
+	TUI_ERROR_INVALID_BATCH_SETTER = 25,
+	TUI_ERROR_INVALID_BLEND_MODE = 26,
+	TUI_ERROR_INVALID_BUTTON_STATE = 27,
+	TUI_ERROR_INVALID_CHANNEL_COUNT = 28,
+	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 29,
+	TUI_ERROR_INVALID_CURSOR_MODE = 30,
+	TUI_ERROR_INVALID_CURSOR_SHAPE = 31,
+	TUI_ERROR_INVALID_DETAIL_FLAG = 32,
+	TUI_ERROR_INVALID_DETAIL_MODE = 33,
+	TUI_ERROR_INVALID_FILTER_MODE = 34,
+	TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION = 35,
+	TUI_ERROR_INVALID_GLYPH_COUNT = 36,
+	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 37,
+	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 38,
+	TUI_ERROR_INVALID_KEYBOARD_KEY = 39,
+	TUI_ERROR_INVALID_KEYBOARD_MOD = 40,
+	TUI_ERROR_INVALID_MOUSE_BUTTON = 41,
+	TUI_ERROR_INVALID_PALETTE_COLOR_COUNT = 42,
+	TUI_ERROR_INVALID_PANEL_DIMENSIONS = 43,
+	TUI_ERROR_INVALID_PIXEL_DIMENSIONS = 44,
+	TUI_ERROR_INVALID_TIME = 45,
+	TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS = 46,
+	TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS = 47,
+	TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS = 48,
+	TUI_ERROR_LOAD_IMAGE_FAILURE = 49,
+	TUI_ERROR_NOT_INITIALIZED = 50,
+	TUI_ERROR_NULL_ATLAS = 51,
+	TUI_ERROR_NULL_BATCH = 52,
+	TUI_ERROR_NULL_BATCH_DATA = 53,
+	TUI_ERROR_NULL_COLORS = 54,
+	TUI_ERROR_NULL_CURSOR = 55,
+	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 56,
+	TUI_ERROR_NULL_IMAGE = 57,
+	TUI_ERROR_NULL_MONITOR = 58,
+	TUI_ERROR_NULL_PALETTE = 59,
+	TUI_ERROR_NULL_PANEL = 60,
+	TUI_ERROR_NULL_PATH = 61,
+	TUI_ERROR_NULL_PIXELS = 62,
+	TUI_ERROR_NULL_STRING = 63,
+	TUI_ERROR_NULL_SUBJECT_PANEL = 64,
+	TUI_ERROR_NULL_SUBJECT_WINDOW = 65,
+	TUI_ERROR_NULL_TARGET_IMAGE = 66,
+	TUI_ERROR_NULL_TEXTURE = 67,
+	TUI_ERROR_NULL_TEXTURE_COORDINATES = 68,
+	TUI_ERROR_NULL_WINDOW = 69,
+	TUI_ERROR_PALETTE_REQUIRED = 70,
+	TUI_ERROR_RESIZE_IMAGE_FAILURE = 71,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 72,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 73,
+	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 74,
+	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 75,
+	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 76,
+	TUI_ERROR_GLFW_FIRST = TUI_ERROR_GLFW_API_UNAVAILABLE,
+	TUI_ERROR_GLFW_LAST = TUI_ERROR_GLFW_VERSION_UNAVAILABLE,
 	TUI_ERROR_FIRST = TUI_ERROR_UNKNOWN,
 	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION
 } TuiErrorCode;
@@ -118,15 +122,17 @@ extern const char* kTui_Error_Dangling_Palette_Name;
 extern const char* kTui_Error_Dangling_Panel_Name;
 extern const char* kTui_Error_Dangling_Texture_Name;
 extern const char* kTui_Error_Dangling_Window_Name;
-extern const char* kTui_Error_Glfw_Enum_Name;
+extern const char* kTui_Error_Glfw_Api_Unavaliable_Name;
 extern const char* kTui_Error_Glfw_Format_Unavailable_Name;
+extern const char* kTui_Error_Glfw_Invalid_Enum_Name;
+extern const char* kTui_Error_Glfw_Invalid_Value_Name;
 extern const char* kTui_Error_Glfw_Invalid_Version_Name;
-extern const char* kTui_Error_Glfw_No_Graphics_Context_Name;
 extern const char* kTui_Error_Glfw_Not_Initialized_Name;
+extern const char* kTui_Error_Glfw_No_Current_Context_Name;
+extern const char* kTui_Error_Glfw_No_Window_Context_Name;
 extern const char* kTui_Error_Glfw_Out_Of_Memory_Name;
-extern const char* kTui_Error_Glfw_Platform_Name;
-extern const char* kTui_Error_Glfw_Window_Creation_Failed_Name;
-extern const char* kTui_Error_Glfw_Value_Name;
+extern const char* kTui_Error_Glfw_Platform_Error_Name;
+extern const char* kTui_Error_Glfw_Version_Unavailable_Name;
 extern const char* kTui_Error_Incompatible_Blend_Mode_Name;
 extern const char* kTui_Error_Incompatible_Images_Name;
 extern const char* kTui_Error_Invalid_Aspect_Ratio_Name;
@@ -143,6 +149,7 @@ extern const char* kTui_Error_Invalid_Cursor_Shape_Name;
 extern const char* kTui_Error_Invalid_Detail_Flag_Name;
 extern const char* kTui_Error_Invalid_Detail_Mode_Name;
 extern const char* kTui_Error_Invalid_Filter_Mode_Name;
+extern const char* kTui_Error_Invalid_Glfw_Library_Version_Name;
 extern const char* kTui_Error_Invalid_Glyph_Count_Name;
 extern const char* kTui_Error_Invalid_Glyph_Dimensions_Name;
 extern const char* kTui_Error_Invalid_Image_Dimensions_Name;
@@ -195,15 +202,17 @@ extern const char* kTui_Error_Dangling_Palette_Description;
 extern const char* kTui_Error_Dangling_Panel_Description;
 extern const char* kTui_Error_Dangling_Texture_Description;
 extern const char* kTui_Error_Dangling_Window_Description;
-extern const char* kTui_Error_Glfw_Enum_Description;
+extern const char* kTui_Error_Glfw_Api_Unavaliable_Description;
 extern const char* kTui_Error_Glfw_Format_Unavailable_Description;
+extern const char* kTui_Error_Glfw_Invalid_Enum_Description;
+extern const char* kTui_Error_Glfw_Invalid_Value_Description;
 extern const char* kTui_Error_Glfw_Invalid_Version_Description;
-extern const char* kTui_Error_Glfw_No_Graphics_Context_Description;
 extern const char* kTui_Error_Glfw_Not_Initialized_Description;
+extern const char* kTui_Error_Glfw_No_Current_Context_Description;
+extern const char* kTui_Error_Glfw_No_Window_Context_Description;
 extern const char* kTui_Error_Glfw_Out_Of_Memory_Description;
-extern const char* kTui_Error_Glfw_Platform_Description;
-extern const char* kTui_Error_Glfw_Window_Creation_Failed_Description;
-extern const char* kTui_Error_Glfw_Value_Description;
+extern const char* kTui_Error_Glfw_Platform_Error_Description;
+extern const char* kTui_Error_Glfw_Version_Unavailable_Description;
 extern const char* kTui_Error_Incompatible_Blend_Mode_Description;
 extern const char* kTui_Error_Incompatible_Images_Description;
 extern const char* kTui_Error_Invalid_Aspect_Ratio_Description;
@@ -220,6 +229,7 @@ extern const char* kTui_Error_Invalid_Cursor_Shape_Description;
 extern const char* kTui_Error_Invalid_Detail_Flag_Description;
 extern const char* kTui_Error_Invalid_Detail_Mode_Description;
 extern const char* kTui_Error_Invalid_Filter_Mode_Description;
+extern const char* kTui_Error_Invalid_Glfw_Library_Version_Description;
 extern const char* kTui_Error_Invalid_Glyph_Count_Description;
 extern const char* kTui_Error_Invalid_Glyph_Dimensions_Description;
 extern const char* kTui_Error_Invalid_Image_Dimensions_Description;
@@ -269,6 +279,12 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code);
 int tuiStringToErrorCode(const char* str);
 
 const char* tuiErrorCodeGetDescription(int error_code);
+
+TuiBoolean tuiErrorCodeIsGlfwError(TuiErrorCode error_code);
+
+int tuiErrorCodeToGlfwError(TuiErrorCode error_code);
+
+TuiErrorCode tuiGlfwErrorToErrorCode(int glfw_error);
 
 #ifdef __cplusplus //extern C guard
 }

@@ -30,31 +30,11 @@ static inline void _GlfwClearErrors()
 
 static inline TuiErrorCode _GlfwErrorCheck()
 {
-	int error = glfwGetError(NULL);
-	if (error != GLFW_NO_ERROR)
+	int glfw_error = glfwGetError(NULL);
+	if (glfw_error != GLFW_NO_ERROR)
 	{
 		_GlfwClearErrors();
-		switch (error)
-		{
-		case GLFW_FORMAT_UNAVAILABLE:
-			return TUI_ERROR_GLFW_FORMAT_UNAVAILABLE;
-		case GLFW_VERSION_UNAVAILABLE:
-			return TUI_ERROR_GLFW_INVALID_VERSION;
-		case GLFW_NO_WINDOW_CONTEXT:
-			return TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT;
-		case GLFW_NOT_INITIALIZED:
-			return TUI_ERROR_GLFW_NOT_INITIALIZED;
-		case GLFW_OUT_OF_MEMORY:
-			return TUI_ERROR_GLFW_OUT_OF_MEMORY;
-		case GLFW_PLATFORM_ERROR:
-			return TUI_ERROR_GLFW_PLATFORM;
-		case GLFW_INVALID_VALUE:
-			return TUI_ERROR_GLFW_VALUE;
-		case GLFW_INVALID_ENUM:
-			return TUI_ERROR_GLFW_ENUM;
-		default:
-			return TUI_ERROR_UNKNOWN;
-		}
+		return tuiGlfwErrorToErrorCode(glfw_error);
 	}
 	return TUI_ERROR_NONE;
 }

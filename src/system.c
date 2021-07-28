@@ -40,7 +40,7 @@ TuiBoolean tuiInit()
 	glfwGetVersion(&glfw_version_major, &glfw_version_minor, NULL);
 	if (glfw_version_major != 3 && glfw_version_minor != 3)
 	{
-		tuiDebugError(TUI_ERROR_GLFW_INVALID_VERSION, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION, __func__);
 		return TUI_FALSE;
 	}
 

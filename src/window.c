@@ -216,6 +216,14 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
+
+	int glfw_error = _GlfwErrorCheck(); //catch api version or api unavailable errors
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
+
 	if (create_info != NULL)
 	{
 		glfwWindowHint(GLFW_RESIZABLE, create_info->resizable);
@@ -253,20 +261,6 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 			window_width = vid_mode->width;
 			window_height = vid_mode->height;
 		}
-
-		glfw_window = glfwCreateWindow(window_width, window_height, title, window_monitor, system->BaseWindow);
-
-		if (glfw_window == NULL)
-		{
-			_GlfwClearErrors();
-			tuiDebugError(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED, __func__);
-			return NULL;
-		}
-
-		if (create_info->fullscreen == TUI_FALSE && create_info->custom_window_position == TUI_TRUE)
-		{
-			glfwSetWindowPos(glfw_window, create_info->windowed_x_position, create_info->windowed_y_position);
-		}
 	}
 	else
 	{
@@ -279,18 +273,44 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
 		glfwWindowHint(GLFW_CENTER_CURSOR, GLFW_FALSE);
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
+	}
 
-		glfw_window = glfwCreateWindow(window_width, window_height, title, NULL, system->BaseWindow);
+	glfw_error = _GlfwErrorCheck(); //window hint errors
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+	}
 
-		if (glfw_window == NULL)
+	glfw_window = glfwCreateWindow(window_width, window_height, title, NULL, system->BaseWindow);
+
+	if (glfw_window == NULL) //catch window creation errors
+	{
+		glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
 		{
-			_GlfwClearErrors();
-			tuiDebugError(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED, __func__);
-			return NULL;
+			tuiDebugError(glfw_error, __func__);
 		}
+		else
+		{
+			tuiDebugError(TUI_ERROR_UNKNOWN, __func__);
+		}
+		return NULL;
+	}
+
+	if (create_info != NULL && create_info->fullscreen == TUI_FALSE && create_info->custom_window_position == TUI_TRUE)
+	{
+		glfwSetWindowPos(glfw_window, create_info->windowed_x_position, create_info->windowed_y_position);
 	}
 
 	glfwSetFramebufferSizeCallback(glfw_window, glfwWindowFramebufferSizeCallback);
+
+	glfw_error = _GlfwErrorCheck(); //final error check before allocating TuiWindow
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		glfwDestroyWindow(glfw_window); //it was created, so now destroy it
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 
 	TuiWindow window = (TuiWindow_s*)tuiAllocate(sizeof(TuiWindow_s));
 	window->FramebufferPixelWidth = framebuffer_pixel_width;
@@ -321,9 +341,17 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	strcpy(window->Title, title);
 	glfwSetWindowUserPointer(glfw_window, window);
 	glfwMakeContextCurrent(glfw_window);
+	glfw_error = _GlfwErrorCheck(); // last error check after allocation of TuiWindow
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		glfwDestroyWindow(glfw_window); //it was created, so now destroy it
+		tuiFree(window);
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
 	tuiWindowCreate_Opengl33(window);
 	sWindowCount++;
-	_GlfwClearErrors();
+	
 	return window;
 }
 

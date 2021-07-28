@@ -1,4 +1,5 @@
 #include <TUIC/error_code.h>
+#include <GLFW/glfw3.h>
 #include "string.h"
 
 #define TO_STRING(value) #value
@@ -13,15 +14,16 @@ const char* kTui_Error_Dangling_Palette_Name = TO_STRING(TUI_ERROR_DANGLING_PALE
 const char* kTui_Error_Dangling_Panel_Name = TO_STRING(TUI_ERROR_DANGLING_PANEL);
 const char* kTui_Error_Dangling_Texture_Name = TO_STRING(TUI_ERROR_DANGLING_TEXTURE);
 const char* kTui_Error_Dangling_Window_Name = TO_STRING(TUI_ERROR_DANGLING_WINDOW);
-const char* kTui_Error_Glfw_Enum_Name = TO_STRING(TUI_ERROR_GLFW_ENUM);
+const char* kTui_Error_Glfw_Api_Unavaliable_Name = TO_STRING(TUI_ERROR_GLFW_API_UNAVAILABLE);
 const char* kTui_Error_Glfw_Format_Unavailable_Name = TO_STRING(TUI_ERROR_GLFW_FORMAT_UNAVAILABLE);
-const char* kTui_Error_Glfw_Invalid_Version_Name = TO_STRING(TUI_ERROR_GLFW_INVALID_VERSION);
-const char* kTui_Error_Glfw_No_Graphics_Context_Name = TO_STRING(TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT);
+const char* kTui_Error_Glfw_Invalid_Enum_Name = TO_STRING(TUI_ERROR_GLFW_INVALID_ENUM);
+const char* kTui_Error_Glfw_Invalid_Value_Name = TO_STRING(TUI_ERROR_GLFW_INVALID_VALUE);
 const char* kTui_Error_Glfw_Not_Initialized_Name = TO_STRING(TUI_ERROR_GLFW_NOT_INITIALIZED);
+const char* kTui_Error_Glfw_No_Current_Context_Name = TO_STRING(TUI_ERROR_GLFW_NO_CURRENT_CONTEXT);
+const char* kTui_Error_Glfw_No_Window_Context_Name = TO_STRING(TUI_ERROR_GLFW_NO_WINDOW_CONTEXT);
 const char* kTui_Error_Glfw_Out_Of_Memory_Name = TO_STRING(TUI_ERROR_GLFW_OUT_OF_MEMORY);
-const char* kTui_Error_Glfw_Platform_Name = TO_STRING(TUI_ERROR_GLFW_PLATFORM);
-const char* kTui_Error_Glfw_Window_Creation_Failed_Name = TO_STRING(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED);
-const char* kTui_Error_Glfw_Value_Name = TO_STRING(TUI_ERROR_GLFW_VALUE);
+const char* kTui_Error_Glfw_Platform_Error_Name = TO_STRING(TUI_ERROR_GLFW_PLATFORM_ERROR);
+const char* kTui_Error_Glfw_Version_Unavailable_Name = TO_STRING(TUI_ERROR_GLFW_VERSION_UNAVAILABLE);
 const char* kTui_Error_Incompatible_Blend_Mode_Name = TO_STRING(TUI_ERROR_INCOMPATIBLE_BLEND_MODE);
 const char* kTui_Error_Incompatible_Images_Name = TO_STRING(TUI_ERROR_INCOMPATIBLE_IMAGES);
 const char* kTui_Error_Invalid_Aspect_Ratio_Name = TO_STRING(TUI_ERROR_INVALID_ASPECT_RATIO);
@@ -38,6 +40,7 @@ const char* kTui_Error_Invalid_Cursor_Shape_Name = TO_STRING(TUI_ERROR_INVALID_C
 const char* kTui_Error_Invalid_Detail_Flag_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_FLAG);
 const char* kTui_Error_Invalid_Detail_Mode_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_MODE);
 const char* kTui_Error_Invalid_Filter_Mode_Name = TO_STRING(TUI_ERROR_INVALID_FILTER_MODE);
+const char* kTui_Error_Invalid_Glfw_Library_Version_Name = TO_STRING(TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION);
 const char* kTui_Error_Invalid_Glyph_Count_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_COUNT);
 const char* kTui_Error_Invalid_Glyph_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_DIMENSIONS);
 const char* kTui_Error_Invalid_Image_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_IMAGE_DIMENSIONS);
@@ -90,15 +93,16 @@ const char* kTui_Error_Dangling_Palette_Description = "Attempting to terminate T
 const char* kTui_Error_Dangling_Panel_Description = "Attempting to terminate TUIC with one or more dangling TuiPanel.";
 const char* kTui_Error_Dangling_Texture_Description = "Attempting to terminate TUIC with one or more dangling TuiTexture.";
 const char* kTui_Error_Dangling_Window_Description = "Attempting to terminate TUIC with one or more dangling TuiWindow.";
-const char* kTui_Error_Glfw_Enum_Description = "The GLFW error GLFW_INVALID_ENUM has occured.";
-const char* kTui_Error_Glfw_Format_Unavailable_Description = "The GLFW error GLFW_FORMAT_UNAVAILABlE has occured.";
-const char* kTui_Error_Glfw_Invalid_Version_Description = "The GLFW error GLFW_INVALID_VERSION has occured.";
-const char* kTui_Error_Glfw_No_Graphics_Context_Description = "The GLFW error GLFW_NO_GRAPHICS_CONTEXT has occured.";
-const char* kTui_Error_Glfw_Not_Initialized_Description = "The GLFW error GLFW_NOT_INITIALIZED has occured.";
-const char* kTui_Error_Glfw_Out_Of_Memory_Description = "The GLFW error GLFW_OUT_OF_MEMORY has occured.";
-const char* kTui_Error_Glfw_Platform_Description = "The GLFW error GLFW_PLATFORM_ERROR has occured.";
-const char* kTui_Error_Glfw_Window_Creation_Failed_Description = "The GLFW window has failed to be created.";
-const char* kTui_Error_Glfw_Value_Description = "THe GLFW error GLFW_INVALID_VALUE has occured.";
+const char* kTui_Error_Glfw_Api_Unavaliable_Description = "A GLFW error has occured: GLFW could not find support for the requested API on the system.";
+const char* kTui_Error_Glfw_Format_Unavailable_Description = "A GLFW error has occured: the requested format is not supported or available.";
+const char* kTui_Error_Glfw_Invalid_Enum_Description = "A GLFW error has occured: one of the arguments to the function was an invalid enum value.";
+const char* kTui_Error_Glfw_Invalid_Value_Description = "A GLFW error has occured: one of the arguments to the function was an invalid value.";
+const char* kTui_Error_Glfw_Not_Initialized_Description = "A GLFW error has occured: GLFW has not been initialized. ";
+const char* kTui_Error_Glfw_No_Current_Context_Description = "A GLFW error has occured: No context is current for this thread.";
+const char* kTui_Error_Glfw_No_Window_Context_Description = "A GLFW error has occured: The specified window does not have an OpenGL or OpenGL ES context.";
+const char* kTui_Error_Glfw_Out_Of_Memory_Description = "A GLFW error has occured: a memory allocation failed.";
+const char* kTui_Error_Glfw_Platform_Error_Description = "A GLFW error has occured: a platform-specific error occurred that does not match any of the more specific categories.";
+const char* kTui_Error_Glfw_Version_Unavailable_Description = "A GLFW error has occured: the requested OpenGL or OpenGL ES version is not available.";
 const char* kTui_Error_Incompatible_Blend_Mode_Description = "The TuiBlendMode of the TuiAtlas is incompatible with the TuiDetailMode of the batch data or TuiBatch.";
 const char* kTui_Error_Incompatible_Images_Description = "The images have incompatible channel counts.";
 const char* kTui_Error_Invalid_Aspect_Ratio_Description = "The aspect ratio is numerator and denominator must be greater than 0.";
@@ -115,6 +119,7 @@ const char* kTui_Error_Invalid_Cursor_Shape_Description = "The TuiCursorShape is
 const char* kTui_Error_Invalid_Detail_Flag_Description = "The TuiDetailFlag is invalid.";
 const char* kTui_Error_Invalid_Detail_Mode_Description = "The TuiDetailMode is invalid.";
 const char* kTui_Error_Invalid_Filter_Mode_Description = "The TuiFilterMode is invalid.";
+const char* kTui_Error_Invalid_Glfw_Library_Version_Description = "The GLFW library dependency has the incorrect version. TUIC requires GLFW version 3.3.";
 const char* kTui_Error_Invalid_Glyph_Count_Description = "The glyph count must be greater than 0.";
 const char* kTui_Error_Invalid_Glyph_Dimensions_Description = "The glyph dimensions must be greater than 0.";
 const char* kTui_Error_Invalid_Image_Dimensions_Description = "The pixel dimensions of a TuiImage must be greater than 0.";
@@ -193,24 +198,7 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Dangling_Texture_Name;
 	case TUI_ERROR_DANGLING_WINDOW:
 		return kTui_Error_Dangling_Window_Name;
-	case TUI_ERROR_GLFW_ENUM:
-		return kTui_Error_Glfw_Enum_Name;
-	case TUI_ERROR_GLFW_FORMAT_UNAVAILABLE:
-		return kTui_Error_Glfw_Format_Unavailable_Name;
-	case TUI_ERROR_GLFW_INVALID_VERSION:
-		return kTui_Error_Glfw_Invalid_Version_Name;
-	case TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT:
-		return kTui_Error_Glfw_No_Graphics_Context_Name;
-	case TUI_ERROR_GLFW_NOT_INITIALIZED:
-		return kTui_Error_Glfw_Not_Initialized_Name;
-	case TUI_ERROR_GLFW_OUT_OF_MEMORY:
-		return kTui_Error_Glfw_Out_Of_Memory_Name;
-	case TUI_ERROR_GLFW_PLATFORM:
-		return kTui_Error_Glfw_Platform_Name;
-	case TUI_ERROR_GLFW_WINDOW_CREATION_FAILED:
-		return kTui_Error_Glfw_Window_Creation_Failed_Name;
-	case TUI_ERROR_GLFW_VALUE:
-		return kTui_Error_Glfw_Value_Name;
+
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
 		return kTui_Error_Incompatible_Blend_Mode_Name;
 	case TUI_ERROR_INCOMPATIBLE_IMAGES:
@@ -372,42 +360,7 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_DANGLING_WINDOW;
 	}
-	else if (strcmp(str, kTui_Error_Glfw_Enum_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_ENUM;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Format_Unavailable_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_FORMAT_UNAVAILABLE;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Invalid_Version_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_INVALID_VERSION;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_No_Graphics_Context_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Not_Initialized_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_NOT_INITIALIZED;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Out_Of_Memory_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_OUT_OF_MEMORY;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Platform_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_PLATFORM;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Window_Creation_Failed_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_WINDOW_CREATION_FAILED;
-	}
-	else if (strcmp(str, kTui_Error_Glfw_Value_Name) == 0)
-	{
-		return TUI_ERROR_GLFW_VALUE;
-	}
+
 	else if (strcmp(str, kTui_Error_Incompatible_Blend_Mode_Name) == 0)
 	{
 		return TUI_ERROR_INCOMPATIBLE_BLEND_MODE;
@@ -663,24 +616,7 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Dangling_Texture_Description;
 	case TUI_ERROR_DANGLING_WINDOW:
 		return kTui_Error_Dangling_Window_Description;
-	case TUI_ERROR_GLFW_ENUM:
-		return kTui_Error_Glfw_Enum_Description;
-	case TUI_ERROR_GLFW_FORMAT_UNAVAILABLE:
-		return kTui_Error_Glfw_Format_Unavailable_Description;
-	case TUI_ERROR_GLFW_INVALID_VERSION:
-		return kTui_Error_Glfw_Invalid_Version_Description;
-	case TUI_ERROR_GLFW_NO_GRAPHICS_CONTEXT:
-		return kTui_Error_Glfw_No_Graphics_Context_Description;
-	case TUI_ERROR_GLFW_NOT_INITIALIZED:
-		return kTui_Error_Glfw_Not_Initialized_Description;
-	case TUI_ERROR_GLFW_OUT_OF_MEMORY:
-		return kTui_Error_Glfw_Out_Of_Memory_Description;
-	case TUI_ERROR_GLFW_PLATFORM:
-		return kTui_Error_Glfw_Platform_Description;
-	case TUI_ERROR_GLFW_WINDOW_CREATION_FAILED:
-		return kTui_Error_Glfw_Window_Creation_Failed_Description;
-	case TUI_ERROR_GLFW_VALUE:
-		return kTui_Error_Glfw_Value_Description;
+
 	case TUI_ERROR_INCOMPATIBLE_BLEND_MODE:
 		return kTui_Error_Incompatible_Blend_Mode_Description;
 	case TUI_ERROR_INCOMPATIBLE_IMAGES:
@@ -799,3 +735,72 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Unknown_Description;
 	}
 }
+
+TuiBoolean tuiErrorCodeIsGlfwError(TuiErrorCode error_code)
+{
+	if (error_code >= TUI_ERROR_GLFW_FIRST && error_code <= TUI_ERROR_GLFW_LAST)
+	{
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+
+int tuiErrorCodeToGlfwError(TuiErrorCode error_code)
+{
+	switch (error_code)
+	{
+	case TUI_ERROR_GLFW_API_UNAVAILABLE:
+		return GLFW_API_UNAVAILABLE;
+	case TUI_ERROR_GLFW_FORMAT_UNAVAILABLE:
+		return GLFW_FORMAT_UNAVAILABLE;
+	case TUI_ERROR_GLFW_INVALID_ENUM:
+		return GLFW_INVALID_ENUM;
+	case TUI_ERROR_GLFW_INVALID_VALUE:
+		return GLFW_INVALID_VALUE;
+	case TUI_ERROR_GLFW_NOT_INITIALIZED:
+		return GLFW_NOT_INITIALIZED;
+	case TUI_ERROR_GLFW_NO_CURRENT_CONTEXT:
+		return GLFW_NO_CURRENT_CONTEXT;
+	case TUI_ERROR_GLFW_NO_WINDOW_CONTEXT:
+		return GLFW_NO_WINDOW_CONTEXT;
+	case TUI_ERROR_GLFW_OUT_OF_MEMORY:
+		return GLFW_OUT_OF_MEMORY;
+	case TUI_ERROR_GLFW_PLATFORM_ERROR:
+		return GLFW_PLATFORM_ERROR;
+	case TUI_ERROR_GLFW_VERSION_UNAVAILABLE:
+		return GLFW_VERSION_UNAVAILABLE;
+	default:
+		return 0;
+	}
+}
+
+TuiErrorCode tuiGlfwErrorToErrorCode(int glfw_error)
+{
+	switch (glfw_error)
+	{
+	case GLFW_API_UNAVAILABLE:
+		return TUI_ERROR_GLFW_API_UNAVAILABLE;
+	case GLFW_FORMAT_UNAVAILABLE:
+		return TUI_ERROR_GLFW_FORMAT_UNAVAILABLE;
+	case GLFW_INVALID_ENUM:
+		return TUI_ERROR_GLFW_INVALID_ENUM;
+	case GLFW_INVALID_VALUE:
+		return TUI_ERROR_GLFW_INVALID_VALUE;
+	case GLFW_NOT_INITIALIZED:
+		return TUI_ERROR_GLFW_NOT_INITIALIZED;
+	case GLFW_NO_CURRENT_CONTEXT:
+		return TUI_ERROR_GLFW_NO_CURRENT_CONTEXT;
+	case GLFW_NO_WINDOW_CONTEXT:
+		return TUI_ERROR_GLFW_NO_WINDOW_CONTEXT;
+	case GLFW_OUT_OF_MEMORY:
+		return TUI_ERROR_GLFW_OUT_OF_MEMORY;
+	case GLFW_PLATFORM_ERROR:
+		return TUI_ERROR_GLFW_PLATFORM_ERROR;
+	case GLFW_VERSION_UNAVAILABLE:
+		return TUI_ERROR_GLFW_VERSION_UNAVAILABLE;
+	default:
+		return 0;
+	}
+}
+
+
