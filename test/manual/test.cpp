@@ -42,7 +42,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 
 int main()
 {
-	if (tuiInit(TUI_FALSE) == TUI_FALSE)
+	if (tuiInit() == TUI_FALSE)
 	{
 		printf("Failed to initialize TUIC.");
 		return -1;
