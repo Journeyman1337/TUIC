@@ -84,15 +84,17 @@ typedef struct TuiWindow_s
 
 	GLFWwindow* GlfwWindow;
 
-	size_t PhysicalPixelWidth;
+	size_t ViewportPixelWidth;
 
-	size_t PhysicalPixelHeight;
+	size_t ViewportPixelHeight;
 
-	size_t PixelWidth;
+	size_t FramebufferPixelWidth;
 
-	size_t PixelHeight;
+	size_t FramebufferPixelHeight;
 
 	TuiBoolean IsFullscreen;
+
+	TuiBoolean FramebufferMatchViewportSize;
 
 	int FullscreenLastWindowedPositionX;
 

@@ -121,12 +121,12 @@ static void glfwWindowMaximizeCallback(GLFWwindow* glfw_window, int maximized)
 static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	if (window->IsFullscreen == TUI_FALSE)
+	if (window->FramebufferMatchViewportSize == TUI_TRUE)
 	{
 		tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
 	}
-	window->PhysicalPixelWidth = pixel_width;
-	window->PhysicalPixelHeight = pixel_height;
+	window->ViewportPixelWidth = pixel_width;
+	window->ViewportPixelHeight = pixel_height;
 	if (window->WindowResizeCallback != NULL)
 	{
 		window->WindowResizeCallback(window, pixel_width, pixel_height);
@@ -183,7 +183,7 @@ static void glfwDropCallback(GLFWwindow* glfw_window, int path_count, const char
 
 static size_t sWindowCount = 0;
 
-TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info)
+TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_height, const char* title, TuiWindowCreateInfo* create_info)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -191,9 +191,14 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return NULL;
 	}
-	if (pixel_width <= 0 || pixel_height <= 0)
+	if (framebuffer_pixel_width <= 0 || framebuffer_pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_WINDOW_DIMENSIONS, __func__);
+		// TODO tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
+		return NULL;
+	}
+	if (create_info != NULL && create_info->framebuffer_match_viewport_pixel_dimensions == TUI_TRUE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
+	{
+		// TODO tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return NULL;
 	}
 
@@ -201,6 +206,10 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 	{
 		title = "";
 	}
+
+	TuiBoolean is_fullscreen = TUI_FALSE;
+	int window_width = framebuffer_pixel_width;
+	int window_height = framebuffer_pixel_height;
 
 	GLFWwindow* glfw_window = NULL;
 
@@ -221,8 +230,47 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		glfwWindowHint(GLFW_AUTO_ICONIFY, create_info->auto_iconify);
 		glfwWindowHint(GLFW_FLOATING, create_info->topmost);
 		glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
-		glfwWindowHint(GLFW_CENTER_CURSOR, create_info->center_cursor);
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info->focus_on_show);
+
+		TuiMonitor window_monitor = NULL;
+		if (create_info->fullscreen == TUI_TRUE)
+		{
+			is_fullscreen = TUI_TRUE;
+			if (create_info->monitor == NULL)
+			{
+				window_monitor = glfwGetPrimaryMonitor();
+			}
+			else
+			{
+				window_monitor = create_info->monitor;
+			}
+		}
+
+		if (create_info->framebuffer_match_viewport_pixel_dimensions == TUI_FALSE)
+		{
+			window_width = create_info->unmatching_viewport_pixel_width;
+			window_height = create_info->umnatching_viewport_pixel_height;
+		}
+		if (create_info->fullscreen == TUI_TRUE)
+		{
+			GLFWvidmode* vid_mode = glfwGetVideoMode(window_monitor);
+			window_width = vid_mode->width;
+			window_height = vid_mode->height;
+		}
+
+		glfw_window = glfwCreateWindow(window_width, window_height, title, window_monitor, system->BaseWindow);
+
+		if (glfw_window == NULL)
+		{
+			_GlfwClearErrors();
+			tuiDebugError(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED, __func__);
+			return NULL;
+		}
+
+		if (create_info->fullscreen == TUI_FALSE && create_info->custom_window_position == TUI_TRUE)
+		{
+			glfwSetWindowPos(glfw_window, create_info->windowed_x_position, create_info->windowed_y_position);
+		}
 	}
 	else
 	{
@@ -235,24 +283,24 @@ TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, 
 		glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
 		glfwWindowHint(GLFW_CENTER_CURSOR, GLFW_FALSE);
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
-	}
 
-	glfw_window = glfwCreateWindow(pixel_width, pixel_height, title, NULL, system->BaseWindow);
-	
-	if (glfw_window == NULL)
-	{
-		_GlfwClearErrors();
-		tuiDebugError(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED, __func__);
-		return NULL;
+		glfw_window = glfwCreateWindow(window_width, window_height, title, NULL, system->BaseWindow);
+
+		if (glfw_window == NULL)
+		{
+			_GlfwClearErrors();
+			tuiDebugError(TUI_ERROR_GLFW_WINDOW_CREATION_FAILED, __func__);
+			return NULL;
+		}
 	}
 
 	glfwSetFramebufferSizeCallback(glfw_window, glfwWindowFramebufferSizeCallback);
 
 	TuiWindow window = (TuiWindow_s*)tuiAllocate(sizeof(TuiWindow_s));
-	window->PixelWidth = (size_t)pixel_width;
-	window->PixelHeight = (size_t)pixel_height;
-	window->PhysicalPixelWidth = window->PixelWidth;
-	window->PhysicalPixelHeight = window->PixelHeight;
+	window->FramebufferPixelWidth = framebuffer_pixel_width;
+	window->FramebufferPixelHeight = framebuffer_pixel_height;
+	window->ViewportPixelWidth = window_width;
+	window->ViewportPixelHeight = window_height;
 	window->GlfwWindow = glfw_window;
 	window->IsFullscreen = TUI_FALSE;
 	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
@@ -295,6 +343,14 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.maximized = TUI_FALSE;
 	info.center_cursor = TUI_FALSE;
 	info.focus_on_show = TUI_TRUE;
+	info.fullscreen = TUI_FALSE;
+	info.monitor = NULL;
+	info.custom_window_position = TUI_FALSE;
+	info.windowed_x_position = 0;
+	info.windowed_y_position = 0;
+	info.framebuffer_match_viewport_pixel_dimensions = TUI_TRUE;
+	info.unmatching_viewport_pixel_width = 0;
+	info.unmatching_viewport_pixel_width = 0;
 	return info;
 }
 
@@ -331,17 +387,7 @@ void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint
 	tuiWindowClearColor_Opengl33(window, r, g, b, a);
 }
 
-inline static void _WindowFramebufferResize(TuiWindow window, int pixel_width, int pixel_height)
-{
-	if (pixel_width == window->PixelWidth && pixel_height == window->PixelHeight)
-	{
-		return;
-	}
-	window->PixelWidth = (size_t)pixel_width;
-	window->PixelHeight = (size_t)pixel_height;
-}
-
-void tuiWindowResize(TuiWindow window, int pixel_width, int pixel_height)
+void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, int pixel_height)
 {
 	if (window == NULL)
 	{
@@ -361,10 +407,10 @@ void tuiWindowResize(TuiWindow window, int pixel_width, int pixel_height)
 		tuiDebugError(glfw_error, __func__);
 		return;
 	}
-	_WindowFramebufferResize(window, pixel_width, pixel_height);
+	tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
 }
 
-int tuiWindowGetPixelWidth(TuiWindow window)
+int tuiWindowGetFramebufferPixelWidth(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -372,10 +418,10 @@ int tuiWindowGetPixelWidth(TuiWindow window)
 		return 0;
 	}
 
-	return (size_t)window->PixelWidth;
+	return (int)window->FramebufferPixelWidth;
 }
 
-int tuiWindowGetPixelHeight(TuiWindow window)
+int tuiWindowGetFramebufferPixelHeight(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -383,10 +429,10 @@ int tuiWindowGetPixelHeight(TuiWindow window)
 		return 0;
 	}
 
-	return (size_t)window->PixelHeight;
+	return (int)window->FramebufferPixelHeight;
 }
 
-void tuiWindowGetPixelDimensons(TuiWindow window, int* width, int* height)
+void tuiWindowGetFramebufferPixelDimensons(TuiWindow window, int* width, int* height)
 {
 	if (window == NULL)
 	{
@@ -396,11 +442,11 @@ void tuiWindowGetPixelDimensons(TuiWindow window, int* width, int* height)
 
 	if (width != NULL)
 	{
-		*width = window->PixelWidth;
+		*width = (int)window->FramebufferPixelWidth;
 	}
 	if (height != NULL)
 	{
-		*height = window->PixelHeight;
+		*height = (int)window->FramebufferPixelHeight;
 	}
 }
 
@@ -477,7 +523,7 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 		return;
 	}
 
-	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, window->PixelWidth, 0, window->PixelHeight);
+	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 }
 
 void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
@@ -512,7 +558,7 @@ void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette
 		return;
 	}
 
-	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, (size_t)sparse_index, batch_data, 0, window->PixelWidth, 0, window->PixelHeight);
+	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, (size_t)sparse_index, batch_data, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 
 }
 
@@ -589,7 +635,7 @@ void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel)
 		return;
 	}
 
-	tuiWindowDrawPanel_Opengl33(window, panel, 0, window->PixelWidth, 0, window->PixelHeight);
+	tuiWindowDrawPanel_Opengl33(window, panel, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 }
 
 void tuiWindowDrawPanelTransformed(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
@@ -621,7 +667,7 @@ void tuiWindowDrawTexture(TuiWindow window, TuiTexture texture)
 		return;
 	}
 
-	tuiWindowDrawTexture_Opengl33(window, texture, 0, window->PixelWidth, 0, window->PixelHeight);
+	tuiWindowDrawTexture_Opengl33(window, texture, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 }
 
 void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
@@ -653,7 +699,7 @@ void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas)
 		return;
 	}
 
-	tuiWindowDrawAtlas_Opengl33(window, atlas, 0, window->PixelWidth, 0, window->PixelHeight);
+	tuiWindowDrawAtlas_Opengl33(window, atlas, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 }
 
 void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
@@ -685,7 +731,7 @@ void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window)
 		return;
 	}
 
-	tuiWindowDrawWindow_Opengl33(window, subject_window, 0, window->PixelWidth, 0, window->PixelHeight);
+	tuiWindowDrawWindow_Opengl33(window, subject_window, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 }
 
 void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
@@ -1600,8 +1646,8 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 	}
 
 	window->IsFixedAspectRatio = TUI_TRUE;
-	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
-	glfwSetWindowAspectRatio(window->GlfwWindow, window->PixelWidth / greatest_common_factor, window->PixelHeight / greatest_common_factor);
+	int greatest_common_factor = _GCF(window->ViewportPixelWidth, window->ViewportPixelHeight);
+	glfwSetWindowAspectRatio(window->GlfwWindow, window->ViewportPixelWidth / greatest_common_factor, window->ViewportPixelHeight / greatest_common_factor);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -1647,14 +1693,14 @@ void tuiWindowGetAspectRatio(TuiWindow window, int* numerator, int* denominator)
 		return;
 	}
 
-	int greatest_common_factor = _GCF(window->PixelWidth, window->PixelHeight);
+	int greatest_common_factor = _GCF(window->ViewportPixelWidth, window->ViewportPixelHeight);
 	if (numerator != NULL)
 	{
-		*numerator = window->PixelWidth / greatest_common_factor;
+		*numerator = window->ViewportPixelWidth / greatest_common_factor;
 	}
 	if (denominator != NULL)
 	{
-		*denominator = window->PixelHeight / greatest_common_factor;
+		*denominator = window->ViewportPixelHeight / greatest_common_factor;
 	}
 }
 
@@ -1932,17 +1978,20 @@ TuiMonitor tuiWindowGetMonitor(TuiWindow window)
 	return monitor;
 }
 
-void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate)
+void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window, int refresh_rate)
 {
-	if (monitor == NULL)
+	if (window == NULL)
 	{
-		monitor = _GetCurrentMonitor(window->GlfwWindow);
-		TuiErrorCode glfw_error = _GlfwErrorCheck();
-		if (glfw_error != TUI_ERROR_NONE)
-		{
-			tuiDebugError(glfw_error, __func__);
-			return;
-		}
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	TuiMonitor monitor = _GetCurrentMonitor(window->GlfwWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
 	}
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
@@ -1958,34 +2007,30 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_ra
 		tuiDebugError(glfw_error, __func__);
 		return;
 	}
-	window->PhysicalPixelWidth = vid_mode->width;
-	window->PhysicalPixelHeight = vid_mode->height;
-
+	window->ViewportPixelWidth = vid_mode->width;
+	window->ViewportPixelHeight = vid_mode->height;
+	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	{
+		tuiWindowSetSize_Opengl33(window, (size_t)vid_mode->width, (size_t)vid_mode->height);
+	}
 }
 
-void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate)
+void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate)
 {
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
 	if (monitor == NULL)
 	{
-		monitor = _GetCurrentMonitor(window->GlfwWindow);
-		TuiErrorCode glfw_error = _GlfwErrorCheck();
-		if (glfw_error != TUI_ERROR_NONE)
-		{
-			tuiDebugError(glfw_error, __func__);
-			return;
-		}
+		tuiDebugError(TUI_ERROR_NULL_MONITOR, __func__);
+		return;
 	}
+
 	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
-	if (pixel_width == 0)
-	{
-		pixel_width = vid_mode->width;
-	}
-	if (pixel_height == 0)
-	{
-		pixel_height = vid_mode->height;
-	}
-	if (refresh_rate == 0)
+	if (refresh_rate == -1)
 	{
 		refresh_rate = vid_mode->refreshRate;
 	}
@@ -1997,16 +2042,25 @@ void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixe
 		tuiDebugError(glfw_error, __func__);
 		return;
 	}
-	window->PhysicalPixelWidth = vid_mode->width;
-	window->PhysicalPixelHeight = vid_mode->height;
-	_WindowFramebufferResize(window, pixel_width, pixel_height);
+	window->ViewportPixelWidth = vid_mode->width;
+	window->ViewportPixelHeight = vid_mode->height;
+	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	{
+		tuiWindowSetSize_Opengl33(window, (size_t)vid_mode->width, (size_t)vid_mode->height);
+	}
 }
 
 void tuiWindowSetWindowed(TuiWindow window)
 {
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
 	if (window->IsFullscreen == TUI_TRUE)
 	{
-		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, window->PixelWidth, window->PixelHeight, GLFW_DONT_CARE);
+		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, window->FramebufferPixelWidth, window->FramebufferPixelHeight, GLFW_DONT_CARE);
 		TuiErrorCode glfw_error = _GlfwErrorCheck();
 		if (glfw_error != TUI_ERROR_NONE)
 		{
@@ -2014,30 +2068,110 @@ void tuiWindowSetWindowed(TuiWindow window)
 			return;
 		}
 		window->IsFullscreen = TUI_FALSE;
-		window->PhysicalPixelWidth = window->PixelWidth;
-		window->PhysicalPixelHeight = window->PixelHeight;
+		window->ViewportPixelWidth = window->FramebufferPixelWidth;
+		window->ViewportPixelHeight = window->FramebufferPixelHeight;
 	}
 }
 
-void tuiWindowSetWindowedResize(TuiWindow window, int pixel_width, int pixel_height)
+void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width, int viewport_pixel_height)
 {
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (viewport_pixel_width <= 0 || viewport_pixel_height <= 0)
+	{
+		// TODO tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
+		return;
+	}
+
 	if (window->IsFullscreen == TUI_TRUE)
 	{
-		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, pixel_width, pixel_height, GLFW_DONT_CARE);
+		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, viewport_pixel_width, viewport_pixel_height, GLFW_DONT_CARE);
 		TuiErrorCode glfw_error = _GlfwErrorCheck();
 		if (glfw_error != TUI_ERROR_NONE)
 		{
 			tuiDebugError(glfw_error, __func__);
 			return;
 		}
-		_WindowFramebufferResize(window, pixel_width, pixel_height);
 		window->IsFullscreen = TUI_FALSE;
-		window->PhysicalPixelWidth = window->PixelWidth;
-		window->PhysicalPixelHeight = window->PixelHeight;
+		window->ViewportPixelWidth = viewport_pixel_width;
+		window->ViewportPixelHeight = viewport_pixel_height;
+		if (window->FramebufferMatchViewportSize == TUI_TRUE)
+		{
+			tuiWindowSetSize_Opengl33(window, (size_t)viewport_pixel_width, (size_t)viewport_pixel_height);
+		}
 	}
 }
 
-TuiBoolean tuiWindowIsFullscreen(TuiWindow window)
+int tuiWindowGetViewportPixelWidth(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return window->ViewportPixelWidth;
+}
+
+int tuiWindowGetViewportPixelHeight(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return window->ViewportPixelHeight;
+}
+
+void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* width, int* height)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+
+	if (width != NULL)
+	{
+		*width = (int)window->ViewportPixelWidth;
+	}
+	if (height != NULL)
+	{
+		*height = (int)window->ViewportPixelHeight;
+	}
+}
+
+void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean framebuffer_matches_viewport_size)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	window->FramebufferMatchViewportSize = framebuffer_matches_viewport_size;
+	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	{
+		tuiWindowSetSize_Opengl33(window, window->ViewportPixelWidth, window->ViewportPixelHeight);
+	}
+}
+
+TuiBoolean tuiWindowGetFramebufferMatchesViewportSize(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return TUI_FALSE;
+	}
+
+	return window->FramebufferMatchViewportSize;
+}
+
+TuiBoolean tuiWindowGetIsFullscreen(TuiWindow window)
 {
 	if (window == NULL)
 	{

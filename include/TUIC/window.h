@@ -43,11 +43,19 @@ typedef struct TuiWindowCreateInfo
 	TuiBoolean maximized;
 	TuiBoolean center_cursor;
 	TuiBoolean focus_on_show;
+	TuiBoolean fullscreen;
+	TuiMonitor monitor;
+	TuiBoolean custom_window_position;
+	int windowed_x_position;
+	int windowed_y_position;
+	TuiBoolean framebuffer_match_viewport_pixel_dimensions;
+	int unmatching_viewport_pixel_width;
+	int umnatching_viewport_pixel_height;
 } TuiWindowCreateInfo;
 
 TuiWindowCreateInfo tuiWindowCreateInfo();
 
-TuiWindow tuiWindowCreate(int pixel_width, int pixel_height, const char* title, TuiWindowCreateInfo* create_info);
+TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_height, const char* title, TuiWindowCreateInfo* create_info);
 
 void tuiWindowDestroy(TuiWindow window);
 
@@ -55,13 +63,13 @@ int tuiGetWindowCount();
 
 void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
-void tuiWindowResize(TuiWindow window, int pixel_width, int pixel_height);
+void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, int pixel_height);
 
-int tuiWindowGetPixelWidth(TuiWindow window);
+int tuiWindowGetFramebufferPixelWidth(TuiWindow window);
 
-int tuiWindowGetPixelHeight(TuiWindow window);
+int tuiWindowGetFramebufferPixelHeight(TuiWindow window);
 
-void tuiWindowGetPixelDimensons(TuiWindow window, int* width, int* height);
+void tuiWindowGetFramebufferPixelDimensons(TuiWindow window, int* width, int* height);
 
 TuiImage tuiWindowGetImage(TuiWindow window);
 
@@ -221,15 +229,25 @@ void tuiWindowRequestAttention(TuiWindow window);
 
 TuiMonitor tuiWindowGetMonitor(TuiWindow window);
 
-void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate);
+void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window, int refresh_rate);
 
-void tuiWindowSetFullscreenResize(TuiWindow window, TuiMonitor monitor, int pixel_width, int pixel_height, int refresh_rate);
+void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor, int refresh_rate);
 
 void tuiWindowSetWindowed(TuiWindow window);
 
-void tuiWindowSetWindowedResize(TuiWindow window, int pixel_width, int pixel_height);
+void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width, int viewport_pixel_height);
 
-TuiBoolean tuiWindowIsFullscreen(TuiWindow window);
+int tuiWindowGetViewportPixelWidth(TuiWindow window);
+
+int tuiWindowGetViewportPixelHeight(TuiWindow window);
+
+void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* width, int* height);
+
+void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean framebuffer_matches_viewport_size);
+
+TuiBoolean tuiWindowGetFramebufferMatchesViewportSize(TuiWindow window);
+
+TuiBoolean tuiWindowGetIsFullscreen(TuiWindow window);
 
 TuiBoolean tuiWindowGetFocused(TuiWindow window);
 
