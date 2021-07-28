@@ -193,12 +193,12 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	}
 	if (framebuffer_pixel_width <= 0 || framebuffer_pixel_height <= 0)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return NULL;
 	}
 	if (create_info != NULL && create_info->framebuffer_match_viewport_pixel_dimensions == TUI_TRUE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
 	{
-		// TODO tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return NULL;
 	}
 
@@ -396,7 +396,7 @@ void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, i
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_WINDOW_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return;
 	}
 
@@ -2074,7 +2074,7 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 	}
 	if (viewport_pixel_width <= 0 || viewport_pixel_height <= 0)
 	{
-		// TODO tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return;
 	}
 

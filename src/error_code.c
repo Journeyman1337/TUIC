@@ -48,7 +48,8 @@ const char* kTui_Error_Invalid_Palette_Color_Count_Name = TO_STRING(TUI_ERROR_IN
 const char* kTui_Error_Invalid_Panel_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_PANEL_DIMENSIONS);
 const char* kTui_Error_Invalid_Pixel_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_PIXEL_DIMENSIONS);
 const char* kTui_Error_Invalid_Time_Name = TO_STRING(TUI_ERROR_INVALID_TIME);
-const char* kTui_Error_Invalid_Window_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_WINDOW_DIMENSIONS);
+const char* kTui_Error_Invalid_Window_Framebuffer_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS);
+const char* kTui_Error_Invalid_Window_Viewport_Dimensions_Name = TO_STRING(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS);
 const char* kTui_Error_Invalid_Window_Size_Limits_Name = TO_STRING(TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS);
 const char* kTui_Error_Load_Image_Failure_Name = TO_STRING(TUI_ERROR_LOAD_IMAGE_FAILURE);
 const char* kTui_Error_Not_Initialized_Name = TO_STRING(TUI_ERROR_NOT_INITIALIZED);
@@ -124,7 +125,8 @@ const char* kTui_Error_Invalid_Palette_Color_Count_Description = "The palette co
 const char* kTui_Error_Invalid_Panel_Dimensions_Description = "The pixel dimensions of a TuiPanel must be greater than 0.";
 const char* kTui_Error_Invalid_Pixel_Dimensions_Description = "The pixel dimensions of a pixel array must be greater than 0.";
 const char* kTui_Error_Invalid_Time_Description = "The system time must be greater than or equal to 0 and less than 18446744073";
-const char* kTui_Error_Invalid_Window_Dimensions_Description = "The pixel dimensions of a TuiWindow must be greater than 0.";
+const char* kTui_Error_Invalid_Window_Framebuffer_Dimensions_Description = "The pixel dimensions of the framebuffer of a TuiWindow must be greater than 0.";
+const char* kTui_Error_Invalid_Window_Viewport_Dimensions_Description = "The pixel dimensions of the viewport of a TuiWindow must be greater than 0.";
 const char* kTui_Error_Invalid_Window_Size_Limits_Description = "The min size limits of a TuiWindow must be smaller than the max size limits, and no size limits can be less than 0.";
 const char* kTui_Error_Load_Image_Failure_Description = "The image failed to be loaded.";
 const char* kTui_Error_Not_Initialized_Description = "TUIC is not initialzed.";
@@ -261,8 +263,10 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Pixel_Dimensions_Name;
 	case TUI_ERROR_INVALID_TIME:
 		return kTui_Error_Invalid_Time_Name;
-	case TUI_ERROR_INVALID_WINDOW_DIMENSIONS:
-		return kTui_Error_Invalid_Window_Dimensions_Name;
+	case TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS:
+		return kTui_Error_Invalid_Window_Framebuffer_Dimensions_Name;
+	case TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS:
+		return kTui_Error_Invalid_Window_Viewport_Dimensions_Name;
 	case TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS:
 		return kTui_Error_Invalid_Window_Size_Limits_Name;
 	case TUI_ERROR_LOAD_IMAGE_FAILURE:
@@ -508,9 +512,13 @@ int tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_INVALID_TIME;
 	}
-	else if (strcmp(str, kTui_Error_Invalid_Window_Dimensions_Name) == 0)
+	else if (strcmp(str, kTui_Error_Invalid_Window_Framebuffer_Dimensions_Name) == 0)
 	{
-		return TUI_ERROR_INVALID_WINDOW_DIMENSIONS;
+		return TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS;
+	}
+	else if (strcmp(str, kTui_Error_Invalid_Window_Viewport_Dimensions_Name) == 0)
+	{
+		return TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS;
 	}
 	else if (strcmp(str, kTui_Error_Invalid_Window_Size_Limits_Name) == 0)
 	{
@@ -725,8 +733,10 @@ const char* tuiErrorCodeGetDescription(int error_code)
 		return kTui_Error_Invalid_Pixel_Dimensions_Description;
 	case TUI_ERROR_INVALID_TIME:
 		return kTui_Error_Invalid_Time_Description;
-	case TUI_ERROR_INVALID_WINDOW_DIMENSIONS:
-		return kTui_Error_Invalid_Window_Dimensions_Description;
+	case TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS:
+		return kTui_Error_Invalid_Window_Framebuffer_Dimensions_Description;
+	case TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS:
+		return kTui_Error_Invalid_Window_Viewport_Dimensions_Description;
 	case TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS:
 		return kTui_Error_Invalid_Window_Size_Limits_Description;
 	case TUI_ERROR_LOAD_IMAGE_FAILURE:
