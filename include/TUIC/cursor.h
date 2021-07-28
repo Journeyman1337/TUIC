@@ -27,6 +27,7 @@ extern "C" {
 #include <TUIC/types.h>
 #include <TUIC/cursor_shape.h>
 
+
 /*! @name @ref TuiCursor functions
  *
  * Functions for manipulating @ref TuiCursor opaque objects.
@@ -110,6 +111,7 @@ void tuiCursorDestroy(TuiCursor cursor);
  */
 int tuiGetCursorCount();
 /*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }
