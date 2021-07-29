@@ -137,7 +137,7 @@ int main()
     tuiWindowSetFocusCallback(window, window_focus_callback);
     tuiWindowSetIconifyCallback(window, window_iconify_callback);
     tuiWindowSetMaximizeCallback(window, window_maximize_callback);
-    tuiWindowSetResizeCallback(window, window_resize_callback);
+    tuiWindowSetViewportResizeCallback(window, window_resize_callback);
     tuiWindowSetContentScaleCallback(window, window_content_scale_callback);
     tuiWindowSetMouseButtonCallback(window, mouse_button_callback);
     tuiWindowSetCursorMoveCallback(window, cursor_move_callback);
