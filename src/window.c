@@ -196,7 +196,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (create_info != NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_viewport_pixel_width < 0 || create_info->umnatching_viewport_pixel_height < 0))
+	if (create_info != NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_viewport_pixel_width < 0 || create_info->unmatching_viewport_pixel_height < 0))
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return NULL;
@@ -395,7 +395,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.windowed_y_position = 0;
 	info.framebuffer_match_viewport_size = TUI_TRUE;
 	info.unmatching_viewport_pixel_width = 0;
-	info.unmatching_viewport_pixel_width = 0;
+	info.unmatching_viewport_pixel_height = 0;
 	return info;
 }
 
