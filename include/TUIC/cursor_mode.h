@@ -82,7 +82,7 @@ extern const char* kTui_Cursor_Mode_Disabled_Name;
 /*! @} */
 
 
-/*! @name TuiButtonState functions
+/*! @name TuiCursorMode functions
  *
  * Functions for dealing with @ref TuiCursorMode enum values.
  *  @{ */
