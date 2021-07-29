@@ -115,15 +115,21 @@ static void glfwWindowMaximizeCallback(GLFWwindow* glfw_window, int maximized)
 static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel_width, int pixel_height)
 {
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
-	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	if (
+		(window->IsFullscreen == TUI_FALSE && glfwGetWindowAttrib(glfw_window, GLFW_RESIZABLE) == GLFW_TRUE) ||
+		(window->ViewportPixelWidth == pixel_width && window->ViewportPixelHeight == pixel_height)
+		) //this condition is to fix a weird GLFW issue where invalid sizes sometimes get passed into this callback. seems to happen especially when transitioning between windowed and fullscreen.
 	{
-		tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
-	}
-	window->ViewportPixelWidth = pixel_width;
-	window->ViewportPixelHeight = pixel_height;
-	if (window->WindowResizeCallback != NULL)
-	{
-		window->WindowResizeCallback(window, pixel_width, pixel_height);
+		if (window->FramebufferMatchViewportSize == TUI_TRUE)
+		{
+			tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
+		}
+		window->ViewportPixelWidth = pixel_width;
+		window->ViewportPixelHeight = pixel_height;
+		if (window->WindowResizeCallback != NULL)
+		{
+			window->WindowResizeCallback(window, pixel_width, pixel_height);
+		}
 	}
 }
 
@@ -424,7 +430,12 @@ void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, i
 		return;
 	}
 
-	glfwSetWindowSize(window->GlfwWindow, pixel_width, pixel_height);
+	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	{
+		window->ViewportPixelWidth = pixel_width;
+		window->ViewportPixelHeight = pixel_height;
+		glfwSetWindowSize(window->GlfwWindow, pixel_width, pixel_height);
+	}	
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -2104,6 +2115,9 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 
 	if (window->IsFullscreen == TUI_TRUE)
 	{
+		window->IsFullscreen = TUI_FALSE;
+		window->ViewportPixelWidth = viewport_pixel_width;
+		window->ViewportPixelHeight = viewport_pixel_height;
 		glfwSetWindowMonitor(window->GlfwWindow, NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, viewport_pixel_width, viewport_pixel_height, GLFW_DONT_CARE);
 		TuiErrorCode glfw_error = _GlfwErrorCheck();
 		if (glfw_error != TUI_ERROR_NONE)
@@ -2111,9 +2125,22 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 			tuiDebugError(glfw_error, __func__);
 			return;
 		}
-		window->IsFullscreen = TUI_FALSE;
+		if (window->FramebufferMatchViewportSize == TUI_TRUE)
+		{
+			tuiWindowSetSize_Opengl33(window, (size_t)viewport_pixel_width, (size_t)viewport_pixel_height);
+		}
+	}
+	else //(window->IsFullscreen == TUI_FALSE)
+	{
 		window->ViewportPixelWidth = viewport_pixel_width;
 		window->ViewportPixelHeight = viewport_pixel_height;
+		glfwSetWindowSize(window->GlfwWindow, viewport_pixel_width, viewport_pixel_height);
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			tuiDebugError(glfw_error, __func__);
+			return;
+		}
 		if (window->FramebufferMatchViewportSize == TUI_TRUE)
 		{
 			tuiWindowSetSize_Opengl33(window, (size_t)viewport_pixel_width, (size_t)viewport_pixel_height);
