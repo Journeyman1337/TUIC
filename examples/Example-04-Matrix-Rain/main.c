@@ -53,7 +53,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     {
         if (tuiWindowGetIsFullscreen(window) == TUI_FALSE)
         {
-            tuiWindowSetFullscreenCurrentMonitor(window);
+            tuiWindowSetFullscreen(window, tuiGetPrimaryMonitor());
         }
         else
         {
