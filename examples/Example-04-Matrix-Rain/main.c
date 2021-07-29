@@ -82,8 +82,10 @@ int main()
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
     /* Create the window. */
+    TuiWindowCreateInfo create_info = tuiWindowCreateInfo();
+    create_info.framebuffer_match_viewport_size = TUI_FALSE;
     const char* window_title = "Example 1";
-    TuiWindow window = tuiWindowCreate(monitor_width, monitor_height, window_title, NULL);
+    TuiWindow window = tuiWindowCreate(monitor_width, monitor_height, window_title, &create_info);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
