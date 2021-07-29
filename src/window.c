@@ -196,7 +196,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return NULL;
 	}
-	if (create_info != NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_viewport_pixel_width <= 0 || create_info->umnatching_viewport_pixel_height <= 0))
+	if (create_info != NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_viewport_pixel_width < 0 || create_info->umnatching_viewport_pixel_height < 0))
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
 		return NULL;
@@ -258,8 +258,23 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		if (create_info->framebuffer_match_viewport_size == TUI_FALSE)
 		{
 			framebuffer_matches_viewport_size = create_info->framebuffer_match_viewport_size;
-			window_width = create_info->unmatching_viewport_pixel_width;
-			window_height = create_info->umnatching_viewport_pixel_height;
+			if (create_info->unmatching_viewport_pixel_width == 0)
+			{
+				window_width = framebuffer_pixel_width;
+			}
+			else
+			{
+				window_width = create_info->unmatching_viewport_pixel_width;
+			}
+			
+			if (create_info->unmatching_viewport_pixel_height == 0)
+			{
+				window_height = framebuffer_pixel_height;
+			}
+			else
+			{
+				window_height = create_info->unmatching_viewport_pixel_height;
+			}
 		}
 		if (create_info->fullscreen == TUI_TRUE)
 		{

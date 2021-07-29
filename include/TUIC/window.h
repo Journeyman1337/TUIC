@@ -50,7 +50,7 @@ typedef struct TuiWindowCreateInfo
 	int windowed_y_position;
 	TuiBoolean framebuffer_match_viewport_size;
 	int unmatching_viewport_pixel_width;
-	int umnatching_viewport_pixel_height;
+	int unmatching_viewport_pixel_height;
 } TuiWindowCreateInfo;
 
 TuiWindowCreateInfo tuiWindowCreateInfo();
