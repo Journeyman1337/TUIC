@@ -335,6 +335,7 @@ int tuiAtlasGetGlyphCount(TuiAtlas atlas);
 float* tuiGenerateUVCoordinatesFromPixelCooordinates(int glyph_count, uint16_t* pixel_coordinates, int texture_width, int texture_height, float* out_ptr);
 /*! @} */
 
+
 #ifdef __cplusplus //extern C guard
 }
 #endif
