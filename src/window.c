@@ -2719,7 +2719,7 @@ tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWind
 	return old_callback;
 }
 
-tuiWindowResizeFunction tuiWindowSetResizeCallback(TuiWindow window, tuiWindowResizeFunction callback)
+tuiWindowViewportResizeFunction tuiWindowSetViewportResizeCallback(TuiWindow window, tuiWindowViewportResizeFunction callback)
 {
 	if (window == NULL)
 	{
@@ -2727,7 +2727,7 @@ tuiWindowResizeFunction tuiWindowSetResizeCallback(TuiWindow window, tuiWindowRe
 		return NULL;
 	}
 
-	tuiWindowResizeFunction old_callback = window->WindowResizeCallback;
+	tuiWindowViewportResizeFunction old_callback = window->WindowResizeCallback;
 	window->WindowResizeCallback = callback;
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)

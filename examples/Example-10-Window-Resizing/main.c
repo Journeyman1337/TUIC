@@ -205,7 +205,7 @@ int main()
 
     /* Set the window callbacks. */
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
-    tuiWindowSetResizeCallback(window, window_resize_callback);
+    tuiWindowSetViewportResizeCallback(window, window_resize_callback);
 
     /* Set the window user ptr. */
     tuiWindowSetUserPointer(window, &window_user_pointer);
