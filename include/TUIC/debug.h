@@ -35,7 +35,7 @@ extern "C" {
 /*!
  * @brief Callback type used to set the debug callback handler.
  * 
- * @params error_code The @ref TuiErrorCode.
+ * @param error_code The @ref TuiErrorCode.
  * @param msg For errors with @ref TuiErrorCode @ref TUI_ERROR_BACKEND_SPECIFIC, this is a string description of the error. For all other error codes, this is the name of the function where the error occured.
  */
 typedef void(*tuiDebugErrorCallback) (TuiErrorCode error_code, const char* msg);
