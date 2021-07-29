@@ -34,21 +34,30 @@ extern "C" {
  *  @{ */ 
 /*!
  * @brief Callback type used to set the debug callback handler.
+ * 
+ * @params error_code The @ref TuiErrorCode.
+ * @param msg For errors with @ref TuiErrorCode @ref TUI_ERROR_BACKEND_SPECIFIC, this is a string description of the error. For all other error codes, this is the name of the function where the error occured.
  */
 typedef void(*tuiDebugErrorCallback) (TuiErrorCode error_code, const char* msg);
 /*!
- * @brief Set the callback function to handle debug output from TUI.
+ * @brief Set the callback function to handle debug output from TUI. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to NULL will disable the callback.
  *
- * After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to NULL will disable the callback.
+ * @param callack A function pointer to the callback.
+ * 
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
  */
 void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback);
 /*!
- * @brief Send a debug message to the debug callback function.
+ * @brief Send a debug message to the debug callback function. This function sends a message to the currently set debug callback function. If none was set or it was set to NULL, nothing will happen.
  *
  * @param error_code The @ref TuiErrorCode.
  * @param msg For errors with @ref TuiErrorCode @ref TUI_ERROR_BACKEND_SPECIFIC, this is a string description of the error. For all other error codes, this is the name of the function where the error occured.
  *
- * This function sends a message to the currently set debug callback function. If none was set or it was set to NULL, nothing will happen.
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
  */
 void tuiDebugError(TuiErrorCode error_code, const char* msg);
 /*! @} */
