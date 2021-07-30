@@ -139,7 +139,7 @@ extern const char* kTui_Blend_BG_ALPHA_Name;
  * 
  * @param blend_mode The @ref TuiBlendMode to check.
  * 
- * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiBlendMode, it
+ * @returns The @ref TuiBoolean result. If blend_mode is a valid @ref TuiBlendMode, it
  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
  *
  * @errors This function can have no errors.
@@ -152,7 +152,7 @@ TuiBoolean tuiBlendIsValid(TuiBlendMode blend_mode);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiBlendMode enum.
  *
- * @param blend_mode The TuiBlendMode to get the name of.
+ * @param blend_mode The @ref TuiBlendMode to get the name of.
  *
  * @returns The string name. NULL is returned if blend_mode is an invalid @ref TuiBlendMode.
  * 

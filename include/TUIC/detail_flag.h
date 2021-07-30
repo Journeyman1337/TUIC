@@ -172,7 +172,7 @@ extern const char* kTui_Layout_Flag_Sparse_Name;
  *
  * @param detail_flag The @ref TuiDetailFlag to check.
  *
- * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiDetailFlag, it
+ * @returns The @ref TuiBoolean result. If detail_flag is a valid @ref TuiDetailFlag, it
  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
  *
  * @errors This function can have no errors.
@@ -185,7 +185,7 @@ TuiBoolean tuiDetailFlagIsValid(TuiDetailFlag detail_flag);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiDetailFlag enum.
  *
- * @param detail_flag The TuiDetailFlag to get the name of.
+ * @param detail_flag The @ref TuiDetailFlag to get the name of.
  *
  * @returns The string name. NULL is returned if cursor_mode is an invalid @ref TuiDetailFlag.
  *

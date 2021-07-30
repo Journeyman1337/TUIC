@@ -155,7 +155,7 @@ extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
   *
   * @param cursor_shape The @ref TuiCursorShape to check.
   *
-  * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiCursorShape, it
+  * @returns The @ref TuiBoolean result. If cursor_shape is a valid @ref TuiCursorShape, it
   * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
   *
   * @errors This function can have no errors.

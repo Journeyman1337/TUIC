@@ -91,7 +91,7 @@ extern const char* kTui_Cursor_Mode_Disabled_Name;
   *
   * @param cursor_mode The @ref TuiCursorMode to check.
   *
-  * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiCursorMode, it
+  * @returns The @ref TuiBoolean result. If cursor_mode is a valid @ref TuiCursorMode, it
   * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
   *
   * @errors This function can have no errors.
@@ -104,7 +104,7 @@ TuiBoolean tuiCursorModeIsValid(TuiCursorMode cursor_mode);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiCursorMode enum.
  *
- * @param cursor_mode The TuiCursorMode to get the name of.
+ * @param cursor_mode The @ref TuiCursorMode to get the name of.
  *
  * @returns The string name. NULL is returned if cursor_mode is an invalid @ref TuiCursorMode.
  *

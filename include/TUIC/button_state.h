@@ -91,7 +91,7 @@ extern const char* kTui_Button_Repeat_Name;
  *
  * @param button_state The @ref TuiButtonState to check.
  *
- * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiButtonState, it
+ * @returns The @ref TuiBoolean result. If button_state is a valid @ref TuiButtonState, it
  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
  *
  * @errors This function can have no errors.
@@ -104,7 +104,7 @@ TuiBoolean tuiButtonStateIsValid(TuiButtonState button_state);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiButtonState enum.
  *
- * @param button_state The TuiButtonState to get the name of.
+ * @param button_state The @ref TuiButtonState to get the name of.
  *
  * @returns The string name. NULL is returned if button_state is an invalid @ref TuiButtonState.
  *

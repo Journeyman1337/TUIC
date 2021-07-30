@@ -92,7 +92,7 @@ extern const char* kTui_Atlas_Grid_Name;
  * 
  * @param atlas_type The @ref TuiAtlasType to check.
  * 
- * @returns The @ref TuiBoolean result. If it atlas_type is a valid @ref TuiAtlasType, it
+ * @returns The @ref TuiBoolean result. If atlas_type is a valid @ref TuiAtlasType, it
  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
  *
  * @errors This function can have no errors.
@@ -105,7 +105,7 @@ TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiAtlasType enum.
  *
- * @param atlas_type The TuiAtlasType to get the name of.
+ * @param atlas_type The @ref TuiAtlasType to get the name of.
  *
  * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiAtlasType.
  * 
