@@ -62,7 +62,7 @@ typedef struct TuiWindow_s
 
 	tuiWindowMaximizeFunction WindowMaximizeCallback;
 
-	tuiWindowResizeFunction WindowResizeCallback;
+	tuiWindowViewportResizeFunction WindowViewportResizeCallback;
 
 	tuiWindowContentScaleFunction WindowContentScaleCallback;
 

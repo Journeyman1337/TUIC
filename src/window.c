@@ -126,9 +126,9 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel
 		}
 		window->ViewportPixelWidth = pixel_width;
 		window->ViewportPixelHeight = pixel_height;
-		if (window->WindowResizeCallback != NULL)
+		if (window->WindowViewportResizeCallback != NULL)
 		{
-			window->WindowResizeCallback(window, pixel_width, pixel_height);
+			window->WindowViewportResizeCallback(window, pixel_width, pixel_height);
 		}
 	}
 }
@@ -349,7 +349,7 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	window->WindowFocusCallback = NULL;
 	window->WindowIconifyCallback = NULL;
 	window->WindowMaximizeCallback = NULL;
-	window->WindowResizeCallback = NULL;
+	window->WindowViewportResizeCallback = NULL;
 	window->WindowContentScaleCallback = NULL;
 	window->MouseButtonCallback = NULL;
 	window->CursorMoveCallback = NULL;
@@ -2727,8 +2727,8 @@ tuiWindowViewportResizeFunction tuiWindowSetViewportResizeCallback(TuiWindow win
 		return NULL;
 	}
 
-	tuiWindowViewportResizeFunction old_callback = window->WindowResizeCallback;
-	window->WindowResizeCallback = callback;
+	tuiWindowViewportResizeFunction old_callback = window->WindowViewportResizeCallback;
+	window->WindowViewportResizeCallback = callback;
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
