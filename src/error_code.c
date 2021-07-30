@@ -83,7 +83,7 @@ const char* kTui_Error_Unsupported_Cursor_Shape_Name = TO_STRING(TUI_ERROR_UNSUP
 const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION);
 const char* kTui_Error_Unsupported_Window_Icons_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_WINDOW_ICONS);
 
-const char* kTui_Error_Unknown_Description = "An unkown error has occured.";
+const char* kTui_Error_Unknown_Description = "An unknown error has occured.";
 const char* kTui_Error_None_Description = "No error has occured.";
 const char* kTui_Error_Already_Initialized_Description = "TUIC has already been initialized.";
 const char* kTui_Error_Graphics_Backend_Specific_Description = "A graphics backend specific error has occured.";
