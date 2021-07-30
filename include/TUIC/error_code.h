@@ -1084,34 +1084,6 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiErrorCodeIsGlfwError(TuiErrorCode error_code);
-/*!
- * @brief Retrieve the GLFW error with a @ref TuiErrorCode enum.
- *
- * @param error_code The @ref TuiErrorCode to get the GLFW error code of.
- *
- * @returns The GLFW error code. 0 is returned if error_code does not correlate to a GLFW error.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-int tuiErrorCodeToGlfwError(TuiErrorCode error_code);
-/*!
- * @brief Retrieve the GLFW error with a @ref TuiErrorCode enum.
- *
- * @param error_code The @ref TuiErrorCode to get the GLFW error code of.
- *
- * @returns The GLFW error code. 0 is returned if error_code does not correlate to a GLFW error.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiErrorCode tuiGlfwErrorToErrorCode(int glfw_error);
 /*! @} */
 
 
