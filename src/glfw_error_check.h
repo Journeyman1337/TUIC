@@ -28,15 +28,74 @@ static inline void _GlfwClearErrors()
 	while (glfwGetError(NULL) != GLFW_NO_ERROR);
 }
 
+static inline int _TuiErrorCodeToGlfwError(TuiErrorCode error_code)
+{
+	switch (error_code)
+	{
+	case TUI_ERROR_GLFW_API_UNAVAILABLE:
+		return GLFW_API_UNAVAILABLE;
+	case TUI_ERROR_GLFW_FORMAT_UNAVAILABLE:
+		return GLFW_FORMAT_UNAVAILABLE;
+	case TUI_ERROR_GLFW_INVALID_ENUM:
+		return GLFW_INVALID_ENUM;
+	case TUI_ERROR_GLFW_INVALID_VALUE:
+		return GLFW_INVALID_VALUE;
+	case TUI_ERROR_GLFW_NOT_INITIALIZED:
+		return GLFW_NOT_INITIALIZED;
+	case TUI_ERROR_GLFW_NO_CURRENT_CONTEXT:
+		return GLFW_NO_CURRENT_CONTEXT;
+	case TUI_ERROR_GLFW_NO_WINDOW_CONTEXT:
+		return GLFW_NO_WINDOW_CONTEXT;
+	case TUI_ERROR_GLFW_OUT_OF_MEMORY:
+		return GLFW_OUT_OF_MEMORY;
+	case TUI_ERROR_GLFW_PLATFORM_ERROR:
+		return GLFW_PLATFORM_ERROR;
+	case TUI_ERROR_GLFW_VERSION_UNAVAILABLE:
+		return GLFW_VERSION_UNAVAILABLE;
+	default:
+		return GLFW_NO_ERROR;
+	}
+}
+
+static inline TuiErrorCode _GlfwErrorToErrorCode(int glfw_error)
+{
+	switch (glfw_error)
+	{
+	case GLFW_API_UNAVAILABLE:
+		return TUI_ERROR_GLFW_API_UNAVAILABLE;
+	case GLFW_FORMAT_UNAVAILABLE:
+		return TUI_ERROR_GLFW_FORMAT_UNAVAILABLE;
+	case GLFW_INVALID_ENUM:
+		return TUI_ERROR_GLFW_INVALID_ENUM;
+	case GLFW_INVALID_VALUE:
+		return TUI_ERROR_GLFW_INVALID_VALUE;
+	case GLFW_NOT_INITIALIZED:
+		return TUI_ERROR_GLFW_NOT_INITIALIZED;
+	case GLFW_NO_CURRENT_CONTEXT:
+		return TUI_ERROR_GLFW_NO_CURRENT_CONTEXT;
+	case GLFW_NO_WINDOW_CONTEXT:
+		return TUI_ERROR_GLFW_NO_WINDOW_CONTEXT;
+	case GLFW_OUT_OF_MEMORY:
+		return TUI_ERROR_GLFW_OUT_OF_MEMORY;
+	case GLFW_PLATFORM_ERROR:
+		return TUI_ERROR_GLFW_PLATFORM_ERROR;
+	case GLFW_VERSION_UNAVAILABLE:
+		return TUI_ERROR_GLFW_VERSION_UNAVAILABLE;
+	default:
+		return TUI_ERROR_UNKNOWN;
+	}
+}
+
 static inline TuiErrorCode _GlfwErrorCheck()
 {
 	int glfw_error = glfwGetError(NULL);
 	if (glfw_error != GLFW_NO_ERROR)
 	{
 		_GlfwClearErrors();
-		return tuiGlfwErrorToErrorCode(glfw_error);
+		return _GlfwErrorToErrorCode(glfw_error);
 	}
 	return TUI_ERROR_NONE;
 }
+
 
 #endif //header guard

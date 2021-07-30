@@ -275,11 +275,6 @@ extern const char* kTui_Error_Unsupported_Window_Icons_Description;
 TuiBoolean tuiErrorCodeIsValid(TuiErrorCode code);
 
 const char* tuiErrorCodeToString(TuiErrorCode error_code);
-
-int tuiStringToErrorCode(const char* str);
-
-const char* tuiErrorCodeGetDescription(int error_code);
-
 TuiBoolean tuiErrorCodeIsGlfwError(TuiErrorCode error_code);
 
 int tuiErrorCodeToGlfwError(TuiErrorCode error_code);
