@@ -39,6 +39,7 @@ const char* kTui_Error_Invalid_Cursor_Mode_Name = TO_STRING(TUI_ERROR_INVALID_CU
 const char* kTui_Error_Invalid_Cursor_Shape_Name = TO_STRING(TUI_ERROR_INVALID_CURSOR_SHAPE);
 const char* kTui_Error_Invalid_Detail_Flag_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_FLAG);
 const char* kTui_Error_Invalid_Detail_Mode_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_MODE);
+const char* kTui_Error_Invalid_Event_Timeout_Name = TO_STRING(TUI_ERROR_INVALID_EVENT_TIMEOUT);
 const char* kTui_Error_Invalid_Filter_Mode_Name = TO_STRING(TUI_ERROR_INVALID_FILTER_MODE);
 const char* kTui_Error_Invalid_Glfw_Library_Version_Name = TO_STRING(TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION);
 const char* kTui_Error_Invalid_Glyph_Count_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_COUNT);
@@ -118,6 +119,7 @@ const char* kTui_Error_Invalid_Cursor_Mode_Description = "The TuiCursorMode is i
 const char* kTui_Error_Invalid_Cursor_Shape_Description = "The TuiCursorShape is invalid.";
 const char* kTui_Error_Invalid_Detail_Flag_Description = "The TuiDetailFlag is invalid.";
 const char* kTui_Error_Invalid_Detail_Mode_Description = "The TuiDetailMode is invalid.";
+const char* kTui_Error_Invalid_Event_Timeout_Description = "The event timeout must be a positive finite number.";
 const char* kTui_Error_Invalid_Filter_Mode_Description = "The TuiFilterMode is invalid.";
 const char* kTui_Error_Invalid_Glfw_Library_Version_Description = "The GLFW library dependency has the incorrect version. TUIC requires GLFW version 3.3.";
 const char* kTui_Error_Invalid_Glyph_Count_Description = "The glyph count must be greater than 0.";
@@ -229,6 +231,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Detail_Flag_Name;
 	case TUI_ERROR_INVALID_DETAIL_MODE:
 		return kTui_Error_Invalid_Detail_Mode_Name;
+	case TUI_ERROR_INVALID_EVENT_TIMEOUT:
+		return kTui_Error_Invalid_Event_Timeout_Name;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Name;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
@@ -420,6 +424,10 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	else if (strcmp(str, kTui_Error_Invalid_Detail_Mode_Name) == 0)
 	{
 		return TUI_ERROR_INVALID_DETAIL_MODE;
+	}
+	else if (strcmp(str, kTui_Error_Invalid_Event_Timeout_Name) == 0)
+	{
+		return TUI_ERROR_INVALID_EVENT_TIMEOUT;
 	}
 	else if (strcmp(str, kTui_Error_Invalid_Filter_Mode_Name) == 0)
 	{
@@ -647,6 +655,8 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Detail_Flag_Description;
 	case TUI_ERROR_INVALID_DETAIL_MODE:
 		return kTui_Error_Invalid_Detail_Mode_Description;
+	case TUI_ERROR_INVALID_EVENT_TIMEOUT:
+		return kTui_Error_Invalid_Event_Timeout_Description;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Description;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
