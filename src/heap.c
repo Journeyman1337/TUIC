@@ -22,79 +22,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-void* default_allocate(size_t size)
-{
-	void* ptr = malloc(size);
-	memset(ptr, 0, size);
-	return ptr;
-}
-
-void* default_reallocate(void* to_realloc, size_t size)
-{
-	void* ptr = realloc(to_realloc, size);
-	memset(ptr, 0, size);
-	return ptr;
-}
-
-void default_free(void* data)
-{
-	free(data);
-}
-
-static tuiAllocateCallback sAllocateCallback = default_allocate;
-
-static tuiReallocateCallback sReallocateCallback = default_reallocate;
-
-static tuiFreeCallback sFreeCallback = default_free;
-
-
-void tuiSetAllocateCallback(tuiAllocateCallback callback)
-{
-	if (callback == NULL)
-	{
-		sAllocateCallback = default_allocate;
-	}
-	else
-	{
-		sAllocateCallback = callback;
-	}
-}
-
-void tuiSetReallocateCallback(tuiReallocateCallback callback)
-{
-	if (callback == NULL)
-	{
-		sReallocateCallback = default_reallocate;
-	}
-	else
-	{
-		sReallocateCallback = callback;
-	}
-}
-
-void tuiSetFreeCallback(tuiFreeCallback callback)
-{
-	if (callback == NULL)
-	{
-		sFreeCallback = default_free;
-	}
-	else
-	{
-		sFreeCallback = callback;
-	}
-}
-
 void* tuiAllocate(size_t size)
 {
-	return sAllocateCallback(size);
+	void* ptr = malloc(size);
+	return ptr;
 }
 
 void* tuiReallocate(void* to_realloc, size_t size)
 {
-	return sReallocateCallback(to_realloc, size);
+	void* ptr = realloc(to_realloc, size);
+	return ptr;
 }
 
 void tuiFree(void* to_free)
 {
-	sFreeCallback(to_free);
+	free(to_free);
 }
