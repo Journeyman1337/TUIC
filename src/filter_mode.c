@@ -39,11 +39,11 @@ const char* tuiFilterModeToString(TuiFilterMode filter_mode)
 
 TuiFilterMode tuiStringToFilterMode(const char* str)
 {
-	if (strcmp(string, kTui_Filter_Point_Name) == 0)
+	if (strcmp(str, kTui_Filter_Point_Name) == 0)
 	{
 		return TUI_FILTER_POINT;
 	}
-	else if (strcmp(string, kTui_Filter_Bilinear_Name) == 0)
+	else if (strcmp(str, kTui_Filter_Bilinear_Name) == 0)
 	{
 		return TUI_FILTER_BILINEAR;
 	}
