@@ -26,19 +26,95 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
+
+/*! @name Filter modes
+ *  @{ */
+/*!
+ * @brief The filter mode used for rendering a texture or framebuffer.
+ */
 typedef enum TuiFilterMode
 {
+	/*!
+	 * \brief The filter mode is invalid.
+	 *
+	 * This filter mode is returned when an error occurs, and is also used to specify that no filter mode is
+	 * defined.
+	 */
 	TUI_FILTER_INVALID = 0,
+	/*!
+	 * @brief Filter mode with no filtering.
+	 */
 	TUI_FILTER_POINT = 1,
+	/*!
+	 * @brief Filter mode with bilinear color interpolation.
+	 */
 	TUI_FILTER_BILINEAR = 2
 } TuiFilterMode;
+/*! @} */
 
+
+/*! @name Filter Mode Names
+ *  These are const string names of @ref TuiFilterMode enum values.
+ *  @{ */
+/*!
+ * @brief String name of @ref TUI_FILTER_POINT.
+ */
 extern const char* kTui_Filter_Point_Name;
+/*!
+ * @brief String name of @ref TUI_FILTER_BILINEAR.
+ */
 extern const char* kTui_Filter_Bilinear_Name;
+/* @) */
 
+
+/*! @name TuiFilterMode functions
+ *
+ * Functions for dealing with @ref TuiFilterMode enum values.
+ *  @{ */
+/*!
+ * @brief Determine if a @ref TuiFilterMode enum is valid.
+ *
+ * @param filter_mode The @ref TuiFilterMode to check.
+ *
+ * @returns The @ref TuiBoolean result. If filter_mode is a valid @ref TuiFilterMode, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiBoolean tuiFilterModeIsValid(TuiFilterMode filter_mode);
+/*!
+ * @brief Retrieve the string name associated with a @ref TuiFilterMode enum.
+ *
+ * @param filter_mode The @ref TuiFilterMode to get the name of.
+ *
+ * @returns The string name. NULL is returned if filter_mode is an invalid @ref TuiFilterMode.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 const char* tuiFilterModeToString(TuiFilterMode filter_mode);
-TuiFilterMode tuiStringToFilterMode(const char* string);
+/*!
+ * @brief Determine the @ref TuiFilterMode enum value associated with a string name.
+ *
+ * @param str The string name.
+ *
+ * @returns The @ref TuiFilterMode. @ref TUI_FILTER_INVALID is returned if no match is found.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiFilterMode tuiStringToFilterMode(const char* str);
+/*! @} */
 
 #ifdef __cplusplus //extern C guard
 }

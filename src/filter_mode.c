@@ -37,7 +37,7 @@ const char* tuiFilterModeToString(TuiFilterMode filter_mode)
 	}
 }
 
-TuiFilterMode tuiStringToFilterMode(const char* string)
+TuiFilterMode tuiStringToFilterMode(const char* str)
 {
 	if (strcmp(string, kTui_Filter_Point_Name) == 0)
 	{
