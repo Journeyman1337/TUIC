@@ -45,6 +45,8 @@ extern "C" {
  * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS and @ref TUI_ERROR_INVALID_DETAIL_MODE. The first error that occurs will cause the function to immediatly return. 
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ * 
+ * @pointer_lifetime The returned @ref TuiBatch must be destroyed using the function @ref tuiBatchDestroy().
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
