@@ -107,7 +107,7 @@ TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type);
  *
  * @param atlas_type The @ref TuiAtlasType to get the name of.
  *
- * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiAtlasType.
+ * @returns The string name. NULL is returned if atlas_type is an invalid @ref TuiAtlasType.
  * 
  * @errors This function can have no errors.
  *
