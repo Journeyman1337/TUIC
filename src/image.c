@@ -233,21 +233,21 @@ void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int sta
 
 	size_t sx = 0; // obviously, this is subject to testing...
 	size_t sy = 0;
-	if (start_x > 0)
+	if (start_x > 0) //clip start x
 	{
 		sx = (size_t)start_x;
 	}
-	if (start_y > 0)
+	if (start_y > 0) //clip start y
 	{
 		sy = (size_t)start_y;
 	}
 	size_t ex = (size_t)(start_x + image->PixelWidth);
 	size_t ey = (size_t)(start_y + image->PixelHeight);
-	if (ex > target_image->PixelWidth)
+	if (ex > target_image->PixelWidth) //clip end x
 	{
 		ex = target_image->PixelWidth;
 	}
-	if (ey > target_image->PixelHeight)
+	if (ey > target_image->PixelHeight) //clip end y
 	{
 		ey = target_image->PixelHeight;
 	}
