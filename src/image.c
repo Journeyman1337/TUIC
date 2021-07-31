@@ -182,6 +182,7 @@ void tuiImageResize(TuiImage image, int new_width, int new_height)
 	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, NULL, __func__);
 	if (new_pixels == NULL)
 	{
+		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, __func__);
 		return;
 	}
 	tuiFree(image->PixelData);
