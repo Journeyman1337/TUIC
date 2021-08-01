@@ -30,7 +30,7 @@ extern "C" {
 /*! @name Cursor shape
  s*  @{ */
 /*!
- * @brief The state of the mouse cursor.
+ * @brie Default mouse cursor shapes.
  */
 typedef enum TuiCursorShape
 {
@@ -150,20 +150,20 @@ extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
  *
  * Functions for dealing with @ref TuiCursorShape enum values.
  *  @{ */
- /*!
-  * @brief Determine if a @ref TuiCursorShape enum is valid.
-  *
-  * @param cursor_shape The @ref TuiCursorShape to check.
-  *
-  * @returns The @ref TuiBoolean result. If cursor_shape is a valid @ref TuiCursorShape, it
-  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
-  *
-  * @errors This function can have no errors.
-  *
-  * @requirements This function can be called freely, even if TUIC is not currently initialized.
-  *
-  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
-  */
+/*!
+ * @brief Determine if a @ref TuiCursorShape enum is valid.
+ *
+ * @param cursor_shape The @ref TuiCursorShape to check.
+ *
+ * @returns The @ref TuiBoolean result. If cursor_shape is a valid @ref TuiCursorShape, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
 /*!
  * @brief Determine if a @ref TuiCursorShape is supported by the current platform.
@@ -185,7 +185,7 @@ TuiBoolean tuiCursorShapeIsSupported(TuiCursorShape cursor_shape);
  *
  * @param cursor_shape The @ref TuiCursorShape to get the name of.
  *
- * @returns The string name. NULL is returned if atlas_types is an invalid @ref TuiCursorShape.
+ * @returns The string name. NULL is returned if cursor_shape is an invalid @ref TuiCursorShape.
  *
  * @errors This function can have no errors.
  *
