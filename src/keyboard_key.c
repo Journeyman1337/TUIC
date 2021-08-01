@@ -265,15 +265,15 @@ const char* kTuik_Right_Super_Name = "KEY_RIGHT_SUPER";
 
 const char* kTuik_Menu_Name = "KEY_MENU";
 
-TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey key)
+TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey keyboard_key)
 {
 	if (
-			(key == TUIK_SPACE) ||
-			(key == TUIK_APOSTROPHE) ||
-			(key >= TUIK_COMMA && key <= TUIK_GRAVE_ACCENT) ||
-			(key == TUIK_WORLD_1) ||
-			(key == TUIK_WORLD_2) ||
-			(key >= TUIK_ESCAPE && key <= TUIK_MENU)
+			(keyboard_key == TUIK_SPACE) ||
+			(keyboard_key == TUIK_APOSTROPHE) ||
+			(keyboard_key >= TUIK_COMMA && keyboard_key <= TUIK_GRAVE_ACCENT) ||
+			(keyboard_key == TUIK_WORLD_1) ||
+			(keyboard_key == TUIK_WORLD_2) ||
+			(keyboard_key >= TUIK_ESCAPE && keyboard_key <= TUIK_MENU)
 		)
 	{
 		return TUI_TRUE;
@@ -284,12 +284,12 @@ TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey key)
 	}
 }
 
-const char* tuiKeyboardKeyToString(TuiKeyboardKey key)
+const char* tuiKeyboardKeyToString(TuiKeyboardKey keyboard_key)
 {
 	// keys are seperated into groups to encourage compiler to generate lookup tables and speed up debug builds
-	if (key >= TUIK_COMMA && key <= TUIK_GRAVE_ACCENT)
+	if (keyboard_key >= TUIK_COMMA && keyboard_key <= TUIK_GRAVE_ACCENT)
 	{
-		switch (key)
+		switch (keyboard_key)
 		{
 		case TUIK_COMMA:
 			return kTuik_Comma_Name;
@@ -385,9 +385,9 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey key)
 			return kTuik_Grave_Accent_Name;
 		}
 	}
-	else if (key >= TUIK_ESCAPE && key <= TUIK_MENU)
+	else if (keyboard_key >= TUIK_ESCAPE && keyboard_key <= TUIK_MENU)
 	{
-		switch (key)
+		switch (keyboard_key)
 		{
 		case TUIK_ESCAPE:
 			return kTuik_Escape_Name;
@@ -531,7 +531,7 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey key)
 			return kTuik_Menu_Name;
 		}
 	}
-	switch (key)
+	switch (keyboard_key)
 	{
 	case TUIK_SPACE:
 		return kTuik_Space_Name;
@@ -1031,7 +1031,7 @@ TuiKeyboardKey tuiStringToKeyboardKey(const char* str)
 	return TUIK_INVALID;
 }
 
-int tuiKeyboardKeyGetScancode(TuiKeyboardKey key)
+int tuiKeyboardKeyGetScancode(TuiKeyboardKey keyboard_key)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
@@ -1040,7 +1040,7 @@ int tuiKeyboardKeyGetScancode(TuiKeyboardKey key)
 		return 0;
 	}
 
-	int scancode = glfwGetKeyScancode(key);
+	int scancode = glfwGetKeyScancode(keyboard_key);
 
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
