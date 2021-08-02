@@ -47,10 +47,9 @@ extern const char* kTui_Keyboard_Mod_Caps_Lock_Name;
 extern const char* kTui_Keyboard_Mod_Num_Lock_Name;
 extern const char* kTui_Keyboard_Mod_None_Name;
 
-TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod);
-const char* tuiKeyboardModToString(TuiKeyboardMod mod);
+TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod keyboard_mod);
 TuiKeyboardMod tuiStringToKeyboardMod(const char* str);
-TuiBoolean tuiKeyboardModContainsMod(TuiKeyboardMod mod, TuiKeyboardMod contains_mod);
+TuiBoolean tuiKeyboardModHasMod(TuiKeyboardMod keyboard_mod, TuiKeyboardMod contains_keyboard_mod);
 
 #ifdef __cplusplus //extern C guard
 }
