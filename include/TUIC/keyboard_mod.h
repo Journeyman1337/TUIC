@@ -36,7 +36,6 @@ typedef enum TuiKeyboardMod
 	TUI_MOD_CAPS_LOCK       = 0x0010,
 	TUI_MOD_NUM_LOCK        = 0x0020,
 	TUI_MOD_NONE			= 0,
-	TUI_MOD_ALL				= (TUI_MOD_SHIFT | TUI_MOD_CONTROL | TUI_MOD_ALT | TUI_MOD_SUPER | TUI_MOD_CAPS_LOCK | TUI_MOD_NUM_LOCK)
 } TuiKeyboardMod;
 
 
@@ -47,7 +46,6 @@ extern const char* kTui_Keyboard_Mod_Super_Name;
 extern const char* kTui_Keyboard_Mod_Caps_Lock_Name;
 extern const char* kTui_Keyboard_Mod_Num_Lock_Name;
 extern const char* kTui_Keyboard_Mod_None_Name;
-extern const char* kTui_Keyboard_Mod_All_Name;
 
 TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod);
 const char* tuiKeyboardModToString(TuiKeyboardMod mod);

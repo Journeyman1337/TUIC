@@ -34,13 +34,11 @@ const char* kTui_Keyboard_Mod_Num_Lock_Name = "MOD_NUM_LOCK";
 
 const char* kTui_Keyboard_Mod_None_Name = "MOD_NONE";
 
-const char* kTui_Keyboard_Mod_All_Name = "MOD_ALL";
-
 TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod)
 {
 	if (
 			(mod >= TUI_MOD_NONE) &&
-			(mod <= TUI_MOD_ALL)
+			(mod <= TUI_MOD_NONE)
 		)
 	{
 		return TUI_TRUE;
@@ -66,8 +64,6 @@ const char* tuiKeyboardModToString(TuiKeyboardMod mod)
 		return kTui_Keyboard_Mod_Num_Lock_Name;
 	case TUI_MOD_NONE:
 		return kTui_Keyboard_Mod_None_Name;
-	case TUI_MOD_ALL:
-		return kTui_Keyboard_Mod_All_Name;
 	default:
 		return NULL;
 	}
@@ -102,10 +98,6 @@ TuiKeyboardMod tuiStringToKeyboardMod(const char* str)
 	else if (strcmp(str, kTui_Keyboard_Mod_None_Name) == 0)
 	{
 		return TUI_MOD_NONE;
-	}
-	else if (strcmp(str, kTui_Keyboard_Mod_All_Name) == 0)
-	{
-		return TUI_MOD_ALL;
 	}
 	return TUI_MOD_INVALID;
 }
