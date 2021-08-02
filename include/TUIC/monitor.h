@@ -34,12 +34,12 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor);
 void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* out_physical_width, int* out_physical_height);
 int tuiMonitorGetPhysicalWidth(TuiMonitor monitor);
 int tuiMonitorGetPhysicalHeight(TuiMonitor monitor);
-void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* scale_tall);
+void tuiMonitorGetContentScale(TuiMonitor monitor, float* out_scale_wide, float* out_scale_tall);
 float tuiMonitorGetContentScaleWide(TuiMonitor monitor);
 float tuiMonitorGetContentScaleTall(TuiMonitor monitor);
 int tuiMonitorGetRefreshRate(TuiMonitor monitor);
 const char* tuiMonitorGetName(TuiMonitor monitor);
-void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer);
+void tuiMonitorSetUserPointer(TuiMonitor monitor, void* user_pointer);
 void* tuiMonitorGetUserPointer(TuiMonitor monitor);
 tuiMonitorConnectedFunction tuiSetMonitorCallback(tuiMonitorConnectedFunction callback);
 
