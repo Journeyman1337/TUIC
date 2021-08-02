@@ -46,7 +46,7 @@ void update_batch()
 
 void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod)
 {
-    TuiBoolean ctrl_mod = tuiKeyboardModContainsMod(mod, TUI_MOD_CONTROL);
+    TuiBoolean ctrl_mod = tuiKeyboardModHasMod(mod, TUI_MOD_CONTROL);
     if (key == TUIK_C && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
     {
         sText[sTextSize] = '\0';
