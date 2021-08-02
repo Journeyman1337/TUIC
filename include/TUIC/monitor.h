@@ -29,10 +29,9 @@ extern "C" {
 
 TuiMonitor* tuiGetMonitors(int* count);
 TuiMonitor tuiGetPrimaryMonitor();
-void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* pixel_width, int* pixel_height);
 int tuiMonitorGetPixelWidth(TuiMonitor monitor);
 int tuiMonitorGetPixelHeight(TuiMonitor monitor);
-void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* physical_height);
+void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* out_physical_width, int* out_physical_height);
 int tuiMonitorGetPhysicalWidth(TuiMonitor monitor);
 int tuiMonitorGetPhysicalHeight(TuiMonitor monitor);
 void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* scale_tall);

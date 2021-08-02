@@ -75,7 +75,7 @@ TuiMonitor tuiGetPrimaryMonitor()
 	return monitor;
 }
 
-void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
+void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* out_pixel_width, int* out_pixel_height)
 {
 	if (monitor == NULL)
 	{
@@ -90,13 +90,13 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* width, int* height)
 		tuiDebugError(glfw_error, __func__);
 		return;
 	}
-	if (width != NULL)
+	if (out_pixel_width != NULL)
 	{
-		*width = vidmode->width;
+		*out_pixel_width = vidmode->width;
 	}
-	if (height != NULL)
+	if (out_pixel_height != NULL)
 	{
-		*height = vidmode->height;
+		*out_pixel_height = vidmode->height;
 	}
 }
 
@@ -136,7 +136,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 	return vidmode->height;
 }
 
-void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* physical_height)
+void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* out_physical_width, int* out_physical_height)
 {
 	if (monitor == NULL)
 	{
@@ -144,7 +144,7 @@ void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* physical_width, int* phy
 		return;
 	}
 
-	glfwGetMonitorPhysicalSize(monitor, physical_width, physical_height);
+	glfwGetMonitorPhysicalSize(monitor, out_physical_width, out_physical_height);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -179,7 +179,7 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
 	return physical_height;
 }
 
-void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* scale_tall)
+void tuiMonitorGetContentScale(TuiMonitor monitor, float* out_scale_wide, float* out_scale_tall)
 {
 	if (monitor == NULL)
 	{
@@ -187,7 +187,7 @@ void tuiMonitorGetContentScale(TuiMonitor monitor, float* scale_wide, float* sca
 		return;
 	}
 
-	glfwGetMonitorContentScale(monitor, scale_wide, scale_tall);
+	glfwGetMonitorContentScale(monitor, out_scale_wide, out_scale_tall);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -252,7 +252,7 @@ const char* tuiMonitorGetName(TuiMonitor monitor)
 	return name;
 }
 
-void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer)
+void tuiMonitorSetUserPointer(TuiMonitor monitor, void* user_pointer)
 {
 	if (monitor == NULL)
 	{
@@ -260,7 +260,7 @@ void tuiMonitorSetUserPointer(TuiMonitor monitor, void* pointer)
 		return;
 	}
 
-	glfwSetMonitorUserPointer(monitor, pointer);
+	glfwSetMonitorUserPointer(monitor, user_pointer);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
