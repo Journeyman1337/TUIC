@@ -37,8 +37,7 @@ const char* kTui_Keyboard_Mod_None_Name = "MOD_NONE";
 TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod mod)
 {
 	if (
-			(mod >= TUI_MOD_NONE) &&
-			(mod <= TUI_MOD_NONE)
+			((mod | TUI_MOD_ALL) == TUI_MOD_ALL)
 		)
 	{
 		return TUI_TRUE;
