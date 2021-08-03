@@ -45,7 +45,7 @@ extern const uint8_t kTuiXtermPalette[768];
  * @param color_count The amount of colors in the palette.
  * @param color_data A pointer to the color data array.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_NULL_COLORS. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated glyph bounding box array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_NULL_COLORS. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or colors array may cause undefined behaviour or a fatal crash without an error.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -59,7 +59,7 @@ TuiPalette tuiPaletteCreate(int channel_count, int color_count, const uint8_t* c
  * 
  * @param color_count The amount of XTerm colors to add to the palette.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, and @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated glyph bounding box array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, and @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
