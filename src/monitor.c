@@ -287,7 +287,7 @@ void* tuiMonitorGetUserPointer(TuiMonitor monitor)
 	return ptr;
 }
 
-tuiMonitorConnectedFunction tuiSetMonitorCallback(tuiMonitorConnectedFunction callback)
+tuiMonitorConnectedFunction tuiSetMonitorConnectedCallback(tuiMonitorConnectedFunction callback)
 {
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
