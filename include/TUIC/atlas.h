@@ -196,7 +196,7 @@ TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int 
  *
  * @param atlas The @ref TuiAtlas to destroy.
  * 
- * @errors This function can possible have the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
