@@ -216,6 +216,11 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
+	if (atlas == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
+		return;
+	}
 	if (batch_data == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH_DATA, __func__);
@@ -224,6 +229,11 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, __func__);
+		return;
+	}
+	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE && palette == NULL)
+	{
+		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
 	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
@@ -271,6 +281,11 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
 		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
 		return;
 	}
+	if (atlas == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
+		return;
+	}
 	if (batch_data == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH_DATA, __func__);
@@ -279,6 +294,11 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
+		return;
+	}
+	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE && palette == NULL)
+	{
+		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
 	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
