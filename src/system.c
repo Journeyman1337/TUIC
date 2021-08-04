@@ -119,44 +119,38 @@ void tuiTerminate()
 	if (sSystem == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
+		
 	}
-	TuiBoolean failed = TUI_FALSE;
 	if (tuiGetWindowCount() != 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_WINDOW, __func__);
-		failed = TUI_TRUE;
+		return;
 	}
 	if (tuiGetCursorCount() != 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_CURSOR, __func__);
-		failed = TUI_TRUE;
+		return;
 	}
 	if (tuiGetAtlasCount() != 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_ATLAS, __func__);
-		failed = TUI_TRUE;
+		return;
 	}
 	if (tuiGetPanelCount() != 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_PANEL, __func__);
-		failed = TUI_TRUE;
+		return;
 	}
 	if (tuiGetPaletteCount() != 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_PALETTE, __func__);
-		failed = TUI_TRUE;
+		return;
 	}
 	if (tuiGetTextureCount() != 0)
 	{
 		tuiDebugError(TUI_ERROR_DANGLING_TEXTURE, __func__);
-		failed = TUI_TRUE;
-	}
-	if (failed == TUI_TRUE)
-	{
 		return;
 	}
-
 
 	tuiSystemDestroy_Opengl33();
 	glfwDestroyWindow(sSystem->BaseWindow);
@@ -173,27 +167,6 @@ TuiBoolean tuiRawMouseMotionSupported()
 		return TUI_FALSE;
 	}
 	int supported = glfwRawMouseMotionSupported();
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return TUI_FALSE;
-	}
-	if (supported == GLFW_TRUE)
-	{
-		return TUI_TRUE;
-	}
-	return TUI_FALSE;
-}
-
-TuiBoolean tuiVulkanSupported()
-{
-	if (sSystem == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
-	}
-	int supported = glfwVulkanSupported();
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{

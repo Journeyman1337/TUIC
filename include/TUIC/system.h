@@ -26,11 +26,54 @@ extern "C" {
 #endif
 #include <TUIC/boolean.h>
 
+
+/*! @name @ref TUIC system functions
+ *
+ * Functions for controling the TUIC library's state machine.
+ *  @{ */
+/*
+ * @brief Initialize the TUIC library.
+ * 
+ * @returns The @ref TuiBoolean result. If the library initialized successfully, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_ALREADY_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return @ref TUI_FALSE.
+ * 
+ * @requirements This function must only be called when TUIC is not initialized.
+ * 
+ * @thread_safety The thread on which this function is called on is the only thread that many other TUIC functions must be called on.
+ */
 TuiBoolean tuiInit();
+/*
+ * @brief Get if the TUIC system is currently initialized.
+ * 
+ * @returns The @ref TuiBoolean result. If the library is currently initialized, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * 
+ * @errors This function can have no errors.
+ * 
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiBoolean tuiIsActive();
+/*
+ * @brief Terminate the TUIC library.
+ *
+ * @returns The @ref TuiBoolean result. If the library initialized successfully, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED,  @ref TUI_ERROR_DANGLING_WINDOW, @ref TUI_ERROR_DANGLING_CURSOR, @ref TUI_ERROR_DANGLING_ATLAS, @ref TUI_ERROR_DANGLING_PANEL, @ref TUI_ERROR_DANGLING_PALETTE and @ref TUI_ERROR_DANGLING_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must only be called when TUIC is not initialized. All @ref TuiWindow, @ref TuiCursor, @ref TuiAtlas, @ref TuiPanel, @ref TuiPalette, and @ref TuiTexture must be destroyed before this function is called.
+ *
+ * @thread_safety The thread on which this function is called on is the only thread that many other TUIC functions must be called on.
+ */
 void tuiTerminate();
 TuiBoolean tuiRawMouseMotionSupported();
 TuiBoolean tuiVulkanSupported();
+/*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }
