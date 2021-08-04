@@ -65,13 +65,24 @@ TuiBoolean tuiIsActive();
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED,  @ref TUI_ERROR_DANGLING_WINDOW, @ref TUI_ERROR_DANGLING_CURSOR, @ref TUI_ERROR_DANGLING_ATLAS, @ref TUI_ERROR_DANGLING_PANEL, @ref TUI_ERROR_DANGLING_PALETTE and @ref TUI_ERROR_DANGLING_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
- * @requirements This function must only be called when TUIC is not initialized. All @ref TuiWindow, @ref TuiCursor, @ref TuiAtlas, @ref TuiPanel, @ref TuiPalette, and @ref TuiTexture must be destroyed before this function is called.
+ * @requirements This function must only be called when TUIC is initialized. All @ref TuiWindow, @ref TuiCursor, @ref TuiAtlas, @ref TuiPanel, @ref TuiPalette, and @ref TuiTexture must be destroyed before this function is called.
  *
  * @thread_safety The thread on which this function is called on is the only thread that many other TUIC functions must be called on.
  */
 void tuiTerminate();
+/*
+ * @brief Get if raw mouse motion is suported on the current platform.
+ *
+ * @returns The @ref TuiBoolean result. If raw mouse motion is supported, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function must only be called when TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiRawMouseMotionSupported();
-TuiBoolean tuiVulkanSupported();
 /*! @} */
 
 
