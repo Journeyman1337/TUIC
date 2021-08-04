@@ -101,7 +101,7 @@ int tuiGetPaletteCount();
  *
  * @errors This function can bave the error @ref TUI_ERROR_NULL_PALETTE and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiPalette, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
@@ -115,7 +115,7 @@ int tuiPaletteGetColorCount(TuiPalette palette);
  *
  * @errors This function can bave the error @ref TUI_ERROR_NULL_PALETTE and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiPalette, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */

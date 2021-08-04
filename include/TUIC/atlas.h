@@ -210,7 +210,7 @@ void tuiAtlasDestroy(TuiAtlas atlas);
  * 
  * @errors This function does not have errors.
  *
- * @requirements This function can be called at any time.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
@@ -224,7 +224,7 @@ int tuiGetAtlasCount();
  * 
  * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
@@ -238,8 +238,8 @@ int tuiAtlasGetChannelCount(TuiAtlas atlas);
  * 
  * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
- *
+  * @requirements This function must be called only while TUIC is initialized.
+  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiAtlasGetPixelWidth(TuiAtlas atlas);
@@ -267,7 +267,7 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas);
  * 
  * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety For each @ref TuiAtlas, this function must only be called on one thread at a time to ensure safe memory access.
  */ 
@@ -281,7 +281,7 @@ void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_p
  * 
  * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
@@ -308,7 +308,7 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
  *
  * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
  *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
