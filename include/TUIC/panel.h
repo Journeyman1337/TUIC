@@ -171,7 +171,7 @@ void tuiPanelGetPixelDimensions(TuiPanel panel, int* pixel_width, int* pixel_hei
  *
  * @return The pixel width of the framebuffer.
  * 
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiPanel, which can only exist while TUIC is initialized.
+ * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
