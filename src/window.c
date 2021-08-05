@@ -254,8 +254,8 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		glfwWindowHint(GLFW_RESIZABLE, create_info->resizable);
 		glfwWindowHint(GLFW_VISIBLE, create_info->visible);
 		glfwWindowHint(GLFW_DECORATED, create_info->decorated);
+		glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_TRUE);
 		glfwWindowHint(GLFW_FOCUSED, create_info->focused);
-		glfwWindowHint(GLFW_AUTO_ICONIFY, create_info->auto_iconify);
 		glfwWindowHint(GLFW_FLOATING, create_info->topmost);
 		glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
 		glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info->focus_on_show);
@@ -402,7 +402,6 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.visible = TUI_TRUE;
 	info.decorated = TUI_TRUE;
 	info.focused = TUI_TRUE;
-	info.auto_iconify = TUI_TRUE;
 	info.topmost = TUI_FALSE;
 	info.maximized = TUI_FALSE;
 	info.center_cursor = TUI_FALSE;
@@ -2439,45 +2438,6 @@ void tuiWindowSetDecorated(TuiWindow window, TuiBoolean decorated)
 	}
 
 	glfwSetWindowAttrib(window->GlfwWindow, GLFW_DECORATED, (int)decorated);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
-}
-
-TuiBoolean tuiWindowGetAutoIconify(TuiWindow window)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return TUI_FALSE;
-	}
-
-	int auto_iconify = glfwGetWindowAttrib(window->GlfwWindow, GLFW_AUTO_ICONIFY);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return TUI_FALSE;
-	}
-	if (auto_iconify == GLFW_TRUE)
-	{
-		return TUI_TRUE;
-	}
-	return TUI_FALSE;
-}
-
-void tuiWindowSetAutoIconify(TuiWindow window, TuiBoolean auto_iconify)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-
-	glfwSetWindowAttrib(window->GlfwWindow, GLFW_AUTO_ICONIFY, (int)auto_iconify);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{

@@ -38,7 +38,6 @@ typedef struct TuiWindowCreateInfo
 	TuiBoolean visible;
 	TuiBoolean decorated;
 	TuiBoolean focused;
-	TuiBoolean auto_iconify;
 	TuiBoolean topmost;
 	TuiBoolean maximized;
 	TuiBoolean center_cursor;
@@ -266,10 +265,6 @@ void tuiWindowSetResizable(TuiWindow window, TuiBoolean resizable);
 TuiBoolean tuiWindowGetDecorated(TuiWindow window);
 
 void tuiWindowSetDecorated(TuiWindow window, TuiBoolean decorated);
-
-TuiBoolean tuiWindowGetAutoIconify(TuiWindow window);
-
-void tuiWindowSetAutoIconify(TuiWindow window, TuiBoolean auto_iconify);
 
 TuiBoolean tuiWindowGetTopmost(TuiWindow window);
 
