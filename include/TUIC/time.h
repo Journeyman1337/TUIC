@@ -26,8 +26,37 @@ extern "C" {
 #endif
 #include <stdint.h>
  
+
+/*! @name @ref TUIC time functions
+ *
+ * Functions for manipulating the TUIC internal timimg system.
+ *  @{ */
+/*
+ * @brief Get the amount of time that has passed since TUIC was initialized (in seconds).
+ *
+ * @returns The amount of time that has passed in seconds.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly occur.
+ *
+ * @requirements This function must only be called when TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 double tuiGetTime();
+/*
+ * @brief Set the global TUIC time to a custom value.
+ *
+ * @param The value to set the global time.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_TIME, and GLFW errors. The first error that occurs will cause the function to immediatly occur.
+ *
+ * @requirements This function must only be called when TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiSetTime(double time);
+/*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }
