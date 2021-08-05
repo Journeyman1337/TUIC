@@ -32,27 +32,93 @@ extern "C" {
 #include <TUIC/button_state.h>
 #include <TUIC/cursor_mode.h>
 
+
+/*! @name @ref TuiWindowCreateInfo struct and functions.
+ *  @{ */
+/*!
+ * @brief A struct for storing extended @ref TuiWindow craete info.
+ */
 typedef struct TuiWindowCreateInfo
 {
+	/*!
+	 * @brief If the window should be resizable by the end user dragging the window edges.
+	 */
 	TuiBoolean resizable;
+	/*
+	 * @brief If the window should be visible to the user or hidden from view.
+	 */
 	TuiBoolean visible;
+	/*
+	 * @brief If the window should have a taskbar and buttons on the top and have visible resize handles on the sides.
+	 */
 	TuiBoolean decorated;
+	/*!
+	 * @bbrief If the window should open with input focus.
+	 */
 	TuiBoolean focused;
+	/*!
+	 * @brief If the window should always be on top of other windows.
+	 */
 	TuiBoolean topmost;
+	/*!
+	 * @brief If the window should start as maximized.
+	 */
 	TuiBoolean maximized;
+	/*!
+	 * @brief If the mouse cursor should be placed in the center of the window when it is opened.
+	 */
 	TuiBoolean center_cursor;
+	/*!
+	 * @brief If the window should gain inpu8t focus when @ref tuiWindowFocus() is called.
+	 */
 	TuiBoolean focus_on_show;
+	/*!
+	 * @brief If the window should open as fullscreen.
+	 */
 	TuiBoolean fullscreen;
+	/*!
+	 * @brief If the window opens in fullscreen, which @ref TuiMonitor should it open in. If NULL, it will open in the primary monitor.
+	 */
 	TuiMonitor monitor;
+	/*!
+	 * @brief If the window should open in a specific pixel position when opened in windowed mode.
+	 */
 	TuiBoolean custom_window_position;
+	/*!
+	 * @brief If custom_window_position is TUI_TRUE, this is the monitor x pixel position the window should open at.
+	 */
 	int windowed_x_position;
+	/*!
+	 * @brief If custom_window_position is TUI_TRUE, this is the monitor y pixel position the window should open at.
+	 */
 	int windowed_y_position;
+	/*!
+	 * @brief If the window should have a freambuffer size that does not match its viewport size while it is windowed.
+	 */
 	TuiBoolean framebuffer_match_viewport_size;
+	/*!
+	 * @brief The initial pixel width of the window viwport if it is unmathching of the framebuffer. If 0, the framebuffer width will be used initially instead.
+	 */
 	int unmatching_viewport_pixel_width;
+	/*!
+	 * @brief The initial pixel height of the window viwport if it is unmathching of the framebuffer. If 0, the framebuffer height will be used initially instead.
+	 */
 	int unmatching_viewport_pixel_height;
 } TuiWindowCreateInfo;
-
+/*
+ * @brief Create a @ref TuiWindowCreateInfo struct, with all members set to default values.
+ *
+ * @returns The default value @ref TuiWindowCreateInfo struct.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiWindowCreateInfo tuiWindowCreateInfo();
+/*! @} */
+
 
 TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_height, const char* title, TuiWindowCreateInfo* create_info);
 
