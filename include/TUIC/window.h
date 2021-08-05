@@ -120,48 +120,354 @@ TuiWindowCreateInfo tuiWindowCreateInfo();
 /*! @} */
 
 
+/*! @name @ref TuiWindow functions.
+ *
+ * Functions for manipulating @ref TuiWindow opaque objects.
+ *  @{ */
+/*!
+ * @brief Create a new @ref TuiWindow. 
+ *
+ * @param framebuffer_pixel_width The pixel width of the window's framebuffer.
+ * @param framebuffer_pixel_height The pixel height of the window's framebuffer.
+ * @param title The text to add to the windo's title bar.
+ * @param create_info A pointer to an @ref TuiWindowCreateInfo struct with extended creation info. If NULL, default values are used instead.
+ *
+ * @returns The created @ref TuiWindow. NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, @ref TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiWindow must be destroyed before TUIC is terminated, using the function @ref tuiWindowDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
+ */
 TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_height, const char* title, TuiWindowCreateInfo* create_info);
-
+/*!
+ * @brief Free a @ref TuiWindow and correctly dispose of of its internally managed resources.
+ *
+ * @param window The @ref TuiWindow to destroy.
+ *
+ * @errors This function can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
+ */
 void tuiWindowDestroy(TuiWindow window);
-
+/*!
+ * @brief Get the amount of @ref TuiWindow that currently exist.
+ *
+ * @returns The amount of windows that currently exist.
+ *
+ * @errors This function does not have errors.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiGetWindowCount();
-
+/*!
+ * @brief Clear the color of the framebuffer of a @ref TuiWindow to a solid color.
+ *
+ * @param window The @ref TuiWindow to clear.
+ * @param r The red color value of the clear color.
+ * @param g The green color value of the clear color.
+ * @param b The blue color value of the clear color.
+ * @param a The alpha color value of the clear color.
+ *
+ * @errors This function can bave the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
+ */
 void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-
+/*!
+ * @brief Get the pixel dimensions of the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If NULL or an error occurs, it is ignored.
+ *
+ * #errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
+ */
 void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, int pixel_height);
-
+/*!
+ * @brief Get the pixel width of the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * #errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @return The pixel width of the framebuffer.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetFramebufferPixelWidth(TuiWindow window);
-
+/*!
+ * @brief Get the pixel height of the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * #errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @return The pixel height of the framebuffer.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetFramebufferPixelHeight(TuiWindow window);
-
+/*!
+ * @brief Get a @ref TuiImage rendered from the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow to render to the image.
+ *
+ * @returns The @ref TuiImage.
+ *
+ * @errors This function can bave the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiImage must be destroyed using @ref tuiImageDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
+ */
 TuiImage tuiWindowGetImage(TuiWindow window);
-
+/*!
+ * @brief Render the framebuffer of a @ref TuiWindow to a @ref TuiImage, resizing it if necessary.
+ *
+ * @param window The @ref TuiWindow to render to the image.
+ * @param image The @ref TuiImage to render to.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors..
+ */
 void tuiWindowWriteImage(TuiWindow window, TuiImage image);
-
+/*!
+ * @brief Get the raw pixels of the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow to get the pixels from.
+ * @param pixel_width A pointer to where the pixel width of the window will be stored. If NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the window will be stored. If NULL or an error occurs, it is ignored.
+ * @param fill_pixels A pointer to an array store the pixels array in. If the sizes specified in pixel_width and pixel_height do not fit the pixels, the array is reallocated. If NULL, a new array is allocated instead.
+ *
+ * @returns The pixels array.
+ *
+ * @errors This function can bave the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime If fill_pixels is used, it must point to an array created with @ref tuiAllocate(). The returned pixels array must be destroyed with @ref tuiFree().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
+ */
 uint8_t* tuiWindowGetPixels(TuiWindow window, int* pixel_width, int* pixel_height, uint8_t* fill_pixels);
-
+/*
+ * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param batch The @ref TuiBatch.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
-
+/*
+ * @brief Draw batch data to the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param detail_mode THe @ref TuiDetailMode of the batch data.
+ * @param tiles_wide The tiles wide of the batch data.
+ * @param tiles_tall The tiles tall of the batch data.
+ * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
+ * @param batch_data A pointer to the batch data array.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
-
+/*
+ * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiWindow with a transformation.
+ *
+ * @param window The @ref TuiWindow.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param batch The @ref TuiBatch.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the window.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the window.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the window.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Draw batch data to the framebuffer of a @ref TuiWindow with a transformation.
+ *
+ * @param window The @ref TuiWindow.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param detail_mode THe @ref TuiDetailMode of the batch data.
+ * @param tiles_wide The tiles wide of the batch data.
+ * @param tiles_tall The tiles tall of the batch data.
+ * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
+ * @param batch_data A pointer to the batch data array.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the window.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the window.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the window.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Draw a @ref TuiPanel to the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param panel The @ref TuiPanel.
+ *
+ * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel);
-
+/*
+ * @brief Draw a @ref TuiPanel to the framebuffer of a @ref TuiWindow with a transformation.
+ *
+ * @param window The @ref TuiWindow.
+ * @param panel The @ref TuiPanel.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the window.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the window.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the window.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
+ *
+ * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawPanelTransformed(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Draw a @ref TuiTexture to the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param texture The @ref TuiTexture.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawTexture(TuiWindow window, TuiTexture texture);
-
+/*
+ * @brief Draw a @ref TuiTexture to the framebuffer of a @ref TuiWindow with a transformation.
+ *
+ * @param window The @ref TuiWindow.
+ * @param texture The @ref TuiTexture.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the window.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the window.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the window.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Draw the texture of a @ref TuiAtlas to the framebuffer of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param atlas The @ref TuiAtlas.
+ *
+ * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas);
-
+/*
+ * @brief Draw the texture of a @ref TuiAtlas to the framebuffer of a @ref TuiWindow with a transformation.
+ *
+ * @param window The @ref TuiWindow.
+ * @param atlas The @ref TuiAtlas.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the window.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the window.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the window.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
+ *
+ * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Draw a the framebuffer of a @ref TuiWindow to the framebuffer of another one.
+ *
+ * @param window The @ref TuiWindow.
+ * @param subject_window The subject @ref TuiWindow.
+ *
+ * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window);
-
+/*
+ * @brief Draw a the framebuffer of a @ref TuiWindow to the framebuffer of another one with a transformation.
+ *
+ * @param window The @ref TuiWindow.
+ * @param subject_window The subject @ref TuiWindow.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the window.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the window.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the window.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
+ *
+ * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
 
 void tuiWindowFrame(TuiWindow window);
@@ -371,6 +677,8 @@ tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCurs
 tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMouseScrollFunction callback);
 
 tuiFileDropFunction tuiWindowSetFileDropCallback(TuiWindow window, tuiFileDropFunction callback);
+/*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }
