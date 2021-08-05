@@ -33,7 +33,7 @@ extern "C" {
  * Functions for manipulating @ref TuiAtlas opaque objects.
  *  @{ */
 /*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture from a @ref TuiImage and glyph coordinates from a raw glyph bouning box array
+ * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture from a @ref TuiImage and glyph coordinates from a raw glyph bouning box array.
  *
  * @param image The @ref TuiImage to use for the texture of the created atlas.
  * @param glyph_count The amount of glyphs in the created atlas.
