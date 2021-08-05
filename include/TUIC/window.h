@@ -134,8 +134,6 @@ int tuiWindowGetFramebufferPixelWidth(TuiWindow window);
 
 int tuiWindowGetFramebufferPixelHeight(TuiWindow window);
 
-void tuiWindowGetFramebufferPixelDimensons(TuiWindow window, int* width, int* height);
-
 TuiImage tuiWindowGetImage(TuiWindow window);
 
 void tuiWindowWriteImage(TuiWindow window, TuiImage image);

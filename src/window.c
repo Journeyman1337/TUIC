@@ -450,34 +450,6 @@ void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint
 	tuiWindowClearColor_Opengl33(window, r, g, b, a);
 }
 
-void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, int pixel_height)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-	if (pixel_width <= 0 || pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
-		return;
-	}
-
-	if (window->FramebufferMatchViewportSize == TUI_TRUE)
-	{
-		window->ViewportPixelWidth = pixel_width;
-		window->ViewportPixelHeight = pixel_height;
-		glfwSetWindowSize(window->GlfwWindow, pixel_width, pixel_height);
-	}	
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
-	tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
-}
-
 int tuiWindowGetFramebufferPixelWidth(TuiWindow window)
 {
 	if (window == NULL)
@@ -489,18 +461,7 @@ int tuiWindowGetFramebufferPixelWidth(TuiWindow window)
 	return (int)window->FramebufferPixelWidth;
 }
 
-int tuiWindowGetFramebufferPixelHeight(TuiWindow window)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return 0;
-	}
-
-	return (int)window->FramebufferPixelHeight;
-}
-
-void tuiWindowGetFramebufferPixelDimensons(TuiWindow window, int* width, int* height)
+void tuiWindowGetFramebufferPixelDimensions(TuiWindow window, int* width, int* height)
 {
 	if (window == NULL)
 	{
@@ -516,6 +477,17 @@ void tuiWindowGetFramebufferPixelDimensons(TuiWindow window, int* width, int* he
 	{
 		*height = (int)window->FramebufferPixelHeight;
 	}
+}
+
+int tuiWindowGetFramebufferPixelHeight(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return 0;
+	}
+
+	return (int)window->FramebufferPixelHeight;
 }
 
 TuiImage tuiWindowGetImage(TuiWindow window)
