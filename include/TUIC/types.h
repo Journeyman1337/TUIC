@@ -30,29 +30,49 @@ extern "C" {
 
 #define NULL 0 //defining manually instead of including stddef.h
 
+
 /*! @name Opaque Object Types
  * These structs are defined in the header file \"tuic/backends/objects.h\", but you are not meant to access their properties directly except when implementing a backend to avoid undefined behaviour. Instead, you are meant to only manipulate these objects by passing these opaque types into functions included in the library.
  *  @{ */
-
+/*!
+ * \brief A desktop window.
+ */
 typedef struct TuiWindow_s* TuiWindow;
-
+/*!
+ * \brief A GPU color palette.
+ */
 typedef struct TuiPalette_s* TuiPalette;
-
+/*!
+ * \brief A GPU texture atlas.
+ */
 typedef struct TuiAtlas_s* TuiAtlas;
-
+/*!
+ * \brief A GPU texture.
+ */
 typedef struct TuiTexture_s* TuiTexture;
-
+/*!
+ * \brief A container for batch rendering data.
+ */
 typedef struct TuiBatch_s* TuiBatch;
-
+/*!
+ * \brief A GPU framebuffer.
+ */
 typedef struct TuiPanel_s* TuiPanel;
-
+/*!
+ * \brief A CPU image.
+ */
 typedef struct TuiImage_s* TuiImage;
-
+/*!
+ * \brief A mouse cursor.
+ */
 typedef struct GLFWcursor* TuiCursor;
-
+/*!
+ * \brief A device monitor.
+ */
 typedef struct GLFWmonitor* TuiMonitor;
-
 /*! @} */
+
+
 #ifdef __cplusplus // extern C guard
 }
 #endif
