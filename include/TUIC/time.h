@@ -28,8 +28,6 @@ extern "C" {
  
 double tuiGetTime();
 void tuiSetTime(double time);
-uint64_t tuiGetTimerValue();
-uint64_t tuiGetTimerFrequency();
 
 #ifdef __cplusplus //extern C guard
 }

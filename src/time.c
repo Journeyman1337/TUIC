@@ -62,39 +62,3 @@ void tuiSetTime(double time)
 		return;
 	}
 }
-
-uint64_t tuiGetTimerValue()
-{
-	TuiSystem system = tui_get_system();
-	if (system == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return 0;
-	}
-	uint64_t timer_value = glfwGetTimerValue();
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return 0;
-	}
-	return timer_value;
-}
-
-uint64_t tuiGetTimerFrequency()
-{
-	TuiSystem system = tui_get_system();
-	if (system == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return 0;
-	}
-	uint64_t timer_frequency = glfwGetTimerFrequency();
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return 0;
-	}
-	return timer_frequency;
-}
