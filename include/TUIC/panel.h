@@ -386,6 +386,7 @@ void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y);
+/*! @} */
 
 
 #ifdef __cplusplus //extern C guard
