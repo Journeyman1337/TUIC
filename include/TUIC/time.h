@@ -27,7 +27,7 @@ extern "C" {
 #include <stdint.h>
  
 
-/*! @name @ref TUIC time functions
+/*! @name TUIC time functions
  *
  * Functions for manipulating the TUIC internal timimg system.
  *  @{ */
