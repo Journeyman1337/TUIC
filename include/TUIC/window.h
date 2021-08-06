@@ -474,9 +474,6 @@ void tuiWindowFrame(TuiWindow window);
 
 void tuiWindowFrameInterval(TuiWindow window, int interval);
 
-const char* tuiWindowGetClipboardString(TuiWindow window);
-
-void tuiWindowSetClipboardString(TuiWindow window, const char* string);
 
 TuiCursorMode tuiWindowGetCursorMode(TuiWindow window);
 
