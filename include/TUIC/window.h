@@ -499,7 +499,7 @@ TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key);
 
 TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_button);
 
-void tuiWindowGetCursorPosition(TuiWindow window, double *x_position, double *y_position);
+void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_position);
 
 double tuiWindowGetCursorXPosition(TuiWindow window);
 
