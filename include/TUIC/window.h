@@ -190,7 +190,7 @@ void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint
  * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If NULL or an error occurs, it is ignored.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOWand @ref TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -202,7 +202,7 @@ void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, i
  *
  * @param window The @ref TuiWindow.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @return The pixel width of the framebuffer.
  *
@@ -216,7 +216,7 @@ int tuiWindowGetFramebufferPixelWidth(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @return The pixel height of the framebuffer.
  *
@@ -355,7 +355,7 @@ void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPale
  * @param window The @ref TuiWindow.
  * @param panel The @ref TuiPanel.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -372,7 +372,7 @@ void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel);
  * @param top_y The topmost y pixel coordinate of the draw rect within the window.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -415,7 +415,7 @@ void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int l
  * @param window The @ref TuiWindow.
  * @param atlas The @ref TuiAtlas.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -432,7 +432,7 @@ void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas);
  * @param top_y The topmost y pixel coordinate of the draw rect within the window.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -445,7 +445,7 @@ void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x,
  * @param window The @ref TuiWindow.
  * @param subject_window The subject @ref TuiWindow.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -462,7 +462,7 @@ void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window);
  * @param top_y The topmost y pixel coordinate of the draw rect within the window.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *

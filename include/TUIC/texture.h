@@ -97,7 +97,7 @@ int tuiGetTextureCount();
  * @param pixel_width A pointer to where the pixel width of the texture will be stored. If NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of the texture will be stored. If NULL or an error occurs, it is ignored.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -111,7 +111,7 @@ void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pix
  *
  * @return The pixel width of the texture.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -125,7 +125,7 @@ int tuiTextureGetPixelWidth(TuiTexture texture);
  *
  * @return The pixel height of the texture.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -137,7 +137,7 @@ int tuiTextureGetPixelHeight(TuiTexture texture);
  *
  * @param texture The @ref TuiTexture.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  *
  * @return The pixel height of the texture.
  *
@@ -151,7 +151,7 @@ int tuiTextureGetChannelCount(TuiTexture texture);
  *
  * @param texture The @ref TuiTexture.
  *
- * #errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  *
  * @return The @ref TuiFilterMode of the texture.
  *
