@@ -849,46 +849,6 @@ void tuiWindowFrameInterval(TuiWindow window, int interval)
 	}
 }
 
-const char* tuiWindowGetClipboardString(TuiWindow window)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return NULL;
-	}
-
-	const char* str = glfwGetClipboardString(window->GlfwWindow);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return NULL;
-	}
-	return str;
-}
-
-void tuiWindowSetClipboardString(TuiWindow window, const char* string)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-	if (string == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_STRING, __func__);
-		return;
-	}
-
-	glfwSetClipboardString(window->GlfwWindow, string);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
-}
-
 TuiCursorMode tuiWindowGetCursorMode(TuiWindow window)
 {
 	if (window == NULL)
