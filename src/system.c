@@ -188,7 +188,7 @@ const char* tuiGetClipboardString()
 		return TUI_FALSE;
 	}
 
-	const char* str = glfwGetClipboardString(sSystem->BaseWindow);
+	const char* str = glfwGetClipboardString(NULL);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -211,7 +211,7 @@ void tuiSetClipboardString(const char* string)
 		return;
 	}
 
-	glfwSetClipboardString(sSystem->BaseWindow, string);
+	glfwSetClipboardString(NULL, string);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
