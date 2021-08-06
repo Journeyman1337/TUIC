@@ -415,7 +415,7 @@ void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int l
  * @param window The @ref TuiWindow.
  * @param atlas The @ref TuiAtlas.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -432,7 +432,7 @@ void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas);
  * @param top_y The topmost y pixel coordinate of the draw rect within the window.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -445,7 +445,7 @@ void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x,
  * @param window The @ref TuiWindow.
  * @param subject_window The subject @ref TuiWindow.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -462,16 +462,37 @@ void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window);
  * @param top_y The topmost y pixel coordinate of the draw rect within the window.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
  *
- * #errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_NULL_SUBJECT_WINDOW. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Render the framebuffer of a @ref TuiWindow to its viewport and swap the buffers.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowFrame(TuiWindow window);
-
+/*
+ * @brief Set the actual rendered swap interval of the window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param interval The swap interval. If the it is 0, the interval is set to match its monitor's vsync.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowFrameInterval(TuiWindow window, int interval);
 
 const char* tuiWindowGetClipboardString(TuiWindow window);

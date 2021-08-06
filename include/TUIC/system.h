@@ -83,6 +83,35 @@ void tuiTerminate();
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 TuiBoolean tuiRawMouseMotionSupported();
+/*
+ * @brief Get the clipboard text o.
+ *
+ * @returns The clipboard string.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned clipboard string is overwritten the next time this function is calledd.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+const char* tuiGetClipboardString();
+/*
+ * @brief Set the clipboard text.
+ * @param string The string to set.
+ *
+ * @returns The clipboard string.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_STRING, and and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned clipboard string is overwritten the next time this function is called.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiSetClipboardString(const char* string);
 /*! @} */
 
 

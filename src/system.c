@@ -179,3 +179,43 @@ TuiBoolean tuiRawMouseMotionSupported()
 	}
 	return TUI_FALSE;
 }
+
+const char* tuGetClipboardString()
+{
+	if (sSystem == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
+
+	const char* str = glfwGetClipboardString(sSystem->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
+	return str;
+}
+
+void tuiSetClipboardString(const char* string)
+{
+	if (sSystem == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
+	if (string == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_STRING, __func__);
+		return;
+	}
+
+	glfwSetClipboardString(sSystem->BaseWindow, string);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
+}
