@@ -798,15 +798,9 @@ void tuiWindowFrame(TuiWindow window)
 		return;
 	}
 
-	glfwMakeContextCurrent(window->GlfwWindow);
 	tuiWindowRender_Opengl33(window);
 	glfwSwapBuffers(window->GlfwWindow);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
+	
 }
 
 void tuiWindowFrameInterval(TuiWindow window, int interval)
@@ -819,6 +813,46 @@ void tuiWindowFrameInterval(TuiWindow window, int interval)
 
 	glfwMakeContextCurrent(window->GlfwWindow);
 	glfwSwapInterval(interval);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
+}
+
+const char* tuiWindowGetClipboardString(TuiWindow window)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return NULL;
+	}
+
+	const char* str = glfwGetClipboardString(window->GlfwWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return NULL;
+	}
+	return str;
+}
+
+void tuiWindowSetClipboardString(TuiWindow window, const char* string)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (string == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_STRING, __func__);
+		return;
+	}
+
+	glfwSetClipboardString(window->GlfwWindow, string);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
