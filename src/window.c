@@ -1186,8 +1186,7 @@ void tuiWindowSetTitle(TuiWindow window, const char* title)
 		title = "";
 	}
 
-	tuiFree(window->Title);
-	window->Title = tuiAllocate(strlen(title) * sizeof(char));
+	window->Title = tuiReallocate(window->Title, strlen(title) * sizeof(char));
 	strcpy(window->Title, title);
 	glfwSetWindowTitle(window->GlfwWindow, title);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
