@@ -1236,7 +1236,7 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 	}
 }
 
-void tuiWindowSetIcon(TuiWindow window, TuiImage image)
+void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 {
 	if (window == NULL)
 	{
