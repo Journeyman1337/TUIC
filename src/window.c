@@ -1271,6 +1271,11 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
 	}
+	if (icon_image->ChannelCount != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return;
+	}
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
 	{
