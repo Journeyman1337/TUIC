@@ -510,8 +510,7 @@ void tuiWindowSetTitle(TuiWindow window, const char* title);
 const char* tuiWindowGetTitle(TuiWindow window);
 
 void tuiWindowSetDefaultIcon(TuiWindow window);
-
-void tuiWindowSetIcon(TuiWindow window, TuiImage image);
+void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image);
 
 TuiBoolean tuiWindowIconsSupported();
 

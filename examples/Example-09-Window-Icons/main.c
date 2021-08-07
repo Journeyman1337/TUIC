@@ -47,7 +47,7 @@ int main()
     TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, NULL); 
 
     /* Set the window icon. */
-    tuiWindowSetIcon(window, window_icon_image);
+    tuiWindowSetIconImage(window, window_icon_image);
 
     /* Destroy the window icon image. */
     tuiImageDestroy(window_icon_image);
