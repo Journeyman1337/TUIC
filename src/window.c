@@ -1243,7 +1243,7 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (image == NULL)
+	if (icon_image == NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
@@ -1265,17 +1265,17 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 	unsigned char level1pixels[16 * 16 * 4];
 	icon_images[0].width = 16;
 	icon_images[0].height = 16;
-	icon_images[0].pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, 16, 16, level1pixels, __func__);
+	icon_images[0].pixels = _ResizeImageData(icon_image->PixelData, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->ChannelCount, 16, 16, level1pixels, __func__);
 
 	unsigned char level2pixels[32 * 32 * 4];
 	icon_images[1].width = 32;
 	icon_images[1].height = 32;
-	icon_images[1].pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, 32, 32, level2pixels, __func__);
+	icon_images[1].pixels = _ResizeImageData(icon_image->PixelData, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->ChannelCount, 32, 32, level2pixels, __func__);
 
 	unsigned char level3pixels[48 * 48 * 4];
 	icon_images[2].width = 48;
 	icon_images[2].height = 48;
-	icon_images[2].pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, 48, 48, level3pixels, __func__);
+	icon_images[2].pixels = _ResizeImageData(icon_image->PixelData, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->ChannelCount, 48, 48, level3pixels, __func__);
 
 	glfwSetWindowIcon(window->GlfwWindow, 3, icon_images);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
