@@ -1236,6 +1236,29 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 	}
 }
 
+void _WindowSetIcon(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels)
+{
+
+	GLFWimage icon_images[3];
+
+	unsigned char level1pixels[16 * 16 * 4];
+	icon_images[0].width = 16;
+	icon_images[0].height = 16;
+	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 16, 16, level1pixels, __func__);
+
+	unsigned char level2pixels[32 * 32 * 4];
+	icon_images[1].width = 32;
+	icon_images[1].height = 32;
+	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 32, 32, level1pixels, __func__);
+
+	unsigned char level3pixels[48 * 48 * 4];
+	icon_images[2].width = 48;
+	icon_images[2].height = 48;
+	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 64, 64, level1pixels, __func__);
+
+	glfwSetWindowIcon(window->GlfwWindow, 3, icon_images);
+}
+
 void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 {
 	if (window == NULL)
@@ -1260,24 +1283,47 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 		return;
 	}
 
-	GLFWimage icon_images[3];
+	_WindowSetIcon(window, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->PixelData);
 
-	unsigned char level1pixels[16 * 16 * 4];
-	icon_images[0].width = 16;
-	icon_images[0].height = 16;
-	icon_images[0].pixels = _ResizeImageData(icon_image->PixelData, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->ChannelCount, 16, 16, level1pixels, __func__);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		tuiDebugError(glfw_error, __func__);
+		return;
+	}
+}
 
-	unsigned char level2pixels[32 * 32 * 4];
-	icon_images[1].width = 32;
-	icon_images[1].height = 32;
-	icon_images[1].pixels = _ResizeImageData(icon_image->PixelData, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->ChannelCount, 32, 32, level2pixels, __func__);
+void tuiWindowSetIconPixels(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels)
+{
+	if (window == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
+		return;
+	}
+	if (pxiels == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
+		return;
+	}
+	if (pixel_width <= 0 || pixel_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
+		return;
+	}
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return;
+	}
+	if (system->WindowIconsSupported == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_UNSUPPORTED_WINDOW_ICONS, __func__);
+		return;
+	}
 
-	unsigned char level3pixels[48 * 48 * 4];
-	icon_images[2].width = 48;
-	icon_images[2].height = 48;
-	icon_images[2].pixels = _ResizeImageData(icon_image->PixelData, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->ChannelCount, 48, 48, level3pixels, __func__);
+	_WindowSetIcon(window, pixel_width, pixel_height, pxiels);
 
-	glfwSetWindowIcon(window->GlfwWindow, 3, icon_images);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
