@@ -469,49 +469,352 @@ void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
-
+/*
+ * @brief Render the framebuffer of a @ref TuiWindow to its viewport and swap the buffers.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowFrame(TuiWindow window);
-
+/*
+ * @brief Set the actual rendered swap interval of the window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param interval The swap interval. If the it is 0, the interval is set to match its monitor's vsync.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowFrameInterval(TuiWindow window, int interval);
-
-
+/*
+ * @brief Get the @ref TuiCursorMode of a @ref TuiWindow.
+ * 
+ * @param window The @ref TuiWindow.
+ * 
+ * @returns The @ref TuiCursorMode. @ref TUI_CURSOR_MODE_INVALID is returned if an error occurs.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiCursorMode tuiWindowGetCursorMode(TuiWindow window);
-
+/*
+ * @brief Set the @ref TuiCursorMode of a @ref TuiWindow.
+ * 
+ * @param window The @ref TuiWindow.
+ * @param cursor_mode The @ref TuiCursorMode.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_CURSOR_MODE, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetCursorMode(TuiWindow window, TuiCursorMode cursor_mode);
+/*
+ * @brief Get if sticky keys mode is enabled for a @ref TuiWindow. Effects the output of tuiGetKeyboardKey(), so that @ref TUI_BUTTON_PRESS is returned the first time after the key is pressed, even if it is no longer it is pressed.
+ * 
+ * @param window The @ref TuiWindow
+ * 
+ * @returns If sticky keys are enabled for the window.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
+ * 
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowGetStickyKeysEnabled(TuiWindow window);
+/*
+ * @brief Set if sticky keys mode is enabled for a @ref TuiWindow. Effects the output of tuiGetKeyboardKey(), so that @ref TUI_BUTTON_PRESS is returned the first time after the key is pressed, even if it is no longer it is pressed.
+ *
+ * @param window The @ref TuiWindow.
+ * @param sticky_keys_mode If sticky keys should be enabled for the window. 
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetStickyKeysEnabled(TuiWindow window, TuiBoolean sticky_keys_mode);
+/*
+ * @brief Get if sticky mouse buttons mode is enabled for a @ref TuiWindow. Effects the output of tuiWindowGetMouseButton(), so that @ref TUI_BUTTON_PRESS is returned the first time after the mouse button is pressed, even if it is no longer it is pressed.
+ *
+ * @param window The @ref TuiWindow
+ *
+ * @returns If sticky mouse buttons are enabled for the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowGetStickyMouseButtonsEnabled(TuiWindow window);
+/*
+ * @brief Set if sticky mouse buttons mode is enabled for a @ref TuiWindow. Effects the output of tuiWindowGetMouseButton(), so that @ref TUI_BUTTON_PRESS is returned the first time after the mouse button is pressed, even if it is no longer it is pressed.
+ *
+ * @param window The @ref TuiWindow.
+ * @param sticky_mouse_buttons If sticky mouse buttons should be enabled for the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetStickyMouseButtonsEnabled(TuiWindow window, TuiBoolean sticky_mouse_buttons);
+/*
+ * @brief Get if lock key mods mode is enabled for a @ref TuiWindow. If enabled, callback @ref TuiKeyboardMod values will include the mods @ref TUI_MOD_CAPS_LOCK and @ref TUI_MOD_NUM_LOCK if capslock or numlock is active, not if the key is pressed.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns If lock key mods mode buttons are enabled for the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowGetLockKeyModsEnabled(TuiWindow window);
+/*
+ * @brief Set if lock key mods mode is enabled for a @ref TuiWindow. If enabled, callback @ref TuiKeyboardMod values will include the mods @ref TUI_MOD_CAPS_LOCK and @ref TUI_MOD_NUM_LOCK if capslock or numlock is active, not if the key is pressed.
+ *
+ * @param window The @ref TuiWindow.
+ * @param lock_mods If lock key mods should be enabled for the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetLockKeyModsEnabled(TuiWindow window, TuiBoolean lock_mods);
-
+/*
+ * @brief Get if raw mouse motion mode is enabled for a @ref TuiWindow. If enabled, raw mouse motion will be used instead of default mouse motion with scaling and acceleration when using cursor mode @ref TUI_CURSOR_MODE_DISABLED.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns If raw mouse motion is enabled for the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowGetRawMouseMotionEnabled(TuiWindow window);
-
+/*
+ * @brief Set if raw mouse motion mode is enabled for a @ref TuiWindow. If enabled, raw mouse motion will be used instead of default mouse motion with scaling and acceleration when using cursor mode @ref TUI_CURSOR_MODE_DISABLED.
+ *
+ * @param window The @ref TuiWindow.
+ * @param raw_mouse_motion If lock raw mouse motion should be enabled for the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetRawMouseMotionEnabled(TuiWindow window, TuiBoolean raw_mouse_motion);
-
+/*
+ * @brief Get the @ref TuiButtonState of a @ref TuiKeyboardKey.
+ *
+ * @param window The @ref TuiWindow.
+ * @param key The @ref TuiKeyboardKey.
+ *
+ * @returns The @ref TuiButtonState of the key.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key);
-
+/*
+ * @brief Get the @ref TuiButtonState of a @ref TuiMouseButton.
+ *
+ * @param window The @ref TuiWindow.
+ * @param mouse_button The @ref TuiMouseButton.
+ *
+ * @returns The @ref TuiButtonState of the mouse button.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_button);
-
+/*
+ * @brief Get the position of the mouse cursor.
+ *
+ * @param window The @ref TuiWindow to get the relative position from.
+ * @param x_position A pointer to where the x position of the mouse cursor will be stored. If NULL or an error occurs, it is ignored.
+ * @param y_position A pointer to where the y position of the mouse cursor will be stored. If NULL or an error occurs, it is ignored.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_position);
-
+/*
+ * @brief Get the x position of the mouse cursor.
+ *
+ * @param window The @ref TuiWindow to get the relative position from.
+ *
+ * @returns The mouse position.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 double tuiWindowGetCursorXPosition(TuiWindow window);
-
+/*
+ * @brief Get the y position of the mouse cursor.
+ *
+ * @param window The @ref TuiWindow to get the relative position from.
+ *
+ * @returns The mouse position.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 double tuiWindowGetCursorYPosition(TuiWindow window);
-
+/*
+ * @brief Set the position of the mouse cursor.
+ *
+ * @param window The @ref TuiWindow to get the relative position from.
+ * @param x_position The x position of the mouse cursor.
+ * @param y_position The y position of the mouse cursor.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position);
-
+/*
+ * @brief Get if a @ref TuiWindow should close
+ *
+ * @param window The @ref TuiWindow.
+ * 
+ * @returns @ref TuiBoolean that is @ref TUI_TRUE if the end user tried closing the window through the close button or other means, or if the window was set to close with tuiWindowsetShouldClose9).
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowShouldClose(TuiWindow window);
-
+/*
+ * @brief Set if a @ref TuiWindow should close.
+ *
+ * @param window The @ref TuiWindow.
+ * @param should_close The @ref TuiBoolean that is @ref TUI_TRUE if the window should close.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetShouldClose(TuiWindow window, TuiBoolean should_close);
-
+/*
+ * @brief Set the title bar text of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param title The title.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_STRING, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetTitle(TuiWindow window, const char* title);
-
+/*
+ * @brief Set the title bar text of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param title The title.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_STRING, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ * 
+ * @pointer_lifetime The returned title array is reallocated every time the @ref TuiWindow title is changed again.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 const char* tuiWindowGetTitle(TuiWindow window);
-
+/*
+ * @brief Set the icon of a @ref TuiWindow to the default platform icon.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_UNSUPPORTED_WINDOW_ICONS, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned title array is reallocated every time the @ref TuiWindow title is changed again.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetDefaultIcon(TuiWindow window);
+/*
+ * @brief Set the icon of a @ref TuiWindow to a 4 channel @ref TuiImage
+ *
+ * @param window The @ref TuiWindow.
+ * @param icon_image The window icon image.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_UNSUPPORTED_WINDOW_ICONS, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned title array is reallocated every time the @ref TuiWindow title is changed again.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image);
-
+/*
+ * @brief Set the icon of a @ref TuiWindow to a 4 channel pixel array.
+ *
+ * @param window The @ref TuiWindow.
+ * @param pixel_width The width of the pixel array in pixels.
+ * @param pixel_height The height of the pixel array in pixels.
+ * @param pixels A pointer to the pixel array.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_UNSUPPORTED_WINDOW_ICONS, and GLFW errors. The first error tha occurs will cause the function to immediatly return.  Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned title array is reallocated every time the @ref TuiWindow title is changed again.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels);
 
 void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position);
