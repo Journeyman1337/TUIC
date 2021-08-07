@@ -478,22 +478,16 @@ void tuiWindowFrameInterval(TuiWindow window, int interval);
 TuiCursorMode tuiWindowGetCursorMode(TuiWindow window);
 
 void tuiWindowSetCursorMode(TuiWindow window, TuiCursorMode cursor_mode);
+TuiBoolean tuiWindowGetStickyKeysEnabled(TuiWindow window);
+void tuiWindowSetStickyKeysEnabled(TuiWindow window, TuiBoolean sticky_keys_mode);
+TuiBoolean tuiWindowGetStickyMouseButtonsEnabled(TuiWindow window);
+void tuiWindowSetStickyMouseButtonsEnabled(TuiWindow window, TuiBoolean sticky_mouse_buttons);
+TuiBoolean tuiWindowGetLockKeyModsEnabled(TuiWindow window);
+void tuiWindowSetLockKeyModsEnabled(TuiWindow window, TuiBoolean lock_mods);
 
-TuiBoolean tuiWindowGetStickyKeys(TuiWindow window);
+TuiBoolean tuiWindowGetRawMouseMotioEnabledn(TuiWindow window);
 
-void tuiWindowSetStickyKeys(TuiWindow window, TuiBoolean sticky_keys_mode);
-
-TuiBoolean tuiWindowGetStickyMouseButtons(TuiWindow window);
-
-void tuiWindowSetStickyMouseButtons(TuiWindow window, TuiBoolean sticky_mouse_buttons);
-
-TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window);
-
-void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_mods);
-
-TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window);
-
-void tuiWindowSetRawMouseMotion(TuiWindow window, TuiBoolean raw_mouse_motion);
+void tuiWindowSetRawMouseMotionEnabled(TuiWindow window, TuiBoolean raw_mouse_motion);
 
 TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key);
 

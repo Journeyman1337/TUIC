@@ -889,7 +889,7 @@ void tuiWindowSetCursorMode(TuiWindow window, TuiCursorMode cursor_mode)
 	}
 }
 
-TuiBoolean tuiWindowGetStickyKeys(TuiWindow window)
+TuiBoolean tuiWindowGetStickyKeysEnabled(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -911,7 +911,7 @@ TuiBoolean tuiWindowGetStickyKeys(TuiWindow window)
 	return TUI_FALSE;
 }
 
-void tuiWindowSetStickyKeys(TuiWindow window, TuiBoolean sticky_keys_mode)
+void tuiWindowSetStickyKeysEnabled(TuiWindow window, TuiBoolean sticky_keys_mode)
 {
 	if (window == NULL)
 	{
@@ -928,7 +928,7 @@ void tuiWindowSetStickyKeys(TuiWindow window, TuiBoolean sticky_keys_mode)
 	}
 }
 
-TuiBoolean tuiWindowGetStickyMouseButtons(TuiWindow window)
+TuiBoolean tuiWindowGetStickyMouseButtonsEnabled(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -950,7 +950,7 @@ TuiBoolean tuiWindowGetStickyMouseButtons(TuiWindow window)
 	return TUI_FALSE;
 }
 
-void tuiWindowSetStickyMouseButtons(TuiWindow window, TuiBoolean sticky_mouse_buttons)
+void tuiWindowSetStickyMouseButtonsEnabled(TuiWindow window, TuiBoolean sticky_mouse_buttons)
 {
 	if (window == NULL)
 	{
@@ -967,7 +967,7 @@ void tuiWindowSetStickyMouseButtons(TuiWindow window, TuiBoolean sticky_mouse_bu
 	}
 }
 
-TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window)
+TuiBoolean tuiWindowGetLockKeyModsEnabled(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -989,7 +989,7 @@ TuiBoolean tuiWindowGetLockKeyMods(TuiWindow window)
 	return TUI_FALSE;
 }
 
-void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_mods)
+void tuiWindowSetLockKeyModsEnabled(TuiWindow window, TuiBoolean lock_mods)
 {
 	if (window == NULL)
 	{
@@ -1006,7 +1006,7 @@ void tuiWindowSetLockKeyMods(TuiWindow window, TuiBoolean lock_mods)
 	}
 }
 
-TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window)
+TuiBoolean tuiWindowGetRawMouseMotionEnabled(TuiWindow window)
 {
 	if (window == NULL)
 	{
@@ -1028,7 +1028,7 @@ TuiBoolean tuiWindowGetRawMouseMotion(TuiWindow window)
 	return TUI_FALSE;
 }
 
-void tuiWindowSetRawMouseMotion(TuiWindow window, TuiBoolean raw_mouse_motion)
+void tuiWindowSetRawMouseMotionEnabled(TuiWindow window, TuiBoolean raw_mouse_motion)
 {
 	if (window == NULL)
 	{
