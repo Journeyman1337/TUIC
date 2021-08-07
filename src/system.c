@@ -228,7 +228,7 @@ const char* tuiGetClipboardString()
 		return TUI_FALSE;
 	}
 
-	const char* str = glfwGetClipboardString(NULL);
+	const char* str = glfwGetClipboardString(NULL); //https://github.com/glfw/glfw/issues/1945
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
@@ -251,7 +251,7 @@ void tuiSetClipboardString(const char* string)
 		return;
 	}
 
-	glfwSetClipboardString(NULL, string);
+	glfwSetClipboardString(NULL, string); //https://github.com/glfw/glfw/issues/1945
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
