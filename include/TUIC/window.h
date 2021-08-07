@@ -485,7 +485,7 @@ void tuiWindowSetStickyMouseButtonsEnabled(TuiWindow window, TuiBoolean sticky_m
 TuiBoolean tuiWindowGetLockKeyModsEnabled(TuiWindow window);
 void tuiWindowSetLockKeyModsEnabled(TuiWindow window, TuiBoolean lock_mods);
 
-TuiBoolean tuiWindowGetRawMouseMotioEnabledn(TuiWindow window);
+TuiBoolean tuiWindowGetRawMouseMotionEnabled(TuiWindow window);
 
 void tuiWindowSetRawMouseMotionEnabled(TuiWindow window, TuiBoolean raw_mouse_motion);
 
