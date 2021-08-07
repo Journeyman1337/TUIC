@@ -1218,7 +1218,7 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
 	{
-		tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__);
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
 	}
 	if (system->WindowIconsSupported == TUI_FALSE)
@@ -1226,7 +1226,6 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 		tuiDebugError(TUI_ERROR_UNSUPPORTED_WINDOW_ICONS, __func__);
 		return;
 	}
-
 
 	glfwSetWindowIcon(window->GlfwWindow, 0, NULL);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
@@ -1252,7 +1251,7 @@ void tuiWindowSetIcon(TuiWindow window, TuiImage image)
 	TuiSystem system = tui_get_system();
 	if (system == NULL)
 	{
-		tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__);
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
 	}
 	if (system->WindowIconsSupported == TUI_FALSE)
