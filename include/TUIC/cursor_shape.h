@@ -166,21 +166,6 @@ extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
  */
 TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
 /*!
- * @brief Determine if a @ref TuiCursorShape is supported by the current platform.
- *
- * @param cursor_shape The @ref TuiCursorShape to check.
- *
- * @returns The @ref TuiBoolean result. If it cursor_shape is a @ref TuiCursorShape supported on the current platform, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiCursorShapeIsSupported(TuiCursorShape cursor_shape);
-/*!
  * @brief Retrieve the string name associated with a @ref TuiCursorShape enum.
  *
  * @param cursor_shape The @ref TuiCursorShape to get the name of.

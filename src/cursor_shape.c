@@ -58,35 +58,6 @@ TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape)
 	}
 }
 
-TuiBoolean tuiCursorShapeIsSupported(TuiCursorShape cursor_shape) // glfw has no function for this purpose, so we need to improvise
-{
-	TuiSystem system = tui_get_system();
-	if (system == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
-	}
-	GLFWcursor* cursor = glfwCreateStandardCursor((int)cursor_shape); // try creating a standard cursor iwth the shape
-	if (cursor != NULL) // if the created cursor is not NULL...
-	{
-		glfwDestroyCursor(cursor); // destroy it because we dont actually want to use it
-		TuiErrorCode glfw_error = _GlfwErrorCheck();
-		if (glfw_error != TUI_ERROR_NONE)
-		{
-			tuiDebugError(glfw_error, __func__);
-			return TUI_FALSE;
-		}
-		return TUI_TRUE; // return true
-	}
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return TUI_FALSE;
-	}
-	return TUI_FALSE; //if the created curser was NULL return false
-}
-
 const char* tuiCursorShapeToString(TuiCursorShape cursor_shape)
 {
 	switch (cursor_shape)

@@ -39,7 +39,7 @@ TuiCursorShape increment_cursor_shape(TuiCursorShape current_shape)
     {
         current_shape = TUI_CURSOR_SHAPE_FIRST;
     }
-    if (tuiCursorShapeIsSupported(current_shape) == TUI_FALSE)
+    if (tuiCursorShapeSupported(current_shape) == TUI_FALSE)
     {
         return increment_cursor_shape(current_shape);
     }
