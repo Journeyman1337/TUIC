@@ -1298,7 +1298,7 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 	}
 }
 
-void tuiWindowSetIconPixels(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels)
+void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels)
 {
 	if (window == NULL)
 	{
