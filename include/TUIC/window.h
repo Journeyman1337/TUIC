@@ -512,8 +512,6 @@ const char* tuiWindowGetTitle(TuiWindow window);
 void tuiWindowSetDefaultIcon(TuiWindow window);
 void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image);
 
-TuiBoolean tuiWindowIconsSupported();
-
 void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position);
 
 int tuiWindowGetXPosition(TuiWindow window);

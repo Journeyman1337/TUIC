@@ -84,6 +84,19 @@ void tuiTerminate();
  */
 TuiBoolean tuiRawMouseMotionSupported();
 /*
+ * @brief Get if window icons are suported on the current platform.
+ *
+ * @returns The @ref TuiBoolean result. If window icons are supported, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function must only be called when TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+TuiBoolean tuiWindowIconsSupported();
+/*
  * @brief Get the clipboard text o.
  *
  * @returns The clipboard string.

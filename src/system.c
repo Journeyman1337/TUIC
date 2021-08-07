@@ -180,6 +180,17 @@ TuiBoolean tuiRawMouseMotionSupported()
 	return TUI_FALSE;
 }
 
+TuiBoolean tuiWindowIconsSupported()
+{
+	TuiSystem system = tui_get_system();
+	if (system == NULL)
+	{
+		tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__);
+		return TUI_FALSE;
+	}
+	return system->WindowIconsSupported;
+}
+
 const char* tuiGetClipboardString()
 {
 	if (sSystem == NULL)

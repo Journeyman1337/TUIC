@@ -1286,17 +1286,6 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 	}
 }
 
-TuiBoolean tuiWindowIconsSupported()
-{
-	TuiSystem system = tui_get_system();
-	if (system == NULL)
-	{
-		tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
-	}
-	return system->WindowIconsSupported;
-}
-
 void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position)
 {
 	if (window == NULL)
