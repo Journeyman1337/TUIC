@@ -816,75 +816,481 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels);
-
+/*
+ * @brief Get the position of a @ref TuiWindow.
+ * 
+ * @param window The @ref TuiWindow.
+ * @param x_position A pointer to where the x position of the top left of the window will be stored. If NULL or an error occurs, it is ignored.
+ * @param y_position A pointer to where the y position of the top left corner of the window will be stored. If NULL or an error occurs, it is ignored.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position);
-
+/*
+ * @brief Get the x position of a @ref TuiWindow.
+ * 
+ * @param window The @ref TuiWindow.
+ * 
+ * @returns The x position of the top left corner of the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetXPosition(TuiWindow window);
-
+/*
+ * @brief Get the y position of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The y position of the top left corner of the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetYPosition(TuiWindow window);
-
+/*
+ * @brief Set the position of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param x_position The x position of the top left corner of the window.
+ * @param y_position The y position of the top left corner of the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position);
-
+/*
+ * @brief Set size limits for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param min_width The minimum width limit. If 0, there is no size limit.
+ * @param min_height The minimum height limit. If 0, there is no size limit.
+ * @param max_width The maximum width limit. If 0, there is no limit.
+ * @param max_height The maximum height. If 0, there is no limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height);
-
+/*
+ * @brief Set minimum size limits for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param min_width The minimum width limit. If 0, there is no size limit.
+ * @param min_height The minimum height limit. If 0, there is no size limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height);
-
+/*
+ * @brief Set maximum size limits for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param max_width The maximum width limit. If 0, there is no limit.
+ * @param max_height The maximum height. If 0, there is no limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height);
-
+/*
+ * @brief Set minimum width size limit for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param min_width The minimum width limit. If 0, there is no size limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetMinWidth(TuiWindow window, int min_width);
-
+/*
+ * @brief Set the minimum height size limit for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param min_height The minimum height limit. If 0, there is no size limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetMinHeight(TuiWindow window, int min_height);
-
+/*
+ * @brief Set the maximum width size limit for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param max_width The maximum width limit. If 0, there is no limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetMaxWidth(TuiWindow window, int max_width);
-
+/*
+ * @brief Set the maximum height size limit for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param max_height The maximum height limit. If 0, there is no limit.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetMaxHeight(TuiWindow window, int max_height);
-
+/*
+ * @brief Get the size limits for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param min_width A pointer to where the minimum width limit will be stored. If NULL or an error occurs, it is ignored. If there is no limit, 0 will be stored.
+ * @param min_height A pointer to where the minimum height limit will be stored. If NULL or an error occurs, it is ignored. If there is no limit, 0 will be stored.
+ * @param max_width A pointer to where the maximum width limit will be stored. If NULL or an error occurs, it is ignored. If there is no limit, 0 will be stored.
+ * @param max_height A pointer to where the maximum height limit will be stored. If NULL or an error occurs, it is ignored. If there is no limit, 0 will be stored.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowGetSizeLimits(TuiWindow window, int* min_width, int* min_height, int* max_width, int* max_height);
-
+/*
+ * @brief Get the minimum width of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The minimum width limit of the window.  If there is no limit, 0 will be returned.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetMinWidth(TuiWindow window);
-
+/*
+ * @brief Get the minimum height of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The minimum height limit of the window.  If there is no limit, 0 will be returned.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetMinHeight(TuiWindow window);
-
+/*
+ * @brief Get the maximum width of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The maximum width limit of the window.  If there is no limit, 0 will be returned.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetMaxWidth(TuiWindow window);
-
+/*
+ * @brief Get the maximum height of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The maximum height limit of the window.  If there is no limit, 0 will be returned.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 int tuiWindowGetMaxHeight(TuiWindow window);
-
+/*
+ * @brief Get if a @ref TuiWindow has one or more size limits.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The @ref TuiBoolean result. If the window has one or more size limits, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowHasSizeLimits(TuiWindow window);
-
+/*
+ * @brief Get if a @ref TuiWindow has one or more minimum size limits.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The @ref TuiBoolean result. If the window has one or more minimum size limits, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowHasMinSizeLimits(TuiWindow window);
-
+/*
+ * @brief Get if a @ref TuiWindow has one or more maximum size limits.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The @ref TuiBoolean result. If the window has one or more maximum size limits, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowHasMaxSizeLimits(TuiWindow window);
-
+/*
+ * @brief Set a fixed aspect ratio for a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param numerator The numerator of the fixed aspect ratio.
+ * @param denominator The denominator of the fixed aspect ratio.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_INVALID_ASPECT_RATIO, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominator);
-
+/*
+ * @brief Fix the aspect ratio of a @ref TuiWindow to its current aspect ratio.
+ * 
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowFixCurrentAspectRatio(TuiWindow window);
-
+/*
+ * @brief Unfix the aspect ratio of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowUnfixAspectRatio(TuiWindow window);
-
+/*
+ * @brief Get if the aspect ratio of a @ref TuiWindow is fixed.
+ *
+ * @param window The @ref TuiWindow.
+ * 
+ * @returns The @ref TuiBoolean result. If the window has a fixed aspect ratio, it
+ * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window);
-
+/*
+ * @brief Get the aspect ratio of a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ * @param numerator A pointer to where to store the numerator. If NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
+ * @param numerator A pointer to where to store the denominator. If NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowGetAspectRatio(TuiWindow, int* numerator, int* denominator);
-
+/*
+ * @brief Get the content scale of a @ref TuiWindow. This is the content scale is the ratio between the current DPI and the platform's default DPI.
+ *
+ * @param window The @ref TuiWindow.
+ * @param numerator A pointer to where to store the numerator. If NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
+ * @param numerator A pointer to where to store the denominator. If NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall);
-
+/*
+ * @brief Get the content scale wide of a @ref TuiWindow. This is the content scale is the ratio between the current DPI and the platform's default DPI.
+ *
+ * @param window The @ref TuiWindow.
+ * 
+ * @returns The content scale wide of the window.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 float tuiWindowGetContentScaleWide(TuiWindow window);
-
+/*
+ * @brief Get the content scale tall of a @ref TuiWindow. This is the content scale is the ratio between the current DPI and the platform's default DPI.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @returns The content scale tall of the window.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 float tuiWindowGetContentScaleTall(TuiWindow window);
-
+/*
+ * @brief Iconiify (minimize) a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowIconify(TuiWindow window);
-
+/*
+ * @brief Restore a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowRestore(TuiWindow window);
-
+/*
+ * @brief Maximize a @ref TuiWindow.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowMaximize(TuiWindow window);
-
+/*
+ * @brief Show a @ref TuiWindow that was hidden with tuiWindowHide().
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowShow(TuiWindow window);
-
+/*
+ * @brief Hide a @ref TuiWindow from the desktop so that it does not even appear on the taskbar.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowHide(TuiWindow window);
-
+/*
+ * @brief Give a @ref TuiWindow input focus and bring it to the top of all other windows.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowFocus(TuiWindow window);
-
+/*
+ * @brief Request attention to a window, causing it to flash on the taskbar and other operating system specific effects to notify the user.
+ *
+ * @param window The @ref TuiWindow.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 void tuiWindowRequestAttention(TuiWindow window);
-
+/*
+ * @brief Get the @ref TuiMonitor that a @ref TuiWindow is on.
+ *
+ * @param window The @ref TuiWindow.
+ * 
+ * @returns monitor The @ref TuiMonitor that the window is on.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 TuiMonitor tuiWindowGetMonitor(TuiWindow window);
 
 void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window);
