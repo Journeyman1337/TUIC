@@ -871,10 +871,6 @@ float tuiWindowGetContentScaleWide(TuiWindow window);
 
 float tuiWindowGetContentScaleTall(TuiWindow window);
 
-float tuiWindowGetOpacity(TuiWindow window);
-
-void tuiWindowSetOpacity(TuiWindow window, float opacity);
-
 void tuiWindowIconify(TuiWindow window);
 
 void tuiWindowRestore(TuiWindow window);

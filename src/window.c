@@ -1837,48 +1837,6 @@ float tuiWindowGetContentScaleTall(TuiWindow window)
 	return scale_tall;
 }
 
-float tuiWindowGetOpacity(TuiWindow window)
-{
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return 0.0f;
-	}
-
-	float opacity = glfwGetWindowOpacity(window->GlfwWindow);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return 0.0f;
-	}
-	return opacity;
-}
-
-void tuiWindowSetOpacity(TuiWindow window, float opacity)
-{
-	opacity = (opacity > 1.0f) ? 1.0f : (opacity < 0.0f) ? 0.0f : opacity;
-
-	if (window == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
-	glfwSetWindowOpacity(window->GlfwWindow, opacity);
-	glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
-}
-
 void tuiWindowIconify(TuiWindow window)
 {
 	if (window == NULL)
