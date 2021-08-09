@@ -174,5 +174,5 @@ TuiDetailFlag tuiStringToDetailFlag(const char* string)
 	{
 		return TUI_LAYOUT_FLAG_SPARSE;
 	}
-	return 0;
+	return TUI_DETAIL_FLAG_INVALID;
 }

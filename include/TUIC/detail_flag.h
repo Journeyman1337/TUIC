@@ -33,6 +33,13 @@ extern "C" {
 typedef enum TuiDetailFlag
 {
 	/*!
+	 * \brief The detail flag is invalid.
+	 *
+	 * This detail flag is returned when an error occurs, and is also used to specify that no detail flag is
+	 * defined.
+	 */
+	TUI_DETAIL_FLAG_INVALID = 0,
+	/*!
 	 * @brief TUI detail mode glyph flag for 8 bit glyphs. This supports up to 256 unique glyphs. This size is optimal if you only want to use code page 437 for rendering.
 	 */
 	TUI_GLYPH_FLAG_G8 = (1 << 0),
