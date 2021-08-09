@@ -49,7 +49,7 @@ const char* tuiCursorModeToString(TuiCursorMode cursor_mode)
 	case TUI_CURSOR_MODE_DISABLED:
 		return kTui_Cursor_Mode_Disabled_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

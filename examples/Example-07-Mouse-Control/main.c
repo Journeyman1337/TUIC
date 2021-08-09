@@ -20,9 +20,9 @@ const size_t kTilesTall = 50;
 const size_t kTilePixelWidth = 8;
 const size_t kTilePixelHeight = 8;
 
-static TuiImage custom_cursor_image = NULL;
+static TuiImage custom_cursor_image = TUI_NULL;
 static TuiCursorShape current_cursor_shape = TUI_CURSOR_SHAPE_FIRST;
-static TuiCursor current_cursor = NULL;
+static TuiCursor current_cursor = TUI_NULL;
 static int foreground_color = 15;
 
 TuiCursorShape increment_cursor_shape(TuiCursorShape current_shape)
@@ -87,7 +87,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         tuiImageSave(screenshot, screenshot_file_name);
         printf("Screenshot saved to \"mouse_control_screenshot.png\".\n");
         tuiImageDestroy(screenshot);
-        screenshot = NULL;
+        screenshot = TUI_NULL;
     }
 }
 
@@ -128,7 +128,7 @@ int main()
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
     TuiImage atlas_image = tuiImageLoad(atlas_image_name);
-    if (atlas_image == NULL)
+    if (atlas_image == TUI_NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
         tuiTerminate();
@@ -139,7 +139,7 @@ int main()
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
     TuiAtlas atlas = tuiAtlasCreateCodepageImage(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
-    atlas_image = NULL;
+    atlas_image = TUI_NULL;
 
     /* Create the palette */
     int palette_color_count = 16;
@@ -151,7 +151,7 @@ int main()
 
     /* Create the window. */
     const char* window_title = "Example XX";
-    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, NULL);
+    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, TUI_NULL);
 
     /* Render initial clear color to window. */
     tuiWindowClearColor(window, 0, 0, 0, 255); //black
@@ -189,15 +189,15 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(window);
-    window = NULL;
+    window = TUI_NULL;
     tuiCursorDestroy(current_cursor);
-    current_cursor = NULL;
+    current_cursor = TUI_NULL;
     tuiPaletteDestroy(palette);
-    palette = NULL;
+    palette = TUI_NULL;
     tuiAtlasDestroy(atlas);
-    atlas = NULL;
+    atlas = TUI_NULL;
     tuiBatchDestroy(batch);
-    batch = NULL;
+    batch = TUI_NULL;
 
     tuiTerminate();
     return 0;

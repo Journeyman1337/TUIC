@@ -64,7 +64,7 @@ const char* tuiKeyboardModToString(TuiKeyboardMod keyboard_mod)
 	case TUI_MOD_NONE:
 		return kTui_Keyboard_Mod_None_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

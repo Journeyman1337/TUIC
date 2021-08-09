@@ -77,7 +77,7 @@ const char* tuiBlendModeToString(TuiBlendMode blend_mode)
 	case TUI_BLEND_BG_ALPHA:
 		return kTui_Blend_BG_ALPHA_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

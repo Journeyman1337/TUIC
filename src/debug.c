@@ -26,7 +26,7 @@ static tuiDebugErrorCallback sDebugCallback = tui_default_debug_callback;
 
 void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback)
 {
-	if (callback == NULL)
+	if (callback == TUI_NULL)
 	{
 		sDebugCallback = tui_default_debug_callback;
 	}

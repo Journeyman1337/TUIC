@@ -54,7 +54,7 @@ int main()
 
     /* Create the window. */
     const char* window_title = "Example XX";
-    TuiWindow window = tuiWindowCreate(windowed_window_width, windowed_window_height, window_title, NULL);
+    TuiWindow window = tuiWindowCreate(windowed_window_width, windowed_window_height, window_title, TUI_NULL);
 
     /* Set the key callback. */
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
@@ -82,7 +82,7 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(window); //The instance must always be created first and destroyed last.
-    window = NULL;
+    window = TUI_NULL;
 
     tuiTerminate();
     return 0;

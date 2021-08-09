@@ -32,12 +32,12 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, func_name);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, func_name);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiImage image = (TuiImage)tuiAllocate(sizeof(TuiImage_s));
@@ -46,7 +46,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 	image->ChannelCount = channel_count;
 	image->PixelDataSize = (size_t)pixel_width * (size_t)pixel_height * (size_t)channel_count;
 
-	if (pixel_data != NULL)
+	if (pixel_data != TUI_NULL)
 	{
 		if (copy_data == TUI_TRUE)
 		{
@@ -69,7 +69,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, int pixel_height, int channel_count, int new_pixel_width, int new_pixel_height, uint8_t* out_pixels, const char* func_name)
 {
 	uint8_t* output_pixels = out_pixels;
-	if (output_pixels == NULL)
+	if (output_pixels == TUI_NULL)
 	{
 		output_pixels = (uint8_t*)tuiAllocate((size_t)new_pixel_width * new_pixel_height * channel_count);
 	}
@@ -78,12 +78,12 @@ static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, 
 		channel_count);
 	if (stb_result == 0)
 	{
-		if (out_pixels == NULL && output_pixels != NULL)
+		if (out_pixels == TUI_NULL && output_pixels != TUI_NULL)
 		{
 			tuiFree(output_pixels);
 		}
 		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, func_name);
-		return NULL;
+		return TUI_NULL;
 	}
 	return output_pixels;
 }
@@ -93,7 +93,7 @@ static inline GLFWimage _TuiImageToGlfwImage(TuiImage image, const char* func_na
 	GLFWimage glfw_image;
 	glfw_image.width = 0;
 	glfw_image.height = 0;
-	glfw_image.pixels = NULL;
+	glfw_image.pixels = TUI_NULL;
 	if (image->ChannelCount != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, func_name);

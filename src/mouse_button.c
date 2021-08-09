@@ -70,7 +70,7 @@ const char* tuiMouseButtonToString(TuiMouseButton mouse_button)
 	case TUI_MOUSE_BUTTON_8:
 		return kTui_Mouse_Button_8_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

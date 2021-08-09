@@ -542,7 +542,7 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey keyboard_key)
 	case TUIK_WORLD_2:
 		return kTuik_World_2_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 
@@ -1034,7 +1034,7 @@ TuiKeyboardKey tuiStringToKeyboardKey(const char* str)
 int tuiKeyboardKeyGetScancode(TuiKeyboardKey keyboard_key)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return 0;

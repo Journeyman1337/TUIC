@@ -174,7 +174,7 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(window); //The instance must always be created first and destroyed last.
-    window = NULL;
+    window = TUI_NULL;
 
     tuiTerminate();
     return 0;

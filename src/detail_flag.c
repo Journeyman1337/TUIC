@@ -108,7 +108,7 @@ const char* tuiDetailFlagToString(TuiDetailFlag detail_flag)
 	case TUI_LAYOUT_FLAG_SPARSE:
 		return kTui_Layout_Flag_Sparse_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

@@ -28,7 +28,11 @@ extern "C" {
 
 #include <stdint.h> //needed for integer types
 
-#define NULL 0 //defining manually instead of including stddef.h
+
+/*!
+ * \brief Value for when a pointer is not allocated.
+ */
+#define TUI_NULL 0 //defining manually instead of including stddef.h
 
 
 /*! @name Opaque Object Types

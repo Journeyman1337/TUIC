@@ -220,7 +220,7 @@ void test_DetailMode(TuiDetailMode detail_mode, TuiPanel panel)
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	const char* detail_name = tuiDetailModeToString(detail_mode);
 	TuiBatch batch = test_GetTestPatternBatch(detail_mode);
-	TuiPalette palette = NULL;
+	TuiPalette palette = TUI_NULL;
 	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE)
 	{
 		 palette = tuiPaletteCreateXterm(256);

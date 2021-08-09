@@ -34,7 +34,7 @@ TuiSystem tui_get_system()
 
 TuiBoolean tuiInit()
 {
-	if (sSystem != NULL)
+	if (sSystem != TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_ALREADY_INITIALIZED, __func__);
 		return TUI_FALSE;
@@ -48,15 +48,15 @@ TuiBoolean tuiInit()
 	}
 
 	sSystem = tuiAllocate(sizeof(TuiSystem_s));
-	sSystem->BaseWindow = NULL;
+	sSystem->BaseWindow = TUI_NULL;
 	sSystem->WindowIconsSupported = TUI_FALSE;
-	sSystem->MonitorConnectedCallback = NULL;
-	sSystem->ApiData = NULL;
+	sSystem->MonitorConnectedCallback = TUI_NULL;
+	sSystem->ApiData = TUI_NULL;
 
 	int glfw_version_major = 0;
 	int glfw_version_minor = 0;
 
-	glfwGetVersion(&glfw_version_major, &glfw_version_minor, NULL);
+	glfwGetVersion(&glfw_version_major, &glfw_version_minor, TUI_NULL);
 	if (glfw_version_major != 3 && glfw_version_minor != 3)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION, __func__);
@@ -72,20 +72,20 @@ TuiBoolean tuiInit()
 #endif
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 	glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
-	sSystem->BaseWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
+	sSystem->BaseWindow = glfwCreateWindow(1, 1, "", TUI_NULL, TUI_NULL);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
 		tuiFree(sSystem);
-		sSystem = NULL;
+		sSystem = TUI_NULL;
 		glfwTerminate();
 		return TUI_FALSE;
 	}
-	if (sSystem->BaseWindow == NULL)
+	if (sSystem->BaseWindow == TUI_NULL)
 	{
 		tuiFree(sSystem);
-		sSystem = NULL;
+		sSystem = TUI_NULL;
 		glfwTerminate();
 		return TUI_FALSE;
 	}
@@ -98,7 +98,7 @@ TuiBoolean tuiInit()
 	if (glfwGetError(NULL) == GLFW_NO_ERROR) //if it was set successfully...
 	{
 		sSystem->WindowIconsSupported = TUI_TRUE; //icons are supported on this platform.
-		glfwSetWindowIcon(sSystem->BaseWindow, 0, NULL); //set the icon back to default.
+		glfwSetWindowIcon(sSystem->BaseWindow, 0, TUI_NULL); //set the icon back to default.
 	}
 	else
 	{
@@ -111,12 +111,12 @@ TuiBoolean tuiInit()
 
 TuiBoolean tuiIsActive()
 {
-	return sSystem != NULL;
+	return sSystem != TUI_NULL;
 }
 
 void tuiTerminate()
 {
-	if (sSystem == NULL)
+	if (sSystem == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		
@@ -161,7 +161,7 @@ void tuiTerminate()
 
 TuiBoolean tuiRawMouseMotionSupported()
 {
-	if (sSystem == NULL)
+	if (sSystem == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
@@ -183,7 +183,7 @@ TuiBoolean tuiRawMouseMotionSupported()
 TuiBoolean tuiWindowIconsSupported()
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_GLFW_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
@@ -194,13 +194,13 @@ TuiBoolean tuiWindowIconsSupported()
 TuiBoolean tuiCursorShapeSupported(TuiCursorShape cursor_shape) // glfw has no function for this purpose, so we need to improvise
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
 	}
 	GLFWcursor* cursor = glfwCreateStandardCursor((int)cursor_shape); // try creating a standard cursor iwth the shape
-	if (cursor != NULL) // if the created cursor is not NULL...
+	if (cursor != TUI_NULL) // if the created cursor is not TUI_NULL...
 	{
 		glfwDestroyCursor(cursor); // destroy it because we dont actually want to use it
 		TuiErrorCode glfw_error = _GlfwErrorCheck();
@@ -217,41 +217,41 @@ TuiBoolean tuiCursorShapeSupported(TuiCursorShape cursor_shape) // glfw has no f
 		tuiDebugError(glfw_error, __func__);
 		return TUI_FALSE;
 	}
-	return TUI_FALSE; //if the created curser was NULL return false
+	return TUI_FALSE; //if the created curser was TUI_NULL return false
 }
 
 const char* tuiGetClipboardString()
 {
-	if (sSystem == NULL)
+	if (sSystem == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
 	}
 
-	const char* str = glfwGetClipboardString(NULL); //https://github.com/glfw/glfw/issues/1945
+	const char* str = glfwGetClipboardString(TUI_NULL); //https://github.com/glfw/glfw/issues/1945
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	return str;
 }
 
 void tuiSetClipboardString(const char* string)
 {
-	if (sSystem == NULL)
+	if (sSystem == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_FALSE;
 	}
-	if (string == NULL)
+	if (string == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_STRING, __func__);
 		return;
 	}
 
-	glfwSetClipboardString(NULL, string); //https://github.com/glfw/glfw/issues/1945
+	glfwSetClipboardString(TUI_NULL, string); //https://github.com/glfw/glfw/issues/1945
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{

@@ -90,11 +90,11 @@ int main()
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
     TuiImage atlas_image = tuiImageLoad(atlas_image_name);
-    if (atlas_image == NULL)
+    if (atlas_image == TUI_NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
         tuiWindowDestroy(window);
-        window = NULL;
+        window = TUI_NULL;
         tuiTerminate();
         return -1;
     }
@@ -103,7 +103,7 @@ int main()
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
     TuiAtlas atlas = tuiAtlasCreateCodepageImage(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
-    atlas_image = NULL;
+    atlas_image = TUI_NULL;
 
     /* Create the palette */
     int palette_color_count = 16;
@@ -251,11 +251,11 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(window);
-    window = NULL;
+    window = TUI_NULL;
     tuiPaletteDestroy(palette);
-    palette = NULL;
+    palette = TUI_NULL;
     tuiAtlasDestroy(atlas);
-    atlas = NULL;
+    atlas = TUI_NULL;
 
     /* Free data arrays */
     tuiFree(glyphs);

@@ -49,7 +49,7 @@ int main()
 	}
 
 	tuiSetDebugErrorCallback(TuiMessageCallback);
-	TuiWindow window = tuiWindowCreate(TEST_DIMENSIONS * TEST_TILE_SIZE, TEST_DIMENSIONS * TEST_TILE_SIZE, "TUIC TESTS", NULL);
+	TuiWindow window = tuiWindowCreate(TEST_DIMENSIONS * TEST_TILE_SIZE, TEST_DIMENSIONS * TEST_TILE_SIZE, "TUIC TESTS", TUI_NULL);
 	tuiWindowSetKeyboardKeyCallback(window, key_callback);
 
 	printf("Running tests. Verify that the output is correct for each test, and then press spacebar to run the next one.\n");

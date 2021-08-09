@@ -52,7 +52,7 @@ const char* tuiAtlasTypeToString(TuiAtlasType atlas_type)
 	case TUI_ATLAS_GRID:
 		return kTui_Atlas_Grid_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

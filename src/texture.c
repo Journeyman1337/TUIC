@@ -25,20 +25,20 @@ static int sTextureCount = 0;
 TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiFilterModeIsValid(filter_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
@@ -54,30 +54,30 @@ TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode)
 TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiFilterModeIsValid(filter_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_FILTER_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiTexture texture = tuiAllocate(sizeof(TuiTexture_s));
@@ -92,7 +92,7 @@ TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int chan
 
 void tuiTextureDestroy(TuiTexture texture)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
@@ -110,17 +110,17 @@ int tuiGetTextureCount()
 
 void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pixel_height)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
 
-	if (pixel_width != NULL)
+	if (pixel_width != TUI_NULL)
 	{
 		*pixel_width = (int)texture->PixelWidth;
 	}
-	if (pixel_height != NULL)
+	if (pixel_height != TUI_NULL)
 	{
 		*pixel_height = (int)texture->PixelHeight;
 	}
@@ -128,7 +128,7 @@ void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pix
 
 int tuiTextureGetPixelWidth(TuiTexture texture)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
@@ -139,7 +139,7 @@ int tuiTextureGetPixelWidth(TuiTexture texture)
 
 int tuiTextureGetPixelHeight(TuiTexture texture)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
@@ -150,7 +150,7 @@ int tuiTextureGetPixelHeight(TuiTexture texture)
 
 int tuiTextureGetChannelCount(TuiTexture texture)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
@@ -161,7 +161,7 @@ int tuiTextureGetChannelCount(TuiTexture texture)
 
 TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return 0;
@@ -172,12 +172,12 @@ TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture)
 
 void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
@@ -191,12 +191,12 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 
 void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels)
 {
-	if (texture == NULL)
+	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
 		return;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
 		return;

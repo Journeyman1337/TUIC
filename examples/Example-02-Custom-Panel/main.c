@@ -41,7 +41,7 @@ int main()
     /* Load the atlas image */
     const char* atlas_image_name = "kenny_roguelikeSheet_transparent.png";
     TuiImage atlas_image = tuiImageLoad(atlas_image_name);
-    if (atlas_image == NULL)
+    if (atlas_image == TUI_NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
         tuiTerminate();
@@ -71,9 +71,9 @@ int main()
     TuiBlendMode blend_mode = TUI_BLEND_BG_ALPHA;
     TuiAtlas atlas = tuiAtlasCreateCoordinateImagePixelBoundingBoxes(atlas_image, glyph_count, glyph_bounding_boxes, blend_mode);
     tuiImageDestroy(atlas_image);
-    atlas_image = NULL;
+    atlas_image = TUI_NULL;
     tuiFree(glyph_bounding_boxes);
-    glyph_bounding_boxes = NULL;
+    glyph_bounding_boxes = TUI_NULL;
 
     /* Create the batch */
     TuiDetailMode detail_mode = TUI_DETAIL_G16_C24_FULL;
@@ -97,18 +97,18 @@ int main()
 
     /* Create the window. */
     const char* window_title = "Example XX";
-    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, NULL);
+    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, TUI_NULL);
 
     /* Render initial clear color to window. */
     tuiWindowClearColor(window, 0, 0, 0, 255); //black
 
     /* Draw batch to window */
-    TuiPalette palette = NULL; //no palette for this detail mode
+    TuiPalette palette = TUI_NULL; //no palette for this detail mode
     tuiWindowDrawBatch(window, atlas, palette, batch);
 
     //Destroy the batch. We rendered it to the panel so we can render the panel instead of re-rendering the batch every frame.
     tuiBatchDestroy(batch);
-    batch = NULL;
+    batch = TUI_NULL;
 
     /* Print prompt to console */
     printf("TUI rendered using a cutom glyph atlas and 24 bit fullcolor.\n");
@@ -140,11 +140,11 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(window);
-    window = NULL;
+    window = TUI_NULL;
     tuiAtlasDestroy(atlas);
-    atlas = NULL;
+    atlas = TUI_NULL;
     tuiBatchDestroy(batch);
-    batch = NULL;
+    batch = TUI_NULL;
 
     tuiTerminate();
     return 0;

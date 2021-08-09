@@ -26,7 +26,7 @@
 double tuiGetTime()
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return 0.0;
@@ -44,7 +44,7 @@ double tuiGetTime()
 void tuiSetTime(double time)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;

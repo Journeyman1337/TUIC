@@ -26,12 +26,12 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	
 	TuiBatch batch = tuiAllocate(sizeof(TuiBatch_s));
@@ -42,7 +42,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
 	batch->IsLargeSparseWide = TUI_FALSE;
 	batch->IsLargeSparseTall = TUI_FALSE;
-	batch->SparseUsedIndices = NULL;
+	batch->SparseUsedIndices = TUI_NULL;
 	batch->SparseUsedIndicesSize = 0;
 	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE) 
 	{
@@ -74,13 +74,13 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 
 void tuiBatchDestroy(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
 
-	if (batch->SparseUsedIndices != NULL)
+	if (batch->SparseUsedIndices != TUI_NULL)
 	{
 		tuiFree(batch->SparseUsedIndices);
 	}
@@ -90,7 +90,7 @@ void tuiBatchDestroy(TuiBatch batch)
 
 TuiDetailMode tuiBatchGetDetail(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
@@ -101,7 +101,7 @@ TuiDetailMode tuiBatchGetDetail(TuiBatch batch)
 
 void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -117,7 +117,7 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
 	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(batch->DetailMode), tuiDetailGetColorFlag(batch->DetailMode));
 	batch->IsLargeSparseWide = TUI_FALSE;
 	batch->IsLargeSparseTall = TUI_FALSE;
-	batch->SparseUsedIndices = NULL;
+	batch->SparseUsedIndices = TUI_NULL;
 	batch->SparseUsedIndicesSize = 0;
 	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE)
 	{
@@ -150,17 +150,17 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
 
 void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
 {	
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
 
-	if(tiles_wide != NULL)
+	if(tiles_wide != TUI_NULL)
 	{
 		*tiles_wide = batch->TilesWide;
 	}
-	if (tiles_tall != NULL)
+	if (tiles_tall != TUI_NULL)
 	{
 		*tiles_tall = batch->TilesTall;
 	}
@@ -168,7 +168,7 @@ void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
 
 int tuiBatchGetTilesWide(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
@@ -179,7 +179,7 @@ int tuiBatchGetTilesWide(TuiBatch batch)
 
 int tuiBatchGetTilesTall(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
@@ -190,7 +190,7 @@ int tuiBatchGetTilesTall(TuiBatch batch)
 
 int tuiBatchGetDataSize(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
@@ -201,7 +201,7 @@ int tuiBatchGetDataSize(TuiBatch batch)
 
 int tuiBatchGetReservedSize(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
@@ -212,7 +212,7 @@ int tuiBatchGetReservedSize(TuiBatch batch)
 
 int tuiBatchGetTileCount(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
@@ -223,7 +223,7 @@ int tuiBatchGetTileCount(TuiBatch batch)
 
 void tuiBatchClear(TuiBatch batch)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -242,7 +242,7 @@ void tuiBatchClear(TuiBatch batch)
 
 void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -264,7 +264,7 @@ void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
 
 void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -286,7 +286,7 @@ void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 
 void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -309,7 +309,7 @@ void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 
 void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -331,7 +331,7 @@ void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 
 void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -352,7 +352,7 @@ void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 
 void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -379,7 +379,7 @@ void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 
 void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -403,7 +403,7 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 
 void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -428,7 +428,7 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 
 void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -457,7 +457,7 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 
 void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -482,7 +482,7 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 
 void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -507,7 +507,7 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 
 void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -529,7 +529,7 @@ void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph)
 
 void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -552,7 +552,7 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 
 void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -576,7 +576,7 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 
 void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -599,7 +599,7 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 
 void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -622,7 +622,7 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 
 void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -650,7 +650,7 @@ void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 
 void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -675,7 +675,7 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 
 void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -700,7 +700,7 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 
 void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -730,7 +730,7 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 
 void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -756,7 +756,7 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 
 void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -782,7 +782,7 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 
 void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -825,7 +825,7 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
 
 void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -868,7 +868,7 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 
 void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -912,7 +912,7 @@ void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 
 void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -955,7 +955,7 @@ void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 
 void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -998,7 +998,7 @@ void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 
 void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1046,7 +1046,7 @@ void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 
 void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1091,7 +1091,7 @@ void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 
 void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1136,7 +1136,7 @@ void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 
 void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1186,7 +1186,7 @@ void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 
 void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1232,7 +1232,7 @@ void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 
 void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1278,7 +1278,7 @@ void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 
 void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1321,7 +1321,7 @@ void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
 
 void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1365,7 +1365,7 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 
 void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1410,7 +1410,7 @@ void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 
 void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1454,7 +1454,7 @@ void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 
 void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1498,7 +1498,7 @@ void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 
 void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1547,7 +1547,7 @@ void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 
 void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1593,7 +1593,7 @@ void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 
 void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1639,7 +1639,7 @@ void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 
 void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1690,7 +1690,7 @@ void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 
 void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
@@ -1737,7 +1737,7 @@ void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 
 void tuiBatchSetTile_G16_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
-	if (batch == NULL)
+	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;

@@ -44,14 +44,14 @@ int main()
 
     /* Create the window. */
     const char* window_title = "Example XX";
-    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, NULL); 
+    TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, TUI_NULL); 
 
     /* Set the window icon. */
     tuiWindowSetIconImage(window, window_icon_image);
 
     /* Destroy the window icon image. */
     tuiImageDestroy(window_icon_image);
-    window_icon_image = NULL;
+    window_icon_image = TUI_NULL;
 
     //Render loop
     while (tuiWindowShouldClose(window) == TUI_FALSE)
@@ -63,7 +63,7 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(window); //The instance must always be created first and destroyed last.
-    window = NULL;
+    window = TUI_NULL;
 
     tuiTerminate();
     return 0;

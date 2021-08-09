@@ -26,7 +26,7 @@
 void tuiPollEvents()
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
@@ -43,7 +43,7 @@ void tuiPollEvents()
 void tuiWaitEvents()
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
@@ -60,7 +60,7 @@ void tuiWaitEvents()
 void tuiWaitEventsTimeout(double timeout)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
@@ -85,7 +85,7 @@ void tuiWaitEventsTimeout(double timeout)
 void tuiPostEmptyEvent()
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;

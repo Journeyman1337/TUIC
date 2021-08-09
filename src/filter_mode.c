@@ -52,7 +52,7 @@ const char* tuiFilterModeToString(TuiFilterMode filter_mode)
 	case TUI_FILTER_BILINEAR:
 		return kTui_Filter_Bilinear_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

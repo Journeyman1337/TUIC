@@ -440,7 +440,7 @@ const char* tuiDetailModeToString(TuiDetailMode detail_mode)
 	case TUI_DETAIL_G16_C32NFG_SPARSE:
 		return kTui_Detail_G16_C32NFG_Sparse_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

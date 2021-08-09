@@ -83,7 +83,7 @@ const char* tuiCursorShapeToString(TuiCursorShape cursor_shape)
 	case TUI_CURSOR_SHAPE_NOT_ALLOWED:
 		return kTui_Cursor_Shape_Not_Allowed_Name;
 	default:
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

@@ -55,7 +55,7 @@ const char* tuiButtonStateToString(TuiButtonState button_state)
 		return kTui_Button_Repeat_Name;
 	default:
 		// tuiDebugError(TUI_ERROR_INVALID_BUTTON_STATE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 }
 

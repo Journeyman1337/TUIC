@@ -30,33 +30,33 @@ static int sCursorCount;
 TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (image->ChannelCount != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	GLFWimage glfw_image = _TuiImageToGlfwImage(image, __func__);
 	if (glfw_image.width == 0)
 	{
-		return NULL;
+		return TUI_NULL;
 	}
 	TuiCursor cursor = glfwCreateCursor(&glfw_image, hotspot_x, hotspot_y);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	sCursorCount++;
 	return cursor;
@@ -65,20 +65,20 @@ TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y)
 TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* pixels, int hotspot_x, int hotspot_y)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	
 	GLFWimage glfw_image;
@@ -87,14 +87,14 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
 	glfw_image.pixels = pixels;
 	if (glfw_image.width == 0)
 	{
-		return NULL;
+		return TUI_NULL;
 	}
 	TuiCursor cursor = glfwCreateCursor(&glfw_image, hotspot_x, hotspot_y);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	sCursorCount++;
 	return cursor;
@@ -103,15 +103,15 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
 TuiCursor tuiCursorCreateShape(TuiCursorShape shape)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiCursorShapeIsValid(shape) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CURSOR_SHAPE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiCursor cursor = glfwCreateStandardCursor(shape);
@@ -119,12 +119,12 @@ TuiCursor tuiCursorCreateShape(TuiCursorShape shape)
 	if (glfw_error != TUI_ERROR_NONE)
 	{
 		tuiDebugError(glfw_error, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (cursor == NULL)
+	if (cursor == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	sCursorCount++;
 	return cursor;
@@ -132,7 +132,7 @@ TuiCursor tuiCursorCreateShape(TuiCursorShape shape)
 
 void tuiCursorDestroy(TuiCursor cursor)
 {
-	if (cursor == NULL)
+	if (cursor == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_CURSOR, __func__);
 		return;

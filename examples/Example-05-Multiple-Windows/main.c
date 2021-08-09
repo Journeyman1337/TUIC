@@ -35,19 +35,19 @@ int main()
     /* Create the TUIC windows. */
     const char* window1_title = "Example XX - Window 1";
     const char* window2_title = "Example XX - Window 2";
-    TuiWindow window1 = tuiWindowCreate(window_width, window_height, window1_title, NULL);
-    TuiWindow window2 = tuiWindowCreate(window_width, window_height, window2_title, NULL);
+    TuiWindow window1 = tuiWindowCreate(window_width, window_height, window1_title, TUI_NULL);
+    TuiWindow window2 = tuiWindowCreate(window_width, window_height, window2_title, TUI_NULL);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
     TuiImage atlas_image = tuiImageLoad(atlas_image_name);
-    if (atlas_image == NULL)
+    if (atlas_image == TUI_NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
         tuiWindowDestroy(window1_title);
-        window1_title = NULL;
+        window1_title = TUI_NULL;
         tuiWindowDestroy(window2_title);
-        window2_title = NULL;
+        window2_title = TUI_NULL;
         tuiTerminate();
         return -1;
     }
@@ -56,7 +56,7 @@ int main()
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
     TuiAtlas atlas = tuiAtlasCreateCodepageImage(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
-    atlas_image = NULL;
+    atlas_image = TUI_NULL;
 
     /* Create the palette */
     int palette_color_count = 16;
@@ -87,14 +87,14 @@ int main()
 
     //Destroy the batch. We rendered it to the panel so we can render the panel instead of re-rendering the batch every frame.
     tuiBatchDestroy(batch);
-    batch = NULL;
+    batch = TUI_NULL;
 
     //Render panel to a png image file
-    TuiImage out_image = tuiPanelGetImage(panel, NULL);
+    TuiImage out_image = tuiPanelGetImage(panel, TUI_NULL);
     const char* out_image_name = "example-1-screenshot.png";
     tuiImageSave(out_image, out_image_name);
     tuiImageDestroy(out_image);
-    out_image = NULL;
+    out_image = TUI_NULL;
 
     //fps tracking setup
     double last_time = 0;
@@ -128,15 +128,15 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiPanelDestroy(panel);
-    panel = NULL;
+    panel = TUI_NULL;
     tuiPaletteDestroy(palette);
-    palette = NULL;
+    palette = TUI_NULL;
     tuiAtlasDestroy(atlas);
-    atlas = NULL;
+    atlas = TUI_NULL;
     tuiWindowDestroy(window1);
-    window1 = NULL;
+    window1 = TUI_NULL;
     tuiWindowDestroy(window2);
-    window2 = NULL;
+    window2 = TUI_NULL;
 
     tuiTerminate();
     return 0;

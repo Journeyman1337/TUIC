@@ -113,7 +113,7 @@ int main()
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
     TuiImage atlas_image = tuiImageLoad(atlas_image_name);
-    if (atlas_image == NULL)
+    if (atlas_image == TUI_NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
         tuiTerminate();
@@ -124,7 +124,7 @@ int main()
     TuiBlendMode blend_mode = TUI_BLEND_FG_GREEN;
     sAtlas = tuiAtlasCreateCodepageImage(atlas_image, blend_mode);
     tuiImageDestroy(atlas_image);
-    atlas_image = NULL;
+    atlas_image = TUI_NULL;
 
     /* Create the palette */
     int palette_color_count = 16;
@@ -136,7 +136,7 @@ int main()
 
     /* Create the window. */
     const char* window_title = "Example XX";
-    sWindow = tuiWindowCreate(window_width, window_height, window_title, NULL);
+    sWindow = tuiWindowCreate(window_width, window_height, window_title, TUI_NULL);
 
     /* Render initial clear color to window. */
     tuiWindowClearColor(sWindow, 0, 0, 0, 255); //black
@@ -159,13 +159,13 @@ int main()
 
     /* Destroy all remaining TUIC objects */
     tuiWindowDestroy(sWindow);
-    sWindow = NULL;
+    sWindow = TUI_NULL;
     tuiPaletteDestroy(sPalette);
-    sPalette = NULL;
+    sPalette = TUI_NULL;
     tuiAtlasDestroy(sAtlas);
-    sAtlas = NULL;
+    sAtlas = TUI_NULL;
     tuiBatchDestroy(sBatch);
-    sBatch = NULL;
+    sBatch = TUI_NULL;
 
     /* Free the text array */
     tuiFree(sText);

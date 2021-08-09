@@ -29,30 +29,30 @@ static int sAtlasCount = 0;
 TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (glyph_bounding_boxes == NULL)
+	if (glyph_bounding_boxes == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -64,10 +64,10 @@ TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int gly
 	atlas->TileWidth = 0;
 	atlas->TileHeight = 0;
 	atlas->PixelDataSize = image->PixelDataSize;
-	atlas->ApiData = NULL;
+	atlas->ApiData = TUI_NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, NULL);
+	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, TUI_NULL);
 	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
 	sAtlasCount++;
 	tuiFree(raw_glyph_uvs);
@@ -77,40 +77,40 @@ TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int gly
 TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width , int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (glyph_bounding_boxes == NULL)
+	if (glyph_bounding_boxes == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -122,10 +122,10 @@ TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width , i
 	atlas->TileWidth = 0;
 	atlas->TileHeight = 0;
 	atlas->PixelDataSize = (size_t)pixel_width * (size_t)pixel_height * (size_t)channel_count;
-	atlas->ApiData = NULL;
+	atlas->ApiData = TUI_NULL;
 	atlas->GlyphCount = glyph_count;
 	
-	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, NULL);
+	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, TUI_NULL);
 	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
 	sAtlasCount++;
 	tuiFree(raw_glyph_uvs);
@@ -135,30 +135,30 @@ TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width , i
 TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (raw_glyph_uvs == NULL)
+	if (raw_glyph_uvs == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE_COORDINATES, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -170,7 +170,7 @@ TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, fl
 	atlas->TileWidth = 0;
 	atlas->TileHeight = 0;
 	atlas->PixelDataSize = image->PixelDataSize;
-	atlas->ApiData = NULL;
+	atlas->ApiData = TUI_NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
@@ -181,40 +181,40 @@ TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, fl
 TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (raw_glyph_uvs == NULL)
+	if (raw_glyph_uvs == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE_COORDINATES, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (glyph_count <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -226,7 +226,7 @@ TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_heig
 	atlas->TileWidth = 0;
 	atlas->TileHeight = 0;
 	atlas->PixelDataSize = (size_t)pixel_width * (size_t)pixel_height * (size_t)channel_count;
-	atlas->ApiData = NULL;
+	atlas->ApiData = TUI_NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
@@ -237,25 +237,25 @@ TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_heig
 TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (image->PixelWidth % tile_pixel_width != 0 && image->PixelHeight % tile_pixel_height != 0 || tile_pixel_width <= 0 || tile_pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -269,7 +269,7 @@ TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
+	tuiAtlasCreate_Opengl33(atlas, image->PixelData, TUI_NULL);
 	sAtlasCount++;
 	return atlas;
 }
@@ -277,35 +277,35 @@ TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_
 TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tile_pixel_width <= 0 || tile_pixel_height <= 0 || pixel_width % tile_pixel_width != 0 || pixel_height % tile_pixel_height != 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_GLYPH_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -319,7 +319,7 @@ TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int chan
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
+	tuiAtlasCreate_Opengl33(atlas, pixels, TUI_NULL);
 	sAtlasCount++;
 	return atlas;
 }
@@ -330,25 +330,25 @@ const size_t kCodepageGlyphTileDimensions = 16;
 TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (image->PixelWidth % kCodepageGlyphTileDimensions != 0 || image->PixelHeight % kCodepageGlyphTileDimensions != 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -363,7 +363,7 @@ TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode)
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, NULL);
+	tuiAtlasCreate_Opengl33(atlas, image->PixelData, TUI_NULL);
 	sAtlasCount++;
 	return atlas;
 }
@@ -371,35 +371,35 @@ TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode)
 TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode)
 {
 	TuiSystem system = tui_get_system();
-	if (system == NULL)
+	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (pixels == NULL)
+	if (pixels == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PIXELS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (pixel_width % kCodepageGlyphTileDimensions != 0 || pixel_height % kCodepageGlyphTileDimensions != 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (tuiBlendIsValid(blend_mode) == TUI_FALSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BLEND_MODE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiAtlas atlas = tuiAllocate(sizeof(TuiAtlas_s));
@@ -414,14 +414,14 @@ TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int 
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiAtlasCreate_Opengl33(atlas, pixels, NULL);
+	tuiAtlasCreate_Opengl33(atlas, pixels, TUI_NULL);
 	sAtlasCount++;
 	return atlas;
 }
 
 void tuiAtlasDestroy(TuiAtlas atlas)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
@@ -439,7 +439,7 @@ int tuiGetAtlasCount()
 
 int tuiAtlasGetChannelCount(TuiAtlas atlas)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
@@ -450,7 +450,7 @@ int tuiAtlasGetChannelCount(TuiAtlas atlas)
 
 int tuiAtlasGetPixelWidth(TuiAtlas atlas)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
@@ -461,7 +461,7 @@ int tuiAtlasGetPixelWidth(TuiAtlas atlas)
 
 int tuiAtlasGetPixelHeight(TuiAtlas atlas)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
@@ -472,21 +472,21 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas)
 
 void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height, int* out_channel_count)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
 	}
 
-	if (out_pixel_width != NULL)
+	if (out_pixel_width != TUI_NULL)
 	{
 		*out_pixel_width = (int)atlas->PixelWidth;
 	}
-	if (out_pixel_height != NULL)
+	if (out_pixel_height != TUI_NULL)
 	{
 		*out_pixel_height = (int)atlas->PixelHeight;
 	}
-	if (out_channel_count != NULL)
+	if (out_channel_count != TUI_NULL)
 	{
 		*out_channel_count = (int)atlas->ChannelCount;
 	}
@@ -494,7 +494,7 @@ void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_p
 
 TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
@@ -504,7 +504,7 @@ TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas)
 
 void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return;
@@ -520,7 +520,7 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 
 int tuiAtlasGetGlyphCount(TuiAtlas atlas)
 {
-	if (atlas == NULL)
+	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return 0;
@@ -532,7 +532,7 @@ float* tuiGenerateUVCoordinatesFromPixelCooordinates(int glyph_count, uint16_t* 
 {
 	size_t glyphBoundingBoxesParameterCount = (size_t)glyph_count * 4; // amount of glyphs times 4 for STPQ coordinates
 	float* glyphBoundingBoxesUVCoordinates = out_ptr;
-	if (out_ptr == NULL) //If out_ptr is NULL, allocate memory that fits the data
+	if (out_ptr == TUI_NULL) //If out_ptr is TUI_NULL, allocate memory that fits the data
 	{
 		glyphBoundingBoxesUVCoordinates = (float*)tuiAllocate(sizeof(float) * glyphBoundingBoxesParameterCount); 
 	}
