@@ -289,7 +289,7 @@ inline int GetAtlasTypeUniformValue(TuiDetailFlag atlas_type)
 		return 0;
 	}
 }
-inline int GetBlendModeUniformValue(TuiDetailFlag blend_mode)
+inline int GetBlendModeUniformValue(TuiBlendMode blend_mode)
 {
 	switch (blend_mode)
 	{
