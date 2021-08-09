@@ -415,7 +415,7 @@ extern const char* kTui_Error_Dangling_Window_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_GLFW_API_UNAVALIABLE.
  */
-extern const char* kTui_Error_Glfw_Api_Unavaliable_Name;
+extern const char* kTui_Error_Glfw_Api_Unavailable_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_GLFW_FORMAT_UNAVAILABLE.
  */
@@ -428,10 +428,6 @@ extern const char* kTui_Error_Glfw_Invalid_Enum_Name;
  * @brief String name of @ref TUI_ERROR_GLFW_INVALID_VALUE.
  */
 extern const char* kTui_Error_Glfw_Invalid_Value_Name;
-/*!
- * @brief String name of @ref TUI_ERROR_GLFW_INVALID_VERSION.
- */
-extern const char* kTui_Error_Glfw_Invalid_Version_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_GLFW_NOT_INITIALIZED.
  */
@@ -738,9 +734,9 @@ extern const char* kTui_Error_Dangling_Texture_Description;
  */
 extern const char* kTui_Error_Dangling_Window_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_API_UNAVALIABLE.
+ * @brief String name of @ref TUI_ERROR_GLFW_API_UNAVAILABLE.
  */
-extern const char* kTui_Error_Glfw_Api_Unavaliable_Description;
+extern const char* kTui_Error_Glfw_Api_Unavailable_Description;
 /*!
  * @brief String name of @ref TUI_ERROR_GLFW_FORMAT_UNAVAILABLE.
  */
@@ -753,10 +749,6 @@ extern const char* kTui_Error_Glfw_Invalid_Enum_Description;
  * @brief String name of @ref TUI_ERROR_GLFW_INVALID_VALUE.
  */
 extern const char* kTui_Error_Glfw_Invalid_Value_Description;
-/*!
- * @brief String name of @ref TUI_ERROR_GLFW_INVALID_VERSION.
- */
-extern const char* kTui_Error_Glfw_Invalid_Version_Description;
 /*!
  * @brief String name of @ref TUI_ERROR_GLFW_NOT_INITIALIZED.
  */
