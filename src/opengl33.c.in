@@ -500,7 +500,7 @@ void tuiSystemCreate_Opengl33()
 	GLD_CLEAR();
 	const char* vertex_shader = kShader_opengl33_renderer_vertex;
 	const char* fragment_shader = kShader_opengl33_renderer_fragment;
-	system_data->FramebufferRenderProgramHandle = __CreateProgram(&vertex_shader, &fragment_shader);
+	system_data->FramebufferRenderProgramHandle = _CreateProgram(&vertex_shader, &fragment_shader);
 	GLD_CALL(glGenVertexArrays(1, &system_data->VaoHandle));
 	GLD_CALL(glBindVertexArray(system_data->VaoHandle));
 	GLD_CALL(glUseProgram(system_data->FramebufferRenderProgramHandle));
