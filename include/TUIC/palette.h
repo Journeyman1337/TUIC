@@ -29,7 +29,7 @@ extern "C" {
 
 
 /*!
- * @brief An array of all 24 bit colors in the XTerm standard color palette.
+ * @brief An array of all 256 24 bit colors in the XTerm standard color palette.
  */
 extern const uint8_t kTuiXtermPalette[768];
 
