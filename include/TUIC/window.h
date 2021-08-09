@@ -1304,8 +1304,7 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 int tuiWindowGetViewportPixelWidth(TuiWindow window);
 
 int tuiWindowGetViewportPixelHeight(TuiWindow window);
-
-void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* width, int* height);
+void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* pixel_width, int* pixel_height);
 
 void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean framebuffer_matches_viewport_size);
 

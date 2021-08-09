@@ -2171,7 +2171,7 @@ int tuiWindowGetViewportPixelHeight(TuiWindow window)
 	return window->ViewportPixelHeight;
 }
 
-void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* width, int* height)
+void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* pixel_width, int* pixel_height)
 {
 	if (window == NULL)
 	{
@@ -2179,13 +2179,13 @@ void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* width, int* heigh
 		return;
 	}
 
-	if (width != NULL)
+	if (pixel_width != NULL)
 	{
-		*width = (int)window->ViewportPixelWidth;
+		*pixel_width = (int)window->ViewportPixelWidth;
 	}
-	if (height != NULL)
+	if (pixel_height != NULL)
 	{
-		*height = (int)window->ViewportPixelHeight;
+		*pixel_height = (int)window->ViewportPixelHeight;
 	}
 }
 
