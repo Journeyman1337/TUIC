@@ -35,6 +35,13 @@ extern "C" {
 typedef enum TuiDetailMode
 {
 	/*!
+	 * \brief The detail mode is invalid.
+	 *
+	 * This detail mode is returned when an error occurs, and is also used to specify that no detail mode is
+	 * defined.
+	 */
+	TUI_DETAIL_INVALID = 0,
+	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with no colors.
 	 */
 	TUI_DETAIL_G8_C0_FULL =				(TUI_DETAIL_FLAG_GLYPH_8 		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_FULL),
