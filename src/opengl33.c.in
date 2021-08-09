@@ -326,7 +326,7 @@ inline void DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width,
 		palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
 	}
 	size_t data_size = 0;
-	int is_sparse = tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE);
+	int is_sparse = tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE);
 	int glyph_mode = tuiDetailGetGlyphFlag(detail_mode);
 	int color_mode = tuiDetailGetColorFlag(detail_mode);
 	int layout_mode = tuiDetailGetLayoutFlag(detail_mode);
