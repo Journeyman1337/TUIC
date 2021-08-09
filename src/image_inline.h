@@ -26,6 +26,7 @@
 #include <TUIC/debug.h>
 #include <TUIC/boolean.h>
 #include <TUIC/heap.h>
+#include <stb_image_resize.h>
 
 static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data, const char* func_name)
 {
