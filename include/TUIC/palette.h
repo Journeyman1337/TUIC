@@ -54,7 +54,7 @@ extern const uint8_t kTuiXtermPalette[768];
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 TuiPalette tuiPaletteCreate(int channel_count, int color_count, const uint8_t* color_data);
-/*
+/*!
  * @brief Create a @ref TuiPalette that uses the XTerm standard color palette.
  * 
  * @param color_count The amount of XTerm colors to add to the palette.
