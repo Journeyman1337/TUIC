@@ -141,7 +141,7 @@ static inline uint32_t _CreateProgram(const char** vertex_source, const char** f
 	GLD_CALL(gl_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER));
 	GLD_CALL(glShaderSource(gl_fragment_shader, 1, fragment_source, NULL));
 	GLD_COMPILE(gl_fragment_shader);
-	GLD_CALL(handle = gl_CreateProgram());
+	GLD_CALL(handle = glCreateProgram());
 	GLD_CALL(glAttachShader(handle, gl_vertex_shader));
 	GLD_CALL(glAttachShader(handle, gl_fragment_shader));
 	GLD_LINK(handle);
