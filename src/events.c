@@ -66,8 +66,8 @@ void tuiWaitEventsTimeout(double timeout)
 		return;
 	}
 	if (timeout < 0.0 || 
-		timeout == 0x7ff0000000000000ULL ||// INFINITY
-		 timeout == 0x7ff0000000000001ULL // NaN
+		timeout == ((double)0x7ff0000000000000ULL) ||// INFINITY
+		 timeout == ((double)0x7ff0000000000001ULL) // NaN
 		)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_EVENT_TIMEOUT, __func__);
