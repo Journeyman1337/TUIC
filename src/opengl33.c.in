@@ -130,7 +130,7 @@ static inline void _CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* te
 	GLD_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 }
 //Create a shader program using the given vertex and fragment shader sources, and return its handle.
-wtatic inline uint32_t _CreateProgram(const char** vertex_source, const char** fragment_source)
+static inline uint32_t _CreateProgram(const char** vertex_source, const char** fragment_source)
 {
 	uint32_t handle = 0;
 	int gl_vertex_shader, gl_fragment_shader;
