@@ -44,7 +44,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 	batch->IsLargeSparseTall = TUI_FALSE;
 	batch->SparseUsedIndices = TUI_NULL;
 	batch->SparseUsedIndicesSize = 0;
-	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE) 
+	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE) 
 	{
 		batch->TileCount = 0;
 		batch->BytesPerTile += 2; //Sparse batches have at least two extra bytes per tile for the coordinates of each tile
@@ -61,7 +61,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t); //used indices keep track of tiles set since the last clear, so that two tiles are not set in the same position by mistake
 		batch->SparseUsedIndices = tuiAllocate(batch->SparseUsedIndicesSize);
 	}
-	else if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_FULL) == TUI_TRUE)
+	else if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_FULL) == TUI_TRUE)
 	{
 		batch->TileCount = batch->TilesWide * batch->TilesTall; //if the batch is full, the itle count is always every tile.
 	}
@@ -119,7 +119,7 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
 	batch->IsLargeSparseTall = TUI_FALSE;
 	batch->SparseUsedIndices = TUI_NULL;
 	batch->SparseUsedIndicesSize = 0;
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE)
+	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE)
 	{
 		batch->TileCount = 0;
 		batch->BytesPerTile += 2;
@@ -229,7 +229,7 @@ void tuiBatchClear(TuiBatch batch)
 		return;
 	}
 	
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE))
+	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE))
 	{
 		batch->TileCount = 0;
 		memset(batch->SparseUsedIndices, 0, batch->SparseUsedIndicesSize);

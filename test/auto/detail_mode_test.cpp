@@ -98,27 +98,27 @@ TEST_CASE("tuiStringToDetailMode") {
 }
 
 TEST_CASE("tuiDetailGetGlyphFlag") {
-    REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G8_C0_FULL) == TUI_GLYPH_FLAG_G8);
-    REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G16_C0_FULL) == TUI_GLYPH_FLAG_G16);
+    REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G8_C0_FULL) == TUI_DETAIL_FLAG_GLYPH_8);
+    REQUIRE(tuiDetailGetGlyphFlag(TUI_DETAIL_G16_C0_FULL) == TUI_DETAIL_FLAG_GLYPH_16);
 }
 
 TEST_CASE("tuiDetailGetColorFlag") {
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C0_FULL) == TUI_COLOR_FLAG_C0);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C4_FULL) == TUI_COLOR_FLAG_C4);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C8_FULL) == TUI_COLOR_FLAG_C8);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C8NBG_FULL) == TUI_COLOR_FLAG_C8NBG);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C8NFG_FULL) == TUI_COLOR_FLAG_C8NFG);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C24_FULL) == TUI_COLOR_FLAG_C24);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C24NBG_FULL) == TUI_COLOR_FLAG_C24NBG);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C24NFG_FULL) == TUI_COLOR_FLAG_C24NFG);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C32_FULL) == TUI_COLOR_FLAG_C32);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C32NBG_FULL) == TUI_COLOR_FLAG_C32NBG);
-    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C32NFG_FULL) == TUI_COLOR_FLAG_C32NFG);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C0_FULL) == TUI_DETAIL_FLAG_COLOR_0);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C4_FULL) == TUI_DETAIL_FLAG_COLOR_4);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C8_FULL) == TUI_DETAIL_FLAG_COLOR_8);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C8NBG_FULL) == TUI_DETAIL_FLAG_COLOR_8NBG);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C8NFG_FULL) == TUI_DETAIL_FLAG_COLOR_8NFG);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C24_FULL) == TUI_DETAIL_FLAG_COLOR_24);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C24NBG_FULL) == TUI_DETAIL_FLAG_COLOR_24NBG);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C24NFG_FULL) == TUI_DETAIL_FLAG_COLOR_24NFG);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C32_FULL) == TUI_DETAIL_FLAG_COLOR_32);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C32NBG_FULL) == TUI_DETAIL_FLAG_COLOR_32NBG);
+    REQUIRE(tuiDetailGetColorFlag(TUI_DETAIL_G8_C32NFG_FULL) == TUI_DETAIL_FLAG_COLOR_32NFG);
 }
 
 TEST_CASE("tuiDetailGetLayoutFlag") {
-    REQUIRE(tuiDetailGetLayoutFlag(TUI_DETAIL_G8_C0_FULL) == TUI_LAYOUT_FLAG_FULL);
-    REQUIRE(tuiDetailGetLayoutFlag(TUI_DETAIL_G8_C0_SPARSE) == TUI_LAYOUT_FLAG_SPARSE);
+    REQUIRE(tuiDetailGetLayoutFlag(TUI_DETAIL_G8_C0_FULL) == TUI_DETAIL_FLAG_LAYOUT_FULL);
+    REQUIRE(tuiDetailGetLayoutFlag(TUI_DETAIL_G8_C0_SPARSE) == TUI_DETAIL_FLAG_LAYOUT_SPARSE);
 }
 
 TEST_CASE("tuiDetailModeIsValid") {
@@ -169,30 +169,30 @@ TEST_CASE("tuiDetailModeIsValid") {
         REQUIRE(tuiDetailIsValid(TUI_DETAIL_G16_C32NFG_SPARSE) == TUI_TRUE);
     }
     SECTION("Solo flags should return false.") {
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_GLYPH_FLAG_G8) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_GLYPH_FLAG_G16) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C0) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C4) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C8) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C8NBG) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C8NFG) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C24) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C24NBG) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C24NFG) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C32) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C32NBG) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_COLOR_FLAG_C32NFG) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_LAYOUT_FLAG_FULL) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_LAYOUT_FLAG_SPARSE) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_GLYPH_8) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_GLYPH_16) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_0) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_4) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_8) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_8NBG) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_8NFG) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_24) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_24NBG) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_24NFG) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_32) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_32NBG) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_COLOR_32NFG) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_LAYOUT_FULL) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_FALSE);
     }
     SECTION("Too many flags of one type should return false.") {
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_G16_C32NFG_SPARSE | TUI_LAYOUT_FLAG_FULL)) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_G16_C32NFG_SPARSE | TUI_COLOR_FLAG_C0)) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_G16_C32NFG_SPARSE | TUI_GLYPH_FLAG_G8)) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_G16_C32NFG_SPARSE | TUI_DETAIL_FLAG_LAYOUT_FULL)) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_G16_C32NFG_SPARSE | TUI_DETAIL_FLAG_COLOR_0)) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_G16_C32NFG_SPARSE | TUI_DETAIL_FLAG_GLYPH_8)) == TUI_FALSE);
     }
     SECTION("Flags of only to kinds should return false.") {
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_COLOR_FLAG_C0 | TUI_GLYPH_FLAG_G8)) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_COLOR_FLAG_C0 | TUI_LAYOUT_FLAG_SPARSE)) == TUI_FALSE);
-        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_LAYOUT_FLAG_SPARSE | TUI_GLYPH_FLAG_G8)) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_FLAG_COLOR_0 | TUI_DETAIL_FLAG_GLYPH_8)) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_FLAG_COLOR_0 | TUI_DETAIL_FLAG_LAYOUT_SPARSE)) == TUI_FALSE);
+        REQUIRE(tuiDetailIsValid((TuiDetailMode)(TUI_DETAIL_FLAG_LAYOUT_SPARSE | TUI_DETAIL_FLAG_GLYPH_8)) == TUI_FALSE);
     }
 }

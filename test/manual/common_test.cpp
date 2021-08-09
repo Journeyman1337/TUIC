@@ -50,7 +50,7 @@ TuiBatch test_GetTestPatternBatch(TuiDetailMode detail_mode)
 	{
 		for (int y = 0; y < TEST_DIMENSIONS; y++)
 		{
-			if (!tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE || (x % 2 == 0 && y % 2 == 0))
+			if (!tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE || (x % 2 == 0 && y % 2 == 0))
 			{
 				switch(detail_mode)
 				{

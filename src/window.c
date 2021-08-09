@@ -586,7 +586,7 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && batch->TileCount == 0)
+	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && batch->TileCount == 0)
 	{
 		return;
 	}
@@ -621,7 +621,7 @@ void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
+	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && sparse_index == 0)
 	{
 		return;
 	}
@@ -652,7 +652,7 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && batch->TileCount == 0)
+	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && batch->TileCount == 0)
 	{
 		return;
 	}
@@ -682,7 +682,7 @@ void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPale
 		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(detail_mode, TUI_LAYOUT_FLAG_SPARSE) == TUI_TRUE && sparse_index == 0)
+	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && sparse_index == 0)
 	{
 		return;
 	}

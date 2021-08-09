@@ -66,7 +66,7 @@ int main()
     TuiPanel panel = tuiPanelCreate(window_width, window_height);
 
     /* Create the batch (tile rendering data container) */
-    TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_GLYPH_FLAG_G8 | TUI_COLOR_FLAG_C4 | TUI_LAYOUT_FLAG_FULL)
+    TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_FULL; // same as (TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_COLOR_4 | TUI_DETAIL_FLAG_LAYOUT_FULL)
     TuiBatch batch = tuiBatchCreate(detail_mode, tiles_wide, tiles_tall);
 
     //Fill the batch with tile data.

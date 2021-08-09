@@ -226,88 +226,88 @@ TuiBoolean tuiDetailHasFlag(TuiDetailMode detail_mode, TuiDetailFlag detail_flag
 TuiDetailFlag tuiDetailGetGlyphFlag(TuiDetailMode detail_mode)
 {
 	return detail_mode & (
-		TUI_GLYPH_FLAG_G8 |
-		TUI_GLYPH_FLAG_G16);
+		TUI_DETAIL_FLAG_GLYPH_8 |
+		TUI_DETAIL_FLAG_GLYPH_16);
 }
 
 TuiDetailFlag tuiDetailGetColorFlag(TuiDetailMode detail_mode)
 {
 	return detail_mode & (
-		TUI_COLOR_FLAG_C0 |
-		TUI_COLOR_FLAG_C4 |
-		TUI_COLOR_FLAG_C8 |
-		TUI_COLOR_FLAG_C8NBG |
-		TUI_COLOR_FLAG_C8NFG |
-		TUI_COLOR_FLAG_C24 |
-		TUI_COLOR_FLAG_C24NBG |
-		TUI_COLOR_FLAG_C24NFG |
-		TUI_COLOR_FLAG_C32 |
-		TUI_COLOR_FLAG_C32NBG |
-		TUI_COLOR_FLAG_C32NFG);
+		TUI_DETAIL_FLAG_COLOR_0 |
+		TUI_DETAIL_FLAG_COLOR_4 |
+		TUI_DETAIL_FLAG_COLOR_8 |
+		TUI_DETAIL_FLAG_COLOR_8NBG |
+		TUI_DETAIL_FLAG_COLOR_8NFG |
+		TUI_DETAIL_FLAG_COLOR_24 |
+		TUI_DETAIL_FLAG_COLOR_24NBG |
+		TUI_DETAIL_FLAG_COLOR_24NFG |
+		TUI_DETAIL_FLAG_COLOR_32 |
+		TUI_DETAIL_FLAG_COLOR_32NBG |
+		TUI_DETAIL_FLAG_COLOR_32NFG);
 }
 
 TuiDetailFlag tuiDetailGetLayoutFlag(TuiDetailMode detail_mode)
 {
 	return detail_mode & (
-		TUI_LAYOUT_FLAG_FULL |
-		TUI_LAYOUT_FLAG_SPARSE);
+		TUI_DETAIL_FLAG_LAYOUT_FULL |
+		TUI_DETAIL_FLAG_LAYOUT_SPARSE);
 }
 
 size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_flag)
 {
 	switch (glyph_flag)
 	{
-	case TUI_GLYPH_FLAG_G8:
+	case TUI_DETAIL_FLAG_GLYPH_8:
 		switch (color_flag)
 		{
-		case TUI_COLOR_FLAG_C0:
+		case TUI_DETAIL_FLAG_COLOR_0:
 			return kTui_Detail_G8_C0_Size;
-		case TUI_COLOR_FLAG_C4:
+		case TUI_DETAIL_FLAG_COLOR_4:
 			return kTui_Detail_G8_C4_Size;
-		case TUI_COLOR_FLAG_C8:
+		case TUI_DETAIL_FLAG_COLOR_8:
 			return kTui_Detail_G8_C8_Size;
-		case TUI_COLOR_FLAG_C8NBG:
+		case TUI_DETAIL_FLAG_COLOR_8NBG:
 			return kTui_Detail_G8_C8NBG_Size;
-		case TUI_COLOR_FLAG_C8NFG:
+		case TUI_DETAIL_FLAG_COLOR_8NFG:
 			return kTui_Detail_G8_C8NFG_Size;
-		case TUI_COLOR_FLAG_C24:
+		case TUI_DETAIL_FLAG_COLOR_24:
 			return kTui_Detail_G8_C24_Size;
-		case TUI_COLOR_FLAG_C24NBG:
+		case TUI_DETAIL_FLAG_COLOR_24NBG:
 			return kTui_Detail_G8_C24NBG_Size;
-		case TUI_COLOR_FLAG_C24NFG:
+		case TUI_DETAIL_FLAG_COLOR_24NFG:
 			return kTui_Detail_G8_C24NFG_Size;
-		case TUI_COLOR_FLAG_C32:
+		case TUI_DETAIL_FLAG_COLOR_32:
 			return kTui_Detail_G8_C32_Size;
-		case TUI_COLOR_FLAG_C32NBG:
+		case TUI_DETAIL_FLAG_COLOR_32NBG:
 			return kTui_Detail_G8_C32NBG_Size;
-		case TUI_COLOR_FLAG_C32NFG:
+		case TUI_DETAIL_FLAG_COLOR_32NFG:
 			return kTui_Detail_G8_C32NFG_Size;
 		}
 		break;
-	case TUI_GLYPH_FLAG_G16:
+	case TUI_DETAIL_FLAG_GLYPH_16:
 		switch (color_flag)
 		{
-		case TUI_COLOR_FLAG_C0:
+		case TUI_DETAIL_FLAG_COLOR_0:
 			return kTui_Detail_G16_C0_Size;
-		case TUI_COLOR_FLAG_C4:
+		case TUI_DETAIL_FLAG_COLOR_4:
 			return kTui_Detail_G16_C4_Size;
-		case TUI_COLOR_FLAG_C8:
+		case TUI_DETAIL_FLAG_COLOR_8:
 			return kTui_Detail_G16_C8_Size;
-		case TUI_COLOR_FLAG_C8NBG:
+		case TUI_DETAIL_FLAG_COLOR_8NBG:
 			return kTui_Detail_G16_C8NBG_Size;
-		case TUI_COLOR_FLAG_C8NFG:
+		case TUI_DETAIL_FLAG_COLOR_8NFG:
 			return kTui_Detail_G16_C8NFG_Size;
-		case TUI_COLOR_FLAG_C24:
+		case TUI_DETAIL_FLAG_COLOR_24:
 			return kTui_Detail_G16_C24_Size;
-		case TUI_COLOR_FLAG_C24NBG:
+		case TUI_DETAIL_FLAG_COLOR_24NBG:
 			return kTui_Detail_G16_C24NBG_Size;
-		case TUI_COLOR_FLAG_C24NFG:
+		case TUI_DETAIL_FLAG_COLOR_24NFG:
 			return kTui_Detail_G16_C24NFG_Size;
-		case TUI_COLOR_FLAG_C32:
+		case TUI_DETAIL_FLAG_COLOR_32:
 			return kTui_Detail_G16_C32_Size;
-		case TUI_COLOR_FLAG_C32NBG:
+		case TUI_DETAIL_FLAG_COLOR_32NBG:
 			return kTui_Detail_G16_C32NBG_Size;
-		case TUI_COLOR_FLAG_C32NFG:
+		case TUI_DETAIL_FLAG_COLOR_32NFG:
 			return kTui_Detail_G16_C32NFG_Size;
 		}
 		break;
@@ -319,7 +319,7 @@ TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_m
 {
 	if (blend_mode == TUI_BLEND_NORMAL)
 	{
-		if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_TRUE)
+		if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) == TUI_TRUE)
 		{
 			return TUI_TRUE;
 		}
@@ -328,7 +328,7 @@ TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_m
 			return TUI_FALSE;
 		}
 	}
-	else if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_TRUE)
+	else if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) == TUI_TRUE)
 	{
 		return TUI_FALSE;
 	}
@@ -337,7 +337,7 @@ TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_m
 
 TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode)
 {
-	if (tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_COLOR_FLAG_C0) == TUI_FALSE)
+	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_24) == TUI_FALSE && tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) == TUI_FALSE)
 	{
 		return TUI_TRUE;
 	}
