@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/debug.h>
-#include <stddef.h>
+#include <TUIC/types.h>
 
 void tui_default_debug_callback(TuiErrorCode error_type, const char* str) {}
 

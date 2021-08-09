@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/cursor_mode.h>
-#include <stddef.h>
+#include <TUIC/types.h>
 
 const char* kTui_Cursor_Mode_Normal_Name = "CURSOR_MODE_NORMAL";
 

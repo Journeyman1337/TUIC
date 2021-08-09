@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/keyboard_mod.h>
-#include <stddef.h>
+#include <TUIC/types.h>
 
 const char* kTui_Keyboard_Mod_Shift_Name = "MOD_SHIFT";
 

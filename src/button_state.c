@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/button_state.h>
-#include <stddef.h>
+#include <TUIC/types.h>
 
 #define TO_STRING(value) #value
 

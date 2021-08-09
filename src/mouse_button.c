@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/mouse_button.h>
-#include <stddef.h>
+#include <TUIC/types.h>
 #include <string.h>
 
 const char* kTui_Mouse_Button_1_Name = "MOUSE_BUTTON_1";

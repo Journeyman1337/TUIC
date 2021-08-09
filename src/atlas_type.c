@@ -20,7 +20,7 @@
 #include <TUIC/debug.h>
 #include <TUIC/atlas_type.h>
 #include <TUIC/boolean.h>
-#include <stddef.h>
+#include <TUIC/types.h>
 
 #define TO_STRING(value) #value
 

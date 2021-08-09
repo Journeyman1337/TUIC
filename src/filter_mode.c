@@ -19,8 +19,7 @@
 */
 #include <TUIC/filter_mode.h>
 #include <TUIC/debug.h>
-
-#include <stddef.h>
+#include <TUIC/types.h>
 
 #define TO_STRING(value) #value
 
