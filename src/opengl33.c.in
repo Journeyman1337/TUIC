@@ -227,9 +227,9 @@ inline int GetGlyphModeUniformValue(TuiDetailFlag glyph_mode)
 {
 	switch (glyph_mode)
 	{
-	case TUI_GLYPH_FLAG_G8:
+	case TUI_DETAIL_FLAG_GLYPH_8:
 		return 0;
-	case TUI_GLYPH_FLAG_G16:
+	case TUI_DETAIL_FLAG_GLYPH_16:
 		return 1;
 	default:
 		return 0;
@@ -239,27 +239,27 @@ inline int GetColorModeUniformValue(TuiDetailFlag color_mode)
 {
 	switch (color_mode)
 	{
-	case TUI_COLOR_FLAG_C0:
+	case TUI_DETAIL_FLAG_COLOR_0:
 		return 0;
-	case TUI_COLOR_FLAG_C4:
+	case TUI_DETAIL_FLAG_COLOR_4:
 		return 1;
-	case TUI_COLOR_FLAG_C8:
+	case TUI_DETAIL_FLAG_COLOR_8NBG:
 		return 2;
-	case TUI_COLOR_FLAG_C8NBG:
+	case TUI_DETAIL_FLAG_COLOR_8NBG;
 		return 3;
-	case TUI_COLOR_FLAG_C8NFG:
+	case TUI_DETAIL_FLAG_COLOR_8NFG:
 		return 4;
-	case TUI_COLOR_FLAG_C24:
+	case TUI_DETAIL_FLAG_COLOR_24:
 		return 5;
-	case TUI_COLOR_FLAG_C24NBG:
+	case TUI_DETAIL_FLAG_COLOR_24NBG:
 		return 6;
-	case TUI_COLOR_FLAG_C24NFG:
+	case TUI_DETAIL_FLAG_COLOR_24NFG:
 		return 7;
-	case TUI_COLOR_FLAG_C32:
+	case TUI_DETAIL_FLAG_COLOR_32:
 		return 8;
-	case TUI_COLOR_FLAG_C32NBG:
+	case TUI_DETAIL_FLAG_COLOR_32NBG:
 		return 9;
-	case TUI_COLOR_FLAG_C32NFG:
+	case TUI_DETAIL_FLAG_COLOR_32NFG:
 		return 10;
 	default:
 		return 0;
@@ -269,9 +269,9 @@ inline int GetLayoutModeUniformValue(TuiDetailFlag layout_mode)
 {
 	switch (layout_mode)
 	{
-	case TUI_LAYOUT_FLAG_FULL:
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
 		return 0;
-	case TUI_LAYOUT_FLAG_SPARSE:
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
 		return 1;
 	default:
 		return 0;
