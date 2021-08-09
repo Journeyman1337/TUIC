@@ -53,7 +53,7 @@ typedef enum TuiDetailFlag
 	 */
 	TUI_COLOR_FLAG_C8 = (1 << 4),
 	/*!
-	 * @brief TUI detail mode color flag for 8 bit colors with no foreground color. This enables use of a 256 color @Rref TuiPalette for colors.
+	 * @brief TUI detail mode color flag for 8 bit colors with no foreground color. This enables use of a 256 color @ref TuiPalette for colors.
 	 */
 	TUI_COLOR_FLAG_C8NFG = (1 << 5),
 	/*!
