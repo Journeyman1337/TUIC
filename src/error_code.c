@@ -19,7 +19,7 @@
 */
 #include <TUIC/error_code.h>
 #include <GLFW/glfw3.h>
-#include "string.h"
+#include <string.h>
 
 #define TO_STRING(value) #value
 

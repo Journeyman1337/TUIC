@@ -24,6 +24,7 @@
 #include <TUIC/debug.h>
 #include "glfw_error_check.h"
 #include "objects.h"
+#include <string.h>
 
 const char* kTuik_Space_Name = "KEY_SPACE";
 

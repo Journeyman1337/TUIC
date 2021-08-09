@@ -19,6 +19,7 @@
 */
 #include <TUIC/keyboard_mod.h>
 #include <TUIC/types.h>
+#include <string.h>
 
 const char* kTui_Keyboard_Mod_Shift_Name = "MOD_SHIFT";
 

@@ -21,6 +21,7 @@
 #include <TUIC/atlas_type.h>
 #include <TUIC/boolean.h>
 #include <TUIC/types.h>
+#include <string.h>
 
 #define TO_STRING(value) #value
 

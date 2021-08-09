@@ -20,6 +20,7 @@
 #include <TUIC/detail_flag.h>
 #include <TUIC/debug.h>
 #include <TUIC/types.h>
+#include <string.h>
 
 #define TO_STRING(value) #value
 

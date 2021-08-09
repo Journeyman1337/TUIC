@@ -19,6 +19,7 @@
 */
 #include <TUIC/button_state.h>
 #include <TUIC/types.h>
+#include <string.h>
 
 #define TO_STRING(value) #value
 

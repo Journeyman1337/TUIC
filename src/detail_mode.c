@@ -22,6 +22,7 @@
 #include <TUIC/blend_mode.h>
 #include <TUIC/debug.h>
 #include <TUIC/boolean.h>
+#include <string.h>
 
 #define TO_STRING(value) #value
 

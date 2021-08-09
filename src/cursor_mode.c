@@ -19,6 +19,7 @@
 */
 #include <TUIC/cursor_mode.h>
 #include <TUIC/types.h>
+#include <string.h>
 
 const char* kTui_Cursor_Mode_Normal_Name = "CURSOR_MODE_NORMAL";
 

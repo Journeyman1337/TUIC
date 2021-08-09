@@ -22,6 +22,7 @@
 #include <GLFW/glfw3.h>
 #include "glfw_error_check.h"
 #include "objects.h"
+#include <string.h>
 
 const char* kTui_Cursor_Shape_Arrow_Name = "CURSOR_SHAPE_ARROW";
 
