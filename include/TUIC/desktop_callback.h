@@ -117,7 +117,7 @@ typedef void (* tuiCursorEnterFunction)(TuiWindow window, TuiBoolean entered);
  *
  * @param window The @ref TuiWindow that captured the event.
  * @param x_translate The horizontal mouse scroll distance.
- * @parma y_translate The vertical mouse scroll distance.
+ * @param y_translate The vertical mouse scroll distance.
  */
 typedef void (* tuiMouseScrollFunction)(TuiWindow window, double x_translate, double y_translate);
 /*!
