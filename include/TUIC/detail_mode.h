@@ -639,7 +639,7 @@ const char* tuiDetailModeToString(TuiDetailMode detail_mode);
  *
  * @param str The string name.
  *
- * @returns The @ref TuiDetailMode. @ref TUI_DETAIL_INVALID is returned if no match is found.
+ * @returns The @ref TuiDetailMode. @ref TUI_DETAIL_MODE_INVALID is returned if no match is found.
  *
  * @errors This function can have no errors.
  *

@@ -622,5 +622,5 @@ TuiDetailMode tuiStringToDetailMode(const char* string)
 	{
 		return TUI_DETAIL_MODE_G16_C32NFG_SPARSE;
 	}
-	return 0;
+	return TUI_DETAIL_MODE_INVALID;
 }
