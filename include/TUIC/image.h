@@ -28,7 +28,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name TuiImage functions
+/*! @name Image Functions
  *
  * These functions are used for manipulating @ref TuiImage opaque objects.
  *
@@ -42,7 +42,7 @@ extern "C" {
  * @param pixel_data The pixel data array.
  * @param copy_data If the pixel data should be deeply copied instead of shallow coppied.
  * 
- * @returns The created @ref TuiImage. NULL is returned if an error occurs.
+ * @returns The created @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
  * 
  * @errors Possible errors in order are @ref TUI_ERROR_INVALID_CHANNEL_COUNT and @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixels array may cause undefined behaviour or a fatal crash without an error.
  *
@@ -70,7 +70,7 @@ void tuiImageDestroy(TuiImage image);
  * 
  * @param path The local or full path to the image file.
  * 
- * @returns The loaded @ref TuiImage. NULL is returned if an error occurs.
+ * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
  * 
  * @errors Possible errors in order are @ref TUI_ERROR_NULL_PATH and @ref TUI_ERROR_LOAD_IMAGE_FAILURE.  The first error that occurs will cause the function to immediatly return. 
  *
@@ -97,9 +97,9 @@ void tuiImageSave(TuiImage image, const char* path);
  *
  * @param image The @ref TuiImage.
  * 
- * @returns The cloned @ref TuiImage. NULL is returned if an error occurs.
+ * @returns The cloned @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
  * 
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -110,11 +110,11 @@ TuiImage tuiImageClone(TuiImage image);
  * @brief Get the pixel dimensions of a @ref TuiImage.
  * 
  * @param image The @ref TuiImage to get the pixel dimensions of.
- * @param pixel_width A pointer to where the pixel width of the @ref TuiImage will be stored. If NULL or an error occurs, it is ignored.
- * @param pixel_height A pointer to where the pixel height of the @ref TuiImage will be stored. If NULL or an error occurs, it is ignored.
- * @param channel_count A pointer to where the channel count of the @ref TuiImage will be stored. If NULL or an error occurs, it is ignored.
+ * @param pixel_width A pointer to where the pixel width of the @ref TuiImage will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the @ref TuiImage will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param channel_count A pointer to where the channel count of the @ref TuiImage will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * 
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -128,7 +128,7 @@ void tuiImageGetPixelDimensions(TuiImage image, int* pixel_width, int* pixel_hei
  * 
  * @returns The pixel width. 0 is returned if an error occurs
  *
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -142,7 +142,7 @@ int tuiImageGetPixelWidth(TuiImage image);
  *
  * @returns The pixel height. 0 is returned if an error occurs.
  *
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -156,7 +156,7 @@ int tuiImageGetPixelHeight(TuiImage image);
  *
  * @returns The channel count. 0 is returned if an error occurs.
  *
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -170,7 +170,7 @@ int tuiImageGetChannelCount(TuiImage image);
  *
  * @returns A pointer to the pixel array of the image.
  * 
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  * 
@@ -184,9 +184,9 @@ uint8_t* tuiImageGetPixels(TuiImage image);
  *
  * @param image The @ref TuiImage.
  *
- * @returns The size of the pixel array of the image in bytes. NULL is returned on error.
+ * @returns The size of the pixel array of the image in bytes. @ref TUI_NULL is returned on error.
  *
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -200,7 +200,7 @@ size_t tuiImageGetPixelDataSize(TuiImage image);
  * @param new_width The new width to set for the @ref TuiImage.
  * @param new_height The new height ot set for the @ref TuiImage.
  * 
- * @errors This function can have the error @TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -214,7 +214,7 @@ void tuiImageResize(TuiImage image, int new_pixel_width, int new_pixel_height);
  * @param new_width The new width to set for the @ref TuiImage clone.
  * @param new_height The new height ot set for the @ref TuiImage clone.
  * 
- * @errors Possible errors in order are TUI_ERROR_NULL_IMAGE, TUI_ERROR_INVALID_IMAGE_DIMENSIONS, and TUI_ERROR_RESIZE_IMAGE_FAILURE. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS, and @ref TUI_ERROR_RESIZE_IMAGE_FAILURE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *

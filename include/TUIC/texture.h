@@ -29,7 +29,7 @@ extern "C" {
 #include <TUIC/types.h>
 
 
-/*! @name @ref TuiTexture functions
+/*! @name Texture Functions
  *
  * Functions for manipulating @ref TuiTexture opaque objects.
  *  @{ */
@@ -38,6 +38,8 @@ extern "C" {
  *
  * @param image The @ref TuiImage to use ffor the texture.
  * @param filter_mode The @ref TuiFilterMode to use when rendering the texture.
+ * 
+ * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_INVALID_FILTER_MODE. The first error that occurs will cause the function to immediatly return.
  *
@@ -47,7 +49,7 @@ extern "C" {
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode);
+TuiTexture tuiTextureCreateImage(TuiImage image, TuiFilterMode filter_mode);
 /*!
  * @brief Create a @ref TuiTexture from a pixel array.
  *
@@ -56,6 +58,8 @@ TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode);
  * @param channel_count The channel count of the pixel array.
  * @param A pointer to the pixel array.
  * @param filter_mode The @ref TuiFilterMode to use when rendering the texture.
+ * 
+ * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_INVALID_FILTER_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or pixels array may cause undefined behaviour or a fatal crash without an error.
  *
@@ -70,6 +74,8 @@ TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int chan
  * @brief Free a @ref TuiTexture and correctly dispose of of its internally managed resources.
  *
  * @param texture The @ref TuiTexture to destroy.
+ * 
+ * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors This function can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  *
@@ -94,8 +100,8 @@ int tuiGetTextureCount();
  * @brief Get the pixel dimensions of a @ref TuiTexture.
  *
  * @param texture The @ref TuiTexture.
- * @param pixel_width A pointer to where the pixel width of the texture will be stored. If NULL or an error occurs, it is ignored.
- * @param pixel_height A pointer to where the pixel height of the texture will be stored. If NULL or an error occurs, it is ignored.
+ * @param pixel_width A pointer to where the pixel width of the texture will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the texture will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
  * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
  *

@@ -26,6 +26,7 @@
 extern "C" {
 #endif
 
+
 #include <stdint.h> //needed for integer types
 
 
@@ -67,7 +68,7 @@ typedef struct TuiPanel_s* TuiPanel;
  */
 typedef struct TuiImage_s* TuiImage;
 /*!
- * \brief A mouse cursor.
+ * \brief A desktop mouse cursor.
  */
 typedef struct GLFWcursor* TuiCursor;
 /*!

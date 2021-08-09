@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/types.h>
 
 
-/*! @name @ref TuiPanel functions
+/*! @name Panel Functions
  *
  * Functions for manipulating @ref TuiPanel opaque objects.
  *  @{ */
@@ -103,9 +103,9 @@ void tuiPanelWriteImage(TuiPanel panel, TuiImage image);
  * @brief Get the raw pixels of the framebuffer of a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel to get the pixels from.
- * @param pixel_width A pointer to where the pixel width of the panel will be stored. If NULL or an error occurs, it is ignored.
- * @param pixel_height A pointer to where the pixel height of the panel will be stored. If NULL or an error occurs, it is ignored.
- * @param fill_pixels A pointer to an array store the pixels array in. If the sizes specified in pixel_width and pixel_height do not fit the pixels, the array is reallocated. If NULL, a new array is allocated instead.
+ * @param pixel_width A pointer to where the pixel width of the panel will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the panel will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param fill_pixels A pointer to an array store the pixels array in. If the sizes specified in pixel_width and pixel_height do not fit the pixels, the array is reallocated. If @ref TUI_NULL, a new array is allocated instead.
  *
  * @returns The pixels array.
  *
@@ -152,8 +152,8 @@ void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_heigh
  * @brief Get the pixel dimensions of the framebuffer of a @ref TuiPanel.
  * 
  * @param panel The @ref TuiPanel.
- * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If NULL or an error occurs, it is ignored.
- * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If NULL or an error occurs, it is ignored.
+ * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * 
  * @errors Can have the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
  * 
@@ -190,7 +190,7 @@ int tuiPanelGetPixelWidth(TuiPanel panel);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiPanelGetPixelHeight(TuiPanel panel);
-/*
+/*!
  * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiPanel.
  * 
  * @param panel The @ref TuiPanel.
@@ -205,7 +205,7 @@ int tuiPanelGetPixelHeight(TuiPanel panel);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
-/*
+/*!
  * @brief Draw batch data to the framebuffer of a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel.
@@ -224,7 +224,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
-/*
+/*!
  * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel.
@@ -243,7 +243,7 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
-/*
+/*!
  * @brief Draw batch data to the framebuffer of a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel.
@@ -266,7 +266,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-/*
+/*!
  * @brief Draw a @ref TuiPanel to another panel.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -279,7 +279,7 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel);
-/*
+/*!
  * @brief Draw a @ref TuiPanel to another panel with a transformation.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -296,7 +296,7 @@ void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y);
-/*
+/*!
  * @brief Draw a @ref TuiTexture to a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -309,7 +309,7 @@ void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int le
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture);
-/*
+/*!
  * @brief Draw a @ref TuiTexture to a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -326,7 +326,7 @@ void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-/*
+/*!
  * @brief Draw the texture of a @ref TuiAtlas to a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -339,7 +339,7 @@ void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas);
-/*
+/*!
  * @brief Draw the texture of a @ref TuiAtlas to a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -356,7 +356,7 @@ void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
-/*
+/*!
  * @brief Draw a the framebuffer of a @ref TuiWindow to a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel to draw to.
@@ -369,7 +369,7 @@ void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, in
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window);
-/*
+/*!
  * @brief Draw a the framebuffer of a @ref TuiWindow to a @ref TuiPanel with a transformation.
  *
  * @param panel The @ref TuiPanel to draw to.

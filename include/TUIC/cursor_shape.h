@@ -27,10 +27,8 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Cursor shape
- s*  @{ */
 /*!
- * @brie Default mouse cursor shapes.
+ * @brief Default mouse cursor shapes.
  */
 typedef enum TuiCursorShape
 {
@@ -94,14 +92,15 @@ typedef enum TuiCursorShape
 	 */
 	TUI_CURSOR_SHAPE_FIRST		    = TUI_CURSOR_SHAPE_ARROW,
 	/*!
-	 * \briefThe last valid cursor shape.
+	 * \brief The last valid cursor shape.
 	 */
 	TUI_CURSOR_SHAPE_LAST			= TUI_CURSOR_SHAPE_NOT_ALLOWED
 }TuiCursorShape;
-/*! @} */
 
 
-/*! @name TuiCursorMode names
+/*! @name Cursor Shape Names
+ *
+ *  These are const string names of @ref TuiCursorShape enum values.
  *  @{ */
 /*!
  * @brief String name of @ref TUI_CURSOR_SHAPE_ARROW.
@@ -146,7 +145,7 @@ extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
 /*! @} */
 
 
-/*! @name TuiCursorShape functions
+/*! @name Cursor Shape Functions
  *
  * Functions for dealing with @ref TuiCursorShape enum values.
  *  @{ */
@@ -156,7 +155,7 @@ extern const char* kTui_Cursor_Shape_Not_Allowed_Name;
  * @param cursor_shape The @ref TuiCursorShape to check.
  *
  * @returns The @ref TuiBoolean result. If cursor_shape is a valid @ref TuiCursorShape, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -170,7 +169,7 @@ TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
  *
  * @param cursor_shape The @ref TuiCursorShape to get the name of.
  *
- * @returns The string name. NULL is returned if cursor_shape is an invalid @ref TuiCursorShape.
+ * @returns The string name. @ref TUI_NULL is returned if cursor_shape is an invalid @ref TuiCursorShape.
  *
  * @errors This function can have no errors.
  *
@@ -180,7 +179,7 @@ TuiBoolean tuiCursorShapeIsValid(TuiCursorShape cursor_shape);
  */
 const char* tuiCursorShapeToString(TuiCursorShape cursor_shape);
 /*!
- * @brief Determine the #ref TuiCursorShape enum value associated with a string name.
+ * @brief Determine the @ref TuiCursorShape enum value associated with a string name.
  *
  * @param str The string name.
  *
@@ -199,7 +198,7 @@ TuiCursorShape tuiStringToCursorShape(const char* str);
  * @param cursor_shape The @ref TuiCursorShape to check.
  *
  * @returns The @ref TuiBoolean result. If it cursor_shape is a @ref TuiCursorShape supported on the current platform, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *

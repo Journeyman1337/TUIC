@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Keyboard key
+/*! @name Keyboard Keys
  *  @{ */
 /*!
  * @brief Keyboard keys.
@@ -46,23 +46,23 @@ typedef enum TuiKeyboardKey
 	 */
 	TUIK_SPACE             = 32,
 	/*!
-	 * \brief The alphanumeric apostrophe key. "<b>'</b>"
+	 * \brief The alphanumeric apostrophe key ( ' ).
 	 */
 	TUIK_APOSTROPHE        = 39,
 	/*!
-	 * \brief The alphanumeric comma key. "<b>,</b>"
+	 * \brief The alphanumeric comma key ( , ).
 	 */
 	TUIK_COMMA             = 44,
 	/*!
-	 * \brief The alphanumeric minus key. "<b>-</b>"
+	 * \brief The alphanumeric minus key ( - ).
 	 */
 	TUIK_MINUS             = 45,
 	/*!
-	 * \brief The alphanumeric period key. "<b>.</b>"
+	 * \brief The alphanumeric period key ( . ).
 	 */
 	TUIK_PERIOD            = 46,
 	/*!
-	 * \brief The alphanumeric forward slash key. "<b>/</b>"
+	 * \brief The alphanumeric forward slash key ( / ).
 	 */
 	TUIK_SLASH             = 47,
 	/*!
@@ -106,11 +106,11 @@ typedef enum TuiKeyboardKey
 	 */
 	TUIK_9                 = 57,
 	/*!
-	 * \brief The alphanumeric semicolon key. "<b>;</b>"
+	 * \brief The alphanumeric semicolon key ( ; ).
 	 */
 	TUIK_SEMICOLON         = 59,
 	/*!
-	 * \brief The alphanumeric equal sign key. "<b>=</b>"
+	 * \brief The alphanumeric equal sign key ( = ).
 	 */
 	TUIK_EQUAL             = 61,
 	/*!
@@ -218,19 +218,19 @@ typedef enum TuiKeyboardKey
 	 */
 	TUIK_Z                 = 90,
 	/*!
-	 * \brief The alphanumeric left bracket key. "<b>[</b>"
+	 * \brief The alphanumeric left bracket key ( [ ).
 	 */
 	TUIK_LEFT_BRACKET      = 91,
 	/*!
-	 * \brief The alphanumeric backslash key. "<b>\\</b>"
+	 * \brief The alphanumeric backslash key ( \ ).
 	 */
 	TUIK_BACKSLASH         = 92,
 	/*!
-	 * \brief The alphanumeric right bracket key. "<b>]</b>"
+	 * \brief The alphanumeric right bracket key ( ] ).
 	 */
 	TUIK_RIGHT_BRACKET     = 93,
 	/*!
-	 * \brief The alphanumeric grave accent key. "<b>`</b>"
+	 * \brief The alphanumeric grave accent key ( ` ).
 	 */
 	TUIK_GRAVE_ACCENT      = 96,
 	/*!
@@ -277,99 +277,99 @@ typedef enum TuiKeyboardKey
 	 * \brief The down arrow key.
 	 */
 	TUIK_DOWN              = 264,
-	/*
+	/*!
 	 * \brief The up arrow key.
 	 */
 	TUIK_UP                = 265,
-	/*
+	/*!
 	 * \brief The page up key.
 	 */
 	TUIK_PAGE_UP           = 266,
-	/*
+	/*!
 	 * \brief The page down key.
 	 */
 	TUIK_PAGE_DOWN         = 267,
-	/*
+	/*!
 	 * \brief The home key.
 	 */
 	TUIK_HOME              = 268,
-	/*
+	/*!
 	 * \brief The end key.
 	 */
 	TUIK_END               = 269,
-	/*
+	/*!
 	 * \brief The caps lock key.
 	 */
 	TUIK_CAPS_LOCK         = 280,
-	/*
+	/*!
 	 * \brief The scroll lock key.
 	 */
 	TUIK_SCROLL_LOCK       = 281,
-	/*
+	/*!
 	 * \brief The num lock key.
 	 */
 	TUIK_NUM_LOCK          = 282,
-	/*
+	/*!
 	 * \brief The print screen key.
 	 */
 	TUIK_PRINT_SCREEN      = 283,
-	/*
+	/*!
 	 * \brief The pause key.
 	 */
 	TUIK_PAUSE             = 284,
-	/*
+	/*!
 	 * \brief The F1 key.
 	 */
 	TUIK_F1                = 290,
-	/*
+	/*!
 	 * \brief The F2 key.
 	 */
 	TUIK_F2                = 291,
-	/*
+	/*!
 	 * \brief The F3 key.
 	 */
 	TUIK_F3                = 292,
-	/*
+	/*!
 	 * \brief The F4 key.
 	 */
 	TUIK_F4                = 293,
-	/*
+	/*!
 	 * \brief The F5 key.
 	 */
 	TUIK_F5                = 294,
-	/*
+	/*!
 	 * \brief The F6 key.
 	 */
 	TUIK_F6                = 295,
-	/*
+	/*!
 	 * \brief The F7 key.
 	 */
 	TUIK_F7                = 296,
-	/*
+	/*!
 	 * \brief The F8 key.
 	 */
 	TUIK_F8                = 297,
-	/*
+	/*!
 	 * \brief The F9 key.
 	 */
 	TUIK_F9                = 298,
-	/*
+	/*!
 	 * \brief The F10 key.
 	 */
 	TUIK_F10               = 299,
-	/*
+	/*!
 	 * \brief The F11 key.
 	 */
 	TUIK_F11               = 300,
-	/*
+	/*!
 	 * \brief The F12 key.
 	 */
 	TUIK_F12               = 301,
-	/*
+	/*!
 	 * \brief The F13 key.
 	 */
 	TUIK_F13               = 302,
-	/*
+	/*!
 	 * \brief The F14 key.
 	 */
 	TUIK_F14               = 303,
@@ -377,47 +377,47 @@ typedef enum TuiKeyboardKey
 	 * \brief The F15 key.
 	 */
 	TUIK_F15               = 304,
-	/*
+	/*!
 	 * \brief The F16 key.
 	 */
 	TUIK_F16               = 305,
-	/*
+	/*!
 	 * \brief The F17 key.
 	 */
 	TUIK_F17               = 306,
-	/*
+	/*!
 	 * \brief The F18 key.
 	 */
 	TUIK_F18               = 307,
-	/*
+	/*!
 	 * \brief The F19 key.
 	 */
 	TUIK_F19               = 308,
-	/*
+	/*!
 	 * \brief The F20 key.
 	 */
 	TUIK_F20               = 309,
-	/*
+	/*!
 	 * \brief The F21 key.
 	 */
 	TUIK_F21               = 310,
-	/*
+	/*!
 	 * \brief The F22 key.
 	 */
 	TUIK_F22               = 311,
-	/*
+	/*!
 	 * \brief The F23 key.
 	 */
 	TUIK_F23               = 312,
-	/*
+	/*!
 	 * \brief The F24 key.
 	 */
 	TUIK_F24               = 313,
-	/*
+	/*!
 	 * \brief The F25 key.
 	 */
 	TUIK_F25               = 314,
-	/*
+	/*!
 	 * \brief The keypad 0 key.
 	 */
 	TUIK_KP_0              = 320,
@@ -425,99 +425,99 @@ typedef enum TuiKeyboardKey
 	 * \brief The keypad 1 key.
 	 */
 	TUIK_KP_1              = 321,
-	/*
+	/*!
 	 * \brief The keypad 2 key.
 	 */
 	TUIK_KP_2              = 322,
-	/*
+	/*!
 	 * \brief The keypad 3 key.
 	 */
 	TUIK_KP_3              = 323,
-	/*
+	/*!
 	 * \brief The keypad 4 key.
 	 */
 	TUIK_KP_4              = 324,
-	/*
+	/*!
 	 * \brief The keypad 5 key.
 	 */
 	TUIK_KP_5              = 325,
-	/*
+	/*!
 	 * \brief The keypad 6 key.
 	 */
 	TUIK_KP_6              = 326,
-	/*
+	/*!
 	 * \brief The keypad 7 key.
 	 */
 	TUIK_KP_7              = 327,
-	/*
+	/*!
 	 * \brief The keypad 8 key.
 	 */
 	TUIK_KP_8              = 328,
-	/*
+	/*!
 	 * \brief The keypad 9 key.
 	 */
 	TUIK_KP_9              = 329,
-	/*
-	 * \brief The keypad decimal key. "<b>.</b>"
+	/*!
+	 * \brief The keypad decimal key ( . ).
 	 */
 	TUIK_KP_DECIMAL        = 330,
-	/*
-	 * \brief The keypad divide key. "<b>/</b>"
+	/*!
+	 * \brief The keypad divide key ( / ).
 	 */
 	TUIK_KP_DIVIDE         = 331,
-	/*
-	 * \brief The keypad multiply key. "<b>*</b>"
+	/*!
+	 * \brief The keypad multiply key ( * ).
 	 */
 	TUIK_KP_MULTIPLY       = 332,
-	/*
-	 * \brief The keypad subtract key. "<b>-</b>"
+	/*!
+	 * \brief The keypad subtract key ( - ).
 	 */
 	TUIK_KP_SUBTRACT       = 333,
-	/*
-	 * \brief The keypad add key. "<b>+</b>"
+	/*!
+	 * \brief The keypad add key ( + ).
 	 */
 	TUIK_KP_ADD            = 334,
-	/*
+	/*!
 	 * \brief The keypad enter key.
 	 */
 	TUIK_KP_ENTER          = 335,
-	/*
-	 * \brief The keypad equal key. "<b>=</b>"
+	/*!
+	 * \brief The keypad equal key ( = ).
 	 */
 	TUIK_KP_EQUAL          = 336,
-	/*
+	/*!
 	 * \brief The left shift key.
 	 */
 	TUIK_LEFT_SHIFT        = 340,
-	/*
+	/*!
 	 * \brief The left control key.
 	 */
 	TUIK_LEFT_CONTROL      = 341,
-	/*
+	/*!
 	 * \brief The left alt key.
 	 */
 	TUIK_LEFT_ALT          = 342,
-	/*
+	/*!
 	 * \brief The left super key.
 	 */
 	TUIK_LEFT_SUPER        = 343,
-	/*
+	/*!
 	 * \brief The right shift key.
 	 */
 	TUIK_RIGHT_SHIFT       = 344,
-	/*
+	/*!
 	 * \brief The right control key.
 	 */
 	TUIK_RIGHT_CONTROL     = 345,
-	/*
+	/*!
 	 * \brief The right alt key.
 	 */
 	TUIK_RIGHT_ALT         = 346,
-	/*
+	/*!
 	 * \brief The right super key.
 	 */
 	TUIK_RIGHT_SUPER       = 347,
-	/*
+	/*!
 	 * \brief The menu key.
 	 */
 	TUIK_MENU              = 348,
@@ -525,7 +525,7 @@ typedef enum TuiKeyboardKey
 /*! @} */
 
 
-/*! @name TuiKeyboardKey names
+/*! @name Keyboard Key Names
  *  @{ */
 /*!
  * @brief String name of @ref TUIK_SPACE.
@@ -1010,7 +1010,7 @@ extern const char* kTuik_Menu_Name;
 /*! @} */
 
 
-/*! @name TuiKeyboardKey functions
+/*! @name Keyboard Key Functions
  *
  * Functions for dealing with @ref TuiKeyboardKey enum values.
  *  @{ */
@@ -1020,7 +1020,7 @@ extern const char* kTuik_Menu_Name;
  * @param keyboard_key The @ref TuiKeyboardKey to check.
  *
  * @returns The @ref TuiBoolean result. If keyboard_key is a valid @ref TuiKeyboardKey, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -1034,7 +1034,7 @@ TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey keyboard_key);
  *
  * @param keyboard_key The @ref TuiKeyboardKey to get the name of.
  *
- * @returns The string name. NULL is returned if keyboard_key is an invalid @ref TuiKeyboardKey.
+ * @returns The string name. @ref TUI_NULL is returned if keyboard_key is an invalid @ref TuiKeyboardKey.
  *
  * @errors This function can have no errors.
  *
@@ -1044,7 +1044,7 @@ TuiBoolean tuiKeyboardKeyIsValid(TuiKeyboardKey keyboard_key);
  */
 const char* tuiKeyboardKeyToString(TuiKeyboardKey keyboard_key);
 /*!
- * @brief Determine the #ref TuiKeyboardKey enum value associated with a string name.
+ * @brief Determine the @ref TuiKeyboardKey enum value associated with a string name.
  *
  * @param str The string name.
  *

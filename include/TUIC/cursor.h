@@ -28,7 +28,7 @@ extern "C" {
 #include <TUIC/cursor_shape.h>
 
 
-/*! @name @ref TuiCursor functions
+/*! @name Cursor Functions
  *
  * Functions for manipulating @ref TuiCursor opaque objects.
  *  @{ */
@@ -39,7 +39,7 @@ extern "C" {
  * @param hotspot_x The x pixel coordinate of the cursor hotspot.
  * @param hotspot_y The y pixel coordinate of the cursor hotspot.
  *
- * @returns The created @ref TuiCursor. NULL is returned if an error occurs.
+ * @returns The created @ref TuiCursor. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED ,@ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
@@ -59,7 +59,7 @@ TuiCursor tuiCursorCreateImage(TuiImage image, int hotspot_x, int hotspot_y);
  * @param hotspot_x The x pixel coordinate of the cursor hotspot.
  * @param hotspot_y The y pixel coordinate of the cursor hotspot.
  *
- * @returns The created @ref TuiCursor. NULL is returned if an error occurs.
+ * @returns The created @ref TuiCursor. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED,  @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
  *
@@ -75,7 +75,7 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
  *
  * @param shape The @ref TuiCursorShape to use to create the cursor image.
  *
- * @returns The created @ref TuiCursor. NULL is returned if an error occurs.
+ * @returns The created @ref TuiCursor. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_CURSOR_SHAPE, @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, and GLFW errors, The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.
  *

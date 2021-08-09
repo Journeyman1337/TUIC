@@ -32,7 +32,7 @@ extern "C" {
 #include <TUIC/types.h>
 
 
-/*! @name Desktop Callbacks
+/*! @name Desktop Event Callbacks
  *
  * These callback function types are used for events related to desktop platforms.
  *

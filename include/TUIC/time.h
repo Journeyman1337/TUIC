@@ -27,11 +27,11 @@ extern "C" {
 #include <stdint.h>
  
 
-/*! @name TUIC time functions
+/*! @name TUIC Time Functions
  *
- * Functions for manipulating the TUIC internal timimg system.
+ * Functions for manipulating the TUIC internal time tracking system.
  *  @{ */
-/*
+/*!
  * @brief Get the amount of time that has passed since TUIC was initialized (in seconds).
  *
  * @returns The amount of time that has passed in seconds.
@@ -43,7 +43,7 @@ extern "C" {
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 double tuiGetTime();
-/*
+/*!
  * @brief Set the global TUIC time to a custom value.
  *
  * @param The value to set the global time.

@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Atlas types
+/*! @name Atlas Types
  *  @{ */
 /*!
 * @brief How the glyph locations within a @ref TuiAtlas are stored. 
@@ -68,22 +68,22 @@ typedef enum TuiAtlasType
 /*! @} */
 
 
-/*! @name @ref TuiAtlasType names
+/*! @name Atlas Type Names
  *
  * Constant string names of each atlas type.
  *  @{ */
 /*!
- * @brief String name of TUI_ATLAS_COORDS.
+ * @brief String name of @ref TUI_ATLAS_COORDS.
  */
 extern const char* kTui_Atlas_Coords_Name;
 /*!
- * @brief String name of TUI_ATLAS_GRID.
+ * @brief String name of @ref TUI_ATLAS_GRID.
  */
 extern const char* kTui_Atlas_Grid_Name;
 /*! @} */
 
 
-/*! @name TuiAtlasType functions
+/*! @name Atlas Type Functions
  *
  * Functions for dealing with @ref TuiAtlasType enum values.
  *  @{ */
@@ -93,7 +93,7 @@ extern const char* kTui_Atlas_Grid_Name;
  * @param atlas_type The @ref TuiAtlasType to check.
  * 
  * @returns The @ref TuiBoolean result. If atlas_type is a valid @ref TuiAtlasType, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -107,7 +107,7 @@ TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type);
  *
  * @param atlas_type The @ref TuiAtlasType to get the name of.
  *
- * @returns The string name. NULL is returned if atlas_type is an invalid @ref TuiAtlasType.
+ * @returns The string name. @ref TUI_NULL is returned if atlas_type is an invalid @ref TuiAtlasType.
  * 
  * @errors This function can have no errors.
  *

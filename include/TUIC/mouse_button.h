@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Mouse button
+/*! @name Mouse Buttons
  *  @{ */
 /*!
  * @brief Mouse buttons.
@@ -37,7 +37,7 @@ typedef enum TuiMouseButton
 	/*!
 	 * \brief The filter mode is invalid.
 	 *
-	 * This filter mode is returned when an error occurs, and is also used to specify that no filter mode is
+	 * This filter mode is returned when an error occurs, and is also used to specify that no mouse button is
 	 * defined.
 	 */
 	TUI_MOUSE_BUTTON_INVALID  = 8,
@@ -118,6 +118,7 @@ typedef enum TuiMouseButton
 
 
 /*! @name Mouse Button Names
+ *
  *  These are const string names of @ref TuiMouseButton enum values.
  *  @{ */
 /*!
@@ -155,7 +156,7 @@ extern const char* kTui_Mouse_Button_8_Name;
 /* @) */
 
 
-/*! @name TuiMouseButton functions
+/*! @name Mouse Button Functions
  *
  * Functions for dealing with @ref TuiMouseButton enum values.
  *  @{ */
@@ -165,7 +166,7 @@ extern const char* kTui_Mouse_Button_8_Name;
  * @param mouse_button The @ref TuiMouseButton to check.
  *
  * @returns The @ref TuiBoolean result. If mouse_button is a valid @ref TuiMouseButton, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -179,7 +180,7 @@ TuiBoolean tuiMouseButtonIsValid(TuiMouseButton mouse_button);
  *
  * @param mouse_button The @ref TuiMouseButton to get the name of.
  *
- * @returns The string name. NULL is returned if mouse_button is an invalid @ref TuiMouseButton.
+ * @returns The string name. @ref TUI_NULL is returned if mouse_button is an invalid @ref TuiMouseButton.
  *
  * @errors This function can have no errors.
  *

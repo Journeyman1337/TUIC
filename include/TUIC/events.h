@@ -26,14 +26,14 @@ extern "C" {
 #endif
 
 
-/*! @name input event functions
+/*! @name Input Event Functions
  *
  * Functions for handling input events.
  *  @{ */
 /*! 
  * @brief Poll all callbacks, input, and windowing events.
  * 
- * @errors This function can have the error TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -43,7 +43,7 @@ void tuiPollEvents();
 /*!
 * @brief Sleeps the current thread and waits until an input event occurs to Poll.
  *
- * @errors This function can have the error TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -53,7 +53,7 @@ void tuiWaitEvents();
 /*!
  * @brief Sleeps the current thread and waits until an input event occurs to Poll.
  *
- * @errors Possible errors in order are TUI_ERROR_NOT_INITIALIZED, TUI_ERROR_INVALID_EVENT_TIMEOUTm and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_EVENT_TIMEOUT and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -63,7 +63,7 @@ void tuiWaitEventsTimeout(double timeout);
 /*!
  * @brief Post an empty event, causing tuiWaitEvents and tuiWaitEventsTimeout to immediatly return.
  *
- * @errors This function can have the error TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * @errors This function can have the error @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *

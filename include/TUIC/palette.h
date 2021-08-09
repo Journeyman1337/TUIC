@@ -34,7 +34,7 @@ extern "C" {
 extern const uint8_t kTuiXtermPalette[768];
 
 
-/*! @name @ref TuiPalette functions
+/*! @name Palette Functions
  *
  * Functions for manipulating @ref TuiPalette opaque objects.
  *  @{ */

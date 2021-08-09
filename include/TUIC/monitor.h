@@ -35,7 +35,7 @@ extern "C" {
 /*!
  * @brief Get pointer to all @ref TuiMonitor on the system. 
  * 
- * @param count A pointer to where the monitor count will be stored. If it is NULL or an error occurs, it is ignored.
+ * @param count A pointer to where the monitor count will be stored. If it is @ref TUI_NULL or an error occurs, it is ignored.
  * 
  * @return A pointer to an array of all present @ref TuiMonitor.
  * 
@@ -65,8 +65,8 @@ TuiMonitor tuiGetPrimaryMonitor();
 /*!
  * @brief Get the pixel width and height of a @ref TuiMonitor.
  * 
- * @param out_pixel_width A pointer to where the pixel width of the monitor screen will be stored. If NULL, it is ignored.
- * @param out_pixel_height A pointer to where the pixel height of the monitor screen will be stored. If NULL, it is ignored.
+ * @param out_pixel_width A pointer to where the pixel width of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
+ * @param out_pixel_height A pointer to where the pixel height of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  * 
  * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
  *
@@ -106,8 +106,8 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor);
 /*!
  * @brief Get the physical width and height of a @ref TuiMonitor in milimeters.
  *
- * @param out_physical_width A pointer to where the physical width of the monitor screen will be stored. If NULL, it is ignored.
- * @param out_physical_height A pointer to where the physical height of the monitor screen will be stored. If NULL, it is ignored.
+ * @param out_physical_width A pointer to where the physical width of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
+ * @param out_physical_height A pointer to where the physical height of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITORand GLFW errors.The first error that occurs will cause the function to immediatly return.Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
  *
@@ -147,8 +147,8 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor);
 /*!
  * @brief Get the ratio between the @ref TuiMonitor DPI and the platform's default DPI width and height.
  *
- * @param out_scale_wide A pointer to where the scale wide will be stored. If NULL, it is ignored.
- * @param out_scale_tall A pointer to where the scale tall will be stored. If NULL, it is ignored.
+ * @param out_scale_wide A pointer to where the scale wide will be stored. If @ref TUI_NULL, it is ignored.
+ * @param out_scale_tall A pointer to where the scale tall will be stored. If @ref TUI_NULL, it is ignored.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
  *

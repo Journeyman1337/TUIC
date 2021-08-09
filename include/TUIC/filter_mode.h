@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Filter modes
+/*! @name Filter Modes
  *  @{ */
 /*!
  * @brief The filter mode used for rendering a texture or framebuffer.
@@ -67,7 +67,7 @@ extern const char* kTui_Filter_Bilinear_Name;
 /* @) */
 
 
-/*! @name TuiFilterMode functions
+/*! @name Filter Mode Functions
  *
  * Functions for dealing with @ref TuiFilterMode enum values.
  *  @{ */
@@ -77,7 +77,7 @@ extern const char* kTui_Filter_Bilinear_Name;
  * @param filter_mode The @ref TuiFilterMode to check.
  *
  * @returns The @ref TuiBoolean result. If filter_mode is a valid @ref TuiFilterMode, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -91,7 +91,7 @@ TuiBoolean tuiFilterModeIsValid(TuiFilterMode filter_mode);
  *
  * @param filter_mode The @ref TuiFilterMode to get the name of.
  *
- * @returns The string name. NULL is returned if filter_mode is an invalid @ref TuiFilterMode.
+ * @returns The string name. @ref TUI_NULL is returned if filter_mode is an invalid @ref TuiFilterMode.
  *
  * @errors This function can have no errors.
  *

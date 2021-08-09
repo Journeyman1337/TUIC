@@ -25,17 +25,22 @@
 extern "C" {
 #endif
 
-/*! @name Boolean
- *  @{ */
+
  /*!
  * @brief Values for true and false.
  */
 typedef enum TuiBoolean
 {
+	/*!
+	 * \brief Boolean true value.
+	 */
 	TUI_TRUE = 1,
+	/*!
+	 * \brief Boolean false value.
+	 */
 	TUI_FALSE = 0
 } TuiBoolean;
-/*! @} */
+
 
 #ifdef __cplusplus //extern C guard
 }

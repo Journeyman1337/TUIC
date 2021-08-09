@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Blend modes
+/*! @name Blend Modes
  *  @{ */
 /*!
 * @brief How the to blend the foreground and background colors with the channels of a @ref TuiAtlas when drawing batch data.
@@ -89,7 +89,7 @@ typedef enum TuiBlendMode
 /*! @} */
 
 
-/*! @name TuiBlendMode names
+/*! @name Blend Mode Names
  *  @{ */
 /*!
  * @brief String name of @ref TUI_BLEND_NORMAL.
@@ -130,7 +130,7 @@ extern const char* kTui_Blend_BG_ALPHA_Name;
 /*! @} */
 
 
-/*! @name TuiBlendMode functions
+/*! @name Blend Mode Functions
  *
  * Functions for dealing with @ref TuiBlendMode enum values.
  *  @{ */
@@ -140,7 +140,7 @@ extern const char* kTui_Blend_BG_ALPHA_Name;
  * @param blend_mode The @ref TuiBlendMode to check.
  * 
  * @returns The @ref TuiBoolean result. If blend_mode is a valid @ref TuiBlendMode, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -154,7 +154,7 @@ TuiBoolean tuiBlendIsValid(TuiBlendMode blend_mode);
  *
  * @param blend_mode The @ref TuiBlendMode to get the name of.
  *
- * @returns The string name. NULL is returned if blend_mode is an invalid @ref TuiBlendMode.
+ * @returns The string name. @ref TUI_NULL is returned if blend_mode is an invalid @ref TuiBlendMode.
  * 
  * @errors This function can have no errors.
  *

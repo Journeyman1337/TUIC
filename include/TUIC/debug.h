@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/error_code.h>
 
 
-/*! @name Debug Output
+/*! @name Debug Output Callbacks and Functions
  *
  * These functions and callbacks are used for controling how TUIC handles debug output.
  *
@@ -40,7 +40,7 @@ extern "C" {
  */
 typedef void(*tuiDebugErrorCallback) (TuiErrorCode error_code, const char* msg);
 /*!
- * @brief Set the callback function to handle debug output from TUI. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to NULL will disable the callback.
+ * @brief Set the callback function to handle debug output from TUI. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to @ref TUI_NULL will disable the callback.
  *
  * @param callack A function pointer to the callback.
  * 
@@ -50,7 +50,7 @@ typedef void(*tuiDebugErrorCallback) (TuiErrorCode error_code, const char* msg);
  */
 void tuiSetDebugErrorCallback(tuiDebugErrorCallback callback);
 /*!
- * @brief Send a debug message to the debug callback function. This function sends a message to the currently set debug callback function. If none was set or it was set to NULL, nothing will happen.
+ * @brief Send a debug message to the debug callback function. This function sends a message to the currently set debug callback function. If none was set or it was set to @ref TUI_NULL, nothing will happen.
  *
  * @param error_code The @ref TuiErrorCode.
  * @param msg For errors with @ref TuiErrorCode @ref TUI_ERROR_BACKEND_SPECIFIC, this is a string description of the error. For all other error codes, this is the name of the function where the error occured.

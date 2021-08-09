@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Cursor mode
- *  @{ */
 /*!
  * @brief The state of the mouse cursor.
  */
@@ -62,10 +60,11 @@ typedef enum TuiCursorMode
 	 */
 	TUI_CURSOR_MODE_LAST		= TUI_CURSOR_MODE_DISABLED
 } TuiCursorMode;
-/*! @} */
 
 
-/*! @name TuiCursorMode names
+/*! @name Cursor Mode Names
+ * 
+ *  These are const string names of @ref TuiCursorMode enum values.
  *  @{ */
 /*!
  * @brief String name of @ref TUI_CURSOR_MODE_NORMAL.
@@ -82,7 +81,7 @@ extern const char* kTui_Cursor_Mode_Disabled_Name;
 /*! @} */
 
 
-/*! @name TuiCursorMode functions
+/*! @name Cursor Mode Functions
  *
  * Functions for dealing with @ref TuiCursorMode enum values.
  *  @{ */
@@ -92,7 +91,7 @@ extern const char* kTui_Cursor_Mode_Disabled_Name;
   * @param cursor_mode The @ref TuiCursorMode to check.
   *
   * @returns The @ref TuiBoolean result. If cursor_mode is a valid @ref TuiCursorMode, it
-  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
   *
   * @errors This function can have no errors.
   *
@@ -106,7 +105,7 @@ TuiBoolean tuiCursorModeIsValid(TuiCursorMode cursor_mode);
  *
  * @param cursor_mode The @ref TuiCursorMode to get the name of.
  *
- * @returns The string name. NULL is returned if cursor_mode is an invalid @ref TuiCursorMode.
+ * @returns The string name. @ref TUI_NULL is returned if cursor_mode is an invalid @ref TuiCursorMode.
  *
  * @errors This function can have no errors.
  *
@@ -116,7 +115,7 @@ TuiBoolean tuiCursorModeIsValid(TuiCursorMode cursor_mode);
  */
 const char* tuiCursorModeToString(TuiCursorMode cursor_mode);
 /*!
- * @brief Determine the #ref TuiCursorMode enum value associated with a string name.
+ * @brief Determine the @ref TuiCursorMode enum value associated with a string name.
  *
  * @param str The string name.
  *

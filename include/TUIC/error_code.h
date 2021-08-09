@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Error codes
- *  @{ */
 /*!
  * @brief Error codes for errors caused by the TUIC library.
  */
@@ -247,79 +245,79 @@ typedef enum TuiErrorCode
      */
 	TUI_ERROR_NOT_INITIALIZED = 51,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiAtlas is NULL.
+	 * \brief TUIC error code for when a @ref TuiAtlas is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_ATLAS = 52,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiBatch is NULL.
+	 * \brief TUIC error code for when a @ref TuiBatch is @ref TUI_NULL.
 	 */
 	TUI_ERROR_NULL_BATCH = 53,
 	/*!
-	 * \brief TUIC error code for when a batch data array is NULL.
+	 * \brief TUIC error code for when a batch data array is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_BATCH_DATA = 54,
 	/*!
-	 * \brief TUIC error code for when a colors array is NULL.
+	 * \brief TUIC error code for when a colors array is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_COLORS = 55,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiCursor is NULL.
+	 * \brief TUIC error code for when a @ref TuiCursor is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_CURSOR = 56,
 	/*!
-	 * \brief TUIC error code for when a glyph bounding boxes array is NULL.
+	 * \brief TUIC error code for when a glyph bounding boxes array is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 57,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiImage is NULL.
+	 * \brief TUIC error code for when a @ref TuiImage is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_IMAGE = 58,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiMonitor is NULL.
+	 * \brief TUIC error code for when a @ref TuiMonitor is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_MONITOR = 59,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiPalette is NULL.
+	 * \brief TUIC error code for when a @ref TuiPalette is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_PALETTE = 60,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiPanel is NULL.
+	 * \brief TUIC error code for when a @ref TuiPanel is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_PANEL = 61,
 	/*!
-	 * \brief TUIC error code for when a path is NULL.
+	 * \brief TUIC error code for when a path is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_PATH = 62,
 	/*!
-	 * \brief TUIC error code for when a pixels array is NULL.
+	 * \brief TUIC error code for when a pixels array is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_PIXELS = 63,
 	/*!
-	 * \brief TUIC error code for when a string is NULL.
+	 * \brief TUIC error code for when a string is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_STRING = 64,
 	/*!
-	 * \brief TUIC error code for when a subect @ref TuiPanel is NULL.
+	 * \brief TUIC error code for when a subect @ref TuiPanel is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_SUBJECT_PANEL = 65,
 	/*!
-	 * \brief TUIC error code for when a subject @ref TuiWindow is NULL.
+	 * \brief TUIC error code for when a subject @ref TuiWindow is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_SUBJECT_WINDOW = 66,
 	/*!
-	 * \brief TUIC error code for when a target @ref TuiImage is NULL.
+	 * \brief TUIC error code for when a target @ref TuiImage is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_TARGET_IMAGE = 67,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiTexture is NULL.
+	 * \brief TUIC error code for when a @ref TuiTexture is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_TEXTURE = 68,
 	/*!
-	 * \brief TUIC error code for when a texture coordinates array is NULL.
+	 * \brief TUIC error code for when a texture coordinates array is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_TEXTURE_COORDINATES = 69,
 	/*!
-	 * \brief TUIC error code for when a @ref TuiWindow is NULL.
+	 * \brief TUIC error code for when a @ref TuiWindow is @ref TUI_NULL.
      */
 	TUI_ERROR_NULL_WINDOW = 70,
 	/*!
@@ -367,10 +365,9 @@ typedef enum TuiErrorCode
      */
 	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION
 } TuiErrorCode;
-/*! @} */
 
 
-/*! @name TuiErrorCode names
+/*! @name Error Code Names
  *  @{ */
 /*!
  * @brief String name of @ref TUI_ERROR_UNKNOWN.
@@ -381,7 +378,7 @@ extern const char* kTui_Error_Unknown_Name;
  */
 extern const char* kTui_Error_None_Name;
 /*!
- * @brief String name of @ref TUI_ERROR_INITIALIZED.
+ * @brief String name of @ref TUI_ERROR_ALREADY_INITIALIZED.
  */
 extern const char* kTui_Error_Already_Initialized_Name;
 /*!
@@ -389,7 +386,7 @@ extern const char* kTui_Error_Already_Initialized_Name;
  */
 extern const char* kTui_Error_Graphics_Backend_Specific_Name;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLNG_ATLAS.
+ * @brief String name of @ref TUI_ERROR_DANGLING_ATLAS.
  */
 extern const char* kTui_Error_Dangling_Atlas_Name;
 /*!
@@ -413,7 +410,7 @@ extern const char* kTui_Error_Dangling_Texture_Name;
  */
 extern const char* kTui_Error_Dangling_Window_Name;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_API_UNAVALIABLE.
+ * @brief String name of @ref TUI_ERROR_GLFW_API_UNAVAILABLE.
  */
 extern const char* kTui_Error_Glfw_Api_Unavailable_Name;
 /*!
@@ -445,7 +442,7 @@ extern const char* kTui_Error_Glfw_No_Window_Context_Name;
  */
 extern const char* kTui_Error_Glfw_Out_Of_Memory_Name;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_PATFORM_ERROR.
+ * @brief String name of @ref TUI_ERROR_GLFW_PLATFORM_ERROR.
  */
 extern const char* kTui_Error_Glfw_Platform_Error_Name;
 /*!
@@ -691,10 +688,10 @@ extern const char* kTui_Error_Unsupported_Window_Icons_Name;
 /*! @} */
 
 
-/*! @name TuiErrorCode descriptions
+/*! @name Error Code Descriptions
  *  @{ */
 /*!
- * @brief String description of @ref TUI_ERROR_UNKNOWN.
+ * @brief String descriptions of @ref TUI_ERROR_UNKNOWN.
  */
 extern const char* kTui_Error_Unknown_Description;
 /*!
@@ -702,7 +699,7 @@ extern const char* kTui_Error_Unknown_Description;
  */
 extern const char* kTui_Error_None_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INITIALIZED.
+ * @brief String name of @ref TUI_ERROR_ALREADY_INITIALIZED.
  */
 extern const char* kTui_Error_Already_Initialized_Description;
 /*!
@@ -710,7 +707,7 @@ extern const char* kTui_Error_Already_Initialized_Description;
  */
 extern const char* kTui_Error_Graphics_Backend_Specific_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLNG_ATLAS.
+ * @brief String name of @ref TUI_ERROR_DANGLING_ATLAS.
  */
 extern const char* kTui_Error_Dangling_Atlas_Description;
 /*!
@@ -766,7 +763,7 @@ extern const char* kTui_Error_Glfw_No_Window_Context_Description;
  */
 extern const char* kTui_Error_Glfw_Out_Of_Memory_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_PATFORM_ERROR.
+ * @brief String name of @ref TUI_ERROR_GLFW_PLATFORM_ERROR.
  */
 extern const char* kTui_Error_Glfw_Platform_Error_Description;
 /*!
@@ -1012,7 +1009,7 @@ extern const char* kTui_Error_Unsupported_Window_Icons_Description;
 /*! @} */
 
 
-/*! @name TuiErrorCode functions
+/*! @name Error Code Functions
  *
  * Functions for dealing with @ref TuiErrorCode enum values.
  *  @{ */
@@ -1022,7 +1019,7 @@ extern const char* kTui_Error_Unsupported_Window_Icons_Description;
  * @param error_code The @ref TuiErrorCode to check.
  *
  * @returns The @ref TuiBoolean result. If error_code is a valid @ref TuiErrorCode, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -1036,7 +1033,7 @@ TuiBoolean tuiErrorCodeIsValid(TuiErrorCode error_code);
  *
  * @param error_code The @ref TuiErrorCode to get the name of.
  *
- * @returns The string name. NULL is returned if error_code is an invalid @ref TuiErrorCode.
+ * @returns The string name. @ref TUI_NULL is returned if error_code is an invalid @ref TuiErrorCode.
  *
  * @errors This function can have no errors.
  *
@@ -1064,7 +1061,7 @@ TuiErrorCode tuiStringToErrorCode(const char* str);
  *
  * @param error_code The @ref TuiErrorCode to get the description of.
  *
- * @returns The string description. NULL is returned if error_code is an invalid @ref TuiErrorCode.
+ * @returns The string description. @ref TUI_NULL is returned if error_code is an invalid @ref TuiErrorCode.
  *
  * @errors This function can have no errors.
  *
@@ -1079,7 +1076,7 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code);
  * @param error_code The @ref TuiErrorCode to check.
  *
  * @returns The @ref TuiBoolean result. If error_code is a GLFW error, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *

@@ -65,7 +65,8 @@ typedef enum TuiButtonState
 /*! @} */
 
 
-/*! @name TuiButtonState names
+/*! @name Button State Names
+ *  These are const string names of @ref TuiButtonState enum values.
  *  @{ */
 /*!
  * @brief String name of @ref TUI_BUTTON_RELEASE.
@@ -82,7 +83,7 @@ extern const char* kTui_Button_Repeat_Name;
 /*! @} */
 
 
-/*! @name TuiButtonState functions
+/*! @name Button State Functions
  *
  * Functions for dealing with @ref TuiButtonState enum values.
  *  @{ */
@@ -92,7 +93,7 @@ extern const char* kTui_Button_Repeat_Name;
  * @param button_state The @ref TuiButtonState to check.
  *
  * @returns The @ref TuiBoolean result. If button_state is a valid @ref TuiButtonState, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -106,7 +107,7 @@ TuiBoolean tuiButtonStateIsValid(TuiButtonState button_state);
  *
  * @param button_state The @ref TuiButtonState to get the name of.
  *
- * @returns The string name. NULL is returned if button_state is an invalid @ref TuiButtonState.
+ * @returns The string name. @ref TUI_NULL is returned if button_state is an invalid @ref TuiButtonState.
  *
  * @errors This function can have no errors.
  *

@@ -27,15 +27,15 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name @ref TUIC system functions
+/*! @name TUIC System Functions
  *
  * Functions for controling the TUIC library's state machine.
  *  @{ */
-/*
+/*!
  * @brief Initialize the TUIC library.
  * 
  * @returns The @ref TuiBoolean result. If the library initialized successfully, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  * 
  * @errors Possible errors in order are @ref TUI_ERROR_ALREADY_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return @ref TUI_FALSE.
  * 
@@ -44,11 +44,11 @@ extern "C" {
  * @thread_safety The thread on which this function is called on is the only thread that many other TUIC functions must be called on.
  */
 TuiBoolean tuiInit();
-/*
+/*!
  * @brief Get if the TUIC system is currently initialized.
  * 
  * @returns The @ref TuiBoolean result. If the library is currently initialized, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  * 
  * @errors This function can have no errors.
  * 
@@ -57,11 +57,11 @@ TuiBoolean tuiInit();
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiIsActive();
-/*
+/*!
  * @brief Terminate the TUIC library.
  *
  * @returns The @ref TuiBoolean result. If the library initialized successfully, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED,  @ref TUI_ERROR_DANGLING_WINDOW, @ref TUI_ERROR_DANGLING_CURSOR, @ref TUI_ERROR_DANGLING_ATLAS, @ref TUI_ERROR_DANGLING_PANEL, @ref TUI_ERROR_DANGLING_PALETTE and @ref TUI_ERROR_DANGLING_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
@@ -70,11 +70,11 @@ TuiBoolean tuiIsActive();
  * @thread_safety The thread on which this function is called on is the only thread that many other TUIC functions must be called on.
  */
 void tuiTerminate();
-/*
+/*!
  * @brief Get if raw mouse motion is suported on the current platform.
  *
  * @returns The @ref TuiBoolean result. If raw mouse motion is supported, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -83,11 +83,11 @@ void tuiTerminate();
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 TuiBoolean tuiRawMouseMotionSupported();
-/*
+/*!
  * @brief Get if window icons are suported on the current platform.
  *
  * @returns The @ref TuiBoolean result. If window icon are supported, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -97,8 +97,7 @@ TuiBoolean tuiRawMouseMotionSupported();
  */
 TuiBoolean tuiWindowIconsSupported();
 /*!
-/*
- * @brief Get the clipboard text o.
+ * @brief Get the clipboard text.
  *
  * @returns The clipboard string.
  *
@@ -111,7 +110,7 @@ TuiBoolean tuiWindowIconsSupported();
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 const char* tuiGetClipboardString();
-/*
+/*!
  * @brief Set the clipboard text.
  * @param string The string to set.
  *

@@ -28,7 +28,7 @@ extern "C" {
 
 
 
-/*! @name Keyboard mods
+/*! @name Keyboard Mods
  *  @{ */
 /*!
  * @brief Keyboard modifier keys.
@@ -78,7 +78,7 @@ typedef enum TuiKeyboardMod
 /*! @} */
 
 
-/*! @name TuiKeyboardMod names
+/*! @name Keyboard Mod Names
  *  @{ */
 /*!
  * @brief String name of @ref TUI_MOD_SHIFT.
@@ -115,7 +115,7 @@ extern const char* kTui_Keyboard_Mod_All_Name;
 /*! @} */
 
 
-/*! @name TuiKeyboardMod functions
+/*! @name Keyboard Mod Functions
  *
  * Functions for dealing with @ref TuiKeyboardMod enum values.
  *  @{ */
@@ -125,7 +125,7 @@ extern const char* kTui_Keyboard_Mod_All_Name;
   * @param keyboard_mod The @ref TuiKeyboardMod to check.
   *
   * @returns The @ref TuiBoolean result. If keyboard_mod is a valid @ref TuiKeyboardMod, it
-  * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
   *
   * @errors This function can have no errors.
   *
@@ -139,7 +139,7 @@ TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod keyboard_mod);
  *
  * @param keyboard_mod The @ref TuiKeyboardMod to get the name of.
  *
- * @returns The string name. NULL is returned if cursor_shape is an invalid @ref TuiKeyboardMod.
+ * @returns The string name. @ref TUI_NULL is returned if cursor_shape is an invalid @ref TuiKeyboardMod.
  *
  * @errors This function can have no errors.
  *
@@ -149,7 +149,7 @@ TuiBoolean tuiKeyboardModIsValid(TuiKeyboardMod keyboard_mod);
  */
 const char* tuiKeyboardModToString(TuiKeyboardMod keyboard_mod);
 /*!
- * @brief Determine the #ref TuiKeyboardMod enum value associated with a string name.
+ * @brief Determine the @ref TuiKeyboardMod enum value associated with a string name.
  *
  * @param str The string name.
  *
@@ -169,7 +169,7 @@ TuiKeyboardMod tuiStringToKeyboardMod(const char* str);
  * @param contains_keyboard_mod The @ref TuiKeyboardMod to check for within the other mod.
  *
  * @returns The @ref TuiBoolean result. If keyboard_mod contains the contains_keyboard_mod, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *

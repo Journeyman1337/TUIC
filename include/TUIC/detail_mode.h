@@ -29,7 +29,7 @@ extern "C" {
 #include <TUIC/blend_mode.h>
 
 
-/*! @name TUI detail modes
+/*! @name Detail Modes
  *  @{ */
 /*!
  * @brief Modes of storing and rendering batch data.
@@ -492,7 +492,7 @@ extern const char* kTui_Detail_G16_C32NFG_Sparse_Name;
 /* @) */
 
 
-/*! @name TuiDetailMode functions
+/*! @name Detail Mode Functions
  *
  * Functions for dealing with @ref TuiDetailMode enum values.
  *  @{ */
@@ -560,7 +560,7 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
  * @param detail_mode The @ref TuiDetailMode.
  *
  * @returns The @ref TuiBoolean result. If detail_mode is a requires a @ref TuiPalette for rendering batch data, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can haves no errors.
  *
@@ -575,7 +575,7 @@ TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode);
  * @param detail_mode The @ref TuiDetailMode to check.
  *
  * @returns The @ref TuiBoolean result. If detail_mode is a valid @ref TuiDetailMode, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -591,7 +591,7 @@ TuiBoolean tuiDetailIsValid(TuiDetailMode detail_mode);
  * @param detail_flag The @ref TuiDetailFlag to check for.
  *
  * @returns The @ref TuiBoolean result. If detail_mode contains the detail_flag, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -607,7 +607,7 @@ TuiBoolean tuiDetailHasFlag(TuiDetailMode detail_mode, TuiDetailFlag detail_flag
  * @param blend_mode The @ref TuiBlendMode.
  *
  * @returns The @ref TuiBoolean result. If detail_mode is compatible with the blend_mode, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -621,7 +621,7 @@ TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_m
  *
  * @param detail_mode The @ref TuiDetailMode to get the name of.
  *
- * @returns The string name. NULL is returned if detail_mode is an invalid @ref TuiDetailMode.
+ * @returns The string name. @ref TUI_NULL is returned if detail_mode is an invalid @ref TuiDetailMode.
  *
  * @errors This function can have no errors.
  *

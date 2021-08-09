@@ -27,7 +27,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name TUI detail mode flags
+/*! @name Detail Mode Flags
  *  @{ */
 /*!
  * @brief Bitflag components that are combined into @ref TuiDetailMode enums.
@@ -98,7 +98,9 @@ typedef enum TuiDetailFlag
 /*! @} */
 
 
-/*! @name TuiDetailFlag names
+/*! @name Detail Mode Flag Names
+ *
+ * Constant string names of each detali flag.
  *  @{ */
 /*!
  * @brief String name of @ref TUI_GLYPH_FLAG_G8.
@@ -163,7 +165,7 @@ extern const char* kTui_Layout_Flag_Sparse_Name;
 /*! @} */
 
 
-/*! @name TuiDetailFlag functions
+/*! @name Detail Mode Flag Function
  *
  * Functions for dealing with @ref TuiDetailFlag enum values.
  *  @{ */
@@ -173,7 +175,7 @@ extern const char* kTui_Layout_Flag_Sparse_Name;
  * @param detail_flag The @ref TuiDetailFlag to check.
  *
  * @returns The @ref TuiBoolean result. If detail_flag is a valid @ref TuiDetailFlag, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -187,7 +189,7 @@ TuiBoolean tuiDetailFlagIsValid(TuiDetailFlag detail_flag);
  *
  * @param detail_flag The @ref TuiDetailFlag to get the name of.
  *
- * @returns The string name. NULL is returned if cursor_mode is an invalid @ref TuiDetailFlag.
+ * @returns The string name. @ref TUI_NULL is returned if cursor_mode is an invalid @ref TuiDetailFlag.
  *
  * @errors This function can have no errors.
  *
@@ -197,7 +199,7 @@ TuiBoolean tuiDetailFlagIsValid(TuiDetailFlag detail_flag);
  */
 const char* tuiDetailFlagToString(TuiDetailFlag detail_flag);
 /*!
- * @brief Determine the #ref TuiDetailFlag enum value associated with a string name.
+ * @brief Determine the @ref TuiDetailFlag enum value associated with a string name.
  *
  * @param str The string name.
  *

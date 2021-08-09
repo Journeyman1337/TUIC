@@ -29,7 +29,7 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name TuiBatch functions
+/*! @name Batch Functions
  *
  * These functions are used for manipulating @ref TuiBatch opaque objects.
  *  @{ */
@@ -40,7 +40,7 @@ extern "C" {
  * @param tiles_wide The amount of tiles wide of the @ref TuiBatch data.
  * @param tiles_tall The amount of tiles tall of the @ref TuiBatch data.
  *
- * @returns The created @ref TuiBatch. NULL is returned if an error occurs.
+ * @returns The created @ref TuiBatch. @ref TUI_NULL is returned if an error occurs.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS and @ref TUI_ERROR_INVALID_DETAIL_MODE. The first error that occurs will cause the function to immediatly return. 
  *
@@ -96,8 +96,8 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
  * @brief Get the tile dimensions of a @ref TuiBatch.
  *
  * @param batch The @ref TuiBatch to get the tile dimensions of.
- * @param tiles_wide A pointer to where the tile width of the @ref TuiBatch will be stored. If NULL or an error occurs, it is ignored.
- * @param tiles_height A pointer to where the tile height of the @ref TuiBatch will be stored. If NULL or an error occurs, it is ignored.
+ * @param tiles_wide A pointer to where the tile width of the @ref TuiBatch will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param tiles_height A pointer to where the tile height of the @ref TuiBatch will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
  * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
  *
