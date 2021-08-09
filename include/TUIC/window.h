@@ -1658,33 +1658,187 @@ void* tuiWindowGetUserPointer(TuiWindow window);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 void tuiWindowSetCursor(TuiWindow window, TuiCursor cursor);
-
+/*
+ * @brief Set the @ref tuiWindowMoveFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowMoveFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFunction callback);
-
+/*
+ * @brief Set the @ref tuiWindowCloseFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowCloseFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowCloseFunction callback);
-
+/*
+ * @brief Set the @ref tuiWindowFocusFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowFocusFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocusFunction callback);
-
+/*
+ * @brief Set the @ref tuiWindowIconifyFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowIconifyFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowIconifyFunction tuiWindowSetIconifyCallback(TuiWindow window, tuiWindowIconifyFunction callback);
-
+/*
+ * @brief Set the @ref tuiWindowMaximizeFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowMaximizeFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWindowMaximizeFunction callback);
-
+/*
+ * @brief Set the @ref tuiWindowViewportResizeFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowViewportResizeFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowViewportResizeFunction tuiWindowSetViewportResizeCallback(TuiWindow window, tuiWindowViewportResizeFunction callback);
-
+/*
+ * @brief Set the @ref tuiWindowContentScaleFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiWindowContentScaleFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window, tuiWindowContentScaleFunction callback);
-
+/*
+ * @brief Set the @ref tuiKeyboardKeyboardKeyFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiKeyboardKeyboardKeyFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyboardKeyboardKeyFunction callback);
-
+/*
+ * @brief Set the @ref tuiCharFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiCharFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callback);
-
+/*
+ * @brief Set the @ref tuiMouseButtonFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiMouseButtonFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiMouseButtonFunction tuiWindowSetMouseButtonCallback(TuiWindow window, tuiMouseButtonFunction callback);
-
+/*
+ * @brief Set the @ref tuiCursorMoveFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiCursorMoveFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiCursorMoveFunction tuiWindowSetCursorMoveCallback(TuiWindow window, tuiCursorMoveFunction callback);
-
+/*
+ * @brief Set the @ref tuiCursorEnterFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiCursorEnterFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCursorEnterFunction callback);
-
+/*
+ * @brief Set the @ref tuiMouseScrollFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiMouseScrollFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMouseScrollFunction callback);
-
+/*
+ * @brief Set the @ref tuiFileDropFunction called by a window.
+ *
+ * @param window The @ref TuiWindow.
+ * @param callback The @ref tuiFileDropFunction.
+ *
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
 tuiFileDropFunction tuiWindowSetFileDropCallback(TuiWindow window, tuiFileDropFunction callback);
 /*! @} */
 
