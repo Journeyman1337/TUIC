@@ -107,7 +107,7 @@ void gld_message(const char* a, const char* b)
 	strcat(combined_message, b);
 	tuiDebugError(TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC, combined_message);
 }
-static inline void __CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_handle, uint32_t* renderbuffer_handle, size_t width, size_t height)
+static inline void _CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_handle, uint32_t* renderbuffer_handle, size_t width, size_t height)
 {
 	GLD_CLEAR();
 	GLD_CALL(glGenFramebuffers(1, framebuffer_handle));
@@ -209,7 +209,7 @@ inline uint32_t CreateTexture(size_t width, size_t height, size_t channels, cons
 	return gl_texture_handle;
 }
 //Transform an opengl screen matrix so that a rectangle using it is flat facing the screen and its 2d edges match the screen space pixel coordinates given.
-static inline void __TransformMatrix(float* matrix, size_t screen_width, size_t screen_height, int left_x, int right_x, int top_y, int bottom_y)
+static inline void _TransformMatrix(float* matrix, size_t screen_width, size_t screen_height, int left_x, int right_x, int top_y, int bottom_y)
 {
 	float width = right_x - left_x;
 	float height = bottom_y - top_y;
