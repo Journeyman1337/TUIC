@@ -56,7 +56,7 @@ const char* tuiAtlasTypeToString(TuiAtlasType atlas_type)
 	}
 }
 
-int tuiStringToAtlasType(const char* str)
+TuiAtlasType tuiStringToAtlasType(const char* str)
 {
 	if (strcmp(str, kTui_Atlas_Coords_Name) == 0)
 	{
