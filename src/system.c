@@ -196,7 +196,7 @@ const char* tuiGetClipboardString()
 	if (sSystem == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
+		return TUI_NULL;
 	}
 
 	const char* str = glfwGetClipboardString(TUI_NULL); //https://github.com/glfw/glfw/issues/1945
@@ -214,7 +214,7 @@ void tuiSetClipboardString(const char* string)
 	if (sSystem == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_FALSE;
+		return;
 	}
 	if (string == TUI_NULL)
 	{
