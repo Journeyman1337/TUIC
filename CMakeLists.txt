@@ -11,7 +11,6 @@ option(TUIC_BUILD_EXAMPLES "Build the example projects." OFF)
 option(TUIC_BUILD_DOCS "Build documentation using Doxygen." OFF)
 option(TUIC_BUILD_MANUAL_TESTS "Build manual test framework." OFF)
 option(TUIC_BUILD_AUTO_TESTS "Build automatic test framework." OFF)
-option(TUIC_OPENGL33_BACKEND "Include the Opengl33 backend." ON)
 
 set(TUIC_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TUIC_CONFIGURE_HEADER_TEXT "")
@@ -87,20 +86,23 @@ set(TUIC_LINK_LIBRARIES
 	""
 )
 
-if (TUIC_OPENGL33_BACKEND)
-	find_package(glad CONFIG REQUIRED)
-	add_subdirectory(shaders/Opengl33)
-	set(TUIC_SOURCES ${TUIC_SOURCES} 
-		${CMAKE_CURRENT_SOURCE_DIR}/src/opengl33.c
-		${CMAKE_CURRENT_SOURCE_DIR}/src/opengl33.h
-	)
-	find_package(glfw3 CONFIG REQUIRED)
-	find_package(glad CONFIG REQUIRED)
-	set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
-		glfw
-		glad::glad
-	)
-endif()
+#Opengl33
+find_package(glad CONFIG REQUIRED)
+add_subdirectory(shaders/Opengl33)
+set(TUIC_SOURCES ${TUIC_SOURCES} 
+	${CMAKE_CURRENT_SOURCE_DIR}/src/opengl33.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/opengl33.h
+)
+find_package(glad CONFIG REQUIRED)
+set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
+	glad::glad
+)
+
+#GLFW
+find_package(glfw3 CONFIG REQUIRED)
+set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
+	glfw
+)
 
 if (UNIX)
     set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
