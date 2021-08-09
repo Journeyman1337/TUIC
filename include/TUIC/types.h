@@ -28,6 +28,7 @@ extern "C" {
 
 
 #include <stdint.h> //needed for integer types
+#include <stddef.h> //needed for size_t
 
 
 /*!

@@ -27,6 +27,7 @@ extern "C" {
 #include <TUIC/detail_flag.h>
 #include <TUIC/boolean.h>
 #include <TUIC/blend_mode.h>
+#include <stddef.h> // needed for size_t
 
 
 /*!
