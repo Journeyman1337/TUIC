@@ -146,7 +146,7 @@ int main()
     tuiWindowSetKeyboardKeyCallback(window, keyboard_key_callback);
     tuiWindowSetCharCallback(window, char_callback);
     tuiWindowSetFileDropCallback(window, file_drop_callback);
-    tuiSetMonitorCallback(monitor_callback);
+    tuiSetMonitorConnectedCallback(monitor_callback);
 
     printf("Try the following to see the callback messages:\n"
         " * move your mouse inside the window\n"
