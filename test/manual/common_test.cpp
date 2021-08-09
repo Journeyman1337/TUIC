@@ -54,136 +54,136 @@ TuiBatch test_GetTestPatternBatch(TuiDetailMode detail_mode)
 			{
 				switch(detail_mode)
 				{
-				case TUI_DETAIL_G8_C0_FULL:
+				case TUI_DETAIL_MODE_G8_C0_FULL:
 					tuiBatchSetTile_G8_C0_FULL(batch, x, y, x);
 					break;
-				case TUI_DETAIL_G8_C4_FULL:
+				case TUI_DETAIL_MODE_G8_C4_FULL:
 					tuiBatchSetTile_G8_C4_FULL(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
-				case TUI_DETAIL_G8_C8NBG_FULL:
+				case TUI_DETAIL_MODE_G8_C8NBG_FULL:
 					tuiBatchSetTile_G8_C8NBG_FULL(batch, x, y, x, x % 256);
 					break;
-				case TUI_DETAIL_G8_C8_FULL:
+				case TUI_DETAIL_MODE_G8_C8_FULL:
 					tuiBatchSetTile_G8_C8_FULL(batch, x, y, x, x % 256, y % 256);
 					break;
-				case TUI_DETAIL_G8_C8NFG_FULL:
+				case TUI_DETAIL_MODE_G8_C8NFG_FULL:
 					tuiBatchSetTile_G8_C8NFG_FULL(batch, x, y, x, y % 256);
 					break;
-				case TUI_DETAIL_G8_C24_FULL:
+				case TUI_DETAIL_MODE_G8_C24_FULL:
 					tuiBatchSetTile_G8_C24_FULL(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128,  y % 256);
 					break;
-				case TUI_DETAIL_G8_C24NBG_FULL:
+				case TUI_DETAIL_MODE_G8_C24NBG_FULL:
 					tuiBatchSetTile_G8_C24NBG_FULL(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
-				case TUI_DETAIL_G8_C24NFG_FULL:
+				case TUI_DETAIL_MODE_G8_C24NFG_FULL:
 					tuiBatchSetTile_G8_C24NFG_FULL(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G8_C32_FULL:
+				case TUI_DETAIL_MODE_G8_C32_FULL:
 					tuiBatchSetTile_G8_C32_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G8_C32NBG_FULL:
+				case TUI_DETAIL_MODE_G8_C32NBG_FULL:
 					tuiBatchSetTile_G8_C32NBG_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
-				case TUI_DETAIL_G8_C32NFG_FULL:
+				case TUI_DETAIL_MODE_G8_C32NFG_FULL:
 					tuiBatchSetTile_G8_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G16_C0_FULL:
+				case TUI_DETAIL_MODE_G16_C0_FULL:
 					tuiBatchSetTile_G16_C0_FULL(batch, x, y, x);
 					break;
-				case TUI_DETAIL_G16_C4_FULL:
+				case TUI_DETAIL_MODE_G16_C4_FULL:
 					tuiBatchSetTile_G16_C4_FULL(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
-				case TUI_DETAIL_G16_C8NBG_FULL:
+				case TUI_DETAIL_MODE_G16_C8NBG_FULL:
 					tuiBatchSetTile_G16_C8NBG_FULL(batch, x, y, x, x % 256);
 					break;
-				case TUI_DETAIL_G16_C8_FULL:
+				case TUI_DETAIL_MODE_G16_C8_FULL:
 					tuiBatchSetTile_G16_C8_FULL(batch, x, y, x, x % 256, y % 256);
 					break;
-				case TUI_DETAIL_G16_C8NFG_FULL:
+				case TUI_DETAIL_MODE_G16_C8NFG_FULL:
 					tuiBatchSetTile_G16_C8NFG_FULL(batch, x, y, x, y % 256);
 					break;
-				case TUI_DETAIL_G16_C24_FULL:
+				case TUI_DETAIL_MODE_G16_C24_FULL:
 					tuiBatchSetTile_G16_C24_FULL(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G16_C24NBG_FULL:
+				case TUI_DETAIL_MODE_G16_C24NBG_FULL:
 					tuiBatchSetTile_G16_C24NBG_FULL(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
-				case TUI_DETAIL_G16_C24NFG_FULL:
+				case TUI_DETAIL_MODE_G16_C24NFG_FULL:
 					tuiBatchSetTile_G16_C24NFG_FULL(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G16_C32_FULL:
+				case TUI_DETAIL_MODE_G16_C32_FULL:
 					tuiBatchSetTile_G16_C32_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G16_C32NBG_FULL:
+				case TUI_DETAIL_MODE_G16_C32NBG_FULL:
 					tuiBatchSetTile_G16_C32NBG_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
-				case TUI_DETAIL_G16_C32NFG_FULL:
+				case TUI_DETAIL_MODE_G16_C32NFG_FULL:
 					tuiBatchSetTile_G16_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G8_C0_SPARSE:
+				case TUI_DETAIL_MODE_G8_C0_SPARSE:
 					tuiBatchSetTile_G8_C0_SPARSE(batch, x, y, x);
 					break;
-				case TUI_DETAIL_G8_C4_SPARSE:
+				case TUI_DETAIL_MODE_G8_C4_SPARSE:
 					tuiBatchSetTile_G8_C4_SPARSE(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
-				case TUI_DETAIL_G8_C8NBG_SPARSE:
+				case TUI_DETAIL_MODE_G8_C8NBG_SPARSE:
 					tuiBatchSetTile_G8_C8NBG_SPARSE(batch, x, y, x, x % 256);
 					break;
-				case TUI_DETAIL_G8_C8_SPARSE:
+				case TUI_DETAIL_MODE_G8_C8_SPARSE:
 					tuiBatchSetTile_G8_C8_SPARSE(batch, x, y, x, x % 256, y % 256);
 					break;
-				case TUI_DETAIL_G8_C8NFG_SPARSE:
+				case TUI_DETAIL_MODE_G8_C8NFG_SPARSE:
 					tuiBatchSetTile_G8_C8NFG_SPARSE(batch, x, y, x, y % 256);
 					break;
-				case TUI_DETAIL_G8_C24_SPARSE:
+				case TUI_DETAIL_MODE_G8_C24_SPARSE:
 					tuiBatchSetTile_G8_C24_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G8_C24NBG_SPARSE:
+				case TUI_DETAIL_MODE_G8_C24NBG_SPARSE:
 					tuiBatchSetTile_G8_C24NBG_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
-				case TUI_DETAIL_G8_C24NFG_SPARSE:
+				case TUI_DETAIL_MODE_G8_C24NFG_SPARSE:
 					tuiBatchSetTile_G8_C24NFG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G8_C32_SPARSE:
+				case TUI_DETAIL_MODE_G8_C32_SPARSE:
 					tuiBatchSetTile_G8_C32_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G8_C32NBG_SPARSE:
+				case TUI_DETAIL_MODE_G8_C32NBG_SPARSE:
 					tuiBatchSetTile_G8_C32NBG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
-				case TUI_DETAIL_G8_C32NFG_SPARSE:
+				case TUI_DETAIL_MODE_G8_C32NFG_SPARSE:
 					tuiBatchSetTile_G8_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G16_C0_SPARSE:
+				case TUI_DETAIL_MODE_G16_C0_SPARSE:
 					tuiBatchSetTile_G16_C0_SPARSE(batch, x, y, x);
 					break;
-				case TUI_DETAIL_G16_C4_SPARSE:
+				case TUI_DETAIL_MODE_G16_C4_SPARSE:
 					tuiBatchSetTile_G16_C4_SPARSE(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
-				case TUI_DETAIL_G16_C8NBG_SPARSE:
+				case TUI_DETAIL_MODE_G16_C8NBG_SPARSE:
 					tuiBatchSetTile_G16_C8NBG_SPARSE(batch, x, y, x, x % 256);
 					break;
-				case TUI_DETAIL_G16_C8_SPARSE:
+				case TUI_DETAIL_MODE_G16_C8_SPARSE:
 					tuiBatchSetTile_G16_C8_SPARSE(batch, x, y, x, x % 256, y % 256);
 					break;
-				case TUI_DETAIL_G16_C8NFG_SPARSE:
+				case TUI_DETAIL_MODE_G16_C8NFG_SPARSE:
 					tuiBatchSetTile_G16_C8NFG_SPARSE(batch, x, y, x, y % 256);
 					break;
-				case TUI_DETAIL_G16_C24_SPARSE:
+				case TUI_DETAIL_MODE_G16_C24_SPARSE:
 					tuiBatchSetTile_G16_C24_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G16_C24NBG_SPARSE:
+				case TUI_DETAIL_MODE_G16_C24NBG_SPARSE:
 					tuiBatchSetTile_G16_C24NBG_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
-				case TUI_DETAIL_G16_C24NFG_SPARSE:
+				case TUI_DETAIL_MODE_G16_C24NFG_SPARSE:
 					tuiBatchSetTile_G16_C24NFG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
-				case TUI_DETAIL_G16_C32_SPARSE:
+				case TUI_DETAIL_MODE_G16_C32_SPARSE:
 					tuiBatchSetTile_G16_C32_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
-				case TUI_DETAIL_G16_C32NBG_SPARSE:
+				case TUI_DETAIL_MODE_G16_C32NBG_SPARSE:
 					tuiBatchSetTile_G16_C32NBG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
-				case TUI_DETAIL_G16_C32NFG_SPARSE:
+				case TUI_DETAIL_MODE_G16_C32NFG_SPARSE:
 					tuiBatchSetTile_G16_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
 				}
@@ -197,7 +197,7 @@ void test_BlendMode(TuiBlendMode blend_mode, TuiPanel panel)
 {
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	const char* blend_name = tuiBlendModeToString(blend_mode);
-	TuiBatch batch = test_GetTestPatternBatch(TUI_DETAIL_G8_C4_FULL);
+	TuiBatch batch = test_GetTestPatternBatch(TUI_DETAIL_MODE_G8_C4_FULL);
 	TuiPalette palette = tuiPaletteCreateXterm(16);  
 	TuiAtlas atlas = test_CreateCodepageAtlas(blend_mode);
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
@@ -254,7 +254,7 @@ void test_Palette(int palette_channel_count, TuiPanel panel)
 	tuiPanelClearColor(panel, 0, 0, 0, 255);
 	char palette_type_name[16];
 	snprintf(palette_type_name, 16, "PALETTE_%d", palette_channel_count);
-	TuiBatch batch = test_GetTestPatternBatch(TUI_DETAIL_G8_C4_FULL);
+	TuiBatch batch = test_GetTestPatternBatch(TUI_DETAIL_MODE_G8_C4_FULL);
 	uint8_t* palette_colors = new uint8_t[static_cast<size_t>(palette_channel_count) * 16]();
 	for (size_t color_i = 0; color_i < 16; color_i++)
 	{

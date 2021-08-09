@@ -40,183 +40,183 @@ typedef enum TuiDetailMode
 	 * This detail mode is returned when an error occurs, and is also used to specify that no detail mode is
 	 * defined.
 	 */
-	TUI_DETAIL_INVALID = 0,
+	TUI_DETAIL_MODE_INVALID = 0,
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with no colors.
 	 */
-	TUI_DETAIL_G8_C0_FULL =				(TUI_DETAIL_FLAG_GLYPH_8 		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C0_FULL =				(TUI_DETAIL_FLAG_GLYPH_8 		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with 4 bit colors (16 color palette).
 	 */
-	TUI_DETAIL_G8_C4_FULL =				(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C4_FULL =				(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with 8 bit colors (256 color palette).
 	 */
-	TUI_DETAIL_G8_C8_FULL =				(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C8_FULL =				(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with an 8 bit foreground color (256 color palette).
 	 */
-	TUI_DETAIL_G8_C8NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C8NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with an 8 bit background color (256 color palette).
 	 */
-	TUI_DETAIL_G8_C8NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C8NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with an 24 bit colors (RGB full color).
 	 */
-	TUI_DETAIL_G8_C24_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C24_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with a 24 bit foreground color (RGB full color).
 	 */
-	TUI_DETAIL_G8_C24NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C24NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with a 24 bit background color (RGB full color).
 	 */
-	TUI_DETAIL_G8_C24NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C24NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with an 32 bit colors (RGBA full color).
 	 */
-	TUI_DETAIL_G8_C32_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C32_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with a 32 bit foreground color (RGBA full color).
 	 */
-	TUI_DETAIL_G8_C32NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C32NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with a 32 bit background color (RGBA full color).
 	 */
-	TUI_DETAIL_G8_C32NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G8_C32NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with no colors.
 	 */
-	TUI_DETAIL_G16_C0_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C0_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with 4 bit colors (16 color palette).
 	 */
-	TUI_DETAIL_G16_C4_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C4_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with 8 bit colors (256 color palette).
 	 */
-	TUI_DETAIL_G16_C8_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C8_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with an 8 bit foreground color (256 color palette).
 	 */
-	TUI_DETAIL_G16_C8NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C8NBG_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with an 8 bit background color (256 color palette).
 	 */
-	TUI_DETAIL_G16_C8NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C8NFG_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with an 24 bit colors (RGB full color).
 	 */
-	TUI_DETAIL_G16_C24_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C24_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with a 24 bit foreground color (RGB full color).
 	 */
-	TUI_DETAIL_G16_C24NBG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C24NBG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with a 24 bit background color (RGB full color).
 	 */
-	TUI_DETAIL_G16_C24NFG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C24NFG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with a 32 bit foreground color (RGBA full color).
 	 */
-	TUI_DETAIL_G16_C32_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C32_FULL =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with a 32 bit foreground color (RGBA full color).
 	 */
-	TUI_DETAIL_G16_C32NBG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C32NBG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for full 16 bit glyph batches with a 32 bit background color (RGBA full color).
 	 */
-	TUI_DETAIL_G16_C32NFG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	TUI_DETAIL_MODE_G16_C32NFG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with no colors.
 	 */
-	TUI_DETAIL_G8_C0_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C0_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with 4 bit colors (16 color palette).
 	 */
-	TUI_DETAIL_G8_C4_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C4_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with 8 bit colors (256 color palette).
 	 */
-	TUI_DETAIL_G8_C8_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C8_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with an 8 bit foreground color (256 color palette).
 	 */
-	TUI_DETAIL_G8_C8NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C8NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with an 8 bit background color (256 color palette).
 	 */
-	TUI_DETAIL_G8_C8NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C8NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with an 24 bit colors (RGB full color).
 	 */
-	TUI_DETAIL_G8_C24_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C24_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with a 24 bit foreground color (RGB full color).
 	 */
-	TUI_DETAIL_G8_C24NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C24NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with a 24 bit background color (RGB full color).
 	 */
-	TUI_DETAIL_G8_C24NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C24NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with an 32 bit colors (RGBA full color).
 	 */
-	TUI_DETAIL_G8_C32_SPARSE = 			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C32_SPARSE = 			(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with a 32 bit foreground color (RGBA full color).
 	 */
-	TUI_DETAIL_G8_C32NBG_SPARSE = 		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C32NBG_SPARSE = 		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with a 32 bit background color (RGBA full color).
 	 */
-	TUI_DETAIL_G8_C32NFG_SPARSE = 		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G8_C32NFG_SPARSE = 		(TUI_DETAIL_FLAG_GLYPH_8		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with no colors.
 	 */
-	TUI_DETAIL_G16_C0_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C0_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with 4 bit colors (16 color palette).
 	 */
-	TUI_DETAIL_G16_C4_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C4_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_4			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with 8 bit colors (256 color palette).
 	 */
-	TUI_DETAIL_G16_C8_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C8_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8			| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with an 8 bit foreground color (256 color palette).
 	 */
-	TUI_DETAIL_G16_C8NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C8NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with an 8 bit background color (256 color palette).
 	 */
-	TUI_DETAIL_G16_C8NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C8NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_8NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with an 24 bit colors (RGB full color).
 	 */
-	TUI_DETAIL_G16_C24_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C24_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with a 24 bit foreground color (RGB full color).
 	 */
-	TUI_DETAIL_G16_C24NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C24NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with a 24 bit background color (RGB full color).
 	 */
-	TUI_DETAIL_G16_C24NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C24NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_24NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with an 24 bit colors (RGBA full color).
 	 */
-	TUI_DETAIL_G16_C32_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C32_SPARSE =			(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with a 32 bit foreground color (RGBA full color).
 	 */
-	TUI_DETAIL_G16_C32NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	TUI_DETAIL_MODE_G16_C32NBG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NBG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 16 bit glyph batches with a 32 bit background color (RGBA full color).
 	 */
-	TUI_DETAIL_G16_C32NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE)
+	TUI_DETAIL_MODE_G16_C32NFG_SPARSE =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_SPARSE)
 } TuiDetailMode;
 
 
@@ -318,179 +318,179 @@ extern const size_t kTui_Detail_G16_C32NFG_Size;
  *  These are const string names of @ref TuiDetailMode enum values.
  *  @{ */
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C0_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C0_FULL.
  */
 extern const char* kTui_Detail_G8_C0_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C4_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C4_FULL.
  */
 extern const char* kTui_Detail_G8_C4_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C8_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C8_FULL.
  */
 extern const char* kTui_Detail_G8_C8_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C8NBG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C8NBG_FULL.
  */
 extern const char* kTui_Detail_G8_C8NBG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C8NFG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C8NFG_FULL.
  */
 extern const char* kTui_Detail_G8_C8NFG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C24_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C24_FULL.
  */
 extern const char* kTui_Detail_G8_C24_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C24NBG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C24NBG_FULL.
  */
 extern const char* kTui_Detail_G8_C24NBG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C24NFG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C24NFG_FULL.
  */
 extern const char* kTui_Detail_G8_C24NFG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C32_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C32_FULL.
  */
 extern const char* kTui_Detail_G8_C32_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C32NBG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C32NBG_FULL.
  */
 extern const char* kTui_Detail_G8_C32NBG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C32NFG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C32NFG_FULL.
  */
 extern const char* kTui_Detail_G8_C32NFG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C0_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C0_FULL.
  */
 extern const char* kTui_Detail_G16_C0_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C4_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C4_FULL.
  */
 extern const char* kTui_Detail_G16_C4_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C8_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C8_FULL.
  */
 extern const char* kTui_Detail_G16_C8_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C8NBG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C8NBG_FULL.
  */
 extern const char* kTui_Detail_G16_C8NBG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C8NFG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C8NFG_FULL.
  */
 extern const char* kTui_Detail_G16_C8NFG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C24_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C24_FULL.
  */
 extern const char* kTui_Detail_G16_C24_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C24NBG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C24NBG_FULL.
  */
 extern const char* kTui_Detail_G16_C24NBG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C24NFG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C24NFG_FULL.
  */
 extern const char* kTui_Detail_G16_C24NFG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C32_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C32_FULL.
  */
 extern const char* kTui_Detail_G16_C32_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C32NBG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C32NBG_FULL.
  */
 extern const char* kTui_Detail_G16_C32NBG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C32NFG_FULL.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C32NFG_FULL.
  */
 extern const char* kTui_Detail_G16_C32NFG_Full_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C0_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C0_SPARSE.
  */
 extern const char* kTui_Detail_G8_C0_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C4_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C4_SPARSE.
  */
 extern const char* kTui_Detail_G8_C4_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C8_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C8_SPARSE.
  */
 extern const char* kTui_Detail_G8_C8_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C8NBG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C8NBG_SPARSE.
  */
 extern const char* kTui_Detail_G8_C8NBG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C8NFG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C8NFG_SPARSE.
  */
 extern const char* kTui_Detail_G8_C8NFG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C24_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C24_SPARSE.
  */
 extern const char* kTui_Detail_G8_C24_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C24NBG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C24NBG_SPARSE.
  */
 extern const char* kTui_Detail_G8_C24NBG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C24NFG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C24NFG_SPARSE.
  */
 extern const char* kTui_Detail_G8_C24NFG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C32_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C32_SPARSE.
  */
 extern const char* kTui_Detail_G8_C32_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C32NBG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C32NBG_SPARSE.
  */
 extern const char* kTui_Detail_G8_C32NBG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G8_C32NFG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G8_C32NFG_SPARSE.
  */
 extern const char* kTui_Detail_G8_C32NFG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C0_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C0_SPARSE.
  */
 extern const char* kTui_Detail_G16_C0_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C4_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C4_SPARSE.
  */
 extern const char* kTui_Detail_G16_C4_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C8_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C8_SPARSE.
  */
 extern const char* kTui_Detail_G16_C8_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C8NBG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C8NBG_SPARSE.
  */
 extern const char* kTui_Detail_G16_C8NBG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C8NFG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C8NFG_SPARSE.
  */
 extern const char* kTui_Detail_G16_C8NFG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C24_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C24_SPARSE.
  */
 extern const char* kTui_Detail_G16_C24_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C24NBG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C24NBG_SPARSE.
  */
 extern const char* kTui_Detail_G16_C24NBG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C24NFG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C24NFG_SPARSE.
  */
 extern const char* kTui_Detail_G16_C24NFG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C32_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C32_SPARSE.
  */
 extern const char* kTui_Detail_G16_C32_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C32NBG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C32NBG_SPARSE.
  */
 extern const char* kTui_Detail_G16_C32NBG_Sparse_Name;
 /*!
- * @brief String name of @ref TUI_DETAIL_G16_C32NFG_SPARSE.
+ * @brief String name of @ref TUI_DETAIL_MODE_G16_C32NFG_SPARSE.
  */
 extern const char* kTui_Detail_G16_C32NFG_Sparse_Name;
 /* @) */

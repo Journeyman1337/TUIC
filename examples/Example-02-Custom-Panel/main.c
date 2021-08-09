@@ -76,7 +76,7 @@ int main()
     glyph_bounding_boxes = TUI_NULL;
 
     /* Create the batch */
-    TuiDetailMode detail_mode = TUI_DETAIL_G16_C24_FULL;
+    TuiDetailMode detail_mode = TUI_DETAIL_MODE_G16_C24_FULL;
     TuiBatch batch = tuiBatchCreate(detail_mode, kTilesTall, kTilesWide);
 
     /* Fill the batch with data */

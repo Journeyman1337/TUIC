@@ -131,7 +131,7 @@ int main()
     sPalette = tuiPaletteCreateXterm(palette_color_count);
 
     /* Create the batch */
-    TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_SPARSE;
+    TuiDetailMode detail_mode = TUI_DETAIL_MODE_G8_C4_SPARSE;
     sBatch = tuiBatchCreate(detail_mode, kTilesTall, kTilesWide);
 
     /* Create the window. */

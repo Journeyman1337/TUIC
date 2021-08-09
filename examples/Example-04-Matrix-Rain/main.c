@@ -126,7 +126,7 @@ int main()
     TuiPalette palette = tuiPaletteCreate(palette_channel_count, palette_color_count, palette_colors);
 
     /* Create the batch (tile rendering data container) */
-    TuiDetailMode detail_mode = TUI_DETAIL_G8_C4_SPARSE; // same as (TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_COLOR_4 | TUI_DETAIL_FLAG_LAYOUT_SPARSE)
+    TuiDetailMode detail_mode = TUI_DETAIL_MODE_G8_C4_SPARSE; // same as (TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_COLOR_4 | TUI_DETAIL_FLAG_LAYOUT_SPARSE)
     TuiBatch batch = tuiBatchCreate(detail_mode, tiles_wide, tiles_tall);
 
     /* Render initial clear color to window. */

@@ -247,7 +247,7 @@ void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C0_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C0_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -269,7 +269,7 @@ void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C4_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C4_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -291,7 +291,7 @@ void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C8_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -314,7 +314,7 @@ void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C8NBG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NBG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -336,7 +336,7 @@ void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C8NFG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NFG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -357,7 +357,7 @@ void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C24_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -384,7 +384,7 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C24NBG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NBG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -408,7 +408,7 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C24NFG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NFG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -433,7 +433,7 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C32_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -462,7 +462,7 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C32NBG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NBG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -487,7 +487,7 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C32NFG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NFG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -512,7 +512,7 @@ void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C0_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C0_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -534,7 +534,7 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C4_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C4_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
 		return;
@@ -557,7 +557,7 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C8_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -581,7 +581,7 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C8NBG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NBG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -604,7 +604,7 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C8NFG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NFG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
 		return;
@@ -627,7 +627,7 @@ void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C24_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -655,7 +655,7 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C24NBG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NBG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -680,7 +680,7 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C24NFG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NFG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -705,7 +705,7 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C32_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -735,7 +735,7 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C32NBG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NBG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -761,7 +761,7 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C32NFG_FULL)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NFG_FULL)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -787,7 +787,7 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C0_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C0_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -830,7 +830,7 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C4_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C4_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -873,7 +873,7 @@ void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C8_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -917,7 +917,7 @@ void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C8NBG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NBG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -960,7 +960,7 @@ void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C8NFG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NFG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1003,7 +1003,7 @@ void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C24_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1051,7 +1051,7 @@ void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C24NBG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NBG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1096,7 +1096,7 @@ void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C24NFG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NFG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1141,7 +1141,7 @@ void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C32_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1191,7 +1191,7 @@ void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C32NBG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NBG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1237,7 +1237,7 @@ void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G8_C32NFG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NFG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1283,7 +1283,7 @@ void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C0_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C0_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1326,7 +1326,7 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C4_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C4_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1370,7 +1370,7 @@ void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C8_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1415,7 +1415,7 @@ void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C8NBG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NBG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1459,7 +1459,7 @@ void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C8NFG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NFG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1503,7 +1503,7 @@ void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C24_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1552,7 +1552,7 @@ void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C24NBG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NBG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1598,7 +1598,7 @@ void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C24NFG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NFG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1644,7 +1644,7 @@ void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C32_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1695,7 +1695,7 @@ void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C32NBG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NBG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;
@@ -1742,7 +1742,7 @@ void tuiBatchSetTile_G16_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (batch->DetailMode != TUI_DETAIL_G16_C32NFG_SPARSE)
+	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NFG_SPARSE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
 		return;

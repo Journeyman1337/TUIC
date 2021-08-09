@@ -189,7 +189,7 @@ int tuiBatchGetTileCount(TuiBatch batch);
  */
 void tuiBatchClear(TuiBatch batch);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C0_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C0_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -204,7 +204,7 @@ void tuiBatchClear(TuiBatch batch);
  */
 void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C4_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C4_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -220,7 +220,7 @@ void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph);
  */
 void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C8_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -237,7 +237,7 @@ void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
  */
 void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C8NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -253,7 +253,7 @@ void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
  */
 void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C8NFG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8NFG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -269,7 +269,7 @@ void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
  */
 void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C24_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -290,7 +290,7 @@ void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
  */
 void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C24NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -308,7 +308,7 @@ void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
  */
 void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C24NFG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24NFG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -326,7 +326,7 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  */
 void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C32_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -349,7 +349,7 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  */
 void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C32NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -368,7 +368,7 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
  */
 void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C32NFG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32NFG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -387,7 +387,7 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  */
 void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C0_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C0_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -402,7 +402,7 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
  */
 void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C4_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C4_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -418,7 +418,7 @@ void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph);
  */
 void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C8_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -435,7 +435,7 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
  */
 void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C8NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -451,7 +451,7 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
  */
 void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C8NFG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8NFG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -467,7 +467,7 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
  */
 void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C24_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -488,7 +488,7 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
  */
 void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C24NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -506,7 +506,7 @@ void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
  */
 void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C24NFG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24NFG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -524,7 +524,7 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  */
 void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C32_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -547,7 +547,7 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  */
 void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C32NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -566,7 +566,7 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
  */
 void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C32NFG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32NFG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -585,7 +585,7 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  */
 void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C0_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C0_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -600,7 +600,7 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  */
 void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C4_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C4_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -616,7 +616,7 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph);
  */
 void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C8_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -633,7 +633,7 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
  */
 void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C8NBG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8NBG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -649,7 +649,7 @@ void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
  */
 void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C8NFG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8NFG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -665,7 +665,7 @@ void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
  */
 void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C24_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -686,7 +686,7 @@ void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
  */
 void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C24NBG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24NBG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -704,7 +704,7 @@ void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
  */
 void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C24NFG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24NFG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -722,7 +722,7 @@ void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  */
 void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C32_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -745,7 +745,7 @@ void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  */
 void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C32NBG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32NBG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -764,7 +764,7 @@ void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
  */
 void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G8_C32NFG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32NFG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -783,7 +783,7 @@ void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  */
 void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C0_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C0_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -798,7 +798,7 @@ void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
  */
 void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C4_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C4_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -814,7 +814,7 @@ void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
  */
 void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C8_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -831,7 +831,7 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
  */
 void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C8NBG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8NBG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -847,7 +847,7 @@ void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
  */
 void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C8NFG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8NFG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -863,7 +863,7 @@ void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
  */
 void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C24_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -884,7 +884,7 @@ void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
  */
 void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C24NBG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24NBG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -902,7 +902,7 @@ void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
  */
 void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C24NFG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24NFG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -920,7 +920,7 @@ void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
  */
 void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C32_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -943,7 +943,7 @@ void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
  */
 void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C32NBG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32NBG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -962,7 +962,7 @@ void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
  */
 void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G16_C32NFG_SPARSE detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32NFG_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
