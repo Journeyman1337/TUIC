@@ -273,6 +273,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Event_Timeout_Name;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Name;
+	case TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION:
+		return kTui_Error_Invalid_Glfw_Library_Version_Name;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
 		return kTui_Error_Invalid_Glyph_Count_Name;
 	case TUI_ERROR_INVALID_GLYPH_DIMENSIONS:
@@ -509,6 +511,10 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	else if (strcmp(str, kTui_Error_Invalid_Filter_Mode_Name) == 0)
 	{
 		return TUI_ERROR_INVALID_FILTER_MODE;
+	}
+	else if (strcmp(str, kTui_Error_Invalid_Glfw_Library_Version_Name) == 0)
+	{
+		return TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION;
 	}
 	else if (strcmp(str, kTui_Error_Invalid_Glyph_Count_Name) == 0)
 	{
@@ -755,6 +761,8 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Event_Timeout_Description;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Description;
+	case TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION:
+		return kTui_Error_Invalid_Glfw_Library_Version_Description;
 	case TUI_ERROR_INVALID_GLYPH_COUNT:
 		return kTui_Error_Invalid_Glyph_Count_Description;
 	case TUI_ERROR_INVALID_GLYPH_DIMENSIONS:
