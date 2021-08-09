@@ -40,7 +40,7 @@ extern "C" {
  */
 typedef void(*tuiDebugErrorCallback) (TuiErrorCode error_code, const char* msg);
 /*!
- * @brief Set the callback function to handle debug output from TUI. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to @ref TUI_NULL will disable the callback.
+ * @brief Set the callback function to handle debug output from TUIC. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to @ref TUI_NULL will disable the callback.
  *
  * @param callack A function pointer to the callback.
  * 
