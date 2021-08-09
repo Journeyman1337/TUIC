@@ -11,7 +11,6 @@ TEST_CASE("tuiKeyboardModToString") {
     REQUIRE(std::string(tuiKeyboardModToString(TUI_MOD_CAPS_LOCK)) == std::string("MOD_CAPS_LOCK"));
     REQUIRE(std::string(tuiKeyboardModToString(TUI_MOD_NUM_LOCK)) == std::string("MOD_NUM_LOCK"));
     REQUIRE(std::string(tuiKeyboardModToString(TUI_MOD_NONE)) == std::string("MOD_NONE"));
-    REQUIRE(std::string(tuiKeyboardModToString(TUI_MOD_ALL)) == std::string("MOD_ALL"));
 }
 
 TEST_CASE("tuiStringToKeyboardMod") {
@@ -22,5 +21,4 @@ TEST_CASE("tuiStringToKeyboardMod") {
     REQUIRE(tuiStringToKeyboardMod("MOD_CAPS_LOCK") == TUI_MOD_CAPS_LOCK);
     REQUIRE(tuiStringToKeyboardMod("MOD_NUM_LOCK") == TUI_MOD_NUM_LOCK);
     REQUIRE(tuiStringToKeyboardMod("MOD_NONE") == TUI_MOD_NONE);
-    REQUIRE(tuiStringToKeyboardMod("MOD_ALL") == TUI_MOD_ALL);
 }
