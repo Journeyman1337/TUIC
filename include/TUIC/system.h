@@ -97,20 +97,6 @@ TuiBoolean tuiRawMouseMotionSupported();
  */
 TuiBoolean tuiWindowIconsSupported();
 /*!
- * @brief Determine if a @ref TuiCursorShape is supported by the current platform.
- *
- * @param cursor_shape The @ref TuiCursorShape to check.
- *
- * @returns The @ref TuiBoolean result. If it cursor_shape is a @ref TuiCursorShape supported on the current platform, it
- * returns @ref TuiTrue. Otherwise, it returns @ref TuiFalse.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiCursorShapeSupported(TuiCursorShape cursor_shape);
 /*
  * @brief Get the clipboard text o.
  *
