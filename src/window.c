@@ -1236,7 +1236,7 @@ void tuiWindowSetDefaultIcon(TuiWindow window)
 	}
 }
 
-void _WindowSetIcon(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels)
+void _WindowSetIcon(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels, const char* func_name)
 {
 
 	GLFWimage icon_images[3];
@@ -1244,17 +1244,17 @@ void _WindowSetIcon(TuiWindow window, int pixel_width, int pixel_height, const u
 	unsigned char level1pixels[16 * 16 * 4];
 	icon_images[0].width = 16;
 	icon_images[0].height = 16;
-	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 16, 16, level1pixels, __func__);
+	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 16, 16, level1pixels, func_name);
 
 	unsigned char level2pixels[32 * 32 * 4];
 	icon_images[1].width = 32;
 	icon_images[1].height = 32;
-	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 32, 32, level1pixels, __func__);
+	icon_images[1].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 32, 32, level2pixels, func_name);
 
 	unsigned char level3pixels[48 * 48 * 4];
 	icon_images[2].width = 48;
 	icon_images[2].height = 48;
-	icon_images[0].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 64, 64, level1pixels, __func__);
+	icon_images[2].pixels = _ResizeImageData(pxiels, pixel_width, pixel_height, 4, 48, 48, level3pixels, func_name);
 
 	glfwSetWindowIcon(window->GlfwWindow, 3, icon_images);
 }
@@ -1288,7 +1288,7 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 		return;
 	}
 
-	_WindowSetIcon(window, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->PixelData);
+	_WindowSetIcon(window, icon_image->PixelWidth, icon_image->PixelHeight, icon_image->PixelData, __func__);
 
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
@@ -1327,7 +1327,7 @@ void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_heig
 		return;
 	}
 
-	_WindowSetIcon(window, pixel_width, pixel_height, pxiels);
+	_WindowSetIcon(window, pixel_width, pixel_height, pxiels, __func__);
 
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
