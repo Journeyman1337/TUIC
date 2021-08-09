@@ -60,6 +60,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 		}
 		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t); //used indices keep track of tiles set since the last clear, so that two tiles are not set in the same position by mistake
 		batch->SparseUsedIndices = tuiAllocate(batch->SparseUsedIndicesSize);
+		memset(batch->SparseUsedIndices, 0, batch->SparseUsedIndicesSize);
 	}
 	else if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_FULL) == TUI_TRUE)
 	{
@@ -68,6 +69,7 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall * sizeof(uint8_t);
 	batch->ReservedDataSize = batch->UsedDataSize;
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
+	memset(batch->Data, 0, batch->ReservedDataSize);
 	
 	return batch;
 }
