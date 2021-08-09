@@ -33,7 +33,7 @@ extern "C" {
 /*!
  * \brief Value for when a pointer is not allocated.
  */
-#define TUI_NULL 0 //defining manually instead of including stddef.h
+#define TUI_NULL 0
 
 
 /*! @name Opaque Object Types
