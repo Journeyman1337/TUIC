@@ -46,13 +46,13 @@ extern "C" {
  */
 typedef void (* tuiWindowMoveFunction)(TuiWindow window, int x_position, int y_position);
 /*!
- * @brief Callback type used for TuiWindow close events.
+ * @brief Callback type used for @ref TuiWindow close events.
  *
  * @params window The @ref TuiWindow that caused the event.
  */
 typedef void (* tuiWindowCloseFunction)(TuiWindow window);
 /*!
- * @brief Callback type used for  @ref TuiWindow focus events.
+ * @brief Callback type used for @ref TuiWindow focus events.
  *
  * @param window The @ref TuiWindow that captured the event.
  * @param focused If the window gained or lost focus.
@@ -66,14 +66,14 @@ typedef void (* tuiWindowFocusFunction)(TuiWindow window, TuiBoolean focused);
  */
 typedef void (* tuiWindowIconifyFunction)(TuiWindow window,TuiBoolean iconified);
 /*!
- * @brief Callback type used for  @ref TuiWindow maximize events.
+ * @brief Callback type used for @ref TuiWindow maximize events.
  *
  * @param window The @ref TuiWindow that captured the event.
  * @param maximized If the window maximized or restored from a maximize.
  */
 typedef void (* tuiWindowMaximizeFunction)(TuiWindow window, TuiBoolean maximized);
 /*!
- * @brief Callback type used for  @ref TuiWindow viewport resize events.
+ * @brief Callback type used for @ref TuiWindow viewport resize events.
  *
  * @param window The @ref TuiWindow that captured the event.
  * @param pixel_width The new pixel width of the window's viewport.
@@ -81,7 +81,7 @@ typedef void (* tuiWindowMaximizeFunction)(TuiWindow window, TuiBoolean maximize
  */
 typedef void (* tuiWindowViewportResizeFunction)(TuiWindow window, int pixel_width, int pixel_height);
 /*!
- * @brief Callback type used for TuiWindow content scale.
+ * @brief Callback type used for @ref TuiWindow content scale.
  *
  * @param window The @ref TuiWindow that captured the event.
  * @param scale_wide The new scale wide of the window.
@@ -113,7 +113,7 @@ typedef void (* tuiCursorMoveFunction)(TuiWindow window, double x_position, doub
  */
 typedef void (* tuiCursorEnterFunction)(TuiWindow window, TuiBoolean entered);
 /*!
- * @brief Callback type used for  @ref TuiWindow mouse scroll events.
+ * @brief Callback type used for @ref TuiWindow mouse scroll events.
  *
  * @param window The @ref TuiWindow that captured the event.
  * @param x_translate The horizontal mouse scroll distance.
