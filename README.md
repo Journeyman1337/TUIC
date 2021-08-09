@@ -8,16 +8,15 @@ TUIC is an open source, backend agnostic Text-User-Interface rendering library w
 # Features
 
 
- * Highly customizable TUI tile based rendering, with support for multiple color, glyph, and layout modes.
- * Backend agnostic tools for rendering TUI batches to framebuffers and rendering framebuffers to each other or to the screen.
- * An interface for implementing custom TUI rendering backends that integrate cleanly with the library.
- * An included rendering backend that uses Opengl 3.3.
+ * Highly customizable TUI tile based rendering, with support for multiple color, glyph, and layout modes using Opengl 3.3.
+ * Tools for rendering TUI batches to framebuffers and rendering framebuffers to each other or to the screen.
+ * A fully integrated windowing and input management system, with support for rendering to multiple windows at once.
  * PNG image loading, saving, and manipulation tools.
  * A system for creating and employing custom glyph atlases. 
  * Tools for the control of color palettes, including built in XTerm palette generation.
  * Built in tile data batching mechanism designed to pack the bytes in as little space as possible for extreme performance.
  * Modern object oriented design with well defined rules for creation and destruction of the included opaque C structs.
- * An included debug error callback system with verbose messages.
+ * An included debug error callback system with verbose error descriptions.
  
 # Showcase
 
