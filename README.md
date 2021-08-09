@@ -20,4 +20,4 @@ TUIC is an open source, backend agnostic Text-User-Interface rendering library w
  
 # Showcase
 
- * [Matrix rain example video](https://youtu.be/XbBF8AwEcwg)
+ * [Matrix rain example video](https://www.youtube.com/watch?v=gazj_BWtqNM)
