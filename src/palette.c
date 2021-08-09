@@ -19,6 +19,7 @@
 */
 #include <TUIC/tuic.h>
 #include "objects.h"
+#include "opengl33.h"
 
 #include <stdlib.h>
 #include <stdio.h>
