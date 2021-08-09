@@ -50,11 +50,11 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     if (key == TUIK_C && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
     {
         sText[sTextSize] = '\0';
-        tuiWindowSetClipboardString(window, sText);
+        tuiSetClipboardString(sText);
     }
     else if (key == TUIK_V && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
     {
-        const char* clipboard_string = tuiWindowGetClipboardString(window);
+        const char* clipboard_string = tuiGetClipboardString();
         size_t new_text_size = strlen(clipboard_string);
         if (new_text_size > sMaxTextSize)
         {
@@ -67,7 +67,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     else if (key == TUIK_X && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
     {
         sText[sTextSize] = '\0';
-        tuiWindowSetClipboardString(window, sText);
+        tuiSetClipboardString(sText);
         sTextSize = 0;
         update_batch();
     }
