@@ -245,7 +245,7 @@ inline int GetColorModeUniformValue(TuiDetailFlag color_mode)
 		return 1;
 	case TUI_DETAIL_FLAG_COLOR_8NBG:
 		return 2;
-	case TUI_DETAIL_FLAG_COLOR_8NBG;
+	case TUI_DETAIL_FLAG_COLOR_8NBG:
 		return 3;
 	case TUI_DETAIL_FLAG_COLOR_8NFG:
 		return 4;
