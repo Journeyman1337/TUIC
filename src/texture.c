@@ -22,7 +22,7 @@
 
 static int sTextureCount = 0;
 
-TuiTexture tuiTextureCreate(TuiImage image, TuiFilterMode filter_mode)
+TuiTexture tuiTextureCreateImage(TuiImage image, TuiFilterMode filter_mode)
 {
 	TuiSystem system = tui_get_system();
 	if (system == TUI_NULL)
