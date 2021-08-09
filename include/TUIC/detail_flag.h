@@ -109,63 +109,63 @@ typedef enum TuiDetailFlag
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_GLYPH_8.
  */
-extern const char* kTui_Glyph_Flag_G8_Name;
+extern const char* kTui_Detail_Flag_G8_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_GLYPH_16.
  */
-extern const char* kTui_Glyph_Flag_G16_Name;
+extern const char* kTui_Detail_Flag_G16_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_0.
  */
-extern const char* kTui_Color_Flag_C0_Name;
+extern const char* kTui_Detail_Flag_C0_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_4.
  */
-extern const char* kTui_Color_Flag_C4_Name;
+extern const char* kTui_Detail_Flag_C4_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_8.
  */
-extern const char* kTui_Color_Flag_C8_Name;
+extern const char* kTui_Detail_Flag_C8_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_8NBG.
  */
-extern const char* kTui_Color_Flag_C8NBG_Name;
+extern const char* kTui_Detail_Flag_C8NBG_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_8NFG.
  */
-extern const char* kTui_Color_Flag_C8NFG_Name;
+extern const char* kTui_Detail_Flag_C8NFG_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_24.
  */
-extern const char* kTui_Color_Flag_C24_Name;
+extern const char* kTui_Detail_Flag_C24_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_24NBG.
  */
-extern const char* kTui_Color_Flag_C24NBG_Name;
+extern const char* kTui_Detail_Flag_C24NBG_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_24NFG.
  */
-extern const char* kTui_Color_Flag_C24NFG_Name;
+extern const char* kTui_Detail_Flag_C24NFG_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_32.
  */
-extern const char* kTui_Color_Flag_C32_Name;
+extern const char* kTui_Detail_Flag_C32_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_32NBG.
  */
-extern const char* kTui_Color_Flag_C32NBG_Name;
+extern const char* kTui_Detail_Flag_C32NBG_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_COLOR_32NFG.
  */
-extern const char* kTui_Color_Flag_C32NFG_Name;
+extern const char* kTui_Detail_Flag_C32NFG_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_LAYOUT_FULL.
  */
-extern const char* kTui_Layout_Flag_Full_Name;
+extern const char* kTui_Detail_Flag_Full_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_LAYOUT_SPARSE.
  */
-extern const char* kTui_Layout_Flag_Sparse_Name;
+extern const char* kTui_Detail_Flag_Sparse_Name;
 /*! @} */
 
 
