@@ -190,7 +190,7 @@ void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint
  * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOWand @ref TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and @ref TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -294,7 +294,7 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
  * @param window The @ref TuiWindow.
  * @param atlas The @ref TuiAtlas.
  * @param palette The @ref TuiPalette.
- * @param detail_mode THe @ref TuiDetailMode of the batch data.
+ * @param detail_mode The @ref TuiDetailMode of the batch data.
  * @param tiles_wide The tiles wide of the batch data.
  * @param tiles_tall The tiles tall of the batch data.
  * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
@@ -332,7 +332,7 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
  * @param window The @ref TuiWindow.
  * @param atlas The @ref TuiAtlas.
  * @param palette The @ref TuiPalette.
- * @param detail_mode THe @ref TuiDetailMode of the batch data.
+ * @param detail_mode The @ref TuiDetailMode of the batch data.
  * @param tiles_wide The tiles wide of the batch data.
  * @param tiles_tall The tiles tall of the batch data.
  * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
@@ -342,7 +342,7 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
  * @param top_y The topmost y pixel coordinate of the draw rect within the window.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_BATCH_DATA, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1104,7 +1104,7 @@ void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominat
  * 
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1116,7 +1116,7 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1131,7 +1131,7 @@ void tuiWindowUnfixAspectRatio(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window has a fixed aspect ratio, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1145,7 +1145,7 @@ TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window);
  * @param numerator A pointer to where to store the numerator. If @ref TUI_NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
  * @param numerator A pointer to where to store the denominator. If @ref TUI_NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1159,7 +1159,7 @@ void tuiWindowGetAspectRatio(TuiWindow, int* numerator, int* denominator);
  * @param numerator A pointer to where to store the numerator. If @ref TUI_NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
  * @param numerator A pointer to where to store the denominator. If @ref TUI_NULL or an error occurs, it is ignored. IF the window has no fixed aspect ratio, 0 is stored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1173,7 +1173,7 @@ void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_
  * 
  * @returns The content scale wide of the window.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1187,7 +1187,7 @@ float tuiWindowGetContentScaleWide(TuiWindow window);
  *
  * @returns The content scale tall of the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1199,7 +1199,7 @@ float tuiWindowGetContentScaleTall(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1211,7 +1211,7 @@ void tuiWindowIconify(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1223,7 +1223,7 @@ void tuiWindowRestore(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1235,7 +1235,7 @@ void tuiWindowMaximize(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1247,7 +1247,7 @@ void tuiWindowShow(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1259,7 +1259,7 @@ void tuiWindowHide(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1271,7 +1271,7 @@ void tuiWindowFocus(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1285,7 +1285,7 @@ void tuiWindowRequestAttention(TuiWindow window);
  * 
  * @returns monitor The @ref TuiMonitor that the window is on.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1297,7 +1297,7 @@ TuiMonitor tuiWindowGetMonitor(TuiWindow window);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1310,7 +1310,7 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window);
  * @param window The @ref TuiWindow.
  * @param monitor The @ref TuiMonitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1322,7 +1322,7 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor);
  *
  * @param window The @ref TuiWindow.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1336,7 +1336,7 @@ void tuiWindowSetWindowed(TuiWindow window);
  * @param viewport_pixel_width The pixel width of the viewport.
  * @param viewport_pixel_height The pixel height of the viewport.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1350,7 +1350,7 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
  * 
  * @returns The pixel width of the viewport of the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1364,7 +1364,7 @@ int tuiWindowGetViewportPixelWidth(TuiWindow window);
  *
  * @returns The pixel height of the viewport of the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1380,7 +1380,7 @@ int tuiWindowGetViewportPixelHeight(TuiWindow window);
  *
  * @returns The pixel height of the viewport of the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1393,7 +1393,7 @@ void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* pixel_width, int*
  * @param window The @ref TuiWindow.
  * @param framebuffer_matches_viewport_size If the framebuffer size matches the viewport size of the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1407,7 +1407,7 @@ void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean fra
  * 
  * @returns If the framebuffer size matches the viewport size of the window.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1422,7 +1422,7 @@ TuiBoolean tuiWindowGetFramebufferMatchesViewportSize(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window is currently fullscreen, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1437,7 +1437,7 @@ TuiBoolean tuiWindowGetIsFullscreen(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window currently has input focus, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1452,7 +1452,7 @@ TuiBoolean tuiWindowGetFocused(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window is currently minimized, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1467,7 +1467,7 @@ TuiBoolean tuiWindowGetIconified(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window is currently maximized, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1482,7 +1482,7 @@ TuiBoolean tuiWindowGetMaximized(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the mouse is currently within the window, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1497,7 +1497,7 @@ TuiBoolean tuiWindowGetMouseEntered(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window is currently visible, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1512,7 +1512,7 @@ TuiBoolean tuiWindowGetVisible(TuiWindow window);
  * @returns The @ref TuiBoolean result. If the window is currently resizable, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1525,7 +1525,7 @@ TuiBoolean tuiWindowGetResizable(TuiWindow window);
  * @param window The @ref TuiWindow.
  * @param resizable If the window should be resizable or not.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1540,7 +1540,7 @@ void tuiWindowSetResizable(TuiWindow window, TuiBoolean resizable);
  * @returns The @ref TuiBoolean result. If the window is currently decorated, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1553,7 +1553,7 @@ TuiBoolean tuiWindowGetDecorated(TuiWindow window);
  * @param window The @ref TuiWindow.
  * @param resizable If the window should be resizable.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1568,7 +1568,7 @@ void tuiWindowSetDecorated(TuiWindow window, TuiBoolean decorated);
  * @returns The @ref TuiBoolean result. If the window is currently topmost, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1581,7 +1581,7 @@ TuiBoolean tuiWindowGetTopmost(TuiWindow window);
  * @param window The @ref TuiWindow.
  * @param resizable If the window should be resizable.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1596,7 +1596,7 @@ void tuiWindowSetTopmost(TuiWindow window, TuiBoolean topmost);
  * @returns The @ref TuiBoolean result. If the window currently focuses on show, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1609,7 +1609,7 @@ TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window);
  * @param window The @ref TuiWindow.
  * @param resizable If the window should be resizable.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_WINDOW and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1622,7 +1622,7 @@ void tuiWindowSetFocusOnShow(TuiWindow window, TuiBoolean focus_on_show);
  * @param window The @ref TuiWindow.
  * @param ptr The user pointer.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1636,7 +1636,7 @@ void tuiWindowSetUserPointer(TuiWindow window, void* ptr);
  *
  * @returns The user pointer.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1649,7 +1649,7 @@ void* tuiWindowGetUserPointer(TuiWindow window);
  * @param window The @ref TuiWindow.
  * @param cursor The @ref TuiCursor.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1662,7 +1662,7 @@ void tuiWindowSetCursor(TuiWindow window, TuiCursor cursor);
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowMoveFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1675,7 +1675,7 @@ tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFu
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowCloseFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1688,7 +1688,7 @@ tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowClos
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowFocusFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1701,7 +1701,7 @@ tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocu
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowIconifyFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1714,7 +1714,7 @@ tuiWindowIconifyFunction tuiWindowSetIconifyCallback(TuiWindow window, tuiWindow
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowMaximizeFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1727,7 +1727,7 @@ tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWind
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowViewportResizeFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1740,7 +1740,7 @@ tuiWindowViewportResizeFunction tuiWindowSetViewportResizeCallback(TuiWindow win
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiWindowContentScaleFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1753,7 +1753,7 @@ tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window,
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiKeyboardKeyboardKeyFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1766,7 +1766,7 @@ tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window,
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiCharFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1779,7 +1779,7 @@ tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callb
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiMouseButtonFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1792,7 +1792,7 @@ tuiMouseButtonFunction tuiWindowSetMouseButtonCallback(TuiWindow window, tuiMous
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiCursorMoveFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1805,7 +1805,7 @@ tuiCursorMoveFunction tuiWindowSetCursorMoveCallback(TuiWindow window, tuiCursor
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiCursorEnterFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1818,7 +1818,7 @@ tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCurs
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiMouseScrollFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -1831,7 +1831,7 @@ tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMous
  * @param window The @ref TuiWindow.
  * @param callback The @ref tuiFileDropFunction.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immmediatly return.
+ * @errors Can have the error @ref TUI_ERROR_NULL_WINDOW and immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *

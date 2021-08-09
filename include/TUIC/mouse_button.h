@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Mouse Buttons
- *  @{ */
 /*!
  * @brief Mouse buttons.
  */
@@ -114,7 +112,6 @@ typedef enum TuiMouseButton
 	 */
 	TUI_MOUSE_BUTTON_X5		  = TUI_MOUSE_BUTTON_8
 } TuiMouseButton;
-/*! @} */
 
 
 /*! @name Mouse Button Names

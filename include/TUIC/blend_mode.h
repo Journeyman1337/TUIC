@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Blend Modes
- *  @{ */
 /*!
 * @brief How the to blend the foreground and background colors with the channels of a @ref TuiAtlas when drawing batch data.
 */
@@ -86,7 +84,6 @@ typedef enum TuiBlendMode
 	 */
 	TUI_BLEND_LAST = TUI_BLEND_BG_ALPHA
 } TuiBlendMode;
-/*! @} */
 
 
 /*! @name Blend Mode Names

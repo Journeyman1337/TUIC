@@ -64,7 +64,7 @@ typedef enum TuiCursorShape
 	 */
 	TUI_CURSOR_SHAPE_RESIZE_NS      = 0x00036006,
 	/*!
-	 * \brief THe northwest-southeast resize cursor.
+	 * \brief The northwest-southeast resize cursor.
 	 */
 	TUI_CURSOR_SHAPE_RESIZE_NWSE    = 0x00036007,
 	/*!

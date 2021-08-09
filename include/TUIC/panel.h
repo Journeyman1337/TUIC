@@ -211,7 +211,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
  * @param panel The @ref TuiPanel.
  * @param atlas The @ref TuiAtlas.
  * @param palette The @ref TuiPalette.
- * @param detail_mode THe @ref TuiDetailMode of the batch data.
+ * @param detail_mode The @ref TuiDetailMode of the batch data.
  * @param tiles_wide The tiles wide of the batch data.
  * @param tiles_tall The tiles tall of the batch data.
  * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
@@ -249,7 +249,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
  * @param panel The @ref TuiPanel.
  * @param atlas The @ref TuiAtlas.
  * @param palette The @ref TuiPalette.
- * @param detail_mode THe @ref TuiDetailMode of the batch data.
+ * @param detail_mode The @ref TuiDetailMode of the batch data.
  * @param tiles_wide The tiles wide of the batch data.
  * @param tiles_tall The tiles tall of the batch data.
  * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.

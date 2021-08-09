@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Detail Mode Flags
- *  @{ */
 /*!
  * @brief Bitflag components that are combined into @ref TuiDetailMode enums.
  */
@@ -95,7 +93,6 @@ typedef enum TuiDetailFlag
 	 */
 	TUI_LAYOUT_FLAG_SPARSE = (1 << 14)
 } TuiDetailFlag;
-/*! @} */
 
 
 /*! @name Detail Mode Flag Names

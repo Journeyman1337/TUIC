@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Atlas Types
- *  @{ */
 /*!
 * @brief How the glyph locations within a @ref TuiAtlas are stored. 
 */
@@ -65,7 +63,6 @@ typedef enum TuiAtlasType
 	 */
 	TUI_ATLAS_LAST = TUI_ATLAS_GRID
 } TuiAtlasType;
-/*! @} */
 
 
 /*! @name Atlas Type Names

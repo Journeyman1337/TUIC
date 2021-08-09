@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @nam Button states
- *  @{ */
 /*!
  * @brief The position of a button or key.
  */
@@ -62,7 +60,6 @@ typedef enum TuiButtonState
 	 */
 	TUI_BUTTON_LAST = TUI_BUTTON_REPEAT
 }TuiButtonState;
-/*! @} */
 
 
 /*! @name Button State Names

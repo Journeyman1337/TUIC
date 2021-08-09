@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Keyboard Keys
- *  @{ */
 /*!
  * @brief Keyboard keys.
  */
@@ -522,7 +520,6 @@ typedef enum TuiKeyboardKey
 	 */
 	TUIK_MENU              = 348,
 } TuiKeyboardKey;
-/*! @} */
 
 
 /*! @name Keyboard Key Names
@@ -1048,7 +1045,7 @@ const char* tuiKeyboardKeyToString(TuiKeyboardKey keyboard_key);
  *
  * @param str The string name.
  *
- * @returns The TuiKeyboardKey. @ref TUIK_INVALID is returned if no match is found.
+ * @returns The @ref TuiKeyboardKey. @ref TUIK_INVALID is returned if no match is found.
  *
  * @errors This function can have no errors.
  *

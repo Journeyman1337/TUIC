@@ -29,8 +29,6 @@ extern "C" {
 #include <TUIC/blend_mode.h>
 
 
-/*! @name Detail Modes
- *  @{ */
 /*!
  * @brief Modes of storing and rendering batch data.
  */
@@ -213,7 +211,6 @@ typedef enum TuiDetailMode
 	 */
 	TUI_DETAIL_G16_C32NFG_SPARSE =		(TUI_GLYPH_FLAG_G16		| TUI_COLOR_FLAG_C32NFG		| TUI_LAYOUT_FLAG_SPARSE)
 } TuiDetailMode;
-/*! @} */
 
 
 /*! @name Detail Mode Constant Tile Byte Sizes

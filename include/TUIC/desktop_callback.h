@@ -134,7 +134,7 @@ typedef void (* tuiKeyboardKeyboardKeyFunction)(TuiWindow window, TuiKeyboardKey
  * @brief Callback type used for @ref TuiWindow character typed events.
  *
  * @param window The @ref TuiWindow that captured the event.
- * @param codepoint THe unicode value of the character that was typed.
+ * @param codepoint The unicode value of the character that was typed.
  */
 typedef void (* tuiCharFunction)(TuiWindow window, unsigned int codepoint);
 /*!

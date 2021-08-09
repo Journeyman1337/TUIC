@@ -27,9 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-
-/*! @name Keyboard Mods
- *  @{ */
 /*!
  * @brief Keyboard modifier keys.
  */
@@ -75,7 +72,6 @@ typedef enum TuiKeyboardMod
 	 */
 	TUI_MOD_ALL				= (TUI_MOD_SHIFT | TUI_MOD_CONTROL | TUI_MOD_ALT | TUI_MOD_SUPER | TUI_MOD_CAPS_LOCK | TUI_MOD_NUM_LOCK)
 } TuiKeyboardMod;
-/*! @} */
 
 
 /*! @name Keyboard Mod Names
@@ -153,7 +149,7 @@ const char* tuiKeyboardModToString(TuiKeyboardMod keyboard_mod);
  *
  * @param str The string name.
  *
- * @returns The TuiKeyboardMod. @ref TUI_MOD_INVALID is returned if no match is found.
+ * @returns The @ref TuiKeyboardMod. @ref TUI_MOD_INVALID is returned if no match is found.
  *
  * @errors This function can have no errors.
  *

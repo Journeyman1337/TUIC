@@ -28,7 +28,7 @@ extern "C" {
 #include <TUIC/desktop_callback.h>
 
 
-/*! @name @ref TuiMonitor functions
+/*! @name Monitor Functions
  *
  * Functions for manipulating @ref TuiMonitor opaque objects.
  *  @{ */
@@ -57,7 +57,7 @@ TuiMonitor* tuiGetMonitors(int* count);
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
- * @pointer_lifetime THe lifetime of @ref TuiMonitor objects is handled internally by the library. They are automatically destroyed after the @ref tuiMonitorConnectedFunction callback is called after the monitor is destroyed.
+ * @pointer_lifetime The lifetime of @ref TuiMonitor objects is handled internally by the library. They are automatically destroyed after the @ref tuiMonitorConnectedFunction callback is called after the monitor is destroyed.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
@@ -109,7 +109,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor);
  * @param out_physical_width A pointer to where the physical width of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  * @param out_physical_height A pointer to where the physical height of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITORand GLFW errors.The first error that occurs will cause the function to immediatly return.Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors.The first error that occurs will cause the function to immediatly return.Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *

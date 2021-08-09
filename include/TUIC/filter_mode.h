@@ -27,8 +27,6 @@ extern "C" {
 #include <TUIC/boolean.h>
 
 
-/*! @name Filter Modes
- *  @{ */
 /*!
  * @brief The filter mode used for rendering a texture or framebuffer.
  */
@@ -50,7 +48,6 @@ typedef enum TuiFilterMode
 	 */
 	TUI_FILTER_BILINEAR = 2
 } TuiFilterMode;
-/*! @} */
 
 
 /*! @name Filter Mode Names
