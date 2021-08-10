@@ -132,6 +132,12 @@ TuiCursor tuiCursorCreateShape(TuiCursorShape shape)
 
 void tuiCursorDestroy(TuiCursor cursor)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (cursor == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_CURSOR, __func__);

@@ -91,7 +91,7 @@ TuiCursor tuiCursorCreateShape(TuiCursorShape shape);
  *
  * @param atlas The @ref TuiCursor to destroy.
  *
- * @errors This function can possible have the error @ref TUI_ERROR_NULL_CURSOR and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_CURSOR. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
