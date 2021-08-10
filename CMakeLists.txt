@@ -47,7 +47,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/time.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c
 	# Vendor Source Files
-	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/glDebug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
 	# Include Files
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas.h
