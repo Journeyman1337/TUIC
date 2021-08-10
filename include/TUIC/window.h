@@ -761,7 +761,7 @@ void tuiWindowSetTitle(TuiWindow window, const char* title);
  * @param window The @ref TuiWindow.
  * @param title The title.
  *
- * @errors Possible errors in order are #ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_STRING, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_STRING, and GLFW errors. The first error tha occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  * 
