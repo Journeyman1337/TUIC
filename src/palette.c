@@ -344,6 +344,12 @@ TuiPalette tuiPaletteCreateXterm(int color_count)
 
 void tuiPaletteDestroy(TuiPalette palette)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
@@ -362,6 +368,12 @@ int tuiGetPaletteCount()
 
 int tuiPaletteGetColorCount(TuiPalette palette)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
@@ -373,6 +385,12 @@ int tuiPaletteGetColorCount(TuiPalette palette)
 
 int tuiPaletteGetChannelCount(TuiPalette palette)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);

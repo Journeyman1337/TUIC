@@ -73,7 +73,7 @@ TuiPalette tuiPaletteCreateXterm(int color_count);
  *
  * @param palette The @ref TuiPalette to destroy.
  *
- * @errors This function can have the error @ref TUI_ERROR_NULL_PALETTE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PALETTE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -99,7 +99,7 @@ int tuiGetPaletteCount();
  *
  * @returns The amount of colors. 0 is returned if an error occurs.
  *
- * @errors This function can bave the error @ref TUI_ERROR_NULL_PALETTE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PALETTE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -113,7 +113,7 @@ int tuiPaletteGetColorCount(TuiPalette palette);
  *
  * @returns The amount of color channels. 0 is returned if an error occurs.
  *
- * @errors This function can bave the error @ref TUI_ERROR_NULL_PALETTE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PALETTE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
