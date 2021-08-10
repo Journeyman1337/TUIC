@@ -39,8 +39,8 @@ extern "C" {
  * 
  * @return A pointer to an array of all present @ref TuiMonitor.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
- *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * 
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @pointer_lifetime The monitor list pointed to will be changed and possible move to a different address when monitors are connected or disconnected.
@@ -53,8 +53,8 @@ TuiMonitor* tuiGetMonitors(int* count);
  *
  * @return The primary monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
- *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * 
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @pointer_lifetime The lifetime of @ref TuiMonitor objects is handled internally by the library. They are automatically destroyed after the @ref tuiMonitorConnectedFunction callback is called after the monitor is destroyed.
@@ -68,7 +68,7 @@ TuiMonitor tuiGetPrimaryMonitor();
  * @param out_pixel_width A pointer to where the pixel width of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  * @param out_pixel_height A pointer to where the pixel height of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -82,8 +82,8 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* out_pixel_width, int*
  * 
  * @returns The pixel width of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
- *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
+ * 
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
@@ -96,7 +96,7 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor);
  *
  * @returns The pixel height of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -109,7 +109,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor);
  * @param out_physical_width A pointer to where the physical width of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  * @param out_physical_height A pointer to where the physical height of the monitor screen will be stored. If @ref TUI_NULL, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors.The first error that occurs will cause the function to immediatly return.Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors.The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -123,7 +123,7 @@ void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* out_physical_width, int*
  *
  * @returns The physical width of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -137,7 +137,7 @@ int tuiMonitorGetPhysicalWidth(TuiMonitor monitor);
  *
  * @returns The physical height of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -150,7 +150,7 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor);
  * @param out_scale_wide A pointer to where the scale wide will be stored. If @ref TUI_NULL, it is ignored.
  * @param out_scale_tall A pointer to where the scale tall will be stored. If @ref TUI_NULL, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -164,7 +164,7 @@ void tuiMonitorGetContentScale(TuiMonitor monitor, float* out_scale_wide, float*
  *
  * @returns The content scale wide of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -178,7 +178,7 @@ float tuiMonitorGetContentScaleWide(TuiMonitor monitor);
  *
  * @returns The content scale tall of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -192,7 +192,7 @@ float tuiMonitorGetContentScaleTall(TuiMonitor monitor);
  *
  * @returns The refresh rate of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -206,7 +206,7 @@ int tuiMonitorGetRefreshRate(TuiMonitor monitor);
  *
  * @returns The name the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -221,7 +221,7 @@ const char* tuiMonitorGetName(TuiMonitor monitor);
  * @param monitor The @ref TuiMonitor.
  * @param user_pointer The user pointer.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -235,7 +235,7 @@ void tuiMonitorSetUserPointer(TuiMonitor monitor, void* user_pointer);
  *
  * @returns The user pointer of the monitor.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_MONITOR and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -249,7 +249,7 @@ void* tuiMonitorGetUserPointer(TuiMonitor monitor);
  *
  * @returns The previously set callback.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
