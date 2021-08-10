@@ -196,7 +196,7 @@ TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int 
  *
  * @param atlas The @ref TuiAtlas to destroy.
  * 
- * @errors This function can have the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -221,8 +221,8 @@ int tuiGetAtlasCount();
  * @param atlas The @ref TuiAtlas to retrieve the channel count from.
  * 
  * @returns The amount of color channels. 0 is returned if an error occurs.
- * 
- * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -235,8 +235,8 @@ int tuiAtlasGetChannelCount(TuiAtlas atlas);
  * @param atlas The @ref TuiAtlas to retrieve the pixel width from.
  * 
  * @returns The pixel width. 0 is returned if an error occurs.
- * 
- * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
   * @requirements This function must be called only while TUIC is initialized.
   *
@@ -249,8 +249,8 @@ int tuiAtlasGetPixelWidth(TuiAtlas atlas);
  * @param atlas The @ref TuiAtlas to retrieve the pixel height from.
  * 
  * @returns The pixel height. 0 is returned if an error occurs.
- * 
- * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
  *
@@ -264,8 +264,8 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas);
  * @param out_pixel_width A pointer to where the pixel width of the atlas texture will be stored. If @ref TUI_NULL, it is ignored.
  * @param out_pixel_height A pointer to where the pixel height of the atlas texture will be stored. If @ref TUI_NULL, it is ignored.
  * @param out_channel_count A pointer to where the channel count of the atlas texture will be stored. If @ref TUI_NULL, it is ignored.
- * 
- * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -278,8 +278,8 @@ void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_p
  * @param atlas The @ref TuiAtlas to retrieve the blend mode from.
  * 
  * @returns The @ref TuiBlendMode. @ref TUI_BLEND_INVALID is returned if an error occurs.
- * 
- * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -292,7 +292,7 @@ TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas);
  * @param atlas The @ref TuiAtlas.
  * @param blend_mode The new @ref TuiBlendMode to use for drawing with the atlas.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_ATLAS and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_ATLAS and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
  *
@@ -306,7 +306,7 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
  *
  * @returns The glyph count. 0 is returned if an error occurs.
  *
- * @errors This function can bave the error @ref TUI_ERROR_NULL_ATLAS and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
