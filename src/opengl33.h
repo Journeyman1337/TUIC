@@ -43,7 +43,6 @@ void tuiAtlasDestroy_Opengl33(TuiAtlas atlas);
 void tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
 void tuiTextureDestroy_Opengl33(TuiTexture texture);
 void tuiTextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels);
-void tuiTextureRenderToPanel_Opengl33(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
 void tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
 void tuiPaletteDestroy_Opengl33(TuiPalette palette);
 void tuiPanelCreate_Opengl33(TuiPanel panel);
