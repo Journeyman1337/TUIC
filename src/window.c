@@ -441,6 +441,12 @@ int tuiGetWindowCount()
 
 void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -452,6 +458,12 @@ void tuiWindowClearColor(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint
 
 void tuiWindowGetFramebufferPixelDimensions(TuiWindow window, int* width, int* height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -470,6 +482,12 @@ void tuiWindowGetFramebufferPixelDimensions(TuiWindow window, int* width, int* h
 
 int tuiWindowGetFramebufferPixelWidth(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -481,6 +499,12 @@ int tuiWindowGetFramebufferPixelWidth(TuiWindow window)
 
 int tuiWindowGetFramebufferPixelHeight(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -492,6 +516,12 @@ int tuiWindowGetFramebufferPixelHeight(TuiWindow window)
 
 void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, int pixel_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -520,6 +550,12 @@ void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, i
 
 TuiImage tuiWindowGetImage(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -535,6 +571,12 @@ TuiImage tuiWindowGetImage(TuiWindow window)
 
 void tuiWindowWriteImage(TuiWindow window, TuiImage image)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -551,6 +593,12 @@ void tuiWindowWriteImage(TuiWindow window, TuiImage image)
 
 uint8_t* tuiWindowGetPixels(TuiWindow window, int* pixel_width, int* pixel_height, uint8_t* fill_pixels)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -566,6 +614,12 @@ uint8_t* tuiWindowGetPixels(TuiWindow window, int* pixel_width, int* pixel_heigh
 
 void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -596,6 +650,12 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 
 void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -632,6 +692,12 @@ void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette
 
 void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -662,6 +728,12 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 
 void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -692,6 +764,12 @@ void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPale
 
 void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -708,6 +786,12 @@ void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel)
 
 void tuiWindowDrawPanelTransformed(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -724,6 +808,12 @@ void tuiWindowDrawPanelTransformed(TuiWindow window, TuiPanel panel, int left_x,
 
 void tuiWindowDrawTexture(TuiWindow window, TuiTexture texture)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -740,6 +830,12 @@ void tuiWindowDrawTexture(TuiWindow window, TuiTexture texture)
 
 void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -756,6 +852,12 @@ void tuiWindowDrawTextureTransformed(TuiWindow window, TuiTexture texture, int l
 
 void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -772,6 +874,12 @@ void tuiWindowDrawAtlas(TuiWindow window, TuiAtlas atlas)
 
 void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -788,6 +896,12 @@ void tuiWindowDrawAtlasTransformed(TuiWindow window, TuiAtlas atlas, int left_x,
 
 void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -804,6 +918,12 @@ void tuiWindowDrawWindow(TuiWindow window, TuiWindow subject_window)
 
 void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -820,6 +940,12 @@ void tuiWindowDrawWindowTransformed(TuiWindow window, TuiWindow subject_window, 
 
 void tuiWindowFrame(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -833,6 +959,12 @@ void tuiWindowFrame(TuiWindow window)
 
 void tuiWindowFrameInterval(TuiWindow window, int interval)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -851,6 +983,12 @@ void tuiWindowFrameInterval(TuiWindow window, int interval)
 
 TuiCursorMode tuiWindowGetCursorMode(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -869,6 +1007,12 @@ TuiCursorMode tuiWindowGetCursorMode(TuiWindow window)
 
 void tuiWindowSetCursorMode(TuiWindow window, TuiCursorMode cursor_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -891,6 +1035,12 @@ void tuiWindowSetCursorMode(TuiWindow window, TuiCursorMode cursor_mode)
 
 TuiBoolean tuiWindowGetStickyKeysEnabled(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -913,6 +1063,12 @@ TuiBoolean tuiWindowGetStickyKeysEnabled(TuiWindow window)
 
 void tuiWindowSetStickyKeysEnabled(TuiWindow window, TuiBoolean sticky_keys_mode)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -930,6 +1086,12 @@ void tuiWindowSetStickyKeysEnabled(TuiWindow window, TuiBoolean sticky_keys_mode
 
 TuiBoolean tuiWindowGetStickyMouseButtonsEnabled(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -952,6 +1114,12 @@ TuiBoolean tuiWindowGetStickyMouseButtonsEnabled(TuiWindow window)
 
 void tuiWindowSetStickyMouseButtonsEnabled(TuiWindow window, TuiBoolean sticky_mouse_buttons)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -969,6 +1137,12 @@ void tuiWindowSetStickyMouseButtonsEnabled(TuiWindow window, TuiBoolean sticky_m
 
 TuiBoolean tuiWindowGetLockKeyModsEnabled(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -991,6 +1165,12 @@ TuiBoolean tuiWindowGetLockKeyModsEnabled(TuiWindow window)
 
 void tuiWindowSetLockKeyModsEnabled(TuiWindow window, TuiBoolean lock_mods)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1008,6 +1188,12 @@ void tuiWindowSetLockKeyModsEnabled(TuiWindow window, TuiBoolean lock_mods)
 
 TuiBoolean tuiWindowGetRawMouseMotionEnabled(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1030,6 +1216,12 @@ TuiBoolean tuiWindowGetRawMouseMotionEnabled(TuiWindow window)
 
 void tuiWindowSetRawMouseMotionEnabled(TuiWindow window, TuiBoolean raw_mouse_motion)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1052,6 +1244,12 @@ void tuiWindowSetRawMouseMotionEnabled(TuiWindow window, TuiBoolean raw_mouse_mo
 
 TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1075,6 +1273,12 @@ TuiButtonState tuiWindowGetKeyboardKey(TuiWindow window, TuiKeyboardKey key)
 
 TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_button)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1098,6 +1302,12 @@ TuiButtonState tuiWindowGetMouseButton(TuiWindow window, TuiMouseButton mouse_bu
 
 void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_position)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1115,6 +1325,12 @@ void tuiWindowGetCursorPosition(TuiWindow window, double* x_position, double* y_
 
 double tuiWindowGetCursorXPosition(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1134,6 +1350,12 @@ double tuiWindowGetCursorXPosition(TuiWindow window)
 
 double tuiWindowGetCursorYPosition(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1153,6 +1375,12 @@ double tuiWindowGetCursorYPosition(TuiWindow window)
 
 void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_position)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1170,6 +1398,12 @@ void tuiWindowSetCursorPosition(TuiWindow window, double x_position, double y_po
 
 void tuiWindowSetTitle(TuiWindow window, const char* title)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1199,6 +1433,12 @@ void tuiWindowSetTitle(TuiWindow window, const char* title)
 
 const char* tuiWindowGetTitle(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1210,15 +1450,15 @@ const char* tuiWindowGetTitle(TuiWindow window)
 
 void tuiWindowSetDefaultIcon(TuiWindow window)
 {
-	if (window == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
 	TuiSystem system = tui_get_system();
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
+	if (window == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
 	if (system->WindowIconsSupported == TUI_FALSE)
@@ -1261,6 +1501,12 @@ void _WindowSetIcon(TuiWindow window, int pixel_width, int pixel_height, const u
 
 void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1274,12 +1520,6 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 	if (icon_image->ChannelCount != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return;
-	}
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
 	}
 	if (system->WindowIconsSupported == TUI_FALSE)
@@ -1300,6 +1540,12 @@ void tuiWindowSetIconImage(TuiWindow window, TuiImage icon_image)
 
 void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_height, const uint8_t* pxiels)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1313,12 +1559,6 @@ void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_heig
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PIXEL_DIMENSIONS, __func__);
-		return;
-	}
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return;
 	}
 	if (system->WindowIconsSupported == TUI_FALSE)
@@ -1339,6 +1579,12 @@ void tuiWindowSetIconRawPixels(TuiWindow window, int pixel_width, int pixel_heig
 
 void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1356,6 +1602,12 @@ void tuiWindowGetPosition(TuiWindow window, int* x_position, int* y_position)
 
 int tuiWindowGetXPosition(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1375,6 +1627,12 @@ int tuiWindowGetXPosition(TuiWindow window)
 
 int tuiWindowGetYPosition(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1394,6 +1652,12 @@ int tuiWindowGetYPosition(TuiWindow window)
 
 void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1411,6 +1675,12 @@ void tuiWindowSetPosition(TuiWindow window, int x_position, int y_position)
 
 void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int max_width, int max_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1443,6 +1713,12 @@ void tuiWindowSetSizeLimits(TuiWindow window, int min_width, int min_height, int
 
 void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1467,6 +1743,12 @@ void tuiWindowSetMinSizeLimits(TuiWindow window, int min_width, int min_height)
 
 void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1491,6 +1773,12 @@ void tuiWindowSetMaxSizeLimits(TuiWindow window, int max_width, int max_height)
 
 void tuiWindowSetMinWidth(TuiWindow window, int min_width)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1514,6 +1802,12 @@ void tuiWindowSetMinWidth(TuiWindow window, int min_width)
 
 void tuiWindowSetMinHeight(TuiWindow window, int min_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1537,6 +1831,12 @@ void tuiWindowSetMinHeight(TuiWindow window, int min_height)
 
 void tuiWindowSetMaxWidth(TuiWindow window, int max_width)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1560,6 +1860,12 @@ void tuiWindowSetMaxWidth(TuiWindow window, int max_width)
 
 void tuiWindowSetMaxHeight(TuiWindow window, int max_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1583,6 +1889,12 @@ void tuiWindowSetMaxHeight(TuiWindow window, int max_height)
 
 void tuiWindowGetSizeLimits(TuiWindow window, int* min_width, int* min_height, int* max_width, int* max_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1609,6 +1921,12 @@ void tuiWindowGetSizeLimits(TuiWindow window, int* min_width, int* min_height, i
 
 int tuiWindowGetMinWidth(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1620,6 +1938,12 @@ int tuiWindowGetMinWidth(TuiWindow window)
 
 int tuiWindowGetMinHeight(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1631,6 +1955,12 @@ int tuiWindowGetMinHeight(TuiWindow window)
 
 int tuiWindowGetMaxWidth(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1642,6 +1972,12 @@ int tuiWindowGetMaxWidth(TuiWindow window)
 
 int tuiWindowGetMaxHeight(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1653,6 +1989,12 @@ int tuiWindowGetMaxHeight(TuiWindow window)
 
 TuiBoolean tuiWindowHasSizeLimits(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1664,6 +2006,12 @@ TuiBoolean tuiWindowHasSizeLimits(TuiWindow window)
 
 TuiBoolean tuiWindowHasMinSizeLimits(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1679,6 +2027,12 @@ TuiBoolean tuiWindowHasMinSizeLimits(TuiWindow window)
 
 TuiBoolean tuiWindowHasMaxSizeLimits(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1694,6 +2048,12 @@ TuiBoolean tuiWindowHasMaxSizeLimits(TuiWindow window)
 
 void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominator)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1717,6 +2077,12 @@ void tuiWindowSetFixedAspectRatio(TuiWindow window, int numerator, int denominat
 
 void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1736,6 +2102,12 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 
 void tuiWindowUnfixAspectRatio(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1754,6 +2126,12 @@ void tuiWindowUnfixAspectRatio(TuiWindow window)
 
 TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1765,6 +2143,12 @@ TuiBoolean tuiWindowGetAspectRatioIsFixed(TuiWindow window)
 
 void tuiWindowGetAspectRatio(TuiWindow window, int* numerator, int* denominator)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1784,6 +2168,12 @@ void tuiWindowGetAspectRatio(TuiWindow window, int* numerator, int* denominator)
 
 void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_tall)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1801,6 +2191,12 @@ void tuiWindowGetContentScale(TuiWindow window, float* scale_wide, float* scale_
 
 float tuiWindowGetContentScaleWide(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1820,6 +2216,12 @@ float tuiWindowGetContentScaleWide(TuiWindow window)
 
 float tuiWindowGetContentScaleTall(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1839,6 +2241,12 @@ float tuiWindowGetContentScaleTall(TuiWindow window)
 
 void tuiWindowIconify(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1856,6 +2264,12 @@ void tuiWindowIconify(TuiWindow window)
 
 void tuiWindowRestore(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1874,6 +2288,12 @@ void tuiWindowRestore(TuiWindow window)
 
 TuiBoolean tuiWindowShouldClose(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1896,6 +2316,12 @@ TuiBoolean tuiWindowShouldClose(TuiWindow window)
 
 void tuiWindowSetShouldClose(TuiWindow window, TuiBoolean should_close)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1913,6 +2339,12 @@ void tuiWindowSetShouldClose(TuiWindow window, TuiBoolean should_close)
 
 void tuiWindowMaximize(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1930,6 +2362,12 @@ void tuiWindowMaximize(TuiWindow window)
 
 void tuiWindowShow(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1947,6 +2385,12 @@ void tuiWindowShow(TuiWindow window)
 
 void tuiWindowHide(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1964,6 +2408,12 @@ void tuiWindowHide(TuiWindow window)
 
 void tuiWindowFocus(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1981,6 +2431,12 @@ void tuiWindowFocus(TuiWindow window)
 
 void tuiWindowRequestAttention(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -1998,6 +2454,12 @@ void tuiWindowRequestAttention(TuiWindow window)
 
 TuiMonitor tuiWindowGetMonitor(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2016,6 +2478,12 @@ TuiMonitor tuiWindowGetMonitor(TuiWindow window)
 
 void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2049,6 +2517,12 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 
 void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2080,6 +2554,12 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor)
 
 void tuiWindowSetWindowed(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2103,6 +2583,12 @@ void tuiWindowSetWindowed(TuiWindow window)
 
 void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width, int viewport_pixel_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2151,6 +2637,12 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 
 int tuiWindowGetViewportPixelWidth(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2162,6 +2654,12 @@ int tuiWindowGetViewportPixelWidth(TuiWindow window)
 
 int tuiWindowGetViewportPixelHeight(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2173,6 +2671,12 @@ int tuiWindowGetViewportPixelHeight(TuiWindow window)
 
 void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* pixel_width, int* pixel_height)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2191,6 +2695,12 @@ void tuiWindowGetViewportPixelDimensons(TuiWindow window, int* pixel_width, int*
 
 void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean framebuffer_matches_viewport_size)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2206,6 +2716,12 @@ void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean fra
 
 TuiBoolean tuiWindowGetFramebufferMatchesViewportSize(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2217,6 +2733,12 @@ TuiBoolean tuiWindowGetFramebufferMatchesViewportSize(TuiWindow window)
 
 TuiBoolean tuiWindowGetIsFullscreen(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2228,6 +2750,12 @@ TuiBoolean tuiWindowGetIsFullscreen(TuiWindow window)
 
 TuiBoolean tuiWindowGetFocused(TuiWindow window)
 { 
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2250,6 +2778,12 @@ TuiBoolean tuiWindowGetFocused(TuiWindow window)
 
 TuiBoolean tuiWindowGetIconified(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2272,6 +2806,12 @@ TuiBoolean tuiWindowGetIconified(TuiWindow window)
 
 TuiBoolean tuiWindowGetMaximized(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2294,6 +2834,12 @@ TuiBoolean tuiWindowGetMaximized(TuiWindow window)
 
 TuiBoolean tuiWindowGetMouseEntered(TuiWindow window)
 { 
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2316,6 +2862,12 @@ TuiBoolean tuiWindowGetMouseEntered(TuiWindow window)
 
 TuiBoolean tuiWindowGetVisible(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2338,6 +2890,12 @@ TuiBoolean tuiWindowGetVisible(TuiWindow window)
 
 TuiBoolean tuiWindowGetResizable(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2360,6 +2918,12 @@ TuiBoolean tuiWindowGetResizable(TuiWindow window)
 
 void tuiWindowSetResizable(TuiWindow window, TuiBoolean resizable)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2377,6 +2941,12 @@ void tuiWindowSetResizable(TuiWindow window, TuiBoolean resizable)
 
 TuiBoolean tuiWindowGetDecorated(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2399,6 +2969,12 @@ TuiBoolean tuiWindowGetDecorated(TuiWindow window)
 
 void tuiWindowSetDecorated(TuiWindow window, TuiBoolean decorated)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2416,6 +2992,12 @@ void tuiWindowSetDecorated(TuiWindow window, TuiBoolean decorated)
 
 TuiBoolean tuiWindowGetTopmost(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2438,6 +3020,12 @@ TuiBoolean tuiWindowGetTopmost(TuiWindow window)
 
 void tuiWindowSetTopmost(TuiWindow window, TuiBoolean topmost)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2455,6 +3043,12 @@ void tuiWindowSetTopmost(TuiWindow window, TuiBoolean topmost)
 
 TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2477,6 +3071,12 @@ TuiBoolean tuiWindowGetFocusOnShow(TuiWindow window)
 
 void tuiWindowSetFocusOnShow(TuiWindow window, TuiBoolean focus_on_show)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2494,6 +3094,12 @@ void tuiWindowSetFocusOnShow(TuiWindow window, TuiBoolean focus_on_show)
 
 void tuiWindowSetUserPointer(TuiWindow window, void* ptr)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2505,6 +3111,12 @@ void tuiWindowSetUserPointer(TuiWindow window, void* ptr)
 
 void* tuiWindowGetUserPointer(TuiWindow window)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2516,6 +3128,12 @@ void* tuiWindowGetUserPointer(TuiWindow window)
 
 void tuiWindowSetCursor(TuiWindow window, TuiCursor cursor)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2533,6 +3151,12 @@ void tuiWindowSetCursor(TuiWindow window, TuiCursor cursor)
 
 tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2560,6 +3184,12 @@ tuiWindowMoveFunction tuiWindowSetMoveCallback(TuiWindow window, tuiWindowMoveFu
 
 tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowCloseFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2587,6 +3217,12 @@ tuiWindowCloseFunction tuiWindowSetCloseCallback(TuiWindow window, tuiWindowClos
 
 tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocusFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2614,6 +3250,12 @@ tuiWindowFocusFunction tuiWindowSetFocusCallback(TuiWindow window, tuiWindowFocu
 
 tuiWindowIconifyFunction tuiWindowSetIconifyCallback(TuiWindow window, tuiWindowIconifyFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2641,6 +3283,12 @@ tuiWindowIconifyFunction tuiWindowSetIconifyCallback(TuiWindow window, tuiWindow
 
 tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWindowMaximizeFunction callback)
 { 
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2668,6 +3316,12 @@ tuiWindowMaximizeFunction tuiWindowSetMaximizeCallback(TuiWindow window, tuiWind
 
 tuiWindowViewportResizeFunction tuiWindowSetViewportResizeCallback(TuiWindow window, tuiWindowViewportResizeFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2687,6 +3341,12 @@ tuiWindowViewportResizeFunction tuiWindowSetViewportResizeCallback(TuiWindow win
 
 tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window, tuiWindowContentScaleFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2714,6 +3374,12 @@ tuiWindowContentScaleFunction tuiWindowSetContentScaleCallback(TuiWindow window,
 
 tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window, tuiKeyboardKeyboardKeyFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2741,6 +3407,12 @@ tuiKeyboardKeyboardKeyFunction tuiWindowSetKeyboardKeyCallback(TuiWindow window,
 
 tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2768,6 +3440,12 @@ tuiCharFunction tuiWindowSetCharCallback(TuiWindow window, tuiCharFunction callb
 
 tuiMouseButtonFunction tuiWindowSetMouseButtonCallback(TuiWindow window, tuiMouseButtonFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2795,6 +3473,12 @@ tuiMouseButtonFunction tuiWindowSetMouseButtonCallback(TuiWindow window, tuiMous
 
 tuiCursorMoveFunction tuiWindowSetCursorMoveCallback(TuiWindow window, tuiCursorMoveFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2822,6 +3506,12 @@ tuiCursorMoveFunction tuiWindowSetCursorMoveCallback(TuiWindow window, tuiCursor
 
 tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCursorEnterFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2849,6 +3539,12 @@ tuiCursorEnterFunction tuiWindowSetCursorEnterCallback(TuiWindow window, tuiCurs
 
 tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMouseScrollFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
@@ -2876,6 +3572,12 @@ tuiMouseScrollFunction tuiWindowSetMouseScrollCallback(TuiWindow window, tuiMous
 
 tuiFileDropFunction tuiWindowSetFileDropCallback(TuiWindow window, tuiFileDropFunction callback)
 {
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
+	}
 	if (window == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
