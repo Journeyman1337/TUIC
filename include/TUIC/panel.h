@@ -51,7 +51,7 @@ TuiPanel tuiPanelCreate(int pixel_width, int pixel_height);
  *
  * @param palette The @ref TuiPanel to destroy.
  *
- * @errors This function can have the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -77,7 +77,7 @@ int tuiGetPanelCount();
  *
  * @returns The @ref TuiImage.
  *
- * @errors This function can bave the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -92,7 +92,7 @@ TuiImage tuiPanelGetImage(TuiPanel panel);
  * @param panel The @ref TuiPanel to render to the image.
  * @param image The @ref TuiImage to render to.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -109,7 +109,7 @@ void tuiPanelWriteImage(TuiPanel panel, TuiImage image);
  *
  * @returns The pixels array.
  *
- * @errors This function can bave the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -127,7 +127,7 @@ uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, 
  * @param b The blue color value of the clear color.
  * @param a The alpha color value of the clear color.
  * 
- * @errors This function can bave the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -141,7 +141,7 @@ void tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t
  * @param The new pixel width of the framebuffer.
  * @param The new pixel height of the framebuffer.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -155,8 +155,8 @@ void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_heigh
  * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * 
- * @errors Can have the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
- * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
@@ -167,7 +167,7 @@ void tuiPanelGetPixelDimensions(TuiPanel panel, int* pixel_width, int* pixel_hei
  * 
  * @param panel The @ref TuiPanel.
  * 
- * @errors Can have the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @return The pixel width of the framebuffer.
  * 
@@ -181,7 +181,7 @@ int tuiPanelGetPixelWidth(TuiPanel panel);
  *
  * @param panel The @ref TuiPanel.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_PANEL and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @return The pixel height of the framebuffer.
  *
@@ -198,7 +198,7 @@ int tuiPanelGetPixelHeight(TuiPanel panel);
  * @param palette The @ref TuiPalette.
  * @param batch The @ref TuiBatch.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -217,7 +217,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
  * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
  * @param batch_data A pointer to the batch data array.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -236,7 +236,7 @@ void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, T
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -259,7 +259,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -272,7 +272,7 @@ void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette
  * @param panel The @ref TuiPanel to draw to.
  * @param subject_panel The @ref TuiPanel to draw.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_SUBJECT_PANEL. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_SUBJECT_PANEL. The first error that occurs will cause the function to immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -289,7 +289,7 @@ void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel);
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_SUBJECT_PANEL. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_SUBJECT_PANEL. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -302,7 +302,7 @@ void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int le
  * @param panel The @ref TuiPanel to draw to.
  * @param texture The @ref TuiTexture to draw.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -319,7 +319,7 @@ void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture);
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -332,7 +332,7 @@ void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left
  * @param panel The @ref TuiPanel to draw to.
  * @param atlas The @ref TuiAtlas to draw.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -349,7 +349,7 @@ void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas);
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -362,7 +362,7 @@ void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, in
  * @param panel The @ref TuiPanel to draw to.
  * @param window The @ref TuiWindow to draw.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_WINDOW. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_WINDOW. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -379,7 +379,7 @@ void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window);
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_WINDOW. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_WINDOW. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
