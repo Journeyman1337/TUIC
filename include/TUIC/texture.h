@@ -77,7 +77,7 @@ TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int chan
  * 
  * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
- * @errors This function can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -103,7 +103,7 @@ int tuiGetTextureCount();
  * @param pixel_width A pointer to where the pixel width of the texture will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of the texture will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -117,8 +117,8 @@ void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pix
  *
  * @return The pixel width of the texture.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
- * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
@@ -131,8 +131,8 @@ int tuiTextureGetPixelWidth(TuiTexture texture);
  *
  * @return The pixel height of the texture.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
- * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
  * @requirements This function must be called only while TUIC is initialized.
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
@@ -143,7 +143,7 @@ int tuiTextureGetPixelHeight(TuiTexture texture);
  *
  * @param texture The @ref TuiTexture.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
  * @return The pixel height of the texture.
  *
@@ -157,7 +157,7 @@ int tuiTextureGetChannelCount(TuiTexture texture);
  *
  * @param texture The @ref TuiTexture.
  *
- * @errors Can have the error @ref TUI_ERROR_NULL_TEXTURE and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
  * @return The @ref TuiFilterMode of the texture.
  *
@@ -172,7 +172,7 @@ TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture);
  * @param texture The texture to fill.
  * @param image The image to fill with.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_TEXTURE and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIZLIED, @ref TUI_ERROR_NULL_TEXTURE and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
  * 
  * @requirements This function must be called only while TUIC is initialized.
  * 
@@ -188,7 +188,7 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image);
  * @param channel_count The amount of channels in the pixel array.
  * @param pixels The pixel array.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_TEXTURE, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_CHANNEL_COUNT. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or pixels array may cause undefined behaviour or a fatal crash without an error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_TEXTURE, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_CHANNEL_COUNT. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or pixels array may cause undefined behaviour or a fatal crash without an error.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
