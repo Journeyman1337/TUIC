@@ -217,7 +217,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
  * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
  * @param batch_data A pointer to the batch data array.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
@@ -259,7 +259,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
  * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
  * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA,, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
