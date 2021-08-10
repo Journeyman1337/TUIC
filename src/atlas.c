@@ -68,9 +68,16 @@ TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int gly
 	atlas->GlyphCount = (size_t)glyph_count;
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, image->PixelWidth, image->PixelHeight, TUI_NULL);
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
-	sAtlasCount++;
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
 	tuiFree(raw_glyph_uvs);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
+	sAtlasCount++;
 	return atlas;
 }
 
@@ -126,9 +133,16 @@ TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width , i
 	atlas->GlyphCount = glyph_count;
 	
 	float* raw_glyph_uvs = tuiGenerateUVCoordinatesFromPixelCooordinates(glyph_count, glyph_bounding_boxes, pixel_width, pixel_height, TUI_NULL);
-	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
-	sAtlasCount++;
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
 	tuiFree(raw_glyph_uvs);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
+	sAtlasCount++;
 	return atlas;
 }
 
@@ -173,7 +187,14 @@ TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, fl
 	atlas->ApiData = TUI_NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, image->PixelData, raw_glyph_uvs);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sAtlasCount++;
 	return atlas;
 }
@@ -229,7 +250,14 @@ TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_heig
 	atlas->ApiData = TUI_NULL;
 	atlas->GlyphCount = (size_t)glyph_count;
 	
-	tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, pixels, raw_glyph_uvs);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sAtlasCount++;
 	return atlas;
 }
@@ -269,7 +297,14 @@ TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_
 	atlas->PixelWidth = image->PixelWidth;
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, TUI_NULL);
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, image->PixelData, TUI_NULL);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sAtlasCount++;
 	return atlas;
 }
@@ -319,7 +354,14 @@ TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int chan
 	atlas->PixelWidth = (size_t)pixel_width;
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
-	tuiAtlasCreate_Opengl33(atlas, pixels, TUI_NULL);
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, pixels, TUI_NULL);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sAtlasCount++;
 	return atlas;
 }
@@ -363,7 +405,14 @@ TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode)
 	atlas->PixelHeight = image->PixelHeight;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiAtlasCreate_Opengl33(atlas, image->PixelData, TUI_NULL);
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, image->PixelData, TUI_NULL);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sAtlasCount++;
 	return atlas;
 }
@@ -414,7 +463,14 @@ TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int 
 	atlas->PixelHeight = (size_t)pixel_height;
 	atlas->PixelDataSize = atlas->ChannelCount * atlas->PixelWidth * atlas->PixelHeight;
 	atlas->GlyphCount = kCodepageGlyphCount;
-	tuiAtlasCreate_Opengl33(atlas, pixels, TUI_NULL);
+	TuiErrorCode error_code = tuiAtlasCreate_Opengl33(atlas, pixels, TUI_NULL);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiAtlasDestroy_Opengl33(atlas);
+		tuiFree(atlas);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sAtlasCount++;
 	return atlas;
 }
@@ -433,7 +489,12 @@ void tuiAtlasDestroy(TuiAtlas atlas)
 		return;
 	}
 
-	tuiAtlasDestroy_Opengl33(atlas);
+	TuiErrorCode error_code = tuiAtlasDestroy_Opengl33(atlas);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	sAtlasCount--;
 	tuiFree(atlas);
 }

@@ -564,7 +564,16 @@ TuiImage tuiWindowGetImage(TuiWindow window)
 
 	size_t p_width = 0;
 	size_t p_height = 0;
-	uint8_t* pixel_data = tuiWindowGetPixels_Opengl33(window, &p_width, &p_height, TUI_NULL);
+	uint8_t* pixel_data = TUI_NULL;
+	TuiErrorCode error_code = tuiWindowGetPixels_Opengl33(window, &p_width, &p_height, &pixel_data);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		if (pixel_data != TUI_NULL)
+		{
+			tuiFree(pixel_data);
+		}
+		return TUI_NULL;
+	}
 	TuiImage image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE, __func__);
 	return image;
 }
@@ -588,7 +597,12 @@ void tuiWindowWriteImage(TuiWindow window, TuiImage image)
 		return;
 	}
 
-	image->PixelData = tuiWindowGetPixels_Opengl33(window, &image->PixelWidth, &image->PixelHeight, image->PixelData);
+	TuiErrorCode error_code = tuiWindowGetPixels_Opengl33(window, &image->PixelWidth, &image->PixelHeight, &image->PixelData);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 }
 
 uint8_t* tuiWindowGetPixels(TuiWindow window, int* pixel_width, int* pixel_height, uint8_t* fill_pixels)
@@ -606,10 +620,24 @@ uint8_t* tuiWindowGetPixels(TuiWindow window, int* pixel_width, int* pixel_heigh
 	}
 
 	size_t o_width, o_height;
-	fill_pixels = tuiWindowGetPixels_Opengl33(window, &o_width, &o_height, fill_pixels);
+	uint8_t* pixels = fill_pixels;
+	if (pixels == TUI_NULL)
+	{
+		pixels = (uint8_t*)tuiAllocate((size_t)pixel_width * (size_t)pixel_height);
+	}
+	TuiErrorCode error_code = tuiWindowGetPixels_Opengl33(window, &o_width, &o_height, &pixels);
+	if (error_code != TUI_ERROR_NONE)
+	{		
+		if (fill_pixels == TUI_NULL)
+		{
+			tuiFree(pixels);
+		}
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	*pixel_width = (int)o_width;
 	*pixel_height = (int)o_height;
-	return fill_pixels;
+	return pixels;
 }
 
 void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch)

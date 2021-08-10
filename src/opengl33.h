@@ -25,36 +25,36 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
-void tuiSystemCreate_Opengl33();
-void tuiSystemDestroy_Opengl33();
-void tuiWindowCreate_Opengl33(TuiWindow window);
-void tuiWindowDestroy_Opengl33(TuiWindow window);
-void tuiWindowSetSize_Opengl33(TuiWindow window, size_t new_width, size_t new_height);
-uint8_t* tuiWindowGetPixels_Opengl33(TuiWindow window, size_t* pixel_width, size_t* pixel_height, uint8_t* pixel_ptr);
-void tuiWindowClearColor_Opengl33(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-void tuiWindowDrawBatchData_Opengl33(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-void tuiWindowDrawPanel_Opengl33(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
-void tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-void tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
-void tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
-void tuiWindowRender_Opengl33(TuiWindow window);
-void tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
-void tuiAtlasDestroy_Opengl33(TuiAtlas atlas);
-void tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
-void tuiTextureDestroy_Opengl33(TuiTexture texture);
-void tuiTextureSetPixels_Opengl33(TuiTexture texture, const uint8_t* pixels);
-void tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
-void tuiPaletteDestroy_Opengl33(TuiPalette palette);
-void tuiPanelCreate_Opengl33(TuiPanel panel);
-void tuiPanelDestroy_Opengl33(TuiPanel panel);
-uint8_t* tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* pixel_width, size_t* pixel_height, uint8_t* pixel_ptr);
-void tuiPanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-void tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-void tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y);
-void tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-void tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
-void tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y);
-void tuiPanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height);
+TuiErrorCode tuiSystemCreate_Opengl33();
+TuiErrorCode tuiSystemDestroy_Opengl33();
+TuiErrorCode tuiWindowCreate_Opengl33(TuiWindow window);
+TuiErrorCode tuiWindowDestroy_Opengl33(TuiWindow window);
+TuiErrorCode tuiWindowSetSize_Opengl33(TuiWindow window, size_t new_width, size_t new_height);
+TuiErrorCode tuiWindowGetPixels_Opengl33(TuiWindow window, size_t* pixel_width, size_t* pixel_height, uint8_t** pixel_ptr);
+TuiErrorCode tuiWindowClearColor_Opengl33(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+TuiErrorCode tuiWindowDrawBatchData_Opengl33(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiWindowDrawPanel_Opengl33(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiWindowRender_Opengl33(TuiWindow window);
+TuiErrorCode tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
+TuiErrorCode tuiAtlasDestroy_Opengl33(TuiAtlas atlas);
+TuiErrorCode tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
+TuiErrorCode tuiTextureDestroy_Opengl33(TuiTexture texture);
+TuiErrorCode tuiTextureSetPixels_Opengl33(TuiTexture texture, size_t pixel_width, size_t pixel_height, size_t channel_count, const uint8_t* pixels);
+TuiErrorCode tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data);
+TuiErrorCode tuiPaletteDestroy_Opengl33(TuiPalette palette);
+TuiErrorCode tuiPanelCreate_Opengl33(TuiPanel panel);
+TuiErrorCode tuiPanelDestroy_Opengl33(TuiPanel panel);
+TuiErrorCode tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* pixel_width, size_t* pixel_height, uint8_t** pixel_ptr);
+TuiErrorCode tuiPanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+TuiErrorCode tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y);
+TuiErrorCode tuiPanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height);
 #ifdef __cplusplus //extern C guard
 }
 #endif

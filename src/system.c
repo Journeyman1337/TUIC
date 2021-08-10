@@ -80,6 +80,7 @@ TuiBoolean tuiInit()
 		tuiFree(sSystem);
 		sSystem = TUI_NULL;
 		glfwTerminate();
+		_GlfwClearErrors();
 		return TUI_FALSE;
 	}
 	if (sSystem->BaseWindow == TUI_NULL)
@@ -87,6 +88,7 @@ TuiBoolean tuiInit()
 		tuiFree(sSystem);
 		sSystem = TUI_NULL;
 		glfwTerminate();
+		_GlfwClearErrors();
 		return TUI_FALSE;
 	}
 	unsigned char image_pixels[16] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }; //we need to test if icons are supported now so tuiWindowIconsSupported function can work later
@@ -100,11 +102,17 @@ TuiBoolean tuiInit()
 		sSystem->WindowIconsSupported = TUI_TRUE; //icons are supported on this platform.
 		glfwSetWindowIcon(sSystem->BaseWindow, 0, TUI_NULL); //set the icon back to default.
 	}
-	else
+	_GlfwClearErrors();
+	TuiErrorCode error_code = tuiSystemCreate_Opengl33();
+	if (error_code != TUI_ERROR_NONE)
 	{
+		tuiFree(sSystem);
+		sSystem = TUI_NULL;
+		glfwTerminate();
 		_GlfwClearErrors();
+		tuiDebugError(error_code, __func__);
+		return TUI_FALSE;
 	}
-	tuiSystemCreate_Opengl33();
 	
 	return TUI_TRUE;
 }
@@ -152,7 +160,12 @@ void tuiTerminate()
 		return;
 	}
 
-	tuiSystemDestroy_Opengl33();
+	TuiErrorCode error_code = tuiSystemDestroy_Opengl33();
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	glfwDestroyWindow(sSystem->BaseWindow);
 	tuiFree(sSystem);
 	_GlfwClearErrors();

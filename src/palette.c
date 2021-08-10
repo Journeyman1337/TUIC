@@ -314,7 +314,14 @@ TuiPalette tuiPaletteCreate(int channel_count, int color_count, const uint8_t* c
 	palette->ChannelCount = channel_count;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = TUI_NULL;
-	tuiPaletteCreate_Opengl33(palette, color_data);
+	TuiErrorCode error_code = tuiPaletteCreate_Opengl33(palette, color_data);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiPaletteDestroy_Opengl33(palette);
+		tuiFree(palette);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sPaletteCount++;
 	return palette;
 }
@@ -337,7 +344,14 @@ TuiPalette tuiPaletteCreateXterm(int color_count)
 	palette->ChannelCount = 3;
 	palette->ColorCount = (size_t)color_count;
 	palette->ApiData = TUI_NULL;
-	tuiPaletteCreate_Opengl33(palette, &kTuiXtermPalette[0]);
+	TuiErrorCode error_code = tuiPaletteCreate_Opengl33(palette, &kTuiXtermPalette[0]);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiPaletteDestroy_Opengl33(palette);
+		tuiFree(palette);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sPaletteCount++;
 	return palette;
 }
@@ -356,7 +370,12 @@ void tuiPaletteDestroy(TuiPalette palette)
 		return;
 	}
 
-	tuiPaletteDestroy_Opengl33(palette);
+	TuiErrorCode error_code = tuiPaletteDestroy_Opengl33(palette);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	tuiFree(palette);
 	sPaletteCount--;
 }

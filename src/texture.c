@@ -47,7 +47,14 @@ TuiTexture tuiTextureCreateImage(TuiImage image, TuiFilterMode filter_mode)
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
-	tuiTextureCreate_Opengl33(texture, image->PixelData);
+	TuiErrorCode error_code = tuiTextureCreate_Opengl33(texture, image->PixelData);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiTextureDestroy_Opengl33(texture);
+		tuiFree(texture);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sTextureCount++;
 	return texture;
 }
@@ -86,7 +93,14 @@ TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int chan
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
-	tuiTextureCreate_Opengl33(texture, pixels);
+	TuiErrorCode error_code = tuiTextureCreate_Opengl33(texture, pixels);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiTextureDestroy_Opengl33(texture);
+		tuiFree(texture);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
 	sTextureCount++;
 	return texture;
 }
@@ -105,7 +119,12 @@ void tuiTextureDestroy(TuiTexture texture)
 		return;
 	}
 
-	tuiTextureDestroy_Opengl33(texture);
+	TuiErrorCode error_code = tuiTextureDestroy_Opengl33(texture);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	tuiFree(texture);
 	sTextureCount--;
 }
@@ -226,10 +245,15 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 		return;
 	}
 
+	TuiErrorCode error_code = tuiTextureSetPixels_Opengl33(texture, image->PixelWidth, image->PixelHeight, image->ChannelCount, image->PixelData);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	texture->PixelWidth = image->PixelWidth;
 	texture->PixelHeight = image->PixelHeight;
 	texture->ChannelCount = image->ChannelCount;
-	tuiTextureSetPixels_Opengl33(texture, image->PixelData);
 }
 
 void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels)
@@ -260,9 +284,14 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
 		return;
 	}
-
+	
+	TuiErrorCode error_code = tuiTextureSetPixels_Opengl33(texture, pixel_width, pixel_height, channel_count, pixels);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	texture->PixelWidth = pixel_width;
 	texture->PixelHeight = pixel_height;
 	texture->ChannelCount = channel_count;
-	tuiTextureSetPixels_Opengl33(texture, pixels);
 }
