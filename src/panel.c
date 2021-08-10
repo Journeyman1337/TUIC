@@ -21,6 +21,7 @@
 #include "objects.h"
 #include "image_inline.h"
 #include "opengl33.h"
+#include "glfw_error_check.h"
 
 static int sPanelCount = 0;
 
