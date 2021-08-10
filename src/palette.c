@@ -348,7 +348,7 @@ void tuiPaletteDestroy(TuiPalette palette)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (palette == TUI_NULL)
 	{
@@ -372,7 +372,7 @@ int tuiPaletteGetColorCount(TuiPalette palette)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (palette == TUI_NULL)
 	{
@@ -389,7 +389,7 @@ int tuiPaletteGetChannelCount(TuiPalette palette)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (palette == TUI_NULL)
 	{

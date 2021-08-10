@@ -136,7 +136,7 @@ void tuiCursorDestroy(TuiCursor cursor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (cursor == TUI_NULL)
 	{

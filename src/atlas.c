@@ -425,7 +425,7 @@ void tuiAtlasDestroy(TuiAtlas atlas)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (atlas == TUI_NULL)
 	{
@@ -449,7 +449,7 @@ int tuiAtlasGetChannelCount(TuiAtlas atlas)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (atlas == TUI_NULL)
 	{
@@ -466,7 +466,7 @@ int tuiAtlasGetPixelWidth(TuiAtlas atlas)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (atlas == TUI_NULL)
 	{
@@ -483,7 +483,7 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (atlas == TUI_NULL)
 	{
@@ -500,7 +500,7 @@ void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_p
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (atlas == TUI_NULL)
 	{
@@ -528,12 +528,12 @@ TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return TUI_BLEND_INVALID;
 	}
 	if (atlas == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
-		return 0;
+		return TUI_BLEND_INVALID;
 	}
 	return atlas->BlendMode;
 }
@@ -544,7 +544,7 @@ void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (atlas == TUI_NULL)
 	{
@@ -566,7 +566,7 @@ int tuiAtlasGetGlyphCount(TuiAtlas atlas)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (atlas == TUI_NULL)
 	{
