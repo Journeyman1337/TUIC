@@ -81,7 +81,7 @@ void tuiMonitorGetPixelDimensions(TuiMonitor monitor, int* out_pixel_width, int*
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -112,7 +112,7 @@ int tuiMonitorGetPixelWidth(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -136,7 +136,7 @@ int tuiMonitorGetPixelHeight(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -160,7 +160,7 @@ void tuiMonitorGetPhysicalSize(TuiMonitor monitor, int* out_physical_width, int*
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -183,7 +183,7 @@ int tuiMonitorGetPhysicalWidth(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -202,7 +202,7 @@ int tuiMonitorGetPhysicalHeight(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -221,7 +221,7 @@ void tuiMonitorGetContentScale(TuiMonitor monitor, float* out_scale_wide, float*
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -244,7 +244,7 @@ float tuiMonitorGetContentScaleWide(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0.0f;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -263,7 +263,7 @@ float tuiMonitorGetContentScaleTall(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0.0f;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -282,7 +282,7 @@ int tuiMonitorGetRefreshRate(TuiMonitor monitor)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (monitor == TUI_NULL)
 	{
@@ -324,7 +324,7 @@ void tuiMonitorSetUserPointer(TuiMonitor monitor, void* user_pointer)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (monitor == TUI_NULL)
 	{

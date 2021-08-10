@@ -97,7 +97,7 @@ void tuiTextureDestroy(TuiTexture texture)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (texture == TUI_NULL)
 	{
@@ -121,7 +121,7 @@ void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pix
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (texture == TUI_NULL)
 	{
@@ -145,7 +145,7 @@ int tuiTextureGetPixelWidth(TuiTexture texture)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (texture == TUI_NULL)
 	{
@@ -162,7 +162,7 @@ int tuiTextureGetPixelHeight(TuiTexture texture)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (texture == TUI_NULL)
 	{
@@ -179,7 +179,7 @@ int tuiTextureGetChannelCount(TuiTexture texture)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return 0;
 	}
 	if (texture == TUI_NULL)
 	{
@@ -196,12 +196,12 @@ TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return TUI_FILTER_INVALID;
 	}
 	if (texture == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
-		return 0;
+		return TUI_FILTER_INVALID;
 	}
 
 	return texture->FilterMode;
@@ -213,7 +213,7 @@ void tuiTextureSetImage(TuiTexture texture, TuiImage image)
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (texture == TUI_NULL)
 	{
@@ -238,7 +238,7 @@ void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, 
 	if (system == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return;
 	}
 	if (texture == TUI_NULL)
 	{
