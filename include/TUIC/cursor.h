@@ -77,7 +77,7 @@ TuiCursor tuiCursorCreateRawPixels(int pixel_width, int pixel_height, uint8_t* p
  *
  * @returns The created @ref TuiCursor. @ref TUI_NULL is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_CURSOR_SHAPE, @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, and GLFW errors, The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_CURSOR_SHAPE, @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE, and GLFW errors. The first error that occurs will cause the function to immediatly return. One or more GLFW errors may also occur.
  *
  *@requirements This function must be called only while TUIC is initialized.
  *
@@ -91,7 +91,7 @@ TuiCursor tuiCursorCreateShape(TuiCursorShape shape);
  *
  * @param atlas The @ref TuiCursor to destroy.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_CURSOR. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_CURSOR, and GLFW errors. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function must be called only while TUIC is initialized.
  *
