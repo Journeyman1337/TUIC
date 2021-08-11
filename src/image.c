@@ -60,6 +60,34 @@ TuiImage tuiImageCreatePNG(const char* path)
 	return ret;
 }
 
+TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+{
+	if (channel_count != 3 && channel_count != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return TUI_NULL;
+	}
+	if (pixel_width <= 0 || pixel_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+
+	uint8_t* pixels = (uint8_t*)tuiAllocate((size_t)pixel_width * (size_t)pixel_height * (size_t)channel_count);
+
+	for (size_t pixel_y = 0; pixel_y < (size_t)pixel_height; pixel_y++)
+	{
+		for (size_t pixel_x = 0; pixel_x < (size_t)pixel_width; pixel_x++)
+		{
+			size_t pixel_i = (pixel_y * (size_t)pixel_width * (size_t)channel_count) + (pixel_x * (size_t)channel_count);
+			pixels[pixel_i++] = r;
+			pixels[pixel_i++] = g;
+			pixels[pixel_i] = b;
+			if (channel_count == 4)
+			{
+				pixels[++pixel_i] = a;
+			}
+		}
 	}
 
 	TuiImage ret = _CreateImage(pixel_width, pixel_height, channel_count, pixels, TUI_FALSE);

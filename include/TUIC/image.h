@@ -68,7 +68,25 @@ TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_cou
  */
 TuiImage tuiImageCreatePNG(const char* path);
 /*!
+ * @brief Create a @ref TuiImage filled with pixels of a solid color.
+ *
+ * @param pixel_width The width of the image in pixels.
+ * @param pixel_height The height of the image in pixels.
+ * @param channel_count The amount of channels in the image.
+ * @param r The red color channel of the solid fill color.
+ * @param g The green color channel of the solid fill color.
+ * @paran b The blue color channel of the solid fill color.
+ * @param a The alpha color channel of the solid fill color. If the image has only 3 channels, this is ignored.
+ *
  * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_CHANNEL_COUNT and @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
+ */
+TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*!
  * @brief  Destroy @ref TuiImage and correctly dispose of all of its resources.
  *
