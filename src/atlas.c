@@ -596,6 +596,7 @@ TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas)
 		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
 		return TUI_BLEND_INVALID;
 	}
+
 	return atlas->BlendMode;
 }
 
