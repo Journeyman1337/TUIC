@@ -189,14 +189,11 @@ int main()
     tuiWindowDestroy(window);
     window = TUI_NULL;
 
-    tuiAtlasDestroy(atlases[0]);
-    tuiAtlasDestroy(atlases[1]);
-    tuiAtlasDestroy(atlases[2]);
-    tuiAtlasDestroy(atlases[3]);
-    tuiAtlasDestroy(atlases[4]);
-    tuiAtlasDestroy(atlases[5]);
-    tuiAtlasDestroy(atlases[6]);
-    tuiAtlasDestroy(atlases[7]);
+    for (size_t atlas_i = 0; atlas_i < 8; atlas_i++)
+    {
+        tuiAtlasDestroy(atlases[atlas_i]);
+        atlases[atlas_i] = TUI_NULL;
+    }
     tuiFree(atlases);
     atlases = TUI_NULL;
 
