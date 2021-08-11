@@ -1,0 +1,1 @@
+/* Get information about all monitors currently active on the current device. */

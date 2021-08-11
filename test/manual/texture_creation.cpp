@@ -1,0 +1,1 @@
+/* Test creating TuiTexture objects with each creation function. */

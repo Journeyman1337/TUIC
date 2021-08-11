@@ -1,0 +1,1 @@
+/* Test resizing a TuiWindow and test all resize control functions (size limits, aspect ratio fixing, etc). */

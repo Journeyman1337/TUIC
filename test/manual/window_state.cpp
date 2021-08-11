@@ -1,0 +1,1 @@
+/* Test window state changes including: minimize, maximize, restore, hide, show, focus, fullscreen, and windowed. */

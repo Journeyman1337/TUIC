@@ -1,0 +1,1 @@
+/* Test a TuiWindow created with a custom TuiWindowCreateInfo struct. */

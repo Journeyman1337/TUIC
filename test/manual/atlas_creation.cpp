@@ -1,0 +1,1 @@
+/* Test creating TuiAtlas objects with each creation function. */

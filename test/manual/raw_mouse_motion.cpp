@@ -1,0 +1,1 @@
+/* Test raw mouse motion. */

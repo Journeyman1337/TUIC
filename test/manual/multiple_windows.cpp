@@ -1,0 +1,1 @@
+/* Test rendering every renderable object across multiple windows. */

@@ -1,0 +1,1 @@
+/* Output all error code names and descriptions to console to verify they are correct. */

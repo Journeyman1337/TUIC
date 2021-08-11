@@ -1,0 +1,1 @@
+/* Test saving screenshots from a TuiPanel. */

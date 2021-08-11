@@ -1,0 +1,1 @@
+/* Test updating a texture after it was created. */

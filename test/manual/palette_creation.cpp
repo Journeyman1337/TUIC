@@ -1,0 +1,1 @@
+/* Test creating TuiPalette objects with each creation function. */

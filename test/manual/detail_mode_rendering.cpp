@@ -1,0 +1,1 @@
+/* Render test batches for every detail mode to a TuiWindow and save screenshots. */

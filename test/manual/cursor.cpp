@@ -1,0 +1,1 @@
+/* Test mouse custom and standard TuiCursor objects and use all cursor function. */
