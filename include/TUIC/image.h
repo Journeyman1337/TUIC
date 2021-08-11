@@ -66,7 +66,7 @@ TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_cou
  *
  * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
-TuiImage tuiImageCreatePixelsPNG(const char* path);
+TuiImage tuiImageCreatePNG(const char* path);
 /*!
  * @brief Create a @ref TuiImage filled with pixels of a solid color.
  *
@@ -86,7 +86,7 @@ TuiImage tuiImageCreatePixelsPNG(const char* path);
  *
  * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
-TuiImage tuiImageCreatePixelsColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*!
  * @brief  Destroy @ref TuiImage and correctly dispose of all of its resources.
  *

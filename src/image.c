@@ -41,7 +41,7 @@ TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_cou
 	return _CreateImage(pixel_width, pixel_height, channel_count, pixel_data, copy_data);
 }
 
-TuiImage tuiImageCreatePixelsPNG(const char* path)
+TuiImage tuiImageCreatePNG(const char* path)
 {
 	if (path == TUI_NULL)
 	{
@@ -60,7 +60,7 @@ TuiImage tuiImageCreatePixelsPNG(const char* path)
 	return ret;
 }
 
-TuiImage tuiImageCreatePixelsColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
 	if (channel_count != 3 && channel_count != 4)
 	{

@@ -50,7 +50,7 @@ int main()
     tuiSetDebugErrorCallback(message_callback);
 
     const char* image_path = "cp_8x8_rgba_bg_alpha.png";
-    TuiImage atlas_image = tuiImageCreatePixelsPNG(image_path);
+    TuiImage atlas_image = tuiImageCreatePNG(image_path);
     int image_width, image_height, image_channel_count;
     tuiImageGetPixelDimensions(atlas_image, &image_width, &image_height, &image_channel_count);
     uint8_t* image_pixels = tuiImageGetPixels(atlas_image);
