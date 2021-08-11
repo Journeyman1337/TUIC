@@ -104,7 +104,8 @@ int main()
     tuiFree(pixel_bounding_boxes);
     pixel_bounding_boxes = TUI_NULL;
 
-    TuiPalette palette = tuiPaletteCreateXterm(16);
+    const int palette_color_count = 16;
+    TuiPalette palette = tuiPaletteCreateXterm(palette_color_count);
 
     TuiDetailMode detail_mode = TUI_DETAIL_MODE_G8_C4_FULL;
     const int batch_tiles_wide = 16;
