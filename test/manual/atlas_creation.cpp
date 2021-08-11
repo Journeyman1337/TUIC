@@ -76,10 +76,10 @@ int main()
                 pixel_bounding_boxes[index++] = (uint16_t)(tile_x * tile_pixel_dimensions);
                 //right
                 pixel_bounding_boxes[index++] = (uint16_t)((tile_x + 1) * tile_pixel_dimensions);
-                //top
-                pixel_bounding_boxes[index++] = (uint16_t)(tile_y * tile_pixel_dimensions);
                 //bottom
-                pixel_bounding_boxes[index] = (uint16_t)((tile_y + 1) * tile_pixel_dimensions);
+                pixel_bounding_boxes[index++] = (uint16_t)((tile_y + 1) * tile_pixel_dimensions);
+                //top
+                pixel_bounding_boxes[index] = (uint16_t)(tile_y * tile_pixel_dimensions);
             }
         }
     }
