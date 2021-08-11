@@ -97,6 +97,6 @@ static inline GLFWimage _TuiImageToGlfwImage(TuiImage image, const char* func_na
 
 static inline TuiImage _GlfwImageToTuiImage(GLFWimage image, const char* func_name)
 {
-	return _CreateImage(image.width, image.height, 4, image.pixels, TUI_TRUE, func_name);
+	return _CreateImage(image.width, image.height, 4, image.pixels, TUI_TRUE);
 }
 #endif //header guard

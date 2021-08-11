@@ -102,7 +102,7 @@ TuiImage tuiImageClone(TuiImage image)
 		return TUI_NULL;
 	}
 
-	return _CreateImage(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE, __func__);
+	return _CreateImage(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE);
 }
 
 void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height, int* channel_count)
@@ -227,7 +227,7 @@ TuiImage tuiImageCloneResize(TuiImage image, int new_width, int new_height)
 	{
 		return TUI_NULL;
 	}
-	return _CreateImage(image->ChannelCount, new_width, new_height, new_pixels, TUI_TRUE, __func__);
+	return _CreateImage(image->ChannelCount, new_width, new_height, new_pixels, TUI_TRUE);
 }
 
 void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int start_y)

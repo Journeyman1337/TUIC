@@ -118,7 +118,7 @@ TuiImage tuiPanelGetImage(TuiPanel panel)
 		tuiDebugError(error_code, __func__);
 		return TUI_NULL;
 	}
-	TuiImage image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE, __func__);
+	TuiImage image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE);
 	return image;
 }
 
