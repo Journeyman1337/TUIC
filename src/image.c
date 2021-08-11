@@ -25,25 +25,24 @@
 #include <stb_image_write.h>
 #include <stb_image_resize.h>
 
-TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
+TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
 {
-	return _CreateImage(pixel_width, pixel_height, channel_count, pixel_data, copy_data, __func__);
-}
-
-void tuiImageDestroy(TuiImage image)
-{
-	if (image == TUI_NULL)
+	if (channel_count != 3 && channel_count != 4)
 	{
-		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return;
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return TUI_NULL;
+	}
+	if (pixel_width <= 0 || pixel_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, __func__);
+		return TUI_NULL;
 	}
 
-	tuiFree(image->PixelData);
-	tuiFree(image);
+	return _CreateImage(pixel_width, pixel_height, channel_count, pixel_data, copy_data);
 }
 
-TuiImage tuiImageLoad(const char* path)
-{;
+TuiImage tuiImageCreatePNG(const char* path)
+{
 	if (path == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PATH, __func__);
@@ -57,8 +56,26 @@ TuiImage tuiImageLoad(const char* path)
 		tuiDebugError(TUI_ERROR_LOAD_IMAGE_FAILURE, __func__);
 		return TUI_NULL;
 	}
-	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE, __func__);
+	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE);
 	return ret;
+}
+
+	}
+
+	TuiImage ret = _CreateImage(pixel_width, pixel_height, channel_count, pixels, TUI_FALSE);
+	return ret;
+}
+
+void tuiImageDestroy(TuiImage image)
+{
+	if (image == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
+		return;
+	}
+
+	tuiFree(image->PixelData);
+	tuiFree(image);
 }
 
 void tuiImageSave(TuiImage image, const char* path)

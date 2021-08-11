@@ -28,19 +28,8 @@
 #include <TUIC/heap.h>
 #include <stb_image_resize.h>
 
-static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data, const char* func_name)
+static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
 {
-	if (channel_count != 3 && channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, func_name);
-		return TUI_NULL;
-	}
-	if (pixel_width <= 0 || pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, func_name);
-		return TUI_NULL;
-	}
-
 	TuiImage image = (TuiImage)tuiAllocate(sizeof(TuiImage_s));
 	image->PixelWidth = pixel_width;
 	image->PixelHeight = pixel_height;
