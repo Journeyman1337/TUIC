@@ -52,7 +52,23 @@ extern "C" {
  * 
  * @thread_safety This function can be called safely on any thread at any time.
  */
-TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data);
+TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data);
+/*!
+ * @brief Load a @ref TuiImage from a png image file in secondary storage.
+ *
+ * @param path The local or full path to the image file.
+ *
+ * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_PATH and @ref TUI_ERROR_LOAD_IMAGE_FAILURE.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
+ */
+TuiImage tuiImageCreatePNG(const char* path);
+/*!
+ * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
 /*!
  * @brief  Destroy @ref TuiImage and correctly dispose of all of its resources.
  *
@@ -65,20 +81,6 @@ TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, ui
  * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 void tuiImageDestroy(TuiImage image);
-/*!
- * @brief Load a @ref TuiImage from a png image file in secondary storage.
- * 
- * @param path The local or full path to the image file.
- * 
- * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
- * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_PATH and @ref TUI_ERROR_LOAD_IMAGE_FAILURE.  The first error that occurs will cause the function to immediatly return. 
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
- */
-TuiImage tuiImageLoad(const char* path);
 /*!
  * @brief Save a @ref TuiImage as a png image file.
  *
