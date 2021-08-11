@@ -120,14 +120,14 @@ int main()
 
     /* Load the custom cursor image. */
     int expected_channel_count = 4;
-    custom_cursor_image  = tuiImageLoad("custom_cursor.png", expected_channel_count);
+    custom_cursor_image  = tuiImageCreatePixelsPNG("custom_cursor.png", expected_channel_count);
 
     /* Initialize the current cursor. */
     current_cursor = tuiCursorCreateShape(current_cursor_shape);
 
     /* Load the atlas image */
     const char* atlas_image_name = "cp_8x8_rgb_fg_green.png";
-    TuiImage atlas_image = tuiImageLoad(atlas_image_name);
+    TuiImage atlas_image = tuiImageCreatePixelsPNG(atlas_image_name);
     if (atlas_image == TUI_NULL)
     {
         printf("Issue loading image file. Make sure that it was moved from the content folder to a location the executable can read. You need to do this manually.\n");
