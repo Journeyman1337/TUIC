@@ -145,19 +145,9 @@ TuiBoolean tuiCursorShapeSupported(TuiCursorShape cursor_shape) // glfw has no f
 	if (cursor != TUI_NULL) // if the created cursor is not TUI_NULL...
 	{
 		glfwDestroyCursor(cursor); // destroy it because we dont actually want to use it
-		TuiErrorCode glfw_error = _GlfwErrorCheck();
-		if (glfw_error != TUI_ERROR_NONE)
-		{
-			tuiDebugError(glfw_error, __func__);
-			return TUI_FALSE;
-		}
+		_GlfwClearErrors();
 		return TUI_TRUE; // return true
 	}
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return TUI_FALSE;
-	}
+	_GlfwClearErrors();
 	return TUI_FALSE; //if the created curser was TUI_NULL return false
 }
