@@ -52,8 +52,6 @@ const char* const kAtlasImagePaths[9] =
     "cp_8x8_rgba_bg_alpha.png"
 };
 
-const char* kOutDirectoryPath = "test_out/blend_mode_rendering/";
-
 int main()
 {
     if (tuiInit() == TUI_FALSE)
@@ -64,7 +62,7 @@ int main()
 
     tuiSetDebugErrorCallback(message_callback);
 
-    printf("Testing each blend mode by rendering a batch to a window and saving a screenshot. Press spacebar to test the next blend mode. The output should look like a codepage glyph atlas with black background and white foreground colors for every blend mode.\n");
+    printf("Testing each blend mode by rendering a batch to a window. Press spacebar to test the next blend mode. The output should look like a codepage glyph atlas with black background and white foreground colors for every blend mode.\n");
 
     TuiDetailMode detail_mode = TUI_DETAIL_MODE_G8_C4_FULL;
     const int tiles_wide = 16;
@@ -101,24 +99,14 @@ int main()
     TuiWindow window = tuiWindowCreate(256, 256, "blend_mode_rendering", TUI_NULL);
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
 
-    TuiImage screenshot_image = tuiImageCreateColor(tiles_wide * tile_pixel_dimensions, tiles_tall * tile_pixel_dimensions, 4, 0, 0, 0, 255);
-    
     for (size_t blend_i = TUI_BLEND_FIRST; blend_i <= TUI_BLEND_LAST; blend_i++)
     {
         const char* blend_name = tuiBlendModeToString((TuiBlendMode)blend_i);
-        char out_path[128];
-        strcpy(out_path, kOutDirectoryPath);
-        strcpy(out_path, blend_name);
-        strcat(out_path, ".png");
         tuiWindowClearColor(window, 0, 0, 0, 1);
         tuiWindowDrawBatch(window, atlases[blend_i - 1], palette, batch);
-        tuiWindowWriteImage(window, screenshot_image);
-        tuiImageSave(screenshot_image, out_path);
         printf("%s\n", blend_name);
         frame(window);
     }
-    tuiImageDestroy(screenshot_image);
-    screenshot_image = TUI_NULL;
 
     for (size_t atlas_i = 0; atlas_i < 9; atlas_i++)
     {
