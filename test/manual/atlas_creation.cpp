@@ -49,6 +49,8 @@ int main()
 
     tuiSetDebugErrorCallback(message_callback);
 
+    printf("Testing all atlas creation functions in order they are listed in the atlas.h header file by rendering then with batch data. Press spacebar to test the next creation function. The output should look like a codepage glyph atlas with black background and white foreground colors for every creation function.\n");
+
     const char* image_path = "cp_8x8_rgba_bg_alpha.png";
     TuiImage atlas_image = tuiImageCreatePNG(image_path);
     int image_width, image_height, image_channel_count;

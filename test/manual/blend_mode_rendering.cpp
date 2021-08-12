@@ -64,6 +64,8 @@ int main()
 
     tuiSetDebugErrorCallback(message_callback);
 
+    printf("Testing each blend mode by rendering a batch to a window and saving a screenshot. Press spacebar to test the next blend mode. The output should look like a codepage glyph atlas with black background and white foreground colors for every blend mode.\n");
+
     TuiDetailMode detail_mode = TUI_DETAIL_MODE_G8_C4_FULL;
     const int tiles_wide = 16;
     const int tiles_tall = 16;
