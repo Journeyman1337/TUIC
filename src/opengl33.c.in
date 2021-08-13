@@ -172,10 +172,10 @@ static inline TuiErrorCode _CreateProgram(const char** vertex_source, const char
 	GL_BLOCK_START();
 	GL_CALL(gl_vertex_shader = glCreateShader(GL_VERTEX_SHADER));
 	GL_CALL(glShaderSource(gl_vertex_shader, 1, vertex_source, TUI_NULL));
-	GL_CALL(gl_vertex_shader);
+	GL_COMPILE_CALL(gl_vertex_shader);
 	GL_CALL(gl_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER));
 	GL_CALL(glShaderSource(gl_fragment_shader, 1, fragment_source, TUI_NULL));
-	GL_CALL(gl_fragment_shader);
+	GL_COMPILE_CALL(gl_fragment_shader);
 	GL_CALL(*handle = glCreateProgram());
 	GL_CALL(glAttachShader(*handle, gl_vertex_shader));
 	GL_CALL(glAttachShader(*handle, gl_fragment_shader));
