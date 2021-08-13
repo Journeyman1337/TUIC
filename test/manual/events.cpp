@@ -1,1 +1,0 @@
-/* Test all functions in TUIC/events.h include file. */
