@@ -35,11 +35,11 @@ typedef uint8_t TuiBoolean;
 /*!
  * @brief Boolean false value.
  */
-static const TuiBoolean TUI_TRUE = 1;
+#define TUI_TRUE 1
 /*!
  * @brief Boolean false value.
  */
-static const TuiBoolean TUI_FALSE = 0;
+#define TUI_FALSE 0
 
 
 #ifdef __cplusplus //extern C guard
