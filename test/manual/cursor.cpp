@@ -41,13 +41,13 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 
 int main()
 {
+    tuiSetDebugErrorCallback(message_callback);
+
     if (tuiInit() == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return 1;
     }
-
-    tuiSetDebugErrorCallback(message_callback);
 
     printf("Test all cursor creation functions and test all cursor shapes that are supported on the current platform. Press spacebar to test the next cursor.\n");
 

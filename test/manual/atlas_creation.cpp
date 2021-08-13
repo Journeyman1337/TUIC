@@ -41,13 +41,13 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 
 int main()
 {
+    tuiSetDebugErrorCallback(message_callback);
+
 	if (tuiInit() == TUI_FALSE)
 	{
         printf("Failed to initialize TUIC.");
 		return 1;
 	}
-
-    tuiSetDebugErrorCallback(message_callback);
 
     printf("Testing all atlas creation functions in order they are listed in the atlas.h header file by rendering then with batch data. Press spacebar to test the next creation function. The output should look like a codepage glyph atlas with black background and white foreground colors for every creation function.\n");
 

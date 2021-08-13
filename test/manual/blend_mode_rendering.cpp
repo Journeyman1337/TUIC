@@ -54,13 +54,13 @@ const char* const kAtlasImagePaths[9] =
 
 int main()
 {
+    tuiSetDebugErrorCallback(message_callback);
+
     if (tuiInit() == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return 1;
     }
-
-    tuiSetDebugErrorCallback(message_callback);
 
     printf("Testing each blend mode by rendering a batch to a window. Press spacebar to test the next blend mode. The output should look like a codepage glyph atlas with black background and white foreground colors for every blend mode.\n");
 

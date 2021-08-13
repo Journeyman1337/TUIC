@@ -35,13 +35,13 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 
 int main()
 {
+    tuiSetDebugErrorCallback(message_callback);
+
     if (tuiInit() == TUI_FALSE)
     {
         printf("Failed to initialize TUIC.");
         return 1;
     }
-
-    tuiSetDebugErrorCallback(message_callback);
 
     TuiWindow window = tuiWindowCreate(256, 256, "clipboard", TUI_NULL);
     tuiWindowSetKeyboardKeyCallback(window, key_callback);

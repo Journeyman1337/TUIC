@@ -237,13 +237,13 @@ const TuiDetailMode kDetailModes[40] =
 
 int main()
 {
+	tuiSetDebugErrorCallback(message_callback);
+
 	if (tuiInit() == TUI_FALSE)
 	{
 		printf("Failed to initialize TUIC.");
 		return 1;
 	}
-
-	tuiSetDebugErrorCallback(message_callback);
 
 	printf("Testing all detail modes by rendering test pattern batches. Press spacebar to render the next batch.\n");
 
