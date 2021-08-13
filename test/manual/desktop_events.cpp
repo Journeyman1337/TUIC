@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-void TuiMessageCallback(TuiErrorCode error_code, const char* msg)
+void message_callback(TuiErrorCode error_code, const char* msg)
 {
     if (error_code == TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC)
     {
@@ -48,7 +48,7 @@ void window_resize_callback(TuiWindow window, int pixel_width, int pixel_height)
 
 void window_content_scale_callback(TuiWindow window, float scale_wide, float scale_tall)
 {
-    printf("Windos content scale: ( scale_wide = %f, scale_tall = %f )\n", scale_wide, scale_tall);
+    printf("Window content scale: ( scale_wide = %f, scale_tall = %f )\n", scale_wide, scale_tall);
 }
 
 void mouse_button_callback(TuiWindow window, TuiMouseButton mouse_button, TuiButtonState button_state, TuiKeyboardMod mod)
@@ -112,6 +112,8 @@ void monitor_callback(TuiMonitor monitor, TuiBoolean connected)
 
 int main()
 {
+    tuiSetDebugErrorCallback(message_callback);
+
     int window_width = 500;
     int window_height = 500;
 
@@ -122,9 +124,6 @@ int main()
         printf("Failed to initialize TUIC.");
         return -1;
     }
-
-    /* Tell TUIC to send all debug messages to our message callback (the function we implemented above main). */
-    tuiSetDebugErrorCallback(TuiMessageCallback);
 
     /* Create the window. */
     TuiWindowCreateInfo window_create_info = tuiWindowCreateInfo();
