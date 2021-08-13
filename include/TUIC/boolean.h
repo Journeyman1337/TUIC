@@ -25,21 +25,21 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
 
- /*!
- * @brief Values for true and false.
+
+/*!
+ * @brief Type for boolean values.
  */
-typedef enum TuiBoolean
-{
-	/*!
-	 * \brief Boolean true value.
-	 */
-	TUI_TRUE = 1,
-	/*!
-	 * \brief Boolean false value.
-	 */
-	TUI_FALSE = 0
-} TuiBoolean;
+typedef uint8_t TuiBoolean;
+/*!
+ * @brief Boolean false value.
+ */
+const TuiBoolean TUI_TRUE = 1;
+/*!
+ * @brief Boolean false value.
+ */
+const TuiBoolean TUI_FALSE = 0;
 
 
 #ifdef __cplusplus //extern C guard
