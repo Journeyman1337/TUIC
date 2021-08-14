@@ -65,6 +65,7 @@ int main()
     {
         tuiPollEvents();
 
+        tuiWindowClearColor(texture_window, 255, 255, 255, 255); //white clear color
         tuiWindowDrawTexture(texture_window, texture);
         tuiWindowFrame(texture_window);
 
