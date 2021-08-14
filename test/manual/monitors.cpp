@@ -31,7 +31,7 @@ int main()
     TuiMonitor* monitors = tuiGetMonitors(&monitor_count);
     printf("There are %d monitor(s) attached to this device.\n", monitor_count);
     TuiMonitor primary_monitor = tuiGetPrimaryMonitor();
-    printf("The name of the primary monitor is: \"%s\"", tuiMonitorGetName(primary_monitor));
+    printf("The name of the primary monitor is: \"%s\"\n", tuiMonitorGetName(primary_monitor));
     printf("All monitors:\n");
     for (int monitor_i = 0; monitor_i < monitor_count; monitor_i++)
     {
