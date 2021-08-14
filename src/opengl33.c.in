@@ -23,6 +23,7 @@
 #include "objects.h"
 #include "opengl33.h"
 #include "glfw_error_check.h"
+#include <string.h> //needed for memcpy
 
 #define GL_NO_ERROR 0
 
