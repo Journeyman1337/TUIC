@@ -47,4 +47,5 @@ int main()
     monitors = TUI_NULL;
 
     tuiTerminate();
+    return 0;
 }
