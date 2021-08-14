@@ -795,7 +795,7 @@ TuiErrorCode tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture,
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
 }
 TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -809,7 +809,7 @@ TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int l
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
 }
 TuiErrorCode tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -1161,7 +1161,7 @@ TuiErrorCode tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, in
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
 }
 TuiErrorCode tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -1175,7 +1175,7 @@ TuiErrorCode tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
 }
 TuiErrorCode tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
 {
