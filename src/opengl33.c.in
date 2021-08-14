@@ -454,13 +454,13 @@ static inline TuiErrorCode _DrawBatchData(uint32_t framebuffer_handle, size_t fr
 	}
 	return TUI_ERROR_NONE;
 }
-static inline TuiErrorCode _RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebuffer_handle, size_t render_area_width, size_t render_area_height, size_t viewport_width, size_t viewport_height, int left_x, int right_x, int top_y, int bottom_y, uint32_t override_vao)
+static inline TuiErrorCode _RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebuffer_handle, size_t viewport_width, size_t viewport_height, int left_x, int right_x, int top_y, int bottom_y, uint32_t override_vao)
 {
 	TuiSystem system = tui_get_system();
 	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
 	float matrix[16];
 	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
-	_TransformMatrix(matrix, render_area_width, render_area_height, left_x, right_x, top_y, bottom_y);
+	_TransformMatrix(matrix, viewport_width, viewport_height, left_x, right_x, top_y, bottom_y);
 	GL_BLOCK_START();
 	GL_CALL(glEnable(GL_BLEND));
 	GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
@@ -781,7 +781,7 @@ TuiErrorCode tuiWindowDrawPanel_Opengl33(TuiWindow window, TuiPanel panel, int l
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, window_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -795,7 +795,7 @@ TuiErrorCode tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture,
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, texture->PixelWidth, texture->PixelHeight, texture->PixelWidth, texture->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -809,7 +809,7 @@ TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int l
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, atlas->PixelWidth, atlas->PixelHeight, atlas->PixelWidth, atlas->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -823,7 +823,7 @@ TuiErrorCode tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_wi
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(subject_window_data->FramebufferTextureHandle, window_data->FramebufferHandle, subject_window->FramebufferPixelWidth, subject_window->FramebufferPixelHeight, subject_window->FramebufferPixelWidth, subject_window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(subject_window_data->FramebufferTextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiWindowRender_Opengl33(TuiWindow window)
 {
@@ -834,7 +834,7 @@ TuiErrorCode tuiWindowRender_Opengl33(TuiWindow window)
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->FramebufferPixelWidth, window->FramebufferPixelHeight, window->ViewportPixelWidth, window->ViewportPixelHeight, 0, window->ViewportPixelWidth, 0, window->ViewportPixelHeight, window_data->VaoHandle);
+	return _RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->ViewportPixelWidth, window->ViewportPixelHeight, 0, window->ViewportPixelWidth, 0, window->ViewportPixelHeight, window_data->VaoHandle);
 }
 TuiErrorCode tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
 {
@@ -1147,7 +1147,7 @@ TuiErrorCode tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, 
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, subject_panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, subject_panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -1161,7 +1161,7 @@ TuiErrorCode tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, in
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, texture->PixelWidth, texture->PixelHeight, texture->PixelWidth, texture->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -1175,7 +1175,7 @@ TuiErrorCode tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, atlas->PixelWidth, atlas->PixelHeight, atlas->PixelWidth, atlas->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
 {
@@ -1189,5 +1189,5 @@ TuiErrorCode tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int l
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, panel_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
