@@ -70,6 +70,8 @@ int main()
         return 1;
     }
 
+    printf("Test rendering palettes of all channel counts.\n");
+
     TuiPalette* palettes = (TuiPalette*)tuiAllocate(sizeof(TuiPalette) * 2);
     palettes[0] = create_test_palette(3);
     palettes[1] = create_test_palette(4);
