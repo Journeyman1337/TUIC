@@ -533,7 +533,8 @@ void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, i
 		return;
 	}
 
-	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+
+	if (window->FramebufferMatchViewportSize == TUI_TRUE && window->IsFullscreen == TUI_FALSE)
 	{
 		window->ViewportPixelWidth = pixel_width;
 		window->ViewportPixelHeight = pixel_height;
