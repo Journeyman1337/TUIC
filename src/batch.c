@@ -223,6 +223,17 @@ int tuiBatchGetTileCount(TuiBatch batch)
 	return batch->TileCount;
 }
 
+const uint8_t* tuiBatchGetData(TuiBatch batch)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return TUI_NULL;
+	}
+
+	return batch->Data;
+}
+
 void tuiBatchClear(TuiBatch batch)
 {
 	if (batch == TUI_NULL)

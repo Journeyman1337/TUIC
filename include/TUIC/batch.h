@@ -177,6 +177,22 @@ int tuiBatchGetReservedSize(TuiBatch batch);
  */
 int tuiBatchGetTileCount(TuiBatch batch);
 /*!
+ * @brief Get a pointer to the data array of a @ref TuiBatch.
+ *
+ * @param batch The @ref TuiBatch.
+ *
+ * @returns A pointer to the data array. TUI_NULL is returned if an error occurs.
+ *
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
+ * 
+ * @pointer_lifetime The returned pointer shares its lifetime with the @ref TuiBatch it was taken from, and must not be manually freed.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+const uint8_t* tuiBatchGetData(TuiBatch batch);
+/*!
  * @brief Clear the data of a @ref TuiBatch to 0.
  *
  * @param batch The @ref TuiBatch to clear.
