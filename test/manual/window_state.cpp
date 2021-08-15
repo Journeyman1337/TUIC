@@ -111,9 +111,7 @@ int main()
 		return 1;
 	}
 	
-	TuiWindowCreateInfo window_create_info = tuiWindowCreateInfo();
-	window_create_info.framebuffer_match_viewport_size = TUI_TRUE;
-	TuiWindow window = tuiWindowCreate(256, 256, "State Changing Window", &window_create_info);
+	TuiWindow window = tuiWindowCreate(256, 256, "State Changing Window", TUI_NULL);
 	
 	tuiWindowSetIconifyCallback(window, iconify_callback);
 	tuiWindowSetMaximizeCallback(window, maximize_callback);
