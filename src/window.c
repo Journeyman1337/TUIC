@@ -2517,6 +2517,10 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
+	if (window->IsFullscreen == TUI_TRUE)
+	{
+		return;
+	}
 
 	TuiMonitor monitor = _GetCurrentMonitor(window->GlfwWindow);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();

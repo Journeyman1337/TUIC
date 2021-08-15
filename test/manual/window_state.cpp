@@ -18,6 +18,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 		{
 			tuiWindowRestore(state_window);
 		}
+		tuiWindowFocus(window);
 	}
 	if (key == TUIK_M && state == TUI_BUTTON_PRESS)
 	{
@@ -30,10 +31,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 		{
 			tuiWindowMaximize(state_window);
 		}
-	}
-	if (key == TUIK_R && state == TUI_BUTTON_PRESS)
-	{
-		tuiWindowRestore(state_window);
+		tuiWindowFocus(window);
 	}
 	if (key == TUIK_H && state == TUI_BUTTON_PRESS)
 	{
@@ -48,20 +46,22 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 			tuiWindowShow(state_window);
 			printf("Window shown.\n");
 		}
+		tuiWindowFocus(window);
 	}
 	if (key == TUIK_F && state == TUI_BUTTON_PRESS)
 	{
 		TuiBoolean fullscreen = tuiWindowGetIsFullscreen(state_window);
 		if (fullscreen == TUI_FALSE)
 		{
-			tuiWindowSetFullscreen(state_window, tuiGetPrimaryMonitor());
-			printf("Window made fullscreen.\n");
+			tuiWindowSetFullscreenCurrentMonitor(state_window);
+			printf("Window made fullscreen. %d %d\n", tuiWindowGetViewportPixelWidth(state_window), tuiWindowGetFramebufferPixelWidth(state_window));
 		}
 		else //if (fullscreen == TUI_TRUE)
 		{
-			tuiWindowSetWindowedViewportSize(window, 256, 256);
+			tuiWindowSetWindowedViewportSize(state_window, 256, 256);
 			printf("Window made windowed.\n");
 		}
+		tuiWindowFocus(window);
 	}
 }
 
@@ -111,7 +111,9 @@ int main()
 		return 1;
 	}
 	
-	TuiWindow window = tuiWindowCreate(256, 256, "State Changing Window", TUI_NULL);
+	TuiWindowCreateInfo window_create_info = tuiWindowCreateInfo();
+	window_create_info.framebuffer_match_viewport_size = TUI_TRUE;
+	TuiWindow window = tuiWindowCreate(256, 256, "State Changing Window", &window_create_info);
 	
 	tuiWindowSetIconifyCallback(window, iconify_callback);
 	tuiWindowSetMaximizeCallback(window, maximize_callback);
