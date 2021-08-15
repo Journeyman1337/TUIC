@@ -286,7 +286,7 @@ const uint8_t kTuiXtermPalette[768] = {
 
 static int sPaletteCount = 0;
 
-TuiPalette tuiPaletteCreate(int channel_count, int color_count, const uint8_t* color_data)
+TuiPalette tuiPaletteCreateColors(int channel_count, int color_count, const uint8_t* color_data)
 {
 	TuiSystem system = tui_get_system();
 	if (system == TUI_NULL)

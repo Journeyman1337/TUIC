@@ -123,7 +123,7 @@ int main()
             palette_colors[(color_i * 3) + channel_i] = ((uint8_t)(interpolated_channel_color));
         }
     }
-    TuiPalette palette = tuiPaletteCreate(palette_channel_count, palette_color_count, palette_colors);
+    TuiPalette palette = tuiPaletteCreateColors(palette_channel_count, palette_color_count, palette_colors);
 
     /* Create the batch (tile rendering data container) */
     TuiDetailMode detail_mode = TUI_DETAIL_MODE_G8_C4_SPARSE; // same as (TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_COLOR_4 | TUI_DETAIL_FLAG_LAYOUT_SPARSE)

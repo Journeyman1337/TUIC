@@ -39,11 +39,11 @@ extern const uint8_t kTuiXtermPalette[768];
  * Functions for manipulating @ref TuiPalette opaque objects.
  *  @{ */
 /*!
- * @brief Create a custon @ref TuiPalette.
+ * @brief Create a custom @ref TuiPalette with a colors array.
  * 
- * @param channel_count The amount of channels per color.
- * @param color_count The amount of colors in the palette.
- * @param color_data A pointer to the color data array.
+ * @param channel_count The amount of channels per color in the array.
+ * @param color_count The amount of colors in the array.
+ * @param color_data A pointer to the colors array.
  * 
  * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_NULL_COLORS. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or colors array may cause undefined behaviour or a fatal crash without an error.
  *
@@ -53,7 +53,7 @@ extern const uint8_t kTuiXtermPalette[768];
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiPalette tuiPaletteCreate(int channel_count, int color_count, const uint8_t* color_data);
+TuiPalette tuiPaletteCreateColors(int channel_count, int color_count, const uint8_t* color_data);
 /*!
  * @brief Create a @ref TuiPalette that uses the XTerm standard color palette.
  * 
