@@ -2566,7 +2566,10 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor)
 		return;
 	}
 
-	glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
+	if (window->IsFullscreen == TUI_FALSE)
+	{
+		glfwGetWindowPos(window->GlfwWindow, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
+	}
 	const GLFWvidmode* vid_mode = glfwGetVideoMode(monitor);
 	window->IsFullscreen = TUI_TRUE;
 	glfwSetWindowMonitor(window->GlfwWindow, monitor, 0, 0, vid_mode->width, vid_mode->height, vid_mode->refreshRate);
