@@ -1147,7 +1147,7 @@ TuiErrorCode tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, 
 	{
 		return glfw_error;
 	}
-	return _RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, subject_panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+	return _RenderTextureToFramebuffer(subject_panel_data->FramebufferTextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
 }
 TuiErrorCode tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
