@@ -136,7 +136,8 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel
 	TuiWindow window = (TuiWindow)glfwGetWindowUserPointer(glfw_window);
 	if (
 		(window->IsFullscreen == TUI_FALSE && glfwGetWindowAttrib(glfw_window, GLFW_RESIZABLE) == GLFW_TRUE) ||
-		(window->ViewportPixelWidth == pixel_width && window->ViewportPixelHeight == pixel_height)
+		(window->ViewportPixelWidth == pixel_width && window->ViewportPixelHeight == pixel_height) ||
+		(glfwGetWindowAttrib(glfw_window, GLFW_MAXIMIZED) == GLFW_TRUE)
 		) //this condition is to fix a weird GLFW issue where invalid sizes sometimes get passed into this callback. seems to happen especially when transitioning between windowed and fullscreen.
 	{
 		if (window->FramebufferMatchViewportSize == TUI_TRUE)
