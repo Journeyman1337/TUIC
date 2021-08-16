@@ -719,9 +719,9 @@ TuiErrorCode tuiWindowGetPixels_Opengl33(TuiWindow window, size_t* pixel_width, 
 	else if (*pixel_width != window->FramebufferPixelWidth || *pixel_height != window->FramebufferPixelHeight)
 	{
 		*pixel_ptr = (uint8_t*)tuiReallocate(*pixel_ptr, window->FramebufferPixelWidth * window->FramebufferPixelHeight * 4);
-		*pixel_width = window->FramebufferPixelWidth;
-		*pixel_height = window->FramebufferPixelHeight;
 	}
+	*pixel_width = window->FramebufferPixelWidth;
+	*pixel_height = window->FramebufferPixelHeight;
 	glfwMakeContextCurrent(system->BaseWindow);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
@@ -1069,9 +1069,9 @@ TuiErrorCode tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* pixel_width, siz
 	else if (*pixel_width != panel->PixelWidth || *pixel_height != panel->PixelHeight)
 	{
 		*pixel_ptr = (uint8_t*)tuiReallocate(*pixel_ptr, panel->PixelWidth * panel->PixelHeight * 4);
-		*pixel_width = panel->PixelWidth;
-		*pixel_height = panel->PixelHeight;
 	}
+	*pixel_width = panel->PixelWidth;
+	*pixel_height = panel->PixelHeight;
 	glfwMakeContextCurrent(system->BaseWindow);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
