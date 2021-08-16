@@ -79,7 +79,7 @@ TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_coun
 	{
 		for (size_t pixel_x = 0; pixel_x < (size_t)pixel_width; pixel_x++)
 		{
-			size_t pixel_i = (pixel_y * (size_t)pixel_width * (size_t)channel_count) + (pixel_x * (size_t)channel_count);
+			size_t pixel_i = (pixel_y * (size_t)pixel_width + pixel_x) * (size_t)channel_count;
 			pixels[pixel_i++] = r;
 			pixels[pixel_i++] = g;
 			pixels[pixel_i] = b;
