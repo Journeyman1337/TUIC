@@ -126,9 +126,6 @@ typedef struct TuiOpengl33AtlasApiData
 typedef struct TuiOpengl33TextureApiData
 {
 	uint32_t TextureHandle;
-	size_t PixelWidth;
-	size_t PixelHeight;
-	size_t ChannelCount;
 } TuiOpengl33TextureApiData;
 typedef struct TuiOpengl33PaletteApiData
 {
@@ -908,9 +905,6 @@ TuiErrorCode tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels
 	texture->ApiData = (TuiOpengl33TextureApiData*)tuiAllocate(sizeof(TuiOpengl33TextureApiData));
 	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
 	texture_data->TextureHandle = 0;
-	texture_data->PixelWidth = 0;
-	texture_data->PixelHeight = 0;
-	texture_data->ChannelCount = 0;
 	glfwMakeContextCurrent(system->BaseWindow);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
@@ -922,9 +916,6 @@ TuiErrorCode tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels
 	{
 		return error_code;
 	}
-	texture_data->PixelWidth = texture->PixelWidth;
-	texture_data->PixelHeight = texture->PixelHeight;
-	texture_data->ChannelCount = texture->ChannelCount;
 	return TUI_ERROR_NONE;
 }
 TuiErrorCode tuiTextureDestroy_Opengl33(TuiTexture texture)
@@ -953,17 +944,11 @@ TuiErrorCode tuiTextureSetPixels_Opengl33(TuiTexture texture, size_t pixel_width
 		return glfw_error;
 	}
 	GL_BLOCK_START();
-	if (pixel_width == texture_data->PixelWidth && pixel_height == texture_data->PixelHeight && channel_count == texture_data->ChannelCount)
-	{
-		GL_CALL(glTexSubImage2D(texture_data->TextureHandle, 0, 0, 0, pixel_width, pixel_height, _GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels)); //We can use glSubImage2D because its faster when no resizing.
-	}
-	else
-	{
-		texture_data->PixelWidth = pixel_width;
-		texture_data->PixelHeight = pixel_height;
-		texture_data->ChannelCount = channel_count;
-		GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, _GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, _GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels)); //Need to use this slower alternative to resize it.
-	}
+	texture->PixelWidth = pixel_width;
+	texture->PixelHeight = pixel_height;
+	texture->ChannelCount = channel_count;
+	GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, _GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, _GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels));
+	GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, _GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, _GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels));
 	return TUI_ERROR_NONE;
 }
 TuiErrorCode tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
