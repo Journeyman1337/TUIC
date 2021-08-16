@@ -132,6 +132,13 @@ int main()
     frame(window);
 
     tuiPanelClearColor(panel, 0, 0, 0, 255);
+    tuiPanelDrawBatchDataTransformed(panel, atlas, palette, tuiBatchGetDetail(batch), tuiBatchGetTilesWide(batch), tuiBatchGetTilesTall(batch), 0, tuiBatchGetData(batch), 0, 128, 0, 128);
+    tuiWindowClearColor(window, 0, 0, 0, 255);
+    tuiWindowDrawPanel(window, panel);
+    printf("drawing batch data with transform...\n");
+    frame(window);
+
+    tuiPanelClearColor(panel, 0, 0, 0, 255);
     tuiPanelClearColor(subject_panel, 0, 255, 0, 255); //green clear color
     tuiPanelDrawPanel(panel, subject_panel);
     tuiWindowClearColor(window, 0, 0, 0, 255);
