@@ -343,6 +343,10 @@ TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, c
 	window->GlfwWindow = glfw_window;
 	window->IsFullscreen = create_info_used.fullscreen;
 	window->FramebufferMatchViewportSize = create_info_used.framebuffer_match_viewport_size;
+	window->MinWidth = 0;
+	window->MaxWidth = 0;
+	window->MinHeight = 0;
+	window->MaxHeight = 0;
 	TuiMonitor cur_monitor = _GetCurrentMonitor(glfw_window);
 	glfwGetWindowPos(glfw_window, &window->FullscreenLastWindowedPositionX, &window->FullscreenLastWindowedPositionY);
 	window->IsFixedAspectRatio = TUI_FALSE;
