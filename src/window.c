@@ -309,11 +309,6 @@ TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, c
 		glfwSetCursorPos(glfw_window, (double)viewport_pixel_width / 2.0, (double)viewport_pixel_height / 2.0);
 	}
 
-	if (create_info_used.fullscreen == TUI_FALSE && create_info_used.custom_window_position == TUI_TRUE)
-	{
-		glfwSetWindowPos(glfw_window, create_info->windowed_x_position, create_info->windowed_y_position);
-	}
-
 	int framebuffer_pixel_width = viewport_pixel_width;
 	int framebuffer_pixel_height = viewport_pixel_height;
 
@@ -395,9 +390,6 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.focus_on_show = TUI_TRUE;
 	info.fullscreen = TUI_FALSE;
 	info.monitor = TUI_NULL;
-	info.custom_window_position = TUI_FALSE;
-	info.windowed_x_position = 0;
-	info.windowed_y_position = 0;
 	info.framebuffer_match_viewport_size = TUI_TRUE;
 	info.unmatching_framebuffer_pixel_width = 0;
 	info.unmatching_framebuffer_pixel_height = 0;

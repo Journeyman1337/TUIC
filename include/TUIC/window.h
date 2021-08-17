@@ -79,18 +79,6 @@ typedef struct TuiWindowCreateInfo
 	 */
 	TuiMonitor monitor;
 	/*!
-	 * @brief If the window should open in a specific pixel position when opened in windowed mode (not fullscreen).
-	 */
-	TuiBoolean custom_window_position;
-	/*!
-	 * @brief If custom_window_position is TUI_TRUE, this is the monitor x pixel position the window should open at.
-	 */
-	int windowed_x_position;
-	/*!
-	 * @brief If custom_window_position is TUI_TRUE, this is the monitor y pixel position the window should open at.
-	 */
-	int windowed_y_position;
-	/*!
 	 * @brief If the size of the framebuffer should be resized automatically to match the viewport size of the window upon resizes.
 	 */
 	TuiBoolean framebuffer_match_viewport_size;
