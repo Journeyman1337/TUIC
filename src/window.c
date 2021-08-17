@@ -664,7 +664,7 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
 }
 
-void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data)
+void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t* batch_data)
 {
 	TuiSystem system = tui_get_system();
 	if (system == TUI_NULL)
@@ -742,7 +742,7 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
 {
 	TuiSystem system = tui_get_system();
 	if (system == TUI_NULL)
