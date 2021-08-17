@@ -133,7 +133,9 @@ int main()
     printf("drawing TuiPanel with transform...\n");
     frame(window);
 
-    TuiWindow subject_window = tuiWindowCreate(256, 256, "subject_window", TUI_NULL);
+    TuiWindowCreateInfo subject_window_create_info = tuiWindowCreateInfo();
+    subject_window_create_info.hidden = TUI_TRUE;
+    TuiWindow subject_window = tuiWindowCreate(256, 256, "subject_window", &subject_window_create_info);
     tuiWindowHide(subject_window);
     tuiWindowFocus(window);
 
