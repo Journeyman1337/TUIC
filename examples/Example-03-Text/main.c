@@ -135,7 +135,7 @@ int main()
     sBatch = tuiBatchCreate(detail_mode, kTilesTall, kTilesWide);
 
     /* Create the window. */
-    const char* window_title = "Example XX";
+    const char* window_title = "Example 3";
     sWindow = tuiWindowCreate(window_width, window_height, window_title, TUI_NULL);
 
     /* Render initial clear color to window. */

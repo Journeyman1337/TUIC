@@ -96,7 +96,7 @@ int main()
     }
 
     /* Create the window. */
-    const char* window_title = "Example XX";
+    const char* window_title = "Example 2";
     TuiWindow window = tuiWindowCreate(window_width, window_height, window_title, TUI_NULL);
 
     /* Render initial clear color to window. */
