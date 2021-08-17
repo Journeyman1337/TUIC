@@ -261,6 +261,7 @@ TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, c
 	glfwWindowHint(GLFW_FLOATING, create_info_used.topmost);
 	glfwWindowHint(GLFW_MAXIMIZED, create_info_used.maximized);
 	glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info_used.focus_on_show);
+	glfwWindowHint(GLFW_VISIBLE, !create_info_used.hidden);
 
 	glfw_error = _GlfwErrorCheck(); //window hint errors
 	if (glfw_error != TUI_ERROR_NONE)
@@ -388,6 +389,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.maximized = TUI_FALSE;
 	info.center_cursor = TUI_FALSE;
 	info.focus_on_show = TUI_TRUE;
+	info.hidden = TUI_FALSE;
 	info.fullscreen = TUI_FALSE;
 	info.monitor = TUI_NULL;
 	info.framebuffer_match_viewport_size = TUI_TRUE;

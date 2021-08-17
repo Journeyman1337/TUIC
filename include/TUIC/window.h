@@ -71,6 +71,10 @@ typedef struct TuiWindowCreateInfo
 	 */
 	TuiBoolean focus_on_show;
 	/*!
+	 * @brief If the window should start hidden.
+	 */
+	TuiBoolean hidden;
+	/*!
 	 * @brief If the window should open as fullscreen.
 	 */
 	TuiBoolean fullscreen;
