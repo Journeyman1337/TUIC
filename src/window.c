@@ -329,6 +329,11 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		return TUI_NULL;
 	}
 
+	if (create_info_used.center_cursor == TUI_TRUE)
+	{
+		glfwSetCursorPos(glfw_window, (double)window_width / 2.0, (double)window_height / 2.0);
+	}
+
 	if (create_info_used.fullscreen == TUI_FALSE && create_info_used.custom_window_position == TUI_TRUE)
 	{
 		glfwSetWindowPos(glfw_window, create_info->windowed_x_position, create_info->windowed_y_position);
