@@ -51,8 +51,15 @@ int main()
 
     printf("Press spacebar to toggle window decoration.\n");
 
+    TuiImage sushi = tuiImageCreatePNG("sushi.png");
     TuiWindow window = tuiWindowCreate(256, 256, "window_decoration", TUI_NULL);
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
+    if (tuiWindowIconsSupported() == TUI_TRUE)
+    {
+        tuiWindowSetIconImage(window, sushi);
+    }
+    tuiImageDestroy(sushi);
+    sushi = TUI_NULL;
 
     while (tuiWindowShouldClose(window) == TUI_FALSE)
     {
