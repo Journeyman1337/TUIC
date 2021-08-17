@@ -92,8 +92,8 @@ int main()
     create_info = tuiWindowCreateInfo();
     create_info.framebuffer_match_viewport_size = TUI_FALSE;
     create_info.resizable = TUI_TRUE;
-    create_info.unmatching_viewport_pixel_width = 512;
-    create_info.unmatching_viewport_pixel_height = 512;
+    create_info.unmatching_framebuffer_pixel_width = 512;
+    create_info.unmatching_framebuffer_pixel_height = 512;
     window = tuiWindowCreate(256, 256, "resizable unmatching framebuffer size", &create_info);
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
     tuiWindowSetViewportResizeCallback(window, resize_callback);

@@ -203,7 +203,7 @@ static void glfwDropCallback(GLFWwindow* glfw_window, int path_count, const char
 
 static size_t sWindowCount = 0;
 
-TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_height, const char* title, TuiWindowCreateInfo* create_info)
+TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, const char* title, TuiWindowCreateInfo* create_info)
 {
 	TuiSystem system = tui_get_system();
 	if (system == TUI_NULL)
@@ -211,14 +211,14 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
 		return TUI_NULL;
 	}
-	if (framebuffer_pixel_width <= 0 || framebuffer_pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
-		return TUI_NULL;
-	}
-	if (create_info != TUI_NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_viewport_pixel_width < 0 || create_info->unmatching_viewport_pixel_height < 0))
+	if (viewport_pixel_width <= 0 || viewport_pixel_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+	if (create_info != TUI_NULL && create_info->framebuffer_match_viewport_size == TUI_FALSE && (create_info->unmatching_framebuffer_pixel_width < 0 || create_info->unmatching_framebuffer_pixel_height < 0))
+	{
+		tuiDebugError(TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS, __func__);
 		return TUI_NULL;
 	}
 
@@ -236,10 +236,6 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	{
 		create_info_used = *create_info;
 	}
-	int window_width = framebuffer_pixel_width;
-	int window_height = framebuffer_pixel_height;
-
-	GLFWwindow* glfw_window = TUI_NULL;
 
 	glfwDefaultWindowHints();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -265,48 +261,6 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	glfwWindowHint(GLFW_FLOATING, create_info_used.topmost);
 	glfwWindowHint(GLFW_MAXIMIZED, create_info_used.maximized);
 	glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info_used.focus_on_show);
-	glfwWindowHint(GLFW_CENTER_CURSOR, create_info_used.center_cursor);
-
-	TuiMonitor window_monitor = TUI_NULL;
-	if (create_info_used.fullscreen == TUI_TRUE)
-	{
-		if (create_info_used.monitor == TUI_NULL)
-		{
-			window_monitor = glfwGetPrimaryMonitor();
-		}
-		else
-		{
-			window_monitor = create_info->monitor;
-		}
-	}
-
-	if (create_info_used.framebuffer_match_viewport_size == TUI_FALSE)
-	{
-		if (create_info_used.unmatching_viewport_pixel_width == 0)
-		{
-			window_width = framebuffer_pixel_width;
-		}
-		else
-		{
-			window_width = create_info_used.unmatching_viewport_pixel_width;
-		}
-			
-		if (create_info_used.unmatching_viewport_pixel_height == 0)
-		{
-			window_height = framebuffer_pixel_height;
-		}
-		else
-		{
-			window_height = create_info_used.unmatching_viewport_pixel_height;
-		}
-	}
-	if (create_info_used.fullscreen == TUI_TRUE)
-	{
-		const GLFWvidmode* vid_mode = glfwGetVideoMode(window_monitor);
-		window_width = vid_mode->width;
-		window_height = vid_mode->height;
-	}
-	
 
 	glfw_error = _GlfwErrorCheck(); //window hint errors
 	if (glfw_error != TUI_ERROR_NONE)
@@ -314,8 +268,28 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		tuiDebugError(glfw_error, __func__);
 	}
 
-	glfw_window = glfwCreateWindow(window_width, window_height, title, TUI_NULL, system->BaseWindow);
-
+	GLFWwindow* glfw_window = TUI_NULL;
+	if (create_info_used.fullscreen == TUI_TRUE)
+	{
+		if (create_info_used.monitor == TUI_NULL)
+		{
+			create_info_used.monitor = glfwGetPrimaryMonitor();
+		}
+		const GLFWvidmode* vid_mode = glfwGetVideoMode(create_info_used.monitor);
+		glfwWindowHint(GLFW_RED_BITS, vid_mode->redBits);
+		glfwWindowHint(GLFW_GREEN_BITS, vid_mode->greenBits);
+		glfwWindowHint(GLFW_BLUE_BITS, vid_mode->blueBits);
+		glfwWindowHint(GLFW_REFRESH_RATE, vid_mode->refreshRate);
+		glfw_window = glfwCreateWindow(vid_mode->width, vid_mode->height, title, create_info_used.monitor, system->BaseWindow);
+		viewport_pixel_width = vid_mode->width;
+		viewport_pixel_height = vid_mode->height;
+	}
+	else //if (create_info_used.fullscreen == TUI_FALSE)
+	{
+		glfw_window = glfwCreateWindow(viewport_pixel_width, viewport_pixel_height, title, TUI_NULL, system->BaseWindow);
+		create_info_used.monitor = TUI_NULL;
+	}
+	
 	if (glfw_window == TUI_NULL) //catch window creation errors
 	{
 		glfw_error = _GlfwErrorCheck();
@@ -330,9 +304,29 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		return TUI_NULL;
 	}
 
+	if (create_info_used.center_cursor == TUI_TRUE)
+	{
+		glfwSetCursorPos(glfw_window, (double)viewport_pixel_width / 2.0, (double)viewport_pixel_height / 2.0);
+	}
+
 	if (create_info_used.fullscreen == TUI_FALSE && create_info_used.custom_window_position == TUI_TRUE)
 	{
 		glfwSetWindowPos(glfw_window, create_info->windowed_x_position, create_info->windowed_y_position);
+	}
+
+	int framebuffer_pixel_width = viewport_pixel_width;
+	int framebuffer_pixel_height = viewport_pixel_height;
+
+	if (create_info_used.framebuffer_match_viewport_size == TUI_FALSE)
+	{
+		if (create_info_used.unmatching_framebuffer_pixel_width != 0)
+		{
+			framebuffer_pixel_width = create_info_used.unmatching_framebuffer_pixel_width;
+		}
+		if (create_info_used.unmatching_framebuffer_pixel_height != 0)
+		{
+			framebuffer_pixel_width = create_info_used.unmatching_framebuffer_pixel_height;
+		}
 	}
 
 	glfwSetFramebufferSizeCallback(glfw_window, glfwWindowFramebufferSizeCallback);
@@ -348,8 +342,8 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 	TuiWindow window = (TuiWindow_s*)tuiAllocate(sizeof(TuiWindow_s));
 	window->FramebufferPixelWidth = framebuffer_pixel_width;
 	window->FramebufferPixelHeight = framebuffer_pixel_height;
-	window->ViewportPixelWidth = window_width;
-	window->ViewportPixelHeight = window_height;
+	window->ViewportPixelWidth = viewport_pixel_width;
+	window->ViewportPixelHeight = viewport_pixel_height;
 	window->GlfwWindow = glfw_window;
 	window->IsFullscreen = create_info_used.fullscreen;
 	window->FramebufferMatchViewportSize = create_info_used.framebuffer_match_viewport_size;
@@ -405,8 +399,8 @@ TuiWindowCreateInfo tuiWindowCreateInfo()
 	info.windowed_x_position = 0;
 	info.windowed_y_position = 0;
 	info.framebuffer_match_viewport_size = TUI_TRUE;
-	info.unmatching_viewport_pixel_width = 0;
-	info.unmatching_viewport_pixel_height = 0;
+	info.unmatching_framebuffer_pixel_width = 0;
+	info.unmatching_framebuffer_pixel_height = 0;
 	return info;
 }
 

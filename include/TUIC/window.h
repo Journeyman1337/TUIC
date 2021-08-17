@@ -95,13 +95,13 @@ typedef struct TuiWindowCreateInfo
 	 */
 	TuiBoolean framebuffer_match_viewport_size;
 	/*!
-	 * @brief The initial pixel width of the window viewport if it is unmathching of the framebuffer. If 0, the initial framebuffer width will be used instead.
+	 * @brief The initial pixel width of the window framebuffer if it is unmathching of the viewport. If 0, the viewport width passed as a function parameter will be used instead.
 	 */
-	int unmatching_viewport_pixel_width;
+	int unmatching_framebuffer_pixel_width;
 	/*!
-	 * @brief The initial pixel height of the window viwport if it is unmathching of the framebuffer. If 0, the initial framebuffer height will be used instead.
+	 * @brief The initial pixel height of the window framebuffer if it is unmathching of the viewport. If 0, the viewport height passed as a function parameter will be used instead.
 	 */
-	int unmatching_viewport_pixel_height;
+	int unmatching_framebuffer_pixel_height;
 } TuiWindowCreateInfo;
 /*! @name Window Create Info Functions
  *  @{ */
@@ -127,8 +127,8 @@ TuiWindowCreateInfo tuiWindowCreateInfo();
 /*!
  * @brief Create a new @ref TuiWindow.
  *
- * @param framebuffer_pixel_width The pixel width of the framebuffer of the window.
- * @param framebuffer_pixel_height The pixel height of the framebuffer of the window.
+ * @param viewport_pixel_width The pixel width of the viewport of the window.
+ * @param viewport_pixel_height The pixel height of the viewport of the window.
  * @param title The title bar text of the window.
  * @param create_info A pointer to an @ref TuiWindowCreateInfo struct with extended window creation info. If @ref TUI_NULL, default values are used instead.
  *
@@ -142,7 +142,7 @@ TuiWindowCreateInfo tuiWindowCreateInfo();
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_height, const char* title, TuiWindowCreateInfo* create_info);
+TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, const char* title, TuiWindowCreateInfo* create_info);
 /*!
  * @brief Free a @ref TuiWindow and correctly dispose of of its internally managed resources.
  *
