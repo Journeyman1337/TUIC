@@ -257,14 +257,14 @@ TuiWindow tuiWindowCreate(int framebuffer_pixel_width, int framebuffer_pixel_hei
 		return TUI_NULL;
 	}
 
-	glfwWindowHint(GLFW_RESIZABLE, create_info->resizable);
-	glfwWindowHint(GLFW_VISIBLE, create_info->visible);
-	glfwWindowHint(GLFW_DECORATED, create_info->decorated);
+	glfwWindowHint(GLFW_RESIZABLE, create_info_used.resizable);
+	glfwWindowHint(GLFW_VISIBLE, create_info_used.visible);
+	glfwWindowHint(GLFW_DECORATED, create_info_used.decorated);
 	glfwWindowHint(GLFW_AUTO_ICONIFY, GLFW_TRUE);
-	glfwWindowHint(GLFW_FOCUSED, create_info->focused);
-	glfwWindowHint(GLFW_FLOATING, create_info->topmost);
-	glfwWindowHint(GLFW_MAXIMIZED, create_info->maximized);
-	glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info->focus_on_show);
+	glfwWindowHint(GLFW_FOCUSED, create_info_used.focused);
+	glfwWindowHint(GLFW_FLOATING, create_info_used.topmost);
+	glfwWindowHint(GLFW_MAXIMIZED, create_info_used.maximized);
+	glfwWindowHint(GLFW_FOCUS_ON_SHOW, create_info_used.focus_on_show);
 
 	TuiMonitor window_monitor = TUI_NULL;
 	if (create_info_used.fullscreen == TUI_TRUE)
