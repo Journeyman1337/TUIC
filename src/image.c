@@ -21,9 +21,13 @@
 #include "objects.h"
 #include "image_inline.h"
 
-#include <stb_image.h>
 #include <stb_image_write.h>
 #include <stb_image_resize.h>
+#include <png.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 
 TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
 {
@@ -50,12 +54,56 @@ TuiImage tuiImageCreatePNG(const char* path)
 	}
 
 	int i_width, i_height, i_channels;
-	uint8_t* pixels = stbi_load(path, &i_width, &i_height, &i_channels, 0);
-	if (pixels == TUI_NULL)
+	uint8_t* pixels;
+
+	char header[8];
+	FILE* fp = fopen(path, "rb");
+	if (!fp)
 	{
-		tuiDebugError(TUI_ERROR_LOAD_IMAGE_FAILURE, __func__);
+		// tuiDebugError(TUI_ERROR_INVALID_FILE_PATH, __func__);
 		return TUI_NULL;
 	}
+	fread(header, 1, 8, fp);
+	if (png_sig_cmp(header, 0, 8))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_structp  png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (!png_ptr)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_infop info_ptr = png_create_info_struct(png_ptr);
+	if (!info_ptr)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_init_io(png_ptr, fp);
+	png_set_sig_bytes(png_ptr, 8);
+	png_read_info(png_ptr, info_ptr);
+	int width = png_get_image_width(png_ptr, info_ptr);
+	int height = png_get_image_height(png_ptr, info_ptr);
+	png_byte color_type = png_get_color_type(png_ptr, info_ptr);
+	png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
+	int number_of_passes = png_set_interlace_handling(png_ptr);
+	png_read_update_info(png_ptr, info_ptr);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_bytep* row_pointers = (png_bytep*)tuiAllocate(png_get_rowbytes(png_ptr, info_ptr));
+	png_read_image(png_ptr, row_pointers);
+	fclose(fp);
+	pixels = (uint8_t*)row_pointers;
 	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE);
 	return ret;
 }
