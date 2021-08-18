@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['opengl33_2eh_224',['opengl33.h',['../opengl33_8h.html',1,'']]]
+  ['palette_2eh_436',['palette.h',['../palette_8h.html',1,'']]],
+  ['panel_2eh_437',['panel.h',['../panel_8h.html',1,'']]]
 ];

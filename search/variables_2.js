@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['channelcount_775',['ChannelCount',['../struct_tui_glyph_atlas__s.html#a2251d099e534611337b79b5b2b270b7f',1,'TuiGlyphAtlas_s::ChannelCount()'],['../struct_tui_texture__s.html#ae9c5d4d59910afcb36eaaaa9b5fc5555',1,'TuiTexture_s::ChannelCount()'],['../struct_tui_palette__s.html#a84a0eae8928978a19c9e333d609d2cca',1,'TuiPalette_s::ChannelCount()'],['../struct_tui_image__s.html#ab726db55d27f598a7ff6119c856b8532',1,'TuiImage_s::ChannelCount()']]],
-  ['colorcount_776',['ColorCount',['../struct_tui_palette__s.html#a6b8e1237c4cace076cebbcd6022c4b81',1,'TuiPalette_s']]]
+  ['focus_5fon_5fshow_1546',['focus_on_show',['../struct_tui_window_create_info.html#a4de0d3703173a3d291d75094f23af3a3',1,'TuiWindowCreateInfo']]],
+  ['focused_1547',['focused',['../struct_tui_window_create_info.html#a78be70f9aa52f5d981e6a9fffef93447',1,'TuiWindowCreateInfo']]],
+  ['framebuffer_5fmatch_5fviewport_5fsize_1548',['framebuffer_match_viewport_size',['../struct_tui_window_create_info.html#a5f027e48135d02bc65bc1ca1502371fe',1,'TuiWindowCreateInfo']]],
+  ['fullscreen_1549',['fullscreen',['../struct_tui_window_create_info.html#a2018f4eccaddff8067dce7c81659fe01',1,'TuiWindowCreateInfo']]]
 ];

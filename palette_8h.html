@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TUIC
    </div>
-   <div id="projectbrief">Backend agnostic text user interface rendering library in C.</div>
+   <div id="projectbrief">Text user interface rendering library in C.</div>
   </td>
  </tr>
  </tbody>
@@ -88,45 +88,46 @@ $(document).ready(function(){initNavTree('palette_8h.html',''); initResizable();
 <div class="title">palette.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
+<div class="textblock"><code>#include &lt;<a class="el" href="types_8h.html">TUIC/types.h</a>&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">TuiPalette functions</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>These functions are used for manipulating TuiPalette opaque objects. </p>
+<tr><td colspan="2"><div class="groupHeader">Palette Functions</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Functions for manipulating <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> opaque objects. </p>
 </div></td></tr>
-<tr class="memitem:ae3c7df65b26cddd03cceee36bd566213"><td class="memItemLeft" align="right" valign="top">TuiPalette&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#ae3c7df65b26cddd03cceee36bd566213">tuiPaletteCreate</a> (TuiInstance instance, int channel_count, int color_count, uint8_t *color_data)</td></tr>
-<tr class="memdesc:ae3c7df65b26cddd03cceee36bd566213"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new TuiPalette with custom colors.  <a href="palette_8h.html#ae3c7df65b26cddd03cceee36bd566213">More...</a><br /></td></tr>
-<tr class="separator:ae3c7df65b26cddd03cceee36bd566213"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46d2dbb175569458d4ecdf323ca07815"><td class="memItemLeft" align="right" valign="top">TuiPalette&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a46d2dbb175569458d4ecdf323ca07815">tuiPaletteCreateXterm</a> (TuiInstance instance, int tui_palette_size)</td></tr>
-<tr class="memdesc:a46d2dbb175569458d4ecdf323ca07815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new TuiPalette using the Xterm standard color palette.  <a href="palette_8h.html#a46d2dbb175569458d4ecdf323ca07815">More...</a><br /></td></tr>
-<tr class="separator:a46d2dbb175569458d4ecdf323ca07815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34cf7a27bbaff5f48574faf424d6121b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a34cf7a27bbaff5f48574faf424d6121b">tuiPaletteDestroy</a> (TuiPalette palette)</td></tr>
-<tr class="memdesc:a34cf7a27bbaff5f48574faf424d6121b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy TuiPalette and correctly dispose of all of its resources.  <a href="palette_8h.html#a34cf7a27bbaff5f48574faf424d6121b">More...</a><br /></td></tr>
+<tr class="memitem:a691800d5d9bdd2cd001b6292113dfd88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a691800d5d9bdd2cd001b6292113dfd88">tuiPaletteCreateColors</a> (int channel_count, int color_count, const uint8_t *color_data)</td></tr>
+<tr class="memdesc:a691800d5d9bdd2cd001b6292113dfd88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a custom <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> with a colors array.  <a href="palette_8h.html#a691800d5d9bdd2cd001b6292113dfd88">More...</a><br /></td></tr>
+<tr class="separator:a691800d5d9bdd2cd001b6292113dfd88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f43213b9897282f8255bc992db79389"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a3f43213b9897282f8255bc992db79389">tuiPaletteCreateXterm</a> (int color_count)</td></tr>
+<tr class="memdesc:a3f43213b9897282f8255bc992db79389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> that uses the XTerm standard color palette.  <a href="palette_8h.html#a3f43213b9897282f8255bc992db79389">More...</a><br /></td></tr>
+<tr class="separator:a3f43213b9897282f8255bc992db79389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34cf7a27bbaff5f48574faf424d6121b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a34cf7a27bbaff5f48574faf424d6121b">tuiPaletteDestroy</a> (<a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette)</td></tr>
+<tr class="memdesc:a34cf7a27bbaff5f48574faf424d6121b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> and correctly dispose of of its internally managed resources.  <a href="palette_8h.html#a34cf7a27bbaff5f48574faf424d6121b">More...</a><br /></td></tr>
 <tr class="separator:a34cf7a27bbaff5f48574faf424d6121b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7f5acd678ab08a8e45622f0f7214166"><td class="memItemLeft" align="right" valign="top">TuiInstance&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#aa7f5acd678ab08a8e45622f0f7214166">tuiPaletteGetInstance</a> (TuiPalette palette)</td></tr>
-<tr class="memdesc:aa7f5acd678ab08a8e45622f0f7214166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TuiInstance of a TuiPalette.  <a href="palette_8h.html#aa7f5acd678ab08a8e45622f0f7214166">More...</a><br /></td></tr>
-<tr class="separator:aa7f5acd678ab08a8e45622f0f7214166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71bc5fa4037a0b1a909765dc5f35c82a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a71bc5fa4037a0b1a909765dc5f35c82a">tuiPaletteGetColorCount</a> (TuiPalette palette)</td></tr>
-<tr class="memdesc:a71bc5fa4037a0b1a909765dc5f35c82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the amount of colors in a TuiPalette object.  <a href="palette_8h.html#a71bc5fa4037a0b1a909765dc5f35c82a">More...</a><br /></td></tr>
+<tr class="memitem:a9cfdc4897ad4065cdd2957f3e58c4360"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a9cfdc4897ad4065cdd2957f3e58c4360">tuiGetPaletteCount</a> ()</td></tr>
+<tr class="memdesc:a9cfdc4897ad4065cdd2957f3e58c4360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> that currently exist.  <a href="palette_8h.html#a9cfdc4897ad4065cdd2957f3e58c4360">More...</a><br /></td></tr>
+<tr class="separator:a9cfdc4897ad4065cdd2957f3e58c4360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71bc5fa4037a0b1a909765dc5f35c82a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a71bc5fa4037a0b1a909765dc5f35c82a">tuiPaletteGetColorCount</a> (<a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette)</td></tr>
+<tr class="memdesc:a71bc5fa4037a0b1a909765dc5f35c82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of colors in a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>.  <a href="palette_8h.html#a71bc5fa4037a0b1a909765dc5f35c82a">More...</a><br /></td></tr>
 <tr class="separator:a71bc5fa4037a0b1a909765dc5f35c82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa706304c726a960a5044a085d05d3d11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#aa706304c726a960a5044a085d05d3d11">tuiPaletteGetChannelCount</a> (TuiPalette palette)</td></tr>
-<tr class="memdesc:aa706304c726a960a5044a085d05d3d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the amount of color channels in a TuiPalette object. 0 is returned on error.  <a href="palette_8h.html#aa706304c726a960a5044a085d05d3d11">More...</a><br /></td></tr>
+<tr class="memitem:aa706304c726a960a5044a085d05d3d11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#aa706304c726a960a5044a085d05d3d11">tuiPaletteGetChannelCount</a> (<a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette)</td></tr>
+<tr class="memdesc:aa706304c726a960a5044a085d05d3d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of color channels in a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>.  <a href="palette_8h.html#aa706304c726a960a5044a085d05d3d11">More...</a><br /></td></tr>
 <tr class="separator:aa706304c726a960a5044a085d05d3d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84143ccc596b75cd7aab8565a0a3fa70"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a84143ccc596b75cd7aab8565a0a3fa70">tuiClassicColorGetForeground</a> (uint8_t fg_and_bg)</td></tr>
-<tr class="memdesc:a84143ccc596b75cd7aab8565a0a3fa70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the foreground color palette id from two color byte.  <a href="palette_8h.html#a84143ccc596b75cd7aab8565a0a3fa70">More...</a><br /></td></tr>
+<tr class="memdesc:a84143ccc596b75cd7aab8565a0a3fa70"><td class="mdescLeft">&#160;</td><td class="mdescRight">tet the foreground color palette id from a two color byte.  <a href="palette_8h.html#a84143ccc596b75cd7aab8565a0a3fa70">More...</a><br /></td></tr>
 <tr class="separator:a84143ccc596b75cd7aab8565a0a3fa70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26619790e90de5625e8acc97baddd507"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a26619790e90de5625e8acc97baddd507">tuiClassicColorGetBackground</a> (uint8_t fg_and_bg)</td></tr>
-<tr class="memdesc:a26619790e90de5625e8acc97baddd507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the background color palette id from two color byte.  <a href="palette_8h.html#a26619790e90de5625e8acc97baddd507">More...</a><br /></td></tr>
+<tr class="memdesc:a26619790e90de5625e8acc97baddd507"><td class="mdescLeft">&#160;</td><td class="mdescRight">tet the background color palette id from a two color byte.  <a href="palette_8h.html#a26619790e90de5625e8acc97baddd507">More...</a><br /></td></tr>
 <tr class="separator:a26619790e90de5625e8acc97baddd507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f9c9df88e1ac68012dbdead7c717836"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a1f9c9df88e1ac68012dbdead7c717836">tuiClassicColorCombine</a> (uint8_t fg, uint8_t bg)</td></tr>
-<tr class="memdesc:a1f9c9df88e1ac68012dbdead7c717836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combine two 4 bit foreground and background color palette ids into a two color byte.  <a href="palette_8h.html#a1f9c9df88e1ac68012dbdead7c717836">More...</a><br /></td></tr>
+<tr class="memdesc:a1f9c9df88e1ac68012dbdead7c717836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combine a foreground and background palette color id pair into a two color byte.  <a href="palette_8h.html#a1f9c9df88e1ac68012dbdead7c717836">More...</a><br /></td></tr>
 <tr class="separator:a1f9c9df88e1ac68012dbdead7c717836"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a27b591e757bb6d3ca48161adc60afe2e"><td class="memItemLeft" align="right" valign="top"><a id="a27b591e757bb6d3ca48161adc60afe2e"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a27b591e757bb6d3ca48161adc60afe2e">kTuiXtermPalette</a> [768]</td></tr>
-<tr class="memdesc:a27b591e757bb6d3ca48161adc60afe2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default Xterm color palette, with every three indices representing the RGB values of each of the 256 colors ordered by color index. <br /></td></tr>
+<tr class="memitem:a27b591e757bb6d3ca48161adc60afe2e"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="palette_8h.html#a27b591e757bb6d3ca48161adc60afe2e">kTuiXtermPalette</a> [768]</td></tr>
+<tr class="memdesc:a27b591e757bb6d3ca48161adc60afe2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of all 256 24 bit colors in the XTerm standard color palette.  <a href="palette_8h.html#a27b591e757bb6d3ca48161adc60afe2e">More...</a><br /></td></tr>
 <tr class="separator:a27b591e757bb6d3ca48161adc60afe2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -155,14 +156,18 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Combine a foreground and background palette color id pair into a two color byte. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fg</td><td>The foreground color. </td></tr>
-    <tr><td class="paramname">bg</td><td>The background color.</td></tr>
+    <tr><td class="paramname">fg</td><td>The foreground color palette id. </td></tr>
+    <tr><td class="paramname">bg</td><td>The background color palette id.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The two color byte. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have no errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function does not access memory in ways that could cause a data race, so it is thread safe. </dd></dl>
 
 </div>
 </div>
@@ -181,13 +186,18 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>tet the background color palette id from a two color byte. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">detail_mode</td><td>The two color byte.</td></tr>
+    <tr><td class="paramname">fg_and_bg</td><td>The two color byte.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The background color. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The background color palette id.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have no errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function does not access memory in ways that could cause a data race, so it is thread safe. </dd></dl>
 
 </div>
 </div>
@@ -206,31 +216,53 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>tet the foreground color palette id from a two color byte. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">detail_mode</td><td>The two color byte.</td></tr>
+    <tr><td class="paramname">fg_and_bg</td><td>The two color byte.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The forground color. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The foreground color palette id.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have no errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function does not access memory in ways that could cause a data race, so it is thread safe. </dd></dl>
 
 </div>
 </div>
-<a id="ae3c7df65b26cddd03cceee36bd566213"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3c7df65b26cddd03cceee36bd566213">&#9670;&nbsp;</a></span>tuiPaletteCreate()</h2>
+<a id="a9cfdc4897ad4065cdd2957f3e58c4360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cfdc4897ad4065cdd2957f3e58c4360">&#9670;&nbsp;</a></span>tuiGetPaletteCount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiPalette tuiPaletteCreate </td>
+          <td class="memname">int tuiGetPaletteCount </td>
           <td>(</td>
-          <td class="paramtype">TuiInstance&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the amount of <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> that currently exist. </p>
+<dl class="section return"><dt>Returns</dt><dd>The amount of palettes that currently exist.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function does not have errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called at any time.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a691800d5d9bdd2cd001b6292113dfd88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a691800d5d9bdd2cd001b6292113dfd88">&#9670;&nbsp;</a></span>tuiPaletteCreateColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> tuiPaletteCreateColors </td>
+          <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>channel_count</em>, </td>
         </tr>
@@ -243,7 +275,7 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>color_data</em>&#160;</td>
         </tr>
         <tr>
@@ -253,56 +285,50 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Use this function to create a TuiPalette using an array of colors. The array must be in order of the color indices in the pallete, in order of their RGB components.</p>
+
+<p>Create a custom <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> with a colors array. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>The TuiInstance object that contains the graphics context. </td></tr>
-    <tr><td class="paramname">channel_count</td><td>The amount of color channels per color. </td></tr>
-    <tr><td class="paramname">color_count</td><td>The amount of colors. </td></tr>
-    <tr><td class="paramname">color_data</td><td>A pointer to an array that contains all of the colors.</td></tr>
+    <tr><td class="paramname">channel_count</td><td>The amount of channels per color in the array. </td></tr>
+    <tr><td class="paramname">color_count</td><td>The amount of colors in the array. </td></tr>
+    <tr><td class="paramname">color_data</td><td>A pointer to the colors array.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created TuiPalette object. NULLL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a806ccd2b84088ce997d2da5858ffca6e">TUI_ERROR_NULL_INSTANCE</a> if instance is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if instance is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51">TUI_ERROR_INVALID_PALETTE_COLOR_COUNT</a> if color count is not greater than 0 and less than or equal to 256. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a> if channel_count is not 3 or 4. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a811694a5662adda0d8536b20a9c75648">TUI_ERROR_NULL_COLORS</a> if color_data is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51">TUI_ERROR_INVALID_PALETTE_COLOR_COUNT</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a811694a5662adda0d8536b20a9c75648">TUI_ERROR_NULL_COLORS</a>. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or colors array may cause undefined behaviour or a fatal crash without an error.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>The returned <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> must be destroyed before TUIC is terminated, using the function <a class="el" href="palette_8h.html#a34cf7a27bbaff5f48574faf424d6121b">tuiPaletteDestroy()</a>.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
-<a id="a46d2dbb175569458d4ecdf323ca07815"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46d2dbb175569458d4ecdf323ca07815">&#9670;&nbsp;</a></span>tuiPaletteCreateXterm()</h2>
+<a id="a3f43213b9897282f8255bc992db79389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f43213b9897282f8255bc992db79389">&#9670;&nbsp;</a></span>tuiPaletteCreateXterm()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiPalette tuiPaletteCreateXterm </td>
+          <td class="memname"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> tuiPaletteCreateXterm </td>
           <td>(</td>
-          <td class="paramtype">TuiInstance&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tui_palette_size</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>color_count</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Use this function to create a TuiPalette using the Xterm standard color palette.</p>
+
+<p>Create a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> that uses the XTerm standard color palette. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>The TuiInstance object that contains the graphics context. </td></tr>
-    <tr><td class="paramname">tui_palette_size</td><td>The amount of colors from the Xterm pallete to add to this TuiPalette.</td></tr>
+    <tr><td class="paramname">color_count</td><td>The amount of XTerm colors to add to the palette.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created TuiPalette object. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a806ccd2b84088ce997d2da5858ffca6e">TUI_ERROR_NULL_INSTANCE</a> if instance is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if instance is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51">TUI_ERROR_INVALID_PALETTE_COLOR_COUNT</a> if color count is not greater than 0 and less than or equal to 256. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51">TUI_ERROR_INVALID_PALETTE_COLOR_COUNT</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>The returned <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> must be destroyed before TUIC is terminated, using the function <a class="el" href="palette_8h.html#a34cf7a27bbaff5f48574faf424d6121b">tuiPaletteDestroy()</a>.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
@@ -315,20 +341,23 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         <tr>
           <td class="memname">void tuiPaletteDestroy </td>
           <td>(</td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Call this function when you wish to destroy a TuiPalette object. This is typically called before application exist, shortly before destroying the associated TuiInstance.</p>
+
+<p>Free a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> and correctly dispose of of its internally managed resources. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">palette</td><td>The TuiPalette object to destroy.</td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> to destroy.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a> is palette is NULL. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
@@ -341,20 +370,24 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         <tr>
           <td class="memname">int tuiPaletteGetChannelCount </td>
           <td>(</td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the amount of color channels in a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">palette</td><td>The TuiPalette object.</td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> to retrieve the color channel count from.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The amount of color channels in the TuiPalette. 0 is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a> is palette is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The amount of color channels. 0 is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -367,46 +400,49 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         <tr>
           <td class="memname">int tuiPaletteGetColorCount </td>
           <td>(</td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the amount of colors in a <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">palette</td><td>The TuiPalette object.</td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> to retrieve the color count from.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The amount of colors in the TuiPalette.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a> is palette is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The amount of colors. 0 is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="aa7f5acd678ab08a8e45622f0f7214166"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7f5acd678ab08a8e45622f0f7214166">&#9670;&nbsp;</a></span>tuiPaletteGetInstance()</h2>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a27b591e757bb6d3ca48161adc60afe2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b591e757bb6d3ca48161adc60afe2e">&#9670;&nbsp;</a></span>kTuiXtermPalette</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TuiInstance tuiPaletteGetInstance </td>
-          <td>(</td>
-          <td class="paramtype">TuiPalette&#160;</td>
-          <td class="paramname"><em>palette</em></td><td>)</td>
-          <td></td>
+          <td class="memname">const uint8_t kTuiXtermPalette[768]</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">palette</td><td>The TuiPalette.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The TuiInstance. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a> if palette is NULL. </dd></dl>
+
+<p>An array of all 256 24 bit colors in the XTerm standard color palette. </p>
 
 </div>
 </div>

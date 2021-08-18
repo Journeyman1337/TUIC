@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TUIC
    </div>
-   <div id="projectbrief">Backend agnostic text user interface rendering library in C.</div>
+   <div id="projectbrief">Text user interface rendering library in C.</div>
   </td>
  </tr>
  </tbody>
@@ -87,53 +87,57 @@ $(document).ready(function(){initNavTree('image_8h.html',''); initResizable(); }
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="types_8h.html">TUIC/types.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="boolean_8h.html">TUIC/boolean.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">TuiImage functions</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>These functions are used for manipulating TuiImage opaque objects. </p>
+<tr><td colspan="2"><div class="groupHeader">Image Functions</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These functions are used for manipulating <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> opaque objects. </p>
 </div></td></tr>
-<tr class="memitem:a5301b71a106c510451a358cf1c9410b1"><td class="memItemLeft" align="right" valign="top">TuiImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a5301b71a106c510451a358cf1c9410b1">tuiImageCreate</a> (int pixel_width, int pixel_height, int channel_count, uint8_t *pixel_data, int copy_data)</td></tr>
-<tr class="memdesc:a5301b71a106c510451a358cf1c9410b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy TuiImage and correctly dispose of all of its resources.  <a href="image_8h.html#a5301b71a106c510451a358cf1c9410b1">More...</a><br /></td></tr>
-<tr class="separator:a5301b71a106c510451a358cf1c9410b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac66d5d33616aad561c79121f5b8c475d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">tuiImageDestroy</a> (TuiImage image)</td></tr>
-<tr class="memdesc:ac66d5d33616aad561c79121f5b8c475d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy TuiImage and correctly dispose of all of its resources.  <a href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">More...</a><br /></td></tr>
+<tr class="memitem:aaffbcd22e56c696ab72d42488102228a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#aaffbcd22e56c696ab72d42488102228a">tuiImageCreatePixels</a> (int pixel_width, int pixel_height, int channel_count, uint8_t *pixel_data, <a class="el" href="boolean_8h.html#abf05b4c4d561a7912dc83d59f4ce2ef6">TuiBoolean</a> copy_data)</td></tr>
+<tr class="memdesc:aaffbcd22e56c696ab72d42488102228a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> with a raw pixel array.  <a href="image_8h.html#aaffbcd22e56c696ab72d42488102228a">More...</a><br /></td></tr>
+<tr class="separator:aaffbcd22e56c696ab72d42488102228a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13c3fac315ee1acdec5aeef6a0a08cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#ab13c3fac315ee1acdec5aeef6a0a08cc">tuiImageCreatePNG</a> (const char *path)</td></tr>
+<tr class="memdesc:ab13c3fac315ee1acdec5aeef6a0a08cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> from a png image file in secondary storage.  <a href="image_8h.html#ab13c3fac315ee1acdec5aeef6a0a08cc">More...</a><br /></td></tr>
+<tr class="separator:ab13c3fac315ee1acdec5aeef6a0a08cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba5cb6ac6ad6ad9dea2617813f29dd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a8ba5cb6ac6ad6ad9dea2617813f29dd2">tuiImageCreateColor</a> (int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a)</td></tr>
+<tr class="memdesc:a8ba5cb6ac6ad6ad9dea2617813f29dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> filled with pixels of a solid color.  <a href="image_8h.html#a8ba5cb6ac6ad6ad9dea2617813f29dd2">More...</a><br /></td></tr>
+<tr class="separator:a8ba5cb6ac6ad6ad9dea2617813f29dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac66d5d33616aad561c79121f5b8c475d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">tuiImageDestroy</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:ac66d5d33616aad561c79121f5b8c475d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> and correctly dispose of all of its resources.  <a href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">More...</a><br /></td></tr>
 <tr class="separator:ac66d5d33616aad561c79121f5b8c475d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26124e0fe46fea7a3a307d697b3b2143"><td class="memItemLeft" align="right" valign="top">TuiImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a26124e0fe46fea7a3a307d697b3b2143">tuiImageLoad</a> (const char *path, int expected_channel_count)</td></tr>
-<tr class="memdesc:a26124e0fe46fea7a3a307d697b3b2143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a TuiImage from an image file.  <a href="image_8h.html#a26124e0fe46fea7a3a307d697b3b2143">More...</a><br /></td></tr>
-<tr class="separator:a26124e0fe46fea7a3a307d697b3b2143"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85">tuiImageSave</a> (TuiImage image, const char *path)</td></tr>
-<tr class="memdesc:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a TuiImage to an image file.  <a href="image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85">More...</a><br /></td></tr>
+<tr class="memitem:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85">tuiImageSave</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, const char *path)</td></tr>
+<tr class="memdesc:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> as a png image file.  <a href="image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85">More...</a><br /></td></tr>
 <tr class="separator:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26d498bb904da658f9bf688f65ea28d5"><td class="memItemLeft" align="right" valign="top">TuiImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a26d498bb904da658f9bf688f65ea28d5">tuiImageClone</a> (TuiImage image)</td></tr>
-<tr class="memdesc:a26d498bb904da658f9bf688f65ea28d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a deep copy of a TuiImage.  <a href="image_8h.html#a26d498bb904da658f9bf688f65ea28d5">More...</a><br /></td></tr>
+<tr class="memitem:a26d498bb904da658f9bf688f65ea28d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a26d498bb904da658f9bf688f65ea28d5">tuiImageClone</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:a26d498bb904da658f9bf688f65ea28d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a deep copy of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a26d498bb904da658f9bf688f65ea28d5">More...</a><br /></td></tr>
 <tr class="separator:a26d498bb904da658f9bf688f65ea28d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66716755785b8111bcd305336868a2cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a66716755785b8111bcd305336868a2cb">tuiImageGetPixelDimensions</a> (TuiImage image, int *pixel_width, int *pixel_height)</td></tr>
-<tr class="memdesc:a66716755785b8111bcd305336868a2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel dimensions of a TuiImage.  <a href="image_8h.html#a66716755785b8111bcd305336868a2cb">More...</a><br /></td></tr>
-<tr class="separator:a66716755785b8111bcd305336868a2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaa5b3ab81f5bb5b03e1b9adb8c17060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#aaaa5b3ab81f5bb5b03e1b9adb8c17060">tuiImageGetPixelWidth</a> (TuiImage image)</td></tr>
-<tr class="memdesc:aaaa5b3ab81f5bb5b03e1b9adb8c17060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel width of a TuiImage.  <a href="image_8h.html#aaaa5b3ab81f5bb5b03e1b9adb8c17060">More...</a><br /></td></tr>
+<tr class="memitem:a32fb975cad8e7cbf5fa264a6ed38ba03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a32fb975cad8e7cbf5fa264a6ed38ba03">tuiImageGetPixelDimensions</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, int *pixel_width, int *pixel_height, int *channel_count)</td></tr>
+<tr class="memdesc:a32fb975cad8e7cbf5fa264a6ed38ba03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel dimensions of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a32fb975cad8e7cbf5fa264a6ed38ba03">More...</a><br /></td></tr>
+<tr class="separator:a32fb975cad8e7cbf5fa264a6ed38ba03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaa5b3ab81f5bb5b03e1b9adb8c17060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#aaaa5b3ab81f5bb5b03e1b9adb8c17060">tuiImageGetPixelWidth</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:aaaa5b3ab81f5bb5b03e1b9adb8c17060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel width of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#aaaa5b3ab81f5bb5b03e1b9adb8c17060">More...</a><br /></td></tr>
 <tr class="separator:aaaa5b3ab81f5bb5b03e1b9adb8c17060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5deb5105798a42ac1e4a2dc1e93cef5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a5deb5105798a42ac1e4a2dc1e93cef5a">tuiImageGetPixelHeight</a> (TuiImage image)</td></tr>
-<tr class="memdesc:a5deb5105798a42ac1e4a2dc1e93cef5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel height of a TuiImage.  <a href="image_8h.html#a5deb5105798a42ac1e4a2dc1e93cef5a">More...</a><br /></td></tr>
+<tr class="memitem:a5deb5105798a42ac1e4a2dc1e93cef5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a5deb5105798a42ac1e4a2dc1e93cef5a">tuiImageGetPixelHeight</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:a5deb5105798a42ac1e4a2dc1e93cef5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel height of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a5deb5105798a42ac1e4a2dc1e93cef5a">More...</a><br /></td></tr>
 <tr class="separator:a5deb5105798a42ac1e4a2dc1e93cef5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da5724b5d731bb55da91e6717a434a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a3da5724b5d731bb55da91e6717a434a5">tuiImageGetChannelCount</a> (TuiImage image)</td></tr>
-<tr class="memdesc:a3da5724b5d731bb55da91e6717a434a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the channel count of a TuiImage.  <a href="image_8h.html#a3da5724b5d731bb55da91e6717a434a5">More...</a><br /></td></tr>
+<tr class="memitem:a3da5724b5d731bb55da91e6717a434a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a3da5724b5d731bb55da91e6717a434a5">tuiImageGetChannelCount</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:a3da5724b5d731bb55da91e6717a434a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the channel count of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a3da5724b5d731bb55da91e6717a434a5">More...</a><br /></td></tr>
 <tr class="separator:a3da5724b5d731bb55da91e6717a434a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a827df7e25adc00459840addc80bdde6a"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a827df7e25adc00459840addc80bdde6a">tuiImageGetPixels</a> (TuiImage image)</td></tr>
-<tr class="memdesc:a827df7e25adc00459840addc80bdde6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the raw pixels of a TuiImage.  <a href="image_8h.html#a827df7e25adc00459840addc80bdde6a">More...</a><br /></td></tr>
+<tr class="memitem:a827df7e25adc00459840addc80bdde6a"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a827df7e25adc00459840addc80bdde6a">tuiImageGetPixels</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:a827df7e25adc00459840addc80bdde6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the raw pixels of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a827df7e25adc00459840addc80bdde6a">More...</a><br /></td></tr>
 <tr class="separator:a827df7e25adc00459840addc80bdde6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21469f100477d4f23f00b525a01792d2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a21469f100477d4f23f00b525a01792d2">tuiImageGetPixelDataSize</a> (TuiImage image)</td></tr>
-<tr class="memdesc:a21469f100477d4f23f00b525a01792d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the pixel data array of a TuiImage.  <a href="image_8h.html#a21469f100477d4f23f00b525a01792d2">More...</a><br /></td></tr>
+<tr class="memitem:a21469f100477d4f23f00b525a01792d2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a21469f100477d4f23f00b525a01792d2">tuiImageGetPixelDataSize</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:a21469f100477d4f23f00b525a01792d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the pixel data array of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a21469f100477d4f23f00b525a01792d2">More...</a><br /></td></tr>
 <tr class="separator:a21469f100477d4f23f00b525a01792d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aebdb13196b5e9e49ab48d3e8445221"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a6aebdb13196b5e9e49ab48d3e8445221">tuiImageResize</a> (TuiImage image, int new_pixel_width, int new_pixel_height)</td></tr>
-<tr class="memdesc:a6aebdb13196b5e9e49ab48d3e8445221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resized a TuiImage.  <a href="image_8h.html#a6aebdb13196b5e9e49ab48d3e8445221">More...</a><br /></td></tr>
+<tr class="memitem:a6aebdb13196b5e9e49ab48d3e8445221"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a6aebdb13196b5e9e49ab48d3e8445221">tuiImageResize</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, int new_pixel_width, int new_pixel_height)</td></tr>
+<tr class="memdesc:a6aebdb13196b5e9e49ab48d3e8445221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a6aebdb13196b5e9e49ab48d3e8445221">More...</a><br /></td></tr>
 <tr class="separator:a6aebdb13196b5e9e49ab48d3e8445221"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62f3681c74caf89d74773eba12bf3ab4"><td class="memItemLeft" align="right" valign="top">TuiImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a62f3681c74caf89d74773eba12bf3ab4">tuiImageCloneResize</a> (TuiImage image, int new_pixel_width, int new_pixel_height)</td></tr>
-<tr class="memdesc:a62f3681c74caf89d74773eba12bf3ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resized deep copy of a TuiImage.  <a href="image_8h.html#a62f3681c74caf89d74773eba12bf3ab4">More...</a><br /></td></tr>
+<tr class="memitem:a62f3681c74caf89d74773eba12bf3ab4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a62f3681c74caf89d74773eba12bf3ab4">tuiImageCloneResize</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, int new_pixel_width, int new_pixel_height)</td></tr>
+<tr class="memdesc:a62f3681c74caf89d74773eba12bf3ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resized deep copy of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a62f3681c74caf89d74773eba12bf3ab4">More...</a><br /></td></tr>
 <tr class="separator:a62f3681c74caf89d74773eba12bf3ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fe603ed5a3846e251ad14686655ccc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a2fe603ed5a3846e251ad14686655ccc3">tuiImageEmplace</a> (TuiImage image, TuiImage target_image, int start_x, int start_y)</td></tr>
-<tr class="memdesc:a2fe603ed5a3846e251ad14686655ccc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emplace a image inside of another image.  <a href="image_8h.html#a2fe603ed5a3846e251ad14686655ccc3">More...</a><br /></td></tr>
+<tr class="memitem:a2fe603ed5a3846e251ad14686655ccc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a2fe603ed5a3846e251ad14686655ccc3">tuiImageEmplace</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> target_image, int start_x, int start_y)</td></tr>
+<tr class="memdesc:a2fe603ed5a3846e251ad14686655ccc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emplace a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> inside of another image, starting from a specific pixel position. Pixels that go out of bounds are clipped.  <a href="image_8h.html#a2fe603ed5a3846e251ad14686655ccc3">More...</a><br /></td></tr>
 <tr class="separator:a2fe603ed5a3846e251ad14686655ccc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -144,22 +148,26 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiImage tuiImageClone </td>
+          <td class="memname"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> tuiImageClone </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create a deep copy of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The cloned TuiImage object. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> if image is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The cloned <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -170,9 +178,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiImage tuiImageCloneResize </td>
+          <td class="memname"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> tuiImageCloneResize </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em>, </td>
         </tr>
         <tr>
@@ -194,26 +202,105 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create a resized deep copy of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage. </td></tr>
-    <tr><td class="paramname">new_width</td><td>The new width to set for the TuiImage clone. </td></tr>
-    <tr><td class="paramname">new_height</td><td>The new height ot set for the TuiImage clone.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </td></tr>
+    <tr><td class="paramname">new_width</td><td>The new width to set for the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> clone. </td></tr>
+    <tr><td class="paramname">new_height</td><td>The new height ot set for the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> clone.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> if image is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a> if new_width or new_height is less than or equal to 0. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a188f0b530aeb296434ac779220da44b5">TUI_ERROR_RESIZE_IMAGE_FAILURE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="a5301b71a106c510451a358cf1c9410b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5301b71a106c510451a358cf1c9410b1">&#9670;&nbsp;</a></span>tuiImageCreate()</h2>
+<a id="a8ba5cb6ac6ad6ad9dea2617813f29dd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba5cb6ac6ad6ad9dea2617813f29dd2">&#9670;&nbsp;</a></span>tuiImageCreateColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiImage tuiImageCreate </td>
+          <td class="memname"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> tuiImageCreateColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pixel_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pixel_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>channel_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> filled with pixels of a solid color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pixel_width</td><td>The width of the image in pixels. </td></tr>
+    <tr><td class="paramname">pixel_height</td><td>The height of the image in pixels. </td></tr>
+    <tr><td class="paramname">channel_count</td><td>The amount of channels in the image. </td></tr>
+    <tr><td class="paramname">r</td><td>The red color channel of the solid fill color. </td></tr>
+    <tr><td class="paramname">g</td><td>The green color channel of the solid fill color. @paran b The blue color channel of the solid fill color. </td></tr>
+    <tr><td class="paramname">a</td><td>The alpha color channel of the solid fill color. If the image has only 3 channels, this is ignored.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The loaded <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="aaffbcd22e56c696ab72d42488102228a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaffbcd22e56c696ab72d42488102228a">&#9670;&nbsp;</a></span>tuiImageCreatePixels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> tuiImageCreatePixels </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>pixel_width</em>, </td>
@@ -239,7 +326,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype"><a class="el" href="boolean_8h.html#abf05b4c4d561a7912dc83d59f4ce2ef6">TuiBoolean</a>&#160;</td>
           <td class="paramname"><em>copy_data</em>&#160;</td>
         </tr>
         <tr>
@@ -249,18 +336,53 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> with a raw pixel array. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">texture_format</td><td>The format of the image (its channel count). </td></tr>
     <tr><td class="paramname">width</td><td>The width of the image in pixels. </td></tr>
     <tr><td class="paramname">height</td><td>The height of the image in pixels. </td></tr>
     <tr><td class="paramname">pixel_data</td><td>The pixel data array. </td></tr>
-    <tr><td class="paramname">copy_data</td><td>If the pixel data should be copied.</td></tr>
+    <tr><td class="paramname">copy_data</td><td>If the pixel data should be deeply copied instead of shallow coppied.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created TuiImage object. Null is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a> when channel_count is not 3 or 4. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a> when pixel_width or pixel_height is less than or equal to 0. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The created <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a>. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixels array may cause undefined behaviour or a fatal crash without an error.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>The returned <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> must be destroyed using the function <a class="el" href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">tuiImageDestroy()</a>.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread at any time. </dd></dl>
+
+</div>
+</div>
+<a id="ab13c3fac315ee1acdec5aeef6a0a08cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13c3fac315ee1acdec5aeef6a0a08cc">&#9670;&nbsp;</a></span>tuiImageCreatePNG()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> tuiImageCreatePNG </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> from a png image file in secondary storage. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The local or full path to the image file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The loaded <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a7b1249dcbf4763958d8106da7352d197">TUI_ERROR_LOAD_IMAGE_FAILURE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -273,19 +395,23 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiImageDestroy </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroy <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> and correctly dispose of all of its resources. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage object to destroy.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> object to destroy.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> if image is NULL. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -298,13 +424,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiImageEmplace </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>target_image</em>, </td>
         </tr>
         <tr>
@@ -326,16 +452,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Emplace a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> inside of another image, starting from a specific pixel position. Pixels that go out of bounds are clipped. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage to emplace. </td></tr>
-    <tr><td class="paramname">target_image</td><td>The TuiImage to emplace into. </td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> to emplace. </td></tr>
+    <tr><td class="paramname">target_image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> to emplace into. </td></tr>
     <tr><td class="paramname">start_x</td><td>The left most x pixel coordinate from where the image will be emplaced. </td></tr>
     <tr><td class="paramname">start_y</td><td>The top most y pixel coordinate from where the image will be emplaced.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> if image is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a583c405b684d3623c77a35ee7528aa75">TUI_ERROR_NULL_TARGET_IMAGE</a> if target_image is null. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae45ae77c5cb4965c3d1e92c325ef0787">TUI_ERROR_INCOMPATIBLE_IMAGES</a> of image and target_image have unmatching channel counts. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a583c405b684d3623c77a35ee7528aa75">TUI_ERROR_NULL_TARGET_IMAGE</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae45ae77c5cb4965c3d1e92c325ef0787">TUI_ERROR_INCOMPATIBLE_IMAGES</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -348,20 +478,24 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int tuiImageGetChannelCount </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the channel count of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The channel count. 0 is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws @TUI_ERROR_NULL_IMAGE if image is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The channel count. 0 is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -374,25 +508,29 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">size_t tuiImageGetPixelDataSize </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the size of the pixel data array of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The size. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> if image is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The size of the pixel array of the image in bytes. <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> is returned on error.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="a66716755785b8111bcd305336868a2cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66716755785b8111bcd305336868a2cb">&#9670;&nbsp;</a></span>tuiImageGetPixelDimensions()</h2>
+<a id="a32fb975cad8e7cbf5fa264a6ed38ba03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fb975cad8e7cbf5fa264a6ed38ba03">&#9670;&nbsp;</a></span>tuiImageGetPixelDimensions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -400,7 +538,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiImageGetPixelDimensions </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em>, </td>
         </tr>
         <tr>
@@ -413,7 +551,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>pixel_height</em>&#160;</td>
+          <td class="paramname"><em>pixel_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>channel_count</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -422,15 +566,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the pixel dimensions of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage. </td></tr>
-    <tr><td class="paramname">width</td><td>A pointer to where the width will be stored. If this is NULL or an error occurs, it is ignored. </td></tr>
-    <tr><td class="paramname">height</td><td>A pointer to where the height will be stored. If this is NULL or an error occurs, it is ignored.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> to get the pixel dimensions of. </td></tr>
+    <tr><td class="paramname">pixel_width</td><td>A pointer to where the pixel width of the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored. </td></tr>
+    <tr><td class="paramname">pixel_height</td><td>A pointer to where the pixel height of the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored. </td></tr>
+    <tr><td class="paramname">channel_count</td><td>A pointer to where the channel count of the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws @TUI_ERROR_NULL_IMAGE if image is NULL. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -443,20 +592,24 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int tuiImageGetPixelHeight </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the pixel height of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The pixel height. 0 is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws @TUI_ERROR_NULL_IMAGE if image is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The pixel height. 0 is returned if an error occurs.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -469,19 +622,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">uint8_t* tuiImageGetPixels </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get a pointer to the raw pixels of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The raw pixel pointer. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the pixel array of the image.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>The returned pixel array should never be freed, and will be destroyed when the image it was taken from is destroyed. Modifying the contents of the array will affect the image, and is not thread safe with other <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> functions on the same object.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -494,57 +653,24 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int tuiImageGetPixelWidth </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the pixel width of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The pixel width. 0 is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws @TUI_ERROR_NULL_IMAGE if image is NULL. </dd></dl>
-
-</div>
-</div>
-<a id="a26124e0fe46fea7a3a307d697b3b2143"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26124e0fe46fea7a3a307d697b3b2143">&#9670;&nbsp;</a></span>tuiImageLoad()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TuiImage tuiImageLoad </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>path</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>expected_channel_count</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>The path to the file. </td></tr>
-    <tr><td class="paramname">expected_channel_count</td><td>The expected image channel count. If 0, none is expected.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The TuiImage. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a> if path is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a> if expected_channel_count is not 0, 3, or 4. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a7b1249dcbf4763958d8106da7352d197">TUI_ERROR_LOAD_IMAGE_FAILURE</a> if image fails to load from the file. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a8004b8aa10296dc2394df7aa89c98a8a">TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS</a> if expected_channel_count is not 0 and does not match the loaded image channel count. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The pixel width. 0 is returned if an error occurs</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -557,7 +683,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiImageResize </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em>, </td>
         </tr>
         <tr>
@@ -579,14 +705,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Resize a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage. </td></tr>
-    <tr><td class="paramname">new_width</td><td>The new width to set for the TuiImage. </td></tr>
-    <tr><td class="paramname">new_height</td><td>The new height ot set for the TuiImage. </td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </td></tr>
+    <tr><td class="paramname">new_width</td><td>The new width to set for the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </td></tr>
+    <tr><td class="paramname">new_height</td><td>The new height ot set for the <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have the error <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -599,7 +730,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiImageSave </td>
           <td>(</td>
-          <td class="paramtype">TuiImage&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em>, </td>
         </tr>
         <tr>
@@ -615,14 +746,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Save a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> as a png image file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>The TuiImage. </td></tr>
-    <tr><td class="paramname">path</td><td>The path to the file.</td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>. </td></tr>
+    <tr><td class="paramname">path</td><td>The local or full path where the file will be saved, including the file name and extension.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> if image is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a> if path is NULL. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
 </div>
 </div>

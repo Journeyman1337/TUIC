@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TUIC
    </div>
-   <div id="projectbrief">Backend agnostic text user interface rendering library in C.</div>
+   <div id="projectbrief">Text user interface rendering library in C.</div>
   </td>
  </tr>
  </tbody>
@@ -88,46 +88,19 @@ $(document).ready(function(){initNavTree('heap_8h.html',''); initResizable(); })
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="types_8h.html">TUIC/types.h</a>&gt;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Allocation Callbacks</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>These callback types define functions that can be set to override all allocation, reallocation, and memory free operations used by TUIC. </p>
-</div></td></tr>
-<tr class="memitem:a545438f277ef532b6d545d8e3d07cbc1"><td class="memItemLeft" align="right" valign="top"><a id="a545438f277ef532b6d545d8e3d07cbc1"></a>
-typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a545438f277ef532b6d545d8e3d07cbc1">tuiAllocateCallback</a>) (size_t size)</td></tr>
-<tr class="memdesc:a545438f277ef532b6d545d8e3d07cbc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used to define how memory is allocated. <br /></td></tr>
-<tr class="separator:a545438f277ef532b6d545d8e3d07cbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab93670ff4bedde57c70189cb0a9a2902"><td class="memItemLeft" align="right" valign="top"><a id="ab93670ff4bedde57c70189cb0a9a2902"></a>
-typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ab93670ff4bedde57c70189cb0a9a2902">tuiReallocateCallback</a>) (void *to_realloc, size_t size)</td></tr>
-<tr class="memdesc:ab93670ff4bedde57c70189cb0a9a2902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used to define how memory is reallocated. <br /></td></tr>
-<tr class="separator:ab93670ff4bedde57c70189cb0a9a2902"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ece0ebab7cbff404bdb1395d08d1367"><td class="memItemLeft" align="right" valign="top"><a id="a9ece0ebab7cbff404bdb1395d08d1367"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a9ece0ebab7cbff404bdb1395d08d1367">tuiFreeCallback</a>) (void *to_free)</td></tr>
-<tr class="memdesc:a9ece0ebab7cbff404bdb1395d08d1367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used to define how memory is freed. <br /></td></tr>
-<tr class="separator:a9ece0ebab7cbff404bdb1395d08d1367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Allocation Callback Functions</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>These functions are used manage heap memory using the set callbacks or using malloc, realloc, and free from stdlib.h if none are set. </p>
+<tr><td colspan="2"><div class="groupText"><p>These functions are used manage heap memory. </p>
 </div></td></tr>
-<tr class="memitem:aa739c004e347ed3c03cd37c4b2fb5f31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#aa739c004e347ed3c03cd37c4b2fb5f31">tuiSetAllocateCallback</a> (<a class="el" href="heap_8h.html#a545438f277ef532b6d545d8e3d07cbc1">tuiAllocateCallback</a> callback)</td></tr>
-<tr class="memdesc:aa739c004e347ed3c03cd37c4b2fb5f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the allocate callback.  <a href="heap_8h.html#aa739c004e347ed3c03cd37c4b2fb5f31">More...</a><br /></td></tr>
-<tr class="separator:aa739c004e347ed3c03cd37c4b2fb5f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3d8057de2178075d7b3665fbbd0435e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ad3d8057de2178075d7b3665fbbd0435e">tuiSetReallocateCallback</a> (<a class="el" href="heap_8h.html#ab93670ff4bedde57c70189cb0a9a2902">tuiReallocateCallback</a> callback)</td></tr>
-<tr class="memdesc:ad3d8057de2178075d7b3665fbbd0435e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the reallocate callback.  <a href="heap_8h.html#ad3d8057de2178075d7b3665fbbd0435e">More...</a><br /></td></tr>
-<tr class="separator:ad3d8057de2178075d7b3665fbbd0435e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a708dd13ddbf4045d9d919c7734ae9480"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a708dd13ddbf4045d9d919c7734ae9480">tuiSetFreeCallback</a> (<a class="el" href="heap_8h.html#a9ece0ebab7cbff404bdb1395d08d1367">tuiFreeCallback</a> callback)</td></tr>
-<tr class="memdesc:a708dd13ddbf4045d9d919c7734ae9480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the free callback.  <a href="heap_8h.html#a708dd13ddbf4045d9d919c7734ae9480">More...</a><br /></td></tr>
-<tr class="separator:a708dd13ddbf4045d9d919c7734ae9480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99eb854f6e64dc2db53723c4400639d3"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a99eb854f6e64dc2db53723c4400639d3">tuiAllocate</a> (size_t size)</td></tr>
-<tr class="memdesc:a99eb854f6e64dc2db53723c4400639d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a block of heap memory, using the allocate callback if it is set.  <a href="heap_8h.html#a99eb854f6e64dc2db53723c4400639d3">More...</a><br /></td></tr>
+<tr class="memdesc:a99eb854f6e64dc2db53723c4400639d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a block of heap memory.  <a href="heap_8h.html#a99eb854f6e64dc2db53723c4400639d3">More...</a><br /></td></tr>
 <tr class="separator:a99eb854f6e64dc2db53723c4400639d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7a6777d23b0a0924f7d468c06df9a46"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af7a6777d23b0a0924f7d468c06df9a46">tuiReallocate</a> (void *to_realloc, size_t size)</td></tr>
-<tr class="memdesc:af7a6777d23b0a0924f7d468c06df9a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocate a block of heap memory, using the reallocate callback if it is set.  <a href="heap_8h.html#af7a6777d23b0a0924f7d468c06df9a46">More...</a><br /></td></tr>
+<tr class="memdesc:af7a6777d23b0a0924f7d468c06df9a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocate a block of heap memory.  <a href="heap_8h.html#af7a6777d23b0a0924f7d468c06df9a46">More...</a><br /></td></tr>
 <tr class="separator:af7a6777d23b0a0924f7d468c06df9a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab02278e11ba71d9823f1aa7ade2455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#afab02278e11ba71d9823f1aa7ade2455">tuiFree</a> (void *to_free)</td></tr>
-<tr class="memdesc:afab02278e11ba71d9823f1aa7ade2455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a block of heap memory, using the free callback if it is set.  <a href="heap_8h.html#afab02278e11ba71d9823f1aa7ade2455">More...</a><br /></td></tr>
+<tr class="memdesc:afab02278e11ba71d9823f1aa7ade2455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a block of heap memory.  <a href="heap_8h.html#afab02278e11ba71d9823f1aa7ade2455">More...</a><br /></td></tr>
 <tr class="separator:afab02278e11ba71d9823f1aa7ade2455"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -146,6 +119,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocate a block of heap memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">size</td><td>The size of the block to allocate.</td></tr>
@@ -171,6 +146,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Free a block of heap memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">to_realloc</td><td>A pointer to the memory to free. </td></tr>
@@ -205,6 +182,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reallocate a block of heap memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">to_realloc</td><td>A pointer to the memory to reallocate. </td></tr>
@@ -213,78 +192,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the reallocated memory. </dd></dl>
-
-</div>
-</div>
-<a id="aa739c004e347ed3c03cd37c4b2fb5f31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa739c004e347ed3c03cd37c4b2fb5f31">&#9670;&nbsp;</a></span>tuiSetAllocateCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiSetAllocateCallback </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="heap_8h.html#a545438f277ef532b6d545d8e3d07cbc1">tuiAllocateCallback</a>&#160;</td>
-          <td class="paramname"><em>callback</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">callback</td><td>The allocate callback. Set to NULL to resset to the default. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a708dd13ddbf4045d9d919c7734ae9480"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a708dd13ddbf4045d9d919c7734ae9480">&#9670;&nbsp;</a></span>tuiSetFreeCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiSetFreeCallback </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="heap_8h.html#a9ece0ebab7cbff404bdb1395d08d1367">tuiFreeCallback</a>&#160;</td>
-          <td class="paramname"><em>callback</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">callback</td><td>The free callback. Set to NULL to resset to the default. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad3d8057de2178075d7b3665fbbd0435e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3d8057de2178075d7b3665fbbd0435e">&#9670;&nbsp;</a></span>tuiSetReallocateCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiSetReallocateCallback </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="heap_8h.html#ab93670ff4bedde57c70189cb0a9a2902">tuiReallocateCallback</a>&#160;</td>
-          <td class="paramname"><em>callback</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">callback</td><td>The reallocate callback. Set to NULL to resset to the default. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

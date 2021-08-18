@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TUIC
    </div>
-   <div id="projectbrief">Backend agnostic text user interface rendering library in C.</div>
+   <div id="projectbrief">Text user interface rendering library in C.</div>
   </td>
  </tr>
  </tbody>
@@ -90,65 +90,103 @@ $(document).ready(function(){initNavTree('panel_8h.html',''); initResizable(); }
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">TuiPanel functions</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>These functions are used for manipulating TuiPanel opaque objects. </p>
+<tr><td colspan="2"><div class="groupHeader">Panel Functions</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Functions for manipulating <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> opaque objects. </p>
 </div></td></tr>
-<tr class="memitem:a223ae2c8abca22f4a9afefe8533cda6a"><td class="memItemLeft" align="right" valign="top">TuiPanel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a223ae2c8abca22f4a9afefe8533cda6a">tuiPanelCreate</a> (TuiInstance instance, int pixel_width, int pixel_height)</td></tr>
-<tr class="memdesc:a223ae2c8abca22f4a9afefe8533cda6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a TuiPanel with the given pixel width and height.  <a href="panel_8h.html#a223ae2c8abca22f4a9afefe8533cda6a">More...</a><br /></td></tr>
-<tr class="separator:a223ae2c8abca22f4a9afefe8533cda6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa45d15dff80f2de82ef2fe391a131d92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#aa45d15dff80f2de82ef2fe391a131d92">tuiPanelDestroy</a> (TuiPanel panel)</td></tr>
-<tr class="memdesc:aa45d15dff80f2de82ef2fe391a131d92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy a TuiPanel and correctly dispose of all of its resources.  <a href="panel_8h.html#aa45d15dff80f2de82ef2fe391a131d92">More...</a><br /></td></tr>
+<tr class="memitem:aba465e9c83a761c545f8429921e7f0a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#aba465e9c83a761c545f8429921e7f0a7">tuiPanelCreate</a> (int pixel_width, int pixel_height)</td></tr>
+<tr class="memdesc:aba465e9c83a761c545f8429921e7f0a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#aba465e9c83a761c545f8429921e7f0a7">More...</a><br /></td></tr>
+<tr class="separator:aba465e9c83a761c545f8429921e7f0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa45d15dff80f2de82ef2fe391a131d92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#aa45d15dff80f2de82ef2fe391a131d92">tuiPanelDestroy</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel)</td></tr>
+<tr class="memdesc:aa45d15dff80f2de82ef2fe391a131d92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> and correctly dispose of of its internally managed resources.  <a href="panel_8h.html#aa45d15dff80f2de82ef2fe391a131d92">More...</a><br /></td></tr>
 <tr class="separator:aa45d15dff80f2de82ef2fe391a131d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bf6790fc90e36dcb795043265a1b82e"><td class="memItemLeft" align="right" valign="top">TuiInstance&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a9bf6790fc90e36dcb795043265a1b82e">tuiPanelGetInstance</a> (TuiPanel panel)</td></tr>
-<tr class="memdesc:a9bf6790fc90e36dcb795043265a1b82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TuiInstance of a TuiPanel.  <a href="panel_8h.html#a9bf6790fc90e36dcb795043265a1b82e">More...</a><br /></td></tr>
-<tr class="separator:a9bf6790fc90e36dcb795043265a1b82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a637ceb638af23c98c91b650b51468bf7"><td class="memItemLeft" align="right" valign="top">TuiImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a637ceb638af23c98c91b650b51468bf7">tuiPanelGetImage</a> (TuiPanel panel, TuiImage fill_image)</td></tr>
-<tr class="memdesc:a637ceb638af23c98c91b650b51468bf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a TuiImage of the framebuffer of a TuiPanel.  <a href="panel_8h.html#a637ceb638af23c98c91b650b51468bf7">More...</a><br /></td></tr>
-<tr class="separator:a637ceb638af23c98c91b650b51468bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6674b90959ac548f9199ad8633060420"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a6674b90959ac548f9199ad8633060420">tuiPanelGetPixels</a> (TuiPanel panel, int *pixel_width, int *pixel_height, uint8_t *fill_pixels)</td></tr>
-<tr class="memdesc:a6674b90959ac548f9199ad8633060420"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the 4 channel raw pixel array of the framebuffer of a TuiPanel.  <a href="panel_8h.html#a6674b90959ac548f9199ad8633060420">More...</a><br /></td></tr>
+<tr class="memitem:a68565956f2b7f3dfbff3591cd892ee22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a68565956f2b7f3dfbff3591cd892ee22">tuiGetPanelCount</a> ()</td></tr>
+<tr class="memdesc:a68565956f2b7f3dfbff3591cd892ee22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> that currently exist.  <a href="panel_8h.html#a68565956f2b7f3dfbff3591cd892ee22">More...</a><br /></td></tr>
+<tr class="separator:a68565956f2b7f3dfbff3591cd892ee22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fe1cd1a19d8226f78d72b650e5cfdd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a0fe1cd1a19d8226f78d72b650e5cfdd8">tuiPanelGetImage</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel)</td></tr>
+<tr class="memdesc:a0fe1cd1a19d8226f78d72b650e5cfdd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> rendered from the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#a0fe1cd1a19d8226f78d72b650e5cfdd8">More...</a><br /></td></tr>
+<tr class="separator:a0fe1cd1a19d8226f78d72b650e5cfdd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5cdacf86e5e0f7645f089bab92ea40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#aff5cdacf86e5e0f7645f089bab92ea40">tuiPanelWriteImage</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
+<tr class="memdesc:aff5cdacf86e5e0f7645f089bab92ea40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>, resizing it if necessary.  <a href="panel_8h.html#aff5cdacf86e5e0f7645f089bab92ea40">More...</a><br /></td></tr>
+<tr class="separator:aff5cdacf86e5e0f7645f089bab92ea40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6674b90959ac548f9199ad8633060420"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a6674b90959ac548f9199ad8633060420">tuiPanelGetPixels</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, int *pixel_width, int *pixel_height, uint8_t *fill_pixels)</td></tr>
+<tr class="memdesc:a6674b90959ac548f9199ad8633060420"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the raw pixels of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#a6674b90959ac548f9199ad8633060420">More...</a><br /></td></tr>
 <tr class="separator:a6674b90959ac548f9199ad8633060420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c06b37887d536fc84be1c1d1d099144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a3c06b37887d536fc84be1c1d1d099144">tuiPanelClearColor</a> (TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)</td></tr>
-<tr class="memdesc:a3c06b37887d536fc84be1c1d1d099144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the framebuffer of a TuiPanel to a color.  <a href="panel_8h.html#a3c06b37887d536fc84be1c1d1d099144">More...</a><br /></td></tr>
+<tr class="memitem:a3c06b37887d536fc84be1c1d1d099144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a3c06b37887d536fc84be1c1d1d099144">tuiPanelClearColor</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)</td></tr>
+<tr class="memdesc:a3c06b37887d536fc84be1c1d1d099144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the color of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to a solid color.  <a href="panel_8h.html#a3c06b37887d536fc84be1c1d1d099144">More...</a><br /></td></tr>
 <tr class="separator:a3c06b37887d536fc84be1c1d1d099144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af64e2c897b5c30f03988ce9d09cc6f02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#af64e2c897b5c30f03988ce9d09cc6f02">tuiPanelSetPixelDimensions</a> (TuiPanel panel, int pixel_width, int pixel_height)</td></tr>
-<tr class="memdesc:af64e2c897b5c30f03988ce9d09cc6f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pixel dimensions of the framebuffer of a TuiPanel.  <a href="panel_8h.html#af64e2c897b5c30f03988ce9d09cc6f02">More...</a><br /></td></tr>
+<tr class="memitem:af64e2c897b5c30f03988ce9d09cc6f02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#af64e2c897b5c30f03988ce9d09cc6f02">tuiPanelSetPixelDimensions</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, int pixel_width, int pixel_height)</td></tr>
+<tr class="memdesc:af64e2c897b5c30f03988ce9d09cc6f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pixel dimensions of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#af64e2c897b5c30f03988ce9d09cc6f02">More...</a><br /></td></tr>
 <tr class="separator:af64e2c897b5c30f03988ce9d09cc6f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1ad5ab0441fe7f96c1980802db135d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#ae1ad5ab0441fe7f96c1980802db135d5">tuiPanelGetPixelDimensions</a> (TuiPanel panel, int *pixel_width, int *pixel_height)</td></tr>
-<tr class="memdesc:ae1ad5ab0441fe7f96c1980802db135d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel dimensions of the framebuffer of a TuiPanel.  <a href="panel_8h.html#ae1ad5ab0441fe7f96c1980802db135d5">More...</a><br /></td></tr>
+<tr class="memitem:ae1ad5ab0441fe7f96c1980802db135d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#ae1ad5ab0441fe7f96c1980802db135d5">tuiPanelGetPixelDimensions</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, int *pixel_width, int *pixel_height)</td></tr>
+<tr class="memdesc:ae1ad5ab0441fe7f96c1980802db135d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel dimensions of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#ae1ad5ab0441fe7f96c1980802db135d5">More...</a><br /></td></tr>
 <tr class="separator:ae1ad5ab0441fe7f96c1980802db135d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2a70c86fc6909f79c147f5fcafea74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a7d2a70c86fc6909f79c147f5fcafea74">tuiPanelGetPixelWidth</a> (TuiPanel panel)</td></tr>
-<tr class="memdesc:a7d2a70c86fc6909f79c147f5fcafea74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pixel width of a TuiPanel.  <a href="panel_8h.html#a7d2a70c86fc6909f79c147f5fcafea74">More...</a><br /></td></tr>
+<tr class="memitem:a7d2a70c86fc6909f79c147f5fcafea74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a7d2a70c86fc6909f79c147f5fcafea74">tuiPanelGetPixelWidth</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel)</td></tr>
+<tr class="memdesc:a7d2a70c86fc6909f79c147f5fcafea74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel width of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#a7d2a70c86fc6909f79c147f5fcafea74">More...</a><br /></td></tr>
 <tr class="separator:a7d2a70c86fc6909f79c147f5fcafea74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab60f1353dc431df51e37c0206989f62e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#ab60f1353dc431df51e37c0206989f62e">tuiPanelGetPixelHeight</a> (TuiPanel panel)</td></tr>
-<tr class="memdesc:ab60f1353dc431df51e37c0206989f62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pixel height of a TuiPanel.  <a href="panel_8h.html#ab60f1353dc431df51e37c0206989f62e">More...</a><br /></td></tr>
+<tr class="memitem:ab60f1353dc431df51e37c0206989f62e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#ab60f1353dc431df51e37c0206989f62e">tuiPanelGetPixelHeight</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel)</td></tr>
+<tr class="memdesc:ab60f1353dc431df51e37c0206989f62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pixel height of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#ab60f1353dc431df51e37c0206989f62e">More...</a><br /></td></tr>
 <tr class="separator:ab60f1353dc431df51e37c0206989f62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f12b42b10cdeb636ed5a300f62db93b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a1f12b42b10cdeb636ed5a300f62db93b">tuiPanelDrawBatch</a> (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch)</td></tr>
-<tr class="memdesc:a1f12b42b10cdeb636ed5a300f62db93b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a TuiBatch to a TuiPanel.  <a href="panel_8h.html#a1f12b42b10cdeb636ed5a300f62db93b">More...</a><br /></td></tr>
-<tr class="separator:a1f12b42b10cdeb636ed5a300f62db93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add8240c7d31030a21ba068c992b3ccf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#add8240c7d31030a21ba068c992b3ccf7">tuiPanelDrawBatchData</a> (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t *batch_data)</td></tr>
-<tr class="memdesc:add8240c7d31030a21ba068c992b3ccf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a TuiBatch to a TuiPanel.  <a href="panel_8h.html#add8240c7d31030a21ba068c992b3ccf7">More...</a><br /></td></tr>
-<tr class="separator:add8240c7d31030a21ba068c992b3ccf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abed4395d284e0b295ea8cca22611a7f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#abed4395d284e0b295ea8cca22611a7f9">tuiPanelDrawBatchTransformed</a> (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
-<tr class="memdesc:abed4395d284e0b295ea8cca22611a7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a TuiBatch to the scren of a TuiPanel with a transformation.  <a href="panel_8h.html#abed4395d284e0b295ea8cca22611a7f9">More...</a><br /></td></tr>
-<tr class="separator:abed4395d284e0b295ea8cca22611a7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a578b5d77fc706bd71021af212c61cea7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a578b5d77fc706bd71021af212c61cea7">tuiPanelDrawBatchDataTransformed</a> (TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t *batch_data, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
-<tr class="memdesc:a578b5d77fc706bd71021af212c61cea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw batch data to a TuiPanel with a transformation.  <a href="panel_8h.html#a578b5d77fc706bd71021af212c61cea7">More...</a><br /></td></tr>
-<tr class="separator:a578b5d77fc706bd71021af212c61cea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afabbef84af0e8e71f6122ec1f9964eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#afabbef84af0e8e71f6122ec1f9964eb2">tuiPanelRender</a> (TuiPanel panel)</td></tr>
-<tr class="memdesc:afabbef84af0e8e71f6122ec1f9964eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render a TuiPanel to the main graphics context framebuffer if its TuiInstance.  <a href="panel_8h.html#afabbef84af0e8e71f6122ec1f9964eb2">More...</a><br /></td></tr>
-<tr class="separator:afabbef84af0e8e71f6122ec1f9964eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c2d4c51f8d097dab8c712e5e5fbc4e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a6c2d4c51f8d097dab8c712e5e5fbc4e9">tuiPanelRenderTransformed</a> (TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
-<tr class="memdesc:a6c2d4c51f8d097dab8c712e5e5fbc4e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render a TuiPanel to the main graphics context framebuffer of its TuiInstance in a transformed position.  <a href="panel_8h.html#a6c2d4c51f8d097dab8c712e5e5fbc4e9">More...</a><br /></td></tr>
-<tr class="separator:a6c2d4c51f8d097dab8c712e5e5fbc4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa94973a0eddb8fc69771656fa7eb0cf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#aa94973a0eddb8fc69771656fa7eb0cf4">tuiPanelRenderToPanel</a> (TuiPanel panel, TuiPanel target_panel)</td></tr>
-<tr class="memdesc:aa94973a0eddb8fc69771656fa7eb0cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the framebuffer texture of a TuiPanel to the framebuffer of a different one.  <a href="panel_8h.html#aa94973a0eddb8fc69771656fa7eb0cf4">More...</a><br /></td></tr>
-<tr class="separator:aa94973a0eddb8fc69771656fa7eb0cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af08f027252350e39cbe1668410b01dfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#af08f027252350e39cbe1668410b01dfd">tuiPanelRenderToPanelTransformed</a> (TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
-<tr class="memdesc:af08f027252350e39cbe1668410b01dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the framebuffer texture of a TuiPanel to the framebuffer of a different one with a transformation.  <a href="panel_8h.html#af08f027252350e39cbe1668410b01dfd">More...</a><br /></td></tr>
-<tr class="separator:af08f027252350e39cbe1668410b01dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b02fb861d04cac28e33c0d2a037d3cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a1b02fb861d04cac28e33c0d2a037d3cb">tuiPanelDrawBatch</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> atlas, <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette, <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a> batch)</td></tr>
+<tr class="memdesc:a1b02fb861d04cac28e33c0d2a037d3cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a> to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#a1b02fb861d04cac28e33c0d2a037d3cb">More...</a><br /></td></tr>
+<tr class="separator:a1b02fb861d04cac28e33c0d2a037d3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7b11868417dfe7ea757225be742d957"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#af7b11868417dfe7ea757225be742d957">tuiPanelDrawBatchData</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> atlas, <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette, <a class="el" href="detail__mode_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t *batch_data)</td></tr>
+<tr class="memdesc:af7b11868417dfe7ea757225be742d957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw batch data to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#af7b11868417dfe7ea757225be742d957">More...</a><br /></td></tr>
+<tr class="separator:af7b11868417dfe7ea757225be742d957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bb330714c097d25a606e280ef08141a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a6bb330714c097d25a606e280ef08141a">tuiPanelDrawBatchTransformed</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> atlas, <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette, <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a> batch, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
+<tr class="memdesc:a6bb330714c097d25a606e280ef08141a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a> to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation.  <a href="panel_8h.html#a6bb330714c097d25a606e280ef08141a">More...</a><br /></td></tr>
+<tr class="separator:a6bb330714c097d25a606e280ef08141a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae99b7b643858f3bfe6c14b2825087824"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#ae99b7b643858f3bfe6c14b2825087824">tuiPanelDrawBatchDataTransformed</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> atlas, <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a> palette, <a class="el" href="detail__mode_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t *batch_data, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
+<tr class="memdesc:ae99b7b643858f3bfe6c14b2825087824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw batch data to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation.  <a href="panel_8h.html#ae99b7b643858f3bfe6c14b2825087824">More...</a><br /></td></tr>
+<tr class="separator:ae99b7b643858f3bfe6c14b2825087824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536f09bdc68891b0421b2296f4c28e73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a536f09bdc68891b0421b2296f4c28e73">tuiPanelDrawPanel</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> subject_panel)</td></tr>
+<tr class="memdesc:a536f09bdc68891b0421b2296f4c28e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to another panel.  <a href="panel_8h.html#a536f09bdc68891b0421b2296f4c28e73">More...</a><br /></td></tr>
+<tr class="separator:a536f09bdc68891b0421b2296f4c28e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed377b3a1faf2ce057b14435af400750"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#aed377b3a1faf2ce057b14435af400750">tuiPanelDrawPanelTransformed</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> subject_panel, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
+<tr class="memdesc:aed377b3a1faf2ce057b14435af400750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to another panel with a transformation.  <a href="panel_8h.html#aed377b3a1faf2ce057b14435af400750">More...</a><br /></td></tr>
+<tr class="separator:aed377b3a1faf2ce057b14435af400750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a117fa100e1a4646d25cc52e1e15e8b09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a117fa100e1a4646d25cc52e1e15e8b09">tuiPanelDrawTexture</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> texture)</td></tr>
+<tr class="memdesc:a117fa100e1a4646d25cc52e1e15e8b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#a117fa100e1a4646d25cc52e1e15e8b09">More...</a><br /></td></tr>
+<tr class="separator:a117fa100e1a4646d25cc52e1e15e8b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e2ba79eec0410382201c37237c4ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a04e2ba79eec0410382201c37237c4ed8">tuiPanelDrawTextureTransformed</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> texture, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
+<tr class="memdesc:a04e2ba79eec0410382201c37237c4ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation.  <a href="panel_8h.html#a04e2ba79eec0410382201c37237c4ed8">More...</a><br /></td></tr>
+<tr class="separator:a04e2ba79eec0410382201c37237c4ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa7c908f674fba437a4d228d5f04c79b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#afa7c908f674fba437a4d228d5f04c79b">tuiPanelDrawAtlas</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> atlas)</td></tr>
+<tr class="memdesc:afa7c908f674fba437a4d228d5f04c79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the texture of a <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#afa7c908f674fba437a4d228d5f04c79b">More...</a><br /></td></tr>
+<tr class="separator:afa7c908f674fba437a4d228d5f04c79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ecf72f5292bd47830e483dc1b9a460a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a0ecf72f5292bd47830e483dc1b9a460a">tuiPanelDrawAtlasTransformed</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> atlas, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
+<tr class="memdesc:a0ecf72f5292bd47830e483dc1b9a460a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the texture of a <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation.  <a href="panel_8h.html#a0ecf72f5292bd47830e483dc1b9a460a">More...</a><br /></td></tr>
+<tr class="separator:a0ecf72f5292bd47830e483dc1b9a460a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9b189600b062fb4cb775018fc79638"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a8e9b189600b062fb4cb775018fc79638">tuiPanelDrawWindow</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> window)</td></tr>
+<tr class="memdesc:a8e9b189600b062fb4cb775018fc79638"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a the framebuffer of a <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.  <a href="panel_8h.html#a8e9b189600b062fb4cb775018fc79638">More...</a><br /></td></tr>
+<tr class="separator:a8e9b189600b062fb4cb775018fc79638"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e56efcadcb9d202cb9ae7cf52e30a3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="panel_8h.html#a8e56efcadcb9d202cb9ae7cf52e30a3a">tuiPanelDrawWindowTransformed</a> (<a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> panel, <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> window, int left_x, int right_x, int top_y, int bottom_y)</td></tr>
+<tr class="memdesc:a8e56efcadcb9d202cb9ae7cf52e30a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a the framebuffer of a <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation.  <a href="panel_8h.html#a8e56efcadcb9d202cb9ae7cf52e30a3a">More...</a><br /></td></tr>
+<tr class="separator:a8e56efcadcb9d202cb9ae7cf52e30a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a68565956f2b7f3dfbff3591cd892ee22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68565956f2b7f3dfbff3591cd892ee22">&#9670;&nbsp;</a></span>tuiGetPanelCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int tuiGetPanelCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the amount of <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> that currently exist. </p>
+<dl class="section return"><dt>Returns</dt><dd>The amount of panels that currently exist.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function does not have errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called at any time.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
 <a id="a3c06b37887d536fc84be1c1d1d099144"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c06b37887d536fc84be1c1d1d099144">&#9670;&nbsp;</a></span>tuiPanelClearColor()</h2>
 
@@ -158,7 +196,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelClearColor </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
@@ -192,35 +230,33 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Clear the color of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to a solid color. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">r</td><td>The red color channel of the clear color. </td></tr>
-    <tr><td class="paramname">g</td><td>The green color channel of the clear color. </td></tr>
-    <tr><td class="paramname">b</td><td>The blue color channel of the clear color. </td></tr>
-    <tr><td class="paramname">a</td><td>The alpha color channel of the clear color.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to clear. </td></tr>
+    <tr><td class="paramname">r</td><td>The red color value of the clear color. </td></tr>
+    <tr><td class="paramname">g</td><td>The green color value of the clear color. </td></tr>
+    <tr><td class="paramname">b</td><td>The blue color value of the clear color. </td></tr>
+    <tr><td class="paramname">a</td><td>The alpha color value of the clear color.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> is panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
-<a id="a223ae2c8abca22f4a9afefe8533cda6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a223ae2c8abca22f4a9afefe8533cda6a">&#9670;&nbsp;</a></span>tuiPanelCreate()</h2>
+<a id="aba465e9c83a761c545f8429921e7f0a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba465e9c83a761c545f8429921e7f0a7">&#9670;&nbsp;</a></span>tuiPanelCreate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiPanel tuiPanelCreate </td>
+          <td class="memname"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> tuiPanelCreate </td>
           <td>(</td>
-          <td class="paramtype">TuiInstance&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>pixel_width</em>, </td>
         </tr>
@@ -237,15 +273,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pixel_width</td><td>The width of the TuiPanel in pixels. </td></tr>
-    <tr><td class="paramname">pixel_height</td><td>The height of the TuiPanel in pixels</td></tr>
+    <tr><td class="paramname">pixel_width</td><td>The width of the framebuffer in pixels. </td></tr>
+    <tr><td class="paramname">pixel_height</td><td>The height of the framebuffer in pixels.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created TuiPanel object. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a806ccd2b84088ce997d2da5858ffca6e">TUI_ERROR_NULL_INSTANCE</a> if instance is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if instance is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a> if pixel_width or pixel_height is less than or equal to 0. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>The returned <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> must be destroyed before TUIC is terminated, using the function <a class="el" href="panel_8h.html#aa45d15dff80f2de82ef2fe391a131d92">tuiPanelDestroy()</a>.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
@@ -258,24 +298,136 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelDestroy </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Free a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> and correctly dispose of of its internally managed resources. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">batch</td><td>The TuiPanel object to destroy.</td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to destroy.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
-<a id="a1f12b42b10cdeb636ed5a300f62db93b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f12b42b10cdeb636ed5a300f62db93b">&#9670;&nbsp;</a></span>tuiPanelDrawBatch()</h2>
+<a id="afa7c908f674fba437a4d228d5f04c79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa7c908f674fba437a4d228d5f04c79b">&#9670;&nbsp;</a></span>tuiPanelDrawAtlas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelDrawAtlas </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>&#160;</td>
+          <td class="paramname"><em>atlas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw the texture of a <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">atlas</td><td>The <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> to draw.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad23e125c0ce0fff3bd088d81a90078d4">TUI_ERROR_NULL_ATLAS</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a0ecf72f5292bd47830e483dc1b9a460a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ecf72f5292bd47830e483dc1b9a460a">&#9670;&nbsp;</a></span>tuiPanelDrawAtlasTransformed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelDrawAtlasTransformed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>&#160;</td>
+          <td class="paramname"><em>atlas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>left_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>right_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>top_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bottom_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw the texture of a <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">atlas</td><td>The <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a> to draw. </td></tr>
+    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect within the panel.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad23e125c0ce0fff3bd088d81a90078d4">TUI_ERROR_NULL_ATLAS</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a1b02fb861d04cac28e33c0d2a037d3cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b02fb861d04cac28e33c0d2a037d3cb">&#9670;&nbsp;</a></span>tuiPanelDrawBatch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,25 +435,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelDrawBatch </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiGlyphAtlas&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>&#160;</td>
           <td class="paramname"><em>atlas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiBatch&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a>&#160;</td>
           <td class="paramname"><em>batch</em>&#160;</td>
         </tr>
         <tr>
@@ -311,22 +463,25 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draw a <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a> to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">atlas</td><td>The TuiGlyphAtlas to use for this draw. </td></tr>
-    <tr><td class="paramname">palette</td><td>The TuiPalette to use for this draw. If not used, pass NULL. </td></tr>
-    <tr><td class="paramname">batch</td><td>The TuiBatch to draw to the framebuffer. </td></tr>
-    <tr><td class="paramname">blend_mode</td><td>The blend mode to use for this draw.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </td></tr>
+    <tr><td class="paramname">atlas</td><td>The <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>. </td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>. </td></tr>
+    <tr><td class="paramname">batch</td><td>The <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1">TUI_ERROR_NULL_GLYPH_ATLAS</a> if atlas is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95">TUI_ERROR_NULL_BATCH</a> is batch is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a> if palette is NULL and a palette is required by the <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> of the TuiBatch. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa">TUI_ERROR_UNMATCHING_ATLAS_INSTANCE</a> if the TuiInstance of atlas does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4">TUI_ERROR_UNMATCHING_PALETTE_INSTANCE</a> if palette is not NULL and its TuiInstance does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad23e125c0ce0fff3bd088d81a90078d4">TUI_ERROR_NULL_ATLAS</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95">TUI_ERROR_NULL_BATCH</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="add8240c7d31030a21ba068c992b3ccf7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add8240c7d31030a21ba068c992b3ccf7">&#9670;&nbsp;</a></span>tuiPanelDrawBatchData()</h2>
+<a id="af7b11868417dfe7ea757225be742d957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7b11868417dfe7ea757225be742d957">&#9670;&nbsp;</a></span>tuiPanelDrawBatchData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,25 +489,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelDrawBatchData </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiGlyphAtlas&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>&#160;</td>
           <td class="paramname"><em>atlas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype"><a class="el" href="detail__mode_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a>&#160;</td>
           <td class="paramname"><em>detail_mode</em>, </td>
         </tr>
         <tr>
@@ -376,7 +531,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>batch_data</em>&#160;</td>
         </tr>
         <tr>
@@ -386,22 +541,29 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draw batch data to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">atlas</td><td>The TuiGlyphAtlas to use for this draw. </td></tr>
-    <tr><td class="paramname">palette</td><td>The TuiPalette to use for this draw. If not used, pass NULL. </td></tr>
-    <tr><td class="paramname">batch</td><td>The TuiBatch to draw to the framebuffer. </td></tr>
-    <tr><td class="paramname">blend_mode</td><td>The blend mode to use for this draw.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </td></tr>
+    <tr><td class="paramname">atlas</td><td>The <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>. </td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>. </td></tr>
+    <tr><td class="paramname">detail_mode</td><td>The <a class="el" href="detail__mode_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> of the batch data. </td></tr>
+    <tr><td class="paramname">tiles_wide</td><td>The tiles wide of the batch data. </td></tr>
+    <tr><td class="paramname">tiles_tall</td><td>The tiles tall of the batch data. </td></tr>
+    <tr><td class="paramname">sparse_index</td><td>The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored. </td></tr>
+    <tr><td class="paramname">batch_data</td><td>A pointer to the batch data array.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1">TUI_ERROR_NULL_GLYPH_ATLAS</a> if atlas is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc">TUI_ERROR_NULL_BATCH_DATA</a> if batch_data is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e">TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS</a> if tiles_wide or tiles_tall is less than or equal to 0. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6a7d95ad7b865830d74a98f4238416fa">TUI_ERROR_INVALID_DETAIL_MODE</a> if detail_mode is an invalid <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a>. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a> if palette is NULL and a palette is required by the <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> of the TuiBatch. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa">TUI_ERROR_UNMATCHING_ATLAS_INSTANCE</a> if the TuiInstance of atlas does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4">TUI_ERROR_UNMATCHING_PALETTE_INSTANCE</a> if palette is not NULL and its TuiInstance does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are TUI_ERROR_NULL_INITIALIZED, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad23e125c0ce0fff3bd088d81a90078d4">TUI_ERROR_NULL_ATLAS</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc">TUI_ERROR_NULL_BATCH_DATA</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e">TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="a578b5d77fc706bd71021af212c61cea7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a578b5d77fc706bd71021af212c61cea7">&#9670;&nbsp;</a></span>tuiPanelDrawBatchDataTransformed()</h2>
+<a id="ae99b7b643858f3bfe6c14b2825087824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99b7b643858f3bfe6c14b2825087824">&#9670;&nbsp;</a></span>tuiPanelDrawBatchDataTransformed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,25 +571,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelDrawBatchDataTransformed </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiGlyphAtlas&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>&#160;</td>
           <td class="paramname"><em>atlas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype"><a class="el" href="detail__mode_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a>&#160;</td>
           <td class="paramname"><em>detail_mode</em>, </td>
         </tr>
         <tr>
@@ -451,7 +613,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>batch_data</em>, </td>
         </tr>
         <tr>
@@ -485,30 +647,33 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draw batch data to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">atlas</td><td>The TuiGlyphAtlas to use for this draw. </td></tr>
-    <tr><td class="paramname">palette</td><td>The TuiPalette to use for this draw. If not used, pass NULL. </td></tr>
-    <tr><td class="paramname">batch</td><td>The TuiBatch to draw to the framebuffer. </td></tr>
-    <tr><td class="paramname">detail_mode</td><td>The detail mode to use for this render. </td></tr>
-    <tr><td class="paramname">blend_mode</td><td>The blend mode to use for this draw. </td></tr>
-    <tr><td class="paramname">tiles_wide</td><td>The amount of tiles wide in the batch. </td></tr>
-    <tr><td class="paramname">tiles_tall</td><td>The amount of tiles tall in the batch. </td></tr>
-    <tr><td class="paramname">batch_data</td><td>A pointer to the raw batch byte array. </td></tr>
-    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect. </td></tr>
-    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect. </td></tr>
-    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect. </td></tr>
-    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </td></tr>
+    <tr><td class="paramname">atlas</td><td>The <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>. </td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>. </td></tr>
+    <tr><td class="paramname">detail_mode</td><td>The <a class="el" href="detail__mode_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> of the batch data. </td></tr>
+    <tr><td class="paramname">tiles_wide</td><td>The tiles wide of the batch data. </td></tr>
+    <tr><td class="paramname">tiles_tall</td><td>The tiles tall of the batch data. </td></tr>
+    <tr><td class="paramname">sparse_index</td><td>The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored. </td></tr>
+    <tr><td class="paramname">batch_data</td><td>A pointer to the batch data array. </td></tr>
+    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect within the panel.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1">TUI_ERROR_NULL_GLYPH_ATLAS</a> if atlas is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc">TUI_ERROR_NULL_BATCH_DATA</a> if batch_data is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e">TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS</a> if tiles_wide or tiles_tall is less than or equal to 0. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6a7d95ad7b865830d74a98f4238416fa">TUI_ERROR_INVALID_DETAIL_MODE</a> if detail_mode is an invalid <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a>. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a> if palette is NULL and a palette is required by the <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> of the TuiBatch. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa">TUI_ERROR_UNMATCHING_ATLAS_INSTANCE</a> if the TuiInstance of atlas does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4">TUI_ERROR_UNMATCHING_PALETTE_INSTANCE</a> if palette is not NULL and its TuiInstance does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad23e125c0ce0fff3bd088d81a90078d4">TUI_ERROR_NULL_ATLAS</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc">TUI_ERROR_NULL_BATCH_DATA</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e">TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="abed4395d284e0b295ea8cca22611a7f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abed4395d284e0b295ea8cca22611a7f9">&#9670;&nbsp;</a></span>tuiPanelDrawBatchTransformed()</h2>
+<a id="a6bb330714c097d25a606e280ef08141a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bb330714c097d25a606e280ef08141a">&#9670;&nbsp;</a></span>tuiPanelDrawBatchTransformed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -516,25 +681,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelDrawBatchTransformed </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiGlyphAtlas&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>&#160;</td>
           <td class="paramname"><em>atlas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiPalette&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>&#160;</td>
           <td class="paramname"><em>palette</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiBatch&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a>&#160;</td>
           <td class="paramname"><em>batch</em>, </td>
         </tr>
         <tr>
@@ -568,41 +733,44 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draw a <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a> to the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">atlas</td><td>The TuiGlyphAtlas to use for this draw. </td></tr>
-    <tr><td class="paramname">palette</td><td>The TuiPalette to use for this draw. If not used, pass NULL. </td></tr>
-    <tr><td class="paramname">batch</td><td>The TuiBatch to draw to the framebuffer. </td></tr>
-    <tr><td class="paramname">blend_mode</td><td>The blend mode to use for this draw. </td></tr>
-    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect. </td></tr>
-    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect. </td></tr>
-    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect. </td></tr>
-    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </td></tr>
+    <tr><td class="paramname">atlas</td><td>The <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a>. </td></tr>
+    <tr><td class="paramname">palette</td><td>The <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a>. </td></tr>
+    <tr><td class="paramname">batch</td><td>The <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a>. </td></tr>
+    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect within the panel.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1">TUI_ERROR_NULL_GLYPH_ATLAS</a> if atlas is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95">TUI_ERROR_NULL_BATCH</a> if batch is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a> if palette is NULL and a palette is required by the <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> of the TuiBatch. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa">TUI_ERROR_UNMATCHING_ATLAS_INSTANCE</a> if the TuiInstance of atlas does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4">TUI_ERROR_UNMATCHING_PALETTE_INSTANCE</a> if palette is not NULL and its TuiInstance does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad23e125c0ce0fff3bd088d81a90078d4">TUI_ERROR_NULL_ATLAS</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95">TUI_ERROR_NULL_BATCH</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="a637ceb638af23c98c91b650b51468bf7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a637ceb638af23c98c91b650b51468bf7">&#9670;&nbsp;</a></span>tuiPanelGetImage()</h2>
+<a id="a536f09bdc68891b0421b2296f4c28e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536f09bdc68891b0421b2296f4c28e73">&#9670;&nbsp;</a></span>tuiPanelDrawPanel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiImage tuiPanelGetImage </td>
+          <td class="memname">void tuiPanelDrawPanel </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TuiImage&#160;</td>
-          <td class="paramname"><em>fill_image</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>subject_panel</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -611,41 +779,333 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draw a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to another panel. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">image</td><td>The TuiImage to replace. If this is NULL, a new image will be created instead.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">subject_panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created TuiImage. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad237bd830c8b506b84c6818b1f430dcd">TUI_ERROR_NULL_SUBJECT_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
-<a id="a9bf6790fc90e36dcb795043265a1b82e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bf6790fc90e36dcb795043265a1b82e">&#9670;&nbsp;</a></span>tuiPanelGetInstance()</h2>
+<a id="aed377b3a1faf2ce057b14435af400750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed377b3a1faf2ce057b14435af400750">&#9670;&nbsp;</a></span>tuiPanelDrawPanelTransformed()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TuiInstance tuiPanelGetInstance </td>
+          <td class="memname">void tuiPanelDrawPanelTransformed </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>subject_panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>left_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>right_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>top_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bottom_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to another panel with a transformation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">subject_panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw. </td></tr>
+    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect within the panel.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad237bd830c8b506b84c6818b1f430dcd">TUI_ERROR_NULL_SUBJECT_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a117fa100e1a4646d25cc52e1e15e8b09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a117fa100e1a4646d25cc52e1e15e8b09">&#9670;&nbsp;</a></span>tuiPanelDrawTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelDrawTexture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a>&#160;</td>
+          <td class="paramname"><em>texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw a <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">texture</td><td>The <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> to draw.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af6799d55d73d40c30ad95a3fe672d269">TUI_ERROR_NULL_TEXTURE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a04e2ba79eec0410382201c37237c4ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e2ba79eec0410382201c37237c4ed8">&#9670;&nbsp;</a></span>tuiPanelDrawTextureTransformed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelDrawTextureTransformed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a>&#160;</td>
+          <td class="paramname"><em>texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>left_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>right_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>top_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bottom_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw a <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">texture</td><td>The <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a> to draw. </td></tr>
+    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect within the panel.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af6799d55d73d40c30ad95a3fe672d269">TUI_ERROR_NULL_TEXTURE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a8e9b189600b062fb4cb775018fc79638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e9b189600b062fb4cb775018fc79638">&#9670;&nbsp;</a></span>tuiPanelDrawWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelDrawWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a>&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw a the framebuffer of a <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">window</td><td>The <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> to draw.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a94066e26daccf0a72e0ab55572939792">TUI_ERROR_NULL_WINDOW</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a8e56efcadcb9d202cb9ae7cf52e30a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e56efcadcb9d202cb9ae7cf52e30a3a">&#9670;&nbsp;</a></span>tuiPanelDrawWindowTransformed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelDrawWindowTransformed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a>&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>left_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>right_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>top_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bottom_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw a the framebuffer of a <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> to a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> with a transformation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to draw to. </td></tr>
+    <tr><td class="paramname">window</td><td>The <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a> to draw. </td></tr>
+    <tr><td class="paramname">left_x</td><td>The leftmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">right_x</td><td>The rightmost x pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">top_y</td><td>The topmost y pixel coordinate of the draw rect within the panel. </td></tr>
+    <tr><td class="paramname">bottom_y</td><td>The bottomost y pixel coordinate of the draw rect within the panel.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a94066e26daccf0a72e0ab55572939792">TUI_ERROR_NULL_WINDOW</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
+
+</div>
+</div>
+<a id="a0fe1cd1a19d8226f78d72b650e5cfdd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fe1cd1a19d8226f78d72b650e5cfdd8">&#9670;&nbsp;</a></span>tuiPanelGetImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> tuiPanelGetImage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> rendered from the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to render to the image.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The TuiInstance. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>The returned <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> must be destroyed using <a class="el" href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">tuiImageDestroy()</a>.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
@@ -658,7 +1118,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelGetPixelDimensions </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
@@ -680,15 +1140,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the pixel dimensions of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">pixel_width</td><td>Pointer to where the width of the framebuffer will be stored. If it is NULL or an erro occurs, it is ignored. </td></tr>
-    <tr><td class="paramname">pixel_height</td><td>Pointer to where the height of the framebuffer will be stored. If it is NULL or an error occurs, it is ignored.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </td></tr>
+    <tr><td class="paramname">pixel_width</td><td>A pointer to where the pixel width of the framebuffer will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored. </td></tr>
+    <tr><td class="paramname">pixel_height</td><td>A pointer to where the pixel height of the framebuffer will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a> if pixel_width or pixel_height is less than or equal to 0. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
 
 </div>
 </div>
@@ -701,20 +1165,24 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int tuiPanelGetPixelHeight </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the pixel height of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">palette</td><td>The TuiPanel object.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The pixel height. 0 is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> is panel is NULL. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The pixel height of the framebuffer.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -727,7 +1195,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">uint8_t* tuiPanelGetPixels </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
@@ -755,18 +1223,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The returned pixel array can be safely deallocated using <a class="el" href="heap_8h.html#afab02278e11ba71d9823f1aa7ade2455" title="Free a block of heap memory, using the free callback if it is set.">tuiFree()</a> found in <a class="el" href="heap_8h.html">heap.h</a>.</p>
+
+<p>Get the raw pixels of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">pixel_width</td><td>A pointer to where the width of the panel in pixels will be stored. If NULL or an error occurs, it is ignored. </td></tr>
-    <tr><td class="paramname">pixel_height</td><td>A pointer to where the height of the panel in pixels will be stored. If NULL or an error occcurs, it is ignored. </td></tr>
-    <tr><td class="paramname">fill_pixels</td><td>An existing pixels array to reallocate. If this is NULL, a new array is allocated instead.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to get the pixels from. </td></tr>
+    <tr><td class="paramname">pixel_width</td><td>A pointer to where the pixel width of the panel will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored. </td></tr>
+    <tr><td class="paramname">pixel_height</td><td>A pointer to where the pixel height of the panel will be stored. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> or an error occurs, it is ignored. </td></tr>
+    <tr><td class="paramname">fill_pixels</td><td>A pointer to an array store the pixels array in. If the sizes specified in pixel_width and pixel_height do not fit the pixels, the array is reallocated. If <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a>, a new array is allocated instead.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The returned pixel array. NULL is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The pixels array.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Pointer lifetime:</dt><dd>If fill_pixels is used, it must point to an array created with <a class="el" href="heap_8h.html#a99eb854f6e64dc2db53723c4400639d3">tuiAllocate()</a>. The returned pixels array must be destroyed with <a class="el" href="heap_8h.html#afab02278e11ba71d9823f1aa7ade2455">tuiFree()</a>.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.. </dd></dl>
 
 </div>
 </div>
@@ -779,202 +1251,24 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int tuiPanelGetPixelWidth </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the pixel width of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">palette</td><td>The TuiPanel object.</td></tr>
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The pixel width. 0 is returned on error.</dd></dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> is panel is NULL. </dd></dl>
-
-</div>
-</div>
-<a id="afabbef84af0e8e71f6122ec1f9964eb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afabbef84af0e8e71f6122ec1f9964eb2">&#9670;&nbsp;</a></span>tuiPanelRender()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiPanelRender </td>
-          <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
-          <td class="paramname"><em>panel</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
-
-</div>
-</div>
-<a id="aa94973a0eddb8fc69771656fa7eb0cf4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa94973a0eddb8fc69771656fa7eb0cf4">&#9670;&nbsp;</a></span>tuiPanelRenderToPanel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiPanelRenderToPanel </td>
-          <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
-          <td class="paramname"><em>panel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TuiPanel&#160;</td>
-          <td class="paramname"><em>target_panel</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel to render. </td></tr>
-    <tr><td class="paramname">target_panel</td><td>The TuiPanel rendered to.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859acf7c34002194fc0a919b449cf6bdb60b">TUI_ERROR_NULL_TARGET_PANEL</a> if target_panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aad3b1dba0687f3f649d7181b22a2feb0">TUI_ERROR_UNMATCHING_PANEL_INSTANCE</a> if the TuiInstacne of target_panel does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
-
-</div>
-</div>
-<a id="af08f027252350e39cbe1668410b01dfd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af08f027252350e39cbe1668410b01dfd">&#9670;&nbsp;</a></span>tuiPanelRenderToPanelTransformed()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiPanelRenderToPanelTransformed </td>
-          <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
-          <td class="paramname"><em>panel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TuiPanel&#160;</td>
-          <td class="paramname"><em>target_panel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>left_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>right_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>top_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>bottom_y</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel to render. </td></tr>
-    <tr><td class="paramname">target_panel</td><td>The TuiPanel rendered to. </td></tr>
-    <tr><td class="paramname">left_x</td><td>The framebuffer pixel x coordinate of the TuiPanel left side. </td></tr>
-    <tr><td class="paramname">right_x</td><td>The framebuffer pixel x coordinate of the TuiPanel right side. </td></tr>
-    <tr><td class="paramname">top_y</td><td>The framebuffer pixel y coordinate of the TuiPanel top side. </td></tr>
-    <tr><td class="paramname">bottom_y</td><td>The framebuffer pixel y coordinat of the TuiPanel bottom side.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859acf7c34002194fc0a919b449cf6bdb60b">TUI_ERROR_NULL_TARGET_PANEL</a> if target_panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aad3b1dba0687f3f649d7181b22a2feb0">TUI_ERROR_UNMATCHING_PANEL_INSTANCE</a> if the TuiInstacne of target_panel does not match the TuiInstance of panel. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
-
-</div>
-</div>
-<a id="a6c2d4c51f8d097dab8c712e5e5fbc4e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c2d4c51f8d097dab8c712e5e5fbc4e9">&#9670;&nbsp;</a></span>tuiPanelRenderTransformed()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tuiPanelRenderTransformed </td>
-          <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
-          <td class="paramname"><em>panel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>left_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>right_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>top_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>bottom_y</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">left_x</td><td>The framebuffer pixel x coordinate of the TuiPanel left side. </td></tr>
-    <tr><td class="paramname">right_x</td><td>The framebuffer pixel x coordinate of the TuiPanel right side. </td></tr>
-    <tr><td class="paramname">top_y</td><td>The framebuffer pixel y coordinate of the TuiPanel top side. </td></tr>
-    <tr><td class="paramname">bottom_y</td><td>The framebuffer pixel y coordinat of the TuiPanel bottom side.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> if panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The pixel width of the framebuffer.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access. </dd></dl>
 
 </div>
 </div>
@@ -987,7 +1281,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void tuiPanelSetPixelDimensions </td>
           <td>(</td>
-          <td class="paramtype">TuiPanel&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
           <td class="paramname"><em>panel</em>, </td>
         </tr>
         <tr>
@@ -1009,15 +1303,59 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set the pixel dimensions of the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">panel</td><td>The TuiPanel. </td></tr>
-    <tr><td class="paramname">pixel_width</td><td>The new width to set the framebuffer. </td></tr>
-    <tr><td class="paramname">pixel_height</td><td>The new height to set the framebuffer.</td></tr>
+    <tr><td class="paramname">The</td><td><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>. </td></tr>
+    <tr><td class="paramname">The</td><td>new pixel width of the framebuffer. </td></tr>
+    <tr><td class="paramname">The</td><td>new pixel height of the framebuffer.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors</dt><dd>Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> is panel is NULL. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a> if the TuiInstance of panel is damaged. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a> if pixel_width or pixel_height is less than or equal to 0. Throws <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a> and may or may not return if backend specific errors occur. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors. </dd></dl>
+
+</div>
+</div>
+<a id="aff5cdacf86e5e0f7645f089bab92ea40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff5cdacf86e5e0f7645f089bab92ea40">&#9670;&nbsp;</a></span>tuiPanelWriteImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tuiPanelWriteImage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a>&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
+          <td class="paramname"><em>image</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Render the framebuffer of a <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>, resizing it if necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a> to render to the image. </td></tr>
+    <tr><td class="paramname">image</td><td>The <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> to render to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859abc6bf05f29d63d72603b7066f93b43db">TUI_ERROR_NOT_INITIALIZED</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function must be called only while TUIC is initialized.</dd></dl>
+<dl class="section user"><dt>Thread safety:</dt><dd>This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.. </dd></dl>
 
 </div>
 </div>

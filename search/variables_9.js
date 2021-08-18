@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reserveddatasize_1003',['ReservedDataSize',['../struct_tui_batch__s.html#a3dd1c64bebeb391226408975753a21c2',1,'TuiBatch_s']]]
+  ['visible_1961',['visible',['../struct_tui_window_create_info.html#ac9ca59e9f51f02fce39544db2fcc4827',1,'TuiWindowCreateInfo']]]
 ];

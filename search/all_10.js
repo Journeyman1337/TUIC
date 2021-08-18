@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['useddatasize_575',['UsedDataSize',['../struct_tui_batch__s.html#a0b3cd71f17d9aaea9772dd766202a10b',1,'TuiBatch_s']]]
+  ['visible_1169',['visible',['../struct_tui_window_create_info.html#ac9ca59e9f51f02fce39544db2fcc4827',1,'TuiWindowCreateInfo']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['data_777',['Data',['../struct_tui_batch__s.html#a6a00c5ffd02052d66cef47f551ed3b9c',1,'TuiBatch_s']]],
-  ['detailmode_778',['DetailMode',['../struct_tui_batch__s.html#a67c19e08db8800c4a218dce701e13f3a',1,'TuiBatch_s']]]
+  ['hidden_1550',['hidden',['../struct_tui_window_create_info.html#a6e8eb4f3151d32e1bf9ba8561475addb',1,'TuiWindowCreateInfo']]]
 ];

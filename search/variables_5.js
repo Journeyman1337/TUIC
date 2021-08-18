@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['glyphatlascount_782',['GlyphAtlasCount',['../struct_tui_instance__s.html#a42217f7bb58aa64448f99e46ee5bbc44',1,'TuiInstance_s']]],
-  ['glyphcount_783',['GlyphCount',['../struct_tui_glyph_atlas__s.html#a1f0a1fe3116d2fdcfc7bd22967fdbf8a',1,'TuiGlyphAtlas_s']]],
-  ['glyphcreate_784',['GlyphCreate',['../struct_tui_instance__s.html#a78b9d5abacfbb20f10eaba51f655ae9c',1,'TuiInstance_s']]],
-  ['glyphdestroy_785',['GlyphDestroy',['../struct_tui_instance__s.html#a3694a61a11a7622a65fd0bc43286ee64',1,'TuiInstance_s']]],
-  ['gridglyphstall_786',['GridGlyphsTall',['../struct_tui_glyph_atlas__s.html#a29dd39219b17970542e9bb1435e8b533',1,'TuiGlyphAtlas_s']]],
-  ['gridglyphswide_787',['GridGlyphsWide',['../struct_tui_glyph_atlas__s.html#a8a7fc75fc6111dcb99f9f98595f0ede6',1,'TuiGlyphAtlas_s']]]
+  ['maximized_1955',['maximized',['../struct_tui_window_create_info.html#a0c45493bc56f4c71120877e80e11ad25',1,'TuiWindowCreateInfo']]],
+  ['monitor_1956',['monitor',['../struct_tui_window_create_info.html#a65fbe635572527f8f2fd0d4ff4388462',1,'TuiWindowCreateInfo']]]
 ];

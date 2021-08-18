@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['filtermode_11',['FilterMode',['../struct_tui_texture__s.html#a6f1509e6b0827584e1337b046c9a6f2e',1,'TuiTexture_s']]],
-  ['framebufferheight_12',['FramebufferHeight',['../struct_tui_panel__s.html#a71523086d10012280766c656723c8015',1,'TuiPanel_s']]],
-  ['framebufferwidth_13',['FramebufferWidth',['../struct_tui_panel__s.html#a5dc37564f0ec10c64958b55a67dec168',1,'TuiPanel_s']]]
+  ['filter_5fmode_2eh_17',['filter_mode.h',['../filter__mode_8h.html',1,'']]],
+  ['focus_5fon_5fshow_18',['focus_on_show',['../struct_tui_window_create_info.html#a4de0d3703173a3d291d75094f23af3a3',1,'TuiWindowCreateInfo']]],
+  ['focused_19',['focused',['../struct_tui_window_create_info.html#a78be70f9aa52f5d981e6a9fffef93447',1,'TuiWindowCreateInfo']]],
+  ['framebuffer_5fmatch_5fviewport_5fsize_20',['framebuffer_match_viewport_size',['../struct_tui_window_create_info.html#a5f027e48135d02bc65bc1ca1502371fe',1,'TuiWindowCreateInfo']]],
+  ['fullscreen_21',['fullscreen',['../struct_tui_window_create_info.html#a2018f4eccaddff8067dce7c81659fe01',1,'TuiWindowCreateInfo']]]
 ];

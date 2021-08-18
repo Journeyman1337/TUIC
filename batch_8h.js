@@ -1,16 +1,16 @@
 var batch_8h =
 [
     [ "tuiBatchClear", "batch_8h.html#a467a0c10095fd574a0f2e8de525cb2e2", null ],
-    [ "tuiBatchCreate", "batch_8h.html#a7e4eb17470e0aaf7e477af2484c5196a", null ],
+    [ "tuiBatchCreate", "batch_8h.html#a9530cfc1b4abeefd291710e6b7bcf1cb", null ],
     [ "tuiBatchDestroy", "batch_8h.html#a75977b38c34be67239996de4c06182e1", null ],
+    [ "tuiBatchGetData", "batch_8h.html#ada0cbe85e2d7650f181d5722a105a2f8", null ],
     [ "tuiBatchGetDataSize", "batch_8h.html#a1011d7def7064a384c11b9c1d3490c57", null ],
-    [ "tuiBatchGetDetail", "batch_8h.html#a9e0bd8948474374e04d237d0af361877", null ],
+    [ "tuiBatchGetDetail", "batch_8h.html#a5b06e5e2127993c0e23524544c1efba4", null ],
     [ "tuiBatchGetReservedSize", "batch_8h.html#aa7b536f81a27a51fc923dcb3e81d19d4", null ],
-    [ "tuiBatchGetSize", "batch_8h.html#a5ff69ae59314d4638ff284092947d08f", null ],
     [ "tuiBatchGetTileCount", "batch_8h.html#afbce360d64eea9da9a7a8d1f9a72e909", null ],
+    [ "tuiBatchGetTileDimensions", "batch_8h.html#a1777cf1ce39c14baae73318366521019", null ],
     [ "tuiBatchGetTilesTall", "batch_8h.html#ab50bcb64a3d0f3a25c2d013852f65790", null ],
     [ "tuiBatchGetTilesWide", "batch_8h.html#a73272d094b0110a673b8e6447ff8932b", null ],
-    [ "tuiBatchResize", "batch_8h.html#ac3aa57278baa4aecd834e1c34328c8ad", null ],
     [ "tuiBatchSetTile_G16_C0_FULL", "batch_8h.html#a853ac0bdb73b66308274e29696e05d36", null ],
     [ "tuiBatchSetTile_G16_C0_SPARSE", "batch_8h.html#a78b809d9fbd57f0edd455158a309d864", null ],
     [ "tuiBatchSetTile_G16_C24_FULL", "batch_8h.html#ac19269277e709ef46c56e586b331c9da", null ],
@@ -54,5 +54,6 @@ var batch_8h =
     [ "tuiBatchSetTile_G8_C8NBG_FULL", "batch_8h.html#a30a8a42622a0eb7e905fb6d2a17daec2", null ],
     [ "tuiBatchSetTile_G8_C8NBG_SPARSE", "batch_8h.html#a5c15aa68d277f30c4fb87cb035a481e2", null ],
     [ "tuiBatchSetTile_G8_C8NFG_FULL", "batch_8h.html#aebb37e9fdd27b9765d68469e07e6983f", null ],
-    [ "tuiBatchSetTile_G8_C8NFG_SPARSE", "batch_8h.html#aad4822e03a8079e0f383404ff69489c2", null ]
+    [ "tuiBatchSetTile_G8_C8NFG_SPARSE", "batch_8h.html#aad4822e03a8079e0f383404ff69489c2", null ],
+    [ "tuiBatchSetTileDimensions", "batch_8h.html#a0ca348ba4807dbcf614acfa4a7ee6b0b", null ]
 ];

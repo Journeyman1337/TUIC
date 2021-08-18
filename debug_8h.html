@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TUIC
    </div>
-   <div id="projectbrief">Backend agnostic text user interface rendering library in C.</div>
+   <div id="projectbrief">Text user interface rendering library in C.</div>
   </td>
  </tr>
  </tbody>
@@ -82,557 +82,52 @@ $(document).ready(function(){initNavTree('debug_8h.html',''); initResizable(); }
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">debug.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a03016ac4935b8b0e37c6c5719cf2d859"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> </td></tr>
-<tr class="memdesc:a03016ac4935b8b0e37c6c5719cf2d859"><td class="mdescLeft">&#160;</td><td class="mdescRight">These are error codes passed into the set TuiDebugCallback function.  <a href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">More...</a><br /></td></tr>
-<tr class="separator:a03016ac4935b8b0e37c6c5719cf2d859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Error Code Manipilation Functions</div></td></tr>
-<tr class="memitem:a8a3d040f0204dcddeb7a41f2d1e90015"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a8a3d040f0204dcddeb7a41f2d1e90015">tuiErrorCodeToString</a> (int error_code)</td></tr>
-<tr class="memdesc:a8a3d040f0204dcddeb7a41f2d1e90015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get string name of a <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>.  <a href="debug_8h.html#a8a3d040f0204dcddeb7a41f2d1e90015">More...</a><br /></td></tr>
-<tr class="separator:a8a3d040f0204dcddeb7a41f2d1e90015"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f08eeabae72289afece06a3a130258c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2f08eeabae72289afece06a3a130258c">tuiStringToErrorCode</a> (const char *string)</td></tr>
-<tr class="memdesc:a2f08eeabae72289afece06a3a130258c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> from a string name.  <a href="debug_8h.html#a2f08eeabae72289afece06a3a130258c">More...</a><br /></td></tr>
-<tr class="separator:a2f08eeabae72289afece06a3a130258c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35510f8fec3c3bcb83f5f00d9f24da1c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a35510f8fec3c3bcb83f5f00d9f24da1c">tuiErrorCodeGetDescription</a> (int error_code)</td></tr>
-<tr class="memdesc:a35510f8fec3c3bcb83f5f00d9f24da1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get string description of a <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>.  <a href="debug_8h.html#a35510f8fec3c3bcb83f5f00d9f24da1c">More...</a><br /></td></tr>
-<tr class="separator:a35510f8fec3c3bcb83f5f00d9f24da1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Error Code Names</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>These are the const string names of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> enum values. </p>
-</div></td></tr>
-<tr class="memitem:a2af42fd029fb556f4dddc8adb333460f"><td class="memItemLeft" align="right" valign="top"><a id="a2af42fd029fb556f4dddc8adb333460f"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2af42fd029fb556f4dddc8adb333460f">kTui_Error_Unkown_Name</a></td></tr>
-<tr class="memdesc:a2af42fd029fb556f4dddc8adb333460f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a674c7b2eb1b576c70cc6791169a88387">TUI_ERROR_UNKOWN</a>. <br /></td></tr>
-<tr class="separator:a2af42fd029fb556f4dddc8adb333460f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97bb25338501ed1d9a81fdf355834804"><td class="memItemLeft" align="right" valign="top"><a id="a97bb25338501ed1d9a81fdf355834804"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a97bb25338501ed1d9a81fdf355834804">kTui_Error_Backend_Specific_Name</a></td></tr>
-<tr class="memdesc:a97bb25338501ed1d9a81fdf355834804"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a>. <br /></td></tr>
-<tr class="separator:a97bb25338501ed1d9a81fdf355834804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a49e59e5ea518a868dabf4153bcfe59"><td class="memItemLeft" align="right" valign="top"><a id="a0a49e59e5ea518a868dabf4153bcfe59"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a0a49e59e5ea518a868dabf4153bcfe59">kTui_Error_Dangling_Glyph_Atlas_Name</a></td></tr>
-<tr class="memdesc:a0a49e59e5ea518a868dabf4153bcfe59"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae188949868341c16f90141f40da47be2">TUI_ERROR_DANGLING_GLYPH_ATLAS</a>. <br /></td></tr>
-<tr class="separator:a0a49e59e5ea518a868dabf4153bcfe59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e62748b55c02817df64cddcaed6d3e5"><td class="memItemLeft" align="right" valign="top"><a id="a9e62748b55c02817df64cddcaed6d3e5"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a9e62748b55c02817df64cddcaed6d3e5">kTui_Error_Dangling_Palette_Name</a></td></tr>
-<tr class="memdesc:a9e62748b55c02817df64cddcaed6d3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0aad6f00a628f938a305a58d1ba00c37">TUI_ERROR_DANGLING_PALETTE</a>. <br /></td></tr>
-<tr class="separator:a9e62748b55c02817df64cddcaed6d3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9e009bc64e1d8a46589f12b6e9d95fa"><td class="memItemLeft" align="right" valign="top"><a id="ae9e009bc64e1d8a46589f12b6e9d95fa"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ae9e009bc64e1d8a46589f12b6e9d95fa">kTui_Error_Dangling_Panel_Name</a></td></tr>
-<tr class="memdesc:ae9e009bc64e1d8a46589f12b6e9d95fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a70e2686c7770bac99033720b1af194a3">TUI_ERROR_DANGLING_PANEL</a>. <br /></td></tr>
-<tr class="separator:ae9e009bc64e1d8a46589f12b6e9d95fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14c7e48059561674ac3938fbffa063a8"><td class="memItemLeft" align="right" valign="top"><a id="a14c7e48059561674ac3938fbffa063a8"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a14c7e48059561674ac3938fbffa063a8">kTui_Error_Dangling_Texture_Name</a></td></tr>
-<tr class="memdesc:a14c7e48059561674ac3938fbffa063a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859afb8486e0e7d3cad38e3f81d56a5d5bd3">TUI_ERROR_DANGLING_TEXTURE</a>. <br /></td></tr>
-<tr class="separator:a14c7e48059561674ac3938fbffa063a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff5c89ec480fe2ceceb1076b83ba66fe"><td class="memItemLeft" align="right" valign="top"><a id="aff5c89ec480fe2ceceb1076b83ba66fe"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aff5c89ec480fe2ceceb1076b83ba66fe">kTui_Error_Damaged_Instance_Name</a></td></tr>
-<tr class="memdesc:aff5c89ec480fe2ceceb1076b83ba66fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:aff5c89ec480fe2ceceb1076b83ba66fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8ebb862cf41f25063f1c3c8fed10833"><td class="memItemLeft" align="right" valign="top"><a id="ad8ebb862cf41f25063f1c3c8fed10833"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ad8ebb862cf41f25063f1c3c8fed10833">kTui_Error_Incompatible_Blend_Mode_Name</a></td></tr>
-<tr class="memdesc:ad8ebb862cf41f25063f1c3c8fed10833"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aad2082fab16025a576c4f6354604fbfe">TUI_ERROR_INCOMPATIBLE_BLEND_MODE</a>. <br /></td></tr>
-<tr class="separator:ad8ebb862cf41f25063f1c3c8fed10833"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca58fdcb6dde4c2478fc828d4d8e0d46"><td class="memItemLeft" align="right" valign="top"><a id="aca58fdcb6dde4c2478fc828d4d8e0d46"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aca58fdcb6dde4c2478fc828d4d8e0d46">kTui_Error_Incompatible_Images_Name</a></td></tr>
-<tr class="memdesc:aca58fdcb6dde4c2478fc828d4d8e0d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae45ae77c5cb4965c3d1e92c325ef0787">TUI_ERROR_INCOMPATIBLE_IMAGES</a>. <br /></td></tr>
-<tr class="separator:aca58fdcb6dde4c2478fc828d4d8e0d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6b2d30b2691d6e3bf57f852b788867f"><td class="memItemLeft" align="right" valign="top"><a id="aa6b2d30b2691d6e3bf57f852b788867f"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa6b2d30b2691d6e3bf57f852b788867f">kTui_Error_Invalid_Atlas_Type_Name</a></td></tr>
-<tr class="memdesc:aa6b2d30b2691d6e3bf57f852b788867f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a4e380826b6a79bbbae817654e7bdb598">TUI_ERROR_INVALID_ATLAS_TYPE</a>. <br /></td></tr>
-<tr class="separator:aa6b2d30b2691d6e3bf57f852b788867f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d421e7a757624b8fd1324124cbc8ff2"><td class="memItemLeft" align="right" valign="top"><a id="a9d421e7a757624b8fd1324124cbc8ff2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a9d421e7a757624b8fd1324124cbc8ff2">kTui_Error_Invalid_Batch_Data_Dimensions_Name</a></td></tr>
-<tr class="memdesc:a9d421e7a757624b8fd1324124cbc8ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e">TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a9d421e7a757624b8fd1324124cbc8ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5097d052c503a2ccf5c24c5597b4c56d"><td class="memItemLeft" align="right" valign="top"><a id="a5097d052c503a2ccf5c24c5597b4c56d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a5097d052c503a2ccf5c24c5597b4c56d">kTui_Error_Invalid_Batch_Dimensions_Name</a></td></tr>
-<tr class="memdesc:a5097d052c503a2ccf5c24c5597b4c56d"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0a2b87a6e35f6b052908277ff669be7f">TUI_ERROR_INVALID_BATCH_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a5097d052c503a2ccf5c24c5597b4c56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a192642abc1cd456e271fa58cdc110d24"><td class="memItemLeft" align="right" valign="top"><a id="a192642abc1cd456e271fa58cdc110d24"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a192642abc1cd456e271fa58cdc110d24">kTui_Error_Invalid_Batch_Setter_Name</a></td></tr>
-<tr class="memdesc:a192642abc1cd456e271fa58cdc110d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a06a3239570348aba333c67fbb4df617b">TUI_ERROR_INVALID_BATCH_SETTER</a>. <br /></td></tr>
-<tr class="separator:a192642abc1cd456e271fa58cdc110d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f11231a341e9f04b5a60e4776ef3b79"><td class="memItemLeft" align="right" valign="top"><a id="a1f11231a341e9f04b5a60e4776ef3b79"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a1f11231a341e9f04b5a60e4776ef3b79">kTui_Error_Invalid_Blend_Mode_Name</a></td></tr>
-<tr class="memdesc:a1f11231a341e9f04b5a60e4776ef3b79"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ab7299b7a79ee6414515f4ac98a306226">TUI_ERROR_INVALID_BLEND_MODE</a>. <br /></td></tr>
-<tr class="separator:a1f11231a341e9f04b5a60e4776ef3b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a602ca1765cddc650ad171aab2cb73d18"><td class="memItemLeft" align="right" valign="top"><a id="a602ca1765cddc650ad171aab2cb73d18"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a602ca1765cddc650ad171aab2cb73d18">kTui_Error_Invalid_Codepage_Dimensions_Name</a></td></tr>
-<tr class="memdesc:a602ca1765cddc650ad171aab2cb73d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3141303e1ac7ccb2837ac7d0990f76cd">TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a602ca1765cddc650ad171aab2cb73d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67cd71d067b4e272e6f25a9f91d20cd5"><td class="memItemLeft" align="right" valign="top"><a id="a67cd71d067b4e272e6f25a9f91d20cd5"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a67cd71d067b4e272e6f25a9f91d20cd5">kTui_Error_Invalid_Channel_Count_Name</a></td></tr>
-<tr class="memdesc:a67cd71d067b4e272e6f25a9f91d20cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a>. <br /></td></tr>
-<tr class="separator:a67cd71d067b4e272e6f25a9f91d20cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad7e76f7a215a46d7b507dcacc8bb896"><td class="memItemLeft" align="right" valign="top"><a id="aad7e76f7a215a46d7b507dcacc8bb896"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aad7e76f7a215a46d7b507dcacc8bb896">kTui_Error_Invalid_Detail_Flag_Name</a></td></tr>
-<tr class="memdesc:aad7e76f7a215a46d7b507dcacc8bb896"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ab4ff951ce4fd139448c41d3a5962c257">TUI_ERROR_INVALID_DETAIL_FLAG</a>. <br /></td></tr>
-<tr class="separator:aad7e76f7a215a46d7b507dcacc8bb896"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab92a3010b627ae00533c920924481550"><td class="memItemLeft" align="right" valign="top"><a id="ab92a3010b627ae00533c920924481550"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ab92a3010b627ae00533c920924481550">kTui_Error_Invalid_Detail_Mode_Name</a></td></tr>
-<tr class="memdesc:ab92a3010b627ae00533c920924481550"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6a7d95ad7b865830d74a98f4238416fa">TUI_ERROR_INVALID_DETAIL_MODE</a>. <br /></td></tr>
-<tr class="separator:ab92a3010b627ae00533c920924481550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d71071fca79c7545b8553a9e663e63"><td class="memItemLeft" align="right" valign="top"><a id="ae3d71071fca79c7545b8553a9e663e63"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ae3d71071fca79c7545b8553a9e663e63">kTui_Error_Invalid_Filter_Mode_Name</a></td></tr>
-<tr class="memdesc:ae3d71071fca79c7545b8553a9e663e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aae1bcfc1b0365a5d05f6bc0b14fc47aa">TUI_ERROR_INVALID_FILTER_MODE</a>. <br /></td></tr>
-<tr class="separator:ae3d71071fca79c7545b8553a9e663e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2800cf34aacf26db3eb6adf32a91c11a"><td class="memItemLeft" align="right" valign="top"><a id="a2800cf34aacf26db3eb6adf32a91c11a"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2800cf34aacf26db3eb6adf32a91c11a">kTui_Error_Invalid_Glyph_Count_Name</a></td></tr>
-<tr class="memdesc:a2800cf34aacf26db3eb6adf32a91c11a"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad56c39f321113dfdc68f439fc0a13bee">TUI_ERROR_INVALID_GLYPH_COUNT</a>. <br /></td></tr>
-<tr class="separator:a2800cf34aacf26db3eb6adf32a91c11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b0ca82ba358da13c89e350eff3752d"><td class="memItemLeft" align="right" valign="top"><a id="af1b0ca82ba358da13c89e350eff3752d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#af1b0ca82ba358da13c89e350eff3752d">kTui_Error_Invalid_Glyph_Dimensions_Name</a></td></tr>
-<tr class="memdesc:af1b0ca82ba358da13c89e350eff3752d"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad6277c9639e35d3ccad7419b0262501a">TUI_ERROR_INVALID_GLYPH_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:af1b0ca82ba358da13c89e350eff3752d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac48e045450a96c7fb21e1b5bf2f02517"><td class="memItemLeft" align="right" valign="top"><a id="ac48e045450a96c7fb21e1b5bf2f02517"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ac48e045450a96c7fb21e1b5bf2f02517">kTui_Error_Invalid_Image_Dimensions_Name</a></td></tr>
-<tr class="memdesc:ac48e045450a96c7fb21e1b5bf2f02517"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:ac48e045450a96c7fb21e1b5bf2f02517"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a119fe7ae733f954e9da6eb470bc008e6"><td class="memItemLeft" align="right" valign="top"><a id="a119fe7ae733f954e9da6eb470bc008e6"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a119fe7ae733f954e9da6eb470bc008e6">kTui_Error_Invalid_Instance_Dimensions_Name</a></td></tr>
-<tr class="memdesc:a119fe7ae733f954e9da6eb470bc008e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a833007be585ca8245b9e6a013514cd4d">TUI_ERROR_INVALID_INSTANCE_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a119fe7ae733f954e9da6eb470bc008e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac42bc0b67fc712d62cf6c5076ac14166"><td class="memItemLeft" align="right" valign="top"><a id="ac42bc0b67fc712d62cf6c5076ac14166"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ac42bc0b67fc712d62cf6c5076ac14166">kTui_Error_Invalid_Palette_Color_Count_Name</a></td></tr>
-<tr class="memdesc:ac42bc0b67fc712d62cf6c5076ac14166"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51">TUI_ERROR_INVALID_PALETTE_COLOR_COUNT</a>. <br /></td></tr>
-<tr class="separator:ac42bc0b67fc712d62cf6c5076ac14166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66d14db49a7c594a831d37f2935a8518"><td class="memItemLeft" align="right" valign="top"><a id="a66d14db49a7c594a831d37f2935a8518"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a66d14db49a7c594a831d37f2935a8518">kTui_Error_Invalid_Panel_Dimensions_Name</a></td></tr>
-<tr class="memdesc:a66d14db49a7c594a831d37f2935a8518"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a66d14db49a7c594a831d37f2935a8518"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b352c7be1e06072155b813807d390ee"><td class="memItemLeft" align="right" valign="top"><a id="a2b352c7be1e06072155b813807d390ee"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2b352c7be1e06072155b813807d390ee">kTui_Error_Invalid_Pixel_Dimensions_Name</a></td></tr>
-<tr class="memdesc:a2b352c7be1e06072155b813807d390ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a80b9e5e2a32ef91b21de9f8effc7e8f2">TUI_ERROR_INVALID_PIXEL_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a2b352c7be1e06072155b813807d390ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2f9b6581fa7bf2330a1512ee3ebeb36"><td class="memItemLeft" align="right" valign="top"><a id="af2f9b6581fa7bf2330a1512ee3ebeb36"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#af2f9b6581fa7bf2330a1512ee3ebeb36">kTui_Error_Load_Image_Failure_Name</a></td></tr>
-<tr class="memdesc:af2f9b6581fa7bf2330a1512ee3ebeb36"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a7b1249dcbf4763958d8106da7352d197">TUI_ERROR_LOAD_IMAGE_FAILURE</a>. <br /></td></tr>
-<tr class="separator:af2f9b6581fa7bf2330a1512ee3ebeb36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe20af89ad61c21ffd9f72bfe388ba1b"><td class="memItemLeft" align="right" valign="top"><a id="afe20af89ad61c21ffd9f72bfe388ba1b"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#afe20af89ad61c21ffd9f72bfe388ba1b">kTui_Error_Load_Image_Unexpected_Channels_Name</a></td></tr>
-<tr class="memdesc:afe20af89ad61c21ffd9f72bfe388ba1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a8004b8aa10296dc2394df7aa89c98a8a">TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS</a>. <br /></td></tr>
-<tr class="separator:afe20af89ad61c21ffd9f72bfe388ba1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc01ffe2ba6d159c3b1928229c693dcb"><td class="memItemLeft" align="right" valign="top"><a id="acc01ffe2ba6d159c3b1928229c693dcb"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#acc01ffe2ba6d159c3b1928229c693dcb">kTui_Error_Null_Batch_Name</a></td></tr>
-<tr class="memdesc:acc01ffe2ba6d159c3b1928229c693dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95">TUI_ERROR_NULL_BATCH</a>. <br /></td></tr>
-<tr class="separator:acc01ffe2ba6d159c3b1928229c693dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59fadde6fb7ace8ba31ee60b4302d229"><td class="memItemLeft" align="right" valign="top"><a id="a59fadde6fb7ace8ba31ee60b4302d229"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a59fadde6fb7ace8ba31ee60b4302d229">kTui_Error_Null_Batch_Data_Name</a></td></tr>
-<tr class="memdesc:a59fadde6fb7ace8ba31ee60b4302d229"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc">TUI_ERROR_NULL_BATCH_DATA</a>. <br /></td></tr>
-<tr class="separator:a59fadde6fb7ace8ba31ee60b4302d229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38b2db5ffb4ae7fd0e25bd243075f1b2"><td class="memItemLeft" align="right" valign="top"><a id="a38b2db5ffb4ae7fd0e25bd243075f1b2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a38b2db5ffb4ae7fd0e25bd243075f1b2">kTui_Error_Null_Colors_Name</a></td></tr>
-<tr class="memdesc:a38b2db5ffb4ae7fd0e25bd243075f1b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a811694a5662adda0d8536b20a9c75648">TUI_ERROR_NULL_COLORS</a>. <br /></td></tr>
-<tr class="separator:a38b2db5ffb4ae7fd0e25bd243075f1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa90ecd475ff9971058b19de6aba1ad79"><td class="memItemLeft" align="right" valign="top"><a id="aa90ecd475ff9971058b19de6aba1ad79"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa90ecd475ff9971058b19de6aba1ad79">kTui_Error_Null_Glyph_Atlas_Name</a></td></tr>
-<tr class="memdesc:aa90ecd475ff9971058b19de6aba1ad79"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1">TUI_ERROR_NULL_GLYPH_ATLAS</a>. <br /></td></tr>
-<tr class="separator:aa90ecd475ff9971058b19de6aba1ad79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0b7d64cb1a0d40debaf8db67e22f888"><td class="memItemLeft" align="right" valign="top"><a id="ac0b7d64cb1a0d40debaf8db67e22f888"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ac0b7d64cb1a0d40debaf8db67e22f888">kTui_Error_Null_Glyph_Bounding_Boxes_Name</a></td></tr>
-<tr class="memdesc:ac0b7d64cb1a0d40debaf8db67e22f888"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af4dc9a4c8970ceb00e938025bea7e556">TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES</a>. <br /></td></tr>
-<tr class="separator:ac0b7d64cb1a0d40debaf8db67e22f888"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bdcfa8d67227928493786babd2ff28b"><td class="memItemLeft" align="right" valign="top"><a id="a2bdcfa8d67227928493786babd2ff28b"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2bdcfa8d67227928493786babd2ff28b">kTui_Error_Null_Image_Name</a></td></tr>
-<tr class="memdesc:a2bdcfa8d67227928493786babd2ff28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. <br /></td></tr>
-<tr class="separator:a2bdcfa8d67227928493786babd2ff28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab76f3e633fdc319e09ec229c7a31584c"><td class="memItemLeft" align="right" valign="top"><a id="ab76f3e633fdc319e09ec229c7a31584c"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ab76f3e633fdc319e09ec229c7a31584c">kTui_Error_Null_Instance_Name</a></td></tr>
-<tr class="memdesc:ab76f3e633fdc319e09ec229c7a31584c"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a806ccd2b84088ce997d2da5858ffca6e">TUI_ERROR_NULL_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:ab76f3e633fdc319e09ec229c7a31584c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77474380e02ad4a6e0bdb123803af3ee"><td class="memItemLeft" align="right" valign="top"><a id="a77474380e02ad4a6e0bdb123803af3ee"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a77474380e02ad4a6e0bdb123803af3ee">kTui_Error_Null_Palette_Name</a></td></tr>
-<tr class="memdesc:a77474380e02ad4a6e0bdb123803af3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a>. <br /></td></tr>
-<tr class="separator:a77474380e02ad4a6e0bdb123803af3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1746979beab8b4e06f13cfae9edcf307"><td class="memItemLeft" align="right" valign="top"><a id="a1746979beab8b4e06f13cfae9edcf307"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a1746979beab8b4e06f13cfae9edcf307">kTui_Error_Null_Panel_Name</a></td></tr>
-<tr class="memdesc:a1746979beab8b4e06f13cfae9edcf307"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. <br /></td></tr>
-<tr class="separator:a1746979beab8b4e06f13cfae9edcf307"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7473b584579e0bc2cc4025e32acb4a3"><td class="memItemLeft" align="right" valign="top"><a id="aa7473b584579e0bc2cc4025e32acb4a3"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa7473b584579e0bc2cc4025e32acb4a3">kTui_Error_Null_Path_Name</a></td></tr>
-<tr class="memdesc:aa7473b584579e0bc2cc4025e32acb4a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a>. <br /></td></tr>
-<tr class="separator:aa7473b584579e0bc2cc4025e32acb4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add57c551d6a63c98a88a020382f2cb41"><td class="memItemLeft" align="right" valign="top"><a id="add57c551d6a63c98a88a020382f2cb41"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#add57c551d6a63c98a88a020382f2cb41">kTui_Error_Null_Pixels_Name</a></td></tr>
-<tr class="memdesc:add57c551d6a63c98a88a020382f2cb41"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9cc02a8f1d371e86cb650b4d7cb7f258">TUI_ERROR_NULL_PIXELS</a>. <br /></td></tr>
-<tr class="separator:add57c551d6a63c98a88a020382f2cb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5b3524a804a4536a9f88d2a2a87eb06"><td class="memItemLeft" align="right" valign="top"><a id="ad5b3524a804a4536a9f88d2a2a87eb06"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ad5b3524a804a4536a9f88d2a2a87eb06">kTui_Error_Null_Target_Image_Name</a></td></tr>
-<tr class="memdesc:ad5b3524a804a4536a9f88d2a2a87eb06"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a583c405b684d3623c77a35ee7528aa75">TUI_ERROR_NULL_TARGET_IMAGE</a>. <br /></td></tr>
-<tr class="separator:ad5b3524a804a4536a9f88d2a2a87eb06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bef0a740c44e0b9b286d1a707c676c1"><td class="memItemLeft" align="right" valign="top"><a id="a7bef0a740c44e0b9b286d1a707c676c1"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a7bef0a740c44e0b9b286d1a707c676c1">kTui_Error_Null_Target_Panel_Name</a></td></tr>
-<tr class="memdesc:a7bef0a740c44e0b9b286d1a707c676c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859acf7c34002194fc0a919b449cf6bdb60b">TUI_ERROR_NULL_TARGET_PANEL</a>. <br /></td></tr>
-<tr class="separator:a7bef0a740c44e0b9b286d1a707c676c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a620f2cc5aad379b4b6612d5547c53e75"><td class="memItemLeft" align="right" valign="top"><a id="a620f2cc5aad379b4b6612d5547c53e75"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a620f2cc5aad379b4b6612d5547c53e75">kTui_Error_Null_Texture_Name</a></td></tr>
-<tr class="memdesc:a620f2cc5aad379b4b6612d5547c53e75"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af6799d55d73d40c30ad95a3fe672d269">TUI_ERROR_NULL_TEXTURE</a>. <br /></td></tr>
-<tr class="separator:a620f2cc5aad379b4b6612d5547c53e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77ca9a447b9a08ecb2eedc015b5e7292"><td class="memItemLeft" align="right" valign="top"><a id="a77ca9a447b9a08ecb2eedc015b5e7292"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a77ca9a447b9a08ecb2eedc015b5e7292">kTui_Error_Null_Texture_Coordinates_Name</a></td></tr>
-<tr class="memdesc:a77ca9a447b9a08ecb2eedc015b5e7292"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac8b4b2999b54c18f39e9d6f1ac0aaff4">TUI_ERROR_NULL_TEXTURE_COORDINATES</a>. <br /></td></tr>
-<tr class="separator:a77ca9a447b9a08ecb2eedc015b5e7292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a509664673cccc468ed49a33d38c6abb2"><td class="memItemLeft" align="right" valign="top"><a id="a509664673cccc468ed49a33d38c6abb2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a509664673cccc468ed49a33d38c6abb2">kTui_Error_Palette_Required_Name</a></td></tr>
-<tr class="memdesc:a509664673cccc468ed49a33d38c6abb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a>. <br /></td></tr>
-<tr class="separator:a509664673cccc468ed49a33d38c6abb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbe5abf6a47405decb0458b2669f6628"><td class="memItemLeft" align="right" valign="top"><a id="afbe5abf6a47405decb0458b2669f6628"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#afbe5abf6a47405decb0458b2669f6628">kTui_Error_Resize_Image_Failure_Name</a></td></tr>
-<tr class="memdesc:afbe5abf6a47405decb0458b2669f6628"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a188f0b530aeb296434ac779220da44b5">TUI_ERROR_RESIZE_IMAGE_FAILURE</a>. <br /></td></tr>
-<tr class="separator:afbe5abf6a47405decb0458b2669f6628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b717373407d8e8ca9830b99c92a1175"><td class="memItemLeft" align="right" valign="top"><a id="a6b717373407d8e8ca9830b99c92a1175"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a6b717373407d8e8ca9830b99c92a1175">kTui_Error_Unmatching_Atlas_Instance_Name</a></td></tr>
-<tr class="memdesc:a6b717373407d8e8ca9830b99c92a1175"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa">TUI_ERROR_UNMATCHING_ATLAS_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a6b717373407d8e8ca9830b99c92a1175"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c22f78d48b556fa15be6783439bbfb8"><td class="memItemLeft" align="right" valign="top"><a id="a4c22f78d48b556fa15be6783439bbfb8"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a4c22f78d48b556fa15be6783439bbfb8">kTui_Error_Unmatching_Palette_Instance_Name</a></td></tr>
-<tr class="memdesc:a4c22f78d48b556fa15be6783439bbfb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4">TUI_ERROR_UNMATCHING_PALETTE_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a4c22f78d48b556fa15be6783439bbfb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a936e416b597feef2fd0ec198442aa5db"><td class="memItemLeft" align="right" valign="top"><a id="a936e416b597feef2fd0ec198442aa5db"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a936e416b597feef2fd0ec198442aa5db">kTui_Error_Unmatching_Panel_Instance_Name</a></td></tr>
-<tr class="memdesc:a936e416b597feef2fd0ec198442aa5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aad3b1dba0687f3f649d7181b22a2feb0">TUI_ERROR_UNMATCHING_PANEL_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a936e416b597feef2fd0ec198442aa5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Error Code Descriptions</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a674c7b2eb1b576c70cc6791169a88387">TUI_ERROR_UNKOWN</a>.</p>
-<p>These are the const string descriptions of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> enum values. </p>
-</div></td></tr>
-<tr class="memitem:accf130b484a49190a87e407a7712cdf6"><td class="memItemLeft" align="right" valign="top"><a id="accf130b484a49190a87e407a7712cdf6"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#accf130b484a49190a87e407a7712cdf6">kTui_Error_Unkown_Description</a></td></tr>
-<tr class="memdesc:accf130b484a49190a87e407a7712cdf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a674c7b2eb1b576c70cc6791169a88387">TUI_ERROR_UNKOWN</a>. <br /></td></tr>
-<tr class="separator:accf130b484a49190a87e407a7712cdf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a106acbe8546462eb609538e9deaaaf42"><td class="memItemLeft" align="right" valign="top"><a id="a106acbe8546462eb609538e9deaaaf42"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a106acbe8546462eb609538e9deaaaf42">kTui_Error_Backend_Specific_Description</a></td></tr>
-<tr class="memdesc:a106acbe8546462eb609538e9deaaaf42"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a>. <br /></td></tr>
-<tr class="separator:a106acbe8546462eb609538e9deaaaf42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b32395e72ad897a9928b04bb912cd7e"><td class="memItemLeft" align="right" valign="top"><a id="a8b32395e72ad897a9928b04bb912cd7e"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a8b32395e72ad897a9928b04bb912cd7e">kTui_Error_Dangling_Glyph_Atlas_Description</a></td></tr>
-<tr class="memdesc:a8b32395e72ad897a9928b04bb912cd7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae188949868341c16f90141f40da47be2">TUI_ERROR_DANGLING_GLYPH_ATLAS</a>. <br /></td></tr>
-<tr class="separator:a8b32395e72ad897a9928b04bb912cd7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eef02476bc5287095cee99b85c4c145"><td class="memItemLeft" align="right" valign="top"><a id="a4eef02476bc5287095cee99b85c4c145"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a4eef02476bc5287095cee99b85c4c145">kTui_Error_Dangling_Palette_Description</a></td></tr>
-<tr class="memdesc:a4eef02476bc5287095cee99b85c4c145"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a70e2686c7770bac99033720b1af194a3">TUI_ERROR_DANGLING_PANEL</a>. <br /></td></tr>
-<tr class="separator:a4eef02476bc5287095cee99b85c4c145"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b1cca626ac97515b59a197f707f3d4d"><td class="memItemLeft" align="right" valign="top"><a id="a8b1cca626ac97515b59a197f707f3d4d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a8b1cca626ac97515b59a197f707f3d4d">kTui_Error_Dangling_Panel_Description</a></td></tr>
-<tr class="memdesc:a8b1cca626ac97515b59a197f707f3d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a70e2686c7770bac99033720b1af194a3">TUI_ERROR_DANGLING_PANEL</a>. <br /></td></tr>
-<tr class="separator:a8b1cca626ac97515b59a197f707f3d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aba25dfbaa9efaf92a5a0122e96827a"><td class="memItemLeft" align="right" valign="top"><a id="a5aba25dfbaa9efaf92a5a0122e96827a"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a5aba25dfbaa9efaf92a5a0122e96827a">kTui_Error_Dangling_Texture_Description</a></td></tr>
-<tr class="memdesc:a5aba25dfbaa9efaf92a5a0122e96827a"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859afb8486e0e7d3cad38e3f81d56a5d5bd3">TUI_ERROR_DANGLING_TEXTURE</a>. <br /></td></tr>
-<tr class="separator:a5aba25dfbaa9efaf92a5a0122e96827a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a428b1fd3cf460115f7dc6f95ebadb95f"><td class="memItemLeft" align="right" valign="top"><a id="a428b1fd3cf460115f7dc6f95ebadb95f"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a428b1fd3cf460115f7dc6f95ebadb95f">kTui_Error_Damaged_Instance_Description</a></td></tr>
-<tr class="memdesc:a428b1fd3cf460115f7dc6f95ebadb95f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6">TUI_ERROR_DAMAGED_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a428b1fd3cf460115f7dc6f95ebadb95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab02ff8540e16dc56a429c687c2e5214a"><td class="memItemLeft" align="right" valign="top"><a id="ab02ff8540e16dc56a429c687c2e5214a"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ab02ff8540e16dc56a429c687c2e5214a">kTui_Error_Incompatible_Blend_Mode_Description</a></td></tr>
-<tr class="memdesc:ab02ff8540e16dc56a429c687c2e5214a"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aad2082fab16025a576c4f6354604fbfe">TUI_ERROR_INCOMPATIBLE_BLEND_MODE</a>. <br /></td></tr>
-<tr class="separator:ab02ff8540e16dc56a429c687c2e5214a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa64baff3c2e02279e4ed15cf12a121ea"><td class="memItemLeft" align="right" valign="top"><a id="aa64baff3c2e02279e4ed15cf12a121ea"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa64baff3c2e02279e4ed15cf12a121ea">kTui_Error_Incompatible_Images_Description</a></td></tr>
-<tr class="memdesc:aa64baff3c2e02279e4ed15cf12a121ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae45ae77c5cb4965c3d1e92c325ef0787">TUI_ERROR_INCOMPATIBLE_IMAGES</a>. <br /></td></tr>
-<tr class="separator:aa64baff3c2e02279e4ed15cf12a121ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83b818bf148ce1deb484475a403d2b8c"><td class="memItemLeft" align="right" valign="top"><a id="a83b818bf148ce1deb484475a403d2b8c"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a83b818bf148ce1deb484475a403d2b8c">kTui_Error_Invalid_Atlas_Type_Description</a></td></tr>
-<tr class="memdesc:a83b818bf148ce1deb484475a403d2b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a4e380826b6a79bbbae817654e7bdb598">TUI_ERROR_INVALID_ATLAS_TYPE</a>. <br /></td></tr>
-<tr class="separator:a83b818bf148ce1deb484475a403d2b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d81c73a53a99fab1d2dda80ba97cee2"><td class="memItemLeft" align="right" valign="top"><a id="a9d81c73a53a99fab1d2dda80ba97cee2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a9d81c73a53a99fab1d2dda80ba97cee2">kTui_Error_Invalid_Batch_Data_Dimensions_Description</a></td></tr>
-<tr class="memdesc:a9d81c73a53a99fab1d2dda80ba97cee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e">TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a9d81c73a53a99fab1d2dda80ba97cee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adca47cadb4e5f6648e4f7ab467153f5a"><td class="memItemLeft" align="right" valign="top"><a id="adca47cadb4e5f6648e4f7ab467153f5a"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#adca47cadb4e5f6648e4f7ab467153f5a">kTui_Error_Invalid_Batch_Dimensions_Description</a></td></tr>
-<tr class="memdesc:adca47cadb4e5f6648e4f7ab467153f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0a2b87a6e35f6b052908277ff669be7f">TUI_ERROR_INVALID_BATCH_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:adca47cadb4e5f6648e4f7ab467153f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af53fc8d8d1f7415195edcf8defa23c54"><td class="memItemLeft" align="right" valign="top"><a id="af53fc8d8d1f7415195edcf8defa23c54"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#af53fc8d8d1f7415195edcf8defa23c54">kTui_Error_Invalid_Batch_Setter_Description</a></td></tr>
-<tr class="memdesc:af53fc8d8d1f7415195edcf8defa23c54"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a06a3239570348aba333c67fbb4df617b">TUI_ERROR_INVALID_BATCH_SETTER</a>. <br /></td></tr>
-<tr class="separator:af53fc8d8d1f7415195edcf8defa23c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1868388d43d9f74b129d5d797525a3e9"><td class="memItemLeft" align="right" valign="top"><a id="a1868388d43d9f74b129d5d797525a3e9"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a1868388d43d9f74b129d5d797525a3e9">kTui_Error_Invalid_Blend_Mode_Description</a></td></tr>
-<tr class="memdesc:a1868388d43d9f74b129d5d797525a3e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ab7299b7a79ee6414515f4ac98a306226">TUI_ERROR_INVALID_BLEND_MODE</a>. <br /></td></tr>
-<tr class="separator:a1868388d43d9f74b129d5d797525a3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac72e8db452f22a6a8b1db508e4d614aa"><td class="memItemLeft" align="right" valign="top"><a id="ac72e8db452f22a6a8b1db508e4d614aa"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ac72e8db452f22a6a8b1db508e4d614aa">kTui_Error_Invalid_Codepage_Dimensions_Description</a></td></tr>
-<tr class="memdesc:ac72e8db452f22a6a8b1db508e4d614aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3141303e1ac7ccb2837ac7d0990f76cd">TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:ac72e8db452f22a6a8b1db508e4d614aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37fa1412d3c62e1b4ff3fcce01658567"><td class="memItemLeft" align="right" valign="top"><a id="a37fa1412d3c62e1b4ff3fcce01658567"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a37fa1412d3c62e1b4ff3fcce01658567">kTui_Error_Invalid_Channel_Count_Description</a></td></tr>
-<tr class="memdesc:a37fa1412d3c62e1b4ff3fcce01658567"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e">TUI_ERROR_INVALID_CHANNEL_COUNT</a>. <br /></td></tr>
-<tr class="separator:a37fa1412d3c62e1b4ff3fcce01658567"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e3a0eb4b0d349fa285d6ab1e6ff2eee"><td class="memItemLeft" align="right" valign="top"><a id="a6e3a0eb4b0d349fa285d6ab1e6ff2eee"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a6e3a0eb4b0d349fa285d6ab1e6ff2eee">kTui_Error_Invalid_Detail_Flag_Description</a></td></tr>
-<tr class="memdesc:a6e3a0eb4b0d349fa285d6ab1e6ff2eee"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ab4ff951ce4fd139448c41d3a5962c257">TUI_ERROR_INVALID_DETAIL_FLAG</a>. <br /></td></tr>
-<tr class="separator:a6e3a0eb4b0d349fa285d6ab1e6ff2eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae89fe4ae23a749b480821fdd6b6d799f"><td class="memItemLeft" align="right" valign="top"><a id="ae89fe4ae23a749b480821fdd6b6d799f"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ae89fe4ae23a749b480821fdd6b6d799f">kTui_Error_Invalid_Detail_Mode_Description</a></td></tr>
-<tr class="memdesc:ae89fe4ae23a749b480821fdd6b6d799f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6a7d95ad7b865830d74a98f4238416fa">TUI_ERROR_INVALID_DETAIL_MODE</a>. <br /></td></tr>
-<tr class="separator:ae89fe4ae23a749b480821fdd6b6d799f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06b244fed44d44887877f4deb678f081"><td class="memItemLeft" align="right" valign="top"><a id="a06b244fed44d44887877f4deb678f081"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a06b244fed44d44887877f4deb678f081">kTui_Error_Invalid_Filter_Mode_Description</a></td></tr>
-<tr class="memdesc:a06b244fed44d44887877f4deb678f081"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aae1bcfc1b0365a5d05f6bc0b14fc47aa">TUI_ERROR_INVALID_FILTER_MODE</a>. <br /></td></tr>
-<tr class="separator:a06b244fed44d44887877f4deb678f081"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa52b3a081902aa9dcb7b46ebe8fafd37"><td class="memItemLeft" align="right" valign="top"><a id="aa52b3a081902aa9dcb7b46ebe8fafd37"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa52b3a081902aa9dcb7b46ebe8fafd37">kTui_Error_Invalid_Glyph_Count_Description</a></td></tr>
-<tr class="memdesc:aa52b3a081902aa9dcb7b46ebe8fafd37"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad56c39f321113dfdc68f439fc0a13bee">TUI_ERROR_INVALID_GLYPH_COUNT</a>. <br /></td></tr>
-<tr class="separator:aa52b3a081902aa9dcb7b46ebe8fafd37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc37ecb74a3037d029aa2fd71efd00f4"><td class="memItemLeft" align="right" valign="top"><a id="adc37ecb74a3037d029aa2fd71efd00f4"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#adc37ecb74a3037d029aa2fd71efd00f4">kTui_Error_Invalid_Glyph_Dimensions_Description</a></td></tr>
-<tr class="memdesc:adc37ecb74a3037d029aa2fd71efd00f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad6277c9639e35d3ccad7419b0262501a">TUI_ERROR_INVALID_GLYPH_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:adc37ecb74a3037d029aa2fd71efd00f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4895b9b79562124ba2e293bde04cd0d0"><td class="memItemLeft" align="right" valign="top"><a id="a4895b9b79562124ba2e293bde04cd0d0"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a4895b9b79562124ba2e293bde04cd0d0">kTui_Error_Invalid_Image_Dimensions_Description</a></td></tr>
-<tr class="memdesc:a4895b9b79562124ba2e293bde04cd0d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f">TUI_ERROR_INVALID_IMAGE_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a4895b9b79562124ba2e293bde04cd0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac30e581cbdfcb3144210dc4ec410d384"><td class="memItemLeft" align="right" valign="top"><a id="ac30e581cbdfcb3144210dc4ec410d384"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ac30e581cbdfcb3144210dc4ec410d384">kTui_Error_Invalid_Instance_Dimensions_Description</a></td></tr>
-<tr class="memdesc:ac30e581cbdfcb3144210dc4ec410d384"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a833007be585ca8245b9e6a013514cd4d">TUI_ERROR_INVALID_INSTANCE_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:ac30e581cbdfcb3144210dc4ec410d384"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad543af00e0071cc2ad0634a5642e6650"><td class="memItemLeft" align="right" valign="top"><a id="ad543af00e0071cc2ad0634a5642e6650"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ad543af00e0071cc2ad0634a5642e6650">kTui_Error_Invalid_Palette_Color_Count_Description</a></td></tr>
-<tr class="memdesc:ad543af00e0071cc2ad0634a5642e6650"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51">TUI_ERROR_INVALID_PALETTE_COLOR_COUNT</a>. <br /></td></tr>
-<tr class="separator:ad543af00e0071cc2ad0634a5642e6650"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a534eda822bd905bb4a0dcf8d375bebff"><td class="memItemLeft" align="right" valign="top"><a id="a534eda822bd905bb4a0dcf8d375bebff"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a534eda822bd905bb4a0dcf8d375bebff">kTui_Error_Invalid_Panel_Dimensions_Description</a></td></tr>
-<tr class="memdesc:a534eda822bd905bb4a0dcf8d375bebff"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899">TUI_ERROR_INVALID_PANEL_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a534eda822bd905bb4a0dcf8d375bebff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc6490cf12b6613bbd25058c2e76506"><td class="memItemLeft" align="right" valign="top"><a id="a2dc6490cf12b6613bbd25058c2e76506"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2dc6490cf12b6613bbd25058c2e76506">kTui_Error_Invalid_Pixel_Dimensions_Description</a></td></tr>
-<tr class="memdesc:a2dc6490cf12b6613bbd25058c2e76506"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a80b9e5e2a32ef91b21de9f8effc7e8f2">TUI_ERROR_INVALID_PIXEL_DIMENSIONS</a>. <br /></td></tr>
-<tr class="separator:a2dc6490cf12b6613bbd25058c2e76506"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59490c15c022f4d52425ebc39216dc61"><td class="memItemLeft" align="right" valign="top"><a id="a59490c15c022f4d52425ebc39216dc61"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a59490c15c022f4d52425ebc39216dc61">kTui_Error_Load_Image_Failure_Description</a></td></tr>
-<tr class="memdesc:a59490c15c022f4d52425ebc39216dc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a7b1249dcbf4763958d8106da7352d197">TUI_ERROR_LOAD_IMAGE_FAILURE</a>. <br /></td></tr>
-<tr class="separator:a59490c15c022f4d52425ebc39216dc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf9ced6bcd33e458ca4db7fca7992c6c"><td class="memItemLeft" align="right" valign="top"><a id="aaf9ced6bcd33e458ca4db7fca7992c6c"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aaf9ced6bcd33e458ca4db7fca7992c6c">kTui_Error_Load_Image_Unexpected_Channels_Description</a></td></tr>
-<tr class="memdesc:aaf9ced6bcd33e458ca4db7fca7992c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a8004b8aa10296dc2394df7aa89c98a8a">TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS</a>. <br /></td></tr>
-<tr class="separator:aaf9ced6bcd33e458ca4db7fca7992c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af37757dfdff1fd1b5cda59b68bea15ed"><td class="memItemLeft" align="right" valign="top"><a id="af37757dfdff1fd1b5cda59b68bea15ed"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#af37757dfdff1fd1b5cda59b68bea15ed">kTui_Error_Null_Batch_Description</a></td></tr>
-<tr class="memdesc:af37757dfdff1fd1b5cda59b68bea15ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95">TUI_ERROR_NULL_BATCH</a>. <br /></td></tr>
-<tr class="separator:af37757dfdff1fd1b5cda59b68bea15ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7da17be4f8ff640eebf546e34f52bcf"><td class="memItemLeft" align="right" valign="top"><a id="af7da17be4f8ff640eebf546e34f52bcf"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#af7da17be4f8ff640eebf546e34f52bcf">kTui_Error_Null_Batch_Data_Description</a></td></tr>
-<tr class="memdesc:af7da17be4f8ff640eebf546e34f52bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc">TUI_ERROR_NULL_BATCH_DATA</a>. <br /></td></tr>
-<tr class="separator:af7da17be4f8ff640eebf546e34f52bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a733f1f05c72bf9de66f35d980ef49528"><td class="memItemLeft" align="right" valign="top"><a id="a733f1f05c72bf9de66f35d980ef49528"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a733f1f05c72bf9de66f35d980ef49528">kTui_Error_Null_Colors_Description</a></td></tr>
-<tr class="memdesc:a733f1f05c72bf9de66f35d980ef49528"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a811694a5662adda0d8536b20a9c75648">TUI_ERROR_NULL_COLORS</a>. <br /></td></tr>
-<tr class="separator:a733f1f05c72bf9de66f35d980ef49528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c73fbba59aadb8bb4e93a1770c86402"><td class="memItemLeft" align="right" valign="top"><a id="a7c73fbba59aadb8bb4e93a1770c86402"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a7c73fbba59aadb8bb4e93a1770c86402">kTui_Error_Null_Glyph_Atlas_Description</a></td></tr>
-<tr class="memdesc:a7c73fbba59aadb8bb4e93a1770c86402"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1">TUI_ERROR_NULL_GLYPH_ATLAS</a>. <br /></td></tr>
-<tr class="separator:a7c73fbba59aadb8bb4e93a1770c86402"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5841b053b7eb17982fe9acdd5e59489d"><td class="memItemLeft" align="right" valign="top"><a id="a5841b053b7eb17982fe9acdd5e59489d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a5841b053b7eb17982fe9acdd5e59489d">kTui_Error_Null_Glyph_Bounding_Boxes_Description</a></td></tr>
-<tr class="memdesc:a5841b053b7eb17982fe9acdd5e59489d"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af4dc9a4c8970ceb00e938025bea7e556">TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES</a>. <br /></td></tr>
-<tr class="separator:a5841b053b7eb17982fe9acdd5e59489d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48575dbbdea1ffed8cd4dbcad9ce76ae"><td class="memItemLeft" align="right" valign="top"><a id="a48575dbbdea1ffed8cd4dbcad9ce76ae"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a48575dbbdea1ffed8cd4dbcad9ce76ae">kTui_Error_Null_Image_Description</a></td></tr>
-<tr class="memdesc:a48575dbbdea1ffed8cd4dbcad9ce76ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>. <br /></td></tr>
-<tr class="separator:a48575dbbdea1ffed8cd4dbcad9ce76ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38a6b6a7b8a65596e825e496831ac003"><td class="memItemLeft" align="right" valign="top"><a id="a38a6b6a7b8a65596e825e496831ac003"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a38a6b6a7b8a65596e825e496831ac003">kTui_Error_Null_Instance_Description</a></td></tr>
-<tr class="memdesc:a38a6b6a7b8a65596e825e496831ac003"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a806ccd2b84088ce997d2da5858ffca6e">TUI_ERROR_NULL_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a38a6b6a7b8a65596e825e496831ac003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a6aaa2b91ba8aaee2516775d52c1c1"><td class="memItemLeft" align="right" valign="top"><a id="a64a6aaa2b91ba8aaee2516775d52c1c1"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a64a6aaa2b91ba8aaee2516775d52c1c1">kTui_Error_Null_Palette_Description</a></td></tr>
-<tr class="memdesc:a64a6aaa2b91ba8aaee2516775d52c1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b">TUI_ERROR_NULL_PALETTE</a>. <br /></td></tr>
-<tr class="separator:a64a6aaa2b91ba8aaee2516775d52c1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adccceb64da01405f8703c34d831eb758"><td class="memItemLeft" align="right" valign="top"><a id="adccceb64da01405f8703c34d831eb758"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#adccceb64da01405f8703c34d831eb758">kTui_Error_Null_Panel_Description</a></td></tr>
-<tr class="memdesc:adccceb64da01405f8703c34d831eb758"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058">TUI_ERROR_NULL_PANEL</a>. <br /></td></tr>
-<tr class="separator:adccceb64da01405f8703c34d831eb758"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f69f5b4dfaa50fa0f370959115d40df"><td class="memItemLeft" align="right" valign="top"><a id="a2f69f5b4dfaa50fa0f370959115d40df"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2f69f5b4dfaa50fa0f370959115d40df">kTui_Error_Null_Path_Description</a></td></tr>
-<tr class="memdesc:a2f69f5b4dfaa50fa0f370959115d40df"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a>. <br /></td></tr>
-<tr class="separator:a2f69f5b4dfaa50fa0f370959115d40df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4700a85f219fdf1cfded876c5e090920"><td class="memItemLeft" align="right" valign="top"><a id="a4700a85f219fdf1cfded876c5e090920"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a4700a85f219fdf1cfded876c5e090920">kTui_Error_Null_Pixels_Description</a></td></tr>
-<tr class="memdesc:a4700a85f219fdf1cfded876c5e090920"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a9cc02a8f1d371e86cb650b4d7cb7f258">TUI_ERROR_NULL_PIXELS</a>. <br /></td></tr>
-<tr class="separator:a4700a85f219fdf1cfded876c5e090920"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f0ba9ecedb83277c3899f2543049127"><td class="memItemLeft" align="right" valign="top"><a id="a3f0ba9ecedb83277c3899f2543049127"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a3f0ba9ecedb83277c3899f2543049127">kTui_Error_Null_Target_Image_Description</a></td></tr>
-<tr class="memdesc:a3f0ba9ecedb83277c3899f2543049127"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a583c405b684d3623c77a35ee7528aa75">TUI_ERROR_NULL_TARGET_IMAGE</a>. <br /></td></tr>
-<tr class="separator:a3f0ba9ecedb83277c3899f2543049127"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af425efc6a2263c7b6cd834e75024e8ad"><td class="memItemLeft" align="right" valign="top"><a id="af425efc6a2263c7b6cd834e75024e8ad"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#af425efc6a2263c7b6cd834e75024e8ad">kTui_Error_Null_Target_Panel_Description</a></td></tr>
-<tr class="memdesc:af425efc6a2263c7b6cd834e75024e8ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859acf7c34002194fc0a919b449cf6bdb60b">TUI_ERROR_NULL_TARGET_PANEL</a>. <br /></td></tr>
-<tr class="separator:af425efc6a2263c7b6cd834e75024e8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62b0421e24690231b1ed753d53d39179"><td class="memItemLeft" align="right" valign="top"><a id="a62b0421e24690231b1ed753d53d39179"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a62b0421e24690231b1ed753d53d39179">kTui_Error_Null_Texture_Description</a></td></tr>
-<tr class="memdesc:a62b0421e24690231b1ed753d53d39179"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859af6799d55d73d40c30ad95a3fe672d269">TUI_ERROR_NULL_TEXTURE</a>. <br /></td></tr>
-<tr class="separator:a62b0421e24690231b1ed753d53d39179"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcc9656a91a7b2d45f509c9f0d92d0fa"><td class="memItemLeft" align="right" valign="top"><a id="afcc9656a91a7b2d45f509c9f0d92d0fa"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#afcc9656a91a7b2d45f509c9f0d92d0fa">kTui_Error_Null_Texture_Coordinates_Description</a></td></tr>
-<tr class="memdesc:afcc9656a91a7b2d45f509c9f0d92d0fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac8b4b2999b54c18f39e9d6f1ac0aaff4">TUI_ERROR_NULL_TEXTURE_COORDINATES</a>. <br /></td></tr>
-<tr class="separator:afcc9656a91a7b2d45f509c9f0d92d0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab189fafee4d2cd32a1ed5eb33b038020"><td class="memItemLeft" align="right" valign="top"><a id="ab189fafee4d2cd32a1ed5eb33b038020"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#ab189fafee4d2cd32a1ed5eb33b038020">kTui_Error_Palette_Required_Description</a></td></tr>
-<tr class="memdesc:ab189fafee4d2cd32a1ed5eb33b038020"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b">TUI_ERROR_PALETTE_REQUIRED</a>. <br /></td></tr>
-<tr class="separator:ab189fafee4d2cd32a1ed5eb33b038020"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b926f58bb61975beeaf89edb87e1cd8"><td class="memItemLeft" align="right" valign="top"><a id="a8b926f58bb61975beeaf89edb87e1cd8"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a8b926f58bb61975beeaf89edb87e1cd8">kTui_Error_Resize_Image_Failure_Description</a></td></tr>
-<tr class="memdesc:a8b926f58bb61975beeaf89edb87e1cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a188f0b530aeb296434ac779220da44b5">TUI_ERROR_RESIZE_IMAGE_FAILURE</a>. <br /></td></tr>
-<tr class="separator:a8b926f58bb61975beeaf89edb87e1cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c819302e7e2b204ac2d038c48697f97"><td class="memItemLeft" align="right" valign="top"><a id="a2c819302e7e2b204ac2d038c48697f97"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a2c819302e7e2b204ac2d038c48697f97">kTui_Error_Unmatching_Atlas_Instance_Description</a></td></tr>
-<tr class="memdesc:a2c819302e7e2b204ac2d038c48697f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa">TUI_ERROR_UNMATCHING_ATLAS_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a2c819302e7e2b204ac2d038c48697f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a435c4f666494849ca94779fdfb6b8a69"><td class="memItemLeft" align="right" valign="top"><a id="a435c4f666494849ca94779fdfb6b8a69"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a435c4f666494849ca94779fdfb6b8a69">kTui_Error_Unmatching_Palette_Instance_Description</a></td></tr>
-<tr class="memdesc:a435c4f666494849ca94779fdfb6b8a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4">TUI_ERROR_UNMATCHING_PALETTE_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:a435c4f666494849ca94779fdfb6b8a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac1299eeb75102a1441e30ab61ffab7b"><td class="memItemLeft" align="right" valign="top"><a id="aac1299eeb75102a1441e30ab61ffab7b"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aac1299eeb75102a1441e30ab61ffab7b">kTui_Error_Unmatching_Panel_Instance_Description</a></td></tr>
-<tr class="memdesc:aac1299eeb75102a1441e30ab61ffab7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">String description of <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859aad3b1dba0687f3f649d7181b22a2feb0">TUI_ERROR_UNMATCHING_PANEL_INSTANCE</a>. <br /></td></tr>
-<tr class="separator:aac1299eeb75102a1441e30ab61ffab7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader">Debug Output</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpa4fca4be03af4e61384e9790db301476"></a>These functions and callbacks are used for controling how TUIC handles debug output. </p>
+<div class="textblock"><code>#include &lt;<a class="el" href="error__code_8h.html">TUIC/error_code.h</a>&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Debug Output Callbacks and Functions</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp2c425b4c7a600b44975b2e2b4c7c1358"></a>These functions and callbacks are used for controling how TUIC handles debug output. </p>
 </td></tr>
-<tr class="memitem:adcccbba5c6a86e699cdb87b58708cd5b"><td class="memItemLeft" align="right" valign="top"><a id="adcccbba5c6a86e699cdb87b58708cd5b"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#adcccbba5c6a86e699cdb87b58708cd5b">tuiDebugErrorCallback</a>) (int error_code, const char *msg)</td></tr>
-<tr class="memdesc:adcccbba5c6a86e699cdb87b58708cd5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used to set the debug callback handler. <br /></td></tr>
-<tr class="separator:adcccbba5c6a86e699cdb87b58708cd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa853ad2c9f83272935f726dfd10a786a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa853ad2c9f83272935f726dfd10a786a">tuiSetDebugErrorCallback</a> (<a class="el" href="debug_8h.html#adcccbba5c6a86e699cdb87b58708cd5b">tuiDebugErrorCallback</a> callback)</td></tr>
-<tr class="memdesc:aa853ad2c9f83272935f726dfd10a786a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback function to handle debug output from TUI.  <a href="debug_8h.html#aa853ad2c9f83272935f726dfd10a786a">More...</a><br /></td></tr>
+<tr class="memitem:a710624647d03e5ea7ca53e65d1e836a9"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a710624647d03e5ea7ca53e65d1e836a9">tuiDebugErrorCallback</a>) (<a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> error_code, const char *msg)</td></tr>
+<tr class="memdesc:a710624647d03e5ea7ca53e65d1e836a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type used to set the debug callback handler.  <a href="debug_8h.html#a710624647d03e5ea7ca53e65d1e836a9">More...</a><br /></td></tr>
+<tr class="separator:a710624647d03e5ea7ca53e65d1e836a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa853ad2c9f83272935f726dfd10a786a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#aa853ad2c9f83272935f726dfd10a786a">tuiSetDebugErrorCallback</a> (<a class="el" href="debug_8h.html#a710624647d03e5ea7ca53e65d1e836a9">tuiDebugErrorCallback</a> callback)</td></tr>
+<tr class="memdesc:aa853ad2c9f83272935f726dfd10a786a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback function to handle debug output from TUIC. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> will disable the callback.  <a href="debug_8h.html#aa853ad2c9f83272935f726dfd10a786a">More...</a><br /></td></tr>
 <tr class="separator:aa853ad2c9f83272935f726dfd10a786a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67f740e32b863e0b9853eb69df7fb8af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a67f740e32b863e0b9853eb69df7fb8af">tuiDebugError</a> (int error_code, const char *msg)</td></tr>
-<tr class="memdesc:a67f740e32b863e0b9853eb69df7fb8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a debug message to the debug callback function.  <a href="debug_8h.html#a67f740e32b863e0b9853eb69df7fb8af">More...</a><br /></td></tr>
-<tr class="separator:a67f740e32b863e0b9853eb69df7fb8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd1f17b4e83e32207f6cca7c2fd00d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="debug_8h.html#a4cd1f17b4e83e32207f6cca7c2fd00d9">tuiDebugError</a> (<a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> error_code, const char *msg)</td></tr>
+<tr class="memdesc:a4cd1f17b4e83e32207f6cca7c2fd00d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a debug message to the debug callback function. This function sends a message to the currently set debug callback function. If none was set or it was set to <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a>, nothing will happen.  <a href="debug_8h.html#a4cd1f17b4e83e32207f6cca7c2fd00d9">More...</a><br /></td></tr>
+<tr class="separator:a4cd1f17b4e83e32207f6cca7c2fd00d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a03016ac4935b8b0e37c6c5719cf2d859"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03016ac4935b8b0e37c6c5719cf2d859">&#9670;&nbsp;</a></span>TuiErrorCode</h2>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a710624647d03e5ea7ca53e65d1e836a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a710624647d03e5ea7ca53e65d1e836a9">&#9670;&nbsp;</a></span>tuiDebugErrorCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a></td>
+          <td class="memname">typedef void(* tuiDebugErrorCallback) (<a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> error_code, const char *msg)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a674c7b2eb1b576c70cc6791169a88387"></a>TUI_ERROR_UNKOWN&#160;</td><td class="fielddoc"><p>TUI error for situations where an unkown error has occured. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a"></a>TUI_ERROR_BACKEND_SPECIFIC&#160;</td><td class="fielddoc"><p>TUI error for backend specific errors. </p>
-<p>When this error is passed into a debug callback function, the 2nd argument is contains a textual description of the error. This is different from all other errors, which have the function name where the error was called passed into the 2nd argument. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ae188949868341c16f90141f40da47be2"></a>TUI_ERROR_DANGLING_GLYPH_ATLAS&#160;</td><td class="fielddoc"><p>TUI error for when a TuiInstance is destroyed when there are still one or more attached TuiGlyphAtlas objects. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a0aad6f00a628f938a305a58d1ba00c37"></a>TUI_ERROR_DANGLING_PALETTE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiInstance is destroyed when there are still one or more attached TuiPalette objects. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a70e2686c7770bac99033720b1af194a3"></a>TUI_ERROR_DANGLING_PANEL&#160;</td><td class="fielddoc"><p>TUI error for when a TuiInstance is destroyed when there are still one or more attached TuiPanel objects. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859afb8486e0e7d3cad38e3f81d56a5d5bd3"></a>TUI_ERROR_DANGLING_TEXTURE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiInstance is destroyed when there are still one or more attached TuiTexture objects. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ae492e21c6c968cfd1af33f4a7f5f90f6"></a>TUI_ERROR_DAMAGED_INSTANCE&#160;</td><td class="fielddoc"><p>TUI error for when trying to use an opqaue object attached to a damaged TuiInstance or a damanged TuiInstance. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859aad2082fab16025a576c4f6354604fbfe"></a>TUI_ERROR_INCOMPATIBLE_BLEND_MODE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiInstance is destroyed when there are still one or more attached TuiPanel objects. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ae45ae77c5cb4965c3d1e92c325ef0787"></a>TUI_ERROR_INCOMPATIBLE_IMAGES&#160;</td><td class="fielddoc"><p>TUI error for when a emplacing a TuiImage into another and they are not compatible with one another. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a4e380826b6a79bbbae817654e7bdb598"></a>TUI_ERROR_INVALID_ATLAS_TYPE&#160;</td><td class="fielddoc"><p>TUI error for when a <a class="el" href="enums_8h.html#aacfd44a04d9c31f7bac94140e992303a">TuiAtlasType</a> is invalid. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859af1fb3a89c1218692394f165ee1441f4e"></a>TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for when batch data dimensions are less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a0a2b87a6e35f6b052908277ff669be7f"></a>TUI_ERROR_INVALID_BATCH_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for when batch dimensions are less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a06a3239570348aba333c67fbb4df617b"></a>TUI_ERROR_INVALID_BATCH_SETTER&#160;</td><td class="fielddoc"><p>TUI error for when a batch setter is used for a TuiBatch that is intended for a different <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ab7299b7a79ee6414515f4ac98a306226"></a>TUI_ERROR_INVALID_BLEND_MODE&#160;</td><td class="fielddoc"><p>TUI error for when a <a class="el" href="enums_8h.html#a068f67a45905ef817a05bc45ceea2134">TuiBlendMode</a> is invalid. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a3141303e1ac7ccb2837ac7d0990f76cd"></a>TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for when attempting to create a codepage glyph atlas with pixel dimensions that are not divisible by 16 and less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859af9e6959c06ddd2186da62a9d3bb77d9e"></a>TUI_ERROR_INVALID_CHANNEL_COUNT&#160;</td><td class="fielddoc"><p>TUI error for when there is an invalid color channel count specified. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ab4ff951ce4fd139448c41d3a5962c257"></a>TUI_ERROR_INVALID_DETAIL_FLAG&#160;</td><td class="fielddoc"><p>TUI error for when a <a class="el" href="enums_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43d">TuiDetailFlag</a> is invalid. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a6a7d95ad7b865830d74a98f4238416fa"></a>TUI_ERROR_INVALID_DETAIL_MODE&#160;</td><td class="fielddoc"><p>TUI error for when a <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> is invalid. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859aae1bcfc1b0365a5d05f6bc0b14fc47aa"></a>TUI_ERROR_INVALID_FILTER_MODE&#160;</td><td class="fielddoc"><p>TUI error for when a <a class="el" href="enums_8h.html#a1497f96bd51b56eb2a9f0e904b2ef351">TuiFilterMode</a> is invalid. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ad56c39f321113dfdc68f439fc0a13bee"></a>TUI_ERROR_INVALID_GLYPH_COUNT&#160;</td><td class="fielddoc"><p>TUI error for when the glyph count of a TuiGlyphAtlas is less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ad6277c9639e35d3ccad7419b0262501a"></a>TUI_ERROR_INVALID_GLYPH_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for glyph width of height is less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a69d0354c328864a03dd03ec98d448a2f"></a>TUI_ERROR_INVALID_IMAGE_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for then the pixel width or height of a TuiImage is less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a833007be585ca8245b9e6a013514cd4d"></a>TUI_ERROR_INVALID_INSTANCE_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for when the pixel width or height of a TuiInstance is less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a9a0b7141876ec628afce064b15deea51"></a>TUI_ERROR_INVALID_PALETTE_COLOR_COUNT&#160;</td><td class="fielddoc"><p>TUI error for when a TuiPalette is given a color count less than or equal to 0 or greater than 256. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859aa4f0dbf3ba000b5272b57a3d50e43899"></a>TUI_ERROR_INVALID_PANEL_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for when the pixel width or height of a TuiPanel is less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a80b9e5e2a32ef91b21de9f8effc7e8f2"></a>TUI_ERROR_INVALID_PIXEL_DIMENSIONS&#160;</td><td class="fielddoc"><p>TUI error for when the pixel width or height of a raw pixel array is less than or equal to 0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a7b1249dcbf4763958d8106da7352d197"></a>TUI_ERROR_LOAD_IMAGE_FAILURE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiImage has failed to be loaded from an image file. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a8004b8aa10296dc2394df7aa89c98a8a"></a>TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS&#160;</td><td class="fielddoc"><p>TUI error for when a TuiImage has been loaded with an unexpected channel count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a880dd2b478ea637297be92e7539b0b95"></a>TUI_ERROR_NULL_BATCH&#160;</td><td class="fielddoc"><p>TUI error for when a TuiBatch is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ae937e25f1fa44f36c312454fee07fabc"></a>TUI_ERROR_NULL_BATCH_DATA&#160;</td><td class="fielddoc"><p>TUI error for when a batch data array is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a811694a5662adda0d8536b20a9c75648"></a>TUI_ERROR_NULL_COLORS&#160;</td><td class="fielddoc"><p>TUI error for when a colors array is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ad40efef5f6ec30ee86084b2e9085a0b1"></a>TUI_ERROR_NULL_GLYPH_ATLAS&#160;</td><td class="fielddoc"><p>TUI error for when a TuiGlyphAtlas is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859af4dc9a4c8970ceb00e938025bea7e556"></a>TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES&#160;</td><td class="fielddoc"><p>TUI error for when a glyph bounding box array is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065"></a>TUI_ERROR_NULL_IMAGE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiImage is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a806ccd2b84088ce997d2da5858ffca6e"></a>TUI_ERROR_NULL_INSTANCE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiInstance is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a404d2b7d02cbf3822755538ff0ba565b"></a>TUI_ERROR_NULL_PALETTE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiPalette is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a6d3464170e70a72c40709ca39a222058"></a>TUI_ERROR_NULL_PANEL&#160;</td><td class="fielddoc"><p>TUI error for when a TuiPanel is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd"></a>TUI_ERROR_NULL_PATH&#160;</td><td class="fielddoc"><p>TUI error for when a file path is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a9cc02a8f1d371e86cb650b4d7cb7f258"></a>TUI_ERROR_NULL_PIXELS&#160;</td><td class="fielddoc"><p>TUI error for when a pixel array is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a583c405b684d3623c77a35ee7528aa75"></a>TUI_ERROR_NULL_TARGET_IMAGE&#160;</td><td class="fielddoc"><p>TUI error for when a target TuiImage is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859acf7c34002194fc0a919b449cf6bdb60b"></a>TUI_ERROR_NULL_TARGET_PANEL&#160;</td><td class="fielddoc"><p>TUI error for when a target TuiPanel is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859af6799d55d73d40c30ad95a3fe672d269"></a>TUI_ERROR_NULL_TEXTURE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiTexture is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859ac8b4b2999b54c18f39e9d6f1ac0aaff4"></a>TUI_ERROR_NULL_TEXTURE_COORDINATES&#160;</td><td class="fielddoc"><p>TUI error for when a texture coordinates array is NULL. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a0700954e438078e8c737bb232156177b"></a>TUI_ERROR_PALETTE_REQUIRED&#160;</td><td class="fielddoc"><p>TUI error for when attempting to draw a TuiBatch or batch data with a <a class="el" href="enums_8h.html#adca1532888c8e4d1a0bb5717aac6c304">TuiDetailMode</a> that requires a TuiPalette and none is provided. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a188f0b530aeb296434ac779220da44b5"></a>TUI_ERROR_RESIZE_IMAGE_FAILURE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiImage has failed to be resized. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a99ca7b2909c2c49f7ccab02fa2fb79fa"></a>TUI_ERROR_UNMATCHING_ATLAS_INSTANCE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiGlyphAtlas uses an unmatching TuiInstance. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859a07a0ce725a237abfb11f68ef442deaa4"></a>TUI_ERROR_UNMATCHING_PALETTE_INSTANCE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiPalette uses an unmatching TuiInstance. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a03016ac4935b8b0e37c6c5719cf2d859aad3b1dba0687f3f649d7181b22a2feb0"></a>TUI_ERROR_UNMATCHING_PANEL_INSTANCE&#160;</td><td class="fielddoc"><p>TUI error for when a TuiPanel uses an unmatching TuiInstance. </p>
-</td></tr>
-</table>
+
+<p>Callback type used to set the debug callback handler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error_code</td><td>The <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>. </td></tr>
+    <tr><td class="paramname">msg</td><td>For errors with <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a82d4953330ee7ff11473dc52c3a533d5">TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC</a>, this is a string description of the error. For all other error codes, this is the name of the function where the error occured. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a67f740e32b863e0b9853eb69df7fb8af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67f740e32b863e0b9853eb69df7fb8af">&#9670;&nbsp;</a></span>tuiDebugError()</h2>
+<a id="a4cd1f17b4e83e32207f6cca7c2fd00d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd1f17b4e83e32207f6cca7c2fd00d9">&#9670;&nbsp;</a></span>tuiDebugError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -640,7 +135,7 @@ typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
         <tr>
           <td class="memname">void tuiDebugError </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype"><a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>&#160;</td>
           <td class="paramname"><em>error_code</em>, </td>
         </tr>
         <tr>
@@ -656,64 +151,17 @@ typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Send a debug message to the debug callback function. This function sends a message to the currently set debug callback function. If none was set or it was set to <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a>, nothing will happen. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">error_code</td><td>The <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>. </td></tr>
-    <tr><td class="paramname">msg</td><td>For errors with <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a3a088f4cba66a17fe8641e589649a52a">TUI_ERROR_BACKEND_SPECIFIC</a>, this is a string description of the error. For all other error codes, this is the name of the function where the error occured.</td></tr>
+    <tr><td class="paramname">error_code</td><td>The <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>. </td></tr>
+    <tr><td class="paramname">msg</td><td>For errors with <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a> <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a82d4953330ee7ff11473dc52c3a533d5">TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC</a>, this is a string description of the error. For all other error codes, this is the name of the function where the error occured.</td></tr>
   </table>
   </dd>
 </dl>
-<p>This function sends a message to the currently set debug callback function. If none was set or it was set to NULL, nothing will happen. </p>
-
-</div>
-</div>
-<a id="a35510f8fec3c3bcb83f5f00d9f24da1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35510f8fec3c3bcb83f5f00d9f24da1c">&#9670;&nbsp;</a></span>tuiErrorCodeGetDescription()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* tuiErrorCodeGetDescription </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>error_code</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">error_code</td><td>The <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The string description. </dd></dl>
-
-</div>
-</div>
-<a id="a8a3d040f0204dcddeb7a41f2d1e90015"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a3d040f0204dcddeb7a41f2d1e90015">&#9670;&nbsp;</a></span>tuiErrorCodeToString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* tuiErrorCodeToString </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>error_code</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">error_code</td><td>The <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The string name. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have no errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized. </dd></dl>
 
 </div>
 </div>
@@ -726,38 +174,22 @@ typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
         <tr>
           <td class="memname">void tuiSetDebugErrorCallback </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="debug_8h.html#adcccbba5c6a86e699cdb87b58708cd5b">tuiDebugErrorCallback</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="debug_8h.html#a710624647d03e5ea7ca53e65d1e836a9">tuiDebugErrorCallback</a>&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to NULL will disable the callback. </p>
 
-</div>
-</div>
-<a id="a2f08eeabae72289afece06a3a130258c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f08eeabae72289afece06a3a130258c">&#9670;&nbsp;</a></span>tuiStringToErrorCode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int tuiStringToErrorCode </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>string</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Set the callback function to handle debug output from TUIC. After passing a callback function, TUIC will call that function and pass in debug output. Setting the callback to <a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a> will disable the callback. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">string</td><td>The string name.</td></tr>
+    <tr><td class="paramname">callack</td><td>A function pointer to the callback.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="debug_8h.html#a03016ac4935b8b0e37c6c5719cf2d859">TuiErrorCode</a>. </dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>This function can have no errors.</dd></dl>
+<dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized. </dd></dl>
 
 </div>
 </div>

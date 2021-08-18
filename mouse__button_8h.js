@@ -1,0 +1,35 @@
+var mouse__button_8h =
+[
+    [ "TuiMouseButton", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1", [
+      [ "TUI_MOUSE_BUTTON_INVALID", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a119844d691e358a014c5b5620639ac96", null ],
+      [ "TUI_MOUSE_BUTTON_1", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a598698bce07b6836a215af022a0fb96c", null ],
+      [ "TUI_MOUSE_BUTTON_2", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1af50a4685f482f071f249d5f008837099", null ],
+      [ "TUI_MOUSE_BUTTON_3", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a97367164555c2bb50f93b87d9fcd48bf", null ],
+      [ "TUI_MOUSE_BUTTON_4", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a90452795337c59c3f5295472bf9e5237", null ],
+      [ "TUI_MOUSE_BUTTON_5", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a0689ae1c645b1c5da6c304065054b46f", null ],
+      [ "TUI_MOUSE_BUTTON_6", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a0a17cbf4a4476753dc3661c2b6888947", null ],
+      [ "TUI_MOUSE_BUTTON_7", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1aafcd9c6073666a82087dae25c12971a8", null ],
+      [ "TUI_MOUSE_BUTTON_8", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1aa20633668f5cc558ea9b97347fe4520f", null ],
+      [ "TUI_MOUSE_BUTTON_FIRST", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a77faced73d040c4b53e715a4d78ceda8", null ],
+      [ "TUI_MOUSE_BUTTON_LAST", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1ac928fdef4d59c11117e571e789ea6923", null ],
+      [ "TUI_MOUSE_BUTTON_LEFT", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a3845a642c8628f97e9f8bee1db61611f", null ],
+      [ "TUI_MOUSE_BUTTON_RIGHT", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1ad1126c1ba2fd7674b30ec32688b39b05", null ],
+      [ "TUI_MOUSE_BUTTON_MIDDLE", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1aab8100a3e663e3ab309e06cefd957850", null ],
+      [ "TUI_MOUSE_BUTTON_X1", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1aaa0b4a2eef285a2f053d18a71ec60d4b", null ],
+      [ "TUI_MOUSE_BUTTON_X2", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a1f62249f2062fc24b0908affc1243e9c", null ],
+      [ "TUI_MOUSE_BUTTON_X3", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a5096d6f844b129b04a80d4f91fffb0f6", null ],
+      [ "TUI_MOUSE_BUTTON_X4", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1a1ea83e5e658bd305228b0db7aa264b26", null ],
+      [ "TUI_MOUSE_BUTTON_X5", "mouse__button_8h.html#ae480769210038c708bfa8428a20ac2f1afaaeab05a914777cfe4a693adaeb3776", null ]
+    ] ],
+    [ "tuiMouseButtonIsValid", "mouse__button_8h.html#a74d7f55d807281cef4f68b0669c938b3", null ],
+    [ "tuiMouseButtonToString", "mouse__button_8h.html#af1dbd4b382e840401be38f4dc3599bb5", null ],
+    [ "tuiStringToMouseButton", "mouse__button_8h.html#aaf5482ed2fbd80c4c0f7a6ea02a1adb5", null ],
+    [ "kTui_Mouse_Button_1_Name", "mouse__button_8h.html#a932de6f053f710e62cabeb398f2ab28f", null ],
+    [ "kTui_Mouse_Button_2_Name", "mouse__button_8h.html#a38790121f8cc5981dce71d8692369203", null ],
+    [ "kTui_Mouse_Button_3_Name", "mouse__button_8h.html#ae8e1477160aeaf9ac86129cf7559f6d0", null ],
+    [ "kTui_Mouse_Button_4_Name", "mouse__button_8h.html#a824bc47febc1a64e60e82c0937d51752", null ],
+    [ "kTui_Mouse_Button_5_Name", "mouse__button_8h.html#a79ad587956a71497d624f0e91623a7e2", null ],
+    [ "kTui_Mouse_Button_6_Name", "mouse__button_8h.html#a625c872ffa471912ab67c36fbffae902", null ],
+    [ "kTui_Mouse_Button_7_Name", "mouse__button_8h.html#a6246e53711da9237ff9aedfbff92ac71", null ],
+    [ "kTui_Mouse_Button_8_Name", "mouse__button_8h.html#a3bcab85004f7de90d21976859bfacbc5", null ]
+];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['blendmode_773',['BlendMode',['../struct_tui_glyph_atlas__s.html#a2a024c51c23977c1cbcfda3f08e124bb',1,'TuiGlyphAtlas_s']]],
-  ['bytespertile_774',['BytesPerTile',['../struct_tui_batch__s.html#ad7611538f63a728702808055d4469c16',1,'TuiBatch_s']]]
+  ['decorated_1545',['decorated',['../struct_tui_window_create_info.html#a07c996c06cc892eb5be797852115cb46',1,'TuiWindowCreateInfo']]]
 ];

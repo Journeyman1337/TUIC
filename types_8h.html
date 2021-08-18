@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TUIC
    </div>
-   <div id="projectbrief">Backend agnostic text user interface rendering library in C.</div>
+   <div id="projectbrief">Text user interface rendering library in C.</div>
   </td>
  </tr>
  </tbody>
@@ -82,15 +82,219 @@ $(document).ready(function(){initNavTree('types_8h.html',''); initResizable(); }
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">types.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
-</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a479239909f504d8fdf4c9c2b02420527"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">TUI_NULL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a479239909f504d8fdf4c9c2b02420527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value for when a pointer is not allocated.  <a href="types_8h.html#a479239909f504d8fdf4c9c2b02420527">More...</a><br /></td></tr>
+<tr class="separator:a479239909f504d8fdf4c9c2b02420527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Opaque Object Types</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These types are obfuscated from users on purpose to prevent accidental undefined behaviour. To manipulate these objects and access their properties, use TUIC functions instead. </p>
+</div></td></tr>
+<tr class="memitem:aba7d80e3951ed272dd6f9275977cd89d"><td class="memItemLeft" align="right" valign="top">typedef struct TuiWindow_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a></td></tr>
+<tr class="memdesc:aba7d80e3951ed272dd6f9275977cd89d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A desktop window.  <a href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">More...</a><br /></td></tr>
+<tr class="separator:aba7d80e3951ed272dd6f9275977cd89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa5ebd10fec8db7f56a86b0e999c864f"><td class="memItemLeft" align="right" valign="top">typedef struct TuiPalette_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a></td></tr>
+<tr class="memdesc:aaa5ebd10fec8db7f56a86b0e999c864f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A GPU color palette.  <a href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">More...</a><br /></td></tr>
+<tr class="separator:aaa5ebd10fec8db7f56a86b0e999c864f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fea2d1935dd1506917270708f2d4bb2"><td class="memItemLeft" align="right" valign="top">typedef struct TuiAtlas_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a></td></tr>
+<tr class="memdesc:a5fea2d1935dd1506917270708f2d4bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A GPU texture atlas.  <a href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">More...</a><br /></td></tr>
+<tr class="separator:a5fea2d1935dd1506917270708f2d4bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f31d19af8c04be80cafb9243996ce85"><td class="memItemLeft" align="right" valign="top">typedef struct TuiTexture_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a></td></tr>
+<tr class="memdesc:a1f31d19af8c04be80cafb9243996ce85"><td class="mdescLeft">&#160;</td><td class="mdescRight">A GPU texture.  <a href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">More...</a><br /></td></tr>
+<tr class="separator:a1f31d19af8c04be80cafb9243996ce85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb5990c05bce97b8877f60c77f739659"><td class="memItemLeft" align="right" valign="top">typedef struct TuiBatch_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a></td></tr>
+<tr class="memdesc:aeb5990c05bce97b8877f60c77f739659"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container for batch rendering data.  <a href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">More...</a><br /></td></tr>
+<tr class="separator:aeb5990c05bce97b8877f60c77f739659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c90a4fcafc37e703ff4a41a18b37318"><td class="memItemLeft" align="right" valign="top">typedef struct TuiPanel_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a></td></tr>
+<tr class="memdesc:a1c90a4fcafc37e703ff4a41a18b37318"><td class="mdescLeft">&#160;</td><td class="mdescRight">A GPU framebuffer.  <a href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">More...</a><br /></td></tr>
+<tr class="separator:a1c90a4fcafc37e703ff4a41a18b37318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ed8ecd08cd3a8efef545daec702b26d"><td class="memItemLeft" align="right" valign="top">typedef struct TuiImage_s *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a></td></tr>
+<tr class="memdesc:a3ed8ecd08cd3a8efef545daec702b26d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CPU image.  <a href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">More...</a><br /></td></tr>
+<tr class="separator:a3ed8ecd08cd3a8efef545daec702b26d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef2837c7888de03a4a1a7aea24f89854"><td class="memItemLeft" align="right" valign="top">typedef struct GLFWcursor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#aef2837c7888de03a4a1a7aea24f89854">TuiCursor</a></td></tr>
+<tr class="memdesc:aef2837c7888de03a4a1a7aea24f89854"><td class="mdescLeft">&#160;</td><td class="mdescRight">A desktop mouse cursor.  <a href="types_8h.html#aef2837c7888de03a4a1a7aea24f89854">More...</a><br /></td></tr>
+<tr class="separator:aef2837c7888de03a4a1a7aea24f89854"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f4a848e86973205e8d2883e12158230"><td class="memItemLeft" align="right" valign="top">typedef struct GLFWmonitor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a0f4a848e86973205e8d2883e12158230">TuiMonitor</a></td></tr>
+<tr class="memdesc:a0f4a848e86973205e8d2883e12158230"><td class="mdescLeft">&#160;</td><td class="mdescRight">A device monitor.  <a href="types_8h.html#a0f4a848e86973205e8d2883e12158230">More...</a><br /></td></tr>
+<tr class="separator:a0f4a848e86973205e8d2883e12158230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the type definitions of all opaque objects. <a href="annotated.html">The objects are listed on this page.</a> </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a479239909f504d8fdf4c9c2b02420527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a479239909f504d8fdf4c9c2b02420527">&#9670;&nbsp;</a></span>TUI_NULL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TUI_NULL&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Value for when a pointer is not allocated. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a5fea2d1935dd1506917270708f2d4bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fea2d1935dd1506917270708f2d4bb2">&#9670;&nbsp;</a></span>TuiAtlas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiAtlas_s* <a class="el" href="types_8h.html#a5fea2d1935dd1506917270708f2d4bb2">TuiAtlas</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A GPU texture atlas. </p>
+
+</div>
+</div>
+<a id="aeb5990c05bce97b8877f60c77f739659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb5990c05bce97b8877f60c77f739659">&#9670;&nbsp;</a></span>TuiBatch</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiBatch_s* <a class="el" href="types_8h.html#aeb5990c05bce97b8877f60c77f739659">TuiBatch</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A container for batch rendering data. </p>
+
+</div>
+</div>
+<a id="aef2837c7888de03a4a1a7aea24f89854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef2837c7888de03a4a1a7aea24f89854">&#9670;&nbsp;</a></span>TuiCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct GLFWcursor* <a class="el" href="types_8h.html#aef2837c7888de03a4a1a7aea24f89854">TuiCursor</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A desktop mouse cursor. </p>
+
+</div>
+</div>
+<a id="a3ed8ecd08cd3a8efef545daec702b26d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ed8ecd08cd3a8efef545daec702b26d">&#9670;&nbsp;</a></span>TuiImage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiImage_s* <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A CPU image. </p>
+
+</div>
+</div>
+<a id="a0f4a848e86973205e8d2883e12158230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f4a848e86973205e8d2883e12158230">&#9670;&nbsp;</a></span>TuiMonitor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct GLFWmonitor* <a class="el" href="types_8h.html#a0f4a848e86973205e8d2883e12158230">TuiMonitor</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A device monitor. </p>
+
+</div>
+</div>
+<a id="aaa5ebd10fec8db7f56a86b0e999c864f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5ebd10fec8db7f56a86b0e999c864f">&#9670;&nbsp;</a></span>TuiPalette</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiPalette_s* <a class="el" href="types_8h.html#aaa5ebd10fec8db7f56a86b0e999c864f">TuiPalette</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A GPU color palette. </p>
+
+</div>
+</div>
+<a id="a1c90a4fcafc37e703ff4a41a18b37318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c90a4fcafc37e703ff4a41a18b37318">&#9670;&nbsp;</a></span>TuiPanel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiPanel_s* <a class="el" href="types_8h.html#a1c90a4fcafc37e703ff4a41a18b37318">TuiPanel</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A GPU framebuffer. </p>
+
+</div>
+</div>
+<a id="a1f31d19af8c04be80cafb9243996ce85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f31d19af8c04be80cafb9243996ce85">&#9670;&nbsp;</a></span>TuiTexture</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiTexture_s* <a class="el" href="types_8h.html#a1f31d19af8c04be80cafb9243996ce85">TuiTexture</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A GPU texture. </p>
+
+</div>
+</div>
+<a id="aba7d80e3951ed272dd6f9275977cd89d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba7d80e3951ed272dd6f9275977cd89d">&#9670;&nbsp;</a></span>TuiWindow</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TuiWindow_s* <a class="el" href="types_8h.html#aba7d80e3951ed272dd6f9275977cd89d">TuiWindow</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A desktop window. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
