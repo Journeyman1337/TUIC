@@ -88,7 +88,7 @@ TuiImage tuiImageCreatePNG(const char* path)
 	int width = png_get_image_width(png_ptr, info_ptr);
 	int height = png_get_image_height(png_ptr, info_ptr);
 	png_byte color_type = png_get_color_type(png_ptr, info_ptr);
-	int channels = (color_type == 2) ? 3 : (color_type == 6) ? 4 : 0;
+	int channels = (color_type == PNG_COLOR_TYPE_RGB) ? 3 : (color_type == PNG_COLOR_TYPE_RGBA) ? 4 : 0;
 	if (channels == 0)
 	{
 		// tuiDebugError(TUI_ERROR_INVALID_PNG_COLOR_TYPE, __func__);
