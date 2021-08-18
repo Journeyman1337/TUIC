@@ -217,7 +217,6 @@ void tuiImageSave(TuiImage image, const char* path)
 	png_bytep* row_pointers = (png_bytep*)tuiAllocate(sizeof(png_bytep) * image->PixelHeight);
 	for (size_t y = 0; y < image->PixelHeight; y++)
 		row_pointers[y] = &image->PixelData[y * image->PixelWidth * image->ChannelCount];
-	tuiFree(row_pointers);
 	png_write_image(png_ptr, row_pointers);
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
