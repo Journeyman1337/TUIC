@@ -19,8 +19,8 @@ uint8_t kRedPixels4x4RGBA[4 * 4 * 4] =
 };
 
 TEST_CASE("tuiImageEmplace") {
-	TuiImage target = tuiImageCreate(10, 10, 3, NULL, TUI_FALSE);
-	TuiImage to_emplace = tuiImageCreate(4, 4, 3, kRedPixels4x4RGB, TUI_TRUE);
+	TuiImage target = tuiImageCreatePixels(10, 10, 3, TUI_NULL, TUI_FALSE);
+	TuiImage to_emplace = tuiImageCreatePixels(4, 4, 3, kRedPixels4x4RGB, TUI_TRUE);
 	tuiImageEmplace(to_emplace, target, 0, 0);
 	bool rgbEmplacePass = true;
 	uint8_t* target_pixels = tuiImageGetPixels(target);
@@ -52,8 +52,8 @@ TEST_CASE("tuiImageEmplace") {
 	tuiImageDestroy(target);
 	tuiImageDestroy(to_emplace);
 
-	target = tuiImageCreate(10, 10, 4, NULL, TUI_FALSE);
-	to_emplace = tuiImageCreate(4, 4, 4, kRedPixels4x4RGBA, TUI_TRUE);
+	target = tuiImageCreatePixels(10, 10, 4, TUI_NULL, TUI_FALSE);
+	to_emplace = tuiImageCreatePixels(4, 4, 4, kRedPixels4x4RGBA, TUI_TRUE);
 	tuiImageEmplace(to_emplace, target, 0, 0);
 	bool rgbaEmplacePass = true;
 	target_pixels = tuiImageGetPixels(target);

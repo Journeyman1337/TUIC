@@ -25,114 +25,178 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
-/*! @name TuiImage functions
+#include <TUIC/boolean.h>
+
+
+/*! @name Image Functions
  *
  * These functions are used for manipulating @ref TuiImage opaque objects.
  *
  *  @{ */
 /*!
- * @brief  Destroy @ref TuiImage and correctly dispose of all of its resources.
+ * @brief Create a @ref TuiImage with a raw pixel array.
  *
  * @param texture_format The format of the image (its channel count).
  * @param width The width of the image in pixels.
  * @param height The height of the image in pixels.
  * @param pixel_data The pixel data array.
- * @param copy_data If the pixel data should be copied.
+ * @param copy_data If the pixel data should be deeply copied instead of shallow coppied.
  * 
- * @returns The created @ref TuiImage object. Null is returned on error.
+ * @returns The created @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
  * 
- * @errors Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT when channel_count is not 3 or 4.
- * Throws @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS when pixel_width or pixel_height is less than or equal to 0.
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_CHANNEL_COUNT and @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixels array may cause undefined behaviour or a fatal crash without an error.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ * 
+ * @pointer_lifetime The returned @ref TuiImage must be destroyed using the function @ref tuiImageDestroy().
+ * 
+ * @thread_safety This function can be called safely on any thread at any time.
  */
-TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data);
+TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data);
+/*!
+ * @brief Load a @ref TuiImage from a png image file in secondary storage.
+ *
+ * @param path The local or full path to the image file.
+ *
+ * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_PATH and @ref TUI_ERROR_LOAD_IMAGE_FAILURE.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
+ */
+TuiImage tuiImageCreatePNG(const char* path);
+/*!
+ * @brief Create a @ref TuiImage filled with pixels of a solid color.
+ *
+ * @param pixel_width The width of the image in pixels.
+ * @param pixel_height The height of the image in pixels.
+ * @param channel_count The amount of channels in the image.
+ * @param r The red color channel of the solid fill color.
+ * @param g The green color channel of the solid fill color.
+ * @paran b The blue color channel of the solid fill color.
+ * @param a The alpha color channel of the solid fill color. If the image has only 3 channels, this is ignored.
+ *
+ * @returns The loaded @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_CHANNEL_COUNT and @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
+ */
+TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*!
  * @brief  Destroy @ref TuiImage and correctly dispose of all of its resources.
  *
  * @param image The @ref TuiImage object to destroy.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @errors Can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 void tuiImageDestroy(TuiImage image);
 /*!
- * @brief Load a @ref TuiImage from an image file.
- *
- * @param path The path to the file.
- * @param expected_channel_count The expected image channel count. If 0, none is expected.
- * 
- * @return The @ref TuiImage. NULL is returned on error.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PATH if path is NULL.
- * Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT if expected_channel_count is not 0, 3, or 4.
- * Throws @ref TUI_ERROR_LOAD_IMAGE_FAILURE if image fails to load from the file.
- * Throws @ref TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS if expected_channel_count is not 0 and does not match the loaded image channel count.
- */
-TuiImage tuiImageLoad(const char* path, int expected_channel_count);
-/*!
- * @brief  Save a @ref TuiImage to an image file.
+ * @brief Save a @ref TuiImage as a png image file.
  *
  * @param image The @ref TuiImage.
- * @param path The path to the file.
+ * @param path The local or full path where the file will be saved, including the file name and extension.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
- * Throws @ref TUI_ERROR_NULL_PATH if path is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_IMAGE and @ref TUI_ERROR_NULL_PATH.  The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 void tuiImageSave(TuiImage image, const char* path);
 /*!
- * @brief  Create a deep copy of a @ref TuiImage.
+ * @brief Create a deep copy of a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
- *
- * @returns The cloned @ref TuiImage object. NULL is returned on error.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @returns The cloned @ref TuiImage. @ref TUI_NULL is returned if an error occurs.
+ * 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 TuiImage tuiImageClone(TuiImage image);
 /*!
- * @brief  Get the pixel dimensions of a @ref TuiImage.
- *
- * @param image The @ref TuiImage.
- * @param width A pointer to where the width will be stored. If this is NULL or an error occurs, it is ignored.
- * @param height A pointer to where the height will be stored. If this is NULL or an error occurs, it is ignored.
+ * @brief Get the pixel dimensions of a @ref TuiImage.
  * 
- * @errors Throws @TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @param image The @ref TuiImage to get the pixel dimensions of.
+ * @param pixel_width A pointer to where the pixel width of the @ref TuiImage will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the @ref TuiImage will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param channel_count A pointer to where the channel count of the @ref TuiImage will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
-void tuiImageGetPixelDimensions(TuiImage image, int* pixel_width, int* pixel_height);
+void tuiImageGetPixelDimensions(TuiImage image, int* pixel_width, int* pixel_height, int* channel_count);
 /*!
- * @brief  Get the pixel width of a @ref TuiImage.
+ * @brief Get the pixel width of a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
  * 
- * @returns The pixel width. 0 is returned on error.
+ * @returns The pixel width. 0 is returned if an error occurs
  *
- * @errors Throws @TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 int tuiImageGetPixelWidth(TuiImage image);
 /*!
- * @brief  Get the pixel height of a @ref TuiImage.
+ * @brief Get the pixel height of a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
  *
- * @returns The pixel height. 0 is returned on error.
+ * @returns The pixel height. 0 is returned if an error occurs.
  *
- * @errors Throws @TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 int tuiImageGetPixelHeight(TuiImage image);
 /*!
- * @brief  Get the channel count of a @ref TuiImage.
+ * @brief Get the channel count of a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
  *
- * @returns The channel count. 0 is returned on error.
+ * @returns The channel count. 0 is returned if an error occurs.
  *
- * @errors Throws @TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 int tuiImageGetChannelCount(TuiImage image);
 /*!
- * @brief  Get a pointer to the raw pixels of a @ref TuiImage.
+ * @brief Get a pointer to the raw pixels of a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
  *
- * @returns The raw pixel pointer.
+ * @returns A pointer to the pixel array of the image.
+ * 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ * 
+ * @pointer_lifetime The returned pixel array should never be freed, and will be destroyed when the image it was taken from is destroyed. Modifying the contents of the array will affect the image, and is not thread safe with other @ref TuiImage functions on the same object.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 uint8_t* tuiImageGetPixels(TuiImage image);
 /*!
@@ -140,44 +204,61 @@ uint8_t* tuiImageGetPixels(TuiImage image);
  *
  * @param image The @ref TuiImage.
  *
- * @returns The size. NULL is returned on error.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
+ * @returns The size of the pixel array of the image in bytes. @ref TUI_NULL is returned on error.
+ *
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 size_t tuiImageGetPixelDataSize(TuiImage image);
 /*!
- * @brief  Resized a @ref TuiImage.
+ * @brief Resize a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
  * @param new_width The new width to set for the @ref TuiImage.
  * @param new_height The new height ot set for the @ref TuiImage.
+ * 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 void tuiImageResize(TuiImage image, int new_pixel_width, int new_pixel_height);
 /*!
- * @brief  Create a resized deep copy of a @ref TuiImage.
+ * @brief Create a resized deep copy of a @ref TuiImage.
  *
  * @param image The @ref TuiImage.
  * @param new_width The new width to set for the @ref TuiImage clone.
  * @param new_height The new height ot set for the @ref TuiImage clone.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
- * Throws @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS if new_width or new_height is less than or equal to 0.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS, and @ref TUI_ERROR_RESIZE_IMAGE_FAILURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 TuiImage tuiImageCloneResize(TuiImage image, int new_pixel_width, int new_pixel_height);
 /*!
- * @brief  Emplace a image inside of another image.
+ * @brief Emplace a @ref TuiImage inside of another image, starting from a specific pixel position. Pixels that go out of bounds are clipped.
  *
  * @param image The @ref TuiImage to emplace.
  * @param target_image The @ref TuiImage to emplace into.
  * @param start_x The left most x pixel coordinate from where the image will be emplaced.
  * @param start_y The top most y pixel coordinate from where the image will be emplaced.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
- * Throws @ref TUI_ERROR_NULL_TARGET_IMAGE if target_image is null.
- * Throws @ref TUI_ERROR_INCOMPATIBLE_IMAGES of image and target_image have unmatching channel counts.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_NULL_TARGET_IMAGE, and @ref TUI_ERROR_INCOMPATIBLE_IMAGES. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
 void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int start_y);
 /*! @} */
+
+
 #ifdef __cplusplus //extern C guard
 }
 #endif

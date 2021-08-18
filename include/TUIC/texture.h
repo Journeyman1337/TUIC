@@ -27,191 +27,177 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
-/*! @name TuiTexture functions
+
+
+/*! @name Texture Functions
  *
- * These functions are used for manipulating @ref TuiTexture opaque objects.
- *
- * @{ */
+ * Functions for manipulating @ref TuiTexture opaque objects.
+ *  @{ */
 /*!
- * @brief Create a @ref TuiTexture with a @ref TuiImage.
+ * @brief Create a @ref TuiTexture from a @TuiImage.
  *
- * @param instance The @ref TuiInstance.
- * @param image The @ref TuiImage.
- * @param filter_mode The @ref TuiFilterMode.
+ * @param image The @ref TuiImage to use ffor the texture.
+ * @param filter_mode The @ref TuiFilterMode to use when rendering the texture.
+ * 
+ * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
- * @returns The created @ref TuiTexture object. NULL is returned on error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_INVALID_FILTER_MODE. The first error that occurs will cause the function to immediatly return.
  *
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
- * Throws @ref TUI_ERROR_INVALID_FILTER_MODE if filter_mode is not a valid @ref TuiFilterMode.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiTexture must be destroyed before TUIC is terminated, using the function @ref tuiTextureDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiTexture tuiTextureCreate(TuiInstance instance, TuiImage image, int filter_mode);
+TuiTexture tuiTextureCreateImage(TuiImage image, TuiFilterMode filter_mode);
 /*!
- * @brief Create a @ref TuiTexture with a raw pixel array.
+ * @brief Create a @ref TuiTexture from a pixel array.
  *
- * @param instance The @ref TuiInstance.
- * @param pixel_width The width of the pixel array in pixels.
- * @param pixel_height The height of the pixel array in pixels.
- * @param channel_count The amount of channels per pixel in the pixel array.
- * @param pixels A pointer to the pixel array.
- * @param filter_mode The @ref TuiFilterMode.
+ * @param pixel_width The pixel width of the pixel array.
+ * @param pixel_height The pixel height of the pixel array.
+ * @param channel_count The channel count of the pixel array.
+ * @param A pointer to the pixel array.
+ * @param filter_mode The @ref TuiFilterMode to use when rendering the texture.
+ * 
+ * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
- * @returns The created @ref TuiTexture object. NULL is returned on error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_INVALID_FILTER_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or pixels array may cause undefined behaviour or a fatal crash without an error.
  *
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_NULL_PIXELS if pixels is NULL.
- * Throws @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS if pixel_with or pixel_height is less than or equal to 0.
- * Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT if channel_count is not 3 or 4.
- * Throws @ref TUI_ERROR_INVALID_FILTER_MODE if filter_mode is not a valid @ref TuiFilterMode.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiTexture must be destroyed before TUIC is terminated, using the function @ref tuiTextureDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiTexture tuiTextureCreateRawPixels(TuiInstance instance, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode);
+TuiTexture tuiTextureCreateRawPixels(int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels, int filter_mode);
 /*!
- * @brief  Destroy @ref TuiTexture and correctly dispose of all of its resources.
+ * @brief Free a @ref TuiTexture and correctly dispose of of its internally managed resources.
  *
- * @param texture The @ref TuiTexture object to destroy.
+ * @param texture The @ref TuiTexture to destroy.
+ * 
+ * @returns The created @ref TuiTexture. @ref TUI_NULL is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiTextureDestroy(TuiTexture texture);
 /*!
- * @brief Get width and height of the image of a @ref TuiTexture in pixels.
+ * @brief Get the amount of @ref TuiTexture that currently exist.
+ *
+ * @returns The amount of textures that currently exist.
+ *
+ * @errors This function does not have errors.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+int tuiGetTextureCount();
+/*!
+ * @brief Get the pixel dimensions of a @ref TuiTexture.
  *
  * @param texture The @ref TuiTexture.
- * @param out_pixel_width A pointer to where the width will be stored. If NULL or an error occurs, it is ignored.
- * @param out_pixel_height A pointer to where the height will be stored. If NULL or an error occurs, it is ignored.
+ * @param pixel_width A pointer to where the pixel width of the texture will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the texture will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if atlas is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiTextureGetPixelDimensions(TuiTexture texture, int* pixel_width, int* pixel_height);
 /*!
- * @brief Get the pixel width of the texture of a @ref TuiTexture.
- *
+ * @brief Get the pixel width of a @ref TuiTexture.
+ * 
  * @param texture The @ref TuiTexture.
  *
- * @returns The pixel width of the texture. 0 is returned on error.
+ * @return The pixel width of the texture.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiTextureGetPixelWidth(TuiTexture texture);
 /*!
- * @brief Get the pixel heigith of the texture of a @ref TuiTexture.
+ * @brief Get the pixel height of a @ref TuiTexture.
  *
  * @param texture The @ref TuiTexture.
  *
- * @returns The pixel heigith of the texture. 0 is returned on error.
+ * @return The pixel height of the texture.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiTextureGetPixelHeight(TuiTexture texture);
 /*!
- * @brief Get the amount of channels used by a @ref TuiTexture.
+ * @brief Get the channel count of a @ref TuiTexture.
  *
  * @param texture The @ref TuiTexture.
  *
- * @returns The amount of color channels. 0 is returned on error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
+ * @return The pixel height of the texture.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiTextureGetChannelCount(TuiTexture texture);
 /*!
- * @brief Get the @ref TuiFilterMode used by a @ref TuiTexture.
+ * @brief Get the @ref TuiFilterMode of a @ref TuiTexture.
  *
  * @param texture The @ref TuiTexture.
  *
- * @returns The @ref TuiFilterMode. 0 is returned on error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
+ * @return The @ref TuiFilterMode of the texture.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-int tuiTextureGetFilterMode(TuiTexture texture);
+TuiFilterMode tuiTextureGetFilterMode(TuiTexture texture);
 /*!
- * @brief Set the pixels of a @ref TuiTexture with a @ref TuiImage.
- *
- * @param texture The @ref TuiTexture.
- * @param image The @ref TuiImage.
- *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the instance of texture is damaged.
- * Throws @ref TUI_ERROR_NULL_IMAGE if image is NULL.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @brief Fill a @ref TuiTexture with the data of a @ref TuiImage.
+ * 
+ * @param texture The texture to fill.
+ * @param image The image to fill with.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIZLIED, @ref TUI_ERROR_NULL_TEXTURE and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
+ * 
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiTextureSetImage(TuiTexture texture, TuiImage image);
 /*!
- * @brief Set the pixels of a @ref TuiTexture with a raw pixel array.
+ * @brief Fill a @ref TuiTexture with a pixel array.
  *
- * @param texture The @ref TuiTexture.
- * @param pixel_width The width of the pixel array in pixels.
- * @param pixel_height The height of the pixel array in pixels.
- * @param channel_count The amount of channels per pixel in the pixel array.
- * @param pixels A pointer to the pixel array.
+ * @param texture The texture to fill.
+ * @param pixel_width The width of the pixel array.
+ * @param pixel_height The height of the pixel array.
+ * @param channel_count The amount of channels in the pixel array.
+ * @param pixels The pixel array.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_TEXTURE, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_CHANNEL_COUNT. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or pixels array may cause undefined behaviour or a fatal crash without an error.
  *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the instance of texture is damaged.
- * Throws @ref TUI_ERROR_NULL_PIXELS if pixels is NULL.
- * Throws @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS if pixel_with or pixel_height is less than or equal to 0.
- * Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT if channel_count is not 3 or 4.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiTextureSetPixels(TuiTexture texture, int pixel_width, int pixel_height, int channel_count, const uint8_t* pixels);
-/*!
- * @brief Render a @ref TuiTexture to the main graphics context framebuffer if its @ref TuiInstance.
- *
- * @param texture The @ref TuiTexture.
- *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of texture is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiTextureRender(TuiTexture texture);
-/*!
- * @brief Render a @ref TuiTexture to the main graphics context framebuffer of its @ref TuiInstance in a transformed position.
- *
- * @param texture The @ref TuiTexture.
- * @param left_x The framebuffer pixel x coordinate of the @ref TuiPanel left side.
- * @param right_x The framebuffer pixel x coordinate of the @ref TuiPanel right side.
- * @param top_y The framebuffer pixel y coordinate of the @ref TuiPanel top side.
- * @param bottom_y The framebuffer pixel y coordinat of the @ref TuiPanel bottom side.
- *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of texture is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiTextureRenderTransformed(TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
-/*!
- * @brief Render the framebuffer texture of a @ref TuiPanel to the framebuffer of a @ref TuiPanel.
- *
- * @param panel The @ref TuiTexture.
- * @param panel The @ref TuiPanel.
- *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of texture is damaged.
- * Throws @ref TUI_ERROR_NULL_TARGET_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_UNMATCHING_PANEL_INSTANCE if the @ref TuiInstacne of panel does not match the @ref TuiInstance of texture.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiTextureRenderToPanel(TuiTexture texture, TuiPanel panel);
-/*!
- * @brief Render the framebuffer texture of a @ref TuiPanel to the framebuffer of a @ref TuiPanel.
- *
- * @param panel The @ref TuiTexture.
- * @param panel The @ref TuiPanel.
- * @param left_x The framebuffer pixel x coordinate of the @ref TuiPanel left side.
- * @param right_x The framebuffer pixel x coordinate of the @ref TuiPanel right side.
- * @param top_y The framebuffer pixel y coordinate of the @ref TuiPanel top side.
- * @param bottom_y The framebuffer pixel y coordinat of the @ref TuiPanel bottom side.
- *
- * @errors Throws @ref TUI_ERROR_NULL_TEXTURE if texture is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of texture is damaged.
- * Throws @ref TUI_ERROR_NULL_TARGET_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_UNMATCHING_PANEL_INSTANCE if the @ref TuiInstacne of panel does not match the @ref TuiInstance of texture.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiTextureRenderToPanelTransformed(TuiTexture texture, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
 /*! @} */
+
+
 #ifdef __cplusplus //extern C guard
 }
 #endif

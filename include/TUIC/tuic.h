@@ -20,14 +20,32 @@
 /*! \file tuic.h
  * The global include for the TUIC library. This header file includes all other headers meant to be used outside of backend implementation.
  */
-#include <TUIC/types.h>
-#include <TUIC/heap.h>
-#include <TUIC/enums.h>
-#include <TUIC/debug.h>
+
+#include <TUIC/atlas.h>
+#include <TUIC/atlas_type.h>
 #include <TUIC/batch.h>
-#include <TUIC/instance.h>
-#include <TUIC/palette.h>
-#include <TUIC/glyph_atlas.h>
-#include <TUIC/panel.h>
+#include <TUIC/blend_mode.h>
+#include <TUIC/boolean.h>
+#include <TUIC/button_state.h>
+#include <TUIC/cursor.h>
+#include <TUIC/cursor_shape.h>
+#include <TUIC/debug.h>
+#include <TUIC/desktop_callback.h>
+#include <TUIC/detail_flag.h>
+#include <TUIC/detail_mode.h>
+#include <TUIC/error_code.h>
+#include <TUIC/events.h>
+#include <TUIC/filter_mode.h>
+#include <TUIC/heap.h>
 #include <TUIC/image.h>
+#include <TUIC/keyboard_key.h>
+#include <TUIC/keyboard_mod.h>
+#include <TUIC/monitor.h>
+#include <TUIC/mouse_button.h>
+#include <TUIC/palette.h>
+#include <TUIC/panel.h>
+#include <TUIC/system.h>
 #include <TUIC/texture.h>
+#include <TUIC/time.h>
+#include <TUIC/types.h>
+#include <TUIC/window.h>

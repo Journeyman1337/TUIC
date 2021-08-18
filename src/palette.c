@@ -18,7 +18,8 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
+#include "opengl33.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -283,96 +284,116 @@ const uint8_t kTuiXtermPalette[768] = {
 	238,238,238
 };
 
-TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_count, uint8_t* color_data)
+static int sPaletteCount = 0;
+
+TuiPalette tuiPaletteCreateColors(int channel_count, int color_count, const uint8_t* color_data)
 {
-	if (instance == NULL)
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return NULL;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
 	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 	if (channel_count != 3 && channel_count != 4)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (color_data == NULL)
+	if (color_data == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_COLORS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
 	palette->ChannelCount = channel_count;
 	palette->ColorCount = (size_t)color_count;
-	palette->Instance = instance;
-	palette->ApiData = NULL;
-	palette->Instance->PaletteCreate(palette, color_data);
+	palette->ApiData = TUI_NULL;
+	TuiErrorCode error_code = tuiPaletteCreate_Opengl33(palette, color_data);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiPaletteDestroy_Opengl33(palette);
+		tuiFree(palette);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
+	sPaletteCount++;
 	return palette;
 }
 
-TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int color_count)
+TuiPalette tuiPaletteCreateXterm(int color_count)
 {
-	if (instance == NULL)
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_INSTANCE, __func__);
-		return NULL;
-	}
-	if (instance->IsDamaged == TUI_TRUE)
-	{
-		tuiDebugError(TUI_ERROR_DAMAGED_INSTANCE, __func__);
-		return NULL;
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return TUI_NULL;
 	}
 	if (color_count <= 0 || color_count > 256)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	TuiPalette palette = tuiAllocate(sizeof(TuiPalette_s));
 	palette->ChannelCount = 3;
 	palette->ColorCount = (size_t)color_count;
-	palette->Instance = instance;
-	palette->ApiData = NULL;
-	palette->Instance->PaletteCreate(palette, &kTuiXtermPalette[0]);
+	palette->ApiData = TUI_NULL;
+	TuiErrorCode error_code = tuiPaletteCreate_Opengl33(palette, &kTuiXtermPalette[0]);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiPaletteDestroy_Opengl33(palette);
+		tuiFree(palette);
+		tuiDebugError(error_code, __func__);
+		return TUI_NULL;
+	}
+	sPaletteCount++;
 	return palette;
 }
 
 void tuiPaletteDestroy(TuiPalette palette)
 {
-	if (palette == NULL)
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return;
+	}
+	if (palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
 		return;
 	}
 
-	palette->Instance->PaletteDestroy(palette);
+	TuiErrorCode error_code = tuiPaletteDestroy_Opengl33(palette);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	tuiFree(palette);
+	sPaletteCount--;
 }
 
-TuiInstance tuiPaletteGetInstance(TuiPalette palette)
+int tuiGetPaletteCount()
 {
-	if (palette == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
-		return NULL;
-	}
-
-	return palette->Instance;
+	return sPaletteCount;
 }
 
 int tuiPaletteGetColorCount(TuiPalette palette)
 {
-	if (palette == NULL)
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return 0;
+	}
+	if (palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
 		return 0;
@@ -383,7 +404,13 @@ int tuiPaletteGetColorCount(TuiPalette palette)
 
 int tuiPaletteGetChannelCount(TuiPalette palette)
 {
-	if (palette == NULL)
+	TuiSystem system = tui_get_system();
+	if (system == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		return 0;
+	}
+	if (palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PALETTE, __func__);
 		return 0;

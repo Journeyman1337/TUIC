@@ -1,0 +1,1178 @@
+ /*
+	Copyright (c) 2021 Daniel Valcour
+	
+	Permission is hereby granted, free of charge, to any person obtaining a copy of
+	this software and associated documentation files (the "Software"), to deal in
+	the Software without restriction, including without limitation the rights to
+	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+	the Software, and to permit persons to whom the Software is furnished to do so,
+	subject to the following conditions:
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+	
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+#include <stdint.h>
+#include <TUIC/tuic.h>
+#include <glad/glad.h>
+#include "objects.h"
+#include "opengl33.h"
+#include "glfw_error_check.h"
+#include <string.h> //needed for memcpy
+
+#define GL_NO_ERROR 0
+
+#ifndef _NDEBUG
+static inline void _GLClearErrors()
+{
+	while (glGetError() != GL_NO_ERROR);
+}
+static inline TuiBoolean _GLErrorCheck()
+{
+	GLenum err = glGetError();
+	if (err != GL_NO_ERROR)
+	{
+		_GLClearErrors();
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+static inline TuiBoolean _GLCheckShaderCompile(int handle)
+{
+	GLint compiled;
+	glGetShaderiv(handle, GL_COMPILE_STATUS, &compiled);
+	if (compiled != GL_TRUE || _GLErrorCheck() == TUI_TRUE)
+	{
+		_GLClearErrors();
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+static inline TuiBoolean _GLCheckProgramLink(int handle)
+{
+	GLint program_linked;
+	glGetProgramiv(handle, GL_LINK_STATUS, &program_linked);
+	if (program_linked != GL_TRUE || _GLErrorCheck() == TUI_TRUE)
+	{
+		_GLClearErrors();
+		return TUI_TRUE;
+	}
+	return TUI_FALSE;
+}
+#define GL_BLOCK_START() _GLClearErrors()
+#define GL_CALL(glFunc) glFunc; if(_GLErrorCheck() == TUI_TRUE){return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;}
+#define GL_COMPILE_CALL(shaderHandleVar) glCompileShader(shaderHandleVar); if (_GLCheckShaderCompile(shaderHandleVar) == TUI_TRUE){return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;}
+#define GL_LINK_CALL(programHandleVar) glLinkProgram(programHandleVar); if(_GLCheckProgramLink(programHandleVar) == TUI_TRUE){return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;}
+#else
+#define GL_BLOCK_START()
+#define GL_CALL(glFunc) glFunc;
+#define GL_COMPILE_CALL(shaderHandleVar) glCompileShader(shaderHandleVar);
+#define GL_LINK_CALL(programHandleVar) glLinkProgram(programHandleVar);
+#endif
+
+const float kOpenglScreenMatrix[16] =
+{
+	2.0f,  0.0f,  0.0f,  -1.0f,
+	0.0f,  -2.0f,  0.0f, 1.0f,
+	0.0f,  0.0f,  1.0f,  0.0f,
+	0.0f,  0.0f,  0.0f,  1.0f
+};
+typedef struct TuiOpengl33SystemApiData
+{
+	uint32_t VaoHandle;
+	uint32_t FramebufferRenderProgramHandle;
+	uint32_t FramebufferRenderMatrixUniformLocation;
+	uint32_t FramebufferRenderTextureUniformLocation;
+	uint32_t BatchRenderProgramHandle;
+	uint32_t BatchRenderScreenTileDimensionsUniformLocation;
+	uint32_t BatchRenderSheetTileDimensionsUniformLocation;
+	uint32_t BatchRenderSheetTileUVDimensionsUniformLocation;
+	uint32_t BatchRenderScreenspaceTileDimensionsUniformLocation;
+	uint32_t BatchRenderGlyphModeUniformLocation;
+	uint32_t BatchRenderColorModeUniformLocation;
+	uint32_t BatchRenderLayoutModeUniformLocation;
+	uint32_t BatchRenderAtlasTypeUniformLocation;
+	uint32_t BatchRenderPaletteChannelCountUniformLocation;
+	uint32_t BatchRenderIsLargeSparseWideUniformLocation;
+	uint32_t BatchRenderIsLargeSparseTallUniformLocation;
+	uint32_t BatchRenderTileByteSizeUniformLocation;
+	uint32_t BatchRenderDataUniformLocation;
+	uint32_t BatchRenderFontmapUniformLocation;
+	uint32_t BatchRenderPaletteUniformLocation;
+	uint32_t BatchRenderMatrixUniformLocation;
+	uint32_t BatchRenderAtlasUniformLocation;
+	uint32_t BatchRenderBlendModeUniformLocation;
+	uint32_t DataBufferHandle;
+	uint32_t DataTextureHandle;
+} TuiOpengl33SystemApiData;
+typedef struct TuiOpengl33WindowApiData
+{
+	uint32_t FramebufferHandle;
+	uint32_t FramebufferTextureHandle;
+	uint32_t RenderbufferHandle;
+	uint32_t VaoHandle; //present on window graphics context
+} TuiOpengl33WindowApiData;
+typedef struct TuiOpengl33AtlasApiData
+{
+	uint32_t TextureHandle;
+	uint32_t FontmapBufferHandle;
+	uint32_t FontmapTextureHandle;
+} TuiOpengl33AtlasApiData;
+typedef struct TuiOpengl33TextureApiData
+{
+	uint32_t TextureHandle;
+} TuiOpengl33TextureApiData;
+typedef struct TuiOpengl33PaletteApiData
+{
+	uint32_t PaletteTextureHandle;
+	uint32_t PaletteBufferHandle;
+} TuiOpengl33PaletteApiData;
+typedef struct TuiOpengl33PanelApiData
+{
+	uint32_t FramebufferHandle;
+	uint32_t FramebufferTextureHandle;
+	uint32_t RenderbufferHandle;
+} TuiOpengl33PanelApiData;
+@OPENGL33_GLSL_SHADERS@
+
+static inline TuiErrorCode _CreateFramebuffer(uint32_t* framebuffer_handle, uint32_t* texture_handle, uint32_t* renderbuffer_handle, size_t width, size_t height)
+{
+	GL_BLOCK_START();
+	GL_CALL(glGenFramebuffers(1, framebuffer_handle));
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, *framebuffer_handle));
+	GL_CALL(glGenTextures(1, texture_handle));
+	GL_CALL(glBindTexture(GL_TEXTURE_2D, *texture_handle));
+	GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, TUI_NULL));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+	GL_CALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, *texture_handle, 0));
+	GL_CALL(glGenRenderbuffers(1, renderbuffer_handle));
+	GL_CALL(glBindRenderbuffer(GL_RENDERBUFFER, *renderbuffer_handle));
+	GL_CALL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH32F_STENCIL8, width, height));
+	GL_CALL(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, *renderbuffer_handle));
+	GL_CALL(uint32_t status = glCheckFramebufferStatus(GL_FRAMEBUFFER));
+	if (status != GL_FRAMEBUFFER_COMPLETE)
+	{
+		return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
+	}
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	return TUI_ERROR_NONE;
+}
+//Create a shader program using the given vertex and fragment shader sources, and return its handle.
+static inline TuiErrorCode _CreateProgram(const char** vertex_source, const char** fragment_source, uint32_t* handle)
+{
+	int gl_vertex_shader, gl_fragment_shader;
+	GL_BLOCK_START();
+	GL_CALL(gl_vertex_shader = glCreateShader(GL_VERTEX_SHADER));
+	GL_CALL(glShaderSource(gl_vertex_shader, 1, vertex_source, TUI_NULL));
+	GL_COMPILE_CALL(gl_vertex_shader);
+	GL_CALL(gl_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER));
+	GL_CALL(glShaderSource(gl_fragment_shader, 1, fragment_source, TUI_NULL));
+	GL_COMPILE_CALL(gl_fragment_shader);
+	GL_CALL(*handle = glCreateProgram());
+	GL_CALL(glAttachShader(*handle, gl_vertex_shader));
+	GL_CALL(glAttachShader(*handle, gl_fragment_shader));
+	GL_LINK_CALL(*handle);
+	GL_CALL(glDetachShader(*handle, gl_vertex_shader));
+	GL_CALL(glDetachShader(*handle, gl_fragment_shader));
+	GL_CALL(glDeleteShader(gl_vertex_shader));
+	GL_CALL(glDeleteShader(gl_fragment_shader));
+	return TUI_ERROR_NONE;
+}
+static inline uint32_t _GetGlTextureFormatFromChannels(size_t channels)
+{
+	switch (channels)
+	{
+	case 3:
+		return GL_RGB;
+	case 4:
+		return GL_RGBA;
+	default:
+		return 0;
+	}
+}
+static inline uint32_t _GetGlInternalFormatFromChannels(size_t channels)
+{
+	switch (channels)
+	{
+	case 3:
+		return GL_RGB8;
+	case 4:
+		return GL_RGBA8;
+	default:
+		return 0;
+	}
+}
+static inline uint32_t _GetGlFilterModeFromEnum(TuiFilterMode filter_mode)
+{
+	switch (filter_mode)
+	{
+	case TUI_FILTER_POINT:
+		return GL_NEAREST;
+	case TUI_FILTER_BILINEAR:
+		return GL_LINEAR;
+	default:
+		return 0;
+	}
+}
+static inline TuiErrorCode _CreateTexture(size_t width, size_t height, size_t channels, const uint8_t* pixels, TuiFilterMode filter_mode, uint32_t* gl_texture_handle)
+{
+	uint32_t gl_texture_format = _GetGlTextureFormatFromChannels(channels);
+	uint32_t gl_internal_format = _GetGlInternalFormatFromChannels(channels);
+	uint32_t gl_filter_mode = _GetGlFilterModeFromEnum(filter_mode);
+	if (gl_texture_format == 0 || gl_internal_format == 0 || gl_filter_mode == 0)
+	{
+		return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
+	}
+	GL_BLOCK_START(); 
+	GL_CALL(glGenTextures(1, gl_texture_handle));
+	GL_CALL(glBindTexture(GL_TEXTURE_2D, *gl_texture_handle));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, gl_filter_mode));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, gl_filter_mode));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0));
+	GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, gl_internal_format, width, height, 0, gl_texture_format, GL_UNSIGNED_BYTE, pixels));
+	return TUI_ERROR_NONE;
+}
+//Transform an opengl screen matrix so that a rectangle using it is flat facing the screen and its 2d edges match the screen space pixel coordinates given.
+static inline void _TransformMatrix(float* matrix, size_t screen_width, size_t screen_height, int left_x, int right_x, int top_y, int bottom_y)
+{
+	float width = right_x - left_x;
+	float height = bottom_y - top_y;
+	float width_scalar = (width / ((float)screen_width));
+	float height_scalar = (height / ((float)screen_height));
+	float x_translate = (left_x / (float)screen_width) * 2.0f;
+	float y_translate = (top_y / (float)screen_height) * 2.0f;
+	matrix[0] *= width_scalar;
+	matrix[5] *= height_scalar;
+	matrix[3] += x_translate;
+	matrix[7] -= y_translate;
+}
+const int kVertsPerTile = 6;
+static inline int _GetGlyphModeUniformValue(TuiDetailFlag glyph_mode)
+{
+	switch (glyph_mode)
+	{
+	case TUI_DETAIL_FLAG_GLYPH_8:
+		return 0;
+	case TUI_DETAIL_FLAG_GLYPH_16:
+		return 1;
+	default:
+		return -1;
+	}
+}
+static inline int _GetColorModeUniformValue(TuiDetailFlag color_mode)
+{
+	switch (color_mode)
+	{
+	case TUI_DETAIL_FLAG_COLOR_0:
+		return 0;
+	case TUI_DETAIL_FLAG_COLOR_4:
+		return 1;
+	case TUI_DETAIL_FLAG_COLOR_8:
+		return 2;
+	case TUI_DETAIL_FLAG_COLOR_8NBG:
+		return 3;
+	case TUI_DETAIL_FLAG_COLOR_8NFG:
+		return 4;
+	case TUI_DETAIL_FLAG_COLOR_24:
+		return 5;
+	case TUI_DETAIL_FLAG_COLOR_24NBG:
+		return 6;
+	case TUI_DETAIL_FLAG_COLOR_24NFG:
+		return 7;
+	case TUI_DETAIL_FLAG_COLOR_32:
+		return 8;
+	case TUI_DETAIL_FLAG_COLOR_32NBG:
+		return 9;
+	case TUI_DETAIL_FLAG_COLOR_32NFG:
+		return 10;
+	default:
+		return -1;
+	}
+}
+static inline int _GetLayoutModeUniformValue(TuiDetailFlag layout_mode)
+{
+	switch (layout_mode)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+		return 0;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		return 1;
+	default:
+		return -1;
+	}
+}
+static inline int _GetAtlasTypeUniformValue(TuiDetailFlag atlas_type)
+{
+	switch (atlas_type)
+	{
+	case TUI_ATLAS_GRID:
+		return 0;
+	case TUI_ATLAS_COORDS:
+		return 1;
+	default:
+		return -1;
+	}
+}
+static inline int _GetBlendModeUniformValue(TuiBlendMode blend_mode)
+{
+	switch (blend_mode)
+	{
+	case TUI_BLEND_BG_RED:
+		return 0;
+	case TUI_BLEND_BG_GREEN:
+		return 1;
+	case TUI_BLEND_BG_BLUE:
+		return 2;
+	case TUI_BLEND_BG_ALPHA:
+		return 3;
+	case TUI_BLEND_FG_RED:
+		return 4;
+	case TUI_BLEND_FG_GREEN:
+		return 5;
+	case TUI_BLEND_FG_BLUE:
+		return 6;
+	case TUI_BLEND_FG_ALPHA:
+		return 7;
+	case TUI_BLEND_NORMAL:
+		return 8;
+	default:
+		return -1;
+	}
+}
+static inline TuiErrorCode _DrawBatchData(uint32_t framebuffer_handle, size_t framebuffer_width, size_t framebuffer_height, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, TuiBlendMode blend_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, const float* matrix)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
+	TuiOpengl33PaletteApiData* palette_data = TUI_NULL;
+	if (palette != TUI_NULL)
+	{
+		palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
+	}
+	size_t data_size = 0;
+	int is_sparse = tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE);
+	int glyph_mode = tuiDetailGetGlyphFlag(detail_mode);
+	int color_mode = tuiDetailGetColorFlag(detail_mode);
+	int layout_mode = tuiDetailGetLayoutFlag(detail_mode);
+	int glyph_mode_id = _GetGlyphModeUniformValue(glyph_mode);
+	int color_mode_id = _GetColorModeUniformValue(color_mode);
+	int layout_mode_id = _GetLayoutModeUniformValue(layout_mode);
+	int atlas_type_id = _GetAtlasTypeUniformValue(atlas->AtlasType);
+	int blend_mode_id = _GetBlendModeUniformValue(blend_mode);
+	if (glyph_mode_id == -1 || color_mode_id == -1 || layout_mode_id == -1 || atlas_type_id == -1 || blend_mode_id == -1)
+	{
+		return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
+	}
+	size_t bytes_per_tile = tuiDetailGetTileByteSize(glyph_mode, color_mode);
+	int large_sparse_wide = (tiles_wide > 256) ? 1 : 0;
+	int large_sparse_tall = (tiles_tall > 256) ? 1 : 0;
+	if (is_sparse == TUI_TRUE)
+	{
+		bytes_per_tile += (size_t)large_sparse_wide + (size_t)large_sparse_tall + 2;
+		data_size = sparse_index * bytes_per_tile;
+	}
+	else
+	{
+		data_size = tiles_wide * tiles_tall * bytes_per_tile;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_handle));
+	GL_CALL(glBindVertexArray(system_data->VaoHandle));
+	GL_CALL(glUseProgram(system_data->BatchRenderProgramHandle));
+	GL_CALL(glUniform2i(system_data->BatchRenderScreenTileDimensionsUniformLocation, tiles_wide, tiles_tall));
+	GL_CALL(glUniform2f(system_data->BatchRenderScreenspaceTileDimensionsUniformLocation, 1.0f / (float)tiles_wide, 1.0f / (float)tiles_tall));
+	GL_CALL(glUniform1i(system_data->BatchRenderGlyphModeUniformLocation, glyph_mode_id));
+	GL_CALL(glUniform1i(system_data->BatchRenderColorModeUniformLocation, color_mode_id));
+	GL_CALL(glUniform1i(system_data->BatchRenderLayoutModeUniformLocation, layout_mode_id));
+	GL_CALL(glUniform1i(system_data->BatchRenderAtlasTypeUniformLocation, atlas_type_id));
+	if (palette != TUI_NULL)
+	{
+		GL_CALL(glUniform1i(system_data->BatchRenderPaletteChannelCountUniformLocation, palette->ChannelCount));
+	}
+	GL_CALL(glUniform1i(system_data->BatchRenderBlendModeUniformLocation, blend_mode_id));
+	GL_CALL(glUniformMatrix4fv(system_data->BatchRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
+	if (system_data->DataBufferHandle == 0)
+	{
+		GL_CALL(glGenBuffers(1, &system_data->DataBufferHandle));
+	}
+	GL_CALL(glBindBuffer(GL_TEXTURE_BUFFER, system_data->DataBufferHandle));
+	GL_CALL(glBufferData(GL_TEXTURE_BUFFER, data_size, batch_data, GL_STREAM_DRAW));
+	if (system_data->DataTextureHandle == 0)
+	{
+		GL_CALL(glGenTextures(1, &system_data->DataTextureHandle));
+		GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, system_data->DataTextureHandle));
+		GL_CALL(glTexBuffer(GL_TEXTURE_BUFFER, GL_R8UI, system_data->DataBufferHandle));
+	}
+	GL_CALL(glBindBuffer(GL_TEXTURE_BUFFER, 0));
+	GL_CALL(glActiveTexture(GL_TEXTURE0));
+	GL_CALL(glBindTexture(GL_TEXTURE_2D, atlas_data->TextureHandle));
+	if (atlas->AtlasType == TUI_ATLAS_GRID)
+	{
+		GL_CALL(glUniform2f(system_data->BatchRenderSheetTileUVDimensionsUniformLocation, 1.0f/(float)atlas->GridGlyphsWide, 1.0f/(float)atlas->GridGlyphsTall));
+		GL_CALL(glUniform2i(system_data->BatchRenderSheetTileDimensionsUniformLocation, atlas->GridGlyphsWide, atlas->GridGlyphsTall));
+	}
+	else //if (atlas->AtlasType == TUI_ATLAS_COORDS)
+	{
+		GL_CALL(glActiveTexture(GL_TEXTURE1));
+		GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, atlas_data->FontmapTextureHandle));
+	}
+	GL_CALL(glActiveTexture(GL_TEXTURE2));
+	GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, system_data->DataTextureHandle));
+	if (palette != TUI_NULL)
+	{
+		GL_CALL(glActiveTexture(GL_TEXTURE3));
+		GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, palette_data->PaletteTextureHandle));
+	}
+	GL_CALL(glViewport(0, 0, framebuffer_width, framebuffer_height));
+	if (is_sparse == TUI_FALSE)
+	{
+		GL_CALL(glUniform1i(system_data->BatchRenderTileByteSizeUniformLocation, bytes_per_tile));
+		GL_CALL(glEnable(GL_BLEND));
+		GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		GL_CALL(glDrawArrays(GL_TRIANGLES, 0, tiles_wide * tiles_tall * kVertsPerTile));
+	}
+	else
+	{
+		GL_CALL(glUniform1i(system_data->BatchRenderTileByteSizeUniformLocation, bytes_per_tile));
+		GL_CALL(glUniform1i(system_data->BatchRenderIsLargeSparseWideUniformLocation, large_sparse_wide));
+		GL_CALL(glUniform1i(system_data->BatchRenderIsLargeSparseTallUniformLocation, large_sparse_tall));
+		GL_CALL(glEnable(GL_BLEND));
+		GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		GL_CALL(glDrawArrays(GL_TRIANGLES, 0, sparse_index * kVertsPerTile));
+	}
+	return TUI_ERROR_NONE;
+}
+static inline TuiErrorCode _RenderTextureToFramebuffer(uint32_t texture_handle, uint32_t framebuffer_handle, size_t viewport_width, size_t viewport_height, int left_x, int right_x, int top_y, int bottom_y, uint32_t override_vao)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	float matrix[16];
+	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
+	_TransformMatrix(matrix, viewport_width, viewport_height, left_x, right_x, top_y, bottom_y);
+	GL_BLOCK_START();
+	GL_CALL(glEnable(GL_BLEND));
+	GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_handle));
+	if (override_vao == 0)
+	{
+		GL_CALL(glBindVertexArray(system_data->VaoHandle));
+	}
+	else
+	{
+		GL_CALL(glBindVertexArray(override_vao));
+	}
+	GL_CALL(glUseProgram(system_data->FramebufferRenderProgramHandle));
+	GL_CALL(glActiveTexture(GL_TEXTURE0));
+	GL_CALL(glBindTexture(GL_TEXTURE_2D, texture_handle));
+	GL_CALL(glUniformMatrix4fv(system_data->FramebufferRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
+	GL_CALL(glViewport(0, 0, viewport_width, viewport_height));
+	GL_CALL(glDrawArrays(GL_TRIANGLES, 0, 6));
+	return TUI_ERROR_NONE;
+}
+static inline void _VerticalFlipPixels(uint8_t* pixels, size_t w, size_t h, size_t c)
+{
+   size_t row;
+   size_t bytes_per_row = (size_t)w * c;
+   uint8_t temp[2048];
+
+   for (row = 0; row < (h>>1); row++) {
+      uint8_t *row0 = pixels + row*bytes_per_row;
+      uint8_t *row1 = pixels + (h - row - 1)*bytes_per_row;
+      // swap row0 with row1
+      size_t bytes_left = bytes_per_row;
+      while (bytes_left) {
+         size_t bytes_copy = (bytes_left < sizeof(temp)) ? bytes_left : sizeof(temp);
+         memcpy(temp, row0, bytes_copy);
+         memcpy(row0, row1, bytes_copy);
+         memcpy(row1, temp, bytes_copy);
+         row0 += bytes_copy;
+         row1 += bytes_copy;
+         bytes_left -= bytes_copy;
+      }
+   }
+}
+TuiErrorCode tuiSystemCreate_Opengl33()
+{
+	TuiSystem system = tui_get_system();
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
+	} 
+	system->ApiData = (TuiOpengl33SystemApiData*)tuiAllocate(sizeof(TuiOpengl33SystemApiData));
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	system_data->VaoHandle = 0;
+	system_data->FramebufferRenderProgramHandle = 0;
+	system_data->FramebufferRenderMatrixUniformLocation = 0;
+	system_data->FramebufferRenderTextureUniformLocation = 0;
+	system_data->BatchRenderProgramHandle = 0;
+	system_data->BatchRenderScreenTileDimensionsUniformLocation = 0;
+	system_data->BatchRenderSheetTileDimensionsUniformLocation = 0;
+	system_data->BatchRenderSheetTileUVDimensionsUniformLocation = 0;
+	system_data->BatchRenderScreenspaceTileDimensionsUniformLocation = 0;
+	system_data->BatchRenderGlyphModeUniformLocation = 0;
+	system_data->BatchRenderColorModeUniformLocation = 0;
+	system_data->BatchRenderLayoutModeUniformLocation = 0;
+	system_data->BatchRenderAtlasTypeUniformLocation = 0;
+	system_data->BatchRenderPaletteChannelCountUniformLocation = 0;
+	system_data->BatchRenderIsLargeSparseWideUniformLocation = 0;
+	system_data->BatchRenderIsLargeSparseTallUniformLocation = 0;
+	system_data->BatchRenderTileByteSizeUniformLocation = 0;
+	system_data->BatchRenderDataUniformLocation = 0;
+	system_data->BatchRenderFontmapUniformLocation = 0;
+	system_data->BatchRenderPaletteUniformLocation = 0;
+	system_data->BatchRenderMatrixUniformLocation = 0;
+	system_data->BatchRenderAtlasUniformLocation = 0;
+	system_data->BatchRenderBlendModeUniformLocation = 0;
+	system_data->DataBufferHandle = 0;
+	system_data->DataTextureHandle = 0;
+	GL_BLOCK_START();
+	const char* vertex_shader = kShader_opengl33_renderer_vertex;
+	const char* fragment_shader = kShader_opengl33_renderer_fragment;
+	TuiErrorCode error_code = _CreateProgram(&vertex_shader, &fragment_shader, &system_data->FramebufferRenderProgramHandle);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		return error_code;
+	}
+	GL_CALL(glGenVertexArrays(1, &system_data->VaoHandle));
+	GL_CALL(glBindVertexArray(system_data->VaoHandle));
+	GL_CALL(glUseProgram(system_data->FramebufferRenderProgramHandle));
+	GL_CALL(system_data->FramebufferRenderTextureUniformLocation = glGetUniformLocation(system_data->FramebufferRenderProgramHandle, "Texture"));
+	GL_CALL(glUniform1i(system_data->FramebufferRenderTextureUniformLocation, 0));
+	GL_CALL(system_data->FramebufferRenderMatrixUniformLocation = glGetUniformLocation(system_data->FramebufferRenderProgramHandle, "Matrix"));
+	vertex_shader = kShader_opengl33_batch_vertex;
+	fragment_shader = kShader_opengl33_batch_fragment;
+	error_code = _CreateProgram(&vertex_shader, &fragment_shader, &system_data->BatchRenderProgramHandle);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		return error_code;
+	}
+	GL_CALL(system_data->BatchRenderScreenTileDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ScreenTileDimensions"));
+	GL_CALL(system_data->BatchRenderSheetTileDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "SheetTileDimensions"));
+	GL_CALL(system_data->BatchRenderSheetTileUVDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "SheetTileUVDimensions"));
+	GL_CALL(system_data->BatchRenderScreenspaceTileDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ScreenspaceTileDimensions"));
+	GL_CALL(system_data->BatchRenderGlyphModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "GlyphMode"));
+	GL_CALL(system_data->BatchRenderColorModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ColorMode"));
+	GL_CALL(system_data->BatchRenderLayoutModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "LayoutMode"));
+	GL_CALL(system_data->BatchRenderAtlasTypeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "AtlasType"));
+	GL_CALL(system_data->BatchRenderPaletteChannelCountUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "PaletteChannelCount"));
+	GL_CALL(system_data->BatchRenderIsLargeSparseWideUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "IsLargeSparseWide"));
+	GL_CALL(system_data->BatchRenderIsLargeSparseTallUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "IsLargeSparseTall"));
+	GL_CALL(system_data->BatchRenderTileByteSizeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "TileByteSize"));
+	GL_CALL(system_data->BatchRenderDataUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Data"));
+	GL_CALL(system_data->BatchRenderFontmapUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Fontmap"));
+	GL_CALL(system_data->BatchRenderPaletteUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Palette"));
+	GL_CALL(system_data->BatchRenderMatrixUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Matrix"));
+	GL_CALL(system_data->BatchRenderAtlasUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Atlas"));
+	GL_CALL(system_data->BatchRenderBlendModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "BlendMode"));
+	GL_CALL(glUseProgram(system_data->BatchRenderProgramHandle));
+	GL_CALL(glUniform1i(system_data->BatchRenderAtlasUniformLocation, 0));
+	GL_CALL(glUniform1i(system_data->BatchRenderFontmapUniformLocation, 1));
+	GL_CALL(glUniform1i(system_data->BatchRenderDataUniformLocation, 2));
+	GL_CALL(glUniform1i(system_data->BatchRenderPaletteUniformLocation, 3));
+	GL_CALL(glUseProgram(0));
+	GL_CALL(glBindVertexArray(0));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiSystemDestroy_Opengl33()
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glDeleteProgram(system_data->FramebufferRenderProgramHandle));
+	GL_CALL(glDeleteProgram(system_data->BatchRenderProgramHandle));
+	GL_CALL(glDeleteVertexArrays(1, &system_data->VaoHandle));
+	if (system_data->DataBufferHandle != 0)
+	{
+		GL_CALL(glDeleteBuffers(1, &system_data->DataBufferHandle));
+	}
+	if (system_data->DataTextureHandle != 0)
+	{
+		GL_CALL(glDeleteTextures(1, &system_data->DataTextureHandle));
+	}
+	tuiFree(system_data);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiWindowCreate_Opengl33(TuiWindow window)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	window->ApiData = (TuiOpengl33WindowApiData*)tuiAllocate(sizeof(TuiOpengl33WindowApiData));
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	window_data->VaoHandle = 0;
+	window_data->FramebufferHandle = 0;
+	window_data->FramebufferTextureHandle = 0;
+	window_data->RenderbufferHandle = 0;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	TuiErrorCode error_code = _CreateFramebuffer(&window_data->FramebufferHandle, &window_data->FramebufferTextureHandle, &window_data->RenderbufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		return error_code;
+	}
+	glfwMakeContextCurrent(window->GlfwWindow);
+	glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_CALL(glGenVertexArrays(1, &window_data->VaoHandle));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiWindowDestroy_Opengl33(TuiWindow window)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glDeleteFramebuffers(1, &window_data->FramebufferHandle));
+	GL_CALL(glDeleteRenderbuffers(1, &window_data->RenderbufferHandle));
+	GL_CALL(glDeleteTextures(1, &window_data->FramebufferTextureHandle));
+	glfwMakeContextCurrent(window->GlfwWindow);
+	glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_CALL(glDeleteVertexArrays(1, &window_data->VaoHandle));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiWindowSetSize_Opengl33(TuiWindow window, size_t new_width, size_t new_height)
+{
+	if (new_width == 0|| new_height == 0)
+	{
+		return TUI_ERROR_NONE;
+	}
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	if (window->FramebufferPixelWidth != new_width || window->FramebufferPixelHeight != new_height)
+	{
+		window->FramebufferPixelWidth = new_width;
+		window->FramebufferPixelHeight = new_height;
+		glfwMakeContextCurrent(system->BaseWindow);
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			return glfw_error;
+		}
+		GL_BLOCK_START();		
+		if (window_data->FramebufferHandle != 0)
+		{
+			GL_CALL(glDeleteFramebuffers(1, &window_data->FramebufferHandle));
+		}
+		if (window_data->RenderbufferHandle != 0)
+		{
+			GL_CALL(glDeleteRenderbuffers(1, &window_data->RenderbufferHandle));
+		}
+		if (window_data->FramebufferTextureHandle != 0)
+		{
+			GL_CALL(glDeleteTextures(1, &window_data->FramebufferTextureHandle));
+		}
+		return _CreateFramebuffer(&window_data->FramebufferHandle, &window_data->FramebufferTextureHandle, &window_data->RenderbufferHandle, new_width, new_height);
+	}
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiWindowGetPixels_Opengl33(TuiWindow window, size_t* pixel_width, size_t* pixel_height, uint8_t** pixel_ptr)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	if (*pixel_ptr == TUI_NULL)
+	{
+		*pixel_ptr = (uint8_t*)tuiAllocate(window->FramebufferPixelWidth * window->FramebufferPixelHeight * 4);
+	}
+	else if (*pixel_width != window->FramebufferPixelWidth || *pixel_height != window->FramebufferPixelHeight)
+	{
+		*pixel_ptr = (uint8_t*)tuiReallocate(*pixel_ptr, window->FramebufferPixelWidth * window->FramebufferPixelHeight * 4);
+	}
+	*pixel_width = window->FramebufferPixelWidth;
+	*pixel_height = window->FramebufferPixelHeight;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, window_data->FramebufferHandle));
+	GL_CALL(glReadPixels(0, 0, window->FramebufferPixelWidth, window->FramebufferPixelHeight, GL_RGBA, GL_UNSIGNED_BYTE, *pixel_ptr));
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	_VerticalFlipPixels(*pixel_ptr, (size_t)*pixel_width, (size_t)*pixel_height, 4);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiWindowClearColor_Opengl33(TuiWindow window, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, window_data->FramebufferHandle));
+	GL_CALL(glViewport(0, 0, window->FramebufferPixelWidth, window->FramebufferPixelHeight));
+	GL_CALL(glClearColor((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f));
+	GL_CALL(glClear(GL_COLOR_BUFFER_BIT));
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiWindowDrawBatchData_Opengl33(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	float matrix[16];
+	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
+	_TransformMatrix(matrix, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y);
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _DrawBatchData(window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, matrix);
+}
+TuiErrorCode tuiWindowDrawPanel_Opengl33(TuiWindow window, TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(panel_data->FramebufferTextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
+}
+TuiErrorCode tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(texture_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
+}
+TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
+}
+TuiErrorCode tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	TuiOpengl33WindowApiData* subject_window_data = (TuiOpengl33WindowApiData*)subject_window->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(subject_window_data->FramebufferTextureHandle, window_data->FramebufferHandle, window->FramebufferPixelWidth, window->FramebufferPixelHeight, left_x, right_x, top_y, bottom_y, 0);
+}
+TuiErrorCode tuiWindowRender_Opengl33(TuiWindow window)
+{
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	glfwMakeContextCurrent(window->GlfwWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, 0, window->ViewportPixelWidth, window->ViewportPixelHeight, 0, window->ViewportPixelWidth, 0, window->ViewportPixelHeight, window_data->VaoHandle);
+}
+TuiErrorCode tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs)
+{
+	TuiSystem system = tui_get_system();
+	atlas->ApiData = (TuiOpengl33AtlasApiData*)tuiAllocate(sizeof(TuiOpengl33AtlasApiData));
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
+	atlas_data->TextureHandle = 0;
+	atlas_data->FontmapBufferHandle = 0;
+	atlas_data->FontmapTextureHandle = 0;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GLuint gl_texture_format = GL_RGBA;
+	GLuint gl_texture_internal_format = GL_RGBA8;
+	switch (atlas->ChannelCount)
+	{
+	case 3:
+		gl_texture_format = GL_RGB;
+		gl_texture_internal_format = GL_RGB8;
+		break;
+	case 4:
+		gl_texture_format = GL_RGBA;
+		gl_texture_internal_format = GL_RGBA8;
+		break;
+	default:
+		return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
+	}
+	TuiErrorCode error_code = _CreateTexture(atlas->PixelWidth, atlas->PixelHeight, atlas->ChannelCount, pixel_data, TUI_FILTER_POINT, &atlas_data->TextureHandle);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		return error_code;
+	}
+	if (atlas->AtlasType == TUI_ATLAS_COORDS)
+	{
+		GL_BLOCK_START();
+		GL_CALL(glGenBuffers(1, &atlas_data->FontmapBufferHandle));
+		GL_CALL(glBindBuffer(GL_TEXTURE_BUFFER, atlas_data->FontmapBufferHandle));
+		GL_CALL(glBufferData(GL_TEXTURE_BUFFER, atlas->GlyphCount * 4 * sizeof(float), raw_glyph_uvs, GL_STATIC_DRAW));
+		GL_CALL(glGenTextures(1, &atlas_data->FontmapTextureHandle));
+		GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, atlas_data->FontmapTextureHandle));
+		GL_CALL(glTexBuffer(GL_TEXTURE_BUFFER, GL_RGBA32F, atlas_data->FontmapBufferHandle));
+	}
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiAtlasDestroy_Opengl33(TuiAtlas atlas)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	if (atlas->AtlasType == TUI_ATLAS_COORDS)
+	{
+		GL_CALL(glDeleteBuffers(1, &atlas_data->FontmapBufferHandle));
+		GL_CALL(glDeleteTextures(1, &atlas_data->FontmapTextureHandle));
+	}
+	GL_CALL(glDeleteTextures(1, &atlas_data->TextureHandle));
+	tuiFree(atlas_data);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels)
+{
+	TuiSystem system = tui_get_system();
+	texture->ApiData = (TuiOpengl33TextureApiData*)tuiAllocate(sizeof(TuiOpengl33TextureApiData));
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	texture_data->TextureHandle = 0;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	TuiErrorCode error_code = _CreateTexture(texture->PixelWidth, texture->PixelHeight, texture->ChannelCount, pixels, texture->FilterMode, &texture_data->TextureHandle);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		return error_code;
+	}
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiTextureDestroy_Opengl33(TuiTexture texture)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glDeleteTextures(1, &texture_data->TextureHandle));
+	tuiFree(texture_data);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiTextureSetPixels_Opengl33(TuiTexture texture, size_t pixel_width, size_t pixel_height, size_t channel_count, const uint8_t* pixels)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	texture->PixelWidth = pixel_width;
+	texture->PixelHeight = pixel_height;
+	texture->ChannelCount = channel_count;
+	GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, _GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, _GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels));
+	GL_CALL(glTexImage2D(GL_TEXTURE_2D, 0, _GetGlInternalFormatFromChannels(texture->ChannelCount), texture->PixelWidth, texture->PixelHeight, 0, _GetGlTextureFormatFromChannels(texture->ChannelCount), GL_UNSIGNED_BYTE, pixels));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPaletteCreate_Opengl33(TuiPalette palette, const uint8_t* color_data)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	palette->ApiData = (TuiOpengl33PaletteApiData*)tuiAllocate(sizeof(TuiOpengl33PaletteApiData));
+	TuiOpengl33PaletteApiData* palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
+	palette_data->PaletteTextureHandle = 0;
+	palette_data->PaletteBufferHandle = 0;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glGenBuffers(1, &palette_data->PaletteBufferHandle));
+	GL_CALL(glBindBuffer(GL_TEXTURE_BUFFER, palette_data->PaletteBufferHandle));
+	GL_CALL(glBufferData(GL_TEXTURE_BUFFER, palette->ColorCount * (GLsizei)palette->ChannelCount, color_data, GL_STATIC_DRAW));
+	GL_CALL(glGenTextures(1, &palette_data->PaletteTextureHandle));
+	GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, palette_data->PaletteTextureHandle));
+	GL_CALL(glTexBuffer(GL_TEXTURE_BUFFER, GL_R8UI, palette_data->PaletteBufferHandle));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPaletteDestroy_Opengl33(TuiPalette palette)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PaletteApiData* palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glDeleteBuffers(1, &palette_data->PaletteBufferHandle));
+	GL_CALL(glDeleteTextures(1, &palette_data->PaletteTextureHandle));
+	tuiFree(palette_data);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPanelCreate_Opengl33(TuiPanel panel)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	panel->ApiData = (TuiOpengl33PanelApiData*)tuiAllocate(sizeof(TuiOpengl33PanelApiData));
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	panel_data->FramebufferHandle = 0;
+	panel_data->FramebufferTextureHandle = 0;
+	panel_data->RenderbufferHandle = 0;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _CreateFramebuffer(&panel_data->FramebufferHandle, &panel_data->FramebufferTextureHandle, &panel_data->RenderbufferHandle, panel->PixelWidth, panel->PixelHeight);
+}
+TuiErrorCode tuiPanelDestroy_Opengl33(TuiPanel panel)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glDeleteFramebuffers(1, &panel_data->FramebufferHandle));
+	GL_CALL(glDeleteRenderbuffers(1, &panel_data->RenderbufferHandle));
+	GL_CALL(glDeleteTextures(1, &panel_data->FramebufferTextureHandle));
+	tuiFree(panel_data);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPanelDrawBatchData_Opengl33(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, size_t tiles_wide, size_t tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	float matrix[16];
+	memcpy(matrix, kOpenglScreenMatrix, 16 * sizeof(float));
+	_TransformMatrix(matrix, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y);
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _DrawBatchData(panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, atlas, palette, detail_mode, atlas->BlendMode, tiles_wide, tiles_tall, sparse_index, batch_data, matrix);
+}
+TuiErrorCode tuiPanelGetPixels_Opengl33(TuiPanel panel, size_t* pixel_width, size_t* pixel_height, uint8_t** pixel_ptr)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	if (*pixel_ptr == TUI_NULL)
+	{
+		*pixel_ptr = (uint8_t*)tuiAllocate(panel->PixelWidth * panel->PixelHeight * 4);
+	}
+	else if (*pixel_width != panel->PixelWidth || *pixel_height != panel->PixelHeight)
+	{
+		*pixel_ptr = (uint8_t*)tuiReallocate(*pixel_ptr, panel->PixelWidth * panel->PixelHeight * 4);
+	}
+	*pixel_width = panel->PixelWidth;
+	*pixel_height = panel->PixelHeight;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, panel_data->FramebufferHandle));
+	GL_CALL(glReadPixels(0, 0, panel->PixelWidth, panel->PixelHeight, GL_RGBA, GL_UNSIGNED_BYTE, *pixel_ptr));
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	_VerticalFlipPixels(*pixel_ptr, (size_t)*pixel_width, (size_t)*pixel_height, 4);
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPanelClearColor_Opengl33(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	GL_BLOCK_START();
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, panel_data->FramebufferHandle));
+	GL_CALL(glClearColor((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f));
+	GL_CALL(glClear(GL_COLOR_BUFFER_BIT));
+	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPanelSetSize_Opengl33(TuiPanel panel, size_t new_width, size_t new_height)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	if (panel->PixelWidth != new_width || panel->PixelHeight != new_height)
+	{
+		panel->PixelWidth = new_width;
+		panel->PixelHeight = new_height;
+		glfwMakeContextCurrent(system->BaseWindow);
+		TuiErrorCode glfw_error = _GlfwErrorCheck();
+		if (glfw_error != TUI_ERROR_NONE)
+		{
+			return glfw_error;
+		}
+		GL_BLOCK_START();		
+		if (panel_data->FramebufferHandle != 0)
+		{
+			GL_CALL(glDeleteFramebuffers(1, &panel_data->FramebufferHandle));
+		}
+		if (panel_data->RenderbufferHandle != 0)
+		{
+			GL_CALL(glDeleteRenderbuffers(1, &panel_data->RenderbufferHandle));
+		}
+		if (panel_data->FramebufferTextureHandle != 0)
+		{
+			GL_CALL(glDeleteTextures(1, &panel_data->FramebufferTextureHandle));
+		}
+		return _CreateFramebuffer(&panel_data->FramebufferHandle, &panel_data->FramebufferTextureHandle, &panel_data->RenderbufferHandle, new_width, new_height);
+	}
+	return TUI_ERROR_NONE;
+}
+TuiErrorCode tuiPanelDrawPanel_Opengl33(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	TuiOpengl33PanelApiData* subject_panel_data = (TuiOpengl33PanelApiData*)subject_panel->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(subject_panel_data->FramebufferTextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+}
+TuiErrorCode tuiPanelDrawTexture_Opengl33(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	TuiOpengl33TextureApiData* texture_data = (TuiOpengl33TextureApiData*)texture->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(texture_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
+}
+TuiErrorCode tuiPanelDrawAtlas_Opengl33(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	TuiOpengl33AtlasApiData* atlas_data = (TuiOpengl33AtlasApiData*)atlas->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(atlas_data->TextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, bottom_y, top_y, 0); //vertically flip for opengl textures loaded from cpu
+}
+TuiErrorCode tuiPanelDrawWindow_Opengl33(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
+{
+	TuiSystem system = tui_get_system();
+	TuiOpengl33SystemApiData* system_data = (TuiOpengl33SystemApiData*)system->ApiData;
+	TuiOpengl33PanelApiData* panel_data = (TuiOpengl33PanelApiData*)panel->ApiData;
+	TuiOpengl33WindowApiData* window_data = (TuiOpengl33WindowApiData*)window->ApiData;
+	glfwMakeContextCurrent(system->BaseWindow);
+	TuiErrorCode glfw_error = _GlfwErrorCheck();
+	if (glfw_error != TUI_ERROR_NONE)
+	{
+		return glfw_error;
+	}
+	return _RenderTextureToFramebuffer(window_data->FramebufferTextureHandle, panel_data->FramebufferHandle, panel->PixelWidth, panel->PixelHeight, left_x, right_x, top_y, bottom_y, 0);
+}

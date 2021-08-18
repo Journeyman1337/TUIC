@@ -1,122 +1,169 @@
+/*
+	Copyright (c) 2021 Daniel Valcour
+	
+	Permission is hereby granted, free of charge, to any person obtaining a copy of
+	this software and associated documentation files (the "Software"), to deal in
+	the Software without restriction, including without limitation the rights to
+	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+	the Software, and to permit persons to whom the Software is furnished to do so,
+	subject to the following conditions:
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+	
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 /*! \file palette.h
  */
 #ifndef TUIC_PALETTE_H //header guard
 #define TUIC_PALETTE_H
 #ifdef __cplusplus //extern C guard
-#include <TUIC/types.h>
 extern "C" {
 #endif
-/*! 
- * @brief The default Xterm color palette, with every three indices representing the RGB values of each of the 256 colors ordered by color index. 
+#include <TUIC/types.h>
+#include <stdint.h>
+
+
+/*!
+ * @brief An array of all 256 24 bit colors in the XTerm standard color palette.
  */
 extern const uint8_t kTuiXtermPalette[768];
-/*! @name TuiPalette functions
+
+
+/*! @name Palette Functions
  *
- * These functions are used for manipulating @ref TuiPalette opaque objects.
- *
+ * Functions for manipulating @ref TuiPalette opaque objects.
  *  @{ */
 /*!
- * @brief Create a new @ref TuiPalette with custom colors.
- *
- * Use this function to create a @ref TuiPalette using an array of colors. The array must be in order of the color indices in the pallete, in order of their RGB components.
- *
- * @param instance The @ref TuiInstance object that contains the graphics context.
- * @param channel_count The amount of color channels per color.
- * @param color_count The amount of colors.
- * @param color_data A pointer to an array that contains all of the colors.
- *
- * @returns The created @ref TuiPalette object. NULLL is returned on error.
+ * @brief Create a custom @ref TuiPalette with a colors array.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT if color count is not greater than 0 and less than or equal to 256.
- * Throws @ref TUI_ERROR_INVALID_CHANNEL_COUNT if channel_count is not 3 or 4.
- * Throws @ref TUI_ERROR_NULL_COLORS if color_data is NULL. 
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param channel_count The amount of channels per color in the array.
+ * @param color_count The amount of colors in the array.
+ * @param color_data A pointer to the colors array.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, and @ref TUI_ERROR_NULL_COLORS. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or colors array may cause undefined behaviour or a fatal crash without an error.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiPalette must be destroyed before TUIC is terminated, using the function @ref tuiPaletteDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiPalette tuiPaletteCreate(TuiInstance instance, int channel_count, int color_count, uint8_t* color_data);
+TuiPalette tuiPaletteCreateColors(int channel_count, int color_count, const uint8_t* color_data);
 /*!
- * @brief Create a new @ref TuiPalette using the Xterm standard color palette.
- *
- * Use this function to create a @ref TuiPalette using the Xterm standard color palette.
- *
- * @param instance The @ref TuiInstance object that contains the graphics context.
- * @param tui_palette_size The amount of colors from the Xterm pallete to add to this @ref TuiPalette.
- *
- * @returns The created @ref TuiPalette object. NULL is returned on error.
+ * @brief Create a @ref TuiPalette that uses the XTerm standard color palette.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT if color count is not greater than 0 and less than or equal to 256.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param color_count The amount of XTerm colors to add to the palette.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, and @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiPalette must be destroyed before TUIC is terminated, using the function @ref tuiPaletteDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiPalette tuiPaletteCreateXterm(TuiInstance instance, int tui_palette_size);
+TuiPalette tuiPaletteCreateXterm(int color_count);
 /*!
- * @brief Destroy @ref TuiPalette and correctly dispose of all of its resources.
+ * @brief Free a @ref TuiPalette and correctly dispose of of its internally managed resources.
  *
- * Call this function when you wish to destroy a @ref TuiPalette object. This is typically called before application exist, shortly before destroying the associated @ref TuiInstance.
+ * @param palette The @ref TuiPalette to destroy.
  *
- * @param palette The @ref TuiPalette object to destroy.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PALETTE is palette is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PALETTE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiPaletteDestroy(TuiPalette palette);
 /*!
- * @brief  Get the @ref TuiInstance of a  @ref TuiPalette.
+ * @brief Get the amount of @ref TuiPalette that currently exist.
  *
- * @param palette The @ref TuiPalette.
+ * @returns The amount of palettes that currently exist.
  *
- * @returns The @ref TuiInstance. NULL is returned on error.
+ * @errors This function does not have errors.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PALETTE if palette is NULL.
+ * @requirements This function can be called at any time.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-TuiInstance tuiPaletteGetInstance(TuiPalette palette);
+int tuiGetPaletteCount();
 /*!
- * @brief Returns the amount of colors in a @ref TuiPalette object.
+ * @brief Get the amount of colors in a @ref TuiPalette.
  *
- * @param palette The @ref TuiPalette object.
+ * @param palette The @ref TuiPalette to retrieve the color count from.
  *
- * @returns The amount of colors in the @ref TuiPalette.
+ * @returns The amount of colors. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PALETTE is palette is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PALETTE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiPaletteGetColorCount(TuiPalette palette);
 /*!
- * @brief Returns the amount of color channels in a @ref TuiPalette object. 0 is returned on error.
+ * @brief Get the amount of color channels in a @ref TuiPalette.
  *
- * @param palette The @ref TuiPalette object.
+ * @param palette The @ref TuiPalette to retrieve the color channel count from.
  *
- * @returns The amount of color channels in the @ref TuiPalette. 0 is returned on error.
+ * @returns The amount of color channels. 0 is returned if an error occurs.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PALETTE is palette is NULL.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PALETTE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiPaletteGetChannelCount(TuiPalette palette);
 /*!
- * @brief Extract the foreground color palette id from two color byte.
+ * @brief tet the foreground color palette id from a two color byte.
  *
- * @param detail_mode The two color byte.
+ * @param fg_and_bg The two color byte.
  *
- * @returns The forground color.
+ * @returns The foreground color palette id.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 uint8_t tuiClassicColorGetForeground(uint8_t fg_and_bg);
 /*!
- * @brief Extract the background color palette id from two color byte.
+ * @brief tet the background color palette id from a two color byte.
  *
- * @param detail_mode The two color byte.
+ * @param fg_and_bg The two color byte.
  *
- * @returns The background color.
+ * @returns The background color palette id.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 uint8_t tuiClassicColorGetBackground(uint8_t fg_and_bg);
 /*!
- * @brief Combine two 4 bit foreground and background color palette ids into a two color byte.
+ * @brief Combine a foreground and background palette color id pair into a two color byte.
  *
- * @param fg The foreground color.
- * @param bg The background color.
+ * @param fg The foreground color palette id.
+ * @param bg The background color palette id.
  *
- * @returns The two color byte.
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 uint8_t tuiClassicColorCombine(uint8_t fg, uint8_t bg);
 /*! @} */
+
+
 #ifdef __cplusplus //extern C guard
 }
 #endif

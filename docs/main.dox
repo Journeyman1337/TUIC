@@ -4,7 +4,7 @@
 
 @section main_intro Introduction
 
-TUIC (The <b>T</b>ext <b>U</b>ser <b>I</b>nterface Rendering Library in <b>C</b>) is a free, open source, multi-platform, backend agnostic library for rendering text user interface panels written in C99. It provides an abstract interface for batching and rendering TUI with extensive customization, as well as an included backend that uses OpenGL. To view the documented header files, go <a href="files.html">here</a>.
+TUIC (The <b>T</b>ext <b>U</b>ser <b>I</b>nterface Rendering Library in <b>C</b>) is a free, open source, multi-platform, library for rendering text user interface panels written in C99. It provides a framework for advanced tile based rendering, input, and windowing. To view the documented header files, go <a href="files.html">here</a>.
 
  - GitHub repository: https://github.com/Journeyman-dev/TUIC
  - Discord: https://discord.gg/KbuMynmkRk

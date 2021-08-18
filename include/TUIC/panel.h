@@ -25,280 +25,370 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
-/*! @name TuiPanel functions
+
+
+/*! @name Panel Functions
  *
- * These functions are used for manipulating @ref TuiPanel opaque objects.
- *
- * @{ */
+ * Functions for manipulating @ref TuiPanel opaque objects.
+ *  @{ */
 /*!
- * @brief Create a @ref TuiPanel with the given pixel width and height.
- * 
- * @param pixel_width The width of the TuiPanel in pixels.
- * @param pixel_height The height of the TuiPanel in pixels
+ * @brief Create a @ref TuiPanel.
  *
- * @returns The created @ref TuiPanel object. NULL is returned on error.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_INSTANCE if instance is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if instance is damaged.
- * Throws @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS if pixel_width or pixel_height is less than or equal to 0.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param pixel_width The width of the framebuffer in pixels.
+ * @param pixel_height The height of the framebuffer in pixels.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiPanel must be destroyed before TUIC is terminated, using the function @ref tuiPanelDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiPanel tuiPanelCreate(TuiInstance instance, int pixel_width, int pixel_height);
+TuiPanel tuiPanelCreate(int pixel_width, int pixel_height);
 /*!
- * @brief Destroy a @ref TuiPanel and correctly dispose of all of its resources.
+ * @brief Free a @ref TuiPanel and correctly dispose of of its internally managed resources.
  *
- * @param batch The @ref TuiPanel object to destroy.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param palette The @ref TuiPanel to destroy.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiPanelDestroy(TuiPanel panel);
 /*!
- * @brief  Get the @ref TuiInstance of a  @ref TuiPanel.
+ * @brief Get the amount of @ref TuiPanel that currently exist.
  *
- * @param panel The @ref TuiPanel.
+ * @returns The amount of panels that currently exist.
  *
- * @returns The @ref TuiInstance. NULL is returned on error.
+ * @errors This function does not have errors.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
+ * @requirements This function can be called at any time.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-TuiInstance tuiPanelGetInstance(TuiPanel panel);
+int tuiGetPanelCount();
 /*!
- * @brief Get a @ref TuiImage of the framebuffer of a @ref TuiPanel.
+ * @brief Get a @ref TuiImage rendered from the framebuffer of a @ref TuiPanel.
  *
- * @param panel The @ref TuiPanel.
- * @param image The @ref TuiImage to replace. If this is NULL, a new image will be created instead.
+ * @param panel The @ref TuiPanel to render to the image.
  *
- * @returns The created @ref TuiImage. NULL is returned on error.
+ * @returns The @ref TuiImage.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiImage must be destroyed using @ref tuiImageDestroy().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
-TuiImage tuiPanelGetImage(TuiPanel panel, TuiImage fill_image);
+TuiImage tuiPanelGetImage(TuiPanel panel);
 /*!
- * @brief Get the 4 channel raw pixel array of the framebuffer of a @ref TuiPanel.
+ * @brief Render the framebuffer of a @ref TuiPanel to a @ref TuiImage, resizing it if necessary.
  *
- * The returned pixel array can be safely deallocated using tuiFree() found in heap.h.
- * 
- * @param panel The @ref TuiPanel.
- * @param pixel_width A pointer to where the width of the panel in pixels will be stored. If NULL or an error occurs, it is ignored.
- * @param pixel_height A pointer to where the height of the panel in pixels will be stored. If NULL or an error occcurs, it is ignored.
- * @param fill_pixels An existing pixels array to reallocate. If this is NULL, a new array is allocated instead.
- * 
- * @returns The returned pixel array. NULL is returned on error.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param panel The @ref TuiPanel to render to the image.
+ * @param image The @ref TuiImage to render to.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_IMAGE. The first error that occurs will cause the function to immediatly return. 
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors..
+ */
+void tuiPanelWriteImage(TuiPanel panel, TuiImage image);
+/*!
+ * @brief Get the raw pixels of the framebuffer of a @ref TuiPanel.
+ *
+ * @param panel The @ref TuiPanel to get the pixels from.
+ * @param pixel_width A pointer to where the pixel width of the panel will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the panel will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param fill_pixels A pointer to an array store the pixels array in. If the sizes specified in pixel_width and pixel_height do not fit the pixels, the array is reallocated. If @ref TUI_NULL, a new array is allocated instead.
+ *
+ * @returns The pixels array.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @pointer_lifetime If fill_pixels is used, it must point to an array created with @ref tuiAllocate(). The returned pixels array must be destroyed with @ref tuiFree().
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors..
  */
 uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, uint8_t* fill_pixels);
 /*!
- * @brief Clear the framebuffer of a @ref TuiPanel to a color.
+ * @brief Clear the color of the framebuffer of a @ref TuiPanel to a solid color.
  *
- * @param panel The @ref TuiPanel.
- * @param r The red color channel of the clear color.
- * @param g The green color channel of the clear color.
- * @param b The blue color channel of the clear color.
- * @param a The alpha color channel of the clear color.
+ * @param panel The @ref TuiPanel to clear.
+ * @param r The red color value of the clear color.
+ * @param g The green color value of the clear color.
+ * @param b The blue color value of the clear color.
+ * @param a The alpha color value of the clear color.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL is panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*!
  * @brief Set the pixel dimensions of the framebuffer of a @ref TuiPanel.
- *
- * @param panel The @ref TuiPanel.
- * @param pixel_width The new width to set the framebuffer.
- * @param pixel_height The new height to set the framebuffer.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL is panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS if pixel_width or pixel_height is less than or equal to 0.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param The @ref TuiPanel.
+ * @param The new pixel width of the framebuffer.
+ * @param The new pixel height of the framebuffer.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS. The first error that occurs will cause the function to immediatly return.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_height);
 /*!
  * @brief Get the pixel dimensions of the framebuffer of a @ref TuiPanel.
- *
- * @param panel The @ref TuiPanel.
- * @param pixel_width Pointer to where the width of the framebuffer will be stored. If it is NULL or an erro occurs, it is ignored.
- * @param pixel_height Pointer to where the height of the framebuffer will be stored. If it is NULL or an error occurs, it is ignored.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS if pixel_width or pixel_height is less than or equal to 0.
+ * @param panel The @ref TuiPanel.
+ * @param pixel_width A pointer to where the pixel width of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the framebuffer will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 void tuiPanelGetPixelDimensions(TuiPanel panel, int* pixel_width, int* pixel_height);
 /*!
- * @brief Returns the pixel width of a @ref TuiPanel.
+ * @brief Get the pixel width of the framebuffer of a @ref TuiPanel.
+ * 
+ * @param panel The @ref TuiPanel.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
- * @param palette The @ref TuiPanel object.
+ * @return The pixel width of the framebuffer.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
  *
- * @returns The pixel width. 0 is returned on error.
- *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL is panel is NULL.
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiPanelGetPixelWidth(TuiPanel panel);
 /*!
- * @brief Returns the pixel height of a @ref TuiPanel.
+ * @brief Get the pixel height of the framebuffer of a @ref TuiPanel.
  *
- * @param palette The @ref TuiPanel object.
+ * @param panel The @ref TuiPanel.
  *
- * @returns The pixel height. 0 is returned on error.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_PANEL. The first error that occurs will cause the function to immediatly return.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL is panel is NULL.
+ * @return The pixel height of the framebuffer.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiPanelGetPixelHeight(TuiPanel panel);
 /*!
- * @brief Draw a @ref TuiBatch to a @ref TuiPanel.
- *
- * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
- * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
- * @param batch The @ref TuiBatch to draw to the framebuffer.
- * @param blend_mode The blend mode to use for this draw.
+ * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiPanel.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
- * Throws @ref TUI_ERROR_NULL_BATCH is batch is NULL.
- * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
- * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiPanelDrawBatch(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch);
-/*!
- * @brief Draw a @ref TuiBatch to a @ref TuiPanel.
- *
  * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
- * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
- * @param batch The @ref TuiBatch to draw to the framebuffer.
- * @param blend_mode The blend mode to use for this draw.
- *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
- * Throws @ref TUI_ERROR_NULL_BATCH_DATA if batch_data is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
- * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
- * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
- * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiPanelDrawBatchData(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data);
-/*!
- * @brief Draw a @ref TuiBatch to the scren of a @ref TuiPanel with a transformation.
- *
- * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
- * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
- * @param batch The @ref TuiBatch to draw to the framebuffer.
- * @param blend_mode The blend mode to use for this draw.
- * @param left_x The leftmost x pixel coordinate of the draw rect.
- * @param right_x The rightmost x pixel coordinate of the draw rect.
- * @param top_y The topmost y pixel coordinate of the draw rect.
- * @param bottom_y The bottomost y pixel coordinate of the draw rect.
- *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
- * Throws @ref TUI_ERROR_NULL_BATCH if batch is NULL.
- * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
- * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
-/*!
- * @brief Draw batch data to a @ref TuiPanel with a transformation.
- *
- * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiGlyphAtlas to use for this draw.
- * @param palette The @ref TuiPalette to use for this draw. If not used, pass NULL.
- * @param batch The @ref TuiBatch to draw to the framebuffer.
- * @param detail_mode The detail mode to use for this render.
- * @param blend_mode The blend mode to use for this draw.
- * @param tiles_wide The amount of tiles wide in the batch.
- * @param tiles_tall The amount of tiles tall in the batch.
- * @param batch_data A pointer to the raw batch byte array.
- * @param left_x The leftmost x pixel coordinate of the draw rect.
- * @param right_x The rightmost x pixel coordinate of the draw rect.
- * @param top_y The topmost y pixel coordinate of the draw rect.
- * @param bottom_y The bottomost y pixel coordinate of the draw rect.
- *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_GLYPH_ATLAS if atlas is NULL.
- * Throws @ref TUI_ERROR_NULL_BATCH_DATA if batch_data is NULL.
- * Throws @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS if tiles_wide or tiles_tall is less than or equal to 0.
- * Throws @ref TUI_ERROR_INVALID_DETAIL_MODE if detail_mode is an invalid @ref TuiDetailMode.
- * Throws @ref TUI_ERROR_PALETTE_REQUIRED if palette is NULL and a palette is required by the @ref TuiDetailMode of the @ref TuiBatch.
- * Throws @ref TUI_ERROR_UNMATCHING_ATLAS_INSTANCE if the @ref TuiInstance of atlas does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_UNMATCHING_PALETTE_INSTANCE if palette is not NULL and its @ref TuiInstance does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
- */
-void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiGlyphAtlas atlas, TuiPalette palette, int detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
-/*!
- * @brief Render a @ref TuiPanel to the main graphics context framebuffer if its @ref TuiInstance.
- *
- * @param panel The @ref TuiPanel.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param batch The @ref TuiBatch.
  * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-void tuiPanelRender(TuiPanel panel);
+void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
 /*!
- * @brief Render a @ref TuiPanel to the main graphics context framebuffer of its @ref TuiInstance in a transformed position.
+ * @brief Draw batch data to the framebuffer of a @ref TuiPanel.
  *
  * @param panel The @ref TuiPanel.
- * @param left_x The framebuffer pixel x coordinate of the @ref TuiPanel left side.
- * @param right_x The framebuffer pixel x coordinate of the @ref TuiPanel right side.
- * @param top_y The framebuffer pixel y coordinate of the @ref TuiPanel top side.
- * @param bottom_y The framebuffer pixel y coordinat of the @ref TuiPanel bottom side.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param detail_mode The @ref TuiDetailMode of the batch data.
+ * @param tiles_wide The tiles wide of the batch data.
+ * @param tiles_tall The tiles tall of the batch data.
+ * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
+ * @param batch_data A pointer to the batch data array.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-void tuiPanelRenderTransformed(TuiPanel panel, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawBatchData(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t* batch_data);
 /*!
- * @brief Render the framebuffer texture of a @ref TuiPanel to the framebuffer of a different one.
+ * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiPanel with a transformation.
  *
- * @param panel The @ref TuiPanel to render.
- * @param target_panel The @ref TuiPanel rendered to.
- * 
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_TARGET_PANEL if target_panel is NULL.
- * Throws @ref TUI_ERROR_UNMATCHING_PANEL_INSTANCE if the @ref TuiInstacne of target_panel does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @param panel The @ref TuiPanel.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param batch The @ref TuiBatch.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-void tuiPanelRenderToPanel(TuiPanel panel, TuiPanel target_panel);
+void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
 /*!
- * @brief Render the framebuffer texture of a @ref TuiPanel to the framebuffer of a different one with a transformation.
+ * @brief Draw batch data to the framebuffer of a @ref TuiPanel with a transformation.
  *
- * @param panel The @ref TuiPanel to render.
- * @param target_panel The @ref TuiPanel rendered to.
- * @param left_x The framebuffer pixel x coordinate of the @ref TuiPanel left side.
- * @param right_x The framebuffer pixel x coordinate of the @ref TuiPanel right side.
- * @param top_y The framebuffer pixel y coordinate of the @ref TuiPanel top side.
- * @param bottom_y The framebuffer pixel y coordinat of the @ref TuiPanel bottom side.
- * 
+ * @param panel The @ref TuiPanel.
+ * @param atlas The @ref TuiAtlas.
+ * @param palette The @ref TuiPalette.
+ * @param detail_mode The @ref TuiDetailMode of the batch data.
+ * @param tiles_wide The tiles wide of the batch data.
+ * @param tiles_tall The tiles tall of the batch data.
+ * @param sparse_index The sparse index of batches with sparsely indexed detail modes. If the batch data is not sparsely indexed, this is ignored.
+ * @param batch_data A pointer to the batch data array.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
  *
- * @errors Throws @ref TUI_ERROR_NULL_PANEL if panel is NULL.
- * Throws @ref TUI_ERROR_DAMAGED_INSTANCE if the @ref TuiInstance of panel is damaged.
- * Throws @ref TUI_ERROR_NULL_TARGET_PANEL if target_panel is NULL.
- * Throws @ref TUI_ERROR_UNMATCHING_PANEL_INSTANCE if the @ref TuiInstacne of target_panel does not match the @ref TuiInstance of panel.
- * Throws @ref TUI_ERROR_BACKEND_SPECIFIC and may or may not return if backend specific errors occur.
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH_DATA, @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-void tuiPanelRenderToPanelTransformed(TuiPanel panel, TuiPanel target_panel, int left_x, int right_x, int top_y, int bottom_y);
+void tuiPanelDrawBatchDataTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y);
+/*!
+ * @brief Draw a @ref TuiPanel to another panel.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param subject_panel The @ref TuiPanel to draw.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_SUBJECT_PANEL. The first error that occurs will cause the function to immediatly return.
+ * 
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel);
+/*!
+ * @brief Draw a @ref TuiPanel to another panel with a transformation.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param subject_panel The @ref TuiPanel to draw.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_SUBJECT_PANEL. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y);
+/*!
+ * @brief Draw a @ref TuiTexture to a @ref TuiPanel.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param texture The @ref TuiTexture to draw.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture);
+/*!
+ * @brief Draw a @ref TuiTexture to a @ref TuiPanel with a transformation.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param texture The @ref TuiTexture to draw.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_TEXTURE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y);
+/*!
+ * @brief Draw the texture of a @ref TuiAtlas to a @ref TuiPanel.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param atlas The @ref TuiAtlas to draw.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas);
+/*!
+ * @brief Draw the texture of a @ref TuiAtlas to a @ref TuiPanel with a transformation.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param atlas The @ref TuiAtlas to draw.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
+/*!
+ * @brief Draw a the framebuffer of a @ref TuiWindow to a @ref TuiPanel.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param window The @ref TuiWindow to draw.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_WINDOW. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window);
+/*!
+ * @brief Draw a the framebuffer of a @ref TuiWindow to a @ref TuiPanel with a transformation.
+ *
+ * @param panel The @ref TuiPanel to draw to.
+ * @param window The @ref TuiWindow to draw.
+ * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
+ * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
+ * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
+ * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL and @ref TUI_ERROR_NULL_WINDOW. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function must be called only while TUIC is initialized.
+ *
+ * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
+ */
+void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y);
 /*! @} */
+
+
 #ifdef __cplusplus //extern C guard
 }
 #endif

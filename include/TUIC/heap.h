@@ -25,55 +25,15 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
-/*! @name Allocation Callbacks
- *
- * These callback types define functions that can be set to override all allocation, reallocation, and memory free operations used by TUIC.
- *
- *  @{ */
-/*!
- * @brief Callback type used to define how memory is allocated.
- */
-typedef void*(*tuiAllocateCallback) (size_t size);
-/*!
- * @brief Callback type used to define how memory is reallocated.
- */
-typedef void*(*tuiReallocateCallback) (void* to_realloc, size_t size);
-/*!
- * @brief Callback type used to define how memory is freed.
- */
-typedef void(*tuiFreeCallback) (void* to_free);
-/*! @} */
+
+
 /*! @name Allocation Callback Functions
  *
- * These functions are used to set or disable the statically global callback functions used by TUIC.
+ * These functions are used manage heap memory.
  *
  *  @{ */
 /*!
- * @brief Set the allocate callback.
- *
- * @param callback The allocate callback. Set to NULL to resset to the default.
- */
-void tuiSetAllocateCallback(tuiAllocateCallback callback);
-/*!
- * @brief Set the reallocate callback.
- *
- * @param callback The reallocate callback. Set to NULL to resset to the default.
- */
-void tuiSetReallocateCallback(tuiReallocateCallback callback);
-/*!
- * @brief Set the free callback.
- *
- * @param callback The free callback. Set to NULL to resset to the default.
- */
-void tuiSetFreeCallback(tuiFreeCallback callback);
-/*! @} */
-/*! @name Allocation Callback Functions
- *
- * These functions are used manage heap memory using the set callbacks or using malloc, realloc, and free from stdlib.h if none are set.
- *
- *  @{ */
-/*!
- * @brief Allocate a block of heap memory, using the allocate callback if it is set.
+ * @brief Allocate a block of heap memory.
  *
  * @param size The size of the block to allocate.
  *
@@ -81,7 +41,7 @@ void tuiSetFreeCallback(tuiFreeCallback callback);
  */
 void* tuiAllocate(size_t size);
 /*!
- * @brief Reallocate a block of heap memory, using the reallocate callback if it is set.
+ * @brief Reallocate a block of heap memory.
  *
  * @param to_realloc A pointer to the memory to reallocate.
  * @param size The new size of the memory.
@@ -90,12 +50,14 @@ void* tuiAllocate(size_t size);
  */
 void* tuiReallocate(void* to_realloc, size_t size);
 /*!
- * @brief Free a block of heap memory, using the free callback if it is set.
+ * @brief Free a block of heap memory.
  *
  * @param to_realloc A pointer to the memory to free.
  */
 void tuiFree(void* to_free);
 /*! @} */
+
+
 #ifdef __cplusplus //extern C guard
 }
 #endif

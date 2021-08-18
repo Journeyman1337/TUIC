@@ -18,21 +18,85 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/tuic.h>
-#include <TUIC/backends/objects.h>
+#include "objects.h"
 #include "image_inline.h"
 
-#include <TUIC/vendor/stb_image.h>
-#include <TUIC/vendor/stb_image_write.h>
-#include <TUIC/vendor/stb_image_resize.h>
+#include <stb_image.h>
+#include <stb_image_write.h>
+#include <stb_image_resize.h>
 
-TuiImage tuiImageCreate(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data)
+TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
 {
-	return create_image(pixel_width, pixel_height, channel_count, pixel_data, copy_data, __func__);
+	if (channel_count != 3 && channel_count != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return TUI_NULL;
+	}
+	if (pixel_width <= 0 || pixel_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+
+	return _CreateImage(pixel_width, pixel_height, channel_count, pixel_data, copy_data);
+}
+
+TuiImage tuiImageCreatePNG(const char* path)
+{
+	if (path == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_PATH, __func__);
+		return TUI_NULL;
+	}
+
+	int i_width, i_height, i_channels;
+	uint8_t* pixels = stbi_load(path, &i_width, &i_height, &i_channels, 0);
+	if (pixels == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_LOAD_IMAGE_FAILURE, __func__);
+		return TUI_NULL;
+	}
+	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE);
+	return ret;
+}
+
+TuiImage tuiImageCreateColor(int pixel_width, int pixel_height, int channel_count, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+{
+	if (channel_count != 3 && channel_count != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
+		return TUI_NULL;
+	}
+	if (pixel_width <= 0 || pixel_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+
+	uint8_t* pixels = (uint8_t*)tuiAllocate((size_t)pixel_width * (size_t)pixel_height * (size_t)channel_count);
+
+	for (size_t pixel_y = 0; pixel_y < (size_t)pixel_height; pixel_y++)
+	{
+		for (size_t pixel_x = 0; pixel_x < (size_t)pixel_width; pixel_x++)
+		{
+			size_t pixel_i = (pixel_y * (size_t)pixel_width + pixel_x) * (size_t)channel_count;
+			pixels[pixel_i++] = r;
+			pixels[pixel_i++] = g;
+			pixels[pixel_i] = b;
+			if (channel_count == 4)
+			{
+				pixels[++pixel_i] = a;
+			}
+		}
+	}
+
+	TuiImage ret = _CreateImage(pixel_width, pixel_height, channel_count, pixels, TUI_FALSE);
+	return ret;
 }
 
 void tuiImageDestroy(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
@@ -42,44 +106,14 @@ void tuiImageDestroy(TuiImage image)
 	tuiFree(image);
 }
 
-TuiImage tuiImageLoad(const char* path, int expected_channel_count)
-{;
-	if (path == NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PATH, __func__);
-		return NULL;
-	}
-	if (expected_channel_count != 0 && expected_channel_count != 3 && expected_channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, __func__);
-		return NULL;
-	}
-
-	int i_width, i_height, i_channels;
-	uint8_t* pixels = stbi_load(path, &i_width, &i_height, &i_channels, expected_channel_count);
-	if (pixels == NULL)
-	{
-		tuiDebugError(TUI_ERROR_LOAD_IMAGE_FAILURE, __func__);
-		return NULL;
-	}
-	if (expected_channel_count != 0 && i_channels != expected_channel_count)
-	{
-		stbi_image_free(pixels);
-		tuiDebugError(TUI_ERROR_LOAD_IMAGE_UNEXPECTED_CHANNELS, __func__);
-		return NULL;
-	}
-	TuiImage ret = create_image(i_width, i_height, i_channels, pixels, TUI_FALSE, __func__);
-	return ret;
-}
-
 void tuiImageSave(TuiImage image, const char* path)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
 	}
-	if (path == NULL)
+	if (path == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_PATH, __func__);
 		return;
@@ -90,36 +124,40 @@ void tuiImageSave(TuiImage image, const char* path)
 
 TuiImage tuiImageClone(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
-	return create_image(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE, __func__);
+	return _CreateImage(image->ChannelCount, image->PixelWidth, image->PixelHeight, image->PixelData, TUI_TRUE);
 }
 
-void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height)
+void tuiImageGetPixelDimensions(TuiImage image, int* width, int* height, int* channel_count)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
 	}
 
-	if (width != NULL)
+	if (width != TUI_NULL)
 	{
 		*width = (int)image->PixelWidth;
 	}
-	if (height != NULL)
+	if (height != TUI_NULL)
 	{
 		*height = (int)image->PixelHeight;
+	}
+	if (channel_count != TUI_NULL)
+	{
+		*channel_count = (int)image->ChannelCount;
 	}
 }
 
 int tuiImageGetPixelWidth(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return 0;
@@ -130,7 +168,7 @@ int tuiImageGetPixelWidth(TuiImage image)
 
 int tuiImageGetPixelHeight(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return 0;
@@ -141,7 +179,7 @@ int tuiImageGetPixelHeight(TuiImage image)
 
 int tuiImageGetChannelCount(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return 0;
@@ -152,10 +190,10 @@ int tuiImageGetChannelCount(TuiImage image)
 
 uint8_t* tuiImageGetPixels(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	return image->PixelData;
@@ -163,7 +201,7 @@ uint8_t* tuiImageGetPixels(TuiImage image)
 
 size_t tuiImageGetPixelDataSize(TuiImage image)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return 0;
@@ -172,25 +210,9 @@ size_t tuiImageGetPixelDataSize(TuiImage image)
 	return image->PixelDataSize;
 }
 
-static inline uint8_t* get_resized_data(TuiImage image, int new_size, int new_width, int new_height, const char* func_name)
-{
-	uint8_t* output_pixels = tuiAllocate(new_size);
-	int stb_result = stbir_resize_uint8(image->PixelData, image->PixelWidth, image->PixelHeight, 0,
-		output_pixels, new_width, new_height, 0,
-		image->ChannelCount);
-	if (stb_result == 0)
-	{
-		tuiFree(output_pixels);
-		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, func_name);
-		return NULL;
-	}
-
-	return output_pixels;
-}
-
 void tuiImageResize(TuiImage image, int new_width, int new_height)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
@@ -202,9 +224,10 @@ void tuiImageResize(TuiImage image, int new_width, int new_height)
 	}
 
 	size_t new_size = (size_t)new_width * (size_t)new_height * image->ChannelCount;
-	uint8_t* new_pixels = get_resized_data(image, new_size, new_width, new_height, __func__);
-	if (new_pixels == NULL)
+	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, TUI_NULL, __func__);
+	if (new_pixels == TUI_NULL)
 	{
+		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, __func__);
 		return;
 	}
 	tuiFree(image->PixelData);
@@ -215,34 +238,34 @@ void tuiImageResize(TuiImage image, int new_width, int new_height)
 
 TuiImage tuiImageCloneResize(TuiImage image, int new_width, int new_height)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
-	if (new_width >= 0 || new_height >= 0)
+	if (new_width <= 0 || new_height <= 0)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, __func__);
-		return NULL;
+		return TUI_NULL;
 	}
 
 	size_t new_size = (size_t)new_width * (size_t)new_height * image->ChannelCount;
-	uint8_t* new_pixels = get_resized_data(image, new_size, new_width, new_height, __func__);
-	if (new_pixels == NULL)
+	uint8_t* new_pixels = _ResizeImageData(image->PixelData, image->PixelWidth, image->PixelHeight, image->ChannelCount, new_width, new_height, TUI_NULL, __func__);
+	if (new_pixels == TUI_NULL)
 	{
-		return NULL;
+		return TUI_NULL;
 	}
-	return create_image(image->ChannelCount, new_width, new_height, new_pixels, TUI_TRUE, __func__);
+	return _CreateImage(image->ChannelCount, new_width, new_height, new_pixels, TUI_TRUE);
 }
 
 void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int start_y)
 {
-	if (image == NULL)
+	if (image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
 		return;
 	}
-	if (target_image == NULL)
+	if (target_image == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_TARGET_IMAGE, __func__);
 		return;
@@ -253,23 +276,23 @@ void tuiImageEmplace(TuiImage image, TuiImage target_image, int start_x, int sta
 		return;
 	}
 
-	size_t sx = 0;
+	size_t sx = 0; // obviously, this is subject to testing...
 	size_t sy = 0;
-	if (start_x > 0)
+	if (start_x > 0) //clip start x
 	{
 		sx = (size_t)start_x;
 	}
-	if (start_y > 0)
+	if (start_y > 0) //clip start y
 	{
 		sy = (size_t)start_y;
 	}
 	size_t ex = (size_t)(start_x + image->PixelWidth);
 	size_t ey = (size_t)(start_y + image->PixelHeight);
-	if (ex > target_image->PixelWidth)
+	if (ex > target_image->PixelWidth) //clip end x
 	{
 		ex = target_image->PixelWidth;
 	}
-	if (ey > target_image->PixelHeight)
+	if (ey > target_image->PixelHeight) //clip end y
 	{
 		ey = target_image->PixelHeight;
 	}

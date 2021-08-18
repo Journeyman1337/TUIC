@@ -19,35 +19,28 @@
 */
 #ifndef TUIC_IMAGE_INLINE_H //header guard
 #define TUIC_IMAGE_INLINE_H
-#ifdef __cplusplus //extern C guard
-extern "C" {
-#endif
 #include <TUIC/types.h>
 #include <string.h>
-static inline TuiImage create_image(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, int copy_data, const char* func_name)
-{
-	if (channel_count != 3 && channel_count != 4)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, func_name);
-		return NULL;
-	}
-	if (pixel_width <= 0 || pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_IMAGE_DIMENSIONS, func_name);
-		return NULL;
-	}
+#include <GLFW/glfw3.h>
+#include "objects.h"
+#include <TUIC/debug.h>
+#include <TUIC/boolean.h>
+#include <TUIC/heap.h>
+#include <stb_image_resize.h>
 
-	TuiImage image = tuiAllocate(sizeof(TuiImage_s));
+static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
+{
+	TuiImage image = (TuiImage)tuiAllocate(sizeof(TuiImage_s));
 	image->PixelWidth = pixel_width;
 	image->PixelHeight = pixel_height;
 	image->ChannelCount = channel_count;
 	image->PixelDataSize = (size_t)pixel_width * (size_t)pixel_height * (size_t)channel_count;
 
-	if (pixel_data != NULL)
+	if (pixel_data != TUI_NULL)
 	{
 		if (copy_data == TUI_TRUE)
 		{
-			image->PixelData = tuiAllocate(image->PixelDataSize);
+			image->PixelData = (uint8_t*)tuiAllocate(image->PixelDataSize);
 			memcpy(image->PixelData, pixel_data, image->PixelDataSize);
 		}
 		else
@@ -57,12 +50,53 @@ static inline TuiImage create_image(int pixel_width, int pixel_height, int chann
 	}
 	else
 	{
-		image->PixelData = tuiAllocate(image->PixelDataSize);
+		image->PixelData = (uint8_t*)tuiAllocate(image->PixelDataSize);
 		memset(image->PixelData, 0, image->PixelDataSize);
 	}
 	return image;
 }
-#ifdef __cplusplus //extern C guard
+
+static inline uint8_t* _ResizeImageData(const uint8_t* pixels, int pixel_width, int pixel_height, int channel_count, int new_pixel_width, int new_pixel_height, uint8_t* out_pixels, const char* func_name)
+{
+	uint8_t* output_pixels = out_pixels;
+	if (output_pixels == TUI_NULL)
+	{
+		output_pixels = (uint8_t*)tuiAllocate((size_t)new_pixel_width * new_pixel_height * channel_count);
+	}
+	int stb_result = stbir_resize_uint8(pixels, pixel_width, pixel_height, 0,
+		output_pixels, new_pixel_width, new_pixel_height, 0,
+		channel_count);
+	if (stb_result == 0)
+	{
+		if (out_pixels == TUI_NULL && output_pixels != TUI_NULL)
+		{
+			tuiFree(output_pixels);
+		}
+		tuiDebugError(TUI_ERROR_RESIZE_IMAGE_FAILURE, func_name);
+		return TUI_NULL;
+	}
+	return output_pixels;
 }
-#endif
+
+static inline GLFWimage _TuiImageToGlfwImage(TuiImage image, const char* func_name)
+{
+	GLFWimage glfw_image;
+	glfw_image.width = 0;
+	glfw_image.height = 0;
+	glfw_image.pixels = TUI_NULL;
+	if (image->ChannelCount != 4)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_CHANNEL_COUNT, func_name);
+		return glfw_image;
+	}
+	glfw_image.width = image->PixelWidth;
+	glfw_image.height = image->PixelHeight;
+	glfw_image.pixels = image->PixelData;
+	return glfw_image;
+}
+
+static inline TuiImage _GlfwImageToTuiImage(GLFWimage image, const char* func_name)
+{
+	return _CreateImage(image.width, image.height, 4, image.pixels, TUI_TRUE);
+}
 #endif //header guard
