@@ -115,7 +115,7 @@ TuiImage tuiImageCreatePNG(const char* path)
 		png_byte* row = row_pointers[y];
 		for (size_t x = 0; x < (size_t)width; x++) {
 			png_byte* png_pixel_ptr = &(row[x * 4]);
-			size_t pixel_i = y * (size_t)width + x) * (size_t)channels;
+			size_t pixel_i = (y * (size_t)width + x) * (size_t)channels;
 			pixels[pixel_i++] = png_pixel_ptr[0];
 			pixels[pixel_i++] = png_pixel_ptr[1];
 			pixels[pixel_i] = png_pixel_ptr[2];
