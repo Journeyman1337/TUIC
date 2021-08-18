@@ -52,9 +52,6 @@ TuiImage tuiImageCreatePNG(const char* path)
 		return TUI_NULL;
 	}
 
-	int i_width, i_height, i_channels;
-	uint8_t* pixels;
-
 	char header[8];
 	FILE* fp = fopen(path, "rb");
 	if (!fp)
@@ -113,8 +110,8 @@ TuiImage tuiImageCreatePNG(const char* path)
 	png_bytep* row_pointers = (png_bytep*)tuiAllocate(png_get_rowbytes(png_ptr, info_ptr));
 	png_read_image(png_ptr, row_pointers);
 	fclose(fp);
-	pixels = (uint8_t*)row_pointers;
-	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE);
+	uint8_t* pixels = (uint8_t*)row_pointers;
+	TuiImage ret = _CreateImage(width, height, channels, pixels, TUI_FALSE);
 	return ret;
 }
 
