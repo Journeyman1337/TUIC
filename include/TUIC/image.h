@@ -111,7 +111,7 @@ void tuiImageDestroy(TuiImage image);
  *
  * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiImage on only one thread at a time to ensure safe memory access.
  */
-void tuiImageSave(TuiImage image, const char* path);
+void tuiImageSavePNG(TuiImage image, const char* path);
 /*!
  * @brief Create a deep copy of a @ref TuiImage.
  *

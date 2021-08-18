@@ -100,7 +100,7 @@ void tuiImageDestroy(TuiImage image)
 	tuiFree(image);
 }
 
-void tuiImageSave(TuiImage image, const char* path)
+void tuiImageSavePNG(TuiImage image, const char* path)
 {
 	if (image == TUI_NULL)
 	{
