@@ -177,7 +177,56 @@ void tuiImageSave(TuiImage image, const char* path)
 		return;
 	}
 
-	stbi_write_png(path, image->PixelWidth, image->PixelHeight, image->ChannelCount, image->PixelData, image->PixelWidth * image->ChannelCount);
+	FILE* fp = fopen(path, "wb");
+	if (!fp)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_FILE_PATH, __func__);
+		return TUI_NULL;
+	}
+	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (!png_ptr)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_infop info_ptr = png_create_info_struct(png_ptr);
+	if (!info_ptr)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_init_io(png_ptr, fp);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_byte color_type = (image->ChannelCount == 3) ? 2 : 6;
+	png_set_IHDR(png_ptr, info_ptr, image->PixelWidth, image->PixelHeight, 8, color_type, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+	png_write_info(png_ptr, info_ptr);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_bytep* row_pointers = (png_bytep*)tuiAllocate(sizeof(png_bytep) * image->PixelHeight);
+	for (size_t y = 0; y < image->PixelHeight; y++)
+		row_pointers[y] = &image->PixelData[y * image->PixelWidth * image->ChannelCount];
+	tuiFree(row_pointers);
+	png_write_image(png_ptr, row_pointers);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
+		return TUI_NULL;
+	}
+	png_write_end(png_ptr, NULL);
+	tuiFree(row_pointers);
+	fclose(fp);
 }
 
 TuiImage tuiImageClone(TuiImage image)
