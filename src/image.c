@@ -49,7 +49,12 @@ TuiImage tuiImageCreatePNG(const char* path)
 
 	int width = 0, height = 0, channels = 0;
 	uint8_t* pixels = TUI_NULL;
-	_LoadPixelsPNG(path, &width, &height, &channels, &pixels);
+	TuiErrorCode error_code = _LoadPixelsPNG(path, &width, &height, &channels, &pixels);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 	TuiImage ret = _CreateImage(width, height, channels, pixels, TUI_FALSE);
 	return ret;
 }
@@ -113,7 +118,12 @@ void tuiImageSavePNG(TuiImage image, const char* path)
 		return;
 	}
 
-	_SavePixelsPNG(path, image->PixelWidth, image->PixelHeight, image->ChannelCount, image->PixelData);
+	TuiErrorCode error_code = _SavePixelsPNG(path, image->PixelWidth, image->PixelHeight, image->ChannelCount, image->PixelData);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 }
 
 TuiImage tuiImageClone(TuiImage image)
