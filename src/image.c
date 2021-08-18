@@ -110,7 +110,24 @@ TuiImage tuiImageCreatePNG(const char* path)
 	png_bytep* row_pointers = (png_bytep*)tuiAllocate(png_get_rowbytes(png_ptr, info_ptr));
 	png_read_image(png_ptr, row_pointers);
 	fclose(fp);
-	uint8_t* pixels = (uint8_t*)row_pointers;
+	uint8_t* pixels = (uint8_t*)tuiAllocate((size_t)width * (size_t)height * (size_t)channels);
+	for (size_t y = 0; y < (size_t)height; y++) {
+		png_byte* row = row_pointers[y];
+		for (size_t x = 0; x < (size_t)width; x++) {
+			png_byte* png_pixel_ptr = &(row[x * 4]);
+			size_t pixel_i = y * (size_t)width + x) * (size_t)channels;
+			pixels[pixel_i++] = png_pixel_ptr[0];
+			pixels[pixel_i++] = png_pixel_ptr[1];
+			pixels[pixel_i] = png_pixel_ptr[2];
+			if (channels == 4)
+			{
+				pixels[++pixel_i] = png_pixel_ptr[3];
+			}
+		}
+	}
+	for (size_t y = 0; y < (size_t)height; y++)
+		free(row_pointers[y]);
+	free(row_pointers);
 	TuiImage ret = _CreateImage(width, height, channels, pixels, TUI_FALSE);
 	return ret;
 }
