@@ -84,7 +84,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     {
         TuiImage screenshot = tuiWindowGetImage(window);
         const char* screenshot_file_name = "mouse_control_screenshot.png";
-        tuiImageSave(screenshot, screenshot_file_name);
+        tuiImageSavePNG(screenshot, screenshot_file_name);
         printf("Screenshot saved to \"mouse_control_screenshot.png\".\n");
         tuiImageDestroy(screenshot);
         screenshot = TUI_NULL;

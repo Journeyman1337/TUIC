@@ -37,7 +37,7 @@ int main()
     tuiWindowClearColor(window, 255, 255, 255, 255); // white clear color
     tuiWindowDrawTexture(window, texture);
     TuiImage out_sushi = tuiWindowGetImage(window);
-    tuiImageSave(out_sushi, "test_window.png");
+    tuiImageSavePNG(out_sushi, "test_window.png");
     tuiImageDestroy(out_sushi);
     out_sushi = TUI_NULL;
     tuiTextureDestroy(texture);

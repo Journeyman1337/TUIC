@@ -92,7 +92,7 @@ int main()
     //Render panel to a png image file
     TuiImage out_image = tuiPanelGetImage(panel, TUI_NULL);
     const char* out_image_name = "example-1-screenshot.png";
-    tuiImageSave(out_image, out_image_name);
+    tuiImageSavePNG(out_image, out_image_name);
     tuiImageDestroy(out_image);
     out_image = TUI_NULL;
 
