@@ -44,25 +44,21 @@ static inline TuiErrorCode _LoadPixelsPNG(const char* path, int* pixel_width, in
 	fread(header, 1, 8, fp);
 	if (png_sig_cmp(header, 0, 8))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	png_structp  png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (!png_ptr)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (!info_ptr)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	png_init_io(png_ptr, fp);
 	png_set_sig_bytes(png_ptr, 8);
@@ -73,21 +69,18 @@ static inline TuiErrorCode _LoadPixelsPNG(const char* path, int* pixel_width, in
 	int channels = (color_type == PNG_COLOR_TYPE_RGB) ? 3 : (color_type == PNG_COLOR_TYPE_RGBA) ? 4 : 0;
 	if (channels == 0)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_COLOR_TYPE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
 	if (bit_depth != 8)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_BIT_DEPTH, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	int number_of_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	png_bytep* row_pointers = (png_bytep*)tuiAllocate(sizeof(png_bytep) * (size_t)height);
 	uint8_t* image_pixels = (uint8_t*)tuiAllocate((size_t)width * (size_t)height * (size_t)channels);
@@ -108,39 +101,33 @@ static inline TuiErrorCode _SavePixelsPNG(const char* path, int pixel_width, int
 	FILE* fp = fopen(path, "wb");
 	if (!fp)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_FILE_PATH, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (!png_ptr)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (!info_ptr)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	png_init_io(png_ptr, fp);
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	png_byte color_type = (channel_count == 3) ? 2 : 6;
 	png_set_IHDR(png_ptr, info_ptr, pixel_width, pixel_height, 8, color_type, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 	png_write_info(png_ptr, info_ptr);
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	png_bytep* row_pointers = (png_bytep*)tuiAllocate(sizeof(png_bytep) * pixel_height);
 	for (size_t y = 0; y < pixel_height; y++)
@@ -148,8 +135,7 @@ static inline TuiErrorCode _SavePixelsPNG(const char* path, int pixel_width, int
 	png_write_image(png_ptr, row_pointers);
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_PNG_FILE, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
 	}
 	png_write_end(png_ptr, NULL);
 	tuiFree(row_pointers);
