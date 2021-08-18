@@ -21,7 +21,6 @@
 #include "objects.h"
 #include "image_inline.h"
 
-#include <stb_image_write.h>
 #include <stb_image_resize.h>
 #include <png.h>
 
@@ -92,7 +91,18 @@ TuiImage tuiImageCreatePNG(const char* path)
 	int width = png_get_image_width(png_ptr, info_ptr);
 	int height = png_get_image_height(png_ptr, info_ptr);
 	png_byte color_type = png_get_color_type(png_ptr, info_ptr);
+	int channels = (color_type == 2) ? 3 : (color_type == 6) ? 4 : 0;
+	if (channels == 0)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_COLOR_TYPE, __func__);
+		return TUI_NULL;
+	}
 	png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
+	if (bit_depth != 8)
+	{
+		// tuiDebugError(TUI_ERROR_INVALID_PNG_BIT_DEPTH, __func__);
+		return TUI_NULL;
+	}
 	int number_of_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
 	if (setjmp(png_jmpbuf(png_ptr)))
