@@ -49,7 +49,7 @@ TuiImage tuiImageCreatePNG(const char* path)
 
 	int width = 0, height = 0, channels = 0;
 	uint8_t* pixels = TUI_NULL;
-	_LoadPixelsPNG(path, &width, &height, &channels, pixels);
+	_LoadPixelsPNG(path, &width, &height, &channels, &pixels);
 	TuiImage ret = _CreateImage(width, height, channels, pixels, TUI_FALSE);
 	return ret;
 }
