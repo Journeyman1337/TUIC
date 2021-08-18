@@ -34,7 +34,7 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: git submodule add https://github.com/microsoft/vcpkg vcpkg/
       - name: apt update
-        if: ${{ runner.os == 'Linux' }})
+        if: ${{ runner.os == 'Linux' }}
         shell: bash
         run: sudo apt-get update
       - name: add linux system packages
