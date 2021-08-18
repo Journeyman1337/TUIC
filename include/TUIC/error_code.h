@@ -329,25 +329,29 @@ typedef enum TuiErrorCode
      */
 	TUI_ERROR_RESIZE_IMAGE_FAILURE = 72,
 	/*!
+	 * \brief TUIC error code for when a @ref TuiImage has failed to be saved.
+	 */
+	TUI_ERROR_SAVE_IMAGE_FAILURE = 73,
+	/*!
 	 * \brief TUIC error code for when a grapihcs API is unavailable on the current platform.
      */
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 73,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 74,
 	/*!
 	 * \brief TUIC error code for when a graphics API version is unavailable on the current platform.
      */
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 74,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 75,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiCursorShape is not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 75,
+	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 76,
 	/*!
 	 * \brief TUIC error code for when raw mouse motion is not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 76,
+	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 77,
 	/*!
 	 * \brief TUIC error code for when window icons are not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 77,
+	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 78,
 	/*!
 	 * \brief The first GLFW error code.
      */
@@ -665,6 +669,10 @@ extern const char* kTui_Error_Palette_Required_Name;
  * @brief String name of @ref TUI_ERROR_RESIZE_IMAGE_FAILURE.
  */
 extern const char* kTui_Error_Resize_Image_Failure_Name;
+/*!
+ * @brief String name of @ref TUI_ERROR_SAVE_IMAGE_FAILURE.
+ */
+extern const char* kTui_Error_Save_Image_Failure_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_UNAVAILABLE_GRAPHICS_API.
  */
@@ -986,6 +994,10 @@ extern const char* kTui_Error_Palette_Required_Description;
  * @brief String name of @ref TUI_ERROR_RESIZE_IMAGE_FAILURE.
  */
 extern const char* kTui_Error_Resize_Image_Failure_Description;
+/*!
+ * @brief String description of @ref TUI_ERROR_SAVE_IMAGE_FAILURE.
+ */
+extern const char* kTui_Error_Save_Image_Failure_Description;
 /*!
  * @brief String name of @ref TUI_ERROR_UNAVAILABLE_GRAPHICS_API.
  */

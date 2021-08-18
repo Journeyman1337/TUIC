@@ -97,6 +97,7 @@ const char* kTui_Error_Null_Texture_Coordinates_Name = TO_STRING(TUI_ERROR_NULL_
 const char* kTui_Error_Null_Window_Name = TO_STRING(TUI_ERROR_NULL_WINDOW);
 const char* kTui_Error_Palette_Required_Name = TO_STRING(TUI_ERROR_PALETTE_REQUIRED);
 const char* kTui_Error_Resize_Image_Failure_Name = TO_STRING(TUI_ERROR_RESIZE_IMAGE_FAILURE);
+const char* kTui_Error_Save_Image_Failure_Name = TO_STRING(TUI_ERROR_SAVE_IMAGE_FAILURE);
 const char* kTui_Error_Unavailable_Graphics_Api_Name = TO_STRING(TUI_ERROR_UNAVAILABLE_GRAPHICS_API);
 const char* kTui_Error_Unavailable_Graphics_Api_Version_Name = TO_STRING(TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION);
 const char* kTui_Error_Unsupported_Cursor_Shape_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE);
@@ -177,6 +178,7 @@ const char* kTui_Error_Null_Texture_Coordinates_Description = "The texture coord
 const char* kTui_Error_Null_Window_Description = "The TuiWindow is TUI_NULL.";
 const char* kTui_Error_Palette_Required_Description = "Can not render batch data with without a TuiPalette because one is required for its TuiDetailMode.";
 const char* kTui_Error_Resize_Image_Failure_Description = "TuiImage failed to be resized.";
+const char* kTui_Error_Save_Image_Failure_Description = "TuiImage failed to be saved to image file.";
 const char* kTui_Error_Unavailable_Graphics_Api_Description = "Graphics API is unavailable on this device.";
 const char* kTui_Error_Unavailable_Graphics_Api_Version_Description = "Graphics API verison is unavailable on this device.";
 const char* kTui_Error_Unsupported_Cursor_Shape_Description = "The TuiCursorShape is not supported on this platform.";
@@ -347,6 +349,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Palette_Required_Name;
 	case TUI_ERROR_RESIZE_IMAGE_FAILURE:
 		return kTui_Error_Resize_Image_Failure_Name;
+	case TUI_ERROR_SAVE_IMAGE_FAILURE:
+		return kTui_Error_Save_Image_Failure_Name;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API:
 		return kTui_Error_Unavailable_Graphics_Api_Name;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION:
@@ -660,6 +664,10 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_RESIZE_IMAGE_FAILURE;
 	}
+	else if (strcmp(str, kTui_Error_Save_Image_Failure_Name) == 0)
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
 	else if (strcmp(str, kTui_Error_Unavailable_Graphics_Api_Name) == 0)
 	{
 		return TUI_ERROR_UNAVAILABLE_GRAPHICS_API;
@@ -835,6 +843,8 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Palette_Required_Description;
 	case TUI_ERROR_RESIZE_IMAGE_FAILURE:
 		return kTui_Error_Resize_Image_Failure_Description;
+	case TUI_ERROR_SAVE_IMAGE_FAILURE:
+		return kTui_Error_Save_Image_Failure_Description;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API:
 		return kTui_Error_Unavailable_Graphics_Api_Description;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION:
