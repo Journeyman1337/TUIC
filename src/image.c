@@ -53,7 +53,7 @@ TuiImage tuiImageCreatePNG(const char* path)
 	if (error_code != TUI_ERROR_NONE)
 	{
 		tuiDebugError(error_code, __func__);
-		return;
+		return TUI_NULL;
 	}
 	TuiImage ret = _CreateImage(width, height, channels, pixels, TUI_FALSE);
 	return ret;
