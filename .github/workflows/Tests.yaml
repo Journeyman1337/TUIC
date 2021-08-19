@@ -63,11 +63,20 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}/vcpkg/
         run:  ./vcpkg list
-      - name: cmake build tests
+      - name: cmake build tests windows (with shared libpng)
+        if: ${{ runner.os == 'Windows' }}
         shell: bash
         working-directory: ${{github.workspace}}
         run: |
-             cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DTUIC_BUILD_AUTO_TESTS=ON -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake
+             cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DTUIC_BUILD_AUTO_TESTS=ON -DTUIC_LIBPNG_STATIC=OFF -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake
+             cmake --build $GITHUB_WORKSPACE/build --config ${{ matrix.build_type }}
+        continue-on-error: true
+        - name: cmake build tests linux and mac (with static libpng)
+        if: ${{ runner.os != 'Windows' }}
+        shell: bash
+        working-directory: ${{github.workspace}}
+        run: |
+             cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DTUIC_BUILD_AUTO_TESTS=ON -DTUIC_LIBPNG_STATIC=ON -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake
              cmake --build $GITHUB_WORKSPACE/build --config ${{ matrix.build_type }}
         continue-on-error: true
       - name: run auto tests
