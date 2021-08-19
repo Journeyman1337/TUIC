@@ -3,7 +3,7 @@ uniform ivec2 ScreenTileDimensions; //dimensions of the batch
 uniform vec2 ScreenspaceTileDimensions;
 uniform ivec2 SheetTileDimensions;
 uniform vec2 SheetTileUVDimensions;
-uniform int GlyphMode; /* G8 = 0, G16 = 1 */
+uniform int GlyphMode; /* G0 = 0, G8 = 1, G16 = 2 */
 uniform int ColorMode; /* C0 = 0, C4 = 1, C8 = 2, C8NBG = 3, C8NFG = 4, C24 = 5, C24NBG = 6, C24NFG = 7, C32 = 8, C32NBG = 9, C32NFG = 10 */
 uniform int LayoutMode; /* Full = 0, Sparse = 1 */
 uniform int AtlasType; // 0 = grid, 1 = coordinates
@@ -155,16 +155,24 @@ void main()
 	}
 	
 	int glyph;
-	if (GlyphMode == 0) //G8
+	if (GlyphMode == 0) //G0
+	{
+		glyph = -1;
+	}
+	if (GlyphMode == 1) //G8
 	{
 		glyph = getGlyph8(buffer_offset);
 	}
-	else if (GlyphMode == 1) //G16
+	else if (GlyphMode == 2) //G16
 	{
 		glyph = getGlyph16(buffer_offset);
 	}
 	
-	if (AtlasType == 0) //Grid
+	if (glyph == -1) //no glyph
+	{
+		UV = vec2(0.0f, 0.0f);
+	}
+	else if (AtlasType == 0) //Grid
 	{
 		UV = getVertexUV_Grid(glyph, tile_vertex);
 	}
