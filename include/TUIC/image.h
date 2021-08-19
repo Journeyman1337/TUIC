@@ -105,7 +105,7 @@ void tuiImageDestroy(TuiImage image);
  * @param image The @ref TuiImage.
  * @param path The local or full path where the file will be saved, including the file name and extension.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_IMAGE and @ref TUI_ERROR_NULL_PATH.  The first error that occurs will cause the function to immediatly return. 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_NULL_PATH, and @ref TUI_ERROR_SAVE_IMAGE_FAILURE.  The first error that occurs will cause the function to immediatly return. 
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
