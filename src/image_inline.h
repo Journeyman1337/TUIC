@@ -38,7 +38,7 @@ static inline TuiErrorCode _LoadPixelsPNG(const char* path, int* pixel_width, in
 	FILE* fp = fopen(path, "rb");
 	if (!fp)
 	{
-		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+		return TUI_ERROR_INVALID_FILE_PATH;
 	}
 	fread(header, 1, 8, fp);
 	if (png_sig_cmp((png_const_bytep)&header[0], 0, 8))
@@ -100,7 +100,7 @@ static inline TuiErrorCode _SavePixelsPNG(const char* path, int pixel_width, int
 	FILE* fp = fopen(path, "wb");
 	if (!fp)
 	{
-		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+		return TUI_ERROR_INVALID_FILE_PATH;
 	}
 	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (!png_ptr)
