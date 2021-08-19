@@ -35,7 +35,7 @@ jobs:
         run: git submodule add https://github.com/microsoft/vcpkg vcpkg/
       - name: xcode update
         if: ${{ runner.os == 'macOS'}}
-        run: xcode-select --install
+        run: softwareupdate --install -a
       - name: apt update
         if: ${{ runner.os == 'Linux' }}
         shell: bash
