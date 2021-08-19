@@ -110,7 +110,7 @@ if (TUIC_LIBPNG_STATIC)
 	set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
 		png_static
 	)
-else
+else()
 	set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
 		png
 	)
