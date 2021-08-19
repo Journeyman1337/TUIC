@@ -2,6 +2,7 @@ var detail__flag_8h =
 [
     [ "TuiDetailFlag", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43d", [
       [ "TUI_DETAIL_FLAG_INVALID", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43dad3d70cb72401f65dbb82445066563b46", null ],
+      [ "TUI_DETAIL_FLAG_GLYPH_0", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da8b02208b27e76a570b5d458cdca6bcb1", null ],
       [ "TUI_DETAIL_FLAG_GLYPH_8", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da65ec35a526422b0ba24487ad6ffef9e5", null ],
       [ "TUI_DETAIL_FLAG_GLYPH_16", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da347b2d48ad08d3c80c79a9a93f8a059d", null ],
       [ "TUI_DETAIL_FLAG_COLOR_0", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da8d2001c5bc1fbdf5a830b44a2dcdc1f2", null ],
@@ -36,6 +37,7 @@ var detail__flag_8h =
     [ "kTui_Detail_Flag_C8NBG_Name", "detail__flag_8h.html#a2e4eb10a2e1424b252525e9ccf119972", null ],
     [ "kTui_Detail_Flag_C8NFG_Name", "detail__flag_8h.html#a27b888fd98158675450f8f7e8000ad6f", null ],
     [ "kTui_Detail_Flag_Full_Name", "detail__flag_8h.html#a5126ed18898b449558b48ffe46853960", null ],
+    [ "kTui_Detail_Flag_G0_Name", "detail__flag_8h.html#a3ba65acf2ef4b0bc6ccbcf7ad0475ceb", null ],
     [ "kTui_Detail_Flag_G16_Name", "detail__flag_8h.html#a36aa70dd8c76b0002d1a638c417b416e", null ],
     [ "kTui_Detail_Flag_G8_Name", "detail__flag_8h.html#a031d87105edb8fbb2144720691a86a6f", null ],
     [ "kTui_Detail_Flag_Sparse_Name", "detail__flag_8h.html#a1e77c100bc09916b128453d2c0f960bd", null ]

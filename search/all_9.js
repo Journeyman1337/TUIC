@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['maximized_436',['maximized',['../struct_tui_window_create_info.html#a0c45493bc56f4c71120877e80e11ad25',1,'TuiWindowCreateInfo']]],
-  ['monitor_437',['monitor',['../struct_tui_window_create_info.html#a65fbe635572527f8f2fd0d4ff4388462',1,'TuiWindowCreateInfo']]],
-  ['monitor_2eh_438',['monitor.h',['../monitor_8h.html',1,'']]],
-  ['mouse_5fbutton_2eh_439',['mouse_button.h',['../mouse__button_8h.html',1,'']]]
+  ['maximized_446',['maximized',['../struct_tui_window_create_info.html#a0c45493bc56f4c71120877e80e11ad25',1,'TuiWindowCreateInfo']]],
+  ['monitor_447',['monitor',['../struct_tui_window_create_info.html#a65fbe635572527f8f2fd0d4ff4388462',1,'TuiWindowCreateInfo']]],
+  ['monitor_2eh_448',['monitor.h',['../monitor_8h.html',1,'']]],
+  ['mouse_5fbutton_2eh_449',['mouse_button.h',['../mouse__button_8h.html',1,'']]]
 ];
