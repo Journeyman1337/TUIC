@@ -40,71 +40,82 @@ typedef enum TuiDetailFlag
 	 */
 	TUI_DETAIL_FLAG_INVALID = 0,
 	/*!
+	 * @brief TUI detail mode glyph flag for no glyphs. This glyph flag can only work with color flags with only a foreground color.
+	 */
+	TUI_DETAIL_FLAG_GLYPH_0 = (1 << 0),
+	/*!
 	 * @brief TUI detail mode glyph flag for 8 bit glyphs. This supports up to 256 unique glyphs. This size is optimal if you only want to use code page 437 for rendering.
 	 */
-	TUI_DETAIL_FLAG_GLYPH_8 = (1 << 0),
+	TUI_DETAIL_FLAG_GLYPH_8 = (1 << 1),
 	/*!
 	 * @brief Detail mode glyph flag for 16 bit glyphs. This supports up to 65536 unique glyphs per @ref TuiAtlas.
 	 */
-	TUI_DETAIL_FLAG_GLYPH_16 = (1 << 1),
+	TUI_DETAIL_FLAG_GLYPH_16 = (1 << 2),
 	/*!
 	 * @brief TUI detail mode flag for no colors. This shrinks the byte size per tile by not requiring any information about foreground and background colors.
 	 */
-	TUI_DETAIL_FLAG_COLOR_0 = (1 << 2),
+	TUI_DETAIL_FLAG_COLOR_0 = (1 << 3),
 	/*!
 	 * @brief TUI detail mode color flag for 4 bit colors. This enables use of a 16 color @ref TuiPalette for colors.
 	 */
-	TUI_DETAIL_FLAG_COLOR_4 = (1 << 3),
+	TUI_DETAIL_FLAG_COLOR_4 = (1 << 4),
 	/*!
 	 * @brief TUI detail mode color flag for 8 bit colors. This enables use of a 256 color @ref TuiPalette for colors.
 	 */
-	TUI_DETAIL_FLAG_COLOR_8 = (1 << 4),
+	TUI_DETAIL_FLAG_COLOR_8 = (1 << 5),
 	/*!
 	 * @brief TUI detail mode color flag for 8 bit colors with no foreground color. This enables use of a 256 color @ref TuiPalette for colors.
 	 */
-	TUI_DETAIL_FLAG_COLOR_8NFG = (1 << 5),
+	TUI_DETAIL_FLAG_COLOR_8NFG = (1 << 6),
 	/*!
 	 * @brief TUI detail mode color flag for 8 bit colors with no background color. This enables use of a 256 color @ref TuiPalette for colors.
 	 */
-	TUI_DETAIL_FLAG_COLOR_8NBG = (1 << 6),
+	TUI_DETAIL_FLAG_COLOR_8NBG = (1 << 7),
 	/*!
 	 * @brief TUI detail mode color flag for 24 bit colors. This enables use of 24 bit full colors with RGB components.
 	 */
-	TUI_DETAIL_FLAG_COLOR_24 = (1 << 7),
+	TUI_DETAIL_FLAG_COLOR_24 = (1 << 8),
 	/*!
 	 * @brief TUI detail mode color flag for a single 24 bit background color per tile. This enables use of 24 bit full colors with RGB components.
 	 */
-	TUI_DETAIL_FLAG_COLOR_24NFG = (1 << 8),
+	TUI_DETAIL_FLAG_COLOR_24NFG = (1 << 9),
 	/*!
 	 * @brief TUI detail mode color flag for a single 24 bit foreground color per tile. This enables use of 24 bit full colors with RGB components.
 	 */
-	TUI_DETAIL_FLAG_COLOR_24NBG = (1 << 9),
+	TUI_DETAIL_FLAG_COLOR_24NBG = (1 << 10),
 	/*!
 	 * @brief TUI detail mode color flag for 32 bit colors. This enables use of 32 bit full colors with RGBA components.
 	 */
-	TUI_DETAIL_FLAG_COLOR_32 = (1 << 10),
+	TUI_DETAIL_FLAG_COLOR_32 = (1 << 11),
 	/*!
 	 * @brief TUI detail mode color flag for a single 32 bit background color per tile. This enables use of 32 bit full colors with RGBA components.
 	 */
-	TUI_DETAIL_FLAG_COLOR_32NFG = (1 << 11),
+	TUI_DETAIL_FLAG_COLOR_32NFG = (1 << 12),
 	/*!
 	 * @brief TUI detail mode color flag for a single 32 bit foreground color per tile. This enables use of 32 bit full colors with RGBA components.
 	 */
-	TUI_DETAIL_FLAG_COLOR_32NBG = (1 << 12),
+	TUI_DETAIL_FLAG_COLOR_32NBG = (1 << 13),
 	/*!
 	 * @brief TUI detail mode color flag for full batches of tiles without increased batch size for coordinate information. This is most optimal for rendering in situations where almost all tiles are updated every frame.
 	 */
-	TUI_DETAIL_FLAG_LAYOUT_FULL = (1 << 13),
+	TUI_DETAIL_FLAG_LAYOUT_FULL = (1 << 14),
 	/*!
 	 * @brief TUI detail mode color flag for rendering tiles as needed instead of every tile every frame. This is most optimal for rendering in situations where few tiles are updated every frame.
 	 */
-	TUI_DETAIL_FLAG_LAYOUT_SPARSE = (1 << 14),
-	
-		
-	TUI_DETAIL_FLAG_GLYPH_BITS = (TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_GLYPH_16),
+	TUI_DETAIL_FLAG_LAYOUT_SPARSE = (1 << 15),
+	/*!
+	 * @brief All glyph detail bitflags.
+	 */
+	TUI_DETAIL_FLAG_GLYPH_BITS = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_GLYPH_16),
+	/*!
+	 * @brief All color detail bitflags.
+	 */
 	TUI_DETAIL_FLAG_COLOR_BITS = (TUI_DETAIL_FLAG_COLOR_0 | TUI_DETAIL_FLAG_COLOR_4 | TUI_DETAIL_FLAG_COLOR_8 | TUI_DETAIL_FLAG_COLOR_8NBG |
 		TUI_DETAIL_FLAG_COLOR_8NFG | TUI_DETAIL_FLAG_COLOR_24 | TUI_DETAIL_FLAG_COLOR_24NBG | TUI_DETAIL_FLAG_COLOR_24NFG | 
 		TUI_DETAIL_FLAG_COLOR_32 | TUI_DETAIL_FLAG_COLOR_32NBG | TUI_DETAIL_FLAG_COLOR_32NFG),
+	/*!
+	 * @brief All layout detail bitflags.
+	 */
 	TUI_DETAIL_FLAG_LAYOUT_BITS = (TUI_DETAIL_FLAG_LAYOUT_FULL | TUI_DETAIL_FLAG_LAYOUT_SPARSE)
 } TuiDetailFlag;
 
@@ -113,6 +124,10 @@ typedef enum TuiDetailFlag
  *
  * Constant string names of each detali flag.
  *  @{ */
+ /*!
+  * @brief String name of @ref TUI_DETAIL_FLAG_G0.
+  */
+extern const char* kTui_Detail_Flag_G0_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_FLAG_GLYPH_8.
  */
