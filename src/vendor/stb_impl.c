@@ -19,20 +19,6 @@
 */
 #include <TUIC/tuic.h>
 
-#define STB_IMAGE_IMPLEMENTATION
-#define STBI_ONLY_PNG
-#define STBI_MALLOC(size) tuiAllocate(size)
-#define STBI_REALLOC(ptr, size) tuiReallocate(ptr, size)
-#define STBI_FREE(ptr) tuiFree(ptr)
-#include <stb_image.h>
-
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#define STBIW_ONLY_PNG
-#define STBW_MALLOC(size) tuiAllocate(size)
-#define STBW_REALLOC(ptr, size) tuiReallocate(ptr, size)
-#define STBW_FREE(ptr) tuiFree(ptr)
-#include <stb_image_write.h>
-
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #define STBIR_MALLOC(size, context)  ((void)(context), tuiAllocate(size))
 #define STBIR_FREE(ptr, context)  ((void)(context), tuiFree(ptr))

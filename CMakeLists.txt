@@ -11,6 +11,7 @@ option(TUIC_BUILD_EXAMPLES "Build the example projects." OFF)
 option(TUIC_BUILD_DOCS "Build documentation using Doxygen." OFF)
 option(TUIC_BUILD_MANUAL_TESTS "Build manual test framework." OFF)
 option(TUIC_BUILD_AUTO_TESTS "Build automatic test framework." OFF)
+option(TUIC_LIBPNG_STATIC "Use static version of libpng." OFF)
 
 set(TUIC_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TUIC_CONFIGURE_HEADER_TEXT "")
@@ -102,6 +103,18 @@ find_package(glfw3 CONFIG REQUIRED)
 set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
 	glfw
 )
+
+#libpng
+find_package(libpng CONFIG REQUIRED)
+if (TUIC_LIBPNG_STATIC)
+	set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
+		png_static
+	)
+else()
+	set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
+		png
+	)
+endif()
 
 if (UNIX)
     set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}

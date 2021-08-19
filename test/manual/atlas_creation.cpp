@@ -133,56 +133,56 @@ int main()
     TuiImage screenshot_image = TUI_NULL;
     tuiWindowDrawBatch(window, atlases[0], palette, batch);
     screenshot_image = tuiWindowGetImage(window);
-    tuiImageSave(screenshot_image, "ATLAS_0.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_0.png");
     printf("ATLAS_0\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[1], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_1.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_1.png");
     printf("ATLAS_1\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[2], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_2.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_2.png");
     printf("ATLAS_2\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[3], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_3.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_3.png");
     printf("ATLAS_3\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[4], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_4.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_4.png");
     printf("ATLAS_4\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[5], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_5.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_5.png");
     printf("ATLAS_5\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[6], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_6.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_6.png");
     printf("ATLAS_6\n");
     frame(window);
 
     tuiWindowClearColor(window, 0, 0, 0, 1);
     tuiWindowDrawBatch(window, atlases[7], palette, batch);
     tuiWindowWriteImage(window, screenshot_image);
-    tuiImageSave(screenshot_image, "ATLAS_7.png");
+    tuiImageSavePNG(screenshot_image, "ATLAS_7.png");
     printf("ATLAS_7\n");
     frame(window);
 

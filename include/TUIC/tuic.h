@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 /*! \file tuic.h
- * The global include for the TUIC library. This header file includes all other headers meant to be used outside of backend implementation.
+ * The global include for the TUIC library. This header file includes all other include files.
  */
 
 #include <TUIC/atlas.h>

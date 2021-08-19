@@ -37,7 +37,7 @@ int main()
     tuiPanelClearColor(panel, 255, 255, 255, 255); // white clear color
     tuiPanelDrawTexture(panel, texture);
     TuiImage out_sushi = tuiPanelGetImage(panel);
-    tuiImageSave(out_sushi, "test_panel.png");
+    tuiImageSavePNG(out_sushi, "test_panel.png");
     tuiImageDestroy(out_sushi);
     out_sushi = TUI_NULL;
     tuiTextureDestroy(texture);

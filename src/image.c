@@ -21,8 +21,6 @@
 #include "objects.h"
 #include "image_inline.h"
 
-#include <stb_image.h>
-#include <stb_image_write.h>
 #include <stb_image_resize.h>
 
 TuiImage tuiImageCreatePixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
@@ -49,14 +47,15 @@ TuiImage tuiImageCreatePNG(const char* path)
 		return TUI_NULL;
 	}
 
-	int i_width, i_height, i_channels;
-	uint8_t* pixels = stbi_load(path, &i_width, &i_height, &i_channels, 0);
-	if (pixels == TUI_NULL)
+	int width = 0, height = 0, channels = 0;
+	uint8_t* pixels = TUI_NULL;
+	TuiErrorCode error_code = _LoadPixelsPNG(path, &width, &height, &channels, &pixels);
+	if (error_code != TUI_ERROR_NONE)
 	{
-		tuiDebugError(TUI_ERROR_LOAD_IMAGE_FAILURE, __func__);
+		tuiDebugError(error_code, __func__);
 		return TUI_NULL;
 	}
-	TuiImage ret = _CreateImage(i_width, i_height, i_channels, pixels, TUI_FALSE);
+	TuiImage ret = _CreateImage(width, height, channels, pixels, TUI_FALSE);
 	return ret;
 }
 
@@ -106,7 +105,7 @@ void tuiImageDestroy(TuiImage image)
 	tuiFree(image);
 }
 
-void tuiImageSave(TuiImage image, const char* path)
+void tuiImageSavePNG(TuiImage image, const char* path)
 {
 	if (image == TUI_NULL)
 	{
@@ -119,7 +118,12 @@ void tuiImageSave(TuiImage image, const char* path)
 		return;
 	}
 
-	stbi_write_png(path, image->PixelWidth, image->PixelHeight, image->ChannelCount, image->PixelData, image->PixelWidth * image->ChannelCount);
+	TuiErrorCode error_code = _SavePixelsPNG(path, image->PixelWidth, image->PixelHeight, image->ChannelCount, image->PixelData);
+	if (error_code != TUI_ERROR_NONE)
+	{
+		tuiDebugError(error_code, __func__);
+		return;
+	}
 }
 
 TuiImage tuiImageClone(TuiImage image)

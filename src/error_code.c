@@ -59,6 +59,7 @@ const char* kTui_Error_Invalid_Cursor_Shape_Name = TO_STRING(TUI_ERROR_INVALID_C
 const char* kTui_Error_Invalid_Detail_Flag_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_FLAG);
 const char* kTui_Error_Invalid_Detail_Mode_Name = TO_STRING(TUI_ERROR_INVALID_DETAIL_MODE);
 const char* kTui_Error_Invalid_Event_Timeout_Name = TO_STRING(TUI_ERROR_INVALID_EVENT_TIMEOUT);
+const char* kTui_Error_Invalid_File_Path_Name = TO_STRING(TUI_ERROR_INVALID_FILE_PATH);
 const char* kTui_Error_Invalid_Filter_Mode_Name = TO_STRING(TUI_ERROR_INVALID_FILTER_MODE);
 const char* kTui_Error_Invalid_Glfw_Library_Version_Name = TO_STRING(TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION);
 const char* kTui_Error_Invalid_Glyph_Count_Name = TO_STRING(TUI_ERROR_INVALID_GLYPH_COUNT);
@@ -97,6 +98,7 @@ const char* kTui_Error_Null_Texture_Coordinates_Name = TO_STRING(TUI_ERROR_NULL_
 const char* kTui_Error_Null_Window_Name = TO_STRING(TUI_ERROR_NULL_WINDOW);
 const char* kTui_Error_Palette_Required_Name = TO_STRING(TUI_ERROR_PALETTE_REQUIRED);
 const char* kTui_Error_Resize_Image_Failure_Name = TO_STRING(TUI_ERROR_RESIZE_IMAGE_FAILURE);
+const char* kTui_Error_Save_Image_Failure_Name = TO_STRING(TUI_ERROR_SAVE_IMAGE_FAILURE);
 const char* kTui_Error_Unavailable_Graphics_Api_Name = TO_STRING(TUI_ERROR_UNAVAILABLE_GRAPHICS_API);
 const char* kTui_Error_Unavailable_Graphics_Api_Version_Name = TO_STRING(TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION);
 const char* kTui_Error_Unsupported_Cursor_Shape_Name = TO_STRING(TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE);
@@ -139,6 +141,7 @@ const char* kTui_Error_Invalid_Cursor_Shape_Description = "The TuiCursorShape is
 const char* kTui_Error_Invalid_Detail_Flag_Description = "The TuiDetailFlag is invalid.";
 const char* kTui_Error_Invalid_Detail_Mode_Description = "The TuiDetailMode is invalid.";
 const char* kTui_Error_Invalid_Event_Timeout_Description = "The event timeout must be a positive finite number.";
+const char* kTui_Error_Invalid_File_Path_Description = "The file path is invalid or no file was found at the path.";
 const char* kTui_Error_Invalid_Filter_Mode_Description = "The TuiFilterMode is invalid.";
 const char* kTui_Error_Invalid_Glfw_Library_Version_Description = "The GLFW library dependency has the incorrect version. TUIC requires GLFW version 3.3.";
 const char* kTui_Error_Invalid_Glyph_Count_Description = "The glyph count must be greater than 0.";
@@ -177,6 +180,7 @@ const char* kTui_Error_Null_Texture_Coordinates_Description = "The texture coord
 const char* kTui_Error_Null_Window_Description = "The TuiWindow is TUI_NULL.";
 const char* kTui_Error_Palette_Required_Description = "Can not render batch data with without a TuiPalette because one is required for its TuiDetailMode.";
 const char* kTui_Error_Resize_Image_Failure_Description = "TuiImage failed to be resized.";
+const char* kTui_Error_Save_Image_Failure_Description = "TuiImage failed to be saved to image file.";
 const char* kTui_Error_Unavailable_Graphics_Api_Description = "Graphics API is unavailable on this device.";
 const char* kTui_Error_Unavailable_Graphics_Api_Version_Description = "Graphics API verison is unavailable on this device.";
 const char* kTui_Error_Unsupported_Cursor_Shape_Description = "The TuiCursorShape is not supported on this platform.";
@@ -271,6 +275,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Detail_Mode_Name;
 	case TUI_ERROR_INVALID_EVENT_TIMEOUT:
 		return kTui_Error_Invalid_Event_Timeout_Name;
+	case TUI_ERROR_INVALID_FILE_PATH:
+		return kTui_Error_Invalid_File_Path_Name;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Name;
 	case TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION:
@@ -347,6 +353,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Palette_Required_Name;
 	case TUI_ERROR_RESIZE_IMAGE_FAILURE:
 		return kTui_Error_Resize_Image_Failure_Name;
+	case TUI_ERROR_SAVE_IMAGE_FAILURE:
+		return kTui_Error_Save_Image_Failure_Name;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API:
 		return kTui_Error_Unavailable_Graphics_Api_Name;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION:
@@ -508,6 +516,10 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_INVALID_EVENT_TIMEOUT;
 	}
+	else if (strcmp(str, kTui_Error_Invalid_File_Path_Name) == 0)
+	{
+		return TUI_ERROR_INVALID_FILE_PATH;
+	}
 	else if (strcmp(str, kTui_Error_Invalid_Filter_Mode_Name) == 0)
 	{
 		return TUI_ERROR_INVALID_FILTER_MODE;
@@ -660,6 +672,10 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_RESIZE_IMAGE_FAILURE;
 	}
+	else if (strcmp(str, kTui_Error_Save_Image_Failure_Name) == 0)
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
 	else if (strcmp(str, kTui_Error_Unavailable_Graphics_Api_Name) == 0)
 	{
 		return TUI_ERROR_UNAVAILABLE_GRAPHICS_API;
@@ -759,6 +775,8 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Detail_Mode_Description;
 	case TUI_ERROR_INVALID_EVENT_TIMEOUT:
 		return kTui_Error_Invalid_Event_Timeout_Description;
+	case TUI_ERROR_INVALID_FILE_PATH:
+		return kTui_Error_Invalid_File_Path_Description;
 	case TUI_ERROR_INVALID_FILTER_MODE:
 		return kTui_Error_Invalid_Filter_Mode_Description;
 	case TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION:
@@ -835,6 +853,8 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Palette_Required_Description;
 	case TUI_ERROR_RESIZE_IMAGE_FAILURE:
 		return kTui_Error_Resize_Image_Failure_Description;
+	case TUI_ERROR_SAVE_IMAGE_FAILURE:
+		return kTui_Error_Save_Image_Failure_Description;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API:
 		return kTui_Error_Unavailable_Graphics_Api_Description;
 	case TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION:

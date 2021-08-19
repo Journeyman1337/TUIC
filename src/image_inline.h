@@ -27,6 +27,120 @@
 #include <TUIC/boolean.h>
 #include <TUIC/heap.h>
 #include <stb_image_resize.h>
+#include <png.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+static inline TuiErrorCode _LoadPixelsPNG(const char* path, int* pixel_width, int* pixel_height, int* channel_count, uint8_t** pixels)
+{
+	char header[8];
+	FILE* fp = fopen(path, "rb");
+	if (!fp)
+	{
+		return TUI_ERROR_INVALID_FILE_PATH;
+	}
+	fread(header, 1, 8, fp);
+	if (png_sig_cmp((png_const_bytep)&header[0], 0, 8))
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	png_structp  png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (!png_ptr)
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	png_infop info_ptr = png_create_info_struct(png_ptr);
+	if (!info_ptr)
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	png_init_io(png_ptr, fp);
+	png_set_sig_bytes(png_ptr, 8);
+	png_read_info(png_ptr, info_ptr);
+	int width = png_get_image_width(png_ptr, info_ptr);
+	int height = png_get_image_height(png_ptr, info_ptr);
+	png_byte color_type = png_get_color_type(png_ptr, info_ptr);
+	int channels = (color_type == PNG_COLOR_TYPE_RGB) ? 3 : (color_type == PNG_COLOR_TYPE_RGBA) ? 4 : 0;
+	if (channels == 0)
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);
+	if (bit_depth != 8)
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	int number_of_passes = png_set_interlace_handling(png_ptr);
+	png_read_update_info(png_ptr, info_ptr);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
+	}
+	png_bytep* row_pointers = (png_bytep*)tuiAllocate(sizeof(png_bytep) * (size_t)height);
+	uint8_t* image_pixels = (uint8_t*)tuiAllocate((size_t)width * (size_t)height * (size_t)channels);
+	for (size_t y = 0; y < (size_t)height; y++)
+		row_pointers[y] = &image_pixels[y * (size_t)width * (size_t)channels];
+	png_read_image(png_ptr, row_pointers);
+	fclose(fp);
+	tuiFree(row_pointers);
+	*pixel_width = width;
+	*pixel_height = height;
+	*channel_count = channels;
+	*pixels = image_pixels;
+	return TUI_ERROR_NONE;
+}
+
+static inline TuiErrorCode _SavePixelsPNG(const char* path, int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data)
+{
+	FILE* fp = fopen(path, "wb");
+	if (!fp)
+	{
+		return TUI_ERROR_INVALID_FILE_PATH;
+	}
+	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (!png_ptr)
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
+	png_infop info_ptr = png_create_info_struct(png_ptr);
+	if (!info_ptr)
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
+	png_init_io(png_ptr, fp);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
+	png_byte color_type = (channel_count == 3) ? 2 : 6;
+	png_set_IHDR(png_ptr, info_ptr, pixel_width, pixel_height, 8, color_type, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+	png_write_info(png_ptr, info_ptr);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
+	png_bytep* row_pointers = (png_bytep*)tuiAllocate(sizeof(png_bytep) * pixel_height);
+	for (size_t y = 0; y < pixel_height; y++)
+		row_pointers[y] = &pixel_data[y * pixel_width * channel_count];
+	png_write_image(png_ptr, row_pointers);
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
+		return TUI_ERROR_SAVE_IMAGE_FAILURE;
+	}
+	png_write_end(png_ptr, NULL);
+	tuiFree(row_pointers);
+	fclose(fp);
+	return TUI_ERROR_NONE;
+}
 
 static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
 {
