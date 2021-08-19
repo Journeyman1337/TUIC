@@ -250,32 +250,17 @@ TuiBoolean tuiDetailHasFlag(TuiDetailMode detail_mode, TuiDetailFlag detail_flag
 
 TuiDetailFlag tuiDetailGetGlyphFlag(TuiDetailMode detail_mode)
 {
-	return detail_mode & (
-		TUI_DETAIL_FLAG_GLYPH_8 |
-		TUI_DETAIL_FLAG_GLYPH_16);
+	return detail_mode & TUI_DETAIL_FLAG_GLYPH_BITS;
 }
 
 TuiDetailFlag tuiDetailGetColorFlag(TuiDetailMode detail_mode)
 {
-	return detail_mode & (
-		TUI_DETAIL_FLAG_COLOR_0 |
-		TUI_DETAIL_FLAG_COLOR_4 |
-		TUI_DETAIL_FLAG_COLOR_8 |
-		TUI_DETAIL_FLAG_COLOR_8NBG |
-		TUI_DETAIL_FLAG_COLOR_8NFG |
-		TUI_DETAIL_FLAG_COLOR_24 |
-		TUI_DETAIL_FLAG_COLOR_24NBG |
-		TUI_DETAIL_FLAG_COLOR_24NFG |
-		TUI_DETAIL_FLAG_COLOR_32 |
-		TUI_DETAIL_FLAG_COLOR_32NBG |
-		TUI_DETAIL_FLAG_COLOR_32NFG);
+	return detail_mode & TUI_DETAIL_FLAG_COLOR_BITS;
 }
 
 TuiDetailFlag tuiDetailGetLayoutFlag(TuiDetailMode detail_mode)
 {
-	return detail_mode & (
-		TUI_DETAIL_FLAG_LAYOUT_FULL |
-		TUI_DETAIL_FLAG_LAYOUT_SPARSE);
+	return detail_mode & TUI_DETAIL_FLAG_LAYOUT_BITS;
 }
 
 size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_flag)
