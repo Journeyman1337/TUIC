@@ -43,6 +43,18 @@ typedef enum TuiDetailMode
 	 */
 	TUI_DETAIL_MODE_INVALID = 0,
 	/*!
+	 * @brief TUI detail mode for full no glyph batches with 8 bit colors (256 color palette).
+	 */
+	TUI_DETAIL_MODE_G0_C8NBG_FULL = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_COLOR_8NBG | TUI_DETAIL_FLAG_LAYOUT_FULL),
+	/*!
+	 * @brief TUI detail mode for full no glyph batches with 24 bit colors (RGB full color).
+	 */
+	TUI_DETAIL_MODE_G0_C24NBG_FULL = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_COLOR_24NBG | TUI_DETAIL_FLAG_LAYOUT_FULL),
+	/*!
+	 * @brief TUI detail mode for full no glyph batches with 32 bit colors (RGBA full color).
+	 */
+	TUI_DETAIL_MODE_G0_C32NBG_FULL = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_COLOR_32NBG | TUI_DETAIL_FLAG_LAYOUT_FULL),
+	/*!
 	 * @brief TUI detail mode for full 8 bit glyph batches with no colors.
 	 */
 	TUI_DETAIL_MODE_G8_C0_FULL =				(TUI_DETAIL_FLAG_GLYPH_8 		| TUI_DETAIL_FLAG_COLOR_0			| TUI_DETAIL_FLAG_LAYOUT_FULL),
@@ -130,6 +142,18 @@ typedef enum TuiDetailMode
 	 * @brief TUI detail mode for full 16 bit glyph batches with a 32 bit background color (RGBA full color).
 	 */
 	TUI_DETAIL_MODE_G16_C32NFG_FULL =		(TUI_DETAIL_FLAG_GLYPH_16		| TUI_DETAIL_FLAG_COLOR_32NFG		| TUI_DETAIL_FLAG_LAYOUT_FULL),
+	/*!
+	 * @brief TUI detail mode for sparse no glyph batches with 8 bit colors (256 color palette).
+	 */
+	TUI_DETAIL_MODE_G0_C8NBG_SPARSE = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_COLOR_8NBG | TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	/*!
+	 * @brief TUI detail mode for sparse no glyph batches with 24 bit colors (RGB full color).
+	 */
+	TUI_DETAIL_MODE_G0_C24NBG_SPARSE = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_COLOR_24NBG | TUI_DETAIL_FLAG_LAYOUT_SPARSE),
+	/*!
+	 * @brief TUI detail mode for sparse no glyph batches with 32 bit colors (RGBA full color).
+	 */
+	TUI_DETAIL_MODE_G0_C32NBG_SPARSE = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_COLOR_32NBG | TUI_DETAIL_FLAG_LAYOUT_SPARSE),
 	/*!
 	 * @brief TUI detail mode for sparse 8 bit glyph batches with no colors.
 	 */
@@ -225,6 +249,18 @@ typedef enum TuiDetailMode
  *  These constants act as constants containing the size of a single tile in bytes for each supported detail mode.
  *  @{ */
 /*!
+ * @brief Tile byte size of detail modes with glyph flag @ref TUI_DETAIL_FLAG_GLYPH_0 and color flag @ref TUI_DETAIL_FLAG_COLOR_8NBG.
+ */
+extern const size_t kTui_Detail_G0_C8NBG_Size;
+/*!
+ * @brief Tile byte size of detail modes with glyph flag @ref TUI_DETAIL_FLAG_GLYPH_0 and color flag @ref TUI_DETAIL_FLAG_COLOR_24NBG.
+ */
+extern const size_t kTui_Detail_G0_C24NBG_Size;
+/*!
+ * @brief Tile byte size of detail modes with glyph flag @ref TUI_DETAIL_FLAG_GLYPH_0 and color flag @ref TUI_DETAIL_FLAG_COLOR_32NBG.
+ */
+extern const size_t kTui_Detail_G0_C32NBG_Size;
+/*!
  * @brief Tile byte size of detail modes with glyph flag @ref TUI_DETAIL_FLAG_GLYPH_8 and color flag @ref TUI_DETAIL_FLAG_COLOR_0.
  */
 extern const size_t kTui_Detail_G8_C0_Size;
@@ -319,6 +355,18 @@ extern const size_t kTui_Detail_G16_C32NFG_Size;
  *  These are const string names of @ref TuiDetailMode enum values.
  *  @{ */
 /*!
+ * @brief String name of @ref TUI_DETAIL_G0_C8NBG_FULL.
+ */
+extern const char* kTui_Detail_G0_C8NBG_Full_Name;
+/*!
+ * @brief String name of @ref TUI_DETAIL_G0_C24NBG_FULL.
+ */
+extern const char* kTui_Detail_G0_C24NBG_Full_Name;
+/*!
+ * @brief String name of @ref TUI_DETAIL_G0_C32NBG_FULL.
+ */
+extern const char* kTui_Detail_G0_C32NBG_Full_Name;
+/*!
  * @brief String name of @ref TUI_DETAIL_MODE_G8_C0_FULL.
  */
 extern const char* kTui_Detail_G8_C0_Full_Name;
@@ -406,6 +454,18 @@ extern const char* kTui_Detail_G16_C32NBG_Full_Name;
  * @brief String name of @ref TUI_DETAIL_MODE_G16_C32NFG_FULL.
  */
 extern const char* kTui_Detail_G16_C32NFG_Full_Name;
+/*!
+ * @brief String name of @ref TUI_DETAIL_G0_C8NBG_SPARSE.
+ */
+extern const char* kTui_Detail_G0_C8NBG_Sparse_Name;
+/*!
+ * @brief String name of @ref TUI_DETAIL_G0_C24NBG_SPARSE.
+ */
+extern const char* kTui_Detail_G0_C24NBG_Sparse_Name;
+/*!
+ * @brief String name of @ref TUI_DETAIL_G0_C32NBG_SPARSE.
+ */
+extern const char* kTui_Detail_G0_C32NBG_Sparse_Name;
 /*!
  * @brief String name of @ref TUI_DETAIL_MODE_G8_C0_SPARSE.
  */

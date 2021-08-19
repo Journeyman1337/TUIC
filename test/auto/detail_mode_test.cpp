@@ -4,6 +4,9 @@
 #define TO_STRING(value) #value
 
 TEST_CASE("tuiDetailModeToString") {
+    REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G0_C8NBG_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G0_C8NBG_FULL)));
+    REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G0_C24NBG_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G0_C24NBG_FULL)));
+    REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G0_C32NBG_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G0_C32NBG_FULL)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G8_C0_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G8_C0_FULL)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G8_C4_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G8_C4_FULL)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G8_C8_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G8_C8_FULL)));
@@ -26,6 +29,9 @@ TEST_CASE("tuiDetailModeToString") {
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G16_C32_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G16_C32_FULL)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G16_C32NBG_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G16_C32NBG_FULL)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G16_C32NFG_FULL)) == std::string(TO_STRING(TUI_DETAIL_MODE_G16_C32NFG_FULL)));
+    REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G0_C8NBG_SPARSE)) == std::string(TO_STRING(TUI_DETAIL_MODE_G0_C8NBG_SPARSE)));
+    REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G0_C24NBG_SPARSE)) == std::string(TO_STRING(TUI_DETAIL_MODE_G0_C24NBG_SPARSE)));
+    REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G0_C32NBG_SPARSE)) == std::string(TO_STRING(TUI_DETAIL_MODE_G0_C32NBG_SPARSE)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G8_C0_SPARSE)) == std::string(TO_STRING(TUI_DETAIL_MODE_G8_C0_SPARSE)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G8_C4_SPARSE)) == std::string(TO_STRING(TUI_DETAIL_MODE_G8_C4_SPARSE)));
     REQUIRE(std::string(tuiDetailModeToString(TUI_DETAIL_MODE_G8_C8_SPARSE)) == std::string(TO_STRING(TUI_DETAIL_MODE_G8_C8_SPARSE)));
