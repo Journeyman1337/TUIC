@@ -103,12 +103,19 @@ typedef enum TuiDetailFlag
 	 * @brief TUI detail mode color flag for rendering tiles as needed instead of every tile every frame. This is most optimal for rendering in situations where few tiles are updated every frame.
 	 */
 	TUI_DETAIL_FLAG_LAYOUT_SPARSE = (1 << 15),
-	
-		
+	/*!
+	 * @brief All glyph detail bitflags.
+	 */
 	TUI_DETAIL_FLAG_GLYPH_BITS = (TUI_DETAIL_FLAG_GLYPH_0 | TUI_DETAIL_FLAG_GLYPH_8 | TUI_DETAIL_FLAG_GLYPH_16),
+	/*!
+	 * @brief All color detail bitflags.
+	 */
 	TUI_DETAIL_FLAG_COLOR_BITS = (TUI_DETAIL_FLAG_COLOR_0 | TUI_DETAIL_FLAG_COLOR_4 | TUI_DETAIL_FLAG_COLOR_8 | TUI_DETAIL_FLAG_COLOR_8NBG |
 		TUI_DETAIL_FLAG_COLOR_8NFG | TUI_DETAIL_FLAG_COLOR_24 | TUI_DETAIL_FLAG_COLOR_24NBG | TUI_DETAIL_FLAG_COLOR_24NFG | 
 		TUI_DETAIL_FLAG_COLOR_32 | TUI_DETAIL_FLAG_COLOR_32NBG | TUI_DETAIL_FLAG_COLOR_32NFG),
+	/*!
+	 * @brief All layout detail bitflags.
+	 */
 	TUI_DETAIL_FLAG_LAYOUT_BITS = (TUI_DETAIL_FLAG_LAYOUT_FULL | TUI_DETAIL_FLAG_LAYOUT_SPARSE)
 } TuiDetailFlag;
 
