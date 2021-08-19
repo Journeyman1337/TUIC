@@ -260,10 +260,12 @@ static inline int _GetGlyphModeUniformValue(TuiDetailFlag glyph_mode)
 {
 	switch (glyph_mode)
 	{
-	case TUI_DETAIL_FLAG_GLYPH_8:
+	case TUI_DETAIL_FLAG_GLYPH_0:
 		return 0;
-	case TUI_DETAIL_FLAG_GLYPH_16:
+	case TUI_DETAIL_FLAG_GLYPH_8:
 		return 1;
+	case TUI_DETAIL_FLAG_GLYPH_16:
+		return 2;
 	default:
 		return -1;
 	}
