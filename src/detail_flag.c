@@ -24,6 +24,8 @@
 
 #define TO_STRING(value) #value
 
+const char* kTui_Detail_Flag_G0_Name = TO_STRING(TUI_DETAIL_FLAG_GLYPH_0);
+
 const char* kTui_Detail_Flag_G8_Name = TO_STRING(TUI_DETAIL_FLAG_GLYPH_8);
 
 const char* kTui_Detail_Flag_G16_Name = TO_STRING(TUI_DETAIL_FLAG_GLYPH_16);
@@ -57,6 +59,7 @@ const char* kTui_Detail_Flag_Sparse_Name = TO_STRING(TUI_DETAIL_FLAG_LAYOUT_SPAR
 TuiBoolean tuiDetailFlagIsValid(TuiDetailFlag detail_flag)
 {
 	return detail_flag & (
+		TUI_DETAIL_FLAG_GLYPH_0 |
 		TUI_DETAIL_FLAG_GLYPH_8 |
 		TUI_DETAIL_FLAG_GLYPH_16 |
 		TUI_DETAIL_FLAG_COLOR_0 |
@@ -78,6 +81,8 @@ const char* tuiDetailFlagToString(TuiDetailFlag detail_flag)
 {
 	switch (detail_flag)
 	{
+	case TUI_DETAIL_FLAG_GLYPH_0:
+		return kTui_Detail_Flag_G0_Name;
 	case TUI_DETAIL_FLAG_GLYPH_8:
 		return kTui_Detail_Flag_G8_Name;
 	case TUI_DETAIL_FLAG_GLYPH_16:
@@ -115,7 +120,11 @@ const char* tuiDetailFlagToString(TuiDetailFlag detail_flag)
 
 TuiDetailFlag tuiStringToDetailFlag(const char* string)
 {
-	if (strcmp(string, kTui_Detail_Flag_G8_Name) == 0)
+	if (strcmp(string, kTui_Detail_Flag_G0_Name) == 0)
+	{
+		return TUI_DETAIL_FLAG_GLYPH_0;
+	}
+	else if (strcmp(string, kTui_Detail_Flag_G8_Name) == 0)
 	{
 		return TUI_DETAIL_FLAG_GLYPH_8;
 	}

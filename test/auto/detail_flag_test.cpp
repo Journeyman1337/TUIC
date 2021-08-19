@@ -4,6 +4,7 @@
 #define TO_STRING(value) #value
 
 TEST_CASE("tuiDetailFlagToString") {
+    REQUIRE(std::string(tuiDetailFlagToString(TUI_DETAIL_FLAG_GLYPH_0)) == std::string(TO_STRING(TUI_DETAIL_FLAG_GLYPH_0)));
     REQUIRE(std::string(tuiDetailFlagToString(TUI_DETAIL_FLAG_GLYPH_8)) == std::string(TO_STRING(TUI_DETAIL_FLAG_GLYPH_8)));
     REQUIRE(std::string(tuiDetailFlagToString(TUI_DETAIL_FLAG_GLYPH_16)) == std::string(TO_STRING(TUI_DETAIL_FLAG_GLYPH_16)));
     REQUIRE(std::string(tuiDetailFlagToString(TUI_DETAIL_FLAG_COLOR_0)) == std::string(TO_STRING(TUI_DETAIL_FLAG_COLOR_0)));
@@ -22,6 +23,7 @@ TEST_CASE("tuiDetailFlagToString") {
 }
 
 TEST_CASE("tuiStringToDetailFlag") {
+    REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_DETAIL_FLAG_GLYPH_0)) == TUI_DETAIL_FLAG_GLYPH_0);
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_DETAIL_FLAG_GLYPH_8)) == TUI_DETAIL_FLAG_GLYPH_8);
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_DETAIL_FLAG_GLYPH_16)) == TUI_DETAIL_FLAG_GLYPH_16);
     REQUIRE(tuiStringToDetailFlag(TO_STRING(TUI_DETAIL_FLAG_COLOR_0)) == TUI_DETAIL_FLAG_COLOR_0);
