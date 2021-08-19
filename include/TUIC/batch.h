@@ -205,7 +205,7 @@ const uint8_t* tuiBatchGetData(TuiBatch batch);
  */
 void tuiBatchClear(TuiBatch batch);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G0_C8NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C8NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -220,7 +220,7 @@ void tuiBatchClear(TuiBatch batch);
  */
 void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G0_C24NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C24NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
@@ -237,7 +237,7 @@ void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg);
  */
 void tuiBatchSetTile_G0_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
- * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G0_C32NBG_FULL detail mode.
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C32NBG_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
