@@ -1,5 +1,12 @@
 var NAVTREEINDEX4 =
 {
+"palette_8h.html#a71bc5fa4037a0b1a909765dc5f35c82a":[2,0,22,8],
+"palette_8h.html#a84143ccc596b75cd7aab8565a0a3fa70":[2,0,22,2],
+"palette_8h.html#a9cfdc4897ad4065cdd2957f3e58c4360":[2,0,22,3],
+"palette_8h.html#aa706304c726a960a5044a085d05d3d11":[2,0,22,7],
+"panel_8h.html":[2,0,23],
+"panel_8h.html#a04e2ba79eec0410382201c37237c4ed8":[2,0,23,13],
+"panel_8h.html#a0ecf72f5292bd47830e483dc1b9a460a":[2,0,23,5],
 "panel_8h.html#a0fe1cd1a19d8226f78d72b650e5cfdd8":[2,0,23,16],
 "panel_8h.html#a117fa100e1a4646d25cc52e1e15e8b09":[2,0,23,12],
 "panel_8h.html#a1b02fb861d04cac28e33c0d2a037d3cb":[2,0,23,6],

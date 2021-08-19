@@ -14,5 +14,5 @@ var image_8h =
     [ "tuiImageGetPixels", "image_8h.html#a827df7e25adc00459840addc80bdde6a", null ],
     [ "tuiImageGetPixelWidth", "image_8h.html#aaaa5b3ab81f5bb5b03e1b9adb8c17060", null ],
     [ "tuiImageResize", "image_8h.html#a6aebdb13196b5e9e49ab48d3e8445221", null ],
-    [ "tuiImageSave", "image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85", null ]
+    [ "tuiImageSavePNG", "image_8h.html#acc9238257a856134d4909728f24602d7", null ]
 ];

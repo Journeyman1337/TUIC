@@ -106,9 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac66d5d33616aad561c79121f5b8c475d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">tuiImageDestroy</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
 <tr class="memdesc:ac66d5d33616aad561c79121f5b8c475d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> and correctly dispose of all of its resources.  <a href="image_8h.html#ac66d5d33616aad561c79121f5b8c475d">More...</a><br /></td></tr>
 <tr class="separator:ac66d5d33616aad561c79121f5b8c475d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85">tuiImageSave</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, const char *path)</td></tr>
-<tr class="memdesc:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> as a png image file.  <a href="image_8h.html#a40d1fdd1faca45d6b9d443b80a4f8d85">More...</a><br /></td></tr>
-<tr class="separator:a40d1fdd1faca45d6b9d443b80a4f8d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc9238257a856134d4909728f24602d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#acc9238257a856134d4909728f24602d7">tuiImageSavePNG</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image, const char *path)</td></tr>
+<tr class="memdesc:acc9238257a856134d4909728f24602d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> as a png image file.  <a href="image_8h.html#acc9238257a856134d4909728f24602d7">More...</a><br /></td></tr>
+<tr class="separator:acc9238257a856134d4909728f24602d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26d498bb904da658f9bf688f65ea28d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8h.html#a26d498bb904da658f9bf688f65ea28d5">tuiImageClone</a> (<a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> image)</td></tr>
 <tr class="memdesc:a26d498bb904da658f9bf688f65ea28d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a deep copy of a <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>.  <a href="image_8h.html#a26d498bb904da658f9bf688f65ea28d5">More...</a><br /></td></tr>
 <tr class="separator:a26d498bb904da658f9bf688f65ea28d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -721,14 +721,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a40d1fdd1faca45d6b9d443b80a4f8d85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40d1fdd1faca45d6b9d443b80a4f8d85">&#9670;&nbsp;</a></span>tuiImageSave()</h2>
+<a id="acc9238257a856134d4909728f24602d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc9238257a856134d4909728f24602d7">&#9670;&nbsp;</a></span>tuiImageSavePNG()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tuiImageSave </td>
+          <td class="memname">void tuiImageSavePNG </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a>&#160;</td>
           <td class="paramname"><em>image</em>, </td>
@@ -755,7 +755,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a> and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
+<dl class="section user"><dt>Errors:</dt><dd>Possible errors in order are <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2533eba2568551351b0d0f821404d065">TUI_ERROR_NULL_IMAGE</a>, <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859ac0bec002bfa99aff893c4676a9f455dd">TUI_ERROR_NULL_PATH</a>, and <a class="el" href="error__code_8h.html#a03016ac4935b8b0e37c6c5719cf2d859a2fa0cf798f26b5d607dae3034333402c">TUI_ERROR_SAVE_IMAGE_FAILURE</a>. The first error that occurs will cause the function to immediatly return.</dd></dl>
 <dl class="section user"><dt>Requirements:</dt><dd>This function can be called freely, even if TUIC is not currently initialized.</dd></dl>
 <dl class="section user"><dt>Thread safety:</dt><dd>This function can be called safely on any thread. However, it is important to manipulate and use each <a class="el" href="types_8h.html#a3ed8ecd08cd3a8efef545daec702b26d">TuiImage</a> on only one thread at a time to ensure safe memory access. </dd></dl>
 
