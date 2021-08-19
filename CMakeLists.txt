@@ -106,7 +106,7 @@ set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
 #libpng
 find_package(libpng CONFIG REQUIRED)
 set(TUIC_LINK_LIBRARIES ${TUIC_LINK_LIBRARIES}
-	png
+	png_static
 )
 
 if (UNIX)
