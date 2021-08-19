@@ -205,6 +205,56 @@ const uint8_t* tuiBatchGetData(TuiBatch batch);
  */
 void tuiBatchClear(TuiBatch batch);
 /*!
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G0_C8NBG_FULL detail mode.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param x The x coordinate of the tile.
+ * @param y The y coordinate of the tile.
+ * @param fg The 8 bit value that contains the foreground color palette id.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg);
+/*!
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G0_C24NBG_FULL detail mode.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param x The x coordinate of the tile.
+ * @param y The y coordinate of the tile.
+ * @param fg_r The 8 bit value that contains the foreground color red color value.
+ * @param fg_g The 8 bit value that contains the foreground color green color value.
+ * @param fg_b The 8 bit value that contains the foreground color blue color value.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+void tuiBatchSetTile_G0_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
+/*!
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_G0_C32NBG_FULL detail mode.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param x The x coordinate of the tile.
+ * @param y The y coordinate of the tile.
+ * @param fg_r The 8 bit value that contains the foreground color red color value.
+ * @param fg_g The 8 bit value that contains the foreground color green color value.
+ * @param fg_b The 8 bit value that contains the foreground color blue color value.
+ * @param fg_a The 8 bit value that contains the foreground color alpha color value.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+void tuiBatchSetTile_G0_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
+/*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C0_FULL detail mode.
  *
  * @param batch The @ref TuiBatch.
@@ -601,12 +651,64 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
  */
 void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C8NBG_SPARSE detail mode.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param x The x coordinate of the tile.
+ * @param y The y coordinate of the tile.
+ * @param fg The 8 bit value that contains the foreground color palette id.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg);
+/*!
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C24NBG_SPARSE detail mode.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param x The x coordinate of the tile.
+ * @param y The y coordinate of the tile.
+ * @param fg_r The 8 bit value that contains the foreground color red color value.
+ * @param fg_g The 8 bit value that contains the foreground color green color value.
+ * @param fg_b The 8 bit value that contains the foreground color blue color value.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+void tuiBatchSetTile_G0_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
+/*!
+ * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C32NBG_SPARSE detail mode.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param x The x coordinate of the tile.
+ * @param y The y coordinate of the tile.
+ * @param fg_r The 8 bit value that contains the foreground color red color value.
+ * @param fg_g The 8 bit value that contains the foreground color green color value.
+ * @param fg_b The 8 bit value that contains the foreground color blue color value.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+void tuiBatchSetTile_G0_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
+/*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C0_SPARSE detail mode.
  *
  * @param batch The @ref TuiBatch.
  * @param x The x coordinate of the tile.
  * @param y The y coordinate of the tile.
- * @param glyph The 8 bit glyph id.
+ * @param fg_r The 8 bit value that contains the foreground color red color value.
+ * @param fg_g The 8 bit value that contains the foreground color green color value.
+ * @param fg_b The 8 bit value that contains the foreground color blue color value.
+ * @param fg_a The 8 bit value that contains the foreground color alpha color value.
  *
  * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_SETTER. The first error that occurs will cause the function to immediatly return. 
  *

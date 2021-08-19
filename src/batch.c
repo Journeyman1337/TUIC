@@ -253,6 +253,77 @@ void tuiBatchClear(TuiBatch batch)
 	}
 }
 
+void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C8NBG_FULL)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		return;
+	}
+	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	{
+		return;
+	}
+
+	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G0_C8NBG_Size
+		+ (size_t)x * kTui_Detail_G0_C8NBG_Size;
+	batch->Data[tile_index] = fg;
+}
+
+void tuiBatchSetTile_G0_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C24NBG_FULL)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		return;
+	}
+	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	{
+		return;
+	}
+
+	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G0_C24NBG_Size
+		+ (size_t)x * kTui_Detail_G0_C24NBG_Size;
+	batch->Data[tile_index++] = fg_r;
+	batch->Data[tile_index++] = fg_g;
+	batch->Data[tile_index] = fg_b;
+}
+
+void tuiBatchSetTile_G0_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C32NBG_FULL)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		return;
+	}
+	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	{
+		return;
+	}
+
+	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G0_C32NBG_Size
+		+ (size_t)x * kTui_Detail_G0_C32NBG_Size;
+	batch->Data[tile_index++] = fg_r;
+	batch->Data[tile_index++] = fg_g;
+	batch->Data[tile_index++] = fg_b;
+	batch->Data[tile_index] = fg_a;
+}
+
 void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
 {
 	if (batch == TUI_NULL)
@@ -791,6 +862,140 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	batch->Data[tile_index++] = bg_g;
 	batch->Data[tile_index++] = bg_b; 
 	batch->Data[tile_index] = bg_a;
+}
+
+void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C8NBG_SPARSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		return;
+	}
+	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	{
+		return;
+	}
+
+	size_t tile_index;
+	size_t used_tile_index = ((size_t)batch->TilesTall * (size_t)y) + (size_t)x;
+	if (batch->SparseUsedIndices[used_tile_index] != 0)
+	{
+		tile_index = batch->SparseUsedIndices[used_tile_index] - 1;
+		batch->TileCount++;
+	}
+	else
+	{
+		tile_index = batch->TileCount * batch->BytesPerTile;
+		batch->SparseUsedIndices[used_tile_index] = tile_index + 1;
+		batch->TileCount++;
+	}
+	batch->Data[tile_index++] = ((unsigned int)x) & 0xff;
+	if (batch->IsLargeSparseWide)
+	{
+		batch->Data[tile_index++] = ((unsigned int)x >> 8) & 0xff;
+	}
+	batch->Data[tile_index++] = ((unsigned int)y) & 0xff;
+	if (batch->IsLargeSparseTall)
+	{
+		batch->Data[tile_index++] = ((unsigned int)y >> 8) & 0xff;
+	}
+	batch->Data[tile_index] = fg;
+}
+
+void tuiBatchSetTile_G0_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C24NBG_SPARSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		return;
+	}
+	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	{
+		return;
+	}
+
+	size_t tile_index;
+	size_t used_tile_index = ((size_t)batch->TilesTall * (size_t)y) + (size_t)x;
+	if (batch->SparseUsedIndices[used_tile_index] != 0)
+	{
+		tile_index = batch->SparseUsedIndices[used_tile_index] - 1;
+		batch->TileCount++;
+	}
+	else
+	{
+		tile_index = batch->TileCount * batch->BytesPerTile;
+		batch->SparseUsedIndices[used_tile_index] = tile_index + 1;
+		batch->TileCount++;
+	}
+	batch->Data[tile_index++] = ((unsigned int)x) & 0xff;
+	if (batch->IsLargeSparseWide)
+	{
+		batch->Data[tile_index++] = ((unsigned int)x >> 8) & 0xff;
+	}
+	batch->Data[tile_index++] = ((unsigned int)y) & 0xff;
+	if (batch->IsLargeSparseTall)
+	{
+		batch->Data[tile_index++] = ((unsigned int)y >> 8) & 0xff;
+	}
+	batch->Data[tile_index++] = fg_r;
+	batch->Data[tile_index++] = fg_g;
+	batch->Data[tile_index] = fg_b;
+}
+
+void tuiBatchSetTile_G0_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C32NBG_SPARSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		return;
+	}
+	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	{
+		return;
+	}
+
+	size_t tile_index;
+	size_t used_tile_index = ((size_t)batch->TilesTall * (size_t)y) + (size_t)x;
+	if (batch->SparseUsedIndices[used_tile_index] != 0)
+	{
+		tile_index = batch->SparseUsedIndices[used_tile_index] - 1;
+		batch->TileCount++;
+	}
+	else
+	{
+		tile_index = batch->TileCount * batch->BytesPerTile;
+		batch->SparseUsedIndices[used_tile_index] = tile_index + 1;
+		batch->TileCount++;
+	}
+	batch->Data[tile_index++] = ((unsigned int)x) & 0xff;
+	if (batch->IsLargeSparseWide)
+	{
+		batch->Data[tile_index++] = ((unsigned int)x >> 8) & 0xff;
+	}
+	batch->Data[tile_index++] = ((unsigned int)y) & 0xff;
+	if (batch->IsLargeSparseTall)
+	{
+		batch->Data[tile_index++] = ((unsigned int)y >> 8) & 0xff;
+	}
+	batch->Data[tile_index++] = fg_r;
+	batch->Data[tile_index++] = fg_g;
+	batch->Data[tile_index++] = fg_b;
+	batch->Data[tile_index] = fg_a;
 }
 
 void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
