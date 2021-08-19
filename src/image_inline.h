@@ -38,8 +38,7 @@ static inline TuiErrorCode _LoadPixelsPNG(const char* path, int* pixel_width, in
 	FILE* fp = fopen(path, "rb");
 	if (!fp)
 	{
-		// tuiDebugError(TUI_ERROR_INVALID_FILE_PATH, __func__);
-		return TUI_NULL;
+		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	fread(header, 1, 8, fp);
 	if (png_sig_cmp(header, 0, 8))
