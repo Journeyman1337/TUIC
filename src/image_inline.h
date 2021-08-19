@@ -41,7 +41,7 @@ static inline TuiErrorCode _LoadPixelsPNG(const char* path, int* pixel_width, in
 		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
 	fread(header, 1, 8, fp);
-	if (png_sig_cmp(header, 0, 8))
+	if (png_sig_cmp((png_const_bytep)&header[0], 0, 8))
 	{
 		return TUI_ERROR_LOAD_IMAGE_FAILURE;
 	}
@@ -139,6 +139,7 @@ static inline TuiErrorCode _SavePixelsPNG(const char* path, int pixel_width, int
 	png_write_end(png_ptr, NULL);
 	tuiFree(row_pointers);
 	fclose(fp);
+	return TUI_ERROR_NONE;
 }
 
 static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int channel_count, uint8_t* pixel_data, TuiBoolean copy_data)
