@@ -18,6 +18,15 @@ TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 			{
 				switch (detail_mode)
 				{
+				case TUI_DETAIL_MODE_G0_C8NBG_FULL:
+					tuiBatchSetTile_G0_C8NBG_FULL(batch, x, y, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G0_C24NBG_FULL:
+					tuiBatchSetTile_G0_C24NBG_FULL(batch, x, y, x % 256, y % 256, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G0_C32NBG_FULL:
+					tuiBatchSetTile_G0_C32NBG_FULL(batch, x, y, y % 256, x % 128, y % 256, y);
+					break;
 				case TUI_DETAIL_MODE_G8_C0_FULL:
 					tuiBatchSetTile_G8_C0_FULL(batch, x, y, x);
 					break;
@@ -83,6 +92,15 @@ TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 					break;
 				case TUI_DETAIL_MODE_G16_C32NFG_FULL:
 					tuiBatchSetTile_G16_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
+					break;
+				case TUI_DETAIL_MODE_G0_C8NBG_SPARSE:
+					tuiBatchSetTile_G0_C8NBG_SPARSE(batch, x, y, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G0_C24NBG_SPARSE:
+					tuiBatchSetTile_G0_C24NBG_SPARSE(batch, x, y, x % 256, y % 256, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G0_C32NBG_SPARSE:
+					tuiBatchSetTile_G0_C32NBG_SPARSE(batch, x, y, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C0_SPARSE:
 					tuiBatchSetTile_G8_C0_SPARSE(batch, x, y, x);
@@ -191,8 +209,11 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 	}
 }
 
-const TuiDetailMode kDetailModes[40] =
+const TuiDetailMode kDetailModes[46] =
 {
+	TUI_DETAIL_MODE_G0_C8NBG_FULL,
+	TUI_DETAIL_MODE_G0_C24NBG_FULL,
+	TUI_DETAIL_MODE_G0_C32NBG_FULL,
 	TUI_DETAIL_MODE_G8_C4_FULL,
 	TUI_DETAIL_MODE_G8_C8_FULL,
 	TUI_DETAIL_MODE_G8_C8NBG_FULL,
@@ -213,6 +234,9 @@ const TuiDetailMode kDetailModes[40] =
 	TUI_DETAIL_MODE_G16_C32_FULL,
 	TUI_DETAIL_MODE_G16_C32NBG_FULL,
 	TUI_DETAIL_MODE_G16_C32NFG_FULL,
+	TUI_DETAIL_MODE_G0_C8NBG_SPARSE,
+	TUI_DETAIL_MODE_G0_C24NBG_SPARSE,
+	TUI_DETAIL_MODE_G0_C32NBG_SPARSE,
 	TUI_DETAIL_MODE_G8_C4_SPARSE,
 	TUI_DETAIL_MODE_G8_C8_SPARSE,
 	TUI_DETAIL_MODE_G8_C8NBG_SPARSE,
@@ -258,7 +282,7 @@ int main()
 	TuiWindow window = tuiWindowCreate(TEST_DIMENSIONS * 8, TEST_DIMENSIONS * 8, "detail_mode_rendering", TUI_NULL);
 	tuiWindowSetKeyboardKeyCallback(window, key_callback);
 
-	for (size_t detail_mode_i = 0; detail_mode_i < 40; detail_mode_i++)
+	for (size_t detail_mode_i = 0; detail_mode_i < 46; detail_mode_i++)
 	{
 		TuiDetailMode cur_detail_mode = kDetailModes[detail_mode_i];
 		TuiBatch batch = GetTestPatternBatch(cur_detail_mode);
