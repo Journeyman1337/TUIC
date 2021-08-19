@@ -711,135 +711,135 @@ extern const char* kTui_Error_Unsupported_Window_Icons_Name;
  */
 extern const char* kTui_Error_Unknown_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NONE.
+ * @brief String description of @ref TUI_ERROR_NONE.
  */
 extern const char* kTui_Error_None_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_ALREADY_INITIALIZED.
+ * @brief String description of @ref TUI_ERROR_ALREADY_INITIALIZED.
  */
 extern const char* kTui_Error_Already_Initialized_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC.
+ * @brief String description of @ref TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC.
  */
 extern const char* kTui_Error_Graphics_Backend_Specific_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLING_ATLAS.
+ * @brief String description of @ref TUI_ERROR_DANGLING_ATLAS.
  */
 extern const char* kTui_Error_Dangling_Atlas_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLING_CURSOR.
+ * @brief String description of @ref TUI_ERROR_DANGLING_CURSOR.
  */
 extern const char* kTui_Error_Dangling_Cursor_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLING_PALETTE.
+ * @brief String description of @ref TUI_ERROR_DANGLING_PALETTE.
  */
 extern const char* kTui_Error_Dangling_Palette_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLING_PANEL.
+ * @brief String description of @ref TUI_ERROR_DANGLING_PANEL.
  */
 extern const char* kTui_Error_Dangling_Panel_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLING_TEXTURE.
+ * @brief String description of @ref TUI_ERROR_DANGLING_TEXTURE.
  */
 extern const char* kTui_Error_Dangling_Texture_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_DANGLING_WINDOW.
+ * @brief String description of @ref TUI_ERROR_DANGLING_WINDOW.
  */
 extern const char* kTui_Error_Dangling_Window_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_API_UNAVAILABLE.
+ * @brief String description of @ref TUI_ERROR_GLFW_API_UNAVAILABLE.
  */
 extern const char* kTui_Error_Glfw_Api_Unavailable_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_FORMAT_UNAVAILABLE.
+ * @brief String description of @ref TUI_ERROR_GLFW_FORMAT_UNAVAILABLE.
  */
 extern const char* kTui_Error_Glfw_Format_Unavailable_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_INVALID_ENUM.
+ * @brief String description of @ref TUI_ERROR_GLFW_INVALID_ENUM.
  */
 extern const char* kTui_Error_Glfw_Invalid_Enum_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_INVALID_VALUE.
+ * @brief String description of @ref TUI_ERROR_GLFW_INVALID_VALUE.
  */
 extern const char* kTui_Error_Glfw_Invalid_Value_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_NOT_INITIALIZED.
+ * @brief String description of @ref TUI_ERROR_GLFW_NOT_INITIALIZED.
  */
 extern const char* kTui_Error_Glfw_Not_Initialized_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_NO_CURRENT_CONTEXT.
+ * @brief String description of @ref TUI_ERROR_GLFW_NO_CURRENT_CONTEXT.
  */
 extern const char* kTui_Error_Glfw_No_Current_Context_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_NO_WINDOW_CONTEXT.
+ * @brief String description of @ref TUI_ERROR_GLFW_NO_WINDOW_CONTEXT.
  */
 extern const char* kTui_Error_Glfw_No_Window_Context_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_OUT_OF_MEMORY.
+ * @brief String description of @ref TUI_ERROR_GLFW_OUT_OF_MEMORY.
  */
 extern const char* kTui_Error_Glfw_Out_Of_Memory_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_PLATFORM_ERROR.
+ * @brief String description of @ref TUI_ERROR_GLFW_PLATFORM_ERROR.
  */
 extern const char* kTui_Error_Glfw_Platform_Error_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_GLFW_VERSION_UNAVAILABLE.
+ * @brief String description of @ref TUI_ERROR_GLFW_VERSION_UNAVAILABLE.
  */
 extern const char* kTui_Error_Glfw_Version_Unavailable_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INCOMPATIBLE_BLEND_MODE.
+ * @brief String description of @ref TUI_ERROR_INCOMPATIBLE_BLEND_MODE.
  */
 extern const char* kTui_Error_Incompatible_Blend_Mode_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INCOMPATIBLE_IMAGES.
+ * @brief String description of @ref TUI_ERROR_INCOMPATIBLE_IMAGES.
  */
 extern const char* kTui_Error_Incompatible_Images_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_ASPECT_RATIO.
+ * @brief String description of @ref TUI_ERROR_INVALID_ASPECT_RATIO.
  */
 extern const char* kTui_Error_Invalid_Aspect_Ratio_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_ATLAS_TYPE.
+ * @brief String description of @ref TUI_ERROR_INVALID_ATLAS_TYPE.
  */
 extern const char* kTui_Error_Invalid_Atlas_Type_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Batch_Data_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Batch_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_BATCH_SETTER.
+ * @brief String description of @ref TUI_ERROR_INVALID_BATCH_SETTER.
  */
 extern const char* kTui_Error_Invalid_Batch_Setter_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_BLEND_MODE.
+ * @brief String description of @ref TUI_ERROR_INVALID_BLEND_MODE.
  */
 extern const char* kTui_Error_Invalid_Blend_Mode_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_BUTTON_STATE.
+ * @brief String description of @ref TUI_ERROR_INVALID_BUTTON_STATE.
  */
 extern const char* kTui_Error_Invalid_Button_State_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_CHANNEL_COUNT.
+ * @brief String description of @ref TUI_ERROR_INVALID_CHANNEL_COUNT.
  */
 extern const char* kTui_Error_Invalid_Channel_Count_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Codepage_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_CURSOR_MODE.
+ * @brief String description of @ref TUI_ERROR_INVALID_CURSOR_MODE.
  */
 extern const char* kTui_Error_Invalid_Cursor_Mode_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_CURSOR_SHAPE.
+ * @brief String description of @ref TUI_ERROR_INVALID_CURSOR_SHAPE.
  */
 extern const char* kTui_Error_Invalid_Cursor_Shape_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_DETAIL_FLAG.
+ * @brief String description of @ref TUI_ERROR_INVALID_DETAIL_FLAG.
  */
 extern const char* kTui_Error_Invalid_Detail_Flag_Description;
 /*!
@@ -849,161 +849,161 @@ extern const char* kTui_Error_Invalid_Detail_Mode_Description;
 /*!
  * @brief String description of @ref TUI_ERROR_INVALID_EVENT_TIMEOUT.
  */
-extern const char* kTui_Error_Invalid_Event_Timeout_Name;
+extern const char* kTui_Error_Invalid_Event_Timeout_Description;
 /*!
  * @brief String description of @ref TUI_ERROR_INVALID_FILE_PATH.
  */
 extern const char* kTui_Error_Invalid_File_Path_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_FILTER_MODE.
+ * @brief String description of @ref TUI_ERROR_INVALID_FILTER_MODE.
  */
 extern const char* kTui_Error_Invalid_Filter_Mode_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION.
+ * @brief String description of @ref TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION.
  */
 extern const char* kTui_Error_Invalid_Glfw_Library_Version_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_GLYPH_COUNT.
+ * @brief String description of @ref TUI_ERROR_INVALID_GLYPH_COUNT.
  */
 extern const char* kTui_Error_Invalid_Glyph_Count_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_GLYPH_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_GLYPH_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Glyph_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_IMAGE_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Image_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_KEYBOARD_KEY.
+ * @brief String description of @ref TUI_ERROR_INVALID_KEYBOARD_KEY.
  */
 extern const char* kTui_Error_Invalid_Keyboard_Key_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_KEYBOARD_MOD.
+ * @brief String description of @ref TUI_ERROR_INVALID_KEYBOARD_MOD.
  */
 extern const char* kTui_Error_Invalid_Keyboard_Mod_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_MOUSE_BUTTON.
+ * @brief String description of @ref TUI_ERROR_INVALID_MOUSE_BUTTON.
  */
 extern const char* kTui_Error_Invalid_Mouse_Button_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT.
+ * @brief String description of @ref TUI_ERROR_INVALID_PALETTE_COLOR_COUNT.
  */
 extern const char* kTui_Error_Invalid_Palette_Color_Count_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_PANEL_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Panel_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Pixel_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_TIME.
+ * @brief String description of @ref TUI_ERROR_INVALID_TIME.
  */
 extern const char* kTui_Error_Invalid_Time_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Window_Framebuffer_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS.
  */
 extern const char* kTui_Error_Invalid_Window_Viewport_Dimensions_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS.
+ * @brief String description of @ref TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS.
  */
 extern const char* kTui_Error_Invalid_Window_Size_Limits_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_LOAD_IMAGE_FAILURE.
+ * @brief String description of @ref TUI_ERROR_LOAD_IMAGE_FAILURE.
  */
 extern const char* kTui_Error_Load_Image_Failure_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NOT_INITIALIZED.
+ * @brief String description of @ref TUI_ERROR_NOT_INITIALIZED.
  */
 extern const char* kTui_Error_Not_Initialized_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_ATLAS.
+ * @brief String description of @ref TUI_ERROR_NULL_ATLAS.
  */
 extern const char* kTui_Error_Null_Atlas_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_BATCH.
+ * @brief String description of @ref TUI_ERROR_NULL_BATCH.
  */
 extern const char* kTui_Error_Null_Batch_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_BATCH_DATA.
+ * @brief String description of @ref TUI_ERROR_NULL_BATCH_DATA.
  */
 extern const char* kTui_Error_Null_Batch_Data_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_COLORS.
+ * @brief String description of @ref TUI_ERROR_NULL_COLORS.
  */
 extern const char* kTui_Error_Null_Colors_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_CURSOR.
+ * @brief String description of @ref TUI_ERROR_NULL_CURSOR.
  */
 extern const char* kTui_Error_Null_Cursor_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES.
+ * @brief String description of @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES.
  */
 extern const char* kTui_Error_Null_Glyph_Bounding_Boxes_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_IMAGE.
+ * @brief String description of @ref TUI_ERROR_NULL_IMAGE.
  */
 extern const char* kTui_Error_Null_Image_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_MONITOR.
+ * @brief String description of @ref TUI_ERROR_NULL_MONITOR.
  */
 extern const char* kTui_Error_Null_Monitor_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_PALETTE.
+ * @brief String description of @ref TUI_ERROR_NULL_PALETTE.
  */
 extern const char* kTui_Error_Null_Palette_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_PANEL.
+ * @brief String description of @ref TUI_ERROR_NULL_PANEL.
  */
 extern const char* kTui_Error_Null_Panel_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_PATH.
+ * @brief String description of @ref TUI_ERROR_NULL_PATH.
  */
 extern const char* kTui_Error_Null_Path_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_PIXELS.
+ * @brief String description of @ref TUI_ERROR_NULL_PIXELS.
  */
 extern const char* kTui_Error_Null_Pixels_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_STRING.
+ * @brief String description of @ref TUI_ERROR_NULL_STRING.
  */
 extern const char* kTui_Error_Null_String_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_SUBJECT_PANEL.
+ * @brief String description of @ref TUI_ERROR_NULL_SUBJECT_PANEL.
  */
 extern const char* kTui_Error_Null_Subject_Panel_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_SUBJECT_WINDOW.
+ * @brief String description of @ref TUI_ERROR_NULL_SUBJECT_WINDOW.
  */
 extern const char* kTui_Error_Null_Subject_Window_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_TARGET_IMAGE.
+ * @brief String description of @ref TUI_ERROR_NULL_TARGET_IMAGE.
  */
 extern const char* kTui_Error_Null_Target_Image_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_TEXTURE.
+ * @brief String description of @ref TUI_ERROR_NULL_TEXTURE.
  */
 extern const char* kTui_Error_Null_Texture_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_TEXTURE_COORDINATES.
+ * @brief String description of @ref TUI_ERROR_NULL_TEXTURE_COORDINATES.
  */
 extern const char* kTui_Error_Null_Texture_Coordinates_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_NULL_WINDOW.
+ * @brief String description of @ref TUI_ERROR_NULL_WINDOW.
  */
 extern const char* kTui_Error_Null_Window_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_PALETTE_REQUIRED.
+ * @brief String description of @ref TUI_ERROR_PALETTE_REQUIRED.
  */
 extern const char* kTui_Error_Palette_Required_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_RESIZE_IMAGE_FAILURE.
+ * @brief String description of @ref TUI_ERROR_RESIZE_IMAGE_FAILURE.
  */
 extern const char* kTui_Error_Resize_Image_Failure_Description;
 /*!
@@ -1011,23 +1011,23 @@ extern const char* kTui_Error_Resize_Image_Failure_Description;
  */
 extern const char* kTui_Error_Save_Image_Failure_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_UNAVAILABLE_GRAPHICS_API.
+ * @brief String description of @ref TUI_ERROR_UNAVAILABLE_GRAPHICS_API.
  */
 extern const char* kTui_Error_Unavailable_Graphics_Api_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION.
+ * @brief String description of @ref TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION.
  */
 extern const char* kTui_Error_Unavailable_Graphics_Api_Version_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE.
+ * @brief String description of @ref TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE.
  */
 extern const char* kTui_Error_Unsupported_Cursor_Shape_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION.
+ * @brief String description of @ref TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION.
  */
 extern const char* kTui_Error_Unsupported_Raw_Mouse_Motion_Description;
 /*!
- * @brief String name of @ref TUI_ERROR_UNSUPPORTED_WINDOW_ICONS.
+ * @brief String description of @ref TUI_ERROR_UNSUPPORTED_WINDOW_ICONS.
  */
 extern const char* kTui_Error_Unsupported_Window_Icons_Description;
 /*! @} */
