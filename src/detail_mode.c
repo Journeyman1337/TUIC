@@ -291,6 +291,8 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
 			return kTui_Detail_G0_C24NBG_Size;
 		case TUI_DETAIL_FLAG_COLOR_32NBG:
 			return kTui_Detail_G0_C32NBG_Size;
+		default:
+			return 0;
 		}
 	case TUI_DETAIL_FLAG_GLYPH_8:
 		switch (color_flag)
@@ -317,6 +319,8 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
 			return kTui_Detail_G8_C32NBG_Size;
 		case TUI_DETAIL_FLAG_COLOR_32NFG:
 			return kTui_Detail_G8_C32NFG_Size;
+		default:
+			return 0;
 		}
 		break;
 	case TUI_DETAIL_FLAG_GLYPH_16:
@@ -344,6 +348,8 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
 			return kTui_Detail_G16_C32NBG_Size;
 		case TUI_DETAIL_FLAG_COLOR_32NFG:
 			return kTui_Detail_G16_C32NFG_Size;
+		default:
+			return 0;
 		}
 		break;
 	}
