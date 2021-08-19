@@ -125,7 +125,7 @@ typedef enum TuiDetailFlag
  * Constant string names of each detali flag.
  *  @{ */
  /*!
-  * @brief String name of @ref TUI_DETAIL_FLAG_G0.
+  * @brief String name of @ref TUI_DETAIL_FLAG_GLYPH_0.
   */
 extern const char* kTui_Detail_Flag_G0_Name;
 /*!
