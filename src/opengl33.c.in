@@ -308,6 +308,8 @@ static inline int _GetLayoutModeUniformValue(TuiDetailFlag layout_mode)
 		return 0;
 	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
 		return 1;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+		return 2;
 	default:
 		return -1;
 	}
