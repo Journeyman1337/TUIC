@@ -121,8 +121,7 @@ vec4 getColor24(inout int buffer_offset)
 	buffer_offset += 1;
 	float b = float(texelFetch(Data, buffer_offset).r) / 255.0;
 	buffer_offset += 1;
-	return vec4(r, g, b, 1.0);
-		
+	return vec4(r, g, b, 1.0);	
 }
 vec4 getColor32(inout int buffer_offset)
 {
@@ -135,7 +134,6 @@ vec4 getColor32(inout int buffer_offset)
 	float a = float(texelFetch(Data, buffer_offset).r) / 255.0;
 	buffer_offset += 1;
 	return vec4(r, g, b, 1);
-		
 }
 int getGlyph8(inout int buffer_offset)
 {
