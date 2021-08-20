@@ -175,7 +175,30 @@ typedef struct TuiPanel_s
 
 typedef struct TuiBatch_s
 {
+	size_t DetailMode;
+} TuiBatch_s;
 
+typedef struct TuiBatchFull_s
+{
+	size_t DetailMode;
+
+	uint8_t* Data;
+
+	size_t UsedDataSize;
+
+	size_t ReservedDataSize;
+
+	size_t BytesPerTile;
+
+	size_t TileCount;
+
+	size_t TilesWide;
+
+	size_t TilesTall;
+};
+
+typedef struct TuiBatchSparse_s
+{
 	size_t DetailMode;
 
 	uint8_t* Data;
@@ -192,14 +215,35 @@ typedef struct TuiBatch_s
 
 	size_t TilesTall;
 
-	TuiBoolean IsLargeSparseWide;
+	TuiBoolean HasLargeXCoordinate;
 
-	TuiBoolean IsLargeSparseTall;
+	TuiBoolean HasLargeYCoordinate;
 
-	size_t* SparseUsedIndices;
+	size_t* StencilData;
 
-	size_t SparseUsedIndicesSize;
-} TuiBatch_s;
+	size_t StencilDataSize;
+};
+
+typedef struct TuiBatchFree_s
+{
+	size_t DetailMode;
+
+	uint8_t* Data;
+
+	size_t UsedDataSize;
+
+	size_t ReservedDataSize;
+
+	size_t BytesPerTile;
+
+	size_t TilePixelWidth;
+
+	size_t TilePixelHeight;
+
+	float TilePixelScale;
+
+	size_t MaxTileCount;
+};
 
 typedef struct TuiImage_s
 {
