@@ -219,6 +219,8 @@ typedef struct TuiBatchSparse_s
 
 	TuiBoolean HasLargeYCoordinate;
 
+	TuiBoolean UseStencil;
+
 	size_t* StencilData;
 
 	size_t StencilDataSize;
