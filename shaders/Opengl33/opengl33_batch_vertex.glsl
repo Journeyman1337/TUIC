@@ -5,7 +5,7 @@ uniform ivec2 SheetTileDimensions;
 uniform vec2 SheetTileUVDimensions;
 uniform int GlyphMode; /* G0 = 0, G8 = 1, G16 = 2 */
 uniform int ColorMode; /* C0 = 0, C4 = 1, C8 = 2, C8NBG = 3, C8NFG = 4, C24 = 5, C24NBG = 6, C24NFG = 7, C32 = 8, C32NBG = 9, C32NFG = 10 */
-uniform int LayoutMode; /* Full = 0, Sparse = 1 */
+uniform int LayoutMode; /* Full = 0, Sparse = 1, Free = 2 */
 uniform int AtlasType; // 0 = grid, 1 = coordinates
 uniform int PaletteChannelCount; // 3 = RGB, 4 = RGBA (if no palette, ignore this)
 uniform bool IsLargeSparseWide; //if this is sparse and the x positions are two bytes instead of one
@@ -15,6 +15,8 @@ uniform usamplerBuffer Data; //batch data buffer.
 uniform samplerBuffer Fontmap; //the coordinate uv buffer if not uv grid
 uniform usamplerBuffer Palette; //the palette colors
 uniform mat4 Matrix; //transform matrix for entire batch
+uniform ivec2 ViewportPixelDimensions; //the pixel dimensions of the viewport.
+uniform vec2 TileScreenspaceDimensions; //the dimensions of each tile in screenspace coordinates.
 out vec2 UV; //uv texture position
 out vec4 FG; //foreground color
 out vec4 BG; //background color
@@ -68,6 +70,31 @@ vec4 getVertexPosition_Sparse(int tile, int tile_vertex, inout int buffer_offset
 	float tile_by = float(tile_y) * ScreenspaceTileDimensions.y;
 	float tile_rx = tile_lx + ScreenspaceTileDimensions.x;
 	float tile_ty = tile_by + ScreenspaceTileDimensions.y;
+	vec4 position_square = vec4(tile_lx, tile_rx, tile_ty, tile_by);
+	vec2 vert_positions[6] = vec2[](position_square.sp, position_square.sq, position_square.tq, position_square.sp, position_square.tq, position_square.tp);
+	vec2 position = vert_positions[tile_vertex];
+	return vec4(position, 0.0, 1.0) * Matrix;
+}
+vec4 getVertexPosition_Free(int tile, int tile_vertex, inout int buffer_offset)
+{
+	uint tile_pixel_x = texelFetch(Data, buffer_offset).r;
+	buffer_offset += 1;
+		if (IsLargeSparseWide)
+	{
+		tile_pixel_x += texelFetch(Data, buffer_offset).r * 256u;
+		buffer_offset += 1;
+	}
+	uint tile_pixel_y = texelFetch(Data, buffer_offset).r;
+	buffer_offset += 1;
+	if (IsLargeSparseTall)
+	{
+		tile_pixel_y += texelFetch(Data, buffer_offset).r * 256u;
+		buffer_offset += 1;
+	}
+	float tile_pixel_lx = float(tile_pixel_x) / float(ViewportPixelDimensions.x);
+	float tile_pixel_by = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
+	float tile_pixel_rx = tile_pixel_lx + TileScreenspaceDimensions.x;
+	float tile_pixel_ty = tile_pixel_by + TileScreenspaceDimensions.y;
 	vec4 position_square = vec4(tile_lx, tile_rx, tile_ty, tile_by);
 	vec2 vert_positions[6] = vec2[](position_square.sp, position_square.sq, position_square.tq, position_square.sp, position_square.tq, position_square.tp);
 	vec2 position = vert_positions[tile_vertex];
@@ -152,6 +179,10 @@ void main()
 	else if (LayoutMode == 1) //Sparse
 	{
 		gl_Position = getVertexPosition_Sparse(tile, tile_vertex, buffer_offset);
+	}
+	else if (LayoutMode == 2) //Free
+	{
+		gl_Position = getVertexPosition_Free(tile, tile_vertex, buffer_offset);
 	}
 	
 	int glyph;
