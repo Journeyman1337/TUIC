@@ -1,6 +1,7 @@
 #version 330 core
 uniform ivec2 ScreenTileDimensions; //dimensions of the batch
 uniform vec2 ScreenspaceTileDimensions;
+uniform vec2 TileScreenspaceDimensions;
 uniform ivec2 SheetTileDimensions;
 uniform vec2 SheetTileUVDimensions;
 uniform int GlyphMode; /* G0 = 0, G8 = 1, G16 = 2 */

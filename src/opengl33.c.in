@@ -92,7 +92,7 @@ typedef struct TuiOpengl33SystemApiData
 	uint32_t BatchRenderScreenTileDimensionsUniformLocation;
 	uint32_t BatchRenderSheetTileDimensionsUniformLocation;
 	uint32_t BatchRenderSheetTileUVDimensionsUniformLocation;
-	uint32_t BatchRenderScreenspaceTileDimensionsUniformLocation;
+	uint32_t BatchRenderTileScreenspaceDimensionsUniformLocation;
 	uint32_t BatchRenderGlyphModeUniformLocation;
 	uint32_t BatchRenderColorModeUniformLocation;
 	uint32_t BatchRenderLayoutModeUniformLocation;
@@ -393,7 +393,7 @@ static inline TuiErrorCode _DrawBatchData(uint32_t framebuffer_handle, size_t fr
 	GL_CALL(glBindVertexArray(system_data->VaoHandle));
 	GL_CALL(glUseProgram(system_data->BatchRenderProgramHandle));
 	GL_CALL(glUniform2i(system_data->BatchRenderScreenTileDimensionsUniformLocation, tiles_wide, tiles_tall));
-	GL_CALL(glUniform2f(system_data->BatchRenderScreenspaceTileDimensionsUniformLocation, 1.0f / (float)tiles_wide, 1.0f / (float)tiles_tall));
+	GL_CALL(glUniform2f(system_data->BatchRenderTileScreenspaceDimensionsUniformLocation, 1.0f / (float)tiles_wide, 1.0f / (float)tiles_tall));
 	GL_CALL(glUniform1i(system_data->BatchRenderGlyphModeUniformLocation, glyph_mode_id));
 	GL_CALL(glUniform1i(system_data->BatchRenderColorModeUniformLocation, color_mode_id));
 	GL_CALL(glUniform1i(system_data->BatchRenderLayoutModeUniformLocation, layout_mode_id));
@@ -527,7 +527,7 @@ TuiErrorCode tuiSystemCreate_Opengl33()
 	system_data->BatchRenderScreenTileDimensionsUniformLocation = 0;
 	system_data->BatchRenderSheetTileDimensionsUniformLocation = 0;
 	system_data->BatchRenderSheetTileUVDimensionsUniformLocation = 0;
-	system_data->BatchRenderScreenspaceTileDimensionsUniformLocation = 0;
+	system_data->BatchRenderTileScreenspaceDimensionsUniformLocation = 0;
 	system_data->BatchRenderGlyphModeUniformLocation = 0;
 	system_data->BatchRenderColorModeUniformLocation = 0;
 	system_data->BatchRenderLayoutModeUniformLocation = 0;
@@ -568,7 +568,7 @@ TuiErrorCode tuiSystemCreate_Opengl33()
 	GL_CALL(system_data->BatchRenderScreenTileDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ScreenTileDimensions"));
 	GL_CALL(system_data->BatchRenderSheetTileDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "SheetTileDimensions"));
 	GL_CALL(system_data->BatchRenderSheetTileUVDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "SheetTileUVDimensions"));
-	GL_CALL(system_data->BatchRenderScreenspaceTileDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ScreenspaceTileDimensions"));
+	GL_CALL(system_data->BatchRenderTileScreenspaceDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "TileScreenspaceDimensions"));
 	GL_CALL(system_data->BatchRenderGlyphModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "GlyphMode"));
 	GL_CALL(system_data->BatchRenderColorModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ColorMode"));
 	GL_CALL(system_data->BatchRenderLayoutModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "LayoutMode"));
