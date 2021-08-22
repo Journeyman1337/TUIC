@@ -114,7 +114,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	return batch;
 }
 
-TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, float pixel_scale, int maximum_tile_count, size_t minimum_reserved_data_size)
+TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, int maximum_tile_count, size_t minimum_reserved_data_size)
 {
 	if (tile_pixel_width <= 0 || tile_pixel_height <= 0)
 	{
@@ -139,7 +139,8 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 	batch->BytesPerTile += 4; //Free batches have 2 uint16_t for the x and y positions of each tile. Unlike with sparse batches, coordinates are never optimized to 1 bytes.
 	batch->TilePixelWidth = tile_pixel_width;
 	batch->TilePixelHeight = tile_pixel_height;
-	batch->PixelScale = pixel_scale;
+	batch->DrawViewportWidth = draw_viewport_width;
+	batch->DrawViewportHeight = draw_viewport_height;
 	batch->MaxTileCount = maximum_tile_count;
 	batch->UsedDataSize = batch->BytesPerTile * batch->MaxTileCount;
 	batch->ReservedDataSize = batch->UsedDataSize;

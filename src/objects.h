@@ -238,11 +238,15 @@ typedef struct TuiBatchFree_s
 
 	size_t BytesPerTile;
 
-	size_t TilePixelWidth;
+	size_t TileCount;
 
-	size_t TilePixelHeight;
+	int TilePixelWidth;
 
-	float PixelScale;
+	int TilePixelHeight;
+
+	int DrawViewportWidth;
+
+	int DrawViewportHeight;
 
 	size_t MaxTileCount;
 } TuiBatchFree_s;
