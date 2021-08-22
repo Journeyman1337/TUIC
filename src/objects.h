@@ -195,7 +195,7 @@ typedef struct TuiBatchFull_s
 	size_t TilesWide;
 
 	size_t TilesTall;
-};
+} TuiBatchFull_s;
 
 typedef struct TuiBatchSparse_s
 {
@@ -224,7 +224,7 @@ typedef struct TuiBatchSparse_s
 	size_t* StencilData;
 
 	size_t StencilDataSize;
-};
+} TuiBatchSparse_s;
 
 typedef struct TuiBatchFree_s
 {
@@ -245,7 +245,7 @@ typedef struct TuiBatchFree_s
 	float TilePixelScale;
 
 	size_t MaxTileCount;
-};
+} TuiBatchFree_s;
 
 typedef struct TuiImage_s
 {
