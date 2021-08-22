@@ -522,7 +522,34 @@ static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t frameb
 	case TUI_DETAIL_FLAG_LAYOUT_FREE:
 		{
 			TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
-			
+			{
+				TuiErrorCode error = _BindBatchBuffer(system, batch_free->TileCount * batch_free->BytesPerTile, batch_free->Data);
+				if (error != TUI_ERROR_NONE)
+				{
+					return error;
+				}
+			}
+			{
+				TuiErrorCode error = _BindBatchAtlas(system, atlas);
+				if (error != TUI_ERROR_NONE)
+				{
+					return error;
+				}
+			}
+			{
+				TuiErrorCode error = _BindBatchPalette(system, palette);
+				if (error != TUI_ERROR_NONE)
+				{
+					return error;
+				}
+			}
+			GL_CALL(glUniform2i(system_data->ViewportPixelDimensions, batch_free->DrawViewportWidth, batch_free->DrawViewportHeight));
+			GL_CALL(glUniform2f(system_data->BatchRenderScreenspaceTileDimensionsUniformLocation, (float)batch_free->TilePixelWidth / (float)batch_free->DrawViewportWidth, (float)batch_free->TilePixelHeight / (float)batch_free->DrawViewportHeight));
+			GL_CALL(glUniform1i(system_data->BatchRenderTileByteSizeUniformLocation, batch_free->BytesPerTile));
+			GL_CALL(glViewport(0, 0, framebuffer_width, framebuffer_height));
+			GL_CALL(glEnable(GL_BLEND));
+			GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+			GL_CALL(glDrawArrays(GL_TRIANGLES, 0, batch_free->TileCount * kVertsPerTile));
 		}
 		break;
 	}
