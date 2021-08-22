@@ -79,7 +79,6 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
  * @param tile_pixel_width The width of a single tile in pixels.
  * @param tile_pixel_height The height of a single tile in pixels.
  * @param maximum_tile_count The maximum amount of tiles to allow for pushing into this batch.
- * @param pixel_scale The scale of a tile pixel versus the scale of a pixel in the viewport this @ref TuiBatch is rendered to.
  * @param minimum_reserved_data_size The miniumum amount of bytes to reserve for the data array. More will be allocated if needed for reserved_tile_count amount of tiles.
  *
  * @returns The created @ref TuiBatch. @ref TUI_NULL is returned if an error occurs.
@@ -92,7 +91,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, float pixel_scale, int maximum_tile_count, size_t minimum_reserved_data_size);
+TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, int maximum_tile_count, size_t minimum_reserved_data_size);
 /*!
  * @brief  Destroy @ref TuiBatch and correctly dispose of of its internally managed resources.
  *
