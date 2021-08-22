@@ -78,7 +78,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
  * @param tui_detail_mode The @ref TuiDetailMode that the @ref TuiBatch will use to organize its tile data.
  * @param tile_pixel_width The width of a single tile in pixels.
  * @param tile_pixel_height The height of a single tile in pixels.
- * @param reserved_tile_count The amount of tiles to reserve space for in the data array.
+ * @param maximum_tile_count The maximum amount of tiles to allow for pushing into this batch.
  * @param pixel_scale The scale of a tile pixel versus the scale of a pixel in the viewport this @ref TuiBatch is rendered to.
  * @param minimum_reserved_data_size The miniumum amount of bytes to reserve for the data array. More will be allocated if needed for reserved_tile_count amount of tiles.
  *
