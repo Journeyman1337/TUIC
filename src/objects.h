@@ -242,7 +242,7 @@ typedef struct TuiBatchFree_s
 
 	size_t TilePixelHeight;
 
-	float TilePixelScale;
+	float PixelScale;
 
 	size_t MaxTileCount;
 } TuiBatchFree_s;
