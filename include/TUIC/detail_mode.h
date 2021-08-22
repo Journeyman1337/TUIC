@@ -835,6 +835,21 @@ size_t tuiDetailGetTileByteSize(TuiDetailFlag glyph_flag, TuiDetailFlag color_fl
  */
 TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode);
 /*!
+ * @brief Get if the @ref TuiDetailMode requires a @ref TuiAtlas.
+ *
+ * @param detail_mode The @ref TuiDetailMode.
+ *
+ * @returns The @ref TuiBoolean result. If detail_mode is a requires a @ref TuiAtlas for rendering batch data, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
+ *
+ * @errors This function can haves no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiDetailHasAtlas(TuiDetailMode detail_mode);
+/*!
  * @brief Determine if a @ref TuiDetailMode enum is valid.
  *
  * @param detail_mode The @ref TuiDetailMode to check.
