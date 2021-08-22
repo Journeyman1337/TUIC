@@ -91,6 +91,8 @@ vec4 getVertexPosition_Free(int tile, int tile_vertex, inout int buffer_offset)
 		tile_pixel_y += texelFetch(Data, buffer_offset).r * 256u;
 		buffer_offset += 1;
 	}
+	tile_pixel_x -= TilePixelDimensions.x;
+	tile_pixel_y -= TilePixelDimensions.y; //To allow for tiles that go off screen on left an top, the dimensions are transformed by negative tile width and height
 	float tile_pixel_lx = float(tile_pixel_x) / float(ViewportPixelDimensions.x);
 	float tile_pixel_by = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
 	float tile_pixel_rx = tile_pixel_lx + TileScreenspaceDimensions.x;
