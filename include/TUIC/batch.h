@@ -92,7 +92,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, float pixel_scale, int reserved_tile_count, size_t minimum_reserved_data_size);
+TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, float pixel_scale, int maximum_tile_count, size_t minimum_reserved_data_size);
 /*!
  * @brief  Destroy @ref TuiBatch and correctly dispose of of its internally managed resources.
  *
