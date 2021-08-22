@@ -160,11 +160,34 @@ void tuiBatchDestroy(TuiBatch batch)
 		return;
 	}
 
-	if (batch->SparseUsedIndices != TUI_NULL)
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+
+	switch (layout_flag)
 	{
-		tuiFree(batch->SparseUsedIndices);
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+		{
+			TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+			tuiFree(batch_full->Data);
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		{
+			TuiBatchSparse_s * batch_sparse = (TuiBatchSparse_s*)batch;
+			if (batch_sparse->StencilData != TUI_NULL)
+			{
+				tuiFree(batch_sparse->StencilData);
+			}
+			tuiFree(batch_sparse->Data);
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+		{
+			TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+			tuiFree(batch_free->Data);
+		}
+		break;
 	}
-	tuiFree(batch->Data);
+
 	tuiFree(batch);
 }
 
