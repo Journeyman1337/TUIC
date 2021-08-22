@@ -21,59 +21,6 @@
 #include "objects.h"
 #include <string.h>
 
-TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall)
-{
-	if (tiles_wide <= 0 || tiles_tall <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
-		return TUI_NULL;
-	}
-	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
-		return TUI_NULL;
-	}
-	
-	TuiBatch batch = tuiAllocate(sizeof(TuiBatch_s));
-	
-	batch->DetailMode = detail_mode;
-	batch->TilesWide = tiles_wide;
-	batch->TilesTall = tiles_tall;
-	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
-	batch->IsLargeSparseWide = TUI_FALSE;
-	batch->IsLargeSparseTall = TUI_FALSE;
-	batch->SparseUsedIndices = TUI_NULL;
-	batch->SparseUsedIndicesSize = 0;
-	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE) 
-	{
-		batch->TileCount = 0;
-		batch->BytesPerTile += 2; //Sparse batches have at least two extra bytes per tile for the coordinates of each tile
-		if (tiles_wide > 256) //if the width or the height is greater than 256, two bytes are needed for each respective coordinate to store values large enough
-		{
-			batch->IsLargeSparseWide = TUI_TRUE;
-			batch->BytesPerTile++;
-		}
-		if (tiles_tall > 256)
-		{
-			batch->IsLargeSparseTall = TUI_TRUE;
-			batch->BytesPerTile++;
-		}
-		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t); //used indices keep track of tiles set since the last clear, so that two tiles are not set in the same position by mistake
-		batch->SparseUsedIndices = tuiAllocate(batch->SparseUsedIndicesSize);
-		memset(batch->SparseUsedIndices, 0, batch->SparseUsedIndicesSize);
-	}
-	else if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_FULL) == TUI_TRUE)
-	{
-		batch->TileCount = batch->TilesWide * batch->TilesTall; //if the batch is full, the itle count is always every tile.
-	}
-	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall * sizeof(uint8_t);
-	batch->ReservedDataSize = batch->UsedDataSize;
-	batch->Data = tuiAllocate(batch->ReservedDataSize);
-	memset(batch->Data, 0, batch->ReservedDataSize);
-	
-	return batch;
-}
-
 TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t minimum_reserved_data_size)
 {
 	if (tiles_wide <= 0 || tiles_tall <= 0)
