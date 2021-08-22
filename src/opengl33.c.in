@@ -488,7 +488,7 @@ static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t frameb
 		{
 			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 			{
-				TuiErrorCode error = _BindBatchBuffer(system, batch_sparse->UsedDataSize, batch_sparse->Data);
+				TuiErrorCode error = _BindBatchBuffer(system, batch_free->TileCount * batch_free->BytesPerTile, batch_sparse->Data);
 				if (error != TUI_ERROR_NONE)
 				{
 					return error;
