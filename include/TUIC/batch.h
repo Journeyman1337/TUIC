@@ -34,11 +34,12 @@ extern "C" {
  * These functions are used for manipulating @ref TuiBatch opaque objects.
  *  @{ */
 /*!
- * @brief Create a new @ref TuiBatch.
+ * @brief Create a new @ref TuiBatch with detail flag @ref TUI_DETAIL_FLAG_LAYOUT_FULL.
  *
  * @param tui_detail_mode The @ref TuiDetailMode that the @ref TuiBatch will use to organize its tile data.
  * @param tiles_wide The amount of tiles wide of the @ref TuiBatch data.
  * @param tiles_tall The amount of tiles tall of the @ref TuiBatch data.
+ * @param minimum_reserved_data_size The miniumum amount of bytes to reserve for the data array. More will be allocated if needed for a full batch of tiles.
  *
  * @returns The created @ref TuiBatch. @ref TUI_NULL is returned if an error occurs.
  *
@@ -50,7 +51,48 @@ extern "C" {
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall);
+TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t minimum_reserved_data_size);
+/*!
+ * @brief Create a new @ref TuiBatch with detail flag @ref TUI_DETAIL_FLAG_LAYOUT_SPARSE.
+ *
+ * @param tui_detail_mode The @ref TuiDetailMode that the @ref TuiBatch will use to organize its tile data.
+ * @param tiles_wide The amount of tiles wide of the @ref TuiBatch data.
+ * @param tiles_tall The amount of tiles tall of the @ref TuiBatch data.
+ * @param use_stencil If tiles set since the last clear should be tracked using a stencil buffer to prevent drawing more than one tile in the same position location.
+ * @param minimum_reserved_data_size The miniumum amount of bytes to reserve for the data array. More will be allocated if needed for a full batch of tiles.
+ *
+ * @returns The created @ref TuiBatch. @ref TUI_NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS and @ref TUI_ERROR_INVALID_DETAIL_MODE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiBatch must be destroyed using the function @ref tuiBatchDestroy().
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, TuiBoolean use_stencil, size_t minimum_reserved_data_size);
+/*!
+ * @brief Create a new @ref TuiBatch with detail flag @ref TUI_DETAIL_FLAG_LAYOUT_FREE.
+ *
+ * @param tui_detail_mode The @ref TuiDetailMode that the @ref TuiBatch will use to organize its tile data.
+ * @param tile_pixel_width The width of a single tile in pixels.
+ * @param tile_pixel_height The height of a single tile in pixels.
+ * @param reserved_tile_count The amount of tiles to reserve space for in the data array.
+ * @param pixel_scale The scale of a tile pixel versus the scale of a pixel in the viewport this @ref TuiBatch is rendered to.
+ * @param minimum_reserved_data_size The miniumum amount of bytes to reserve for the data array. More will be allocated if needed for reserved_tile_count amount of tiles.
+ *
+ * @returns The created @ref TuiBatch. @ref TUI_NULL is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_DIMENSIONS and @ref TUI_ERROR_INVALID_DETAIL_MODE. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @pointer_lifetime The returned @ref TuiBatch must be destroyed using the function @ref tuiBatchDestroy().
+ *
+ * @thread_safety This function can be called safely on any thread at any time.
+ */
+TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, float pixel_scale, int reserved_tile_count, size_t minimum_reserved_data_size);
 /*!
  * @brief  Destroy @ref TuiBatch and correctly dispose of of its internally managed resources.
  *

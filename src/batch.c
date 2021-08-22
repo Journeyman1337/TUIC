@@ -74,6 +74,130 @@ TuiBatch tuiBatchCreate(TuiDetailMode detail_mode, int tiles_wide, int tiles_tal
 	return batch;
 }
 
+TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t minimum_reserved_data_size)
+{
+	if (tiles_wide <= 0 || tiles_tall <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
+		return TUI_NULL;
+	}
+	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_FULL)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_CREATION
+		return TUI_NULL;
+	}
+
+	TuiBatchFull_s* batch = tuiAllocate(sizeof(TuiBatchFull_s));
+
+	batch->DetailMode = detail_mode;
+	batch->TilesWide = tiles_wide;
+	batch->TilesTall = tiles_tall;
+	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
+	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall * sizeof(uint8_t);
+	if (batch->UsedDataSize > minimum_reserved_data_size)
+	{
+		minimum_reserved_data_size = batch->UsedDataSize;
+	}
+	batch->ReservedDataSize = minimum_reserved_data_size;
+	batch->Data = tuiAllocate(batch->ReservedDataSize);
+	batch->TileCount = batch->TilesWide * batch->TilesTall;
+
+	return batch;
+}
+
+TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, TuiBoolean use_stencil, size_t minimum_reserved_data_size)
+{
+	if (tiles_wide <= 0 || tiles_tall <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
+		return TUI_NULL;
+	}
+	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_SPARSE)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_CREATION
+		return TUI_NULL;
+	}
+
+	TuiBatchSparse_s* batch = tuiAllocate(sizeof(TuiBatchSparse_s));
+
+	batch->DetailMode = detail_mode;
+	batch->TilesWide = tiles_wide;
+	batch->TilesTall = tiles_tall;
+	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
+	batch->TileCount = 0;
+	batch->HasLargeXCoordinate = TUI_FALSE;
+	batch->HasLargeYCoordinate = TUI_FALSE;
+	batch->UseStencil = use_stencil;
+	batch->StencilData = TUI_NULL;
+	batch->StencilDataSize = 0;
+	if (use_stencil == TUI_TRUE)
+	{
+		batch->StencilDataSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
+		batch->StencilData = (size_t*)tuiAllocate(batch->StencilDataSize);
+	}
+	batch->BytesPerTile += 2; //Sparse batches have at least two extra bytes per tile for the coordinates of each tile
+	if (tiles_wide > 256) //if the width or the height is greater than 256, two bytes are needed for each respective coordinate to store values large enough
+	{
+		batch->HasLargeXCoordinate = TUI_TRUE;
+		batch->BytesPerTile++;
+	}
+	if (tiles_tall > 256)
+	{
+		batch->HasLargeYCoordinate = TUI_TRUE;
+		batch->BytesPerTile++;
+	}
+	batch->ReservedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall * sizeof(uint8_t);
+	if (batch->ReservedDataSize > minimum_reserved_data_size)
+	{
+		batch->ReservedDataSize = minimum_reserved_data_size;
+	}
+	batch->Data = tuiAllocate(batch->ReservedDataSize);
+
+	return batch;
+}
+
+TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int reserved_tile_count, float pixel_scale, size_t minimum_reserved_data_size)
+{
+	if (tile_pixel_width <= 0 || tile_pixel_height <= 0)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_TILE_PIXEL_DIMENSIONS
+		return TUI_NULL;
+	}
+	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
+	{ 
+		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
+		return TUI_NULL;
+	}
+	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_CREATION
+		return TUI_NULL;
+	}
+
+	TuiBatchFree_s* batch = tuiAllocate(sizeof(TuiBatchFree_s));
+
+	batch->DetailMode = detail_mode;
+	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
+	batch->BytesPerTile += 4; //Free batches have 2 uint16_t for the x and y positions of each tile.
+	size_t TilePixelWidth;
+
+	size_t TilePixelHeight;
+
+	float TilePixelScale;
+
+	size_t MaxTileCount;
+}
+
 void tuiBatchDestroy(TuiBatch batch)
 {
 	if (batch == TUI_NULL)
