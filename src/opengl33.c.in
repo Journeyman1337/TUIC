@@ -410,9 +410,9 @@ static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t frameb
 	{
 		palette_data = (TuiOpengl33PaletteApiData*)palette->ApiData;
 	}
-	int glyph_flag = tuiDetailGetGlyphFlag(batch->DetailMode);
-	int color_flag = tuiDetailGetColorFlag(batch->DetailMode);
-	int layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	TuiDetailFlag glyph_flag = tuiDetailGetGlyphFlag(batch->DetailMode);
+	TuiDetailFlag color_flag = tuiDetailGetColorFlag(batch->DetailMode);
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	int glyph_mode_id = _GetGlyphModeUniformValue(glyph_flag);
 	int color_mode_id = _GetColorModeUniformValue(color_flag);
 	int layout_mode_id = _GetLayoutModeUniformValue(layout_flag);
