@@ -17,6 +17,7 @@ uniform usamplerBuffer Palette; //the palette colors
 uniform mat4 Matrix; //transform matrix for entire batch
 uniform ivec2 ViewportPixelDimensions; //the pixel dimensions of the viewport.
 uniform vec2 TileScreenspaceDimensions; //the dimensions of each tile in screenspace coordinates.
+uniform ivec2 TilePixelDimensions; //the dimensions of each tile in pixels.
 out vec2 UV; //uv texture position
 out vec4 FG; //foreground color
 out vec4 BG; //background color
