@@ -1,6 +1,5 @@
 #version 330 core
 uniform ivec2 ScreenTileDimensions; //dimensions of the batch
-uniform vec2 ScreenspaceTileDimensions;
 uniform vec2 TileScreenspaceDimensions;
 uniform ivec2 SheetTileDimensions;
 uniform vec2 SheetTileUVDimensions;
@@ -17,7 +16,6 @@ uniform samplerBuffer Fontmap; //the coordinate uv buffer if not uv grid
 uniform usamplerBuffer Palette; //the palette colors
 uniform mat4 Matrix; //transform matrix for entire batch
 uniform ivec2 ViewportPixelDimensions; //the pixel dimensions of the viewport.
-uniform vec2 TileScreenspaceDimensions; //the dimensions of each tile in screenspace coordinates.
 uniform ivec2 TilePixelDimensions; //the dimensions of each tile in pixels.
 out vec2 UV; //uv texture position
 out vec4 FG; //foreground color
@@ -43,10 +41,10 @@ vec4 getVertexPosition_Full(int tile, int tile_vertex)
 {
 	int tile_x = tile % ScreenTileDimensions.x;
 	int tile_y = tile / ScreenTileDimensions.x;
-	float tile_lx = float(tile_x) * ScreenspaceTileDimensions.x;
-	float tile_by = float(tile_y) * ScreenspaceTileDimensions.y;
-	float tile_rx = tile_lx + ScreenspaceTileDimensions.x;
-	float tile_ty = tile_by + ScreenspaceTileDimensions.y;
+	float tile_lx = float(tile_x) * TileScreenspaceDimensions.x;
+	float tile_by = float(tile_y) * TileScreenspaceDimensions.y;
+	float tile_rx = tile_lx + TileScreenspaceDimensions.x;
+	float tile_ty = tile_by + TileScreenspaceDimensions.y;
 	vec4 position_square = vec4(tile_lx, tile_rx, tile_ty, tile_by);
 	vec2 vert_positions[6] = vec2[](position_square.sp, position_square.sq, position_square.tq, position_square.sp, position_square.tq, position_square.tp);
 	vec2 position = vert_positions[tile_vertex];
@@ -68,10 +66,10 @@ vec4 getVertexPosition_Sparse(int tile, int tile_vertex, inout int buffer_offset
 		tile_y += texelFetch(Data, buffer_offset).r * 256u;
 		buffer_offset += 1;
 	}
-	float tile_lx = float(tile_x) * ScreenspaceTileDimensions.x;
-	float tile_by = float(tile_y) * ScreenspaceTileDimensions.y;
-	float tile_rx = tile_lx + ScreenspaceTileDimensions.x;
-	float tile_ty = tile_by + ScreenspaceTileDimensions.y;
+	float tile_lx = float(tile_x) * TileScreenspaceDimensions.x;
+	float tile_by = float(tile_y) * TileScreenspaceDimensions.y;
+	float tile_rx = tile_lx + TileScreenspaceDimensions.x;
+	float tile_ty = tile_by + TileScreenspaceDimensions.y;
 	vec4 position_square = vec4(tile_lx, tile_rx, tile_ty, tile_by);
 	vec2 vert_positions[6] = vec2[](position_square.sp, position_square.sq, position_square.tq, position_square.sp, position_square.tq, position_square.tp);
 	vec2 position = vert_positions[tile_vertex];
