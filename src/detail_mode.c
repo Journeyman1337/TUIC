@@ -448,6 +448,18 @@ TuiBoolean tuiDetailHasPalette(TuiDetailMode detail_mode)
 	}
 }
 
+TuiBoolean tuiDetailHasAtlas(TuiDetailMode detail_mode)
+{
+	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_GLYPH_0) == TUI_FALSE)
+	{
+		return TUI_FALSE;
+	}
+	else
+	{
+		return TUI_TRUE;
+	}
+}
+
 const char* tuiDetailModeToString(TuiDetailMode detail_mode)
 {
 	switch (detail_mode)
