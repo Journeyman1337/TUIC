@@ -320,15 +320,29 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && batch->TileCount == 0)
+
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
 	{
-		return;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		if (batch_sparse->TileCount == 0)
+		{
+			return;
+		}
+		return batch_sparse->TilesWide;
+	}
+	break;
+	default:
+		break;
 	}
 
-	TuiErrorCode error_code = tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, panel->PixelWidth, 0, panel->PixelHeight);
+	TuiErrorCode error_code = tuiPanelDrawBatch_Opengl33(panel, atlas, palette, batch, 0, panel->PixelWidth, 0, panel->PixelHeight);
 	if (error_code != TUI_ERROR_NONE)
 	{
 		tuiDebugError(error_code, __func__);
+		return;
 	}
 }
 
@@ -360,12 +374,25 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && batch->TileCount == 0)
+
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
 	{
-		return;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		if (batch_sparse->TileCount == 0)
+		{
+			return;
+		}
+		return batch_sparse->TilesWide;
+	}
+	break;
+	default:
+		break;
 	}
 
-	TuiErrorCode error_code = tuiPanelDrawBatchData_Opengl33(panel, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
+	TuiErrorCode error_code = tuiPanelDrawBatch_Opengl33(panel, atlas, palette, batch, left_x, right_x, top_y, bottom_y);
 	if (error_code != TUI_ERROR_NONE)
 	{
 		tuiDebugError(error_code, __func__);

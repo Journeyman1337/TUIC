@@ -654,54 +654,30 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && batch->TileCount == 0)
+
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
 	{
-		return;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		if (batch_sparse->TileCount == 0)
+		{
+			return;
+		}
+		return batch_sparse->TilesWide;
+	}
+	break;
+	default:
+		break;
 	}
 
-	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
-}
-
-void tuiWindowDrawBatchData(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t* batch_data)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
+	TuiErrorCode error_code = tuiWindowDrawBatch_Opengl33(window, atlas, palette, batch, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
+	if (error_code != TUI_ERROR_NONE)
 	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		tuiDebugError(error_code, __func__);
 		return;
 	}
-	if (window == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-	if (batch_data == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_BATCH_DATA, __func__);
-		return;
-	}
-	if (tiles_wide <= 0 || tiles_tall <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, __func__);
-		return;
-	}
-	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
-		return;
-	}
-	if (tuiDetailHasPalette(detail_mode) == TUI_TRUE && palette == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
-		return;
-	}
-	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && sparse_index == 0)
-	{
-		return;
-	}
-
-	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, (size_t)sparse_index, batch_data, 0, window->FramebufferPixelWidth, 0, window->FramebufferPixelHeight);
-
 }
 
 void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
@@ -732,48 +708,30 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
 	}
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && batch->TileCount == 0)
+
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
 	{
-		return;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		{
+			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+			if (batch_sparse->TileCount == 0)
+			{
+				return;
+			}
+			return batch_sparse->TilesWide;
+		}
+		break;
+	default:
+		break;
 	}
 
-	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, batch->DetailMode, batch->TilesWide, batch->TilesTall, batch->TileCount, batch->Data, left_x, right_x, top_y, bottom_y);
-}
-
-void tuiWindowDrawBatchDataTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, size_t sparse_index, const uint8_t* batch_data, int left_x, int right_x, int top_y, int bottom_y)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
+	TuiErrorCode error_code = tuiWindowDrawBatch_Opengl33(window, atlas, palette, batch, left_x, right_x, top_y, bottom_y);
+	if (error_code != TUI_ERROR_NONE)
 	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
+		tuiDebugError(error_code, __func__);
 		return;
 	}
-	if (window == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-	if (batch_data == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_BATCH_DATA, __func__);
-		return;
-	}
-	if (tiles_wide <= 0 || tiles_tall <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_DATA_DIMENSIONS, __func__);
-		return;
-	}
-	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
-		return;
-	}
-	if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE && sparse_index == 0)
-	{
-		return;
-	}
-
-	tuiWindowDrawBatchData_Opengl33(window, atlas, palette, (size_t)detail_mode, (size_t)tiles_wide, (size_t)tiles_tall, sparse_index, batch_data, left_x, right_x, top_y, bottom_y);
 }
 
 void tuiWindowDrawPanel(TuiWindow window, TuiPanel panel)
