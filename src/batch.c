@@ -562,17 +562,18 @@ void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C8NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G0_C8NBG_Size
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G0_C8NBG_Size
 		+ (size_t)x * kTui_Detail_G0_C8NBG_Size;
-	batch->Data[tile_index] = fg;
+	batch_full->Data[tile_index] = fg;
 }
 
 void tuiBatchSetTile_G0_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
@@ -584,19 +585,20 @@ void tuiBatchSetTile_G0_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C24NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G0_C24NBG_Size
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G0_C24NBG_Size
 		+ (size_t)x * kTui_Detail_G0_C24NBG_Size;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index] = fg_b;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index] = fg_b;
 }
 
 void tuiBatchSetTile_G0_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
@@ -608,20 +610,21 @@ void tuiBatchSetTile_G0_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C32NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G0_C32NBG_Size
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G0_C32NBG_Size
 		+ (size_t)x * kTui_Detail_G0_C32NBG_Size;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index] = fg_a;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index] = fg_a;
 }
 
 void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
@@ -633,17 +636,18 @@ void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C0_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C0_Size
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C0_Size
 		+ (size_t)x * kTui_Detail_G8_C0_Size;
-	batch->Data[tile_index] = glyph;
+	batch_full->Data[tile_index] = glyph;
 }
 
 void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t colors)
@@ -655,17 +659,18 @@ void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C4_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C4_Size + (size_t)x * kTui_Detail_G8_C4_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index] = colors;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C4_Size + (size_t)x * kTui_Detail_G8_C4_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index] = colors;
 }
 
 void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg, uint8_t bg)
@@ -677,18 +682,19 @@ void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C8_Size + (size_t)x * kTui_Detail_G8_C8_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = fg;
-	batch->Data[tile_index] = bg;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C8_Size + (size_t)x * kTui_Detail_G8_C8_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = fg;
+	batch_full->Data[tile_index] = bg;
 }
 
 void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg)
@@ -700,17 +706,18 @@ void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C8NBG_Size + (size_t)x * kTui_Detail_G8_C8NBG_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index] = fg;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C8NBG_Size + (size_t)x * kTui_Detail_G8_C8NBG_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index] = fg;
 }
 
 void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg)
@@ -722,16 +729,17 @@ void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NFG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	} 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C8NFG_Size + (size_t)x * kTui_Detail_G8_C8NFG_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index] = bg;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C8NFG_Size + (size_t)x * kTui_Detail_G8_C8NFG_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index] = bg;
 }
 
 void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
@@ -743,22 +751,23 @@ void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C24_Size + (size_t)x * kTui_Detail_G8_C24_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index] = bg_b;	
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C24_Size + (size_t)x * kTui_Detail_G8_C24_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index] = bg_b;
 }
 
 void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
@@ -770,19 +779,20 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C24NBG_Size + (size_t)x * kTui_Detail_G8_C24NBG_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index] = fg_b;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C24NBG_Size + (size_t)x * kTui_Detail_G8_C24NBG_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index] = fg_b;
 }
 
 void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
@@ -794,19 +804,20 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NFG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C24NFG_Size + (size_t)x * kTui_Detail_G8_C24NFG_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index] = bg_b;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C24NFG_Size + (size_t)x * kTui_Detail_G8_C24NFG_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index] = bg_b;
 }
 
 
@@ -819,24 +830,25 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C32_Size + (size_t)x * kTui_Detail_G8_C32_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index++] = fg_a;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index++] = bg_b;
-	batch->Data[tile_index] = bg_a;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C32_Size + (size_t)x * kTui_Detail_G8_C32_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index++] = fg_a;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index++] = bg_b;
+	batch_full->Data[tile_index] = bg_a;
 }
 
 void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
@@ -848,20 +860,21 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C32NBG_Size + (size_t)x * kTui_Detail_G8_C32NBG_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index] = fg_a;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C32NBG_Size + (size_t)x * kTui_Detail_G8_C32NBG_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index] = fg_a;
 }
 
 void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
@@ -873,20 +886,21 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NFG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G8_C32NFG_Size + (size_t)x * kTui_Detail_G8_C32NFG_Size;
-	batch->Data[tile_index++] = glyph;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index++] = bg_b;
-	batch->Data[tile_index] = bg_a;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G8_C32NFG_Size + (size_t)x * kTui_Detail_G8_C32NFG_Size;
+	batch_full->Data[tile_index++] = glyph;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index++] = bg_b;
+	batch_full->Data[tile_index] = bg_a;
 }
 
 void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph)
@@ -898,17 +912,18 @@ void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C0_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C0_Size + (size_t)x * kTui_Detail_G16_C0_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index] = (glyph >> 8) & 0xff;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C0_Size + (size_t)x * kTui_Detail_G16_C0_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index] = (glyph >> 8) & 0xff;
 }
 
 void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t colors)
@@ -920,18 +935,19 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C4_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C4_Size + (size_t)x * kTui_Detail_G16_C4_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index] = colors;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C4_Size + (size_t)x * kTui_Detail_G16_C4_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index] = colors;
 }
 
 void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg)
@@ -943,19 +959,20 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x >= batch->TilesWide || y >= batch->TilesTall || x < 0 || y < 0)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x >= batch_full->TilesWide || y >= batch_full->TilesTall || x < 0 || y < 0)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C8_Size + (size_t)x * kTui_Detail_G16_C8_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = fg;
-	batch->Data[tile_index] = bg;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C8_Size + (size_t)x * kTui_Detail_G16_C8_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = fg;
+	batch_full->Data[tile_index] = bg;
 }
 
 void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg)
@@ -967,18 +984,19 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C8NBG_Size + (size_t)x * kTui_Detail_G16_C8NBG_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index] = fg;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C8NBG_Size + (size_t)x * kTui_Detail_G16_C8NBG_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index] = fg;
 }
 
 void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg)
@@ -990,18 +1008,19 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NFG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C8NFG_Size + (size_t)x * kTui_Detail_G16_C8NFG_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index] = bg;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C8NFG_Size + (size_t)x * kTui_Detail_G16_C8NFG_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index] = bg;
 }
 
 void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
@@ -1013,23 +1032,24 @@ void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C24_Size + (size_t)x * kTui_Detail_G16_C24_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index] = bg_b;	
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C24_Size + (size_t)x * kTui_Detail_G16_C24_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index] = bg_b;	
 }
 
 void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
@@ -1041,20 +1061,21 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C24NBG_Size + (size_t)x * kTui_Detail_G16_C24NBG_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index] = fg_b;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C24NBG_Size + (size_t)x * kTui_Detail_G16_C24NBG_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index] = fg_b;
 }
 
 void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
@@ -1066,20 +1087,21 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NFG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 	
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C24NFG_Size + (size_t)x * kTui_Detail_G16_C24NFG_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index] = bg_b;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C24NFG_Size + (size_t)x * kTui_Detail_G16_C24NFG_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index] = bg_b;
 }
 
 void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
@@ -1091,25 +1113,26 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C32_Size + (size_t)x * kTui_Detail_G16_C32_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index++] = fg_a;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index++] = bg_b;
-	batch->Data[tile_index] = bg_a;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C32_Size + (size_t)x * kTui_Detail_G16_C32_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index++] = fg_a;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index++] = bg_b;
+	batch_full->Data[tile_index] = bg_a;
 }
 
 void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
@@ -1121,21 +1144,22 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NBG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C32NBG_Size + (size_t)x * kTui_Detail_G16_C32NBG_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = fg_r;
-	batch->Data[tile_index++] = fg_g;
-	batch->Data[tile_index++] = fg_b;
-	batch->Data[tile_index] = fg_a;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C32NBG_Size + (size_t)x * kTui_Detail_G16_C32NBG_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = fg_r;
+	batch_full->Data[tile_index++] = fg_g;
+	batch_full->Data[tile_index++] = fg_b;
+	batch_full->Data[tile_index] = fg_a;
 }
 
 void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
@@ -1147,21 +1171,22 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NFG_FULL)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_SETTER, __func__);
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return;
 	}
-	if (x < 0 || y < 0 || (size_t)x >= batch->TilesWide || (size_t)y >= batch->TilesTall)
+	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+	if (x < 0 || y < 0 || (size_t)x >= batch_full->TilesWide || (size_t)y >= batch_full->TilesTall)
 	{
 		return;
 	}
 
-	size_t tile_index = (size_t)y * batch->TilesWide * kTui_Detail_G16_C32NFG_Size + (size_t)x * kTui_Detail_G16_C32NFG_Size;
-	batch->Data[tile_index++] = (glyph) & 0xff;
-	batch->Data[tile_index++] = (glyph >> 8) & 0xff;
-	batch->Data[tile_index++] = bg_r;
-	batch->Data[tile_index++] = bg_g;
-	batch->Data[tile_index++] = bg_b; 
-	batch->Data[tile_index] = bg_a;
+	size_t tile_index = (size_t)y * batch_full->TilesWide * kTui_Detail_G16_C32NFG_Size + (size_t)x * kTui_Detail_G16_C32NFG_Size;
+	batch_full->Data[tile_index++] = (glyph) & 0xff;
+	batch_full->Data[tile_index++] = (glyph >> 8) & 0xff;
+	batch_full->Data[tile_index++] = bg_r;
+	batch_full->Data[tile_index++] = bg_g;
+	batch_full->Data[tile_index++] = bg_b; 
+	batch_full->Data[tile_index] = bg_a;
 }
 
 void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg)
