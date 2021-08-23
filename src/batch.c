@@ -35,7 +35,7 @@ TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles
 	}
 	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_CREATION
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return TUI_NULL;
 	}
 
@@ -71,7 +71,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	}
 	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_CREATION
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return TUI_NULL;
 	}
 
@@ -128,7 +128,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 	}
 	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_CREATION
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
 		return TUI_NULL;
 	}
 
@@ -215,40 +215,62 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
 		return;
 	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		return;
+	}
 
-	batch->TilesWide = (size_t)tiles_wide;
-	batch->TilesTall = (size_t)tiles_tall;
-	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(batch->DetailMode), tuiDetailGetColorFlag(batch->DetailMode));
-	batch->IsLargeSparseWide = TUI_FALSE;
-	batch->IsLargeSparseTall = TUI_FALSE;
-	batch->SparseUsedIndices = TUI_NULL;
-	batch->SparseUsedIndicesSize = 0;
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE)
+	switch (layout_flag)
 	{
-		batch->TileCount = 0;
-		batch->BytesPerTile += 2;
-		if (tiles_wide > 256)
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
 		{
-			batch->IsLargeSparseWide = TUI_TRUE;
-			batch->BytesPerTile++;
+			TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+			batch_full->TilesWide = (size_t)tiles_wide;
+			batch_full->TilesTall = (size_t)tiles_tall;
+			batch_full->TileCount = batch_full->TilesWide * batch_full->TilesTall;
+			batch_full->UsedDataSize = batch_full->BytesPerTile * batch_full->TileCount;
+			if (reserve_extra == TUI_FALSE || batch_full->UsedDataSize > batch_full->ReservedDataSize)
+			{
+				batch_full->ReservedDataSize = batch_full->UsedDataSize;
+				batch_full->Data = tuiReallocate(batch_full->Data, batch_full->ReservedDataSize);
+			}
 		}
-		if (tiles_tall > 256)
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
 		{
-			batch->IsLargeSparseTall = TUI_TRUE;
-			batch->BytesPerTile++;
+			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+			batch_sparse->TilesWide = (size_t)tiles_wide;
+			batch_sparse->TilesTall = (size_t)tiles_tall;
+			batch_sparse->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(batch->DetailMode), tuiDetailGetColorFlag(batch->DetailMode));
+			batch_sparse->HasLargeXCoordinate = TUI_FALSE;
+			batch_sparse->HasLargeYCoordinate = TUI_FALSE;
+			batch_sparse->TileCount = 0;
+			batch_sparse->BytesPerTile += 2;
+			if (tiles_wide > 256)
+			{
+				batch_sparse->HasLargeXCoordinate = TUI_TRUE;
+				batch_sparse->BytesPerTile++;
+			}
+			if (tiles_tall > 256)
+			{
+				batch_sparse->HasLargeYCoordinate = TUI_TRUE;
+				batch_sparse->BytesPerTile++;
+			}
+			if (batch_sparse->UseStencil)
+			{
+				batch_sparse->StencilDataSize = batch_sparse->TilesWide * batch_sparse->TilesTall * sizeof(size_t);
+				tuiReallocate(batch_sparse->StencilData, batch_sparse->StencilDataSize);
+			}
+			batch_sparse->UsedDataSize = batch_sparse->BytesPerTile * batch_sparse->TilesWide * batch_sparse->TilesTall;
+			if (reserve_extra == TUI_FALSE || batch_sparse->UsedDataSize > batch_sparse->ReservedDataSize)
+			{
+				batch_sparse->ReservedDataSize = batch_sparse->UsedDataSize;
+				batch_sparse->Data = tuiReallocate(batch_sparse->Data, batch_sparse->ReservedDataSize);
+			}
 		}
-		batch->SparseUsedIndicesSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
-		batch->SparseUsedIndices = tuiReallocate(batch->SparseUsedIndices, batch->SparseUsedIndicesSize);
-	}
-	else
-	{
-		batch->TileCount = batch->TilesWide * batch->TilesTall;
-	}
-	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall * sizeof(uint8_t);
-	if (reserve_extra == TUI_FALSE || batch->UsedDataSize > batch->ReservedDataSize)
-	{
-		batch->ReservedDataSize = batch->UsedDataSize;
-		batch->Data = tuiReallocate(batch->Data, batch->ReservedDataSize);
+		break;
 	}
 }
 
@@ -259,14 +281,41 @@ void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-
-	if(tiles_wide != TUI_NULL)
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		*tiles_wide = batch->TilesWide;
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		return;
 	}
-	if (tiles_tall != TUI_NULL)
+
+	switch (layout_flag)
 	{
-		*tiles_tall = batch->TilesTall;
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+		{
+			TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+			if (tiles_wide != TUI_NULL)
+			{
+				*tiles_wide = batch_full->TilesWide;
+			}
+			if (tiles_tall != TUI_NULL)
+			{
+				*tiles_tall = batch_full->TilesTall;
+			}
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		{
+			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+			if (tiles_wide != TUI_NULL)
+			{
+				*tiles_wide = batch_sparse->TilesWide;
+			}
+			if (tiles_tall != TUI_NULL)
+			{
+				*tiles_tall = batch_sparse->TilesTall;
+			}
+		}
+		break;
 	}
 }
 
@@ -277,8 +326,29 @@ int tuiBatchGetTilesWide(TuiBatch batch)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
 	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		return;
+	}
 
-	return batch->TilesWide;
+	switch (layout_flag)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+		{
+			TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+			return batch_full->TilesWide;
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		{
+			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+			return batch_sparse->TilesWide;
+		}
+		break;
+	}
+	return 0;
 }
 
 int tuiBatchGetTilesTall(TuiBatch batch)
@@ -288,8 +358,29 @@ int tuiBatchGetTilesTall(TuiBatch batch)
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return 0;
 	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		return;
+	}
 
-	return batch->TilesTall;
+	switch (layout_flag)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+		{
+			TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+			return batch_full->TilesTall;
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		{
+			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+			return batch_sparse->TilesTall;
+		}
+		break;
+	}
+	return 0;
 }
 
 int tuiBatchGetDataSize(TuiBatch batch)
@@ -300,7 +391,29 @@ int tuiBatchGetDataSize(TuiBatch batch)
 		return 0;
 	}
 
-	return batch->UsedDataSize;
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+		{
+			TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+			return batch_full->UsedDataSize;
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+		{
+			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+			return batch_sparse->UsedDataSize;
+		}
+		break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+		{
+			TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+			return batch_free->UsedDataSize;
+		}
+		break;
+	}
+	return 0;
 }
 
 int tuiBatchGetReservedSize(TuiBatch batch)
@@ -311,7 +424,29 @@ int tuiBatchGetReservedSize(TuiBatch batch)
 		return 0;
 	}
 
-	return batch->ReservedDataSize;
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+	{
+		TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+		return batch_full->ReservedDataSize;
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		return batch_sparse->ReservedDataSize;
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+	{
+		TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+		return batch_free->ReservedDataSize;
+	}
+	break;
+	}
+	return 0;
 }
 
 int tuiBatchGetTileCount(TuiBatch batch)
@@ -322,7 +457,29 @@ int tuiBatchGetTileCount(TuiBatch batch)
 		return 0;
 	}
 
-	return batch->TileCount;
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+	{
+		TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+		return batch_full->TileCount;
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		return batch_sparse->TileCount;
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+	{
+		TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+		return batch_free->TileCount;
+	}
+	break;
+	}
+	return 0;
 }
 
 const uint8_t* tuiBatchGetData(TuiBatch batch)
@@ -333,7 +490,30 @@ const uint8_t* tuiBatchGetData(TuiBatch batch)
 		return TUI_NULL;
 	}
 
-	return batch->Data;
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
+	{
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
+	{
+		TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+		return batch_full->Data;
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		return batch_sparse->Data;
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+	{
+		TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+		return batch_free->Data;
+	}
+	break;
+	}
+	return 0;
+
 }
 
 void tuiBatchClear(TuiBatch batch)
@@ -344,15 +524,33 @@ void tuiBatchClear(TuiBatch batch)
 		return;
 	}
 	
-	if (tuiDetailHasFlag(batch->DetailMode, TUI_DETAIL_FLAG_LAYOUT_SPARSE))
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	switch (layout_flag)
 	{
-		batch->TileCount = 0;
-		memset(batch->SparseUsedIndices, 0, batch->SparseUsedIndicesSize);
-	}
-	else
+	case TUI_DETAIL_FLAG_LAYOUT_FULL:
 	{
-		memset(batch->Data, 0, batch->UsedDataSize);
+		TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
+		memset(batch_full->Data, 0, batch_full->UsedDataSize);
 	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
+	{
+		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+		batch_sparse->TileCount = 0;
+		if (batch_sparse->UseStencil)
+		{
+			memset(batch_sparse->StencilData, 0, batch_sparse->StencilDataSize);
+		}
+	}
+	break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+	{
+		TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+		batch_free->TileCount = 0;
+	}
+	break;
+	}
+	return 0;
 }
 
 void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg)
