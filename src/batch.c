@@ -516,7 +516,7 @@ const uint8_t* tuiBatchGetData(TuiBatch batch)
 	}
 	break;
 	}
-	return 0;
+	return TUI_NULL;
 
 }
 
@@ -554,7 +554,7 @@ void tuiBatchClear(TuiBatch batch)
 	}
 	break;
 	}
-	return 0;
+	return;
 }
 
 static inline TuiBoolean _PointOutOfBatchFull(TuiBatchFull_s* batch_full, size_t x, size_t y)
