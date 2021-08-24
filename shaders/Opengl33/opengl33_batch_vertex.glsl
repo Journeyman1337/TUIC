@@ -8,15 +8,15 @@ uniform int ColorMode; /* C0 = 0, C4 = 1, C8 = 2, C8NBG = 3, C8NFG = 4, C24 = 5,
 uniform int LayoutMode; /* Full = 0, Sparse = 1, Free = 2 */
 uniform int AtlasType; // 0 = grid, 1 = coordinates
 uniform int PaletteChannelCount; // 3 = RGB, 4 = RGBA (if no palette, ignore this)
-uniform bool IsLargeSparseWide; //if this is sparse and the x positions are two bytes instead of one
-uniform bool IsLargeSparseTall; //if this is sparse and the y positions ar etwo bytes instead of one
+uniform bool HasLargeXCoordinate; //if this is sparse and the x positions are two bytes instead of one
+uniform bool HasLargeYCoordinate; //if this is sparse and the y positions ar etwo bytes instead of one
 uniform int TileByteSize; //size of a single tile in the data array in bytes
 uniform usamplerBuffer Data; //batch data buffer.
 uniform samplerBuffer Fontmap; //the coordinate uv buffer if not uv grid
 uniform usamplerBuffer Palette; //the palette colors
 uniform mat4 Matrix; //transform matrix for entire batch
-uniform ivec2 ViewportPixelDimensions; //the pixel dimensions of the viewport.
-uniform ivec2 TilePixelDimensions; //the dimensions of each tile in pixels.
+uniform uvec2 ViewportPixelDimensions; //the pixel dimensions of the viewport.
+uniform uvec2 TilePixelDimensions; //the dimensions of each tile in pixels.
 out vec2 UV; //uv texture position
 out vec4 FG; //foreground color
 out vec4 BG; //background color
@@ -24,7 +24,7 @@ vec2 getVertexUV_Grid(int ch, int tile_vertex)
 {
 	vec2 sheet_tile_coord;
 	sheet_tile_coord.x = float(mod(ch, SheetTileDimensions.x)) / float(SheetTileDimensions.x);
-	sheet_tile_coord.y = 1.0f - float(SheetTileDimensions.y - (ch / SheetTileDimensions.x)) / float(SheetTileDimensions.y);	
+	sheet_tile_coord.y = 1.0 - float(SheetTileDimensions.y - (ch / SheetTileDimensions.x)) / float(SheetTileDimensions.y);	
 	vec4 uv_square = vec4(sheet_tile_coord.x, sheet_tile_coord.x + SheetTileUVDimensions.x, sheet_tile_coord.y + SheetTileUVDimensions.y, sheet_tile_coord.y);
 	vec2 vert_uvs[6] = vec2[](uv_square.sp, uv_square.sq, uv_square.tq, uv_square.sp, uv_square.tq, uv_square.tp);
 	vec2 uv = vert_uvs[tile_vertex];
@@ -54,14 +54,14 @@ vec4 getVertexPosition_Sparse(int tile, int tile_vertex, inout int buffer_offset
 {
 	uint tile_x = texelFetch(Data, buffer_offset).r;
 	buffer_offset += 1;
-	if (IsLargeSparseWide)
+	if (HasLargeXCoordinate)
 	{
 		tile_x += texelFetch(Data, buffer_offset).r * 256u;
 		buffer_offset += 1;
 	}
 	uint tile_y = texelFetch(Data, buffer_offset).r;
 	buffer_offset += 1;
-	if (IsLargeSparseTall)
+	if (HasLargeYCoordinate)
 	{
 		tile_y += texelFetch(Data, buffer_offset).r * 256u;
 		buffer_offset += 1;
@@ -79,14 +79,14 @@ vec4 getVertexPosition_Free(int tile, int tile_vertex, inout int buffer_offset)
 {
 	uint tile_pixel_x = texelFetch(Data, buffer_offset).r;
 	buffer_offset += 1;
-		if (IsLargeSparseWide)
+	if (HasLargeXCoordinate)
 	{
 		tile_pixel_x += texelFetch(Data, buffer_offset).r * 256u;
 		buffer_offset += 1;
 	}
 	uint tile_pixel_y = texelFetch(Data, buffer_offset).r;
 	buffer_offset += 1;
-	if (IsLargeSparseTall)
+	if (HasLargeYCoordinate)
 	{
 		tile_pixel_y += texelFetch(Data, buffer_offset).r * 256u;
 		buffer_offset += 1;
@@ -94,10 +94,10 @@ vec4 getVertexPosition_Free(int tile, int tile_vertex, inout int buffer_offset)
 	tile_pixel_x -= TilePixelDimensions.x;
 	tile_pixel_y -= TilePixelDimensions.y; //To allow for tiles that go off screen on left an top, the dimensions are transformed by negative tile width and height
 	float tile_pixel_lx = float(tile_pixel_x) / float(ViewportPixelDimensions.x);
-	float tile_pixel_by = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
+	float tile_pixel_ty = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
 	float tile_pixel_rx = tile_pixel_lx + TileScreenspaceDimensions.x;
-	float tile_pixel_ty = tile_pixel_by + TileScreenspaceDimensions.y;
-	vec4 position_square = vec4(tile_lx, tile_rx, tile_ty, tile_by);
+	float tile_pixel_by = tile_pixel_ty + TileScreenspaceDimensions.y;
+	vec4 position_square = vec4(tile_pixel_lx, tile_pixel_rx, tile_pixel_ty, tile_pixel_by);
 	vec2 vert_positions[6] = vec2[](position_square.sp, position_square.sq, position_square.tq, position_square.sp, position_square.tq, position_square.tp);
 	vec2 position = vert_positions[tile_vertex];
 	return vec4(position, 0.0, 1.0) * Matrix;
