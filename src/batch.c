@@ -818,6 +818,7 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_8(batch_full, &data_index, glyph);
 	_BatchFullSet_C24(batch_full, &data_index, fg_r, fg_g, fg_b);
 }
 
@@ -840,6 +841,7 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_8(batch_full, &data_index, glyph);
 	_BatchFullSet_C24(batch_full, &data_index, bg_r, bg_g, bg_b);
 }
 
@@ -863,6 +865,7 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_8(batch_full, &data_index, glyph);
 	_BatchFullSet_C32(batch_full, &data_index, fg_r, fg_g, fg_b, fg_a);
 	_BatchFullSet_C32(batch_full, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
@@ -886,6 +889,7 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_8(batch_full, &data_index, glyph);
 	_BatchFullSet_C32(batch_full, &data_index, fg_r, fg_g, fg_b, fg_a);
 }
 
@@ -908,6 +912,7 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_8(batch_full, &data_index, glyph);
 	_BatchFullSet_C32(batch_full, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
 
@@ -1069,6 +1074,7 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_16(batch_full, &data_index, glyph);
 	_BatchFullSet_C24(batch_full, &data_index, fg_r, fg_g, fg_b);
 }
 
@@ -1091,6 +1097,7 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_16(batch_full, &data_index, glyph);
 	_BatchFullSet_C24(batch_full, &data_index, bg_r, bg_g, bg_b);
 }
 
@@ -1114,6 +1121,7 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_16(batch_full, &data_index, glyph);
 	_BatchFullSet_C32(batch_full, &data_index, fg_r, fg_g, fg_b, fg_a);
 	_BatchFullSet_C32(batch_full, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
@@ -1137,6 +1145,7 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_16(batch_full, &data_index, glyph);
 	_BatchFullSet_C32(batch_full, &data_index, fg_r, fg_g, fg_b, fg_a);
 }
 
@@ -1159,6 +1168,7 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
+	_BatchFullSet_16(batch_full, &data_index, glyph);
 	_BatchFullSet_C32(batch_full, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
 
@@ -1172,7 +1182,7 @@ static inline size_t _BatchSparseGetDataIndex(TuiBatchSparse_s* batch_sparse, si
 	size_t data_index;
 	if (batch_sparse->UseStencil)
 	{
-		size_t stencil_index = ((size_t)batch_sparse->TilesWide * y) + x;
+ 		size_t stencil_index = ((size_t)batch_sparse->TilesWide * y) + x;
 		if (batch_sparse->StencilData[stencil_index] != 0)
 		{
 			data_index = batch_sparse->StencilData[stencil_index] - 1; // subtract 1 because added 1 when it was stored
