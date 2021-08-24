@@ -370,6 +370,7 @@ static inline TuiErrorCode _BindBatchBuffer(TuiSystem system, TuiOpengl33SystemA
 	}
 	GL_CALL(glActiveTexture(GL_TEXTURE2));
 	GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, system_data->DataTextureHandle));
+	GL_CALL(glBindBuffer(GL_TEXTURE_BUFFER, 0));
 	return TUI_ERROR_NONE;
 }
 static inline TuiErrorCode _BindBatchAtlas(TuiSystem system, TuiOpengl33SystemApiData* system_data, TuiAtlas atlas, TuiOpengl33AtlasApiData* atlas_data)
@@ -378,6 +379,8 @@ static inline TuiErrorCode _BindBatchAtlas(TuiSystem system, TuiOpengl33SystemAp
 	{
 		GL_CALL(glActiveTexture(GL_TEXTURE0));
 		GL_CALL(glBindTexture(GL_TEXTURE_2D, atlas_data->TextureHandle));
+		GL_CALL(glUniform1i(system_data->BatchRenderAtlasTypeUniformLocation, _GetAtlasTypeUniformValue(atlas->AtlasType)));
+		GL_CALL(glUniform1i(system_data->BatchRenderBlendModeUniformLocation, _GetBlendModeUniformValue(atlas->BlendMode)));
 		if (atlas->AtlasType == TUI_ATLAS_GRID)
 		{
 			GL_CALL(glUniform2f(system_data->BatchRenderSheetTileUVDimensionsUniformLocation, 1.0f/(float)atlas->GridGlyphsWide, 1.0f/(float)atlas->GridGlyphsTall));
@@ -393,11 +396,9 @@ static inline TuiErrorCode _BindBatchAtlas(TuiSystem system, TuiOpengl33SystemAp
 }
 static inline TuiErrorCode _BindBatchPalette(TuiSystem system, TuiOpengl33SystemApiData* system_data, TuiPalette palette, TuiOpengl33PaletteApiData* palette_data)
 {
-	if (palette != TUI_NULL)
-	{
-		GL_CALL(glActiveTexture(GL_TEXTURE3));
-		GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, palette_data->PaletteTextureHandle));
-	}
+	GL_CALL(glActiveTexture(GL_TEXTURE3));
+	GL_CALL(glBindTexture(GL_TEXTURE_BUFFER, palette_data->PaletteTextureHandle));
+	GL_CALL(glUniform1i(system_data->BatchRenderPaletteChannelCountUniformLocation, palette->ChannelCount));
 	return TUI_ERROR_NONE;
 }
 static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t framebuffer_width, size_t framebuffer_height, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, const float* matrix)
@@ -420,26 +421,6 @@ static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t frameb
 	int glyph_mode_id = _GetGlyphModeUniformValue(glyph_flag);
 	int color_mode_id = _GetColorModeUniformValue(color_flag);
 	int layout_mode_id = _GetLayoutModeUniformValue(layout_flag);
-	if (glyph_mode_id == -1 || color_mode_id == -1 || layout_mode_id == -1)
-	{
-		return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
-	}
-	int atlas_type_id = -1;
-	int blend_mode_id = -1;
-	if (atlas != TUI_NULL)
-	{
-		blend_mode_id = _GetBlendModeUniformValue(atlas->BlendMode);
-		atlas_type_id = _GetAtlasTypeUniformValue(atlas->AtlasType);
-		if (blend_mode_id == -1 || atlas_type_id == -1)
-		{
-			return TUI_ERROR_GRAPHICS_BACKEND_SPECIFIC;
-		}
-	}
-	int palette_channel_count = -1;
-	if (palette != TUI_NULL)
-	{
-		palette_channel_count =  palette->ChannelCount;
-	}
 	GL_BLOCK_START();
 	GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_handle));
 	GL_CALL(glBindVertexArray(system_data->VaoHandle));
@@ -701,8 +682,8 @@ TuiErrorCode tuiSystemCreate_Opengl33()
 	GL_CALL(system_data->BatchRenderLayoutModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "LayoutMode"));
 	GL_CALL(system_data->BatchRenderAtlasTypeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "AtlasType"));
 	GL_CALL(system_data->BatchRenderPaletteChannelCountUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "PaletteChannelCount"));
-	GL_CALL(system_data->BatchRenderHasLargeXCoordinateUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "HasLargeYCoordinate"));
-	GL_CALL(system_data->BatchRenderHasLargeYCoordinatelUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "HasLargeXCoordinate"));
+	GL_CALL(system_data->BatchRenderHasLargeXCoordinateUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "HasLargeXCoordinate"));
+	GL_CALL(system_data->BatchRenderHasLargeYCoordinatelUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "HasLargeYCoordinate"));
 	GL_CALL(system_data->BatchRenderTileByteSizeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "TileByteSize"));
 	GL_CALL(system_data->BatchRenderDataUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Data"));
 	GL_CALL(system_data->BatchRenderFontmapUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Fontmap"));
