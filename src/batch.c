@@ -52,6 +52,7 @@ TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles
 	}
 	batch->ReservedDataSize = minimum_reserved_data_size;
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
+	memset(batch->Data, 0, batch->ReservedDataSize);
 	batch->TileCount = batch->TilesWide * batch->TilesTall;
 
 	return batch;
@@ -91,6 +92,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	{
 		batch->StencilDataSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
 		batch->StencilData = (size_t*)tuiAllocate(batch->StencilDataSize);
+		memset(batch->StencilData, 0, batch->StencilDataSize);
 	}
 	batch->BytesPerTile += 2; //Sparse batches have at least two extra bytes per tile for the coordinates of each tile
 	if (tiles_wide > 256) //if the width or the height is greater than 256, two bytes are needed for each respective coordinate to store values large enough
@@ -110,6 +112,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 		batch->ReservedDataSize = minimum_reserved_data_size;
 	}
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
+	memset(batch->Data, 0, batch->ReservedDataSize);
 
 	return batch;
 }
@@ -149,6 +152,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 		batch->ReservedDataSize = minimum_reserved_data_size;
 	}
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
+	memset(batch->Data, 0, batch->ReservedDataSize);
 
 	return batch;
 }
@@ -1168,7 +1172,7 @@ static inline size_t _BatchSparseGetDataIndex(TuiBatchSparse_s* batch_sparse, si
 	size_t data_index;
 	if (batch_sparse->UseStencil)
 	{
-		size_t stencil_index = ((size_t)batch_sparse->TilesTall * y) + x;
+		size_t stencil_index = ((size_t)batch_sparse->TilesWide * y) + x;
 		if (batch_sparse->StencilData[stencil_index] != 0)
 		{
 			data_index = batch_sparse->StencilData[stencil_index] - 1; // subtract 1 because added 1 when it was stored
@@ -1230,7 +1234,7 @@ static inline void _BatchSparseSet_C32(TuiBatchSparse_s* batch_sparse, size_t* d
 
 void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg)
 {
-	if (batch == TUI_NULL)
+ 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
