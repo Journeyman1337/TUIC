@@ -211,6 +211,8 @@ typedef struct TuiBatchSparse_s
 
 	size_t TileCount;
 
+	size_t MaxTileCount;
+
 	size_t TilesWide;
 
 	size_t TilesTall;

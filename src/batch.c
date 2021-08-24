@@ -83,6 +83,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	batch->TilesTall = tiles_tall;
 	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
 	batch->TileCount = 0;
+	batch->MaxTileCount = 0;
 	batch->HasLargeXCoordinate = TUI_FALSE;
 	batch->HasLargeYCoordinate = TUI_FALSE;
 	batch->UseStencil = use_stencil;
@@ -105,7 +106,8 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 		batch->HasLargeYCoordinate = TUI_TRUE;
 		batch->BytesPerTile++;
 	}
-	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall;
+	batch->MaxTileCount = batch->TilesWide * batch->TilesTall;
+	batch->UsedDataSize = batch->BytesPerTile * batch->MaxTileCount;
 	batch->ReservedDataSize = batch->UsedDataSize;
 	if (batch->UsedDataSize < minimum_reserved_data_size)
 	{
@@ -1177,6 +1179,13 @@ static inline TuiBoolean _PointOutOfBatchSparse(TuiBatchSparse_s* batch_sparse, 
 	return (x < 0 || y < 0 || x >= batch_sparse->TilesWide || y >= batch_sparse->TilesTall);
 }
 
+static inline TuiBoolean _BatchSparseTileOverflow(TuiBatchSparse_s* batch_sparse)
+{
+	if (!batch_sparse->UseStencil && batch_sparse->TileCount == batch_sparse->MaxTileCount)
+	{
+		return TUI_TRUE;
+	}
+}
 static inline size_t _BatchSparseGetDataIndex(TuiBatchSparse_s* batch_sparse, size_t x, size_t y)
 {
 	size_t data_index;
@@ -1256,6 +1265,11 @@ void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg)
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1279,6 +1293,11 @@ void tuiBatchSetTile_G0_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1302,6 +1321,11 @@ void tuiBatchSetTile_G0_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1325,6 +1349,11 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1348,6 +1377,11 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1372,6 +1406,11 @@ void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1397,6 +1436,11 @@ void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1421,6 +1465,11 @@ void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1445,6 +1494,11 @@ void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1470,6 +1524,11 @@ void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1494,6 +1553,11 @@ void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1518,6 +1582,11 @@ void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1543,6 +1612,11 @@ void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1567,6 +1641,11 @@ void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1591,6 +1670,11 @@ void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1614,6 +1698,11 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1638,6 +1727,11 @@ void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1663,6 +1757,11 @@ void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1687,6 +1786,11 @@ void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1711,6 +1815,11 @@ void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1736,6 +1845,11 @@ void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1760,6 +1874,11 @@ void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1784,6 +1903,11 @@ void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1809,6 +1933,11 @@ void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
@@ -1833,6 +1962,11 @@ void tuiBatchSetTile_G16_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
+	if (_BatchSparseTileOverflow(batch_sparse))
+	{
+		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		return;
+	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
 	{
 		return;
