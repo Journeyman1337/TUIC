@@ -571,23 +571,23 @@ static inline void _BatchFullSet_8(TuiBatchFull_s* batch_full, size_t* data_inde
 
 static inline void _BatchFullSet_16(TuiBatchFull_s* batch_full, size_t* data_index, uint16_t value)
 {
-	batch_full->Data[*data_index++] = (value) & 0xff; // first 8 bits
-	batch_full->Data[*data_index++] = (value >> 8) & 0xff; // second 8 bits
+	batch_full->Data[(*data_index)++] = (value) & 0xff; // first 8 bits
+	batch_full->Data[(*data_index)++] = (value >> 8) & 0xff; // second 8 bits
 }
 
 static inline void _BatchFullSet_C24(TuiBatchFull_s* batch_full, size_t* data_index, uint8_t r, uint8_t g, uint8_t b)
 {
-	batch_full->Data[*data_index++] = r;
-	batch_full->Data[*data_index++] = g;
-	batch_full->Data[*data_index++] = b;
+	batch_full->Data[(*data_index)++] = r;
+	batch_full->Data[(*data_index)++] = g;
+	batch_full->Data[(*data_index)++] = b;
 }
 
 static inline void _BatchFullSet_C32(TuiBatchFull_s* batch_full, size_t* data_index, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	batch_full->Data[*data_index++] = r;
-	batch_full->Data[*data_index++] = g;
-	batch_full->Data[*data_index++] = b;
-	batch_full->Data[*data_index++] = a;
+	batch_full->Data[(*data_index)++] = r;
+	batch_full->Data[(*data_index)++] = g;
+	batch_full->Data[(*data_index)++] = b;
+	batch_full->Data[(*data_index)++] = a;
 }
 
 void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg)
@@ -949,7 +949,7 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
 	_BatchFullSet_16(batch_full, &data_index, glyph);
-	_BatchFullSet_16(batch_full, &data_index, colors);
+	_BatchFullSet_8(batch_full, &data_index, colors);
 }
 
 void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg, uint8_t bg)
@@ -972,8 +972,8 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
 	_BatchFullSet_16(batch_full, &data_index, glyph);
-	_BatchFullSet_16(batch_full, &data_index, fg);
-	_BatchFullSet_16(batch_full, &data_index, bg);
+	_BatchFullSet_8(batch_full, &data_index, fg);
+	_BatchFullSet_8(batch_full, &data_index, bg);
 }
 
 void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg)
@@ -996,7 +996,7 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
 	_BatchFullSet_16(batch_full, &data_index, glyph);
-	_BatchFullSet_16(batch_full, &data_index, fg);
+	_BatchFullSet_8(batch_full, &data_index, fg);
 }
 
 void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t bg)
@@ -1019,7 +1019,7 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 
 	size_t data_index = _BatchFullGetDataIndex(batch_full, (size_t)x, (size_t)y);
 	_BatchFullSet_16(batch_full, &data_index, glyph);
-	_BatchFullSet_16(batch_full, &data_index, bg);
+	_BatchFullSet_8(batch_full, &data_index, bg);
 }
 
 void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
@@ -1190,42 +1190,42 @@ static inline size_t _BatchSparseGetDataIndex(TuiBatchSparse_s* batch_sparse, si
 
 static inline void _BatchSparseSetCoordinate(TuiBatchSparse_s* batch_sparse, size_t* data_index, unsigned int x, unsigned int y)
 {
-	batch_sparse->Data[*data_index++] = x & 0xff; // first 8 bits
+	batch_sparse->Data[(*data_index)++] = x & 0xff; // first 8 bits
 	if (batch_sparse->HasLargeXCoordinate)
 	{
-		batch_sparse->Data[*data_index++] = (x >> 8) & 0xff; // second 8 bits if large x coordinate
+		batch_sparse->Data[(*data_index)++] = (x >> 8) & 0xff; // second 8 bits if large x coordinate
 	}
-	batch_sparse->Data[*data_index++] = y & 0xff; // first 8 bits
+	batch_sparse->Data[(*data_index)++] = y & 0xff; // first 8 bits
 	if (batch_sparse->HasLargeYCoordinate)
 	{
-		batch_sparse->Data[*data_index++] = (y >> 8) & 0xff; // second 8 bits if large y coordinate
+		batch_sparse->Data[(*data_index)++] = (y >> 8) & 0xff; // second 8 bits if large y coordinate
 	}
 }
 
 static inline void _BatchSparseSet_8(TuiBatchSparse_s* batch_sparse, size_t* data_index, uint8_t value)
 {
-	batch_sparse->Data[*data_index++] = value;
+	batch_sparse->Data[(*data_index)++] = value;
 }
 
 static inline void _BatchSparseSet_16(TuiBatchSparse_s* batch_sparse, size_t* data_index, uint16_t value)
 {
-	batch_sparse->Data[*data_index++] = (value) & 0xff; // first 8 bits
-	batch_sparse->Data[*data_index++] = (value >> 8) & 0xff; // second 8 bits
+	batch_sparse->Data[(*data_index)++] = (value) & 0xff; // first 8 bits
+	batch_sparse->Data[(*data_index)++] = (value >> 8) & 0xff; // second 8 bits
 }
 
 static inline void _BatchSparseSet_C24(TuiBatchSparse_s* batch_sparse, size_t* data_index, uint8_t r, uint8_t g, uint8_t b)
 {
-	batch_sparse->Data[*data_index++] = r;
-	batch_sparse->Data[*data_index++] = g;
-	batch_sparse->Data[*data_index++] = b;
+	batch_sparse->Data[(*data_index)++] = r;
+	batch_sparse->Data[(*data_index)++] = g;
+	batch_sparse->Data[(*data_index)++] = b;
 }
 
 static inline void _BatchSparseSet_C32(TuiBatchSparse_s* batch_sparse, size_t* data_index, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	batch_sparse->Data[*data_index++] = r;
-	batch_sparse->Data[*data_index++] = g;
-	batch_sparse->Data[*data_index++] = b;
-	batch_sparse->Data[*data_index++] = a;
+	batch_sparse->Data[(*data_index)++] = r;
+	batch_sparse->Data[(*data_index)++] = g;
+	batch_sparse->Data[(*data_index)++] = b;
+	batch_sparse->Data[(*data_index)++] = a;
 }
 
 void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg)
