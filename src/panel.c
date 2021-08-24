@@ -331,7 +331,6 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		{
 			return;
 		}
-		return batch_sparse->TilesWide;
 	}
 	break;
 	default:
@@ -385,7 +384,6 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 		{
 			return;
 		}
-		return batch_sparse->TilesWide;
 	}
 	break;
 	default:
