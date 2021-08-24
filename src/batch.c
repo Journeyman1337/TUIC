@@ -1355,7 +1355,6 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 	size_t data_index = _BatchSparseGetDataIndex(batch_sparse, (size_t)x, (size_t)y);
 	_BatchSparseSetCoordinate(batch_sparse, &data_index, (unsigned int)x, (unsigned int)y);
 	_BatchSparseSet_8(batch_sparse, &data_index, glyph);
-	_BatchSparseSet_8(batch_sparse, &data_index, glyph);
 	_BatchSparseSet_8(batch_sparse, &data_index, colors);
 }
 
@@ -1621,7 +1620,6 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 
 	size_t data_index = _BatchSparseGetDataIndex(batch_sparse, (size_t)x, (size_t)y);
 	_BatchSparseSetCoordinate(batch_sparse, &data_index, (unsigned int)x, (unsigned int)y);
-	_BatchSparseSet_16(batch_sparse, &data_index, glyph);
 	_BatchSparseSet_16(batch_sparse, &data_index, glyph);
 	_BatchSparseSet_16(batch_sparse, &data_index, colors);
 }
