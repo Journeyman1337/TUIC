@@ -648,8 +648,8 @@ TuiErrorCode tuiSystemCreate_Opengl33()
 	system_data->BatchRenderMatrixUniformLocation = 0;
 	system_data->BatchRenderAtlasUniformLocation = 0;
 	system_data->BatchRenderBlendModeUniformLocation = 0;
-	system_data->BatchRenderViewportPixelDimensionsUniformLocation = 0;
 	system_data->BatchRenderTilePixelDimensionsUniformLocation = 0;
+	system_data->BatchRenderViewportPixelDimensionsUniformLocation = 0;
 	system_data->DataBufferHandle = 0;
 	system_data->DataTextureHandle = 0;
 	GL_BLOCK_START();
@@ -691,8 +691,8 @@ TuiErrorCode tuiSystemCreate_Opengl33()
 	GL_CALL(system_data->BatchRenderMatrixUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Matrix"));
 	GL_CALL(system_data->BatchRenderAtlasUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "Atlas"));
 	GL_CALL(system_data->BatchRenderBlendModeUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "BlendMode"));
-	GL_CALL(system_data->BatchRenderViewportPixelDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ViewportPixelDimensions"));
 	GL_CALL(system_data->BatchRenderTilePixelDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "TilePixelDimensions"));
+	GL_CALL(system_data->BatchRenderViewportPixelDimensionsUniformLocation = glGetUniformLocation(system_data->BatchRenderProgramHandle, "ViewportPixelDimensions"));
 	GL_CALL(glUseProgram(system_data->BatchRenderProgramHandle));
 	GL_CALL(glUniform1i(system_data->BatchRenderAtlasUniformLocation, 0));
 	GL_CALL(glUniform1i(system_data->BatchRenderFontmapUniformLocation, 1));
