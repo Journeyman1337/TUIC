@@ -570,7 +570,7 @@ static inline size_t _BatchFullGetDataIndex(TuiBatchFull_s* batch_full, size_t x
 
 static inline void _BatchFullSet_8(TuiBatchFull_s* batch_full, size_t* data_index, uint8_t value)
 {
-	batch_full->Data[*data_index++] = value;
+	batch_full->Data[(*data_index)++] = value;
 }
 
 static inline void _BatchFullSet_16(TuiBatchFull_s* batch_full, size_t* data_index, uint16_t value)
