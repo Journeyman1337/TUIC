@@ -428,8 +428,6 @@ static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t frameb
 	GL_CALL(glUniform1i(system_data->BatchRenderGlyphModeUniformLocation, glyph_mode_id));
 	GL_CALL(glUniform1i(system_data->BatchRenderColorModeUniformLocation, color_mode_id));
 	GL_CALL(glUniform1i(system_data->BatchRenderLayoutModeUniformLocation, layout_mode_id));
-	GL_CALL(glUniform1i(system_data->BatchRenderAtlasTypeUniformLocation, atlas_type_id));
-	GL_CALL(glUniform1i(system_data->BatchRenderBlendModeUniformLocation, blend_mode_id));
 	GL_CALL(glUniformMatrix4fv(system_data->BatchRenderMatrixUniformLocation, 1, GL_FALSE, matrix));
 	switch (layout_flag)
 	{
