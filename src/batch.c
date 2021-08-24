@@ -1185,6 +1185,7 @@ static inline TuiBoolean _BatchSparseTileOverflow(TuiBatchSparse_s* batch_sparse
 	{
 		return TUI_TRUE;
 	}
+	return TUI_FALSE;
 }
 static inline size_t _BatchSparseGetDataIndex(TuiBatchSparse_s* batch_sparse, size_t x, size_t y)
 {
