@@ -1198,6 +1198,7 @@ static inline size_t _BatchSparseGetDataIndex(TuiBatchSparse_s* batch_sparse, si
 	else //if (!batch_sparse->UseStencil)
 	{
 		data_index = batch_sparse->TileCount * batch_sparse->BytesPerTile;
+		batch_sparse->TileCount++;
 	}
 	return data_index;
 }
