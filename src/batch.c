@@ -107,7 +107,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	}
 	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall;
 	batch->ReservedDataSize = batch->UsedDataSize;
-	if (batch->UsedDataSize > minimum_reserved_data_size)
+	if (batch->UsedDataSize < minimum_reserved_data_size)
 	{
 		batch->ReservedDataSize = minimum_reserved_data_size;
 	}
