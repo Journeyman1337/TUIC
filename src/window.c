@@ -694,6 +694,14 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 		}
 	}
 	break;
+	case TUI_DETAIL_FLAG_LAYOUT_FREE:
+	{
+		TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+		if (batch_free->TileCount == 0)
+		{
+			return;
+		}
+	}
 	default:
 		break;
 	}
