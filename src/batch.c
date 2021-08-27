@@ -46,11 +46,11 @@ TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles
 	batch->TilesTall = tiles_tall;
 	batch->BytesPerTile = tuiDetailGetTileByteSize(tuiDetailGetGlyphFlag(detail_mode), tuiDetailGetColorFlag(detail_mode));
 	batch->UsedDataSize = batch->BytesPerTile * batch->TilesWide * batch->TilesTall;
-	if (batch->UsedDataSize > minimum_reserved_data_size)
+	batch->ReservedDataSize = batch->UsedDataSize;
+	if (batch->UsedDataSize < minimum_reserved_data_size)
 	{
-		minimum_reserved_data_size = batch->UsedDataSize;
+		batch->ReservedDataSize = minimum_reserved_data_size;
 	}
-	batch->ReservedDataSize = minimum_reserved_data_size;
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
 	memset(batch->Data, 0, batch->ReservedDataSize);
 	batch->TileCount = batch->TilesWide * batch->TilesTall;
@@ -150,7 +150,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 	batch->MaxTileCount = maximum_tile_count;
 	batch->UsedDataSize = batch->BytesPerTile * batch->MaxTileCount;
 	batch->ReservedDataSize = batch->UsedDataSize;
-	if (batch->UsedDataSize > minimum_reserved_data_size)
+	if (batch->UsedDataSize < minimum_reserved_data_size)
 	{
 		batch->ReservedDataSize = minimum_reserved_data_size;
 	}
