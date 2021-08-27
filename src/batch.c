@@ -144,6 +144,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 	batch->BytesPerTile += 4; //Free batches have 2 uint16_t for the x and y positions of each tile. Unlike with sparse batches, coordinates are never optimized to 1 bytes.
 	batch->TilePixelWidth = tile_pixel_width;
 	batch->TilePixelHeight = tile_pixel_height;
+	batch->TileCount = 0;
 	batch->DrawViewportWidth = draw_viewport_width;
 	batch->DrawViewportHeight = draw_viewport_height;
 	batch->MaxTileCount = maximum_tile_count;
