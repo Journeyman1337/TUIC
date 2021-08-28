@@ -188,6 +188,15 @@ int tuiBatchGetTilesTall(TuiBatch batch);
  *
  * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
+
+void tuiBatchSetViewportPixelDimensions(TuiBatch batch, int pixel_width, int pixel_height);
+
+void tuiBatchGetViewportPixelDimensions(TuiBatch batch, int* pixel_width, int* pixel_height);
+
+int tuiBatchGetViewportPixelWidth(TuiBatch batch);
+
+int tuiBatchGetViewportPixelHeight(TuiBatch batch);
+
 int tuiBatchGetDataSize(TuiBatch batch);
 /*!
  * @brief Get the size of the data array of a @ref TuiBatch in bytes including reserved space.
