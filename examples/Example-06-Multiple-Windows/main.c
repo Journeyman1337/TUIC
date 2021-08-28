@@ -33,8 +33,8 @@ int main()
     tuiSetDebugErrorCallback(TuiMessageCallback);
 
     /* Create the TUIC windows. */
-    const char* window1_title = "Example 5 - Window 1";
-    const char* window2_title = "Example 5 - Window 2";
+    const char* window1_title = "Example 6 - Window 1";
+    const char* window2_title = "Example 6 - Window 2";
     TuiWindow window1 = tuiWindowCreate(window_width, window_height, window1_title, TUI_NULL);
     TuiWindow window2 = tuiWindowCreate(window_width, window_height, window2_title, TUI_NULL);
 
