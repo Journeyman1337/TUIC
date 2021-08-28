@@ -176,13 +176,69 @@ int tuiBatchGetTilesWide(TuiBatch batch);
  */
 int tuiBatchGetTilesTall(TuiBatch batch);
 /*!
+ * @brief Set new viewport pixel dimensions of a @ref TuiBatch and clear its data.
+ *
+ * @param batch The @ref TuiBatch to resize.
+ * @param pixel_width The new pixel width of the draw viewport.
+ * @param pixel_height The new pixel height of the draw viewport.
+ * 
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+void tuiBatchSetViewportPixelDimensions(TuiBatch batch, int pixel_width, int pixel_height);
+/*!
+ * @brief Get the viewport pixel dimensions of a @ref TuiBatch.
+ *
+ * @param batch The @ref TuiBatch to get the tile dimensions of.
+ * @param pixel_width A pointer to where the pixel width of the draw viewport will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ * @param pixel_height A pointer to where the pixel height of the draw viewport will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+void tuiBatchGetViewportPixelDimensions(TuiBatch batch, int* pixel_width, int* pixel_height);
+/*!
+ * @brief Get the width of a @ref TuiBatch in pixels.
+ *
+ * @param batch The @ref TuiBatch.
+ *
+ * @returns The pixel width. 0 is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+int tuiBatchGetViewportPixelWidth(TuiBatch batch);
+/*!
+ * @brief Get the height of a @ref TuiBatch in pixels.
+ *
+ * @param batch The @ref TuiBatch.
+ *
+ * @returns The pixel height. 0 is returned if an error occurs.
+ *
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+int tuiBatchGetViewportPixelHeight(TuiBatch batch);
+/*!
  * @brief Get the size of the data array of a @ref TuiBatch in bytes.
  *
  * @param batch The @ref TuiBatch.
  *
  * @returns The size of the data array in bytes. 0 is returned if an error occurs.
  *
- * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return. 
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
