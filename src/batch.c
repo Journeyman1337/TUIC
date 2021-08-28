@@ -476,6 +476,92 @@ int tuiBatchGetViewportPixelHeight(TuiBatch batch)
 	return batch_free->DrawViewportHeight;
 }
 
+void tuiBatchSetGlyphPixelDimensions(TuiBatch batch, int pixel_width, int pixel_height)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (pixel_width <= 0 || pixel_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, __func__);
+		return;
+	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
+		return;
+	}
+
+	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+	batch_free->TilePixelWidth = pixel_width;
+	batch_free->TilePixelHeight = pixel_height;
+	batch_free->TileCount = 0;
+}
+
+void tuiBatchGetGlyphPixelDimensions(TuiBatch batch, int* pixel_width, int* pixel_height)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
+		return;
+	}
+
+	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+	if (pixel_width != TUI_NULL)
+	{
+		*pixel_width = batch_free->TilePixelWidth;
+	}
+	if (pixel_height != TUI_NULL)
+	{
+		*pixel_height = batch_free->TilePixelHeight;
+	}
+}
+
+int tuiBatchGetGlyphPixelWidth(TuiBatch batch)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
+		return;
+	}
+
+	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+	return batch_free->TilePixelWidth;
+}
+
+int tuiBatchGetGlyphPixelHeight(TuiBatch batch)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
+		return;
+	}
+
+	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+	return batch_free->TilePixelHeight;
+}
+
 int tuiBatchGetDataSize(TuiBatch batch)
 {
 	if (batch == TUI_NULL)
