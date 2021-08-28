@@ -77,22 +77,16 @@ vec4 getVertexPosition_Sparse(int tile, int tile_vertex, inout int buffer_offset
 }
 vec4 getVertexPosition_Free(int tile, int tile_vertex, inout int buffer_offset)
 {
-	uint tile_pixel_x = texelFetch(Data, buffer_offset).r;
+	int tile_pixel_x = int(texelFetch(Data, buffer_offset).r);
 	buffer_offset += 1;
-	if (HasLargeXCoordinate)
-	{
-		tile_pixel_x += texelFetch(Data, buffer_offset).r * 256u;
-		buffer_offset += 1;
-	}
-	uint tile_pixel_y = texelFetch(Data, buffer_offset).r;
+	tile_pixel_x += int(texelFetch(Data, buffer_offset).r * 256u);
 	buffer_offset += 1;
-	if (HasLargeYCoordinate)
-	{
-		tile_pixel_y += texelFetch(Data, buffer_offset).r * 256u;
-		buffer_offset += 1;
-	}
-	tile_pixel_x -= TilePixelDimensions.x;
-	tile_pixel_y -= TilePixelDimensions.y; //To allow for tiles that go off screen on left an top, the dimensions are transformed by negative tile width and height
+	int tile_pixel_y = int(texelFetch(Data, buffer_offset).r);
+	buffer_offset += 1;
+	tile_pixel_y += int(texelFetch(Data, buffer_offset).r * 256u);
+	buffer_offset += 1;
+	tile_pixel_x -= int(TilePixelDimensions.x);
+	tile_pixel_y -= int(TilePixelDimensions.y); //To allow for tiles that go off screen on left an top, the dimensions are transformed by negative tile width and height
 	float tile_pixel_lx = float(tile_pixel_x) / float(ViewportPixelDimensions.x);
 	float tile_pixel_ty = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
 	float tile_pixel_rx = tile_pixel_lx + TileScreenspaceDimensions.x;
