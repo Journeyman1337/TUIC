@@ -1987,11 +1987,7 @@ static inline TuiBoolean _PointOutOfBatchFree(TuiBatchFree_s* batch_free, int x,
 
 static inline TuiBoolean _BatchFreeTileOverflow(TuiBatchFree_s* batch_free)
 {
-	if (batch_free->TileCount == batch_free->MaxTileCount)
-	{
-		return TUI_TRUE;
-	}
-	return TUI_FALSE;
+	return batch_free->TileCount == batch_free->MaxTileCount;
 }
 static inline size_t _BatchFreeGetDataIndex(TuiBatchFree_s* batch_free)
 {
