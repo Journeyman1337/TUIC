@@ -1004,6 +1004,7 @@ void tuiWindowFrame(TuiWindow window)
 		return;
 	}
 	glfwSwapBuffers(window->GlfwWindow);
+	//glfwSwapBuffers(system->BaseWindow); // uncoment this to allow inspection with renderdoc
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
 	{
