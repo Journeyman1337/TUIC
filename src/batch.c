@@ -1996,12 +1996,14 @@ static inline size_t _BatchFreeGetDataIndex(TuiBatchFree_s* batch_free)
 	return data_index;
 }
 
-static inline void _BatchFreeSetPosition(TuiBatchFree_s* batch_free, size_t* data_index, unsigned int pixel_x, unsigned int pixel_y)
+static inline void _BatchFreeSetPosition(TuiBatchFree_s* batch_free, size_t* data_index, int pixel_x, int pixel_y)
 {
-	batch_free->Data[(*data_index)++] = pixel_x & 0xff; // first 8 bits of x
-	batch_free->Data[(*data_index)++] = (pixel_x >> 8) & 0xff; // second 8 bits of x
-	batch_free->Data[(*data_index)++] = pixel_y & 0xff; // first 8 bits of x
-	batch_free->Data[(*data_index)++] = (pixel_y >> 8) & 0xff; // second 8 bits of y
+	unsigned int unsigned_pixel_x = (unsigned int)(pixel_x + batch_free->TilePixelWidth);
+	unsigned int unsigned_pixel_y = (unsigned int)(pixel_y + batch_free->TilePixelHeight);
+	batch_free->Data[(*data_index)++] = unsigned_pixel_x & 0xff; // first 8 bits of x
+	batch_free->Data[(*data_index)++] = (unsigned_pixel_x >> 8) & 0xff; // second 8 bits of x
+	batch_free->Data[(*data_index)++] = unsigned_pixel_y & 0xff; // first 8 bits of x
+	batch_free->Data[(*data_index)++] = (unsigned_pixel_y >> 8) & 0xff; // second 8 bits of y
 }
 
 static inline void _BatchFreeSet_8(TuiBatchFree_s* batch_free, size_t* data_index, uint8_t value)
