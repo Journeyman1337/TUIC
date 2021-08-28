@@ -546,7 +546,7 @@ static inline TuiErrorCode _DrawBatch(uint32_t framebuffer_handle, size_t frameb
 				}
 			}
 			GL_CALL(glUniform2ui(system_data->BatchRenderViewportPixelDimensionsUniformLocation, batch_free->DrawViewportWidth, batch_free->DrawViewportHeight));
-			GL_CALL(glUniform2ui(system_data->BatchRenderTilePixelDimensionsUniformLocation, (float)batch_free->TilePixelWidth / (float)batch_free->DrawViewportWidth, (float)batch_free->TilePixelHeight / (float)batch_free->DrawViewportHeight));
+			GL_CALL(glUniform2ui(system_data->BatchRenderTilePixelDimensionsUniformLocation, batch_free->TilePixelWidth, batch_free->TilePixelHeight));
 			GL_CALL(glUniform1i(system_data->BatchRenderTileByteSizeUniformLocation, batch_free->BytesPerTile));
 			GL_CALL(glViewport(0, 0, framebuffer_width, framebuffer_height));
 			GL_CALL(glEnable(GL_BLEND));
