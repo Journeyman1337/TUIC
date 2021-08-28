@@ -25,7 +25,7 @@ TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles
 {
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS, __func__);
 		return TUI_NULL;
 	}
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
@@ -35,7 +35,7 @@ TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles
 	}
 	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return TUI_NULL;
 	}
 
@@ -62,7 +62,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 {
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS, __func__);
 		return TUI_NULL;
 	}
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
@@ -72,7 +72,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	}
 	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return TUI_NULL;
 	}
 
@@ -123,7 +123,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 {
 	if (tile_pixel_width <= 0 || tile_pixel_height <= 0)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_TILE_PIXEL_DIMENSIONS
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS, __func__);
 		return TUI_NULL;
 	}
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
@@ -133,7 +133,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 	}
 	if (tuiDetailGetLayoutFlag(detail_mode) != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return TUI_NULL;
 	}
 
@@ -219,13 +219,13 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
 	}
 	if (tiles_wide <= 0 || tiles_tall <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS, __func__);
 		return;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 
@@ -291,7 +291,7 @@ void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 
@@ -336,7 +336,7 @@ int tuiBatchGetTilesWide(TuiBatch batch)
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return 0;
 	}
 
@@ -368,7 +368,7 @@ int tuiBatchGetTilesTall(TuiBatch batch)
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag == TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return 0;
 	}
 
@@ -606,7 +606,7 @@ void tuiBatchSetTile_G0_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C8NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -628,7 +628,7 @@ void tuiBatchSetTile_G0_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C24NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -650,7 +650,7 @@ void tuiBatchSetTile_G0_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t fg_r, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C32NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -672,7 +672,7 @@ void tuiBatchSetTile_G8_C0_FULL(TuiBatch batch, int x, int y, uint8_t glyph)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C0_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -694,7 +694,7 @@ void tuiBatchSetTile_G8_C4_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C4_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -717,7 +717,7 @@ void tuiBatchSetTile_G8_C8_FULL(TuiBatch batch, int x, int y, uint8_t glyph, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -741,7 +741,7 @@ void tuiBatchSetTile_G8_C8NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -764,7 +764,7 @@ void tuiBatchSetTile_G8_C8NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NFG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -787,7 +787,7 @@ void tuiBatchSetTile_G8_C24_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -811,7 +811,7 @@ void tuiBatchSetTile_G8_C24NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -834,7 +834,7 @@ void tuiBatchSetTile_G8_C24NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NFG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -858,7 +858,7 @@ void tuiBatchSetTile_G8_C32_FULL(TuiBatch batch, int x, int y, uint8_t glyph, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -882,7 +882,7 @@ void tuiBatchSetTile_G8_C32NBG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -905,7 +905,7 @@ void tuiBatchSetTile_G8_C32NFG_FULL(TuiBatch batch, int x, int y, uint8_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NFG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -928,7 +928,7 @@ void tuiBatchSetTile_G16_C0_FULL(TuiBatch batch, int x, int y, uint16_t glyph)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C0_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -950,7 +950,7 @@ void tuiBatchSetTile_G16_C4_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C4_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -973,7 +973,7 @@ void tuiBatchSetTile_G16_C8_FULL(TuiBatch batch, int x, int y, uint16_t glyph, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -997,7 +997,7 @@ void tuiBatchSetTile_G16_C8NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1020,7 +1020,7 @@ void tuiBatchSetTile_G16_C8NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NFG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1043,7 +1043,7 @@ void tuiBatchSetTile_G16_C24_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1067,7 +1067,7 @@ void tuiBatchSetTile_G16_C24NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1090,7 +1090,7 @@ void tuiBatchSetTile_G16_C24NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NFG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1114,7 +1114,7 @@ void tuiBatchSetTile_G16_C32_FULL(TuiBatch batch, int x, int y, uint16_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1138,7 +1138,7 @@ void tuiBatchSetTile_G16_C32NBG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NBG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1161,7 +1161,7 @@ void tuiBatchSetTile_G16_C32NFG_FULL(TuiBatch batch, int x, int y, uint16_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NFG_FULL)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFull_s* batch_full = (TuiBatchFull_s*)batch;
@@ -1263,13 +1263,13 @@ void tuiBatchSetTile_G0_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C8NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1291,13 +1291,13 @@ void tuiBatchSetTile_G0_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C24NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1319,13 +1319,13 @@ void tuiBatchSetTile_G0_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t fg_r
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C32NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1347,13 +1347,13 @@ void tuiBatchSetTile_G8_C0_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C0_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1375,13 +1375,13 @@ void tuiBatchSetTile_G8_C4_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C4_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1404,13 +1404,13 @@ void tuiBatchSetTile_G8_C8_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1434,13 +1434,13 @@ void tuiBatchSetTile_G8_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1463,13 +1463,13 @@ void tuiBatchSetTile_G8_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NFG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1492,13 +1492,13 @@ void tuiBatchSetTile_G8_C24_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1522,13 +1522,13 @@ void tuiBatchSetTile_G8_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1551,13 +1551,13 @@ void tuiBatchSetTile_G8_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NFG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1580,13 +1580,13 @@ void tuiBatchSetTile_G8_C32_SPARSE(TuiBatch batch, int x, int y, uint8_t glyph, 
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1610,13 +1610,13 @@ void tuiBatchSetTile_G8_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1639,13 +1639,13 @@ void tuiBatchSetTile_G8_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint8_t glyp
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NFG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1668,13 +1668,13 @@ void tuiBatchSetTile_G16_C0_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph)
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C0_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1696,13 +1696,13 @@ void tuiBatchSetTile_G16_C4_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C4_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1725,13 +1725,13 @@ void tuiBatchSetTile_G16_C8_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph,
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1755,13 +1755,13 @@ void tuiBatchSetTile_G16_C8NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1784,13 +1784,13 @@ void tuiBatchSetTile_G16_C8NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gly
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NFG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1813,13 +1813,13 @@ void tuiBatchSetTile_G16_C24_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1843,13 +1843,13 @@ void tuiBatchSetTile_G16_C24NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1872,13 +1872,13 @@ void tuiBatchSetTile_G16_C24NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NFG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1901,13 +1901,13 @@ void tuiBatchSetTile_G16_C32_SPARSE(TuiBatch batch, int x, int y, uint16_t glyph
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1931,13 +1931,13 @@ void tuiBatchSetTile_G16_C32NBG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NBG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -1960,13 +1960,13 @@ void tuiBatchSetTile_G16_C32NFG_SPARSE(TuiBatch batch, int x, int y, uint16_t gl
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NFG_SPARSE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 	if (_BatchSparseTileOverflow(batch_sparse))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchSparse(batch_sparse, (size_t)x, (size_t)y))
@@ -2041,13 +2041,13 @@ void tuiBatchSetTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C8NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2069,13 +2069,13 @@ void tuiBatchSetTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C24NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2097,13 +2097,13 @@ void tuiBatchSetTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G0_C32NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2125,13 +2125,13 @@ void tuiBatchSetTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C0_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2153,13 +2153,13 @@ void tuiBatchSetTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C4_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2182,13 +2182,13 @@ void tuiBatchSetTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2212,13 +2212,13 @@ void tuiBatchSetTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2241,13 +2241,13 @@ void tuiBatchSetTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C8NFG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2270,13 +2270,13 @@ void tuiBatchSetTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2300,13 +2300,13 @@ void tuiBatchSetTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2329,13 +2329,13 @@ void tuiBatchSetTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C24NFG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2358,13 +2358,13 @@ void tuiBatchSetTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2388,13 +2388,13 @@ void tuiBatchSetTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2417,13 +2417,13 @@ void tuiBatchSetTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G8_C32NFG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2446,13 +2446,13 @@ void tuiBatchSetTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C0_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2474,13 +2474,13 @@ void tuiBatchSetTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C4_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2503,13 +2503,13 @@ void tuiBatchSetTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2533,13 +2533,13 @@ void tuiBatchSetTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2562,13 +2562,13 @@ void tuiBatchSetTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C8NFG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2591,13 +2591,13 @@ void tuiBatchSetTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2621,13 +2621,13 @@ void tuiBatchSetTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2650,13 +2650,13 @@ void tuiBatchSetTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C24NFG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2679,13 +2679,13 @@ void tuiBatchSetTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2709,13 +2709,13 @@ void tuiBatchSetTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NBG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
@@ -2738,13 +2738,13 @@ void tuiBatchSetTile_G16_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	}
 	if (batch->DetailMode != TUI_DETAIL_MODE_G16_C32NFG_FREE)
 	{
-		// TODO TUI_ERROR_INVALID_BATCH_FUNCTION
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
 		return;
 	}
 	TuiBatchFree_s* batch_free = (TuiBatchSparse_s*)batch;
 	if (_BatchFreeTileOverflow(batch_free))
 	{
-		// TODO TUI_ERROR_BATCH_TILE_OVERFLOW
+		tuiDebugError(TUI_ERROR_BATCH_OVERFLOW, __func__);
 		return;
 	}
 	if (_PointOutOfBatchFree(batch_free, (size_t)pixel_x, (size_t)pixel_y))
