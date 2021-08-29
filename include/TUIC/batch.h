@@ -140,7 +140,7 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
  * @param tiles_wide A pointer to where the tile width of the @ref TuiBatch will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * @param tiles_height A pointer to where the tile height of the @ref TuiBatch will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -154,7 +154,7 @@ void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
  *
  * @returns The tiles wide. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -168,7 +168,7 @@ int tuiBatchGetTilesWide(TuiBatch batch);
  *
  * @returns The tiles tall. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -196,7 +196,7 @@ void tuiBatchSetViewportPixelDimensions(TuiBatch batch, int pixel_width, int pix
  * @param pixel_width A pointer to where the pixel width of the draw viewport will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of the draw viewport will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -210,7 +210,7 @@ void tuiBatchGetViewportPixelDimensions(TuiBatch batch, int* pixel_width, int* p
  *
  * @returns The pixel width. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -224,7 +224,7 @@ int tuiBatchGetViewportPixelWidth(TuiBatch batch);
  *
  * @returns The pixel height. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -252,7 +252,7 @@ void tuiBatchSetGlyphPixelDimensions(TuiBatch batch, int pixel_width, int pixel_
  * @param pixel_width A pointer to where the pixel width of each glyph will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  * @param pixel_height A pointer to where the pixel height of each glyph will be stored. If @ref TUI_NULL or an error occurs, it is ignored.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -266,7 +266,7 @@ void tuiBatchGetGlyphPixelDimensions(TuiBatch batch, int* pixel_width, int* pixe
  *
  * @returns The pixel width. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -280,7 +280,7 @@ int tuiBatchGetGlyphPixelWidth(TuiBatch batch);
  *
  * @returns The pixel height. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -296,7 +296,7 @@ int tuiBatchGetGlyphPixelHeight(TuiBatch batch);
  *
  * @returns The maximum tile count. 0 is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT, and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
