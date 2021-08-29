@@ -55,7 +55,7 @@ TuiBatch tuiBatchCreateFull(TuiDetailMode detail_mode, int tiles_wide, int tiles
 	memset(batch->Data, 0, batch->ReservedDataSize);
 	batch->TileCount = batch->TilesWide * batch->TilesTall;
 
-	return batch;
+	return (TuiBatch)batch;
 }
 
 TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int tiles_tall, TuiBoolean use_stencil, size_t minimum_reserved_data_size)
@@ -116,7 +116,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
 	memset(batch->Data, 0, batch->ReservedDataSize);
 
-	return batch;
+	return (TuiBatch)batch;
 }
 
 TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int tile_pixel_height, int draw_viewport_width, int draw_viewport_height, int maximum_tile_count, size_t minimum_reserved_data_size)
@@ -157,7 +157,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 	batch->Data = tuiAllocate(batch->ReservedDataSize);
 	memset(batch->Data, 0, batch->ReservedDataSize);
 
-	return batch;
+	return (TuiBatch)batch;
 }
 
 void tuiBatchDestroy(TuiBatch batch)
