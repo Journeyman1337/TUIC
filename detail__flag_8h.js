@@ -18,6 +18,7 @@ var detail__flag_8h =
       [ "TUI_DETAIL_FLAG_COLOR_32NBG", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da2115d2f894782108cb4eb1481906836d", null ],
       [ "TUI_DETAIL_FLAG_LAYOUT_FULL", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da688db2c425279636925437b128ad3569", null ],
       [ "TUI_DETAIL_FLAG_LAYOUT_SPARSE", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43daa3b2975ae7f843c57c3aac2429e27d07", null ],
+      [ "TUI_DETAIL_FLAG_LAYOUT_FREE", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da5f4785f106b57c75292d583cdb492d6e", null ],
       [ "TUI_DETAIL_FLAG_GLYPH_BITS", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da3ec66b6e8b93fe4883591315cf23b255", null ],
       [ "TUI_DETAIL_FLAG_COLOR_BITS", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43daac7a3a343386ab67c483aa598a2b4b61", null ],
       [ "TUI_DETAIL_FLAG_LAYOUT_BITS", "detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da2c9710e942cfebcaf7cda162cd611163", null ]
@@ -36,6 +37,7 @@ var detail__flag_8h =
     [ "kTui_Detail_Flag_C8_Name", "detail__flag_8h.html#a33692f6ad816c8074c5bc3f7d4b796aa", null ],
     [ "kTui_Detail_Flag_C8NBG_Name", "detail__flag_8h.html#a2e4eb10a2e1424b252525e9ccf119972", null ],
     [ "kTui_Detail_Flag_C8NFG_Name", "detail__flag_8h.html#a27b888fd98158675450f8f7e8000ad6f", null ],
+    [ "kTui_Detail_Flag_Free_Name", "detail__flag_8h.html#a74ee6b82dd467c4d5753f2d2e7d9134f", null ],
     [ "kTui_Detail_Flag_Full_Name", "detail__flag_8h.html#a5126ed18898b449558b48ffe46853960", null ],
     [ "kTui_Detail_Flag_G0_Name", "detail__flag_8h.html#a3ba65acf2ef4b0bc6ccbcf7ad0475ceb", null ],
     [ "kTui_Detail_Flag_G16_Name", "detail__flag_8h.html#a36aa70dd8c76b0002d1a638c417b416e", null ],

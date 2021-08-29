@@ -9,8 +9,6 @@ var window_8h =
     [ "tuiWindowDrawAtlas", "window_8h.html#a6e4c7c73109307538cfbb33309921e0d", null ],
     [ "tuiWindowDrawAtlasTransformed", "window_8h.html#a8a46d3d21fd457ed191111afa3f61008", null ],
     [ "tuiWindowDrawBatch", "window_8h.html#ab32816001bc8fe9a589b65a1a53a2ae4", null ],
-    [ "tuiWindowDrawBatchData", "window_8h.html#a15347b527b567980026379ab94f0d060", null ],
-    [ "tuiWindowDrawBatchDataTransformed", "window_8h.html#a0b81c0fdaff941be45951e54c4b8438d", null ],
     [ "tuiWindowDrawBatchTransformed", "window_8h.html#af62c9b31958898117f798e4f5e1d25da", null ],
     [ "tuiWindowDrawPanel", "window_8h.html#a62bbc53e6603beffa6132ca37b25cbf2", null ],
     [ "tuiWindowDrawPanelTransformed", "window_8h.html#a46d9acaf50339ff29116bb3f18f04abb", null ],

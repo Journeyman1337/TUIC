@@ -117,7 +117,7 @@ Variables</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Constant string names of each detali flag. </p>
 </div></td></tr>
 <tr class="memitem:a3ba65acf2ef4b0bc6ccbcf7ad0475ceb"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detail__flag_8h.html#a3ba65acf2ef4b0bc6ccbcf7ad0475ceb">kTui_Detail_Flag_G0_Name</a></td></tr>
-<tr class="memdesc:a3ba65acf2ef4b0bc6ccbcf7ad0475ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of TUI_DETAIL_FLAG_G0.  <a href="detail__flag_8h.html#a3ba65acf2ef4b0bc6ccbcf7ad0475ceb">More...</a><br /></td></tr>
+<tr class="memdesc:a3ba65acf2ef4b0bc6ccbcf7ad0475ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da8b02208b27e76a570b5d458cdca6bcb1">TUI_DETAIL_FLAG_GLYPH_0</a>.  <a href="detail__flag_8h.html#a3ba65acf2ef4b0bc6ccbcf7ad0475ceb">More...</a><br /></td></tr>
 <tr class="separator:a3ba65acf2ef4b0bc6ccbcf7ad0475ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a031d87105edb8fbb2144720691a86a6f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detail__flag_8h.html#a031d87105edb8fbb2144720691a86a6f">kTui_Detail_Flag_G8_Name</a></td></tr>
 <tr class="memdesc:a031d87105edb8fbb2144720691a86a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da65ec35a526422b0ba24487ad6ffef9e5">TUI_DETAIL_FLAG_GLYPH_8</a>.  <a href="detail__flag_8h.html#a031d87105edb8fbb2144720691a86a6f">More...</a><br /></td></tr>
@@ -164,6 +164,9 @@ Variables</h2></td></tr>
 <tr class="memitem:a1e77c100bc09916b128453d2c0f960bd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detail__flag_8h.html#a1e77c100bc09916b128453d2c0f960bd">kTui_Detail_Flag_Sparse_Name</a></td></tr>
 <tr class="memdesc:a1e77c100bc09916b128453d2c0f960bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43daa3b2975ae7f843c57c3aac2429e27d07">TUI_DETAIL_FLAG_LAYOUT_SPARSE</a>.  <a href="detail__flag_8h.html#a1e77c100bc09916b128453d2c0f960bd">More...</a><br /></td></tr>
 <tr class="separator:a1e77c100bc09916b128453d2c0f960bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ee6b82dd467c4d5753f2d2e7d9134f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detail__flag_8h.html#a74ee6b82dd467c4d5753f2d2e7d9134f">kTui_Detail_Flag_Free_Name</a></td></tr>
+<tr class="memdesc:a74ee6b82dd467c4d5753f2d2e7d9134f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String name of <a class="el" href="detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da5f4785f106b57c75292d583cdb492d6e">TUI_DETAIL_FLAG_LAYOUT_FREE</a>.  <a href="detail__flag_8h.html#a74ee6b82dd467c4d5753f2d2e7d9134f">More...</a><br /></td></tr>
+<tr class="separator:a74ee6b82dd467c4d5753f2d2e7d9134f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a9fa81b9f2ca7a8c88b6def627e04f43d"></a>
@@ -211,9 +214,11 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43da2115d2f894782108cb4eb1481906836d"></a>TUI_DETAIL_FLAG_COLOR_32NBG&#160;</td><td class="fielddoc"><p>TUI detail mode color flag for a single 32 bit foreground color per tile. This enables use of 32 bit full colors with RGBA components. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43da688db2c425279636925437b128ad3569"></a>TUI_DETAIL_FLAG_LAYOUT_FULL&#160;</td><td class="fielddoc"><p>TUI detail mode color flag for full batches of tiles without increased batch size for coordinate information. This is most optimal for rendering in situations where almost all tiles are updated every frame. </p>
+<tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43da688db2c425279636925437b128ad3569"></a>TUI_DETAIL_FLAG_LAYOUT_FULL&#160;</td><td class="fielddoc"><p>TUI detail mode layout flag for full batches of tiles without increased batch size for coordinate information. This is most optimal for rendering in situations where almost all tiles are updated every frame. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43daa3b2975ae7f843c57c3aac2429e27d07"></a>TUI_DETAIL_FLAG_LAYOUT_SPARSE&#160;</td><td class="fielddoc"><p>TUI detail mode color flag for rendering tiles as needed instead of every tile every frame. This is most optimal for rendering in situations where few tiles are updated every frame. </p>
+<tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43daa3b2975ae7f843c57c3aac2429e27d07"></a>TUI_DETAIL_FLAG_LAYOUT_SPARSE&#160;</td><td class="fielddoc"><p>TUI detail mode layout flag for rendering tiles as needed instead of every tile every frame. This is most optimal for rendering in situations where few tiles are updated every frame. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43da5f4785f106b57c75292d583cdb492d6e"></a>TUI_DETAIL_FLAG_LAYOUT_FREE&#160;</td><td class="fielddoc"><p>TUI detail mode layout flag for renderint tiles at pixel positions on the screen, independently of a grid. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a9fa81b9f2ca7a8c88b6def627e04f43da3ec66b6e8b93fe4883591315cf23b255"></a>TUI_DETAIL_FLAG_GLYPH_BITS&#160;</td><td class="fielddoc"><p>All glyph detail bitflags. </p>
 </td></tr>
@@ -581,6 +586,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a74ee6b82dd467c4d5753f2d2e7d9134f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74ee6b82dd467c4d5753f2d2e7d9134f">&#9670;&nbsp;</a></span>kTui_Detail_Flag_Free_Name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* kTui_Detail_Flag_Free_Name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>String name of <a class="el" href="detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da5f4785f106b57c75292d583cdb492d6e">TUI_DETAIL_FLAG_LAYOUT_FREE</a>. </p>
+
+</div>
+</div>
 <a id="a5126ed18898b449558b48ffe46853960"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5126ed18898b449558b48ffe46853960">&#9670;&nbsp;</a></span>kTui_Detail_Flag_Full_Name</h2>
 
@@ -625,7 +654,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>String name of TUI_DETAIL_FLAG_G0. </p>
+<p>String name of <a class="el" href="detail__flag_8h.html#a9fa81b9f2ca7a8c88b6def627e04f43da8b02208b27e76a570b5d458cdca6bcb1">TUI_DETAIL_FLAG_GLYPH_0</a>. </p>
 
 </div>
 </div>

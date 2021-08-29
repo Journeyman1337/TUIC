@@ -7,8 +7,6 @@ var panel_8h =
     [ "tuiPanelDrawAtlas", "panel_8h.html#afa7c908f674fba437a4d228d5f04c79b", null ],
     [ "tuiPanelDrawAtlasTransformed", "panel_8h.html#a0ecf72f5292bd47830e483dc1b9a460a", null ],
     [ "tuiPanelDrawBatch", "panel_8h.html#a1b02fb861d04cac28e33c0d2a037d3cb", null ],
-    [ "tuiPanelDrawBatchData", "panel_8h.html#af7b11868417dfe7ea757225be742d957", null ],
-    [ "tuiPanelDrawBatchDataTransformed", "panel_8h.html#ae99b7b643858f3bfe6c14b2825087824", null ],
     [ "tuiPanelDrawBatchTransformed", "panel_8h.html#a6bb330714c097d25a606e280ef08141a", null ],
     [ "tuiPanelDrawPanel", "panel_8h.html#a536f09bdc68891b0421b2296f4c28e73", null ],
     [ "tuiPanelDrawPanelTransformed", "panel_8h.html#aed377b3a1faf2ce057b14435af400750", null ],
