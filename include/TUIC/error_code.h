@@ -371,7 +371,7 @@ typedef enum TuiErrorCode
 	/*!
 	 * \brief The last valid @ref TuiErrorCode.
      */
-	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION
+	TUI_ERROR_LAST = TUI_ERROR_UNSUPPORTED_WINDOW_ICONS
 } TuiErrorCode;
 
 
