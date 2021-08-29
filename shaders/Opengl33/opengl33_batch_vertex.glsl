@@ -88,9 +88,9 @@ vec4 getVertexPosition_Free(int tile, int tile_vertex, inout int buffer_offset)
 	tile_pixel_x -= int(TilePixelDimensions.x);
 	tile_pixel_y -= int(TilePixelDimensions.y); //To allow for tiles that go off screen on left an top, the dimensions are transformed by negative tile width and height
 	float tile_pixel_lx = float(tile_pixel_x) / float(ViewportPixelDimensions.x);
-	float tile_pixel_ty = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
+	float tile_pixel_by = float(tile_pixel_y) / float(ViewportPixelDimensions.y);
 	float tile_pixel_rx = tile_pixel_lx + TileScreenspaceDimensions.x;
-	float tile_pixel_by = tile_pixel_ty + TileScreenspaceDimensions.y;
+	float tile_pixel_ty = tile_pixel_by + TileScreenspaceDimensions.y;
 	vec4 position_square = vec4(tile_pixel_lx, tile_pixel_rx, tile_pixel_ty, tile_pixel_by);
 	vec2 vert_positions[6] = vec2[](position_square.sp, position_square.sq, position_square.tq, position_square.sp, position_square.tq, position_square.tp);
 	vec2 position = vert_positions[tile_vertex];
