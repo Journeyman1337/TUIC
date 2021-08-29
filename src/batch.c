@@ -409,7 +409,7 @@ void tuiBatchSetViewportPixelDimensions(TuiBatch batch, int pixel_width, int pix
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS, __func__);
 		return;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
@@ -495,7 +495,7 @@ void tuiBatchSetGlyphPixelDimensions(TuiBatch batch, int pixel_width, int pixel_
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS, __func__);
 		return;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
@@ -577,6 +577,11 @@ void tuiBatchSetMaxTileCount(TuiBatch batch, int max_tile_count, TuiBoolean rese
 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	if (max_tile_count <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT, __func__);
 		return;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);

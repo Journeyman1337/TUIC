@@ -137,225 +137,233 @@ typedef enum TuiErrorCode
 	*/
 	TUI_ERROR_INVALID_BATCH_FUNCTION = 24,
 	/*!
-	 * \brief TUIC error code for when the pixel dimensions of a @ref TuiBatch are invalid.
+	 * \brief TUIC error code for when the glyph pixel dimensions of a @ref TuiBatch are invalid.
 	 */
-	TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS = 25,
+	TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS = 25,
+	/*!
+	 * \brief TUIC error code for when the tile count of a @ref TuiBatch is invalid.
+	 */
+	TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT = 26,
+	/*!
+	 * \brief TUIC error code for when the viewport pixel dimensions of a @ref TuiBatch are invalid.
+	 */
+	TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS = 27,
 	/*!
 	 * \brief TUIC error code for when the tile dimensions of a @ref TuiBatch are invalid.
 	 */
-	TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS = 26,
+	TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS = 28,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiBlendMode is invalid.
      */
-	TUI_ERROR_INVALID_BLEND_MODE = 27,
+	TUI_ERROR_INVALID_BLEND_MODE = 29,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiButtonState is invalid.
      */
-	TUI_ERROR_INVALID_BUTTON_STATE = 28,
+	TUI_ERROR_INVALID_BUTTON_STATE = 30,
 	/*!
 	 * \brief TUIC error code for when a channel count is invalid.
      */
-	TUI_ERROR_INVALID_CHANNEL_COUNT = 29,
+	TUI_ERROR_INVALID_CHANNEL_COUNT = 31,
 	/*!
 	 * \brief TUIC error code for when the pixel dimensions of codepage @ref TuiAtlas is not divisible by 16 and greater than 0.
      */
-	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 30,
+	TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS = 32,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiCursorMode is invalid.
      */
-	TUI_ERROR_INVALID_CURSOR_MODE = 31,
+	TUI_ERROR_INVALID_CURSOR_MODE = 33,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiCursorShape is invalid.
      */
-	TUI_ERROR_INVALID_CURSOR_SHAPE = 32,
+	TUI_ERROR_INVALID_CURSOR_SHAPE = 34,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiDetailFlag is invalid.
      */
-	TUI_ERROR_INVALID_DETAIL_FLAG = 33,
+	TUI_ERROR_INVALID_DETAIL_FLAG = 35,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiDetailMode is invalid.
      */
-	TUI_ERROR_INVALID_DETAIL_MODE = 34,
+	TUI_ERROR_INVALID_DETAIL_MODE = 36,
 	/*!
 	 * \brief TUIC error code for when an event timeout time is less than 0 or is not finite.
 	 */
-	TUI_ERROR_INVALID_EVENT_TIMEOUT = 35,
+	TUI_ERROR_INVALID_EVENT_TIMEOUT = 37,
 	/*!
 	 * \brief TUIC error code for when a file path is invalid or no file is found at the path.
 	 */
-	TUI_ERROR_INVALID_FILE_PATH = 36,
+	TUI_ERROR_INVALID_FILE_PATH = 38,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiFilterMode is invalid.
      */
-	TUI_ERROR_INVALID_FILTER_MODE = 37,
+	TUI_ERROR_INVALID_FILTER_MODE = 39,
 	/*!
 	 * \brief TUIC error code for when the wrong GLFW library version is used. TUIC expects GLFW version 3.3.
      */
-	TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION = 38,
+	TUI_ERROR_INVALID_GLFW_LIBRARY_VERSION = 40,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiAtlas glyph count is less than or equal to 0.
      */
-	TUI_ERROR_INVALID_GLYPH_COUNT = 39,
+	TUI_ERROR_INVALID_GLYPH_COUNT = 41,
 	/*!
 	 * \brief TUIC error code for when @ref TuiAtlas glyph pixel dimensions are less than or equal to 0.
      */
-	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 40,
+	TUI_ERROR_INVALID_GLYPH_DIMENSIONS = 42,
 	/*!
 	 * \brief TUIC error code for when the pixel dimensions of a @ref TuiImage are less than or equal to 0.
      */
-	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 41,
+	TUI_ERROR_INVALID_IMAGE_DIMENSIONS = 43,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiKeyboardKey is invalid.
      */
-	TUI_ERROR_INVALID_KEYBOARD_KEY = 42,
+	TUI_ERROR_INVALID_KEYBOARD_KEY = 44,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiKeyboardMod is invalid.
      */
-	TUI_ERROR_INVALID_KEYBOARD_MOD = 43,
+	TUI_ERROR_INVALID_KEYBOARD_MOD = 45,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiMouseButton is invalid.
      */
-	TUI_ERROR_INVALID_MOUSE_BUTTON = 44,
+	TUI_ERROR_INVALID_MOUSE_BUTTON = 46,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiPalette is given an invalid color count.
      */
-	TUI_ERROR_INVALID_PALETTE_COLOR_COUNT = 45,
+	TUI_ERROR_INVALID_PALETTE_COLOR_COUNT = 47,
 	/*!
 	 * \brief TUIC error code for when the pixel dimensions of a @ref TuiPanel are less than or equal to 0.
      */
-	TUI_ERROR_INVALID_PANEL_DIMENSIONS = 46,
+	TUI_ERROR_INVALID_PANEL_DIMENSIONS = 48,
 	/*!
 	 * \brief TUIC error code for when the dimensions of a pixel array are less than or equal to 0.
      */
-	TUI_ERROR_INVALID_PIXEL_DIMENSIONS = 47,
+	TUI_ERROR_INVALID_PIXEL_DIMENSIONS = 49,
 	/*!
 	 * \brief TUIC error code for when the system time is less than 0 or greater than or equal to 18446744073.
      */
-	TUI_ERROR_INVALID_TIME = 48,
+	TUI_ERROR_INVALID_TIME = 50,
 	/*!
 	 * \brief TUIC error code for when the pixel dimensions of a @ref TuiWindow framebuffer are less than or equal to 0.
      */
-	TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS = 49,
+	TUI_ERROR_INVALID_WINDOW_FRAMEBUFFER_DIMENSIONS = 51,
 	/*!
 	 * \brief TUIC error code for when the pixel dimensions of a @ref TuiWindow viewport are less than or equal to 0.
      */
-	TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS = 50,
+	TUI_ERROR_INVALID_WINDOW_VIEWPORT_DIMENSIONS = 52,
 	/*!
 	 * \brief TUIC error code for when the size limits of a @ref TuiWindow are invalid.
      */
-	TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS = 51,
+	TUI_ERROR_INVALID_WINDOW_SIZE_LIMITS = 53,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiImage has failed to be loaded from the filesystem.
      */
-	TUI_ERROR_LOAD_IMAGE_FAILURE = 52,
+	TUI_ERROR_LOAD_IMAGE_FAILURE = 54,
 	/*!
 	 * \brief TUIC error code for when TUIC is not yet initialized.
      */
-	TUI_ERROR_NOT_INITIALIZED = 53,
+	TUI_ERROR_NOT_INITIALIZED = 55,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiAtlas is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_ATLAS = 54,
+	TUI_ERROR_NULL_ATLAS = 56,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiBatch is @ref TUI_NULL.
 	 */
-	TUI_ERROR_NULL_BATCH = 55,
+	TUI_ERROR_NULL_BATCH = 57,
 	/*!
 	 * \brief TUIC error code for when a colors array is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_COLORS = 56,
+	TUI_ERROR_NULL_COLORS = 58,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiCursor is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_CURSOR = 57,
+	TUI_ERROR_NULL_CURSOR = 59,
 	/*!
 	 * \brief TUIC error code for when a glyph bounding boxes array is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 58,
+	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 60,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiImage is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_IMAGE = 59,
+	TUI_ERROR_NULL_IMAGE = 61,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiMonitor is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_MONITOR = 60,
+	TUI_ERROR_NULL_MONITOR = 62,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiPalette is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PALETTE = 61,
+	TUI_ERROR_NULL_PALETTE = 63,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiPanel is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PANEL = 62,
+	TUI_ERROR_NULL_PANEL = 64,
 	/*!
 	 * \brief TUIC error code for when a path is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PATH = 63,
+	TUI_ERROR_NULL_PATH = 65,
 	/*!
 	 * \brief TUIC error code for when a pixels array is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PIXELS = 64,
+	TUI_ERROR_NULL_PIXELS = 66,
 	/*!
 	 * \brief TUIC error code for when a string is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_STRING = 65,
+	TUI_ERROR_NULL_STRING = 67,
 	/*!
 	 * \brief TUIC error code for when a subect @ref TuiPanel is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_SUBJECT_PANEL = 66,
+	TUI_ERROR_NULL_SUBJECT_PANEL = 68,
 	/*!
 	 * \brief TUIC error code for when a subject @ref TuiWindow is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_SUBJECT_WINDOW = 67,
+	TUI_ERROR_NULL_SUBJECT_WINDOW = 69,
 	/*!
 	 * \brief TUIC error code for when a target @ref TuiImage is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_TARGET_IMAGE = 68,
+	TUI_ERROR_NULL_TARGET_IMAGE = 70,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiTexture is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_TEXTURE = 69,
+	TUI_ERROR_NULL_TEXTURE = 71,
 	/*!
 	 * \brief TUIC error code for when a texture coordinates array is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_TEXTURE_COORDINATES = 70,
+	TUI_ERROR_NULL_TEXTURE_COORDINATES = 72,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiWindow is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_WINDOW = 71,
+	TUI_ERROR_NULL_WINDOW = 73,
 	/*!
 	 * \brief TUIC error code for when attempting to render batch data without a @ref TuiPalette when one is required by the @ref TuiDetailMode.
      */
-	TUI_ERROR_PALETTE_REQUIRED = 72,
+	TUI_ERROR_PALETTE_REQUIRED = 74,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiImage has failed to be resized.
      */
-	TUI_ERROR_RESIZE_IMAGE_FAILURE = 73,
+	TUI_ERROR_RESIZE_IMAGE_FAILURE = 75,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiImage has failed to be saved.
 	 */
-	TUI_ERROR_SAVE_IMAGE_FAILURE = 74,
+	TUI_ERROR_SAVE_IMAGE_FAILURE = 76,
 	/*!
 	 * \brief TUIC error code for when a grapihcs API is unavailable on the current platform.
      */
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 75,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 77,
 	/*!
 	 * \brief TUIC error code for when a graphics API version is unavailable on the current platform.
      */
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 76,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 78,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiCursorShape is not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 77,
+	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 79,
 	/*!
 	 * \brief TUIC error code for when raw mouse motion is not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 78,
+	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 80,
 	/*!
 	 * \brief TUIC error code for when window icons are not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 79,
+	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 81,
 	/*!
 	 * \brief The first GLFW error code.
      */
@@ -482,9 +490,17 @@ extern const char* kTui_Error_Invalid_Atlas_Type_Name;
  */
 extern const char* kTui_Error_Invalid_Batch_Function_Name;
 /*!
- * @brief String name of @ref TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS.
+ * @brief String name of @ref TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS.
  */
-extern const char* kTui_Error_Invalid_Batch_Pixel_Dimensions_Name;
+extern const char* kTui_Error_Invalid_Batch_Glyph_Pixel_Dimensions_Name;
+/*!
+ * @brief String name of @ref TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT.
+ */
+extern const char* kTui_Error_Invalid_Batch_Max_Tile_Count_Name;
+/*!
+ * @brief String name of @ref TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS.
+ */
+extern const char* kTui_Error_Invalid_Batch_Viewport_Pixel_Dimensions_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS.
  */
@@ -811,9 +827,17 @@ extern const char* kTui_Error_Invalid_Atlas_Type_Description;
  */
 extern const char* kTui_Error_Invalid_Batch_Function_Description;
 /*!
- * @brief String description of @ref TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS.
+ * @brief String description of @ref TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS.
  */
-extern const char* kTui_Error_Invalid_Batch_Pixel_Dimensions_Description;
+extern const char* kTui_Error_Invalid_Batch_Glyph_Pixel_Dimensions_Description;
+/*!
+ * @brief String description of @ref TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT.
+ */
+extern const char* kTui_Error_Invalid_Batch_Max_Tile_Count_Description;
+/*!
+ * @brief String description of @ref TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS.
+ */
+extern const char* kTui_Error_Invalid_Batch_Viewport_Pixel_Dimensions_Description;
 /*!
  * @brief String description of @ref TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS.
  */

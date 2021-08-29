@@ -182,7 +182,7 @@ int tuiBatchGetTilesTall(TuiBatch batch);
  * @param pixel_width The new pixel width of the draw viewport.
  * @param pixel_height The new pixel height of the draw viewport.
  * 
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -238,7 +238,7 @@ int tuiBatchGetViewportPixelHeight(TuiBatch batch);
  * @param pixel_width The new pixel width of each glyph.
  * @param pixel_height The new pixel height of each glyph.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
@@ -296,7 +296,7 @@ int tuiBatchGetGlyphPixelHeight(TuiBatch batch);
  *
  * @returns The maximum tile count. 0 is returned if an error occurs.
  *
- * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_NULL_BATCH, @ref TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT, and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *
