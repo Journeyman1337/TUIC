@@ -260,7 +260,7 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Atlas_Type_Name;
 	case TUI_ERROR_INVALID_BATCH_FUNCTION:
 		return kTui_Error_Invalid_Batch_Function_Name;
-	case TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS:
+	case TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS:
 		return kTui_Error_Invalid_Batch_Glyph_Pixel_Dimensions_Name;
 	case TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT:
 		return kTui_Error_Invalid_Batch_Max_Tile_Count_Name;
@@ -487,7 +487,7 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	}
 	else if (strcmp(str, kTui_Error_Invalid_Batch_Glyph_Pixel_Dimensions_Name) == 0)
 	{
-		return TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS;
+		return TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS;
 	}
 	else if (strcmp(str, kTui_Error_Invalid_Batch_Max_Tile_Count_Name) == 0)
 	{
@@ -772,7 +772,7 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Invalid_Atlas_Type_Description;
 	case TUI_ERROR_INVALID_BATCH_FUNCTION:
 		return kTui_Error_Invalid_Batch_Function_Description;
-	case TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS:
+	case TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS:
 		return kTui_Error_Invalid_Batch_Glyph_Pixel_Dimensions_Description;
 	case TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT:
 		return kTui_Error_Invalid_Batch_Max_Tile_Count_Description;

@@ -139,7 +139,7 @@ typedef enum TuiErrorCode
 	/*!
 	 * \brief TUIC error code for when the glyph pixel dimensions of a @ref TuiBatch are invalid.
 	 */
-	TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS = 25,
+	TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS = 25,
 	/*!
 	 * \brief TUIC error code for when the tile count of a @ref TuiBatch is invalid.
 	 */

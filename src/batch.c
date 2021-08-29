@@ -123,7 +123,7 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 {
 	if (tile_pixel_width <= 0 || tile_pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_TILE_DIMENSIONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS, __func__);
 		return TUI_NULL;
 	}
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
@@ -495,7 +495,7 @@ void tuiBatchSetGlyphPixelDimensions(TuiBatch batch, int pixel_width, int pixel_
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSISONS, __func__);
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS, __func__);
 		return;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
