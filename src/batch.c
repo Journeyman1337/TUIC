@@ -194,6 +194,8 @@ void tuiBatchDestroy(TuiBatch batch)
 			tuiFree(batch_free->Data);
 		}
 		break;
+	default:
+		break;
 	}
 
 	tuiFree(batch);
@@ -278,6 +280,8 @@ void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, T
 			}
 		}
 		break;
+	default:
+		break;
 	}
 }
 
@@ -323,6 +327,8 @@ void tuiBatchGetTileDimensions(TuiBatch batch, int* tiles_wide, int* tiles_tall)
 			}
 		}
 		break;
+	default:
+		break;
 	}
 }
 
@@ -353,6 +359,8 @@ int tuiBatchGetTilesWide(TuiBatch batch)
 			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 			return batch_sparse->TilesWide;
 		}
+		break;
+	default:
 		break;
 	}
 	return 0;
@@ -385,6 +393,8 @@ int tuiBatchGetTilesTall(TuiBatch batch)
 			TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
 			return batch_sparse->TilesTall;
 		}
+		break;
+	default:
 		break;
 	}
 	return 0;
