@@ -83,7 +83,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
  *
  * @returns The created @ref TuiBatch. @ref TUI_NULL is returned if an error occurs.
  *
- * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_DETAIL_MODE, and TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
+ * @errors Possible errors in order are @ref TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT, @ref TUI_ERROR_INVALID_DETAIL_MODE, and @ref TUI_ERROR_INVALID_BATCH_FUNCTION. The first error that occurs will cause the function to immediatly return.
  *
  * @requirements This function can be called freely, even if TUIC is not currently initialized.
  *

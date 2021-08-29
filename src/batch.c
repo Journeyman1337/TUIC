@@ -126,6 +126,16 @@ TuiBatch tuiBatchCreateFree(TuiDetailMode detail_mode, int tile_pixel_width, int
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_GLYPH_PIXEL_DIMENSIONS, __func__);
 		return TUI_NULL;
 	}
+	if (draw_viewport_width <= 0 || draw_viewport_height <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_VIEWPORT_PIXEL_DIMENSIONS, __func__);
+		return TUI_NULL;
+	}
+	if (maximum_tile_count <= 0)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_MAX_TILE_COUNT, __func__);
+		return TUI_NULL;
+	}
 	if (tuiDetailIsValid(detail_mode) == TUI_FALSE)
 	{ 
 		tuiDebugError(TUI_ERROR_INVALID_DETAIL_MODE, __func__);
