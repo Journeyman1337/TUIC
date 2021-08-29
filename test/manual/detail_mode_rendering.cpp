@@ -5,7 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#define TEST_DIMENSIONS 128
+#define TILE_DIMENSIONS 128
+#define TILE_PIXEL_DIMENSIONS 8
+#define WINDOW_DIMENSIONS TILE_DIMENSIONS * TILE_PIXEL_DIMENSIONS
 
 TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 {
@@ -14,21 +16,21 @@ TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 	switch (detail_flag)
 	{
 	case TUI_DETAIL_FLAG_LAYOUT_FULL:
-		batch = tuiBatchCreateFull(detail_mode, TEST_DIMENSIONS, TEST_DIMENSIONS, 0);
+		batch = tuiBatchCreateFull(detail_mode, TILE_DIMENSIONS, TILE_DIMENSIONS, 0);
 		break;
 	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
-		batch = tuiBatchCreateSparse(detail_mode, TEST_DIMENSIONS, TEST_DIMENSIONS, TUI_TRUE, 0);
+		batch = tuiBatchCreateSparse(detail_mode, TILE_DIMENSIONS, TILE_DIMENSIONS, TUI_TRUE, 0);
 		break;
 	case TUI_DETAIL_FLAG_LAYOUT_FREE:
-		batch = tuiBatchCreateFree(detail_mode, 8, 8, TEST_DIMENSIONS, TEST_DIMENSIONS, TEST_DIMENSIONS * TEST_DIMENSIONS, 0);
+		batch = tuiBatchCreateFree(detail_mode, TILE_PIXEL_DIMENSIONS, TILE_PIXEL_DIMENSIONS, WINDOW_DIMENSIONS, WINDOW_DIMENSIONS, (TILE_DIMENSIONS) * (TILE_DIMENSIONS), 0);
 		break;
 	default:
 		break;
 	}
 	
-	for (int x = 0; x < TEST_DIMENSIONS; x++)
+	for (int x = 0; x < TILE_DIMENSIONS; x++)
 	{
-		for (int y = 0; y < TEST_DIMENSIONS; y++)
+		for (int y = 0; y < TILE_DIMENSIONS; y++)
 		{
 			if (!tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE || (x % 2 == 0 && y % 2 == 0))
 			{
@@ -183,6 +185,81 @@ TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 					break;
 				case TUI_DETAIL_MODE_G16_C32NFG_SPARSE:
 					tuiBatchSetTile_G16_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
+					break; 
+				case TUI_DETAIL_MODE_G0_C8NBG_FREE:
+					tuiBatchSetTile_G0_C8NBG_FREE(batch, x * 8, y * 8, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G0_C24NBG_FREE:
+					tuiBatchSetTile_G0_C24NBG_FREE(batch, x * 8, y * 8, x % 256, y % 256, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G0_C32NBG_FREE:
+					tuiBatchSetTile_G0_C32NBG_FREE(batch, x * 8, y * 8, y % 256, x % 128, y % 256, y);
+					break;
+				case TUI_DETAIL_MODE_G8_C0_FREE:
+					tuiBatchSetTile_G8_C0_FREE(batch, x * 8, y * 8, x);
+					break;
+				case TUI_DETAIL_MODE_G8_C4_FREE:
+					tuiBatchSetTile_G8_C4_FREE(batch, x * 8, y * 8, x, tuiClassicColorCombine(x % 16, y % 16));
+					break;
+				case TUI_DETAIL_MODE_G8_C8NBG_FREE:
+					tuiBatchSetTile_G8_C8NBG_FREE(batch, x * 8, y * 8, x, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G8_C8_FREE:
+					tuiBatchSetTile_G8_C8_FREE(batch, x * 8, y * 8, x, x % 256, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G8_C8NFG_FREE:
+					tuiBatchSetTile_G8_C8NFG_FREE(batch, x * 8, y * 8, x, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G8_C24_FREE:
+					tuiBatchSetTile_G8_C24_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G8_C24NBG_FREE:
+					tuiBatchSetTile_G8_C24NBG_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G8_C24NFG_FREE:
+					tuiBatchSetTile_G8_C24NFG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G8_C32_FREE:
+					tuiBatchSetTile_G8_C32_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					break;
+				case TUI_DETAIL_MODE_G8_C32NBG_FREE:
+					tuiBatchSetTile_G8_C32NBG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y);
+					break;
+				case TUI_DETAIL_MODE_G8_C32NFG_FREE:
+					tuiBatchSetTile_G8_C32NFG_FREE(batch, x * 8, y * 8, x, x % 256, y % 128, x % 256, x);
+					break;
+				case TUI_DETAIL_MODE_G16_C0_FREE:
+					tuiBatchSetTile_G16_C0_FREE(batch, x * 8, y * 8, x);
+					break;
+				case TUI_DETAIL_MODE_G16_C4_FREE:
+					tuiBatchSetTile_G16_C4_FREE(batch, x * 8, y * 8, x, tuiClassicColorCombine(x % 16, y % 16));
+					break;
+				case TUI_DETAIL_MODE_G16_C8NBG_FREE:
+					tuiBatchSetTile_G16_C8NBG_FREE(batch, x * 8, y * 8, x, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G16_C8_FREE:
+					tuiBatchSetTile_G16_C8_FREE(batch, x * 8, y * 8, x, x % 256, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G16_C8NFG_FREE:
+					tuiBatchSetTile_G16_C8NFG_FREE(batch, x * 8, y * 8, x, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G16_C24_FREE:
+					tuiBatchSetTile_G16_C24_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G16_C24NBG_FREE:
+					tuiBatchSetTile_G16_C24NBG_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256);
+					break;
+				case TUI_DETAIL_MODE_G16_C24NFG_FREE:
+					tuiBatchSetTile_G16_C24NFG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256);
+					break;
+				case TUI_DETAIL_MODE_G16_C32_FREE:
+					tuiBatchSetTile_G16_C32_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					break;
+				case TUI_DETAIL_MODE_G16_C32NBG_FREE:
+					tuiBatchSetTile_G16_C32NBG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y);
+					break;
+				case TUI_DETAIL_MODE_G16_C32NFG_FREE:
+					tuiBatchSetTile_G16_C32NFG_FREE(batch, x * 8, y * 8, x, x % 256, y % 128, x % 256, x);
 					break;
 				}
 			}
@@ -225,7 +302,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 	}
 }
 
-const TuiDetailMode kDetailModes[46] =
+const TuiDetailMode kDetailModes[69] =
 {
 	TUI_DETAIL_MODE_G0_C8NBG_FULL,
 	TUI_DETAIL_MODE_G0_C24NBG_FULL,
@@ -272,7 +349,30 @@ const TuiDetailMode kDetailModes[46] =
 	TUI_DETAIL_MODE_G16_C24NFG_SPARSE,
 	TUI_DETAIL_MODE_G16_C32_SPARSE,
 	TUI_DETAIL_MODE_G16_C32NBG_SPARSE,
-	TUI_DETAIL_MODE_G16_C32NFG_SPARSE
+	TUI_DETAIL_MODE_G16_C32NFG_SPARSE,
+	TUI_DETAIL_MODE_G0_C8NBG_FREE,
+	TUI_DETAIL_MODE_G0_C24NBG_FREE,
+	TUI_DETAIL_MODE_G0_C32NBG_FREE,
+	TUI_DETAIL_MODE_G8_C4_FREE,
+	TUI_DETAIL_MODE_G8_C8_FREE,
+	TUI_DETAIL_MODE_G8_C8NBG_FREE,
+	TUI_DETAIL_MODE_G8_C8NFG_FREE,
+	TUI_DETAIL_MODE_G8_C24_FREE,
+	TUI_DETAIL_MODE_G8_C24NBG_FREE,
+	TUI_DETAIL_MODE_G8_C24NFG_FREE,
+	TUI_DETAIL_MODE_G8_C32_FREE,
+	TUI_DETAIL_MODE_G8_C32NBG_FREE,
+	TUI_DETAIL_MODE_G8_C32NFG_FREE,
+	TUI_DETAIL_MODE_G16_C4_FREE,
+	TUI_DETAIL_MODE_G16_C8_FREE,
+	TUI_DETAIL_MODE_G16_C8NBG_FREE,
+	TUI_DETAIL_MODE_G16_C8NFG_FREE,
+	TUI_DETAIL_MODE_G16_C24_FREE,
+	TUI_DETAIL_MODE_G16_C24NBG_FREE,
+	TUI_DETAIL_MODE_G16_C24NFG_FREE,
+	TUI_DETAIL_MODE_G16_C32_FREE,
+	TUI_DETAIL_MODE_G16_C32NBG_FREE,
+	TUI_DETAIL_MODE_G16_C32NFG_FREE
 };
 
 int main()
@@ -294,11 +394,10 @@ int main()
 
 	TuiPalette palette = tuiPaletteCreateXterm(256);
 
-	const int tile_pixel_dimensions = 8;
-	TuiWindow window = tuiWindowCreate(TEST_DIMENSIONS * 8, TEST_DIMENSIONS * 8, "detail_mode_rendering", TUI_NULL);
+	TuiWindow window = tuiWindowCreate(WINDOW_DIMENSIONS, WINDOW_DIMENSIONS, "detail_mode_rendering", TUI_NULL);
 	tuiWindowSetKeyboardKeyCallback(window, key_callback);
 
-	for (size_t detail_mode_i = 0; detail_mode_i < 46; detail_mode_i++)
+	for (size_t detail_mode_i = 0; detail_mode_i < 69; detail_mode_i++)
 	{
 		TuiDetailMode cur_detail_mode = kDetailModes[detail_mode_i];
 		TuiBatch batch = GetTestPatternBatch(cur_detail_mode);
