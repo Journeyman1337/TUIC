@@ -562,6 +562,54 @@ int tuiBatchGetGlyphPixelHeight(TuiBatch batch)
 	return batch_free->TilePixelHeight;
 }
 
+void tuiBatchSetMaxTileCount(TuiBatch batch, int max_tile_count, TuiBoolean reserve_extra)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
+		return;
+	}
+
+	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+	batch_free->TileCount = 0;
+	if ((size_t)max_tile_count != batch_free->MaxTileCount)
+	{
+		batch_free->MaxTileCount = (size_t)max_tile_count;
+		batch_free->UsedDataSize = max_tile_count * batch_free->BytesPerTile;
+		if (!reserve_extra || batch_free->ReservedDataSize < batch_free->UsedDataSize)
+		{
+			batch_free->Data = (uint8_t*)tuiReallocate(batch_free->Data, batch_free->UsedDataSize);
+			batch_free->ReservedDataSize = batch_free->UsedDataSize;
+			batch_free->UsedDataSize = batch_free->UsedDataSize;
+		}
+		
+	}
+}
+
+int tuiBatchGetMaxTileCount(TuiBatch batch)
+{
+	if (batch == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
+		return;
+	}
+	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
+	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
+	{
+		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
+		return;
+	}
+
+	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
+	return batch_free->MaxTileCount;
+}
+
 int tuiBatchGetDataSize(TuiBatch batch)
 {
 	if (batch == TUI_NULL)

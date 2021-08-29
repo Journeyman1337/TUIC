@@ -288,6 +288,36 @@ int tuiBatchGetGlyphPixelWidth(TuiBatch batch);
  */
 int tuiBatchGetGlyphPixelHeight(TuiBatch batch);
 /*!
+ * @brief Set the maximum tile count of a @ref TuiBatch and clear its data.
+ *
+ * @param batch The @ref TuiBatch.
+ * @param max_tile_count The maximum tile count.
+ * @param reserve_extra A @ref TuiBoolean enum that specifies if extra space in the data array should be rserved for future resizes instead of deallocated.
+ *
+ * @returns The maximum tile count. 0 is returned if an error occurs.
+ *
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+void tuiBatchSetMaxTileCount(TuiBatch batch, int max_tile_count, TuiBoolean reserve_extra);
+/*!
+ * @brief Get the maximum tile count of a @ref TuiBatch.
+ *
+ * @param batch The @ref TuiBatch.
+ *
+ * @returns The maximum tile count. 0 is returned if an error occurs.
+ *
+ * @errors This function can have the error @ref TUI_ERROR_NULL_BATCH and immediatly return.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
+ */
+int tuiBatchGetMaxTileCount(TuiBatch batch);
+/*!
  * @brief Get the size of the data array of a @ref TuiBatch in bytes.
  *
  * @param batch The @ref TuiBatch.
