@@ -152,7 +152,7 @@ static inline TuiImage _CreateImage(int pixel_width, int pixel_height, int chann
 
 	if (pixel_data != TUI_NULL)
 	{
-		if (copy_data == TUI_TRUE)
+		if (copy_data)
 		{
 			image->PixelData = (uint8_t*)tuiAllocate(image->PixelDataSize);
 			memcpy(image->PixelData, pixel_data, image->PixelDataSize);

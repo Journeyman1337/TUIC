@@ -107,7 +107,7 @@ void file_drop_callback(TuiWindow window, int path_count, const char* paths[])
 
 void monitor_callback(TuiMonitor monitor, TuiBoolean connected)
 {
-    printf("Monitor: name = %s connected = %d\n", (connected == TUI_TRUE) ? tuiMonitorGetName(monitor) : "(null)", connected);
+    printf("Monitor: name = %s connected = %d\n", (connected) ? tuiMonitorGetName(monitor) : "(null)", connected);
 }
 
 int main()

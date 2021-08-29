@@ -78,7 +78,7 @@ int main()
         TuiCursorShape cursor_shape = (TuiCursorShape)cursor_shape_i;
         const char* cursor_shape_name = tuiCursorShapeToString(cursor_shape);
         printf("%s: ", cursor_shape_name);
-        if (tuiCursorShapeSupported(cursor_shape) == TUI_TRUE)
+        if (tuiCursorShapeSupported(cursor_shape))
         {
             printf("Shape is supported!\n");
             cur_cursor = tuiCursorCreateShape(cursor_shape);

@@ -54,7 +54,7 @@ int main()
     TuiImage sushi = tuiImageCreatePNG("sushi.png");
     TuiWindow window = tuiWindowCreate(256, 256, "window_decoration", TUI_NULL);
     tuiWindowSetKeyboardKeyCallback(window, key_callback);
-    if (tuiWindowIconsSupported() == TUI_TRUE)
+    if (tuiWindowIconsSupported())
     {
         tuiWindowSetIconImage(window, sushi);
     }

@@ -89,7 +89,7 @@ TuiBatch tuiBatchCreateSparse(TuiDetailMode detail_mode, int tiles_wide, int til
 	batch->UseStencil = use_stencil;
 	batch->StencilData = TUI_NULL;
 	batch->StencilDataSize = 0;
-	if (use_stencil == TUI_TRUE)
+	if (use_stencil)
 	{
 		batch->StencilDataSize = batch->TilesWide * batch->TilesTall * sizeof(size_t);
 		batch->StencilData = (size_t*)tuiAllocate(batch->StencilDataSize);

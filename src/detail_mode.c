@@ -420,7 +420,7 @@ TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_m
 {
 	if (blend_mode == TUI_BLEND_NORMAL)
 	{
-		if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) == TUI_TRUE || tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_GLYPH_0) == TUI_TRUE)
+		if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) || tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_GLYPH_0))
 		{
 			return TUI_TRUE;
 		}
@@ -429,7 +429,7 @@ TuiBoolean tuiModesAreCompatible(TuiDetailMode detail_mode, TuiBlendMode blend_m
 			return TUI_FALSE;
 		}
 	}
-	else if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) == TUI_TRUE || tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_GLYPH_0) == TUI_TRUE)
+	else if (tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_COLOR_0) || tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_GLYPH_0))
 	{
 		return TUI_FALSE;
 	}

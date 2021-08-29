@@ -140,7 +140,7 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* glfw_window, int pixel
 		(glfwGetWindowAttrib(glfw_window, GLFW_MAXIMIZED) == GLFW_TRUE)
 		) //this condition is to fix a weird GLFW issue where invalid sizes sometimes get passed into this callback. seems to happen especially when transitioning between windowed and fullscreen.
 	{
-		if (window->FramebufferMatchViewportSize == TUI_TRUE)
+		if (window->FramebufferMatchViewportSize)
 		{
 			TuiErrorCode error_code = tuiWindowSetSize_Opengl33(window, pixel_width, pixel_height);
 			if (error_code != TUI_ERROR_NONE)
@@ -275,7 +275,7 @@ TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, c
 	}
 
 	GLFWwindow* glfw_window = TUI_NULL;
-	if (create_info_used.fullscreen == TUI_TRUE)
+	if (create_info_used.fullscreen)
 	{
 		if (create_info_used.monitor == TUI_NULL)
 		{
@@ -310,7 +310,7 @@ TuiWindow tuiWindowCreate(int viewport_pixel_width, int viewport_pixel_height, c
 		return TUI_NULL;
 	}
 
-	if (create_info_used.center_cursor == TUI_TRUE)
+	if (create_info_used.center_cursor)
 	{
 		glfwSetCursorPos(glfw_window, (double)viewport_pixel_width / 2.0, (double)viewport_pixel_height / 2.0);
 	}
@@ -541,7 +541,7 @@ void tuiWindowSetFramebufferPixelDimensions(TuiWindow window, int pixel_width, i
 	}
 
 
-	if (window->FramebufferMatchViewportSize == TUI_TRUE && window->IsFullscreen == TUI_FALSE)
+	if (window->FramebufferMatchViewportSize && window->IsFullscreen == TUI_FALSE)
 	{
 		window->ViewportPixelWidth = pixel_width;
 		window->ViewportPixelHeight = pixel_height;
@@ -676,7 +676,7 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (tuiDetailHasPalette(batch->DetailMode) == TUI_TRUE && palette == TUI_NULL)
+	if (tuiDetailHasPalette(batch->DetailMode) && palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
@@ -737,7 +737,7 @@ void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette 
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (tuiDetailHasPalette(batch->DetailMode) == TUI_TRUE && palette == TUI_NULL)
+	if (tuiDetailHasPalette(batch->DetailMode) && palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
@@ -2546,7 +2546,7 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
 		return;
 	}
-	if (window->IsFullscreen == TUI_TRUE)
+	if (window->IsFullscreen)
 	{
 		return;
 	}
@@ -2570,7 +2570,7 @@ void tuiWindowSetFullscreenCurrentMonitor(TuiWindow window)
 	}
 	window->ViewportPixelWidth = vid_mode->width;
 	window->ViewportPixelHeight = vid_mode->height;
-	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	if (window->FramebufferMatchViewportSize)
 	{
 		TuiErrorCode error_code = tuiWindowSetSize_Opengl33(window, (size_t)vid_mode->width, (size_t)vid_mode->height);
 		if (error_code != TUI_ERROR_NONE)
@@ -2615,7 +2615,7 @@ void tuiWindowSetFullscreen(TuiWindow window, TuiMonitor monitor)
 	}
 	window->ViewportPixelWidth = vid_mode->width;
 	window->ViewportPixelHeight = vid_mode->height;
-	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	if (window->FramebufferMatchViewportSize)
 	{
 		TuiErrorCode error_code = tuiWindowSetSize_Opengl33(window, (size_t)vid_mode->width, (size_t)vid_mode->height);
 		if (error_code != TUI_ERROR_NONE)
@@ -2640,7 +2640,7 @@ void tuiWindowSetWindowed(TuiWindow window)
 		return;
 	}
 
-	if (window->IsFullscreen == TUI_TRUE)
+	if (window->IsFullscreen)
 	{
 		glfwSetWindowMonitor(window->GlfwWindow, TUI_NULL, window->FullscreenLastWindowedPositionX, window->FullscreenLastWindowedPositionY, window->FramebufferPixelWidth, window->FramebufferPixelHeight, GLFW_DONT_CARE);
 		TuiErrorCode glfw_error = _GlfwErrorCheck();
@@ -2674,7 +2674,7 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 		return;
 	}
 
-	if (window->IsFullscreen == TUI_TRUE)
+	if (window->IsFullscreen)
 	{
 		window->IsFullscreen = TUI_FALSE;
 		window->ViewportPixelWidth = viewport_pixel_width;
@@ -2686,7 +2686,7 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 			tuiDebugError(glfw_error, __func__);
 			return;
 		}
-		if (window->FramebufferMatchViewportSize == TUI_TRUE)
+		if (window->FramebufferMatchViewportSize)
 		{
 			TuiErrorCode error_code = tuiWindowSetSize_Opengl33(window, (size_t)viewport_pixel_width, (size_t)viewport_pixel_height);
 			if (error_code != TUI_ERROR_NONE)
@@ -2707,7 +2707,7 @@ void tuiWindowSetWindowedViewportSize(TuiWindow window, int viewport_pixel_width
 			tuiDebugError(glfw_error, __func__);
 			return;
 		}
-		if (window->FramebufferMatchViewportSize == TUI_TRUE)
+		if (window->FramebufferMatchViewportSize)
 		{
 			TuiErrorCode error_code = tuiWindowSetSize_Opengl33(window, (size_t)viewport_pixel_width, (size_t)viewport_pixel_height);
 			if (error_code != TUI_ERROR_NONE)
@@ -2792,7 +2792,7 @@ void tuiWindowSetFramebufferMatchesViewportSize(TuiWindow window, TuiBoolean fra
 	}
 
 	window->FramebufferMatchViewportSize = framebuffer_matches_viewport_size;
-	if (window->FramebufferMatchViewportSize == TUI_TRUE)
+	if (window->FramebufferMatchViewportSize)
 	{
 		TuiErrorCode error_code = tuiWindowSetSize_Opengl33(window, window->ViewportPixelWidth, window->ViewportPixelHeight);
 		if (error_code != TUI_ERROR_NONE)

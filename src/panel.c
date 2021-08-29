@@ -315,7 +315,7 @@ void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBa
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (tuiDetailHasPalette(batch->DetailMode) == TUI_TRUE && palette == TUI_NULL)
+	if (tuiDetailHasPalette(batch->DetailMode) && palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;
@@ -376,7 +376,7 @@ void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette pal
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
 		return;
 	}
-	if (tuiDetailHasPalette(batch->DetailMode) == TUI_TRUE && palette == TUI_NULL)
+	if (tuiDetailHasPalette(batch->DetailMode) && palette == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
 		return;

@@ -14,7 +14,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 		{
 			tuiWindowIconify(state_window);
 		}
-		else //if (iconified == TUI_TRUE)
+		else //if (iconified)
 		{
 			tuiWindowRestore(state_window);
 		}
@@ -23,7 +23,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 	if (key == TUIK_M && state == TUI_BUTTON_PRESS)
 	{
 		TuiBoolean maximized = tuiWindowGetMaximized(state_window);
-		if (maximized == TUI_TRUE)
+		if (maximized)
 		{
 			tuiWindowRestore(state_window);
 		}
@@ -36,7 +36,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 	if (key == TUIK_H && state == TUI_BUTTON_PRESS)
 	{
 		TuiBoolean visible = tuiWindowGetVisible(state_window);
-		if (visible == TUI_TRUE)
+		if (visible)
 		{
 			tuiWindowHide(state_window);
 			printf("Window hidden.\n");
@@ -56,7 +56,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 			tuiWindowSetFullscreenCurrentMonitor(state_window);
 			printf("Window made fullscreen. %d %d\n", tuiWindowGetViewportPixelWidth(state_window), tuiWindowGetFramebufferPixelWidth(state_window));
 		}
-		else //if (fullscreen == TUI_TRUE)
+		else //if (fullscreen)
 		{
 			tuiWindowSetWindowedViewportSize(state_window, 256, 256);
 			printf("Window made windowed.\n");
@@ -67,7 +67,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 
 void iconify_callback(TuiWindow window, TuiBoolean iconified)
 {
-	if (iconified == TUI_TRUE)
+	if (iconified)
 	{
 		printf("Window iconified.\n");
 	}
@@ -79,7 +79,7 @@ void iconify_callback(TuiWindow window, TuiBoolean iconified)
 
 void maximize_callback(TuiWindow window, TuiBoolean maximized)
 {
-	if (maximized == TUI_TRUE)
+	if (maximized)
 	{
 		printf("Window maximized.\n");
 	}

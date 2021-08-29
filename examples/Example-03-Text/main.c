@@ -47,12 +47,12 @@ void update_batch()
 void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonState button_state, TuiKeyboardMod mod)
 {
     TuiBoolean ctrl_mod = tuiKeyboardModHasMod(mod, TUI_MOD_CONTROL);
-    if (key == TUIK_C && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
+    if (key == TUIK_C && ctrl_mod && button_state == TUI_BUTTON_PRESS)
     {
         sText[sTextSize] = '\0';
         tuiSetClipboardString(sText);
     }
-    else if (key == TUIK_V && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
+    else if (key == TUIK_V && ctrl_mod && button_state == TUI_BUTTON_PRESS)
     {
         const char* clipboard_string = tuiGetClipboardString();
         size_t new_text_size = strlen(clipboard_string);
@@ -64,7 +64,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
         sTextSize = new_text_size;
         update_batch();
     }
-    else if (key == TUIK_X && ctrl_mod == TUI_TRUE && button_state == TUI_BUTTON_PRESS)
+    else if (key == TUIK_X && ctrl_mod && button_state == TUI_BUTTON_PRESS)
     {
         sText[sTextSize] = '\0';
         tuiSetClipboardString(sText);
