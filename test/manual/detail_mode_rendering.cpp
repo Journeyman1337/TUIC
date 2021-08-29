@@ -32,7 +32,7 @@ TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 	{
 		for (int y = 0; y < TILE_DIMENSIONS; y++)
 		{
-			if (!tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) == TUI_TRUE || (x % 2 == 0 && y % 2 == 0))
+			if (!tuiDetailHasFlag(detail_mode, TUI_DETAIL_FLAG_LAYOUT_SPARSE) || (x % 2 == 0 && y % 2 == 0))
 			{
 				switch (detail_mode)
 				{
@@ -408,7 +408,7 @@ int main()
 		frame(window);
 		tuiBatchDestroy(batch);
 		batch = TUI_NULL;
-		if (tuiWindowShouldClose(window) == TUI_TRUE)
+		if (tuiWindowShouldClose(window))
 		{
 			break;
 		}

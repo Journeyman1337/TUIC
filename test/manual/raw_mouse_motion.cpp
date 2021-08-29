@@ -10,7 +10,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
 	{
 		TuiBoolean raw_mouse_motion_enabled = tuiWindowGetRawMouseMotionEnabled(window);
 		tuiWindowSetRawMouseMotionEnabled(window, !raw_mouse_motion_enabled);
-		if (raw_mouse_motion_enabled == TUI_TRUE)
+		if (raw_mouse_motion_enabled)
 		{
 			printf("Raw mouse motion disabled.\n");
 		}

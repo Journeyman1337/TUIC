@@ -35,7 +35,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     }
     if (key == TUIK_S && button_state == TUI_BUTTON_PRESS)
     {
-        if (tuiWindowHasMinSizeLimits(window) == TUI_TRUE)
+        if (tuiWindowHasMinSizeLimits(window))
         {
             tuiWindowSetMinSizeLimits(window, 0, 0);
             printf("Min size limits removed.\n");
@@ -50,7 +50,7 @@ void key_callback(TuiWindow window, TuiKeyboardKey key, int scancode, TuiButtonS
     }
     if (key == TUIK_D && button_state == TUI_BUTTON_PRESS)
     {
-        if (tuiWindowHasMaxSizeLimits(window) == TUI_TRUE)
+        if (tuiWindowHasMaxSizeLimits(window))
         {
             tuiWindowSetMaxSizeLimits(window, 0, 0);
             printf("Max size limits removed.\n");
