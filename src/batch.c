@@ -455,13 +455,13 @@ int tuiBatchGetViewportPixelWidth(TuiBatch batch)
 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
+		return 0;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
-		return;
+		return 0;
 	}
 
 	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
@@ -473,13 +473,13 @@ int tuiBatchGetViewportPixelHeight(TuiBatch batch)
 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
+		return 0;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
-		return;
+		return 0;
 	}
 
 	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
@@ -541,13 +541,13 @@ int tuiBatchGetGlyphPixelWidth(TuiBatch batch)
 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
+		return 0;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
-		return;
+		return 0;
 	}
 
 	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
@@ -559,13 +559,13 @@ int tuiBatchGetGlyphPixelHeight(TuiBatch batch)
 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
+		return 0;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
-		return;
+		return 0;
 	}
 
 	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
@@ -607,13 +607,13 @@ int tuiBatchGetMaxTileCount(TuiBatch batch)
 	if (batch == TUI_NULL)
 	{
 		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
+		return 0;
 	}
 	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
 	if (layout_flag != TUI_DETAIL_FLAG_LAYOUT_FREE)
 	{
 		tuiDebugError(TUI_ERROR_INVALID_BATCH_FUNCTION, __func__);
-		return;
+		return 0;
 	}
 
 	TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
