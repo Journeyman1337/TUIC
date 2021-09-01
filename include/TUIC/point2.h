@@ -75,6 +75,7 @@ float tuiPoin2GetMagnitude(const TuiPoint2 point2);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 float tuiPoint2Distance(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
+/*! @} */
 
 
 #ifdef __cplusplus //extern C guard
