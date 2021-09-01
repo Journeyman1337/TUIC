@@ -117,7 +117,18 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 	const float determinant = tuiLinesGetCrossProduct(line_1 , line_2);
 	if (determinant == 0) // if the lines are parallel... (avoid divide by 0 error later)
 	{
-		TuiBoolean collinear = (line_1.start_x == line_2.start_x); // if the x positions are the same they are collinear
+		const float slope = (float)(line_1.start_x - line_1.end_x) / (float)(line_1.start_y - line_1.end_y); // use slope forumla. since lines are parallel, this is same for both lines.
+		TuiBoolean collinear = TUI_FALSE;
+		if (slope == 0) // if slopes are undefined... (avoid another divide by 0 error later)
+		{
+			collinear = (line_1.start_x == line_2.start_x); // if the x positions are the same they are collinear
+		}
+		else
+		{
+			const float line_1_y_intercept = (float)line_1.start_y - (slope * (float)line_1.start_x);
+			const float line_2_y_intercept = (float)line_2.start_y - (slope * (float)line_2.start_x);
+			collinear = (line_1_y_intercept == line_2_y_intercept);
+		}
 		if (!collinear)
 		{
 			return TUI_FALSE;
@@ -129,7 +140,7 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 		TuiBoolean point_on_line = ( // if one of the points are on the line...
 			(max_line_1_x >= line_2.start_x && min_line_1_x <= line_2.start_x && max_line_1_y >= line_2.start_y && min_line_1_y <= line_2.start_y) ||
 			(max_line_1_x >= line_2.end_x && min_line_1_x <= line_2.end_x && max_line_1_y >= line_2.end_y && min_line_1_y <= line_2.end_y)
-			);
+		);
 		if (point_on_line)
 		{
 			return TUI_TRUE;
@@ -139,8 +150,8 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 		const int max_line_2_y = (line_2.start_y > line_2.end_y) ? line_2.start_y : line_2.end_y; // calculate largest line y.
 		const int min_line_2_y = (line_2.start_y < line_2.end_y) ? line_2.start_y : line_2.end_y; // calculate smallest line y.
 		TuiBoolean line_engulfs_line = ( // if line_2 engulfs line_1
-			(max_line_2_x > max_line_1_x && max_line_2_y > max_line_1_y && min_line_2_x < min_line_1_x&& min_line_2_y < min_line_2_y)
-			);
+			(max_line_2_x > max_line_1_x && max_line_2_y > max_line_1_y && min_line_2_x < min_line_1_x && min_line_2_y < min_line_2_y)
+		);
 		return line_engulfs_line;
 	}
 	const float lambda = (float)((line_2.end_y - line_2.start_y) * (line_2.end_x - line_1.start_x) + (line_2.start_x - line_2.end_x) * (line_2.end_y - line_1.start_y)) / determinant;
