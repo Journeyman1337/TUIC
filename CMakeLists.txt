@@ -29,6 +29,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/easing.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/error_code.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
@@ -63,6 +64,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/desktop_callback.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_flag.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/easing.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/error_code.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/events.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
