@@ -43,6 +43,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mouse_button.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/panel.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/point2.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
@@ -76,6 +77,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/mouse_button.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point2.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
