@@ -20,6 +20,7 @@
 #include <TUIC/line.h>
 #include <TUIC/point2.h>
 #include <math.h>
+#include <stdlib.h>
 #include <TUIC/easing.h>
 
 
