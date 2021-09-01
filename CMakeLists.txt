@@ -39,6 +39,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_key.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_mod.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/line.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/monitor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mouse_button.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c
@@ -74,6 +75,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_key.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_mod.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/line.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/monitor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/mouse_button.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
