@@ -79,6 +79,42 @@ typedef struct GLFWmonitor* TuiMonitor;
 /*! @} */
 
 
+/*! @name Grid Shape Struct Types
+ * These structs represent shapes made of tiles on a roguelike grid.
+ *  @{ */
+/*!
+ * \brief A 2D tile coordinate position.
+ */
+typedef struct TuiPoint2
+{
+	/*!
+	 * \brief The x coordinate of the point.
+	 */
+	int x;
+	/*!
+	 * \brief The y coordinate of the point.
+	 */
+	int y;
+} TuiPoint2;
+/*!
+ * \brief A 3D tile coordinate position.
+ */
+typedef struct TuiPoint3
+{
+	/*!
+	 * \brief The x coordinate of the point.
+	 */
+	int x;
+	/*!
+	 * \brief The y coordinate of the point.
+	 */
+	int y;
+	/*!
+	 * \brief The z coordinate of the point.
+	 */
+	int z;
+} TuiPoint3;
+/*! @} */
 #ifdef __cplusplus // extern C guard
 }
 #endif
