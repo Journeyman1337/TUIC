@@ -114,6 +114,28 @@ typedef struct TuiPoint3
 	 */
 	int z;
 } TuiPoint3;
+/*!
+ * \brief A 2D tile line segment with a start and an end.
+ */
+typedef struct TuiLine
+{
+	/*!
+	 * \brief The x coordinate of the line start point.
+	 */
+	int start_x;
+	/*!
+	 * \brief The y coordinate of the line start point.
+	 */
+	int start_y;
+	/*!
+	 * \brief The x coordinate of the line end point.
+	 */
+	int end_x;
+	/*!
+	 * \brief The y coordinate of the line end point.
+	 */
+	int end_y;
+} TuiLine;
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }
