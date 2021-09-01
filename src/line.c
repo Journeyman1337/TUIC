@@ -83,7 +83,7 @@ TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
 TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 {
 	const float determinant = tuiLinesGetCrossProduct(line_1, line_2);
-	return (abs(determinant) == 1);
+	return (fabsf(determinant) == 1);
 }
 
 TuiBoolean tuiLineContainsPoint(const TuiLine line, const TuiPoint2 point2)
