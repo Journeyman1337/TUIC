@@ -150,8 +150,9 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 		const int min_line_2_x = (line_2.start_x < line_2.end_x) ? line_2.start_x : line_2.end_x; // calculate smallest line x.
 		const int max_line_2_y = (line_2.start_y > line_2.end_y) ? line_2.start_y : line_2.end_y; // calculate largest line y.
 		const int min_line_2_y = (line_2.start_y < line_2.end_y) ? line_2.start_y : line_2.end_y; // calculate smallest line y.
-		TuiBoolean line_engulfs_line = ( // if line_2 engulfs line_1
-			(max_line_2_x > max_line_1_x && max_line_2_y > max_line_1_y && min_line_2_x < min_line_1_x && min_line_2_y < min_line_2_y)
+		TuiBoolean line_engulfs_line = ( 
+			(max_line_2_x > max_line_1_x && max_line_2_y > max_line_1_y && min_line_2_x < min_line_1_x && min_line_2_y < min_line_1_y) || // if line_2 engulfs line_1
+			(max_line_1_x > max_line_2_x && max_line_1_y > max_line_2_y && min_line_1_x < min_line_2_x && min_line_1_y < min_line_2_y) // if line_1 engulfs line_2
 		);
 		return line_engulfs_line;
 	}
