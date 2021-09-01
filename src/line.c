@@ -142,7 +142,6 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 			(max_line_2_x > max_line_1_x && max_line_2_y > max_line_1_y && min_line_2_x < min_line_1_x&& min_line_2_y < min_line_2_y)
 			);
 		return line_engulfs_line;
-		return TUI_FALSE;
 	}
 	const float lambda = (float)((line_2.end_y - line_2.start_y) * (line_2.end_x - line_1.start_x) + (line_2.start_x - line_2.end_x) * (line_2.end_y - line_1.start_y)) / determinant;
 	const float gamma = (float)((line_1.start_y - line_1.end_y) * (line_2.end_x - line_1.start_x) + (line_1.end_x - line_1.start_x) * (line_2.end_y - line_1.start_y)) / determinant;
