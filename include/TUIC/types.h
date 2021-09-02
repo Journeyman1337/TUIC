@@ -184,6 +184,32 @@ typedef struct TuiHLine
 	 */
 	int y;
 } TuiHLine;
+/*!
+ * \brief An iterator that goes over every point in a @ref TuiHLine.
+ */
+typedef struct TuiHLineIt
+{
+	/*!
+	 * \brief The x coordinate of the line start point.
+	 */
+	const int start_x;
+	/*!
+	 * \brief The x coordinate of the line end point.
+	 */
+	const int end_x;
+	/*!
+	 * \brief The y intercept of the line.
+	 */
+	const int y;
+	/*!
+	 * \brief The length of the line.
+	 */
+	const int length;
+	/*!
+	 * \brief The index of the line iterator algorithm.
+	 */
+	int position;
+} TuiHLineIt;
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }

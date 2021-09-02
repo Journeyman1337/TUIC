@@ -25,15 +25,15 @@
 
 TuiHLineIt tuiHLineItStart(const TuiHLine h_line)
 {
-	const int diagonal_length = tuiHLineGetDiagonalLength(h_line);
-	TuiHLineIt ret = { h_line.start_x, h_line.start_y, h_line.end_x, h_line.end_y, diagonal_length, 0 };
+	const int length = tuiHLineGetLength(h_line);
+	TuiHLineIt ret = { h_line.start_x, h_line.end_x, h_line.y, length, 0 };
 	return ret;
 }
 
 TuiHLineIt tuiHLineItEnd(const TuiHLine h_line)
 {
-	const int diagonal_length = tuiHLineGetDiagonalLength(h_line);
-	TuiHLineIt ret = { h_line.start_x, h_line.start_y, h_line.end_x, h_line.end_y, diagonal_length, diagonal_length - 1 };
+	const int length = tuiHLineGetLength(h_line);
+	TuiHLineIt ret = { h_line.start_x, h_line.end_x, h_line.y, length, length - 1 };
 	return ret;
 }
 
@@ -44,7 +44,7 @@ TuiBoolean tuiHLineItBeforeStart(const TuiHLineIt it)
 
 TuiBoolean tuiHLineItAfterEnd(const TuiHLineIt it)
 {
-	return it.position >= it.diagonal_length;
+	return it.position >= it.length;
 }
 
 void tuiHLineItStepForward(TuiHLineIt* const it)
@@ -88,30 +88,30 @@ void tuiHLineItSetEnd(TuiHLineIt* const it)
 		return;
 	}
 
-	it->position = it->diagonal_length - 1;
+	it->position = it->length - 1;
 }
 
 TuiHLine tuiHLineItGetHLine(const TuiHLineIt it)
 {
-	TuiHLine ret = { it.start_x, it.start_y, it.end_x, it.end_y };
+	TuiHLine ret = { it.start_x, it.end_x, it.y };
 	return ret;
 }
 
 TuiPoint2 tuiHLineItGetPoint2(const TuiHLineIt it)
 {
 	const float percent = tuiHLineItGetPercent(it);
-	const int x = (int)tuiLerp((float)it.start_x, (float)it.end_x, percent);
-	const int y = (int)tuiLerp((float)it.start_y, (float)it.end_y, percent);
+	const int x = it.start_x + it.position;
+	const int y = it.y;
 	TuiPoint2 ret = { x, y };
 	return ret;
 }
 
 float tuiHLineItGetPercent(const TuiHLineIt it)
 {
-	if (it.diagonal_length == 1) // avoid divide by 0 error later
+	if (it.length == 1) // avoid divide by 0 error later
 	{
 		return 1.0f;
 	}
 
-	return (float)it.position / (float)(it.diagonal_length - 1);
+	return (float)it.position / (float)(it.length - 1);
 }
