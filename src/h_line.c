@@ -43,7 +43,34 @@ TuiPoint2 tuiHLineGetEndPoint2(const TuiHLine h_line)
 	return ret;
 }
 
+TuiLine tuiHLineGetLine(const TuiHLine h_line)
+{
+	TuiLine ret = { h_line.start_x, h_line.y, h_line.end_x, h_line.y };
+	return ret;
+}
+
 int tuiHLineGetLength(const TuiHLine h_line)
 {
 	return abs(h_line.end_x - h_line.start_x);
+}
+
+TuiBoolean tuiHLineContainsPoint(const TuiHLine h_line, const TuiPoint2 point2)
+{
+	return (point2.y == h_line.y && point2.x >= h_line.start_x && point2.y <= h_line.end_x);
+}
+
+TuiBoolean tuiHLineContainsLine(const TuiLine line, const TuiHLine h_line)
+{
+	if (line.start_y == h_line.y && line.end_y == h_line.y)
+	{
+		const int max_h_line_x = (h_line.start_x > h_line.end_x) ? h_line.start_x : h_line.end_x;
+		const int min_h_line_x = (h_line.start_x < h_line.end_x) ? h_line.start_x : h_line.end_x;
+		return (line.start_x >= max_h_line_x && line.end_x >= max_h_line_x && line.start_x <= min_h_line_x && line.end_x <= min_h_line_x);
+	}
+	return TUI_FALSE;
+}
+
+TuiBoolean tuiHLineIntersectsLine(const TuiHLine h_line, const TuiLine line)
+{
+	return tuiLineIntersectsHLine(line, h_line);
 }

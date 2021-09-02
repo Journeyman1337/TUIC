@@ -77,6 +77,20 @@ TuiPoint2 tuiHLineGetStartPoint2(const TuiHLine h_line);
  */
 TuiPoint2 tuiHLineGetEndPoint2(const TuiHLine h_line);
 /*!
+ * @brief Get the @ref TuiLine of a @ref TuiHLine.
+ *
+ * @param h_line THe @ref TuiHLine.
+ *
+ * @returns The @ref TuiLine.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiLine tuiHLineGetLine(const TuiHLine h_line);
+/*!
  * @brief Get the length of a @ref TuiHLine.
  *
  * @param h_line The @ref TuiHLine.
@@ -90,6 +104,51 @@ TuiPoint2 tuiHLineGetEndPoint2(const TuiHLine h_line);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 int tuiHLineGetLength(const TuiHLine h_line);
+/*!
+ * @brief Get if two @ref TuiHLine contains a @ref TuiPoint2.
+ *
+ * @param h_line The @ref TuiLine.
+ * @param point2 The @ref TuiPoint2.
+ *
+ * @returns If the line contains the point.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiHLineContainsPoint(const TuiHLine h_line, const TuiPoint2 point2);
+/*!
+ * @brief Get if a @ref TuiHLine contains a @ref TuiLine.
+ *
+ * @param h_line The @ref TuiHLine.
+ * @param line The @ref TuiLine to check for.
+ *
+ * @returns If the line contains the line.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiHLineContainsLine(const TuiLine line, const TuiHLine h_line);
+/*!
+ * @brief Get if a @ref TuiHLine intersects a @ref TuiLine.
+ *
+ * @param h_line The @ref TuiHLine.
+ * @param line The @ref TuiLine.
+ *
+ * @returns If the lines intersect.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiHLineIntersectsLine(const TuiHLine h_line, const TuiLine line);
 /*! @} */
 
 

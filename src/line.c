@@ -113,6 +113,17 @@ TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
 	return line_contains_line;
 }
 
+TuiBoolean tuiLineContainsHLine(const TuiLine line, const TuiHLine h_line)
+{
+	if (line.start_y == h_line.y && line.end_y == h_line.y)
+	{
+		const int max_h_line_x = (h_line.start_x > h_line.end_x) ? h_line.start_x : h_line.end_x;
+		const int min_h_line_x = (h_line.start_x < h_line.end_x) ? h_line.start_x : h_line.end_x;
+		return (line.start_x >= min_h_line_x && line.end_x >= min_h_line_x && line.start_x <= max_h_line_x && line.end_x <= max_h_line_x);
+	}
+	return TUI_FALSE;
+}
+
 TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 {
 	const float determinant = tuiLinesGetCrossProduct(line_1 , line_2);
@@ -160,4 +171,9 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 	const float lambda = (float)((line_2.end_y - line_2.start_y) * (line_2.end_x - line_1.start_x) + (line_2.start_x - line_2.end_x) * (line_2.end_y - line_1.start_y)) / determinant;
 	const float gamma = (float)((line_1.start_y - line_1.end_y) * (line_2.end_x - line_1.start_x) + (line_1.end_x - line_1.start_x) * (line_2.end_y - line_1.start_y)) / determinant;
 	return (0.0f < lambda && lambda < 1.0f) && (0.0f < gamma && gamma < 1.0f);
+}
+
+TuiBoolean tuiLineIntersectsHLine(const TuiLine line, const TuiHLine h_line)
+{
+	return tuiLineIntersectsLine(line, tuiLine(h_line.start_x, h_line.y, h_line.end_x, h_line.y));
 }
