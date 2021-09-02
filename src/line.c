@@ -24,9 +24,9 @@
 #include <TUIC/easing.h>
 
 
-TuiLine tuiLine(const int l_sx, const int l_sy, const int l_ex, const int l_ey)
+TuiLine tuiLine(const int start_x, const int start_y, const int end_x, const int end_y)
 {
-	TuiLine ret = { l_sx, l_sy, l_ex, l_ey };
+	TuiLine ret = { start_x, start_y, end_x, end_y };
 	return ret;
 }
 

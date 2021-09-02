@@ -35,10 +35,10 @@ extern "C" {
 /*!
 * @brief Create a @ref TuiLine.
 *
-* @param l_sx The x position of the start point.
-* @param l_sy The y position of the start point.
-* @param l_ex The x position of the end point.
-* @param l_ey The y position of the end point.
+* @param start_x The x position of the start point.
+* @param start_y The y position of the start point.
+* @param end_x The x position of the end point.
+* @param end_y The y position of the end point.
 *
 * @returns The created @ref TuiLine.
 *
@@ -48,7 +48,7 @@ extern "C" {
 *
 * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
 */
-TuiLine tuiLine(const int l_sx, const int l_sy, const int l_ex, const int l_ey);
+TuiLine tuiLine(const int start_x, const int start_y, const int end_x, const int end_y);
 /*!
 * @brief Get the starting point of a @ref TuiLine.
 *
