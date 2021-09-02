@@ -167,7 +167,7 @@ typedef struct TuiLineIt
 	int position;
 } TuiLineIt;
 /*!
- * \brief An iterator that goes over every point in a @ref TuiHLine.
+ * \brief A 2D tile line segment with a slope of 0.
  */
 typedef struct TuiHLine
 {
