@@ -210,6 +210,24 @@ typedef struct TuiHLineIt
 	 */
 	int position;
 } TuiHLineIt;
+/*!
+ * \brief A 2D tile line segment with an undefined slope.
+ */
+typedef struct TuiVLine
+{
+	/*!
+	 * \brief The x intercept of the line.
+	 */
+	int x;
+	/*!
+	 * \brief The y coordinate of the line start point.
+	 */
+	int start_y;
+	/*!
+	 * \brief The y coordinate of the line end point.
+	 */
+	int end_y;
+} TuiVLine;
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }

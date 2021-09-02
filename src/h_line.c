@@ -19,6 +19,7 @@
 */
 #include <TUIC/h_line.h>
 #include <TUIC/line.h>
+#include <TUIC/v_line.h>
 #include <TUIC/point2.h>
 #include <math.h>
 #include <stdlib.h>
@@ -75,4 +76,9 @@ TuiBoolean tuiHLineContainsLine(const TuiLine line, const TuiHLine h_line)
 TuiBoolean tuiHLineIntersectsLine(const TuiHLine h_line, const TuiLine line)
 {
 	return tuiLineIntersectsHLine(line, h_line);
+}
+
+TuiBoolean tuiHLineIntersectsVLine(const TuiHLine h_line, const TuiVLine v_line)
+{
+	return tuiVLineIntersectsHLine(v_line, h_line);
 }

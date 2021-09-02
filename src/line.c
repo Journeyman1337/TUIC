@@ -19,6 +19,8 @@
 */
 #include <TUIC/line.h>
 #include <TUIC/point2.h>
+#include <TUIC/h_line.h>
+#include <TUIC/v_line.h>
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
@@ -175,5 +177,10 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLineIntersectsHLine(const TuiLine line, const TuiHLine h_line)
 {
-	return tuiLineIntersectsLine(line, tuiLine(h_line.start_x, h_line.y, h_line.end_x, h_line.y));
+	return tuiLineIntersectsLine(line, tuiHLineGetLine(h_line));
+}
+
+TuiBoolean tuiLineIntersectsVLine(const TuiLine line, const TuiVLine v_line)
+{
+	return tuiLineIntersectsLine(line, tuiVLineGetLine(v_line));
 }

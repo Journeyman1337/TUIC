@@ -149,6 +149,21 @@ TuiBoolean tuiHLineContainsLine(const TuiLine line, const TuiHLine h_line);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiHLineIntersectsLine(const TuiHLine h_line, const TuiLine line);
+/*!
+ * @brief Get if a @ref TuiHLine intersects a @ref TuiVLine.
+ *
+ * @param h_line The @ref TuiHLine.
+ * @param v_line The @ref TuiVLine.
+ *
+ * @returns If the lines intersect.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiHLineIntersectsVLine(const TuiHLine h_line, const TuiVLine v_line);
 /*! @} */
 
 
