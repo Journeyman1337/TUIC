@@ -195,7 +195,7 @@ float tuiHLineItGetPercent(const TuiHLineIt it);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-#define TUI_LINE_ITERATE(h_line, iterator) for(TuiHLineIt iterator = tuiHLineItStart(h_line); !tuiHLineItAfterEnd(iterator); tuiHLineItStepForward(&iterator))
+#define TUI_H_LINE_ITERATE(h_line, iterator) for(TuiHLineIt iterator = tuiHLineItStart(h_line); !tuiHLineItAfterEnd(iterator); tuiHLineItStepForward(&iterator))
 /*!
  * @brief Macro function for easily constructing a h_line reverse iterator for loop without body.
  *
@@ -206,7 +206,7 @@ float tuiHLineItGetPercent(const TuiHLineIt it);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-#define TUI_LINE_ITERATE_REVERSE(h_line, iterator) for(TuiHLineIt iterator = tuiHLineItEnd(h_line); !tuiHLineItBeforeStart(iterator); tuiHLineItStepBackward(&iterator))
+#define TUI_H_LINE_ITERATE(h_line, iterator) for(TuiHLineIt iterator = tuiHLineItEnd(h_line); !tuiHLineItBeforeStart(iterator); tuiHLineItStepBackward(&iterator))
 /*! @} */
 
 
