@@ -23,6 +23,8 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/circle.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/circle_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_shape.c
@@ -34,6 +36,10 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/glfw_error_check.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/h_line.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/h_line_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/h_trapezoid.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/h_trapezoid_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
@@ -41,16 +47,24 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_mod.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/line.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/line_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/list_path2.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/list_path2_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/monitor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mouse_button.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/panel.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/point2.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/point3.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/rect.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/rect_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/time.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/v_line.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/v_line_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/v_trapezoid.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/v_trapezoid_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
@@ -61,6 +75,8 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_shape.h
@@ -72,12 +88,18 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/error_code.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/events.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_line.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_line_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_trapezoid.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_trapezoid_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_key.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_mod.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/line.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/line_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/list_path2.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/list_path2_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/monitor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/mouse_button.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
@@ -89,6 +111,10 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_line.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_line_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_trapezoid.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_trapezoid_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/window.h
 )
 
