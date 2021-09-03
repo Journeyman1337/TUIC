@@ -89,7 +89,7 @@ TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 	return (fabsf(determinant) == 1);
 }
 
-TuiBoolean tuiLineContainsPoint(const TuiLine line, const TuiPoint2 point2)
+TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
 {
 	const float line_start_distance = tuiPoint2Distance(tuiLineGetStart(line), point2);
 	const float line_end_distance = tuiPoint2Distance(tuiLineGetEnd(line), point2);

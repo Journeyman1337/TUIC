@@ -55,7 +55,7 @@ int tuiHLineGetLength(const TuiHLine h_line)
 	return abs(h_line.end_x - h_line.start_x);
 }
 
-TuiBoolean tuiHLineContainsPoint(const TuiHLine h_line, const TuiPoint2 point2)
+TuiBoolean tuiHLineContainsPoint2(const TuiHLine h_line, const TuiPoint2 point2)
 {
 	const int max_h_line_x = (h_line.start_x > h_line.end_x) ? h_line.start_x : h_line.end_x;
 	const int min_h_line_x = (h_line.start_x < h_line.end_x) ? h_line.start_x : h_line.end_x;

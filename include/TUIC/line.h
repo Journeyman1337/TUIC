@@ -179,7 +179,7 @@ TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiBoolean tuiLineContainsPoint(const TuiLine line, const TuiPoint2 point2);
+TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2);
 /*!
  * @brief Get if a @ref TuiLine contains a different @ref TuiLine.
  *

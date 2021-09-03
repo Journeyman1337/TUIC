@@ -118,7 +118,7 @@ int tuiVLineGetLength(const TuiVLine v_line);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiBoolean tuiVLineContainsPoint(const TuiVLine v_line, const TuiPoint2 point2);
+TuiBoolean tuiVLineContainsPoint2(const TuiVLine v_line, const TuiPoint2 point2);
 /*!
  * @brief Get if a @ref TuiVLine contains a @ref TuiLine.
  *
