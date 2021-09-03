@@ -106,6 +106,8 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point2.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point3.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
