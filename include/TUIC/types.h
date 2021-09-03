@@ -228,6 +228,32 @@ typedef struct TuiVLine
 	 */
 	int end_y;
 } TuiVLine;
+/*!
+ * \brief A 2D tile line segment with an undefined slope.
+ */
+typedef struct TuiVLineIt
+{
+	/*!
+	 * \brief The x intercept of the line.
+	 */
+	const int x;
+	/*!
+	 * \brief The y coordinate of the line start point.
+	 */
+	const int start_y;
+	/*!
+	 * \brief The y coordinate of the line end point.
+	 */
+	const int end_y;
+	/*!
+	 * \brief The length of the line.
+	 */
+	const int length;
+	/*!
+	 * \brief The index of the line iterator algorithm.
+	 */
+	int position;
+} TuiVLineIt;
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }
