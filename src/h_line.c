@@ -21,6 +21,7 @@
 #include <TUIC/line.h>
 #include <TUIC/v_line.h>
 #include <TUIC/point2.h>
+#include <TUIC/rect.h>
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
@@ -81,4 +82,9 @@ TuiBoolean tuiHLineIntersectsLine(const TuiHLine h_line, const TuiLine line)
 TuiBoolean tuiHLineIntersectsVLine(const TuiHLine h_line, const TuiVLine v_line)
 {
 	return tuiVLineIntersectsHLine(v_line, h_line);
+}
+
+TuiBoolean tuiHLineIntersectsRect(const TuiHLine h_line, const TuiRect rect)
+{
+	return tuiRectIntersectsHLine(rect, h_line);
 }

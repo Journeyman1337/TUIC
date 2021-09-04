@@ -254,6 +254,28 @@ typedef struct TuiVLineIt
 	 */
 	int position;
 } TuiVLineIt;
+/*!
+ * \brief A 2D tile rect.
+ */
+typedef struct TuiRect
+{
+	/*!
+	 * \brief The x position of one of the rect corners.
+	 */
+	int x;
+	/*!
+	 * \brief The y position of one of the rect corners.
+	 */
+	int y;
+	/*!
+	 * \brief The width of the rect in tiles.
+	 */
+	int width;
+	/*!
+	 * \brief The height of the rect in tiles.
+	 */
+	int height;
+} TuiRect;
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }

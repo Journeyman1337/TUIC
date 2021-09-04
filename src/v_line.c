@@ -20,6 +20,7 @@
 #include <TUIC/v_line.h>
 #include <TUIC/line.h>
 #include <TUIC/point2.h>
+#include <TUIC/rect.h>
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
@@ -84,4 +85,9 @@ TuiBoolean tuiVLineIntersectsHLine(const TuiVLine v_line, const TuiHLine h_line)
 	const int max_h_line_x = (h_line.start_x > h_line.end_x) ? h_line.start_x : h_line.end_x;
 	const int min_h_line_x = (h_line.start_x < h_line.end_x) ? h_line.start_x : h_line.end_x;
 	return (max_v_line_y >= h_line.y && min_v_line_y <= h_line.y && max_h_line_x >= v_line.x && min_h_line_x <= v_line.x);
+}
+
+TuiBoolean tuiVLineIntersectsRect(const TuiVLine v_line, const TuiRect rect)
+{
+	return tuiRectIntersectsVLine(rect, v_line);
 }
