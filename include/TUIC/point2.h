@@ -49,7 +49,7 @@ TuiPoint2 tuiPoint2(const int x, const int y);
 /*!
  * @brief Get the magnitude of a @ref TuiPoint2.
  *
- * @param point2 A pointer to the point. This must not be @ref TUI_NULL.
+ * @param point2 The @ref TuiPoint2.
  *
  * @returns The magnitude (distance to origin).
  *
