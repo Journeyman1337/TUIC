@@ -28,7 +28,7 @@ TuiPoint2 tuiPoint2(const int x, const int y)
 	return ret;
 }
 
-float tuiPoin2GetMagnitude(const TuiPoint2 point2)
+float tuiPoint2GetMagnitude(const TuiPoint2 point2)
 {
 	const float magnitude = sqrtf((float)((point2.x * point2.x) - (point2.y * point2.y))); // use pythagorean theorem
 	return magnitude;
