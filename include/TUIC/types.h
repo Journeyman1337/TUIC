@@ -276,6 +276,36 @@ typedef struct TuiRect
 	 */
 	int height;
 } TuiRect;
+/*!
+ * \brief A 2D rect iterator.
+ */
+typedef struct TuiRectIt
+{
+	/*!
+	 * \brief The x position of the left border of the rect.
+	 */
+	const int left_x;
+	/*!
+	 * \brief The x position of the right border of the rect.
+	 */
+	const int right_x;
+	/*!
+	 * \brief The x position of the top border of the rect.
+	 */
+	const int top_y;
+	/*!
+	 * \brief The x position of the bottom border of the rect.
+	 */
+	const int bottom_y;
+	/*!
+	 * \brief The current x position of the iterator.
+	 */
+	int cur_x_position;
+	/*!
+	 * \brief The current y position of the iterator.
+	 */
+	int cur_y_position;
+} TuiRectIt;
 /*! @} */
 #ifdef __cplusplus // extern C guard
 }
