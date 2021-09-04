@@ -32,19 +32,19 @@ extern "C" {
  *
  * Functions for manipulating @ref TuiRectIt.
  *  @{ */
- /*!
-  * @brief Create a @ref TuiRectIt to iterator over the points within a @ref TuiRect.
-  *
-  * @param rect The @ref TuiRect to iterate.
-  *
-  * @returns The created @ref TuiLineIt.
-  *
-  * @errors This function can have no errors.
-  *
-  * @requirements This function can be called freely, even if TUIC is not currently initialized.
-  *
-  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
-  */
+/*!
+ * @brief Create a @ref TuiRectIt to iterator over the points within a @ref TuiRect.
+ *
+ * @param rect The @ref TuiRect to iterate.
+ *
+ * @returns The created @ref TuiLineIt.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiRectIt tuiRectIt(const TuiRect rect);
 /*!
  * @brief Get if a @ref TuiRectIt position is out of its @ref TuiRect.
