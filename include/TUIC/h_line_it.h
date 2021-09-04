@@ -206,7 +206,7 @@ float tuiHLineItGetPercent(const TuiHLineIt it);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-#define TUI_H_LINE_ITERATE(h_line, iterator) for(TuiHLineIt iterator = tuiHLineItEnd(h_line); !tuiHLineItBeforeStart(iterator); tuiHLineItStepBackward(&iterator))
+#define TUI_H_LINE_ITERATE_REVERSE(h_line, iterator) for(TuiHLineIt iterator = tuiHLineItEnd(h_line); !tuiHLineItBeforeStart(iterator); tuiHLineItStepBackward(&iterator))
 /*! @} */
 
 

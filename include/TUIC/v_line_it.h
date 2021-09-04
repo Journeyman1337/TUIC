@@ -206,7 +206,7 @@ extern "C" {
 	   *
 	   * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
 	   */
-#define TUI_V_LINE_ITERATE(v_line, iterator) for(TuiVLineIt iterator = tuiVLineItEnd(v_line); !tuiVLineItBeforeStart(iterator); tuiVLineItStepBackward(&iterator))
+#define TUI_V_LINE_ITERATE_REVERSE(v_line, iterator) for(TuiVLineIt iterator = tuiVLineItEnd(v_line); !tuiVLineItBeforeStart(iterator); tuiVLineItStepBackward(&iterator))
 	   /*! @} */
 
 
