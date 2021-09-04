@@ -126,7 +126,8 @@ float tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2);
  * @param line_1 The first @ref TuiLine.
  * @param line_2 The second @ref TuiLine.
  *
- * @returns If they are parallel.
+ * @returns The @ref TuiBoolean result. If the lines are parallel, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -141,7 +142,8 @@ TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2);
  * @param line_1 The first @ref TuiLine.
  * @param line_2 The second @ref TuiLine.
  *
- * @returns If they are collinear.
+ * @returns The @ref TuiBoolean result. If the lines are collinear, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -156,7 +158,8 @@ TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2);
  * @param line_1 The first @ref TuiLine.
  * @param line_2 The second @ref TuiLine.
  *
- * @returns If they are perpendicular.
+ * @returns The @ref TuiBoolean result. If the lines are perpendicular, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -171,7 +174,8 @@ TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2);
  * @param line The @ref TuiLine.
  * @param point2 The @ref TuiPoint2.
  *
- * @returns If the line contains the point.
+ * @returns The @ref TuiBoolean result. If the line contains the point, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -186,7 +190,8 @@ TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2);
  * @param line_1 The @ref TuiLine.
  * @param line_2 The @ref TuiLine to check for.
  *
- * @returns If the line contains the line.
+ * @returns The @ref TuiBoolean result. If the line contains the line, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -201,7 +206,8 @@ TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2);
  * @param line The @ref TuiLine.
  * @param h_line The @ref TuiHLine to check for.
  *
- * @returns If the line contains the line.
+ * @returns The @ref TuiBoolean result. If the line contains the line, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -216,7 +222,8 @@ TuiBoolean tuiLineContainsHLine(const TuiLine line, const TuiHLine h_line);
  * @param line_1 The first @ref TuiLine.
  * @param line_2 The second @ref TuiLine.
  *
- * @returns If the lines intersect.
+ * @returns The @ref TuiBoolean result. If the lines intersect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -231,7 +238,8 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2);
  * @param line The @ref TuiLine.
  * @param h_line The @ref TuiHLine.
  *
- * @returns If the lines intersect.
+ * @returns The @ref TuiBoolean result. If the lines intersect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -246,7 +254,8 @@ TuiBoolean tuiLineIntersectsHLine(const TuiLine line, const TuiHLine h_line);
  * @param line The @ref TuiLine.
  * @param v_line The @ref TuiVLine.
  *
- * @returns If the lines intersect.
+ * @returns The @ref TuiBoolean result. If the lines are intersect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *

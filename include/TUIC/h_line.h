@@ -110,7 +110,8 @@ int tuiHLineGetLength(const TuiHLine h_line);
  * @param h_line The @ref TuiLine.
  * @param point2 The @ref TuiPoint2.
  *
- * @returns If the line contains the point.
+ * @returns The @ref TuiBoolean result. If the line contains the point, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -125,7 +126,8 @@ TuiBoolean tuiHLineContainsPoint2(const TuiHLine h_line, const TuiPoint2 point2)
  * @param h_line The @ref TuiHLine.
  * @param line The @ref TuiLine to check for.
  *
- * @returns If the line contains the line.
+ * @returns The @ref TuiBoolean result. If the line contains the line, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -140,7 +142,8 @@ TuiBoolean tuiHLineContainsLine(const TuiLine line, const TuiHLine h_line);
  * @param h_line The @ref TuiHLine.
  * @param line The @ref TuiLine.
  *
- * @returns If the lines intersect.
+ * @returns The @ref TuiBoolean result. If the lines intersect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
@@ -155,7 +158,8 @@ TuiBoolean tuiHLineIntersectsLine(const TuiHLine h_line, const TuiLine line);
  * @param h_line The @ref TuiHLine.
  * @param v_line The @ref TuiVLine.
  *
- * @returns If the lines intersect.
+ * @returns The @ref TuiBoolean result. If the lines intersect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
  *
