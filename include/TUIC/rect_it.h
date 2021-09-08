@@ -141,7 +141,7 @@ TuiPoint2 tuiRectItGetPoint2(const TuiRectIt it);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-#define TUI_RECT_ITERATE(rect, iterator) for(TuiLineIt iterator = tuiRectIt(rect); !tuiRectDone(iterator); tuiRectItStepForward(&iterator))
+#define TUI_RECT_ITERATE(rect, iterator) for(TuiRectIt iterator = tuiRectIt(rect); !tuiRectDone(iterator); tuiRectItStepForward(&iterator))
 /*! @} */
 
 
