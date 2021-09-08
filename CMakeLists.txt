@@ -38,8 +38,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/glfw_error_check.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/h_line.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/h_line_it.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/h_trapezoid.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/h_trapezoid_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
@@ -63,8 +61,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/time.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/v_line.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/v_line_it.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/v_trapezoid.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/v_trapezoid_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
@@ -90,8 +86,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_line.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_line_it.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_trapezoid.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_trapezoid_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_key.h
@@ -115,8 +109,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_line.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_line_it.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_trapezoid.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_trapezoid_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/window.h
 )
 
