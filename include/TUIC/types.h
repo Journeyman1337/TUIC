@@ -219,12 +219,12 @@ typedef struct TuiRectIt
 	int cur_y_position;
 } TuiRectIt;
 /*!
- * \brief A 2D horizontally parallel trapezoid.
+ * \brief A 2D circle.
  */
-/*! @} */
 typedef struct TuiCircle
 {
 	int center_x;
+	 * \brief The y position of the center of the circle.
 	int center_y;
 	float radius;
 } TuiCircle;
