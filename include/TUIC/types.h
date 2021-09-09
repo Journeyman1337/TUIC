@@ -223,16 +223,27 @@ typedef struct TuiRectIt
  */
 typedef struct TuiCircle
 {
+	/*!
+	 * \brief The x position of the center of the circle.
+	 */
 	int center_x;
+	/*!
 	 * \brief The y position of the center of the circle.
+	 */
 	int center_y;
+	/*!
+	 * \brief The radius of the circle.
+	 */
 	float radius;
 } TuiCircle;
-
+/*!
+ * \brief A 2D circle iterator.
+ */
 typedef struct TuiCircleIt
 {
 	int dummy;
 } TuiCircleIt;
+/*! @} */
 
 #ifdef __cplusplus // extern C guard
 }
