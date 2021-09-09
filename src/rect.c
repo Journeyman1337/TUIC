@@ -103,7 +103,7 @@ TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiLine tuiRectGetRightLine(const TuiRect rect, const TuiBoolean corners)
+TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
 {
 	const int corner_change = (corners) ? 0 : 1;
 	const int rect_right_x = _tuiRectGetRightX(rect);
@@ -113,7 +113,7 @@ TuiLine tuiRectGetRightLine(const TuiRect rect, const TuiBoolean corners)
 	return ret;
 }
 
-TuiLine tuiRectGetLeftLine(const TuiRect rect, const TuiBoolean corners)
+TuiLine tuiRectGetLeftInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
 {
 	const int corner_change = (corners) ? 0 : 1;
 	const int rect_left_x = _tuiRectGetLeftX(rect);
@@ -123,7 +123,7 @@ TuiLine tuiRectGetLeftLine(const TuiRect rect, const TuiBoolean corners)
 	return ret;
 }
 
-TuiLine tuiRectGetTopLine(const TuiRect rect, const TuiBoolean corners)
+TuiLine tuiRectGetTopInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
 {
 	const int corner_change = (corners) ? 0 : 1;
 	const int rect_left_x = _tuiRectGetLeftX(rect);
@@ -133,7 +133,7 @@ TuiLine tuiRectGetTopLine(const TuiRect rect, const TuiBoolean corners)
 	return ret;
 }
 
-TuiLine tuiRectGetBottomLine(const TuiRect rect, const TuiBoolean corners)
+TuiLine tuiRectGetBottomInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
 {
 	const int corner_change = (corners) ? 0 : 1;
 	const int rect_left_x = _tuiRectGetLeftX(rect);
@@ -143,9 +143,9 @@ TuiLine tuiRectGetBottomLine(const TuiRect rect, const TuiBoolean corners)
 	return ret;
 }
 
-TuiRect tuiRectGetInnerRect(const TuiRect rect)
+TuiRect tuiRectGetInnerRect(const TuiRect rect, const int depth)
 {
-	TuiRect ret = { rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 2 };
+	TuiRect ret = { rect.x + depth, rect.y + depth, rect.width - (depth * 2), rect.height - (depth * 2) };
 	return ret;
 }
 
@@ -204,10 +204,10 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 		return TUI_FALSE;
 	}
 	TuiBoolean rect_intersects_line = 
-		tuiLineIntersectsLine(line, tuiRectGetLeftLine(rect, TUI_TRUE)) ||
-		tuiLineIntersectsLine(line, tuiRectGetTopLine(rect, TUI_TRUE)) ||
-		tuiLineIntersectsLine(line, tuiRectGetRightLine(rect, TUI_TRUE)) ||
-		tuiLineIntersectsLine(line, tuiRectGetBottomLine(rect, TUI_TRUE));
+		tuiLineIntersectsLine(line, tuiRectGetLeftInnerBorderLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetTopInnerBorderLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetRightInnerBorderLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE));
 	return rect_intersects_line;
 }
 
