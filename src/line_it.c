@@ -100,8 +100,8 @@ TuiLine tuiLineItGetLine(const TuiLineIt it)
 TuiPoint2 tuiLineItGetPoint2(const TuiLineIt it)
 {
 	const float percent = tuiLineItGetPercent(it);
-	const int x = (int)tuiLerp((float)it.start_x, (float)it.end_x, percent);
-	const int y = (int)tuiLerp((float)it.start_y, (float)it.end_y, percent);
+	const int x = (int)roundf(tuiLerp((float)it.start_x, (float)it.end_x, percent));
+	const int y = (int)roundf(tuiLerp((float)it.start_y, (float)it.end_y, percent));
 	TuiPoint2 ret = { x, y };
 	return ret;
 }
