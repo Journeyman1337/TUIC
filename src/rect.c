@@ -103,46 +103,6 @@ TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiLine tuiRectGetTopLeftCornerLine(const TuiRect rect, const int depth)
-{
-	const int rect_left_x = _tuiRectGetLeftX(rect);
-	const int rect_top_y = _tuiRectGetTopY(rect);
-	const int rect_corner_end_x = rect_left_x + depth;
-	const int rect_corner_end_y = rect_top_y + depth;
-	TuiLine ret = { rect_left_x, rect_top_y, rect_corner_end_x, rect_corner_end_y };
-	return ret;
-}
-
-TuiLine tuiRectGetTopRightCornerLine(const TuiRect rect, const int depth)
-{
-	const int rect_right_x = _tuiRectGetRightX(rect);
-	const int rect_top_y = _tuiRectGetTopY(rect);
-	const int rect_corner_end_x = rect_right_x - depth;
-	const int rect_corner_end_y = rect_top_y + depth;
-	TuiLine ret = { rect_right_x, rect_top_y, rect_corner_end_x, rect_corner_end_y };
-	return ret;
- }
-
-TuiLine tuiRectGetBottomLeftCornerLine(const TuiRect rect, const int depth)
-{
-	const int rect_left_x = _tuiRectGetLeftX(rect);
-	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	const int rect_corner_end_x = rect_left_x + depth;
-	const int rect_corner_end_y = rect_bottom_y - depth;
-	TuiLine ret = { rect_left_x, rect_bottom_y, rect_corner_end_x, rect_corner_end_y };
-	return ret;
-}
-
-TuiLine tuiRectGetBottomRightCornerLine(const TuiRect rect, const int depth)
-{
-	const int rect_right_x = _tuiRectGetRightX(rect);
-	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	const int rect_corner_end_x = rect_right_x - depth;
-	const int rect_corner_end_y = rect_bottom_y - depth;
-	TuiLine ret = { rect_right_x, rect_bottom_y, rect_corner_end_x, rect_corner_end_y };
-	return ret;
-}
-
 TuiLine tuiRectGetRightLine(const TuiRect rect)
 {
 	const int rect_right_x = _tuiRectGetRightX(rect);

@@ -149,65 +149,6 @@ TuiPoint2 tuiRectGetBottomLeftCornerPoint2(const TuiRect rect);
  */
 TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect);
 /*!
- * @brief Get the @ref TuiLine from the top left corner of a @ref TuiRect towards its center at a specific depth.
- *
- * @param rect The @ref TuiRect.
- * @param The length of the returned @ref TuiLine towards the center of the @ref TuiRect.
- *
- * @returns The @ref TuiLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiLine tuiRectGetTopLeftCornerLine(const TuiRect rect, const int depth);
-/*!
- * @brief Get the @ref TuiLine from the top right corner of a @ref TuiRect towards its center at a specific depth.
- *
- * @param rect The @ref TuiRect.
- * @param The length of the returned @ref TuiLine towards the center of the @ref TuiRect.
- *
- * @returns The @ref TuiLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiLine tuiRectGetTopRightCornerLine(const TuiRect rect, const int depth);
-/*!
- * @brief Get the @ref TuiLine from the bottom left corner of a @ref TuiRect towards its center at a specific depth.
- *
- * @param rect The @ref TuiRect.
- * @param The length of the returned @ref TuiLine towards the center of the @ref TuiRect.
- *
- * @returns The @ref TuiLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiLine tuiRectGetBottomLeftCornerLine(const TuiRect rect, const int depth);
-/*!
- * @brief Get the @ref TuiLine from the bottom right corner of a @ref TuiRect towards its center at a specific depth.
- *
- * @param rect The @ref TuiRect.
- * @param The length of the returned @ref TuiLine towards the center of the @ref TuiRect.
- *
- * @returns The @ref TuiLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-/*!
  * @brief Get the @ref TuiLine on the right border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
