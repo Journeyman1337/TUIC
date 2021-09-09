@@ -57,14 +57,12 @@ static inline int _tuiRectGetBottomY(const TuiRect rect)
 
 int tuiRectGetFarX(const TuiRect rect)
 {
-	const int rect_far_x = (rect.width <= 0) ? rect.x : rect.x + rect.width - 1;
-	return rect_far_x;
+	return rect.x + rect.width - 1;
 }
 
 int tuiRectGetFarY(const TuiRect rect)
 {
-	const int rect_far_y = (rect.height <= 0) ? rect.y : rect.y + rect.height - 1;
-	return rect_far_y;
+	return rect.y + rect.height - 1;
 }
 
 TuiBoolean tuiRectIsDegenerate(const TuiRect rect)
