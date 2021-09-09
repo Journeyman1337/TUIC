@@ -152,6 +152,7 @@ TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect);
  * @brief Get the @ref TuiLine on the right border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
+ * @param corners If the corners should be included in the border line.
  *
  * @returns The @ref TuiLine.
  *
@@ -161,11 +162,12 @@ TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetRightLine(const TuiRect rect);
+TuiLine tuiRectGetRightLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiVLine on the left border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
+ * @param corners If the corners should be included in the border line.
  *
  * @returns The @ref TuiLine.
  *
@@ -175,11 +177,12 @@ TuiLine tuiRectGetRightLine(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetLeftLine(const TuiRect rect);
+TuiLine tuiRectGetLeftLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiLine on the top border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
+ * @param corners If the corners should be included in the border line.
  *
  * @returns The @ref TuiLine.
  *
@@ -189,11 +192,12 @@ TuiLine tuiRectGetLeftLine(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetTopLine(const TuiRect rect);
+TuiLine tuiRectGetTopLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiLine on the bottom border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
+ * @param corners If the corners should be included in the border line.
  *
  * @returns The @ref TuiLine.
  *
@@ -203,7 +207,7 @@ TuiLine tuiRectGetTopLine(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetBottomLine(const TuiRect rect);
+TuiLine tuiRectGetBottomLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the inner rect of a @ref TuiRect, not including its corners or borders.
  *

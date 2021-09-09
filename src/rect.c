@@ -103,39 +103,43 @@ TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiLine tuiRectGetRightLine(const TuiRect rect)
+TuiLine tuiRectGetRightLine(const TuiRect rect, const TuiBoolean corners)
 {
+	const int corner_change = (corners) ? 0 : 1;
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_right_x, rect_bottom_y - 1, rect_right_x, rect_top_y + 1 }; // clockwise
+	TuiLine ret = { rect_right_x, rect_bottom_y - corner_change, rect_right_x, rect_top_y + corner_change }; // clockwise
 	return ret;
 }
 
-TuiLine tuiRectGetLeftLine(const TuiRect rect)
+TuiLine tuiRectGetLeftLine(const TuiRect rect, const TuiBoolean corners)
 {
+	const int corner_change = (corners) ? 0 : 1;
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_left_x, rect_top_y + 1, rect_left_x, rect_bottom_y - 1 }; // clockwise
+	TuiLine ret = { rect_left_x, rect_top_y + corner_change, rect_left_x, rect_bottom_y - corner_change }; // clockwise
 	return ret;
 }
 
-TuiLine tuiRectGetTopLine(const TuiRect rect)
+TuiLine tuiRectGetTopLine(const TuiRect rect, const TuiBoolean corners)
 {
+	const int corner_change = (corners) ? 0 : 1;
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
-	TuiLine ret = { rect_left_x + 1, rect_top_y, rect_right_x - 1, rect_top_y }; // clockwise
+	TuiLine ret = { rect_left_x + corner_change, rect_top_y, rect_right_x - corner_change, rect_top_y }; // clockwise
 	return ret;
 }
 
-TuiLine tuiRectGetBottomLine(const TuiRect rect)
+TuiLine tuiRectGetBottomLine(const TuiRect rect, const TuiBoolean corners)
 {
+	const int corner_change = (corners) ? 0 : 1;
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_right_x - 1, rect_bottom_y, rect_left_x + 1, rect_bottom_y }; // clockwise
+	TuiLine ret = { rect_right_x - corner_change, rect_bottom_y, rect_left_x + corner_change, rect_bottom_y }; // clockwise
 	return ret;
 }
 
@@ -200,10 +204,10 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 		return TUI_FALSE;
 	}
 	TuiBoolean rect_intersects_line = 
-		tuiLineIntersectsLine(line, tuiRectGetLeftLine(rect)) ||
-		tuiLineIntersectsLine(line, tuiRectGetTopLine(rect)) ||
-		tuiLineIntersectsLine(line, tuiRectGetRightLine(rect)) ||
-		tuiLineIntersectsLine(line, tuiRectGetBottomLine(rect));
+		tuiLineIntersectsLine(line, tuiRectGetLeftLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetTopLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetRightLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetBottomLine(rect, TUI_TRUE));
 	return rect_intersects_line;
 }
 
