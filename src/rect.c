@@ -20,8 +20,6 @@
 #include <TUIC/rect.h>
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
-#include <TUIC/h_line.h>
-#include <TUIC/v_line.h>
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
@@ -124,7 +122,8 @@ TuiLine tuiRectGetTopRightCornerLine(const TuiRect rect, const int depth)
 	const int rect_corner_end_x = rect_right_x - depth;
 	const int rect_corner_end_y = rect_top_y + depth;
 	TuiLine ret = { rect_right_x, rect_top_y, rect_corner_end_x, rect_corner_end_y };
-}
+	return ret;
+ }
 
 TuiLine tuiRectGetBottomLeftCornerLine(const TuiRect rect, const int depth)
 {
@@ -146,30 +145,12 @@ TuiLine tuiRectGetBottomRightCornerLine(const TuiRect rect, const int depth)
 	return ret;
 }
 
-TuiVLine tuiRectGetRightVLine(const TuiRect rect)
-{
-	const int rect_right_x = _tuiRectGetRightX(rect);
-	const int rect_top_y = _tuiRectGetTopY(rect);
-	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiVLine ret = { rect_right_x, rect_bottom_y,  rect_top_y }; // clockwise
-	return ret;
-}
-
 TuiLine tuiRectGetRightLine(const TuiRect rect)
 {
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
 	TuiLine ret = { rect_right_x, rect_bottom_y, rect_right_x, rect_top_y }; // clockwise
-	return ret;
-}
-
-TuiVLine tuiRectGetLeftVLine(const TuiRect rect)
-{
-	const int rect_left_x = _tuiRectGetLeftX(rect);
-	const int rect_top_y = _tuiRectGetTopY(rect);
-	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiVLine ret = { rect_left_x, rect_top_y, rect_bottom_y }; // clockwise
 	return ret;
 }
 
@@ -182,30 +163,12 @@ TuiLine tuiRectGetLeftLine(const TuiRect rect)
 	return ret;
 }
 
-TuiHLine tuiRectGetTopHLine(const TuiRect rect)
-{
-	const int rect_left_x = _tuiRectGetLeftX(rect);
-	const int rect_right_x = _tuiRectGetRightX(rect);
-	const int rect_top_y = _tuiRectGetTopY(rect);
-	TuiHLine ret = { rect_left_x, rect_right_x, rect_top_y }; // clockwise
-	return ret;
-}
-
 TuiLine tuiRectGetTopLine(const TuiRect rect)
 {
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	TuiLine ret = { rect_left_x, rect_top_y, rect_right_x, rect_top_y }; // clockwise
-	return ret;
-}
-
-TuiHLine tuiRectGetBottomHLine(const TuiRect rect)
-{
-	const int rect_left_x = _tuiRectGetLeftX(rect);
-	const int rect_right_x = _tuiRectGetRightX(rect);
-	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiHLine ret = { rect_right_x, rect_left_x, rect_bottom_y }; // clockwise
 	return ret;
 }
 
@@ -248,36 +211,6 @@ TuiBoolean tuiRectContainsLine(const TuiRect rect, const TuiLine line)
 	return rect_contains_line;
 }
 
-TuiBoolean tuiRectContainsHLine(const TuiRect rect, const TuiHLine h_line)
-{
-	if (rect.width <= 0 || rect.height <= 0)
-	{
-		return TUI_FALSE;
-	}
-	const int rect_far_x = rect.x + rect.width - 1;
-	const int rect_far_y = rect.y + rect.height - 1;
-	TuiBoolean rect_contains_h_line =
-		(rect.x <= h_line.start_x) && (rect_far_x >= h_line.start_x) &&
-		(rect.x <= h_line.end_x) && (rect_far_x >= h_line.end_x) &&
-		(rect.y <= h_line.y) && (rect_far_y >= h_line.y);
-	return rect_contains_h_line;
-}
-
-TuiBoolean tuiRectContainsVLine(const TuiRect rect, const TuiVLine v_line)
-{
-	if (rect.width <= 0 || rect.height <= 0)
-	{
-		return TUI_FALSE;
-	}
-	const int rect_far_x = rect.x + rect.width - 1;
-	const int rect_far_y = rect.y + rect.height - 1;
-	TuiBoolean rect_contains_v_line =
-		(rect.x <= v_line.x) && (rect_far_x >= v_line.x) &&
-		(rect.x <= v_line.start_y) && (rect_far_y >= v_line.start_y) &&
-		(rect.y <= v_line.end_y) && (rect_far_y >= v_line.end_y);
-	return rect_contains_v_line;
-}
-
 TuiBoolean tuiRectContainsRect(const TuiRect rect_1, const TuiRect rect_2)
 {
 	if (rect_1.width <= 0 || rect_1.height <= 0 || rect_2.width <= 0 || rect_2.height <= 0)
@@ -303,39 +236,11 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 		return TUI_FALSE;
 	}
 	TuiBoolean rect_intersects_line = 
-		tuiLineIntersectsVLine(line, tuiRectGetLeftVLine(rect)) ||
-		tuiLineIntersectsVLine(line, tuiRectGetRightVLine(rect)) ||
-		tuiLineIntersectsHLine(line, tuiRectGetTopHLine(rect)) ||
-		tuiLineIntersectsHLine(line, tuiRectGetBottomHLine(rect));
+		tuiLineIntersectsLine(line, tuiRectGetLeftLine(rect)) ||
+		tuiLineIntersectsLine(line, tuiRectGetTopLine(rect)) ||
+		tuiLineIntersectsLine(line, tuiRectGetRightLine(rect)) ||
+		tuiLineIntersectsLine(line, tuiRectGetBottomLine(rect));
 	return rect_intersects_line;
-}
-
-TuiBoolean tuiRectIntersectsHLine(const TuiRect rect, const TuiHLine h_line)
-{
-	if (rect.width <= 0 || rect.height <= 0)
-	{
-		return TUI_FALSE;
-	}
-	TuiBoolean rect_intersects_h_line =
-		tuiHLineIntersectsVLine(h_line, tuiRectGetLeftVLine(rect)) ||
-		tuiHLineIntersectsVLine(h_line, tuiRectGetRightVLine(rect)) ||
-		tuiHLineIntersectsHLine(h_line, tuiRectGetTopHLine(rect)) ||
-		tuiHLineIntersectsHLine(h_line, tuiRectGetBottomHLine(rect));
-	return rect_intersects_h_line;
-}
-
-TuiBoolean tuiRectIntersectsVLine(const TuiRect rect, const TuiVLine v_line)
-{
-	if (rect.width <= 0 || rect.height <= 0)
-	{
-		return TUI_FALSE;
-	}
-	TuiBoolean rect_intersects_v_line =
-		tuiVLineIntersectsVLine(v_line, tuiRectGetLeftVLine(rect)) ||
-		tuiVLineIntersectsVLine(v_line, tuiRectGetRightVLine(rect)) ||
-		tuiVLineIntersectsHLine(v_line, tuiRectGetTopHLine(rect)) ||
-		tuiVLineIntersectsHLine(v_line, tuiRectGetBottomHLine(rect));
-	return rect_intersects_v_line;
 }
 
 TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2)

@@ -207,21 +207,6 @@ TuiLine tuiRectGetBottomLeftCornerLine(const TuiRect rect, const int depth);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetBottomRightCornerLine(const TuiRect rect, const int depth);
-/*!
- * @brief Get the @ref TuiVLine on the right border of a @ref TuiRect.
- *
- * @param rect The @ref TuiRect.
- *
- * @returns The @ref TuiVLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiVLine tuiRectGetRightVLine(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiLine on the right border of a @ref TuiRect.
  *
@@ -241,20 +226,6 @@ TuiLine tuiRectGetRightLine(const TuiRect rect);
  *
  * @param rect The @ref TuiRect.
  *
- * @returns The @ref TuiVLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiVLine tuiRectGetLeftVLine(const TuiRect rect);
-/*!
- * @brief Get the @ref TuiVLine on the left border of a @ref TuiRect.
- *
- * @param rect The @ref TuiRect.
- *
  * @returns The @ref TuiLine.
  *
  * @errors This function can have no error codes.
@@ -264,20 +235,6 @@ TuiVLine tuiRectGetLeftVLine(const TuiRect rect);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiLine tuiRectGetLeftLine(const TuiRect rect);
-/*!
- * @brief Get the @ref TuiHLine on the top border of a @ref TuiRect.
- *
- * @param rect The @ref TuiRect.
- *
- * @returns The @ref TuiHLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiHLine tuiRectGetTopHLine(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiLine on the top border of a @ref TuiRect.
  *
@@ -292,20 +249,6 @@ TuiHLine tuiRectGetTopHLine(const TuiRect rect);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiLine tuiRectGetTopLine(const TuiRect rect);
-/*!
- * @brief Get the @ref TuiHLine on the bottom border of a @ref TuiRect.
- *
- * @param rect The @ref TuiRect.
- *
- * @returns The @ref TuiHLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiHLine tuiRectGetBottomHLine(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiLine on the bottom border of a @ref TuiRect.
  *
@@ -353,38 +296,6 @@ TuiBoolean tuiRectContainsPoint2(const TuiRect rect, const TuiPoint2 point2);
  */
 TuiBoolean tuiRectContainsLine(const TuiRect rect, const TuiLine line);
 /*!
- * @brief Get if a @ref TuiRect contains a @ref TuiHLine,
- *
- * @param rect The @ref TuiRect.
- * @param h_line The @ref TuiHLine
- *
- * @returns The @ref TuiBoolean result. If the h_line is in rect, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiRectContainsHLine(const TuiRect rect, const TuiHLine h_line);
-/*!
- * @brief Get if a @ref TuiRect contains a @ref TuiVLine,
- *
- * @param rect The @ref TuiRect.
- * @param v_line The @ref TuiVLine
- *
- * @returns The @ref TuiBoolean result. If the v_line is in rect, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiRectContainsVLine(const TuiRect rect, const TuiVLine v_line);
-/*!
  * @brief Get if a @ref TuiRect contains a @ref TuiRect,
  *
  * @param rect_1 The @ref TuiRect that contains rect_2.
@@ -416,38 +327,6 @@ TuiBoolean tuiRectContainsRect(const TuiRect rect_1, const TuiRect rect_2);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line);
-/*!
- * @brief Get if a @ref TuiRect intersects a @ref TuiHLine.
- *
- * @param rect The @ref TuiRect.
- * @param h_line The @ref TuiHLine
- *
- * @returns The @ref TuiBoolean result. If the rect intersects h_line, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiRectIntersectsHLine(const TuiRect rect, const TuiHLine h_line);
-/*!
- * @brief Get if a @ref TuiRect intersects a @ref TuiVLine.
- *
- * @param rect The @ref TuiRect.
- * @param v_line The @ref TuiVLine
- *
- * @returns The @ref TuiBoolean result. If the rect intersects v_line, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiRectIntersectsVLine(const TuiRect rect, const TuiVLine v_line);
 /*!
  * @brief Get if a @ref TuiRect intersect.
  *

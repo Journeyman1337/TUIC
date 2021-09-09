@@ -167,94 +167,6 @@ typedef struct TuiLineIt
 	int position;
 } TuiLineIt;
 /*!
- * \brief A 2D tile line segment with a slope of 0.
- */
-typedef struct TuiHLine
-{
-	/*!
-	 * \brief The x coordinate of the line start point.
-	 */
-	int start_x;
-	/*!
-	 * \brief The x coordinate of the line end point.
-	 */
-	int end_x;
-	/*!
-	 * \brief The y intercept of the line.
-	 */
-	int y;
-} TuiHLine;
-/*!
- * \brief An iterator that goes over every point in a @ref TuiHLine.
- */
-typedef struct TuiHLineIt
-{
-	/*!
-	 * \brief The x coordinate of the line start point.
-	 */
-	const int start_x;
-	/*!
-	 * \brief The x coordinate of the line end point.
-	 */
-	const int end_x;
-	/*!
-	 * \brief The y intercept of the line.
-	 */
-	const int y;
-	/*!
-	 * \brief The length of the line.
-	 */
-	const int length;
-	/*!
-	 * \brief The index of the line iterator algorithm.
-	 */
-	int position;
-} TuiHLineIt;
-/*!
- * \brief A 2D tile line segment with an undefined slope.
- */
-typedef struct TuiVLine
-{
-	/*!
-	 * \brief The x intercept of the line.
-	 */
-	int x;
-	/*!
-	 * \brief The y coordinate of the line start point.
-	 */
-	int start_y;
-	/*!
-	 * \brief The y coordinate of the line end point.
-	 */
-	int end_y;
-} TuiVLine;
-/*!
- * \brief A 2D tile line segment with an undefined slope.
- */
-typedef struct TuiVLineIt
-{
-	/*!
-	 * \brief The x intercept of the line.
-	 */
-	const int x;
-	/*!
-	 * \brief The y coordinate of the line start point.
-	 */
-	const int start_y;
-	/*!
-	 * \brief The y coordinate of the line end point.
-	 */
-	const int end_y;
-	/*!
-	 * \brief The length of the line.
-	 */
-	const int length;
-	/*!
-	 * \brief The index of the line iterator algorithm.
-	 */
-	int position;
-} TuiVLineIt;
-/*!
  * \brief A 2D tile rect.
  */
 typedef struct TuiRect
@@ -306,7 +218,38 @@ typedef struct TuiRectIt
 	 */
 	int cur_y_position;
 } TuiRectIt;
+/*!
+ * \brief A 2D horizontally parallel trapezoid.
+ */
 /*! @} */
+typedef struct TuiCircle
+{
+	int center_x;
+	int center_y;
+	float radius;
+} TuiCircle;
+
+typedef struct TuiCircleIt
+{
+	int dummy;
+} TuiCircleIt;
+
+
+typedef struct TuiListPath_s* TuiListPath;
+
+typedef struct TuiListPathIt
+{
+	void* cur_point; // of type TuiListPathPoint_s*
+} TuiListPathIt;
+
+typedef struct TuiArrayPath_s* TuiArrayPath;
+
+typedef struct TuiArrayPathIt
+{
+	TuiArrayPath path;
+	size_t index;
+} TuiArrayPathIt;
+
 #ifdef __cplusplus // extern C guard
 }
 #endif

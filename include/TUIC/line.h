@@ -201,22 +201,6 @@ TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2);
  */
 TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2);
 /*!
- * @brief Get if a @ref TuiLine contains a @ref TuiHLine.
- *
- * @param line The @ref TuiLine.
- * @param h_line The @ref TuiHLine to check for.
- *
- * @returns The @ref TuiBoolean result. If the line contains the line, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiLineContainsHLine(const TuiLine line, const TuiHLine h_line);
-/*!
  * @brief Get if two @ref TuiLine intersect each other.
  *
  * @param line_1 The first @ref TuiLine.
@@ -232,38 +216,6 @@ TuiBoolean tuiLineContainsHLine(const TuiLine line, const TuiHLine h_line);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2);
-/*!
- * @brief Get if a @ref TuiLine intersects a @ref TuiHLine.
- *
- * @param line The @ref TuiLine.
- * @param h_line The @ref TuiHLine.
- *
- * @returns The @ref TuiBoolean result. If the lines intersect, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiLineIntersectsHLine(const TuiLine line, const TuiHLine h_line);
-/*!
- * @brief Get if a @ref TuiLine intersects a @ref TuiVLine.
- *
- * @param line The @ref TuiLine.
- * @param v_line The @ref TuiVLine.
- *
- * @returns The @ref TuiBoolean result. If the lines are intersect, it
- * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiBoolean tuiLineIntersectsVLine(const TuiLine line, const TuiVLine v_line);
 /*!
  * @brief Get if a @ref TuiLine intersects a @ref TuiRect.
  *

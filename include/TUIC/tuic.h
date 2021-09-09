@@ -38,8 +38,6 @@
 #include <TUIC/error_code.h>
 #include <TUIC/events.h>
 #include <TUIC/filter_mode.h>
-#include <TUIC/h_line.h>
-#include <TUIC/h_line_it.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
 #include <TUIC/keyboard_key.h>
@@ -51,13 +49,10 @@
 #include <TUIC/palette.h>
 #include <TUIC/panel.h>
 #include <TUIC/point2.h>
-#include <TUIC/point3.h>
 #include <TUIC/rect.h>
 #include <TUIC/rect_it.h>
 #include <TUIC/system.h>
 #include <TUIC/texture.h>
 #include <TUIC/time.h>
 #include <TUIC/types.h>
-#include <TUIC/v_line.h>
-#include <TUIC/v_line_it.h>
 #include <TUIC/window.h>

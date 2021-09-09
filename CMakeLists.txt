@@ -36,8 +36,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/glfw_error_check.h
-	${CMAKE_CURRENT_SOURCE_DIR}/src/h_line.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/h_line_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
@@ -50,15 +48,12 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/panel.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/point2.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/point3.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/rect.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/rect_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/time.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/v_line.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/v_line_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c
 	# Vendor Source Files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
@@ -82,8 +77,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/error_code.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/events.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_line.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/h_line_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_key.h
@@ -95,7 +88,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point2.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point3.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
@@ -103,8 +95,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/tuic.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/types.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_line.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/v_line_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/window.h
 )
 
