@@ -42,7 +42,7 @@ void tuiRectItStepForward(TuiRectIt* const it)
 	else
 	{
 		it->cur_y_position++;
-		it->cur_x_position = it->right_x;
+		it->cur_x_position = it->left_x;
 	}
 }
 
