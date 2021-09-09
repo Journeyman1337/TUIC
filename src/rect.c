@@ -108,7 +108,7 @@ TuiLine tuiRectGetRightLine(const TuiRect rect)
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_right_x, rect_bottom_y, rect_right_x, rect_top_y }; // clockwise
+	TuiLine ret = { rect_right_x, rect_bottom_y - 1, rect_right_x, rect_top_y + 1 }; // clockwise
 	return ret;
 }
 
@@ -117,7 +117,7 @@ TuiLine tuiRectGetLeftLine(const TuiRect rect)
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_left_x, rect_top_y, rect_left_x, rect_bottom_y }; // clockwise
+	TuiLine ret = { rect_left_x, rect_top_y + 1, rect_left_x, rect_bottom_y - 1 }; // clockwise
 	return ret;
 }
 
@@ -126,7 +126,7 @@ TuiLine tuiRectGetTopLine(const TuiRect rect)
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
-	TuiLine ret = { rect_left_x, rect_top_y, rect_right_x, rect_top_y }; // clockwise
+	TuiLine ret = { rect_left_x + 1, rect_top_y, rect_right_x - 1, rect_top_y }; // clockwise
 	return ret;
 }
 
@@ -135,7 +135,7 @@ TuiLine tuiRectGetBottomLine(const TuiRect rect)
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_right_x, rect_bottom_y, rect_left_x, rect_bottom_y }; // clockwise
+	TuiLine ret = { rect_right_x - 1, rect_bottom_y, rect_left_x + 1, rect_bottom_y }; // clockwise
 	return ret;
 }
 
