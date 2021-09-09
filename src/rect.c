@@ -139,6 +139,12 @@ TuiLine tuiRectGetBottomLine(const TuiRect rect)
 	return ret;
 }
 
+TuiRect tuiRectGetInnerRect(const TuiRect rect)
+{
+	TuiRect ret = { rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 2 };
+	return ret;
+}
+
 TuiBoolean tuiRectContainsPoint2(const TuiRect rect, const TuiPoint2 point2)
 {
 	if (rect.width <= 0 || rect.height <= 0)

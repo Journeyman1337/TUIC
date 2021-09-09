@@ -205,6 +205,20 @@ TuiLine tuiRectGetTopLine(const TuiRect rect);
  */
 TuiLine tuiRectGetBottomLine(const TuiRect rect);
 /*!
+ * @brief Get the inner rect of a @ref TuiRect, not including its corners or borders.
+ *
+ * @param rect The @ref TuiRect.
+ *
+ * @returns The inner @ref TuiRect.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiRect tuiRectGetInnerRect(const TuiRect rect);
+/*!
  * @brief Get if a @ref TuiRect contains a @ref TuiPoint2,
  *
  * @param rect The @ref TuiRect.
