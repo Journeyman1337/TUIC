@@ -55,7 +55,7 @@ int tuiLineGetDiagonalLength(const TuiLine line)
 {
 	const int x_distance = abs(line.start_x - line.end_x); // calculate distances between coordinates
 	const int y_distance = abs(line.start_y - line.end_y);
-	const int largest_difference = (x_distance > y_distance) ? x_distance : y_distance; // get the largest difference
+	const int largest_difference = (x_distance > y_distance) ? x_distance + 1 : y_distance + 1; // get the largest difference
 	return largest_difference;
 }
 
