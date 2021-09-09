@@ -30,7 +30,7 @@ TuiRectIt tuiRectIt(const TuiRect rect)
 
 TuiBoolean tuiRectDone(const TuiRectIt it)
 {
-	return (it.cur_y_position < it.top_y || it.cur_x_position < it.left_x || it.cur_y_position > it.bottom_y || it.cur_x_position > it.right_x);
+	return it.cur_x_position > it.right_x || it.cur_y_position > it.bottom_y || it.cur_x_position < it.left_x || it.cur_y_position < it.top_y;
 }
 
 void tuiRectItStepForward(TuiRectIt* const it)
