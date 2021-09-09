@@ -234,22 +234,6 @@ typedef struct TuiCircleIt
 	int dummy;
 } TuiCircleIt;
 
-
-typedef struct TuiListPath_s* TuiListPath;
-
-typedef struct TuiListPathIt
-{
-	void* cur_point; // of type TuiListPathPoint_s*
-} TuiListPathIt;
-
-typedef struct TuiArrayPath_s* TuiArrayPath;
-
-typedef struct TuiArrayPathIt
-{
-	TuiArrayPath path;
-	size_t index;
-} TuiArrayPathIt;
-
 #ifdef __cplusplus // extern C guard
 }
 #endif
