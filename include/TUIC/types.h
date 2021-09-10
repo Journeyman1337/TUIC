@@ -97,24 +97,6 @@ typedef struct TuiPoint2
 	int y;
 } TuiPoint2;
 /*!
- * \brief A 3D tile coordinate position.
- */
-typedef struct TuiPoint3
-{
-	/*!
-	 * \brief The x coordinate of the point.
-	 */
-	int x;
-	/*!
-	 * \brief The y coordinate of the point.
-	 */
-	int y;
-	/*!
-	 * \brief The z coordinate of the point.
-	 */
-	int z;
-} TuiPoint3;
-/*!
  * \brief A 2D tile line segment with a start and an end.
  */
 typedef struct TuiLine
