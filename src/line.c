@@ -114,53 +114,47 @@ TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
 	return line_contains_line;
 }
 
+static inline int _Point2Cross(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
+{
+	return (point2_3.x - point2_2.x) * (point2_2.y - point2_1.y) - (point2_2.x - point2_1.x) * (point2_3.y - point2_2.y);
+}
+
+#define MAX(a, b) ((a > b) ? a : b)
+#define MIN(a, b) ((a < b) ? a : b)
+
+static inline int _Point2OnCollinearLine(const TuiPoint2 line_start, const TuiPoint2 line_end, const TuiPoint2 point)
+{
+	return (
+		(point.x <= MAX(line_start.x, line_end.x)) &&
+		(point.x >= MIN(line_start.x, line_end.x)) &&
+		(point.y <= MAX(line_start.y, line_end.y)) &&
+		(point.y >= MIN(line_start.y, line_end.y))
+		);
+}
+
+#define SIGN(x) ((x > 0) - (x < 0))
+
 TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 {
-	const float determinant = tuiLinesGetCrossProduct(line_1 , line_2);
-	if (determinant == 0) // if the lines are parallel... (avoid divide by 0 error later)
+	const TuiPoint2 line_1_start_point2 = tuiLineGetStartPoint2(line_1);
+	const TuiPoint2 line_1_end_point2 = tuiLineGetEndPoint2(line_1);
+	const TuiPoint2 line_2_start_point2 = tuiLineGetStartPoint2(line_2);
+	const TuiPoint2 line_2_end_point2 = tuiLineGetEndPoint2(line_2);
+	const int cross_1 = _Point2Cross(line_1_start_point2, line_2_start_point2, line_1_end_point2);
+	const int cross_2 = _Point2Cross(line_1_start_point2, line_2_start_point2, line_2_end_point2);
+	if (SIGN(cross_1) != SIGN(cross_2)) // if sign of cross_1 is not equal to sign of cross_2
 	{
-		// use slope forumla. since lines are parallel, this is same for both lines.
-		TuiBoolean collinear = TUI_FALSE;
-		if (line_1.start_x == line_1.end_x) // if slopes are undefined... (avoid another divide by 0 error later)
-		{
-			collinear = (line_1.start_x == line_2.start_x); // if the x positions are the same they are collinear
-		}
-		else
-		{
-			const float slope = (float)(line_1.start_x - line_1.end_x) / (float)(line_1.start_y - line_1.end_y);
-			const float line_1_y_intercept = (float)line_1.start_y - (slope * (float)line_1.start_x);
-			const float line_2_y_intercept = (float)line_2.start_y - (slope * (float)line_2.start_x);
-			collinear = (line_1_y_intercept == line_2_y_intercept);
-		}
-		if (!collinear)
-		{
-			return TUI_FALSE;
-		}
-		const int max_line_1_x = (line_1.start_x > line_1.end_x) ? line_1.start_x : line_1.end_x; // calculate largest line x.
-		const int min_line_1_x = (line_1.start_x < line_1.end_x) ? line_1.start_x : line_1.end_x; // calculate smallest line x.
-		const int max_line_1_y = (line_1.start_y > line_1.end_y) ? line_1.start_y : line_1.end_y; // calculate largest line y.
-		const int min_line_1_y = (line_1.start_y < line_1.end_y) ? line_1.start_y : line_1.end_y; // calculate smallest line y.
-		TuiBoolean point_on_line = ( // if one of the points are on the line...
-			(max_line_1_x >= line_2.start_x && min_line_1_x <= line_2.start_x && max_line_1_y >= line_2.start_y && min_line_1_y <= line_2.start_y) ||
-			(max_line_1_x >= line_2.end_x && min_line_1_x <= line_2.end_x && max_line_1_y >= line_2.end_y && min_line_1_y <= line_2.end_y)
-		);
-		if (point_on_line)
-		{
-			return TUI_TRUE;
-		}
-		const int max_line_2_x = (line_2.start_x > line_2.end_x) ? line_2.start_x : line_2.end_x; // calculate largest line x.
-		const int min_line_2_x = (line_2.start_x < line_2.end_x) ? line_2.start_x : line_2.end_x; // calculate smallest line x.
-		const int max_line_2_y = (line_2.start_y > line_2.end_y) ? line_2.start_y : line_2.end_y; // calculate largest line y.
-		const int min_line_2_y = (line_2.start_y < line_2.end_y) ? line_2.start_y : line_2.end_y; // calculate smallest line y.
-		TuiBoolean line_engulfs_line = ( 
-			(max_line_2_x > max_line_1_x && max_line_2_y > max_line_1_y && min_line_2_x < min_line_1_x && min_line_2_y < min_line_1_y) || // if line_2 engulfs line_1
-			(max_line_1_x > max_line_2_x && max_line_1_y > max_line_2_y && min_line_1_x < min_line_2_x && min_line_1_y < min_line_2_y) // if line_1 engulfs line_2
-		);
-		return line_engulfs_line;
+		return TUI_TRUE;
 	}
-	const float lambda = (float)((line_2.end_y - line_2.start_y) * (line_2.end_x - line_1.start_x) + (line_2.start_x - line_2.end_x) * (line_2.end_y - line_1.start_y)) / determinant;
-	const float gamma = (float)((line_1.start_y - line_1.end_y) * (line_2.end_x - line_1.start_x) + (line_1.end_x - line_1.start_x) * (line_2.end_y - line_1.start_y)) / determinant;
-	return (0.0f < lambda && lambda < 1.0f) && (0.0f < gamma && gamma < 1.0f);
+	const int cross_3 = _Point2Cross(line_1_end_point2, line_2_end_point2, line_1_start_point2);
+	const int cross_4 = _Point2Cross(line_1_end_point2, line_2_end_point2, line_2_start_point2);
+	return (
+		(SIGN(cross_3) != SIGN(cross_4)) || // if sign of cross_3 is not equal to sign of cross_4
+		(cross_1 == 0 && _Point2OnCollinearLine(line_1_start_point2, line_2_start_point2, line_1_end_point2)) ||
+		(cross_2 == 0 && _Point2OnCollinearLine(line_1_start_point2, line_2_start_point2, line_2_end_point2)) ||
+		(cross_3 == 0 && _Point2OnCollinearLine(line_1_end_point2, line_2_end_point2, line_1_start_point2)) ||
+		(cross_4 == 0 && _Point2OnCollinearLine(line_1_end_point2, line_2_end_point2, line_2_start_point2))
+		);
 }
 
 TuiBoolean tuiLineIntersectsRect(const TuiLine line, const TuiRect rect)
