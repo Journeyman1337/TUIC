@@ -71,7 +71,7 @@ TuiBoolean tuiRectIsDegenerate(const TuiRect rect)
 	return degenerate;
 }
 
-TuiPoint2 tuiRectGetTopLeftCornerPoint2(const TuiRect rect)
+TuiPoint2 tuiRectGetTopLeftInnerCornerPoint2(const TuiRect rect)
 {
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
@@ -79,7 +79,7 @@ TuiPoint2 tuiRectGetTopLeftCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiPoint2 tuiRectGetTopRightCornerPoint2(const TuiRect rect)
+TuiPoint2 tuiRectGetTopRightInnerCornerPoint2(const TuiRect rect)
 {
 	const int rect_right_x = _tuiRectGetRightX(rect);
 	const int rect_top_y = _tuiRectGetTopY(rect);
@@ -87,7 +87,7 @@ TuiPoint2 tuiRectGetTopRightCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiPoint2 tuiRectGetBottomLeftCornerPoint2(const TuiRect rect)
+TuiPoint2 tuiRectGetBottomLeftInnerCornerPoint2(const TuiRect rect)
 {
 	const int rect_left_x = _tuiRectGetLeftX(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
@@ -95,7 +95,7 @@ TuiPoint2 tuiRectGetBottomLeftCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect)
+TuiPoint2 tuiRectGetBottomRightInnerCornerPoint2(const TuiRect rect)
 {
 	const int right_x = _tuiRectGetRightX(rect);
 	const int bottom_y = _tuiRectGetBottomY(rect);
