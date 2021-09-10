@@ -31,13 +31,13 @@ TuiLine tuiLine(const int start_x, const int start_y, const int end_x, const int
 	return ret;
 }
 
-TuiPoint2 tuiLineGetStart(const TuiLine line)
+TuiPoint2 tuiLineGetStartPoint2(const TuiLine line)
 {
 	TuiPoint2 ret = { line.start_x, line.start_y };
 	return ret;
 }
 
-TuiPoint2 tuiLineGetEnd(const TuiLine line)
+TuiPoint2 tuiLineGetEndPoint2(const TuiLine line)
 {
 	TuiPoint2 ret = { line.end_x, line.end_y };
 	return ret;
@@ -90,8 +90,8 @@ TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
 {
-	const float line_start_distance = tuiPoint2Distance(tuiLineGetStart(line), point2);
-	const float line_end_distance = tuiPoint2Distance(tuiLineGetEnd(line), point2);
+	const float line_start_distance = tuiPoint2Distance(tuiLineGetStartPoint2(line), point2);
+	const float line_end_distance = tuiPoint2Distance(tuiLineGetEndPoint2(line), point2);
 	const float line_length = tuiLineGetLength(line);
 	const TuiBoolean point_on_line = (line_length == line_start_distance + line_end_distance); // point is on line if distance from line start to point added to distance from line end to point is equal to line length
 	return point_on_line;

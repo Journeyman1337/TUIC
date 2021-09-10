@@ -62,7 +62,7 @@ TuiLine tuiLine(const int start_x, const int start_y, const int end_x, const int
 *
 * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
 */
-TuiPoint2 tuiLineGetStart(const TuiLine line);
+TuiPoint2 tuiLineGetStartPoint2(const TuiLine line);
 /*!
 * @brief Get the ending point of a @ref TuiLine.
 *
@@ -76,7 +76,7 @@ TuiPoint2 tuiLineGetStart(const TuiLine line);
 *
 * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
 */
-TuiPoint2 tuiLineGetEnd(const TuiLine line);
+TuiPoint2 tuiLineGetEndPoint2(const TuiLine line);
 /*!
  * @brief Get the length of a @ref TuiLine.
  *
