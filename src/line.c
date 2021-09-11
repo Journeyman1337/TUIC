@@ -20,6 +20,7 @@
 #include <TUIC/line.h>
 #include <TUIC/point2.h>
 #include <TUIC/rect.h>
+#include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
@@ -112,24 +113,6 @@ TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
 		(min_line_y <= line_2.start_y && min_line_y <= line_2.end_y)
 		);
 	return line_contains_line;
-}
-
-static inline int _Point2Cross(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
-{
-	return (point2_3.x - point2_2.x) * (point2_2.y - point2_1.y) - (point2_2.x - point2_1.x) * (point2_3.y - point2_2.y);
-}
-
-#define MAX(a, b) ((a > b) ? a : b)
-#define MIN(a, b) ((a < b) ? a : b)
-
-static inline int _Point2OnCollinearLine(const TuiPoint2 line_start, const TuiPoint2 line_end, const TuiPoint2 point)
-{
-	return (
-		(point.x <= MAX(line_start.x, line_end.x)) &&
-		(point.x >= MIN(line_start.x, line_end.x)) &&
-		(point.y <= MAX(line_start.y, line_end.y)) &&
-		(point.y >= MIN(line_start.y, line_end.y))
-		);
 }
 
 #define SIGN(x) ((x > 0) - (x < 0))
