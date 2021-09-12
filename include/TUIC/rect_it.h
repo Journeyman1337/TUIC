@@ -99,7 +99,7 @@ void tuiRectItSetStart(TuiRectIt* const it);
 /*!
  * @brief Get the @ref TuiRect being iterated over by a @ref TuiRectIt.
  *
- * @param it The @ref TuiRectIt to get the line from.
+ * @param it The @ref TuiRectIt to get the rect from.
  *
  * @returns The @ref TuiRect the iterator is iterating over.
  *
