@@ -20,6 +20,7 @@
 #include <TUIC/rect.h>
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
+#include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
@@ -146,6 +147,27 @@ TuiLine tuiRectGetBottomInnerBorderLine(const TuiRect rect, const TuiBoolean cor
 TuiRect tuiRectGetInnerRect(const TuiRect rect, const int depth)
 {
 	TuiRect ret = { rect.x + depth, rect.y + depth, rect.width - (depth * 2), rect.height - (depth * 2) };
+	return ret;
+}
+
+TuiRect tuiRectGetCroppedRect(const TuiRect rect, const TuiRect crop_rect)
+{
+	if (crop_rect.width <= 0 || crop_rect.height <= 0 || rect.width <= 0 || rect.height <= 0)
+	{
+		TuiRect ret = { 0, 0, 0, 0 };
+		return ret;
+	}
+	const int crop_far_x = tuiRectGetFarX(crop_rect);
+	const int crop_far_y = tuiRectGetFarY(crop_rect);
+	const int rect_far_x = tuiRectGetFarX(crop_rect);
+	const int rect_far_y = tuiRectGetFarY(crop_rect);
+	const int ret_x = CLAMP(crop_rect.x, crop_far_x, rect.x);
+	const int ret_y = CLAMP(crop_rect.y, crop_far_y, rect.y);
+	const int ret_far_x = CLAMP(crop_rect.x, crop_far_x, rect_far_x);
+	const int ret_far_y = CLAMP(crop_rect.y, crop_far_y, rect_far_y);
+	const int ret_width = ret_far_x - ret_x;
+	const int ret_height = ret_far_y - ret_y;
+	TuiRect ret = {  ret_x, ret_y, ret_width, ret_height };
 	return ret;
 }
 

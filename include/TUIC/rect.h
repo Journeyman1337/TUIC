@@ -224,6 +224,21 @@ TuiLine tuiRectGetBottomInnerBorderLine(const TuiRect rect, const TuiBoolean cor
  */
 TuiRect tuiRectGetInnerRect(const TuiRect rect, const int depth);
 /*!
+ * @brief Get a cropped @ref TuiRect.
+ *
+ * @param rect The @ref TuiRect to crop.
+ * @param crop_rect The @ref TuiRect crop.
+ *
+ * @returns The cropped @ref TuiRect.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiRect tuiRectGetCroppedRect(const TuiRect rect, const TuiRect crop_rect);
+/*!
  * @brief Get if a @ref TuiRect contains a @ref TuiPoint2,
  *
  * @param rect The @ref TuiRect.
