@@ -22,6 +22,7 @@
 #include <math.h>
 #include <TUIC/easing.h>
 
+
 TuiCircleIt tuiCircleIt(const TuiCircle circle)
 {
 	const int top_y = (int)roundf((float)circle.center_y - circle.radius);
