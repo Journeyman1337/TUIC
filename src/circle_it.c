@@ -19,6 +19,8 @@
 */
 #include <TUIC/circle_it.h>
 #include <TUIC/circle.h>
+#include <TUIC/error_code.h>
+#include <TUIC/debug.h>
 #include <math.h>
 #include <TUIC/easing.h>
 
@@ -44,7 +46,7 @@ void tuiCircleItStepForward(TuiCircleIt* const it)
 {
 	if (it == TUI_NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
 		return;
 	}
 
@@ -68,7 +70,7 @@ void tuiCircleItSetStart(TuiCircleIt* const it)
 {
 	if (it == TUI_NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
 		return;
 	}
 

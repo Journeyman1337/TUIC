@@ -19,6 +19,8 @@
 */
 #include <TUIC/rect_it.h>
 #include <TUIC/rect.h>
+#include <TUIC/error_code.h>
+#include <TUIC/debug.h>
 #include <math.h>
 #include <TUIC/easing.h>
 
@@ -35,6 +37,12 @@ TuiBoolean tuiRectDone(const TuiRectIt it)
 
 void tuiRectItStepForward(TuiRectIt* const it)
 {
+	if (it == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		return;
+	}
+
 	if (it->cur_x_position < it->right_x)
 	{
 		it->cur_x_position++;
@@ -48,6 +56,12 @@ void tuiRectItStepForward(TuiRectIt* const it)
 
 void tuiRectItStepBackward(TuiRectIt* const it)
 {
+	if (it == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		return;
+	}
+
 	if (it->cur_x_position > it->left_x)
 	{
 		it->cur_x_position--;
@@ -61,6 +75,12 @@ void tuiRectItStepBackward(TuiRectIt* const it)
 
 void tuiRectItSetStart(TuiRectIt* const it)
 {
+	if (it == TUI_NULL)
+	{
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		return;
+	}
+
 	it->cur_x_position = it->left_x;
 	it->cur_y_position = it->top_y;
 }

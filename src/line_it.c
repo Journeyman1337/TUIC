@@ -19,6 +19,8 @@
 */
 #include <TUIC/line_it.h>
 #include <TUIC/line.h>
+#include <TUIC/error_code.h>
+#include <TUIC/debug.h>
 #include <math.h>
 #include <TUIC/easing.h>
 
@@ -51,7 +53,7 @@ void tuiLineItStepForward(TuiLineIt* const it)
 {
 	if (it == TUI_NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
 		return;
 	}
 
@@ -62,7 +64,7 @@ void tuiLineItStepBackward(TuiLineIt* const it)
 {
 	if (it == TUI_NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
 		return;
 	}
 
@@ -73,7 +75,7 @@ void tuiLineItSetStart(TuiLineIt* const it)
 {
 	if (it == TUI_NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
 		return;
 	}
 
@@ -84,7 +86,7 @@ void tuiLineItSetEnd(TuiLineIt* const it)
 {
 	if (it == TUI_NULL)
 	{
-		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
 		return;
 	}
 
