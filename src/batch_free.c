@@ -74,7 +74,7 @@ static inline void _BatchFreeSet_C32(TuiBatchFree_s* batch_free, size_t* data_in
 	batch_free->Data[(*data_index)++] = a;
 }
 
-void tuiBatchSetTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg)
+void tuiBatchPushTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -102,7 +102,7 @@ void tuiBatchSetTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
 	_BatchFreeSet_8(batch_free, &data_index, fg);
 }
 
-void tuiBatchSetTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
+void tuiBatchPushTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -130,7 +130,7 @@ void tuiBatchSetTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_C24(batch_free, &data_index, fg_r, fg_g, fg_b);
 }
 
-void tuiBatchSetTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
+void tuiBatchPushTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
 	if (batch == TUI_NULL)
 	{
@@ -158,7 +158,7 @@ void tuiBatchSetTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_C32(batch_free, &data_index, fg_r, fg_g, fg_b, fg_a);
 }
 
-void tuiBatchSetTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph)
+void tuiBatchPushTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph)
 {
 	if (batch == TUI_NULL)
 	{
@@ -186,7 +186,7 @@ void tuiBatchSetTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
 	_BatchFreeSet_8(batch_free, &data_index, glyph);
 }
 
-void tuiBatchSetTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t colors)
+void tuiBatchPushTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t colors)
 {
 	if (batch == TUI_NULL)
 	{
@@ -215,7 +215,7 @@ void tuiBatchSetTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
 	_BatchFreeSet_8(batch_free, &data_index, colors);
 }
 
-void tuiBatchSetTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg, uint8_t bg)
+void tuiBatchPushTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg, uint8_t bg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -245,7 +245,7 @@ void tuiBatchSetTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
 	_BatchFreeSet_8(batch_free, &data_index, bg);
 }
 
-void tuiBatchSetTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg)
+void tuiBatchPushTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -274,7 +274,7 @@ void tuiBatchSetTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
 	_BatchFreeSet_8(batch_free, &data_index, fg);
 }
 
-void tuiBatchSetTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg)
+void tuiBatchPushTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -303,7 +303,7 @@ void tuiBatchSetTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
 	_BatchFreeSet_8(batch_free, &data_index, bg);
 }
 
-void tuiBatchSetTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
+void tuiBatchPushTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -333,7 +333,7 @@ void tuiBatchSetTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8
 	_BatchFreeSet_C24(batch_free, &data_index, bg_r, bg_g, bg_b);
 }
 
-void tuiBatchSetTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
+void tuiBatchPushTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -362,7 +362,7 @@ void tuiBatchSetTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_C24(batch_free, &data_index, fg_r, fg_g, fg_b);
 }
 
-void tuiBatchSetTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
+void tuiBatchPushTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -391,7 +391,7 @@ void tuiBatchSetTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_C24(batch_free, &data_index, bg_r, bg_g, bg_b);
 }
 
-void tuiBatchSetTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
+void tuiBatchPushTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
 	if (batch == TUI_NULL)
 	{
@@ -421,7 +421,7 @@ void tuiBatchSetTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8
 	_BatchFreeSet_C32(batch_free, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
 
-void tuiBatchSetTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
+void tuiBatchPushTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
 	if (batch == TUI_NULL)
 	{
@@ -450,7 +450,7 @@ void tuiBatchSetTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_C32(batch_free, &data_index, fg_r, fg_g, fg_b, fg_a);
 }
 
-void tuiBatchSetTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
+void tuiBatchPushTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
 	if (batch == TUI_NULL)
 	{
@@ -479,7 +479,7 @@ void tuiBatchSetTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_C32(batch_free, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
 
-void tuiBatchSetTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph)
+void tuiBatchPushTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph)
 {
 	if (batch == TUI_NULL)
 	{
@@ -507,7 +507,7 @@ void tuiBatchSetTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
 	_BatchFreeSet_16(batch_free, &data_index, glyph);
 }
 
-void tuiBatchSetTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t colors)
+void tuiBatchPushTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t colors)
 {
 	if (batch == TUI_NULL)
 	{
@@ -536,7 +536,7 @@ void tuiBatchSetTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
 	_BatchFreeSet_8(batch_free, &data_index, colors);
 }
 
-void tuiBatchSetTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg, uint8_t bg)
+void tuiBatchPushTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg, uint8_t bg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -566,7 +566,7 @@ void tuiBatchSetTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
 	_BatchFreeSet_8(batch_free, &data_index, bg);
 }
 
-void tuiBatchSetTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg)
+void tuiBatchPushTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -595,7 +595,7 @@ void tuiBatchSetTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_8(batch_free, &data_index, fg);
 }
 
-void tuiBatchSetTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg)
+void tuiBatchPushTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg)
 {
 	if (batch == TUI_NULL)
 	{
@@ -624,7 +624,7 @@ void tuiBatchSetTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
 	_BatchFreeSet_8(batch_free, &data_index, bg);
 }
 
-void tuiBatchSetTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
+void tuiBatchPushTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -654,7 +654,7 @@ void tuiBatchSetTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint
 	_BatchFreeSet_C24(batch_free, &data_index, bg_r, bg_g, bg_b);
 }
 
-void tuiBatchSetTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
+void tuiBatchPushTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -683,7 +683,7 @@ void tuiBatchSetTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	_BatchFreeSet_C24(batch_free, &data_index, fg_r, fg_g, fg_b);
 }
 
-void tuiBatchSetTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
+void tuiBatchPushTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b)
 {
 	if (batch == TUI_NULL)
 	{
@@ -712,7 +712,7 @@ void tuiBatchSetTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	_BatchFreeSet_C24(batch_free, &data_index, bg_r, bg_g, bg_b);
 }
 
-void tuiBatchSetTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
+void tuiBatchPushTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
 	if (batch == TUI_NULL)
 	{
@@ -742,7 +742,7 @@ void tuiBatchSetTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint
 	_BatchFreeSet_C32(batch_free, &data_index, bg_r, bg_g, bg_b, bg_a);
 }
 
-void tuiBatchSetTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
+void tuiBatchPushTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a)
 {
 	if (batch == TUI_NULL)
 	{
@@ -771,7 +771,7 @@ void tuiBatchSetTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
 	_BatchFreeSet_C32(batch_free, &data_index, fg_r, fg_g, fg_b, fg_a);
 }
 
-void tuiBatchSetTile_G16_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
+void tuiBatchPushTile_G16_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a)
 {
 	if (batch == TUI_NULL)
 	{

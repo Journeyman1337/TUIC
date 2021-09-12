@@ -135,7 +135,7 @@ TuiDetailMode tuiBatchGetDetail(TuiBatch batch);
  *
  * @thread_safety This function can be called safely on any thread. However, it is important to manipulate and use each @ref TuiBatch on only one thread at a time to ensure safe memory access.
  */
-void tuiBatchSetTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra);
+void tuiBatchPushTileDimensions(TuiBatch batch, int tiles_wide, int tiles_tall, TuiBoolean reserve_extra);
 /*!
  * @brief Get the tile dimensions of a @ref TuiBatch.
  *

@@ -44,7 +44,7 @@ extern "C" {
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg);
+void tuiBatchPushTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C24NBG_FREE detail mode.
  *
@@ -61,7 +61,7 @@ void tuiBatchSetTile_G0_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
+void tuiBatchPushTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G0_C32NBG_FREE detail mode.
  *
@@ -79,7 +79,7 @@ void tuiBatchSetTile_G0_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
+void tuiBatchPushTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C0_FREE detail mode.
  *
@@ -94,7 +94,7 @@ void tuiBatchSetTile_G0_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph);
+void tuiBatchPushTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C4_FREE detail mode.
  *
@@ -110,7 +110,7 @@ void tuiBatchSetTile_G8_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t colors);
+void tuiBatchPushTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t colors);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8_FREE detail mode.
  *
@@ -127,7 +127,7 @@ void tuiBatchSetTile_G8_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg, uint8_t bg);
+void tuiBatchPushTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg, uint8_t bg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8NBG_FREE detail mode.
  *
@@ -143,7 +143,7 @@ void tuiBatchSetTile_G8_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg);
+void tuiBatchPushTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C8NFG_FREE detail mode.
  *
@@ -159,7 +159,7 @@ void tuiBatchSetTile_G8_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg);
+void tuiBatchPushTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24_FREE detail mode.
  *
@@ -180,7 +180,7 @@ void tuiBatchSetTile_G8_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uin
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
+void tuiBatchPushTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24NBG_FREE detail mode.
  *
@@ -198,7 +198,7 @@ void tuiBatchSetTile_G8_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
+void tuiBatchPushTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C24NFG_FREE detail mode.
  *
@@ -216,7 +216,7 @@ void tuiBatchSetTile_G8_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
+void tuiBatchPushTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32_FREE detail mode.
  *
@@ -239,7 +239,7 @@ void tuiBatchSetTile_G8_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
+void tuiBatchPushTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32NBG_FREE detail mode.
  *
@@ -258,7 +258,7 @@ void tuiBatchSetTile_G8_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
+void tuiBatchPushTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G8_C32NFG_FREE detail mode.
  *
@@ -277,7 +277,7 @@ void tuiBatchSetTile_G8_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
+void tuiBatchPushTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint8_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C0_FREE detail mode.
  *
@@ -292,7 +292,7 @@ void tuiBatchSetTile_G8_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph);
+void tuiBatchPushTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C4_FREE detail mode.
  *
@@ -308,7 +308,7 @@ void tuiBatchSetTile_G16_C0_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t colors);
+void tuiBatchPushTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t colors);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8_FREE detail mode.
  *
@@ -325,7 +325,7 @@ void tuiBatchSetTile_G16_C4_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg, uint8_t bg);
+void tuiBatchPushTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg, uint8_t bg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8NBG_FREE detail mode.
  *
@@ -341,7 +341,7 @@ void tuiBatchSetTile_G16_C8_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint1
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg);
+void tuiBatchPushTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C8NFG_FREE detail mode.
  *
@@ -357,7 +357,7 @@ void tuiBatchSetTile_G16_C8NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg);
+void tuiBatchPushTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24_FREE detail mode.
  *
@@ -378,7 +378,7 @@ void tuiBatchSetTile_G16_C8NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, ui
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
+void tuiBatchPushTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24NBG_FREE detail mode.
  *
@@ -396,7 +396,7 @@ void tuiBatchSetTile_G16_C24_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
+void tuiBatchPushTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C24NFG_FREE detail mode.
  *
@@ -414,7 +414,7 @@ void tuiBatchSetTile_G16_C24NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
+void tuiBatchPushTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32_FREE detail mode.
  *
@@ -437,7 +437,7 @@ void tuiBatchSetTile_G16_C24NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
+void tuiBatchPushTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32NBG_FREE detail mode.
  *
@@ -456,7 +456,7 @@ void tuiBatchSetTile_G16_C32_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
+void tuiBatchPushTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a);
 /*!
  * @brief Set a tile of a @ref TuiBatch that uses @ref TUI_DETAIL_MODE_G16_C32NFG_FREE detail mode.
  *
@@ -475,7 +475,7 @@ void tuiBatchSetTile_G16_C32NBG_FREE(TuiBatch batch, int pixel_x, int pixel_y, u
  *
  * @thread_safety This function can be called safely on any thread at any time.
  */
-void tuiBatchSetTile_G16_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
+void tuiBatchPushTile_G16_C32NFG_FREE(TuiBatch batch, int pixel_x, int pixel_y, uint16_t glyph, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 /*! @} */
 
 

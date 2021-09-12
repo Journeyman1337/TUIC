@@ -38,7 +38,7 @@ void update_batch()
     {
         int tile_x = char_i % kTilesWide;
         int tile_y = char_i / kTilesWide;
-        tuiBatchSetTile_G8_C4_SPARSE(sBatch, tile_x, tile_y, sText[char_i], colors_byte);
+        tuiBatchPushTile_G8_C4_SPARSE(sBatch, tile_x, tile_y, sText[char_i], colors_byte);
     }
     tuiWindowClearColor(sWindow, 0, 0, 0, 255);
     tuiWindowDrawBatch(sWindow, sAtlas, sPalette, sBatch);
