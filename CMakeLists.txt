@@ -21,6 +21,9 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas_type.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_free.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_full.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_sparse.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle.c
@@ -62,6 +65,9 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas_type.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_free.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_full.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_sparse.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
