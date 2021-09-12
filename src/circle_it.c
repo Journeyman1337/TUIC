@@ -66,6 +66,12 @@ void tuiCircleItStepForward(TuiCircleIt* const it)
 
 void tuiCircleItSetStart(TuiCircleIt* const it)
 {
+	if (it == TUI_NULL)
+	{
+		// TODO tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
+		return;
+	}
+
 	it->cur_y_position = it->top_y;
 	if (it->cur_y_position > it->bottom_y) return;
 	const float row_y_distance = (float)(it->cur_y_position - it->center_y);
