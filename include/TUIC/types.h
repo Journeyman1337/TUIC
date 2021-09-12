@@ -223,7 +223,42 @@ typedef struct TuiCircle
  */
 typedef struct TuiCircleIt
 {
-	int dummy;
+	/*!
+	 * \brief The radius of the circle.
+	 */
+	const float radius;
+	/*!
+	 * \brief The x position of the center of the circle.
+	 */
+	const int center_x;
+	/*!
+	 * \brief The y position of the center of the circle.
+	 */
+	const int center_y;
+	/*!
+	 * \brief The top y position of the center of the circle.
+	 */
+	const int top_y;
+	/*!
+	 * \brief The bottom y position of the center of the circle.
+	 */
+	const int bottom_y;
+	/*!
+	 * \brief The left x position of the current row of the circle.
+	 */
+	int row_left_x;
+	/*!
+	 * \brief The right x position of the current row of the circle.
+	 */
+	int row_right_x;
+	/*!
+	 * \brief The current x position of the iterator.
+	 */
+	int cur_x_position;
+	/*!
+	 * \brief The current y position of the iterator.
+	 */
+	int cur_y_position;
 } TuiCircleIt;
 /*! @} */
 

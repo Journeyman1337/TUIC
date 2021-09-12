@@ -195,7 +195,7 @@ float tuiLineItGetPercent(const TuiLineIt it);
  * 
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-#define TUI_LINE_ITERATE(line, iterator) for(TuiLineIt iterator = tuiLineItStart(line); !tuiLineItAfterEnd(iterator); tuiLineItStepForward(&iterator))
+#define TUI_LINE_ITERATE(line, iterator) for(TuiLineIt iterator = tuiLineItStart(line); !tuiLineItAfterEnd(iterator); tuiLineItStepForward(&iterator)) 
 /*!
  * @brief Macro function for easily constructing a line reverse iterator for loop without body.
  * 
