@@ -63,6 +63,62 @@ TuiCircle tuiCircle(const int center_x, const int center_y, const float radius);
  */
 TuiPoint2 tuiCircleGetCenterPoint2(const TuiCircle circle);
 /*!
+ * @brief Get the left x coordinate of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The left x coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiCircleGetLeftX(const TuiCircle circle);
+/*!
+ * @brief Get the top y coordinate of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The top y coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiCircleGetTopY(const TuiCircle circle);
+/*!
+ * @brief Get the right x coordinate of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The right x coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiCircleGetRightX(const TuiCircle circle);
+/*!
+ * @brief Get the bottom y coordinate of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The bottom y coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiCircleGetBottomY(const TuiCircle circle);
+/*!
  * @brief Get the topmost @ref TuiPoint2 of a @ref TuiCircle.
  *
  * @param circle The @ref TuiCircle.

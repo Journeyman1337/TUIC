@@ -38,27 +38,47 @@ TuiPoint2 tuiCircleGetCenterPoint2(const TuiCircle circle)
 	return ret;
 }
 
+int tuiCircleGetLeftX(const TuiCircle circle)
+{
+	return (int)roundf((float)circle.center_x - circle.radius);
+}
+
+int tuiCircleGetTopY(const TuiCircle circle)
+{
+	return (int)roundf((float)circle.center_y - circle.radius);
+}
+
+int tuiCircleGetRightX(const TuiCircle circle)
+{
+	return (int)roundf((float)circle.center_x + circle.radius);
+}
+
+int tuiCircleGetBottomY(const TuiCircle circle)
+{
+	return (int)roundf((float)circle.center_y + circle.radius);
+}
+
 TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle)
 {
-	TuiPoint2 ret = { circle.center_x, (int)roundf((float)circle.center_y - circle.radius) };
+	TuiPoint2 ret = { circle.center_x,  tuiCircleGetTopY(circle)};
 	return ret;
 }
 
 TuiPoint2 tuiCircleGetLeftPoint2(const TuiCircle circle)
 {
-	TuiPoint2 ret = { (int)roundf((float)circle.center_x - circle.radius), circle.center_y };
+	TuiPoint2 ret = { tuiCircleGetLeftX(circle), circle.center_y };
 	return ret;
 }
 
 TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle)
 {
-	TuiPoint2 ret = { circle.center_x, (int)roundf((float)circle.center_y + circle.radius) };
+	TuiPoint2 ret = { circle.center_x, tuiCircleGetBottomY(circle) };
 	return ret;
 }
 
 TuiPoint2 tuiCircleGetRightPoint2(const TuiCircle circle)
 {
-	TuiPoint2 ret = { (int)roundf((float)circle.center_x + circle.radius), circle.center_y };
+	TuiPoint2 ret = { tuiCircleGetRightX(circle), circle.center_y };
 	return ret;
 }
 
