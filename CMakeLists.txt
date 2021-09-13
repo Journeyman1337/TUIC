@@ -25,6 +25,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_full.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_sparse.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/box_part.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle_it.c
@@ -70,6 +71,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_sparse.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_part.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle_it.h
