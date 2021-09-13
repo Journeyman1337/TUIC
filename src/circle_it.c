@@ -27,8 +27,8 @@
 
 TuiCircleIt tuiCircleIt(const TuiCircle circle)
 {
-	const int top_y = (int)roundf((float)circle.center_y - circle.radius);
-	const int bottom_y = (int)roundf((float)circle.center_y + circle.radius);
+	const int top_y = tuiCircleGetTopY(circle);
+	const int bottom_y = tuiCircleGetBottomY(circle);
 	const float first_row_y_distance = (float)(top_y - circle.center_y);
 	const float first_row_x_distance = sqrtf(circle.radius * circle.radius - first_row_y_distance * first_row_y_distance);
 	const int first_row_left_x = circle.center_x - (int)ceilf(first_row_x_distance);
