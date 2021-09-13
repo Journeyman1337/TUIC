@@ -30,7 +30,7 @@ TuiCircleIt tuiCircleIt(const TuiCircle circle)
 	const int top_y = tuiCircleGetTopY(circle);
 	const int bottom_y = tuiCircleGetBottomY(circle);
 	const float first_row_y_distance = (float)(top_y - circle.center_y);
-	const float first_row_x_distance = sqrtf(circle.radius * circle.radius - first_row_y_distance * first_row_y_distance);
+	const float first_row_x_distance = sqrtf(circle.radius * circle.radius - first_row_y_distance * first_row_y_distance); // pythagorean theorem
 	const int first_row_left_x = circle.center_x - (int)ceilf(first_row_x_distance);
 	const int first_row_right_x = circle.center_x + (int)floorf(first_row_x_distance);
 	TuiCircleIt ret = { circle.radius, circle.center_x, circle.center_y, top_y , bottom_y, first_row_left_x, first_row_right_x, first_row_left_x, top_y };
@@ -55,7 +55,7 @@ void tuiCircleItStepForward(TuiCircleIt* const it)
 		it->cur_y_position++;
 		if (it->cur_y_position > it->bottom_y) return;
 		const float row_y_distance = (float)(it->cur_y_position - it->center_y);
-		const float row_x_distance = sqrtf(it->radius * it->radius - row_y_distance * row_y_distance);
+		const float row_x_distance = sqrtf(it->radius * it->radius - row_y_distance * row_y_distance); // pythagorean theorem
 		it->row_left_x = it->center_x - (int)ceilf(row_x_distance);
 		it->row_right_x = it->center_x + (int)floorf(row_x_distance);
 		it->cur_x_position = it->row_left_x;
@@ -77,7 +77,7 @@ void tuiCircleItSetStart(TuiCircleIt* const it)
 	it->cur_y_position = it->top_y;
 	if (it->cur_y_position > it->bottom_y) return;
 	const float row_y_distance = (float)(it->cur_y_position - it->center_y);
-	const float row_x_distance = sqrtf(it->radius * it->radius - row_y_distance * row_y_distance);
+	const float row_x_distance = sqrtf(it->radius * it->radius - row_y_distance * row_y_distance); //pythagorean theorem
 	it->row_left_x = it->center_x - (int)ceilf(row_x_distance);
 	it->row_right_x = it->center_x + (int)floorf(row_x_distance);
 	it->cur_x_position = it->row_left_x;
