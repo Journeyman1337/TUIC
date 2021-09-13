@@ -67,7 +67,7 @@ const char* tuiBoxPartToString(TuiBoxPart box_part)
 	case TUI_BOX_PART_BOTTOM_SIDE:
 		return kTui_Box_Part_Bottom_Side_Name;
 	case TUI_BOX_PART_BOTTOM_LEFT_CORNER:
-		return kTui_Box_Part_Bottom_Left_Corner_Name;
+		return kTui_Box_Part_Bottom_Left_Corner_Name; 
 	default:
 		return TUI_NULL;
 	}
