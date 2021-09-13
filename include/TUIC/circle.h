@@ -25,6 +25,7 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
+#include <TUIC/grid_shape_types.h>
 #include <TUIC/boolean.h>
 
 

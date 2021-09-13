@@ -38,6 +38,7 @@
 #include <TUIC/error_code.h>
 #include <TUIC/events.h>
 #include <TUIC/filter_mode.h>
+#include <TUIC/grid_shape_types.h>
 #include <TUIC/heap.h>
 #include <TUIC/image.h>
 #include <TUIC/keyboard_key.h>

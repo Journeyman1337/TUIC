@@ -24,6 +24,7 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
+#include <TUIC/grid_shape_types.h>
 
 
 /*! @name Sparse Batch Data Functions
