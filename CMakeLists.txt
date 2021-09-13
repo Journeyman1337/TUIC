@@ -25,10 +25,19 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_full.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_sparse.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/box.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/box_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/box_part.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_box.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_box_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_circle.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_circle_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_ring.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_ring_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_shape.c
@@ -55,6 +64,8 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/point2.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/rect.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/rect_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/ring.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/ring_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
@@ -71,10 +82,18 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_sparse.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_part.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_circle.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_circle_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_box.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_box_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_ring.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_ring_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_shape.h
@@ -100,6 +119,8 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point2.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/ring.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/ring_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h
