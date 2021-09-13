@@ -149,6 +149,167 @@ typedef struct TuiRectIt
 	int cur_y_position;
 } TuiRectIt;
 /*!
+ * \brief A 2D tile rect outline.
+ */
+typedef struct TuiBox
+{
+	/*!
+	 * \brief The x position of one of the box corners.
+	 */
+	int x;
+	/*!
+	 * \brief The y position of one of the box corners.
+	 */
+	int y;
+	/*!
+	 * \brief The width of the box in tiles.
+	 */
+	int width;
+	/*!
+	 * \brief The height of the box in tiles.
+	 */
+	int height;
+	/*!
+	 * \brief The depth/thickness of the box borders in tiles.
+	 */
+	int depth;
+} TuiBox;
+/*!
+ * \brief A 2D rect outline iterator.
+ */
+typedef struct TuiBoxIt
+{
+	/*!
+	 * \brief The x position of the left border of the rect.
+	 */
+	const int left_x;
+	/*!
+	 * \brief The x position of the right border of the rect.
+	 */
+	const int right_x;
+	/*!
+	 * \brief The x position of the top border of the rect.
+	 */
+	const int top_y;
+	/*!
+	 * \brief The x position of the bottom border of the rect.
+	 */
+	const int bottom_y;
+	/*!
+	 * \brief The depth/thickness of the box borders in tiles.
+	 */
+	int depth;
+	/*!
+	 * \brief The current box part being iterated over.
+	 */
+	TuiBoxPart cur_box_part;
+	/*!
+	 * \brief The current x position of the iterator.
+	 */
+	int cur_x_position;
+	/*!
+	 * \brief The current y position of the iterator.
+	 */
+	int cur_y_position;
+} TuiBoxIt;
+
+/*!
+ * \brief A 2D tile rect outline.
+ */
+typedef struct TuiCropBox
+{
+	/*!
+	 * \brief The x position of one of the box corners.
+	 */
+	int x;
+	/*!
+	 * \brief The y position of one of the box corners.
+	 */
+	int y;
+	/*!
+	 * \brief The width of the box in tiles.
+	 */
+	int width;
+	/*!
+	 * \brief The height of the box in tiles.
+	 */
+	int height;
+	/*!
+	 * \brief The depth/thickness of the box borders in tiles.
+	 */
+	int depth;
+	/*!
+	 * \brief The x position of the left border of the crop rect.
+	 */
+	int crop_x;
+	/*!
+	 * \brief The y position of the top border of the crop rect.
+	 */
+	int crop_y;
+	/*!
+	 * \brief The width of the crop rect in tiles.
+	 */
+	int crop_width;
+	/*!
+	 * \brief The height of the crop rect in tiles.
+	 */
+	int crop_height;
+} TuiCroppedBox;
+/*!
+ * \brief A 2D rect outline iterator.
+ */
+typedef struct TuiCropBoxIt
+{
+	/*!
+	 * \brief The x position of the left border of the rect.
+	 */
+	const int left_x;
+	/*!
+	 * \brief The x position of the right border of the rect.
+	 */
+	const int right_x;
+	/*!
+	 * \brief The x position of the top border of the rect.
+	 */
+	const int top_y;
+	/*!
+	 * \brief The x position of the bottom border of the rect.
+	 */
+	const int bottom_y;
+	/*!
+	 * \brief The depth/thickness of the box borders in tiles.
+	 */
+	int depth;
+	/*!
+	 * \brief The current box part being iterated over.
+	 */
+	TuiBoxPart cur_box_part;
+	/*!
+	 * \brief The current x position of the iterator.
+	 */
+	int cur_x_position;
+	/*!
+	 * \brief The current y position of the iterator.
+	 */
+	int cur_y_position;
+	/*!
+	 * \brief The x position of the left border of the crop rect.
+	 */
+	int crop_x;
+	/*!
+	 * \brief The y position of the top border of the crop rect.
+	 */
+	int crop_y;
+	/*!
+	 * \brief The width of the crop rect in tiles.
+	 */
+	int crop_width;
+	/*!
+	 * \brief The height of the crop rect in tiles.
+	 */
+	int crop_height;
+} TuiBoxIt;
+/*!
  * \brief A 2D circle.
  */
 typedef struct TuiCircle
@@ -208,6 +369,97 @@ typedef struct TuiCircleIt
 	 */
 	int cur_y_position;
 } TuiCircleIt;
+/*!
+ * \brief A 2D cropped circle.
+ */
+typedef struct TuiCropCircle
+{
+	/*!
+	 * \brief The x position of the center of the circle.
+	 */
+	int center_x;
+	/*!
+	 * \brief The y position of the center of the circle.
+	 */
+	int center_y;
+	/*!
+	 * \brief The radius of the circle.
+	 */
+	float radius;
+	/*!
+	 * \brief The x position of the left border of the crop rect.
+	 */
+	int crop_x;
+	/*!
+	 * \brief The y position of the top border of the crop rect.
+	 */
+	int crop_y;
+	/*!
+	 * \brief The width of the crop rect in tiles.
+	 */
+	int crop_width;
+	/*!
+	 * \brief The height of the crop rect in tiles.
+	 */
+	int crop_height;
+} TuiCropCircle;
+/*!
+ * \brief A 2D cropped circle iterator.
+ */
+typedef struct TuiCropCircleIt
+{
+	/*!
+	 * \brief The radius of the circle.
+	 */
+	const float radius;
+	/*!
+	 * \brief The x position of the center of the circle.
+	 */
+	const int center_x;
+	/*!
+	 * \brief The y position of the center of the circle.
+	 */
+	const int center_y;
+	/*!
+	 * \brief The top y position of the center of the circle.
+	 */
+	const int top_y;
+	/*!
+	 * \brief The bottom y position of the center of the circle.
+	 */
+	const int bottom_y;
+	/*!
+	 * \brief The left x position of the current row of the circle.
+	 */
+	int row_left_x;
+	/*!
+	 * \brief The right x position of the current row of the circle.
+	 */
+	int row_right_x;
+	/*!
+	 * \brief The current x position of the iterator.
+	 */
+	int cur_x_position;
+	/*!
+	 * \brief The current y position of the iterator.
+	 */
+	int cur_y_position;
+	/*!
+	 * \brief The x position of the left border of the crop rect.
+	 */
+	int crop_x;
+	/*!
+	 * \brief The y position of the top border of the crop rect.
+	 */
+	int crop_y;
+	/*!
+	 * \brief The width of the crop rect in tiles.
+	 */
+	int crop_width;
+	/*!
+	 * \brief The height of the crop rect in tiles.
+	 */
+	int crop_height;
 } TuiCropCircleIt;
 /*! @} */
 
