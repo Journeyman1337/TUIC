@@ -254,7 +254,7 @@ typedef struct TuiCropBox
 	 * \brief The height of the crop rect in tiles.
 	 */
 	int crop_height;
-} TuiCroppedBox;
+} TuiCropBox;
 /*!
  * \brief A 2D rect outline iterator.
  */
@@ -308,7 +308,7 @@ typedef struct TuiCropBoxIt
 	 * \brief The height of the crop rect in tiles.
 	 */
 	int crop_height;
-} TuiBoxIt;
+} TuiCropBoxIt;
 /*!
  * \brief A 2D circle.
  */
