@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <TUIC/easing.h>
 
+
 TuiCircle tuiCircle(const int center_x, const int center_y, const float radius)
 {
 	TuiCircle ret = { center_x, center_y, radius };
