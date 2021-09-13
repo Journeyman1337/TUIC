@@ -26,6 +26,7 @@
 #include <TUIC/batch.h>
 #include <TUIC/blend_mode.h>
 #include <TUIC/boolean.h>
+#include <TUIC/box_part.h>
 #include <TUIC/button_state.h>
 #include <TUIC/circle.h>
 #include <TUIC/circle_it.h>
