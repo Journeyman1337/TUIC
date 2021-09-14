@@ -124,20 +124,20 @@ extern const char* kTui_Box_Part_Bottom_Left_Corner_Name;
  *
  * Functions for dealing with @ref TuiBoxPart enum values.
  *  @{ */
- /*!
-  * @brief Determine if a @ref TuiBoxPart enum is valid.
-  *
-  * @param box_part The @ref TuiBoxPart to check.
-  *
-  * @returns The @ref TuiBoolean result. If box_part is a valid @ref TuiBoxPart, it
+/*!
+ * @brief Determine if a @ref TuiBoxPart enum is valid.
+ *
+ * @param box_part The @ref TuiBoxPart to check.
+ *
+ * @returns The @ref TuiBoolean result. If box_part is a valid @ref TuiBoxPart, it
   * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
-  *
-  * @errors This function can have no errors.
-  *
-  * @requirements This function can be called freely, even if TUIC is not currently initialized.
-  *
-  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
-  */
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
 TuiBoolean tuiBoxPartIsValid(TuiBoxPart box_part);
 /*!
  * @brief Retrieve the string name associated with a @ref TuiBoxPart enum.
