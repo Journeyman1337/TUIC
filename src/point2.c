@@ -30,7 +30,7 @@ TuiPoint2 tuiPoint2(const int x, const int y)
 
 float tuiPoint2GetMagnitude(const TuiPoint2 point2)
 {
-	const float magnitude = sqrtf((float)abs((point2.x * point2.x) - (point2.y * point2.y))); // use pythagorean theorem
+	const float magnitude = sqrtf((float)abs((point2.x * point2.x) + (point2.y * point2.y))); // use pythagorean theorem
 	return magnitude;
 }
 
@@ -38,6 +38,6 @@ float tuiPoint2Distance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	const int x_difference = point2_1.x - point2_2.x; // calculate difference of x coordinates
 	const int y_difference = point2_1.y - point2_2.y; // calculate difference of y coordinates
-	const float distance = sqrtf((float)abs((x_difference * x_difference) - (y_difference * y_difference))); // use pythagorean theorem
+	const float distance = sqrtf((float)abs((x_difference * x_difference) + (y_difference * y_difference))); // use pythagorean theorem
 	return distance;
 }
