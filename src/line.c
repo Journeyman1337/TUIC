@@ -121,8 +121,6 @@ TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
 	return line_contains_line;
 }
 
-#define SIGN(x) ((x > 0) - (x < 0))
-
 TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 {
 	const TuiPoint2 line_1_start_point2 = tuiLineGetStartPoint2(line_1);

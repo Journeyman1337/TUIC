@@ -26,6 +26,7 @@
 #define MAX(a, b) ((a > b) ? a : b)
 #define MIN(a, b) ((a < b) ? a : b)
 #define CLAMP(min, max, value) value < min ? min : (value > max ? max : value)
+#define SIGN(x) ((x > 0) - (x < 0))
 
 
 static inline int _Point2Cross(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
