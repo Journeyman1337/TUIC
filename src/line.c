@@ -63,7 +63,15 @@ int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2)
 	return (line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y) + (line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y);
 }
 
+float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 {
+	const float line_1_length = tuiLineGetLength(line_1);
+	const float line_2_length = tuiLineGetLength(line_2);
+	const float line_1_unit_x = (float)(line_1.end_x - line_1.start_x) / line_1_length;
+	const float line_1_unit_y = (float)(line_1.end_y - line_1.start_y) / line_1_length;
+	const float line_2_unit_x = (float)(line_2.end_x - line_2.start_x) / line_2_length;
+	const float line_2_unit_y = (float)(line_2.end_y - line_2.start_y) / line_2_length;
+	return (line_1_unit_x * line_2_unit_x) + (line_1_unit_y * line_2_unit_y);
 }
 
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)

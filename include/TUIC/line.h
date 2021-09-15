@@ -122,6 +122,21 @@ int tuiLineGetDiagonalLength(const TuiLine line);
  */
 int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2);
 /*!
+ * @brief Get the dot product of two @ref TuiLine.
+ *
+ * @param line_1 The first @ref TuiLine.
+ * @param line_2 The second @ref TuiLine.
+ *
+ * @returns The dot product.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2);
+/*!
  * @brief Get if two @ref TuiLine are parallel.
  *
  * @param line_1 The first @ref TuiLine.
