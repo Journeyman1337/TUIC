@@ -76,8 +76,8 @@ float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
 {
-	const float determinant = tuiLinesGetCrossProduct(line_1, line_2);
-	return (determinant == 0);
+	const int cross_product = tuiLinesGetCrossProduct(line_1, line_2);
+	return (cross_product == 0);
 }
 
 TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
@@ -91,8 +91,8 @@ TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 {
-	const float determinant = tuiLinesGetCrossProduct(line_1, line_2);
-	return (fabsf(determinant) == 1);
+	const float dot_product = tuiLinesGetDotProduct(line_1, line_2);
+	return (dot_product == 0.0f);
 }
 
 TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
