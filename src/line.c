@@ -52,12 +52,26 @@ float tuiLineGetLength(const TuiLine line)
 	return length;
 }
 
+int tuiLineGetDiagonalWidth(const TuiLine line)
+{
+	const int diagonal_width = abs(line.start_x - line.end_x) + 1;
+	return diagonal_width;
+}
+
+int tuiLineGetDiagonalHeight(const TuiLine line)
+{
+	const int diagonal_height = abs(line.start_y - line.end_y) + 1;
+	return diagonal_height;
+}
+
 int tuiLineGetDiagonalLength(const TuiLine line)
 {
-	const int x_distance = abs(line.start_x - line.end_x); // calculate distances between coordinates
-	const int y_distance = abs(line.start_y - line.end_y);
-	const int largest_difference = (x_distance > y_distance) ? x_distance + 1 : y_distance + 1; // get the largest difference
-	return largest_difference;
+	const int diagonal_width = tuiLineGetDiagonalWidth(line);
+	const int diagonal_height = tuiLineGetDiagonalHeight(line);
+	const int diagonal_length = MAX(diagonal_width, diagonal_height);
+	return diagonal_length;
+}
+
 int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2)
 {
 	return (line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y) + (line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y);
