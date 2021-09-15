@@ -20,6 +20,7 @@
 #include <TUIC/line.h>
 #include <TUIC/point2.h>
 #include <TUIC/rect.h>
+#include <TUIC/circle.h>
 #include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
@@ -197,4 +198,9 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 TuiBoolean tuiLineIntersectsRect(const TuiLine line, const TuiRect rect)
 {
 	return tuiRectIntersectsLine(rect, line);
+}
+
+TuiBoolean tuiLineIntersectsCircle(const TuiLine line, const TuiCircle circle)
+{
+	return tuiCircleIntersectsLine(circle, line);
 }
