@@ -19,6 +19,7 @@
 */
 #include <TUIC/point2.h>
 #include <math.h>
+#include <stdlib.h> //for abs on mac
 #include <TUIC/easing.h>
 
 
