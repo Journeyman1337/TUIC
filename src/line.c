@@ -32,6 +32,42 @@ TuiLine tuiLine(const int start_x, const int start_y, const int end_x, const int
 	return ret;
 }
 
+int tuiLineGetLeftX(const TuiLine line)
+{
+	const int left_x = (line.start_x < line.end_x) ? line.start_x : line.end_x;
+	return left_x;
+}
+
+int tuiLineGetTopY(const TuiLine line)
+{
+	const int top_y = (line.start_y < line.end_y) ? line.start_y : line.end_y;
+	return top_y;
+}
+
+int tuiLineGetRightX(const TuiLine line)
+{
+	const int right_x = (line.start_x > line.end_x) ? line.start_x : line.end_x;
+	return right_x;
+}
+
+int tuiLineGetBottomY(const TuiLine line)
+{
+	const int bottom_y = (line.start_y > line.end_y) ? line.start_y : line.end_y;
+	return bottom_y;
+}
+
+TuiRect tuiLineGetBoundingRect(const TuiLine line)
+{
+	const int left_x = tuiLineGetLeftX(line);
+	const int top_y = tuiLineGetTopY(line);
+	const int right_x = tuiLineGetRightX(line);
+	const int bottom_y = tuiLineGetBottomY(line);
+	const int width = right_x - left_x;
+	const int height = top_y - bottom_y;
+	TuiRect ret = { left_x, right_x, width, height };
+	return ret;
+}
+
 TuiPoint2 tuiLineGetStartPoint2(const TuiLine line)
 {
 	TuiPoint2 ret = { line.start_x, line.start_y };

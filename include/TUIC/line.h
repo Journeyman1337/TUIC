@@ -51,6 +51,76 @@ extern "C" {
 */
 TuiLine tuiLine(const int start_x, const int start_y, const int end_x, const int end_y);
 /*!
+ * @brief Get the left x coordinate of a @ref TuiLine.
+ *
+ * @param line The @ref TuiLine.
+ *
+ * @returns The left x coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiLineGetLeftX(const TuiLine line);
+/*!
+ * @brief Get the right x coordinate of a @ref TuiLine.
+ *
+ * @param line The @ref TuiLine.
+ *
+ * @returns The right x coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiLineGetRightX(const TuiLine line);
+/*!
+ * @brief Get the top y coordinate of a @ref TuiLine.
+ *
+ * @param line The @ref TuiLine.
+ *
+ * @returns The top y coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiLineGetTopY(const TuiLine line);
+/*!
+ * @brief Get the bottom y coordinate of a @ref TuiLine.
+ *
+ * @param line The @ref TuiRect.
+ *
+ * @returns The top y coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiLineGetBottomY(const TuiLine line);
+/*!
+ * @brief Get the bounding @ref TuiRect of a @ref TuiLine.
+ *
+ * @param line The @ref TuiLine.
+ *
+ * @returns The bounding @ref TuiRect.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiRect tuiLineGetBoundingRect(const TuiLine line);
+/*!
 * @brief Get the starting point of a @ref TuiLine.
 *
 * @param line THe @ref TuiLine.
