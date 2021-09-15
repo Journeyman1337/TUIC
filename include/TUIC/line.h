@@ -97,7 +97,7 @@ float tuiLineGetLength(const TuiLine line);
  *
  * @param line The @ref TuiLine.
  *
- * @returns The diagonal length length of the line.
+ * @returns The diagonal length of the line.
  *
  * @errors This function can have no errors.
  *
