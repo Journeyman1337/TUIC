@@ -81,6 +81,12 @@ TuiPoint2 tuiLineGetEndPoint2(const TuiLine line)
 	return ret;
 }
 
+TuiPoint2 tuiLineGetTranslationPoint2(const TuiLine line)
+{
+	TuiPoint2 ret = { line.end_x - line.start_x, line.end_y - line.start_y };
+	return ret;
+}
+
 float tuiLineGetLength(const TuiLine line)
 {
 	const int x_difference = line.start_x - line.end_x; // calculate difference of x coordinates

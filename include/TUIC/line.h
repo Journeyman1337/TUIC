@@ -149,6 +149,20 @@ TuiPoint2 tuiLineGetStartPoint2(const TuiLine line);
 */
 TuiPoint2 tuiLineGetEndPoint2(const TuiLine line);
 /*!
+* @brief Get the the translation that occurs over a @ref TuiLine.
+*
+* @param line The @ref TuiLine.
+*
+* @returns The ending @ref TuiPoint2.
+*
+* @errors This function can have no errors.
+*
+* @requirements This function can be called freely, even if TUIC is not currently initialized.
+*
+* @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+*/
+TuiPoint2 tuiLineGetTranslationPoint2(const TuiLine line);
+/*!
  * @brief Get the length of a @ref TuiLine.
  *
  * @param line The @ref TuiLine.
