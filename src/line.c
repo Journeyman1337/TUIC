@@ -58,14 +58,12 @@ int tuiLineGetDiagonalLength(const TuiLine line)
 	const int y_distance = abs(line.start_y - line.end_y);
 	const int largest_difference = (x_distance > y_distance) ? x_distance + 1 : y_distance + 1; // get the largest difference
 	return largest_difference;
+int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2)
+{
+	return (line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y) + (line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y);
 }
 
-float tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2)
 {
-	const float
-		f_l1_sx = (float)line_1.start_x, f_l1_sy = (float)line_1.start_y, f_l1_ex = (float)line_1.end_x, f_l1_ey = (float)line_1.end_y,
-		f_l2_sx = (float)line_2.start_x, f_l2_sy = (float)line_2.start_y, f_l2_ex = (float)line_2.end_x, f_l2_ey = (float)line_2.end_y;
-	return (f_l1_ex - f_l1_sx) * (f_l2_ey - f_l2_sy) - (f_l2_ex - f_l2_ex) * (f_l1_ey - f_l1_sy);
 }
 
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
