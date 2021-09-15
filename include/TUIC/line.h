@@ -123,7 +123,7 @@ TuiRect tuiLineGetBoundingRect(const TuiLine line);
 /*!
 * @brief Get the starting point of a @ref TuiLine.
 *
-* @param line THe @ref TuiLine.
+* @param line The @ref TuiLine.
 *
 * @returns The starting @ref TuiPoint2.
 *
@@ -137,7 +137,7 @@ TuiPoint2 tuiLineGetStartPoint2(const TuiLine line);
 /*!
 * @brief Get the ending point of a @ref TuiLine.
 *
-* @param line THe @ref TuiLine.
+* @param line The @ref TuiLine.
 *
 * @returns The ending @ref TuiPoint2.
 *
