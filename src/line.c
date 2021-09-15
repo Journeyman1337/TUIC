@@ -46,9 +46,9 @@ TuiPoint2 tuiLineGetEndPoint2(const TuiLine line)
 
 float tuiLineGetLength(const TuiLine line)
 {
-	const int x_difference = line.start_x - line.end_x; // calculate differences of coordinates
-	const int y_difference = line.start_y - line.end_y;
-	const float length = sqrtf((float)((x_difference * x_difference) - (y_difference * y_difference))); // use pythagorean theorem
+	const int x_difference = line.start_x - line.end_x; // calculate difference of x coordinates
+	const int y_difference = line.start_y - line.end_y; // calculate difference of y coordinates
+	const float length = sqrtf((float)abs((x_difference * x_difference) + (y_difference * y_difference))); // use pythagorean theorem
 	return length;
 }
 
