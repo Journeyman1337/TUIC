@@ -158,10 +158,10 @@ TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
 TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
 {
 	const TuiBoolean lines_are_collinear = tuiLinesCollinear(line_1, line_2); // determine if lines are collinear.
-	const int max_line_x = (line_1.start_x > line_1.end_x) ? line_1.start_x : line_1.end_x; // calculate largest line x.
-	const int min_line_x = (line_1.start_x < line_1.end_x) ? line_1.start_x : line_1.end_x; // calculate smallest line x.
-	const int max_line_y = (line_1.start_y > line_1.end_y) ? line_1.start_y : line_1.end_y; // calculate largest line y.
-	const int min_line_y = (line_1.start_y < line_1.end_y) ? line_1.start_y : line_1.end_y; // calculate smallest line y.
+	const int max_line_x = MAX(line_1.start_x, line_1.end_x);
+	const int min_line_x = MIN(line_1.start_x, line_1.end_x);
+	const int max_line_y = MAX(line_1.start_y, line_1.end_y);
+	const int min_line_y = MIN(line_1.start_y, line_1.end_y);
 	const TuiBoolean line_contains_line = (
 		lines_are_collinear &&
 		(max_line_x >= line_2.start_x && max_line_x >= line_2.end_x) &&
