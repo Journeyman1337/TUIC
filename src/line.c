@@ -180,25 +180,22 @@ TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 {
-	const TuiPoint2 line_1_start_point2 = tuiLineGetStartPoint2(line_1);
-	const TuiPoint2 line_1_end_point2 = tuiLineGetEndPoint2(line_1);
-	const TuiPoint2 line_2_start_point2 = tuiLineGetStartPoint2(line_2);
-	const TuiPoint2 line_2_end_point2 = tuiLineGetEndPoint2(line_2);
-	const int cross_1 = _Point2Cross(line_1_start_point2, line_2_start_point2, line_1_end_point2);
-	const int cross_2 = _Point2Cross(line_1_start_point2, line_2_start_point2, line_2_end_point2);
-	if (SIGN(cross_1) != SIGN(cross_2)) // if sign of cross_1 is not equal to sign of cross_2
-	{
-		return TUI_TRUE;
-	}
-	const int cross_3 = _Point2Cross(line_1_end_point2, line_2_end_point2, line_1_start_point2);
-	const int cross_4 = _Point2Cross(line_1_end_point2, line_2_end_point2, line_2_start_point2);
-	return (
-		(SIGN(cross_3) != SIGN(cross_4)) || // if sign of cross_3 is not equal to sign of cross_4
-		(cross_1 == 0 && _Point2OnCollinearLine(line_1_start_point2, line_2_start_point2, line_1_end_point2)) ||
-		(cross_2 == 0 && _Point2OnCollinearLine(line_1_start_point2, line_2_start_point2, line_2_end_point2)) ||
-		(cross_3 == 0 && _Point2OnCollinearLine(line_1_end_point2, line_2_end_point2, line_1_start_point2)) ||
-		(cross_4 == 0 && _Point2OnCollinearLine(line_1_end_point2, line_2_end_point2, line_2_start_point2))
-		);
+	const TuiPoint2 line_1_start = tuiLineGetStartPoint2(line_1);
+	const TuiPoint2 line_1_end = tuiLineGetEndPoint2(line_1);
+	const TuiPoint2 line_2_start = tuiLineGetStartPoint2(line_2);
+	const TuiPoint2 line_2_end = tuiLineGetEndPoint2(line_2);
+
+	const TuiPointOrientation orientation_1 = _tuiGetPoint2Orientation(line_1_start, line_1_end, line_2_start);
+	const TuiPointOrientation orientation_2 = _tuiGetPoint2Orientation(line_1_start, line_1_end, line_2_end);
+	const TuiPointOrientation orientation_3 = _tuiGetPoint2Orientation(line_2_start, line_2_end, line_1_start);
+	const TuiPointOrientation orientation_4 = _tuiGetPoint2Orientation(line_2_start, line_2_end, line_1_end);
+
+	return
+		(orientation_1 != orientation_2 && orientation_3 != orientation_4) ||
+		(orientation_1 == TUI_POINT_ORIENTATION_COLLINEAR && _tuiPoint2BetweenCollinearPoint2(line_1_start, line_2_start, line_1_end)) ||
+		(orientation_2 == TUI_POINT_ORIENTATION_COLLINEAR && _tuiPoint2BetweenCollinearPoint2(line_1_start, line_2_end, line_1_end)) ||
+		(orientation_3 == TUI_POINT_ORIENTATION_COLLINEAR && _tuiPoint2BetweenCollinearPoint2(line_2_start, line_1_start, line_2_end)) ||
+		(orientation_4 == TUI_POINT_ORIENTATION_COLLINEAR && _tuiPoint2BetweenCollinearPoint2(line_2_start, line_1_end, line_2_end));
 }
 
 TuiBoolean tuiLineIntersectsRect(const TuiLine line, const TuiRect rect)

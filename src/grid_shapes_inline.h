@@ -29,17 +29,27 @@
 #define SIGN(x) ((x > 0) - (x < 0))
 
 
-static inline int _Point2Cross(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
+static inline TuiPointOrientation _tuiGetPoint2Orientation(const TuiPoint2 a, const TuiPoint2 b, const TuiPoint2 c)
 {
-	return (point2_3.x - point2_2.x) * (point2_2.y - point2_1.y) - (point2_2.x - point2_1.x) * (point2_3.y - point2_2.y);
-}
-static inline TuiBoolean _Point2OnCollinearLine(const TuiPoint2 line_start, const TuiPoint2 line_end, const TuiPoint2 point)
+	const int orientation_determinant = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
+	TuiPointOrientation orientation =
+		(orientation_determinant == 0) ?
+			TUI_POINT_ORIENTATION_COLLINEAR :
+		(orientation_determinant > 0) ?
+			TUI_POINT_ORIENTATION_CLOCKWISE :
+		// (orientation_determinant < 0) ?
+			TUI_POINT_ORIENTATION_COUNTERCLOCKWISE;
+	return orientation;
+}	
+
+static inline TuiBoolean _tuiPoint2BetweenCollinearPoint2(const TuiPoint2 surround_point_1, const TuiPoint2 surround_point_2, const TuiPoint2 between_point)
 {
-	return (
-		(point.x <= MAX(line_start.x, line_end.x)) &&
-		(point.x >= MIN(line_start.x, line_end.x)) &&
-		(point.y <= MAX(line_start.y, line_end.y)) &&
-		(point.y >= MIN(line_start.y, line_end.y))
+	return
+		(
+			surround_point_2.x <= MAX(surround_point_1.x, between_point.x) && 
+			surround_point_2.x >= MIN(surround_point_1.x, between_point.x) &&
+			surround_point_2.y <= MAX(surround_point_1.y, between_point.y) && 
+			surround_point_2.y >= MIN(surround_point_1.y, between_point.y)
 		);
 }
 
