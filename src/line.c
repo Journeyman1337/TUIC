@@ -117,7 +117,7 @@ int tuiLineGetDiagonalLength(const TuiLine line)
 
 int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2)
 {
-	return (line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y) + (line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y);
+	return ((line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y)) - ((line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y));
 }
 
 float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
