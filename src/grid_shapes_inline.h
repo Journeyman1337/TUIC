@@ -23,18 +23,27 @@
 #include <TUIC/boolean.h>
 
 
+// Get the highest value between two values.
 #define MAX(a, b) ((a > b) ? a : b)
+// Get the lowest value between two values.
 #define MIN(a, b) ((a < b) ? a : b)
+// Clamp a value between a minimum and maximum value.
 #define CLAMP(min, max, value) value < min ? min : (value > max ? max : value)
+// Get the sign of a value (1 if number is positive or 0, or -1 if number is negative).
 #define SIGN(x) ((x > 0) - (x < 0))
 
+// The orientation of three points.
 typedef enum TuiPointOrientation
 {
+	// The points are on the same line.
 	TUI_POINT_ORIENTATION_COLLINEAR = 0,
+	// The points make a clockwise triangle.
 	TUI_POINT_ORIENTATION_CLOCKWISE = 1,
+	// The points make a counterclockwise triangle.
 	TUI_POINT_ORIENTATION_COUNTERCLOCKWISE = 2
 } TuiPointOrientation;
 
+// Get the orientation between three points.
 static inline TuiPointOrientation _tuiGetPoint2Orientation(const TuiPoint2 a, const TuiPoint2 b, const TuiPoint2 c)
 {
 	const int orientation_determinant = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
