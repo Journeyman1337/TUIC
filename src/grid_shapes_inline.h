@@ -28,6 +28,12 @@
 #define CLAMP(min, max, value) value < min ? min : (value > max ? max : value)
 #define SIGN(x) ((x > 0) - (x < 0))
 
+typedef enum TuiPointOrientation
+{
+	TUI_POINT_ORIENTATION_COLLINEAR = 0,
+	TUI_POINT_ORIENTATION_CLOCKWISE = 1,
+	TUI_POINT_ORIENTATION_COUNTERCLOCKWISE = 2
+} TuiPointOrientation;
 
 static inline TuiPointOrientation _tuiGetPoint2Orientation(const TuiPoint2 a, const TuiPoint2 b, const TuiPoint2 c)
 {
