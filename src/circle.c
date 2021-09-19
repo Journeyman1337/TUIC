@@ -128,7 +128,7 @@ TuiBoolean tuiCircleIntersectsLine(const TuiCircle circle, const TuiLine line)
 	const float dot_product = (((circle.center_x - line.start_x) * (line.end_x - line.start_x)) + ((circle.center_y - line.start_y) * (line.end_y - line.start_y))) / (line_length * line_length);
 	const float closest_x = roundf(line.start_x + (dot_product * (line.end_x - line.start_x)));
 	const float closest_y = roundf(line.start_y + (dot_product * (line.end_y - line.start_y)));
-	if (!_Point2OnCollinearLine(start_point, end_point, tuiPoint2((int)closest_x, (int)closest_y))) return TUI_FALSE;
+	if (!_tuiPoint2BetweenCollinearPoint2(start_point, end_point, tuiPoint2((int)closest_x, (int)closest_y))) return TUI_FALSE;
 	const float distance_x = closest_x - circle.center_x;
 	const float distance_y = closest_y - circle.center_y;
 	const float distance = sqrtf((distance_x * distance_x) + (distance_y * distance_y));
