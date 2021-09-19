@@ -89,8 +89,8 @@ TuiPoint2 tuiLineGetTranslationPoint2(const TuiLine line)
 
 float tuiLineGetLength(const TuiLine line)
 {
-	const int x_difference = line.start_x - line.end_x; // calculate difference of x coordinates
-	const int y_difference = line.start_y - line.end_y; // calculate difference of y coordinates
+	const int x_difference = line.end_x - line.start_x; // calculate difference of x coordinates
+	const int y_difference = line.end_y - line.start_y; // calculate difference of y coordinates
 	const float length = sqrtf((float)abs((x_difference * x_difference) + (y_difference * y_difference))); // use pythagorean theorem
 	return length;
 }
@@ -117,27 +117,22 @@ int tuiLineGetDiagonalLength(const TuiLine line)
 
 int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2)
 {
-	return ((line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y)) - ((line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y));
-}
-
-float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
-{
-	const float line_1_length = tuiLineGetLength(line_1);
-	const float line_2_length = tuiLineGetLength(line_2);
-	if (line_1_length == 0.0f || line_2_length == 0.0f) return 0.0f;
 	const TuiPoint2 line_1_translation = tuiLineGetTranslationPoint2(line_1);
 	const TuiPoint2 line_2_translation = tuiLineGetTranslationPoint2(line_2);
-	const float line_1_unit_x = (float)(line_1_translation.x) / line_1_length;
-	const float line_1_unit_y = (float)(line_1_translation.y) / line_1_length;
-	const float line_2_unit_x = (float)(line_2_translation.x) / line_2_length;
-	const float line_2_unit_y = (float)(line_2_translation.y) / line_2_length;
-	return (line_1_unit_x * line_2_unit_x) + (line_1_unit_y * line_2_unit_y);
+	return (line_1_translation.x * line_2_translation.y) - (line_2_translation.x * line_1_translation.y);
+}
+
+int tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
+{
+	const TuiPoint2 line_1_translation = tuiLineGetTranslationPoint2(line_1);
+	const TuiPoint2 line_2_translation = tuiLineGetTranslationPoint2(line_2);
+	return (line_1_translation.x * line_2_translation.x) + (line_1_translation.y * line_2_translation.y);
 }
 
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
 {
-	const int perp_dot_product = tuiLinesGetCrossProductZ(line_1, line_2);
-	return (perp_dot_product == 0);
+	const int cross_product = tuiLinesGetCrossProductZ(line_1, line_2);
+	return (cross_product == 0);
 }
 
 TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
@@ -151,7 +146,7 @@ TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 {
-	const float dot_product = tuiLinesGetDotProduct(line_1, line_2);
+	const int dot_product = tuiLinesGetDotProduct(line_1, line_2);
 	return (dot_product == 0.0f);
 }
 

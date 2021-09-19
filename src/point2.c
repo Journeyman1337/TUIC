@@ -48,14 +48,7 @@ int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2
 	return (point2_1.x * point2_2.y) - (point2_2.x * point2_1.y);
 }
 
-float tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
+int tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
-	const float point2_1_magnitude = tuiPoint2GetMagnitude(point2_1);
-	const float point2_2_magnitude = tuiPoint2GetMagnitude(point2_2);
-	if (point2_1_magnitude == 0 || point2_2_magnitude == 0) return 0.0f;
-	const float point2_1_unit_x = (float)point2_1.x / point2_1_magnitude;
-	const float point2_1_unit_y = (float)point2_1.y / point2_1_magnitude;
-	const float point2_2_unit_x = (float)point2_2.x / point2_2_magnitude;
-	const float point2_2_unit_y = (float)point2_2.y / point2_2_magnitude;
-	return (point2_1_unit_x * point2_2_unit_x) + (point2_1_unit_y * point2_2_unit_y);
+	return (point2_1.x * point2_2.x) + (point2_1.y * point2_2.y);
 }

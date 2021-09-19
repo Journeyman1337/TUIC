@@ -30,10 +30,8 @@ TEST_CASE("tuiPoint2GetCrossProductZ")
 
 TEST_CASE("tuiPoint2GetDotProduct")
 {
-	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(0, 0), tuiPoint2(0, 0)) == 0.0f);
-	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(1, 1), tuiPoint2(0, 0)) == 0.0f);
-	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(50, -2), tuiPoint2(155, 9)) > 0.9951f);
-	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(50, -2), tuiPoint2(155, 9)) < 0.9953f);
-	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(255, 255), tuiPoint2(-255, -255)) > -1.01f);
-	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(255, 255), tuiPoint2(-255, -255)) < -0.99f);
+	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(0, 0), tuiPoint2(0, 0)) == 0);
+	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(1, 1), tuiPoint2(0, 0)) == 0);
+	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(50, -2), tuiPoint2(155, 9)) == 7732);
+	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(255, 255), tuiPoint2(-255, -255)) == -130050);
 }

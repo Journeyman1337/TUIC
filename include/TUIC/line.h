@@ -247,7 +247,7 @@ int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2);
+int tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2);
 /*!
  * @brief Get if two @ref TuiLine are parallel.
  *
