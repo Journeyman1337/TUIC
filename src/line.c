@@ -182,12 +182,10 @@ TuiBoolean tuiLineIntersectsLine(const TuiLine line_1, const TuiLine line_2)
 	const TuiPoint2 line_1_end = tuiLineGetEndPoint2(line_1);
 	const TuiPoint2 line_2_start = tuiLineGetStartPoint2(line_2);
 	const TuiPoint2 line_2_end = tuiLineGetEndPoint2(line_2);
-
 	const TuiPointOrientation orientation_1 = _tuiGetPoint2Orientation(line_1_start, line_1_end, line_2_start);
 	const TuiPointOrientation orientation_2 = _tuiGetPoint2Orientation(line_1_start, line_1_end, line_2_end);
 	const TuiPointOrientation orientation_3 = _tuiGetPoint2Orientation(line_2_start, line_2_end, line_1_start);
 	const TuiPointOrientation orientation_4 = _tuiGetPoint2Orientation(line_2_start, line_2_end, line_1_end);
-
 	return
 		(orientation_1 != orientation_2 && orientation_3 != orientation_4) ||
 		(orientation_1 == TUI_POINT_ORIENTATION_COLLINEAR && _tuiPoint2BetweenCollinearPoint2(line_1_start, line_2_start, line_1_end)) ||
