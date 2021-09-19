@@ -16,6 +16,7 @@ add_executable(TUIC_TESTS_AUTO
 	keyboard_mod_test.cpp
 	mouse_button_test.cpp
 	palette_test.cpp
+	point2_test.cpp
 	test.cpp
 )
 target_link_libraries(TUIC_TESTS_AUTO 
