@@ -124,6 +124,7 @@ float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 {
 	const float line_1_length = tuiLineGetLength(line_1);
 	const float line_2_length = tuiLineGetLength(line_2);
+	if (line_1_length == 0.0f || line_2_length == 0.0f) return 0.0f;
 	const float line_1_unit_x = (float)(line_1.end_x - line_1.start_x) / line_1_length;
 	const float line_1_unit_y = (float)(line_1.end_y - line_1.start_y) / line_1_length;
 	const float line_2_unit_x = (float)(line_2.end_x - line_2.start_x) / line_2_length;
