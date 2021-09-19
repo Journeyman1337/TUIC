@@ -25,21 +25,21 @@
 
 #define TO_STRING(value) #value
 
-extern const char* kTui_Box_Part_Left_Side_Name = TO_STRING(TUI_BOX_PART_LEFT_SIDE);
+const char* kTui_Box_Part_Left_Side_Name = TO_STRING(TUI_BOX_PART_LEFT_SIDE);
 
-extern const char* kTui_Box_Part_Top_Left_Corner_Name = TO_STRING(TUI_BOX_PART_TOP_LEFT_CORNER);
+const char* kTui_Box_Part_Top_Left_Corner_Name = TO_STRING(TUI_BOX_PART_TOP_LEFT_CORNER);
 
-extern const char* kTui_Box_Part_Top_Side_Name = TO_STRING(TUI_BOX_PART_TOP_SIDE);
+const char* kTui_Box_Part_Top_Side_Name = TO_STRING(TUI_BOX_PART_TOP_SIDE);
 
-extern const char* kTui_Box_Part_Top_Right_Corner_Name = TO_STRING(TUI_BOX_PART_TOP_RIGHT_CORNER);
+const char* kTui_Box_Part_Top_Right_Corner_Name = TO_STRING(TUI_BOX_PART_TOP_RIGHT_CORNER);
 
-extern const char* kTui_Box_Part_Right_Side_Name = TO_STRING(TUI_BOX_PART_RIGHT_SIDE);
+const char* kTui_Box_Part_Right_Side_Name = TO_STRING(TUI_BOX_PART_RIGHT_SIDE);
 
-extern const char* kTui_Box_Part_Bottom_Right_Corner_Name = TO_STRING(TUI_BOX_PART_BOTTOM_RIGHT_CORNER);
+const char* kTui_Box_Part_Bottom_Right_Corner_Name = TO_STRING(TUI_BOX_PART_BOTTOM_RIGHT_CORNER);
 
-extern const char* kTui_Box_Part_Bottom_Side_Name = TO_STRING(TUI_BOX_PART_BOTTOM_SIDE);
+const char* kTui_Box_Part_Bottom_Side_Name = TO_STRING(TUI_BOX_PART_BOTTOM_SIDE);
 
-extern const char* kTui_Box_Part_Bottom_Left_Corner_Name = TO_STRING(TUI_BOX_PART_BOTTOM_LEFT_CORNER);
+const char* kTui_Box_Part_Bottom_Left_Corner_Name = TO_STRING(TUI_BOX_PART_BOTTOM_LEFT_CORNER);
 
 TuiBoolean tuiBoxPartIsValid(TuiBoxPart box_part)
 {
