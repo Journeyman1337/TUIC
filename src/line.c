@@ -147,7 +147,7 @@ TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
 TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 {
 	const int dot_product = tuiLinesGetDotProduct(line_1, line_2);
-	return (dot_product == 0.0f);
+	return (dot_product == 0);
 }
 
 TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
