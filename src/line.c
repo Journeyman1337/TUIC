@@ -64,8 +64,8 @@ TuiRect tuiLineGetBoundingRect(const TuiLine line)
 	const int right_x = tuiLineGetRightX(line);
 	const int bottom_y = tuiLineGetBottomY(line);
 	const int width = right_x - left_x;
-	const int height = top_y - bottom_y;
-	TuiRect ret = { left_x, right_x, width, height };
+	const int height = bottom_y - top_y;
+	TuiRect ret = tuiRect(left_x, top_y, width, height);
 	return ret;
 }
 
