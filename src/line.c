@@ -134,7 +134,7 @@ float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
 {
 	const int perp_dot_product = tuiLinesGetPerpDotProduct(line_1, line_2);
-	return (cross_product == 0);
+	return (perp_dot_product == 0);
 }
 
 TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
