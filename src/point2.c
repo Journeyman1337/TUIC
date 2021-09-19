@@ -35,7 +35,7 @@ float tuiPoint2GetMagnitude(const TuiPoint2 point2)
 	return magnitude;
 }
 
-float tuiPoint2Distance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
+float tuiPoint2GetDistance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	const int x_difference = point2_1.x - point2_2.x; // calculate difference of x coordinates
 	const int y_difference = point2_1.y - point2_2.y; // calculate difference of y coordinates

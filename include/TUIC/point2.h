@@ -75,7 +75,7 @@ float tuiPoint2GetMagnitude(const TuiPoint2 point2);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-float tuiPoint2Distance(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
+float tuiPoint2GetDistance(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
 /*!
  * @brief Get the cross product between two @ref TuiPoint2.
  *
