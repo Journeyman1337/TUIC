@@ -115,7 +115,7 @@ int tuiLineGetDiagonalLength(const TuiLine line)
 	return diagonal_length;
 }
 
-int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2)
+int tuiLinesGetPerpDotProduct(const TuiLine line_1, const TuiLine line_2)
 {
 	return ((line_1.end_x - line_1.start_x) * (line_2.end_y - line_2.start_y)) - ((line_2.end_x - line_2.start_x) * (line_1.end_y - line_1.start_y));
 }
@@ -133,7 +133,7 @@ float tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
 {
-	const int cross_product = tuiLinesGetCrossProduct(line_1, line_2);
+	const int perp_dot_product = tuiLinesGetPerpDotProduct(line_1, line_2);
 	return (cross_product == 0);
 }
 

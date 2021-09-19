@@ -219,7 +219,7 @@ int tuiLineGetDiagonalHeight(const TuiLine line);
  */
 int tuiLineGetDiagonalLength(const TuiLine line);
 /*!
- * @brief Get the cross product of two @ref TuiLine.
+ * @brief Get the perp dot product of two @ref TuiLine.
  *
  * @param line_1 The first @ref TuiLine.
  * @param line_2 The second @ref TuiLine.
@@ -232,7 +232,7 @@ int tuiLineGetDiagonalLength(const TuiLine line);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-int tuiLinesGetCrossProduct(const TuiLine line_1, const TuiLine line_2);
+int tuiLinesGetPerpDotProduct(const TuiLine line_1, const TuiLine line_2);
 /*!
  * @brief Get the dot product of two @ref TuiLine.
  *

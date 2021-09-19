@@ -43,7 +43,7 @@ float tuiPoint2GetDistance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 	return distance;
 }
 
-int tuiPoint2GetCrossProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
+int tuiPoint2GetPerpDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	return (point2_1.x * point2_2.x) - (point2_1.y * point2_2.y);
 }
