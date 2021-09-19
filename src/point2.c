@@ -45,7 +45,7 @@ float tuiPoint2GetDistance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 
 int tuiPoint2GetPerpDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
-	return (point2_1.x * point2_2.x) - (point2_1.y * point2_2.y);
+	return (point2_1.x * point2_2.y) - (point2_2.x * point2_1.y);
 }
 
 float tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
