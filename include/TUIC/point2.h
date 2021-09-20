@@ -106,6 +106,22 @@ int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 int tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
+/*!
+ * @brief Get if three @ref TuiPoint2 are on the same line
+ *
+ * @param point2_1 The first @ref TuiPoint2.
+ * @param point2_2 The second @ref TuiPoint2.
+ * @param point2_3 The third @ref TuiPoint2.
+ *
+ * @returns If the points are on the same line.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiPoint2Collinear(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3);
 /*! @} */
 
 

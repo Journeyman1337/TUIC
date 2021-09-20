@@ -52,3 +52,8 @@ int tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	return (point2_1.x * point2_2.x) + (point2_1.y * point2_2.y);
 }
+
+TuiBoolean tuiPoint2Collinear(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
+{
+	return _tuiPoint2Collienar(point2_1, point2_2, point2_3);
+}
