@@ -77,5 +77,15 @@ static inline TuiBoolean _tuiPoint2Collienar(const TuiPoint2 point2_1, const Tui
 	return (determinant == 0);
 }
 
+static inline int _tuiIntCrossProductZ(const int x_1, const int y_1, const int x_2, const int y_2)
+{
+	return (x_1 * y_2) - (x_2 * y_1);
+}
+
+static inline int _tuiIntDotProduct(const int x_1, const int y_1, const int x_2, const int y_2)
+{
+	return (x_1 * x_2) + (y_2 * y_1);
+}
+
 
 #endif //header guard

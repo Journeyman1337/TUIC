@@ -119,14 +119,14 @@ int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2)
 {
 	const TuiPoint2 line_1_translation = tuiLineGetTranslationPoint2(line_1);
 	const TuiPoint2 line_2_translation = tuiLineGetTranslationPoint2(line_2);
-	return (line_1_translation.x * line_2_translation.y) - (line_2_translation.x * line_1_translation.y);
+	return _tuiIntCrossProductZ(line_1_translation.x, line_1_translation.y, line_2_translation.x, line_2_translation.y);
 }
 
 int tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 {
 	const TuiPoint2 line_1_translation = tuiLineGetTranslationPoint2(line_1);
 	const TuiPoint2 line_2_translation = tuiLineGetTranslationPoint2(line_2);
-	return (line_1_translation.x * line_2_translation.x) + (line_1_translation.y * line_2_translation.y);
+	return _tuiIntDotProduct(line_1_translation.x, line_1_translation.y, line_2_translation.x, line_2_translation.y);
 }
 
 TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
