@@ -152,11 +152,12 @@ TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
 {
-	const float line_start_distance = tuiPoint2GetDistance(tuiLineGetStartPoint2(line), point2);
-	const float line_end_distance = tuiPoint2GetDistance(tuiLineGetEndPoint2(line), point2);
-	const float line_length = tuiLineGetLength(line);
-	const TuiBoolean point_on_line = (line_length == line_start_distance + line_end_distance); // point is on line if distance from line start to point added to distance from line end to point is equal to line length
-	return point_on_line;
+	// if AC is vertical
+	if (line.start_x == line.end_x) return line.start_x == point2.x;
+	// if AC is horizontal
+	if (line.start_y == line.end_y) return line.start_y == point2.y;
+	// match the gradients
+	return (line.start_x - point2.x) * (line.start_y - point2.y) == (point2.x - line.end_x) * (point2.y - line.end_y);
 }
 
 TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
