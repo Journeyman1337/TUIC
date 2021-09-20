@@ -225,4 +225,3 @@ TEST_CASE("tuiLineIntersectsLine")
 	REQUIRE(tuiLineIntersectsLine(tuiLine(2, 3, 15, 4), tuiLine(4, 15, 7, -20)));
 	REQUIRE(!tuiLineIntersectsLine(tuiLine(-2, -3, -4, -5), tuiLine(2, 3, 4, 5)));
 }
-}
