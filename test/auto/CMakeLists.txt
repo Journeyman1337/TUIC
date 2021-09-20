@@ -14,6 +14,7 @@ add_executable(TUIC_TESTS_AUTO
 	image_test.cpp
 	keyboard_key_test.cpp
 	keyboard_mod_test.cpp
+	line_test.cpp
 	mouse_button_test.cpp
 	palette_test.cpp
 	point2_test.cpp
