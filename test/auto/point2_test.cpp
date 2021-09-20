@@ -35,3 +35,11 @@ TEST_CASE("tuiPoint2GetDotProduct")
 	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(50, -2), tuiPoint2(155, 9)) == 7732);
 	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(255, 255), tuiPoint2(-255, -255)) == -130050);
 }
+
+TEST_CASE("tuiPoint2Collinear")
+{
+	REQUIRE(tuiPoint2Collinear(tuiPoint2(0, 0), tuiPoint2(0, 0), tuiPoint2(0, 0)));
+	REQUIRE(tuiPoint2Collinear(tuiPoint2(-1, -1), tuiPoint2(0, 0), tuiPoint2(1, 1)));
+	REQUIRE(tuiPoint2Collinear(tuiPoint2(1, 3), tuiPoint2(2, 6), tuiPoint2(3, 9)));
+	REQUIRE(!tuiPoint2Collinear(tuiPoint2(1, 200), tuiPoint2(0, 0), tuiPoint2(100, 1000)));
+}
