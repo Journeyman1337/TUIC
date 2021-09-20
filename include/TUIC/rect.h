@@ -79,6 +79,64 @@ int tuiRectGetFarX(const TuiRect rect);
  */
 int tuiRectGetFarY(const TuiRect rect);
 /*!
+ * @brief Get the physical width of a @ref TuiRect in tiles, or the absolute value if its width.
+ * 
+ * @param rect The @ref TuiRect.
+ *
+ * @returns The physical width.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiRectGetPhysicalWidth(const TuiRect rect);
+/*!
+ * @brief Get the physical height of a @ref TuiRect in tiles, or the absolute value if its height.
+ *
+ * @param rect The @ref TuiRect.
+ *
+ * @returns The physical height.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiRectGetPhysicalHeight(const TuiRect rect);
+/*!
+ * @brief Get if the contents of a @ref TuiRect is flipped wide, or if its width is negative.
+ * 
+ * @param rect The @ref TuiRect.
+ *
+ * @returns The @ref TuiBoolean result. If rect is a flipped wide @ref TuiRect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiRectIsFlippedWide(const TuiRect rect);
+/*!
+ * @brief Get if the contents of a @ref TuiRect is flipped tall or if its height is negative.
+ *
+ * @param rect The @ref TuiRect.
+ *
+ * @returns The @ref TuiBoolean result. If rect is a flipped tall @ref TuiRect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiRectIsFlippedTall(const TuiRect rect);
+/*!
  * @brief Get if a @ref TuiRect is degenerate. A degenerate rect has a 0 valued width or height.
  *
  * @param rect The @ref TuiRect.

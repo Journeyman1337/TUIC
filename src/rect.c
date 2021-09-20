@@ -66,6 +66,25 @@ int tuiRectGetFarY(const TuiRect rect)
 	return (rect.height == 0) ? rect.y : rect.y + abs(rect.height) - 1;
 }
 
+int tuiRectGetPhysicalWidth(const TuiRect rect)
+{
+	return abs(rect.width);
+}
+
+int tuiRectGetPhysicalHeight(const TuiRect rect)
+{
+	return abs(rect.height);
+}
+TuiBoolean tuiRectIsFlippedWide(const TuiRect rect)
+{
+	return rect.width < 0;
+}
+
+TuiBoolean tuiRectIsFlippedTall(const TuiRect rect)
+{
+	return rect.height < 0;
+}
+
 TuiBoolean tuiRectIsDegenerate(const TuiRect rect)
 {
 	TuiBoolean degenerate = (rect.width == 0) || (rect.height == 0);
