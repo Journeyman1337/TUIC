@@ -152,9 +152,9 @@ TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
 {
-	// if AC is vertical
+	// if line is vertical
 	if (line.start_x == line.end_x) return line.start_x == point2.x;
-	// if AC is horizontal
+	// if line is horizontal
 	if (line.start_y == line.end_y) return line.start_y == point2.y;
 	// match the gradients
 	return (line.start_x - point2.x) * (line.start_y - point2.y) == (point2.x - line.end_x) * (point2.y - line.end_y);
