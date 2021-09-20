@@ -68,5 +68,14 @@ static inline TuiBoolean _tuiPoint2BetweenCollinearPoint2(const TuiPoint2 surrou
 		);
 }
 
+static inline TuiBoolean _tuiPoint2Collienar(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
+{
+	const int determinant = point2_1.x * (point2_2.y - point2_3.y) +
+		point2_2.x * (point2_3.y - point2_1.y) +
+		point2_3.x * (point2_1.y - point2_2.y);
+
+	return (determinant == 0);
+}
+
 
 #endif //header guard

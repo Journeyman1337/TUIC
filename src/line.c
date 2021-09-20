@@ -137,11 +137,11 @@ TuiBoolean tuiLinesParallel(const TuiLine line_1, const TuiLine line_2)
 
 TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
 {
-	// Use triangle area formula without division by two.
-	const int triangle_1_double_area = (line_1.start_x * (line_1.end_y - line_2.start_y)) + (line_1.end_x * (line_2.start_y - line_1.start_y)) + (line_2.start_x * (line_1.start_y - line_1.end_x)); // between line_1 points and line_2 start point
-	const int triangle_2_double_area = (line_1.end_x * (line_1.end_y - line_2.end_y)) + (line_1.end_x * (line_2.end_y - line_1.start_y)) + (line_2.end_x * (line_1.start_y - line_1.end_y)); // between line_1 points and line_2 end point
-	const TuiBoolean lines_collinear = (triangle_1_double_area == 0 && triangle_2_double_area == 0); // lines are collinear if both are 0
-	return lines_collinear;
+	const TuiPoint2 line_1_start = tuiLineGetStartPoint2(line_1);
+	const TuiPoint2 line_1_end = tuiLineGetEndPoint2(line_1);
+	const TuiPoint2 line_2_start = tuiLineGetStartPoint2(line_2);
+	const TuiPoint2 line_2_end = tuiLineGetEndPoint2(line_2);
+	return (_tuiPoint2Collienar(line_1_start, line_1_end, line_2_start) && _tuiPoint2Collienar(line_1_start, line_1_end, line_2_end));
 }
 
 TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
