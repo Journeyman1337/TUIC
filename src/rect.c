@@ -123,16 +123,6 @@ TuiPoint2 tuiRectGetBottomRightInnerCornerPoint2(const TuiRect rect)
 	return ret;
 }
 
-TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
-{
-	const int corner_change = (corners) ? 0 : 1;
-	const int rect_right_x = _tuiRectGetRightX(rect);
-	const int rect_top_y = _tuiRectGetTopY(rect);
-	const int rect_bottom_y = _tuiRectGetBottomY(rect);
-	TuiLine ret = { rect_right_x, rect_bottom_y - corner_change, rect_right_x, rect_top_y + corner_change }; // clockwise
-	return ret;
-}
-
 TuiLine tuiRectGetLeftInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
 {
 	const int corner_change = (corners) ? 0 : 1;
@@ -140,6 +130,16 @@ TuiLine tuiRectGetLeftInnerBorderLine(const TuiRect rect, const TuiBoolean corne
 	const int rect_top_y = _tuiRectGetTopY(rect);
 	const int rect_bottom_y = _tuiRectGetBottomY(rect);
 	TuiLine ret = { rect_left_x, rect_top_y + corner_change, rect_left_x, rect_bottom_y - corner_change }; // clockwise
+	return ret;
+}
+
+TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corners)
+{
+	const int corner_change = (corners) ? 0 : 1;
+	const int rect_right_x = _tuiRectGetRightX(rect);
+	const int rect_top_y = _tuiRectGetTopY(rect);
+	const int rect_bottom_y = _tuiRectGetBottomY(rect);
+	TuiLine ret = { rect_right_x, rect_bottom_y - corner_change, rect_right_x, rect_top_y + corner_change }; // clockwise
 	return ret;
 }
 
