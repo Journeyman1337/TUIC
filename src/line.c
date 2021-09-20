@@ -156,8 +156,7 @@ TuiBoolean tuiLineContainsPoint2(const TuiLine line, const TuiPoint2 point2)
 	if (line.start_x == line.end_x) return line.start_x == point2.x;
 	// if line is horizontal
 	if (line.start_y == line.end_y) return line.start_y == point2.y;
-	// match the gradients
-	return (line.start_x - point2.x) * (line.start_y - point2.y) == (point2.x - line.end_x) * (point2.y - line.end_y);
+	return _tuiIntCrossProductZ(line.start_x, line.start_y, point2.x, point2.y) == _tuiIntCrossProductZ(line.end_x, line.end_y, point2.x, point2.y);
 }
 
 TuiBoolean tuiLineContainsLine(const TuiLine line_1, const TuiLine line_2)
