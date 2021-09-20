@@ -208,21 +208,6 @@ TuiPoint2 tuiRectGetBottomLeftInnerCornerPoint2(const TuiRect rect);
  */
 TuiPoint2 tuiRectGetBottomRightInnerCornerPoint2(const TuiRect rect);
 /*!
- * @brief Get the @ref TuiLine on the right border of a @ref TuiRect.
- *
- * @param rect The @ref TuiRect.
- * @param corners If the corners should be included in the border line.
- *
- * @returns The @ref TuiLine.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
-/*!
  * @brief Get the @ref TuiVLine on the left border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
@@ -237,6 +222,21 @@ TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corn
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiLine tuiRectGetLeftInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
+/*!
+ * @brief Get the @ref TuiLine on the right border of a @ref TuiRect.
+ *
+ * @param rect The @ref TuiRect.
+ * @param corners If the corners should be included in the border line.
+ *
+ * @returns The @ref TuiLine.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiLine on the top border of a @ref TuiRect.
  *
