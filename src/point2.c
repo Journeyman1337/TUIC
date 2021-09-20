@@ -21,6 +21,7 @@
 #include <math.h>
 #include <stdlib.h> //for abs on mac
 #include <TUIC/easing.h>
+#include "grid_shapes_inline.h"
 
 
 TuiPoint2 tuiPoint2(const int x, const int y)
