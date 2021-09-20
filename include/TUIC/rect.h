@@ -38,8 +38,8 @@ extern "C" {
  *
  * @param x The x position of one of the rect corners.
  * @param y The y position of one of the rect corners.
- * @param width The width of the rect.
- * @param height The height of the rect.
+ * @param width The width of the rect. If negative, the rect contents are flipped.
+ * @param height The height of the rect. If negative, the rect contents are flipped.
  *
  * @returns The created @ref TuiRect.
  *
@@ -79,7 +79,7 @@ int tuiRectGetFarX(const TuiRect rect);
  */
 int tuiRectGetFarY(const TuiRect rect);
 /*!
- * @brief Get if a @ref TuiRect is degenerate. A degenerate rect has a negative width or height.
+ * @brief Get if a @ref TuiRect is degenerate. A degenerate rect has a 0 valued width or height.
  *
  * @param rect The @ref TuiRect.
  *

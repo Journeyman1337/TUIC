@@ -40,7 +40,7 @@ static inline int _tuiRectGetLeftX(const TuiRect rect)
 
 static inline int _tuiRectGetRightX(const TuiRect rect)
 {
-	const int rect_right_x = (rect.width <= 0) ? rect.x : rect.x + rect.width - 1;
+	const int rect_right_x = (rect.width == 0) ? rect.x : rect.x + abs(rect.width) - 1;
 	return rect_right_x;
 }
 
@@ -52,23 +52,23 @@ static inline int _tuiRectGetTopY(const TuiRect rect)
 
 static inline int _tuiRectGetBottomY(const TuiRect rect)
 {
-	const int rect_bottom_y = (rect.height <= 0) ? rect.y : rect.y + rect.height - 1;
+	const int rect_bottom_y = (rect.height == 0) ? rect.y : rect.y + abs(rect.height) - 1;
 	return rect_bottom_y;
 }
 
 int tuiRectGetFarX(const TuiRect rect)
 {
-	return rect.x + rect.width - 1;
+	return rect.x + abs(rect.width) - 1;
 }
 
 int tuiRectGetFarY(const TuiRect rect)
 {
-	return rect.y + rect.height - 1;
+	return rect.y + abs(rect.height) - 1;
 }
 
 TuiBoolean tuiRectIsDegenerate(const TuiRect rect)
 {
-	TuiBoolean degenerate = (rect.width < 0) || (rect.height < 0);
+	TuiBoolean degenerate = (rect.width == 0) || (rect.height == 0);
 	return degenerate;
 }
 
@@ -146,13 +146,13 @@ TuiLine tuiRectGetBottomInnerBorderLine(const TuiRect rect, const TuiBoolean cor
 
 TuiRect tuiRectGetInnerRect(const TuiRect rect, const int depth)
 {
-	TuiRect ret = { rect.x + depth, rect.y + depth, rect.width - (depth * 2), rect.height - (depth * 2) };
+	TuiRect ret = { rect.x + depth, rect.y + depth, rect.width - (SIGN(rect.width) * depth * 2), rect.height - (SIGN(rect.height) * depth * 2) };
 	return ret;
 }
 
 TuiRect tuiRectGetCroppedRect(const TuiRect rect, const TuiRect crop_rect)
 {
-	if (crop_rect.width <= 0 || crop_rect.height <= 0 || rect.width <= 0 || rect.height <= 0)
+	if (tuiRectIsDegenerate(rect) || tuiRectIsDegenerate(crop_rect))
 	{
 		TuiRect ret = { 0, 0, 0, 0 };
 		return ret;
@@ -167,18 +167,18 @@ TuiRect tuiRectGetCroppedRect(const TuiRect rect, const TuiRect crop_rect)
 	const int ret_far_y = CLAMP(crop_rect.y, crop_far_y, rect_far_y);
 	const int ret_width = ret_far_x - ret_x;
 	const int ret_height = ret_far_y - ret_y;
-	TuiRect ret = {  ret_x, ret_y, ret_width, ret_height };
+	TuiRect ret = {  ret_x, ret_y, ret_width * SIGN(rect.width), ret_height * SIGN(rect.height) };
 	return ret;
 }
 
 TuiBoolean tuiRectContainsPoint2(const TuiRect rect, const TuiPoint2 point2)
 {
-	if (rect.width <= 0 || rect.height <= 0)
+	if (tuiRectIsDegenerate(rect))
 	{
 		return TUI_FALSE;
 	}
-	const int rect_far_x = rect.x + rect.width - 1;
-	const int rect_far_y = rect.y + rect.height - 1;
+	const int rect_far_x = rect.x + abs(rect.width) - 1;
+	const int rect_far_y = rect.y + abs(rect.height) - 1;
 	TuiBoolean rect_contains_point2 =
 		(rect.x <= point2.x) && (rect_far_x >= point2.x) &&
 		(rect.y <= point2.y) && (rect_far_y >= point2.y);
@@ -187,12 +187,12 @@ TuiBoolean tuiRectContainsPoint2(const TuiRect rect, const TuiPoint2 point2)
 
 TuiBoolean tuiRectContainsLine(const TuiRect rect, const TuiLine line)
 {
-	if (rect.width <= 0 || rect.height <= 0)
+	if (tuiRectIsDegenerate(rect))
 	{
 		return TUI_FALSE;
 	}
-	const int rect_far_x = rect.x + rect.width - 1;
-	const int rect_far_y = rect.y + rect.height - 1;
+	const int rect_far_x = rect.x + abs(rect.width) - 1;
+	const int rect_far_y = rect.y + abs(rect.height) - 1;
 	TuiBoolean rect_contains_line =
 		(rect.x <= line.start_x) && (rect_far_x >= line.start_x) &&
 		(rect.x <= line.end_x) && (rect_far_x >= line.end_x) &&
@@ -203,14 +203,14 @@ TuiBoolean tuiRectContainsLine(const TuiRect rect, const TuiLine line)
 
 TuiBoolean tuiRectContainsRect(const TuiRect rect_1, const TuiRect rect_2)
 {
-	if (rect_1.width <= 0 || rect_1.height <= 0 || rect_2.width <= 0 || rect_2.height <= 0)
+	if (tuiRectIsDegenerate(rect_1) || tuiRectIsDegenerate(rect_2))
 	{
 		return TUI_FALSE;
 	}
-	const int rect_1_far_x = rect_1.x + rect_1.width - 1;
-	const int rect_1_far_y = rect_1.y + rect_1.height - 1;
-	const int rect_2_far_x = rect_2.x + rect_2.width - 1;
-	const int rect_2_far_y = rect_2.y + rect_2.height - 1;
+	const int rect_1_far_x = rect_1.x + abs(rect_1.width) - 1;
+	const int rect_1_far_y = rect_1.y + abs(rect_1.height) - 1;
+	const int rect_2_far_x = rect_2.x + abs(rect_2.width) - 1;
+	const int rect_2_far_y = rect_2.y + abs(rect_2.height) - 1;
 	TuiBoolean rect_contains_line =
 		(rect_1.x <= rect_2.x) && (rect_1_far_x >= rect_2.x) &&
 		(rect_1.x <= rect_2_far_x) && (rect_1_far_x >= rect_2_far_x) &&
@@ -221,7 +221,7 @@ TuiBoolean tuiRectContainsRect(const TuiRect rect_1, const TuiRect rect_2)
 
 TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 {
-	if (rect.width <= 0 || rect.height <= 0)
+	if (tuiRectIsDegenerate(rect))
 	{
 		return TUI_FALSE;
 	}
@@ -235,14 +235,14 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 
 TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2)
 {
-	if (rect_1.width <= 0 || rect_1.height <= 0 || rect_2.width <= 0 || rect_2.height <= 0)
+	if (tuiRectIsDegenerate(rect_1) || tuiRectIsDegenerate(rect_2))
 	{
 		return TUI_FALSE;
 	}
-	const int rect_1_far_x = rect_1.x + rect_1.width - 1;
-	const int rect_1_far_y = rect_1.y + rect_1.height - 1;
-	const int rect_2_far_x = rect_2.x + rect_2.width - 1;
-	const int rect_2_far_y = rect_2.y + rect_2.height - 1;
+	const int rect_1_far_x = rect_1.x + abs(rect_1.width) - 1;
+	const int rect_1_far_y = rect_1.y + abs(rect_1.height) - 1;
+	const int rect_2_far_x = rect_2.x + abs(rect_2.width) - 1;
+	const int rect_2_far_y = rect_2.y + abs(rect_2.height) - 1;
 	const TuiBoolean rect_intersects_rect =
 		(rect_1_far_x >= rect_2.x) &&
 		(rect_1.x <= rect_2_far_x) &&
