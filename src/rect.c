@@ -244,12 +244,20 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 	{
 		return TUI_FALSE;
 	}
-	TuiBoolean rect_intersects_line = 
+	TuiBoolean line_intersects_rect_border = 
 		tuiLineIntersectsLine(line, tuiRectGetLeftInnerBorderLine(rect, TUI_TRUE)) ||
 		tuiLineIntersectsLine(line, tuiRectGetTopInnerBorderLine(rect, TUI_TRUE)) ||
 		tuiLineIntersectsLine(line, tuiRectGetRightInnerBorderLine(rect, TUI_TRUE)) ||
 		tuiLineIntersectsLine(line, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE));
-	return rect_intersects_line;
+	if (line_intersects_rect_border) return TUI_TRUE;
+	const int rect_far_x = rect.x + abs(rect.width) - 1;
+	const int rect_far_y = rect.y + abs(rect.height) - 1;
+	TuiBoolean rect_contains_line =
+		(line.start_x >= rect.x && line.start_x <= rect_far_x) &&
+		(line.start_y >= rect.y && line.start_y <= rect_far_y) &&
+		(line.end_x >= rect.x && line.end_x <= rect_far_x) &&
+		(line.end_y >= rect.y && line.end_y <= rect_far_y);
+	return rect_contains_line;
 }
 
 TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2)
