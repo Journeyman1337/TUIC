@@ -94,8 +94,8 @@ int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2
 /*!
  * @brief Get the dot product between two @ref TuiPoint2.
  *
- * @param point2_1 The first point.
- * @param point2_2 The second point.
+ * @param point2_1 The first @ref TuiPoint2.
+ * @param point2_2 The second @ref TuiPoint2.
  *
  * @returns The distance between the points.
  *
