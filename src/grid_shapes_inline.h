@@ -117,4 +117,25 @@ static inline float _tuiIntUnitDotProduct(const int x_1, const int y_1, const in
 	return (float)dot / (distance * distance);
 }
 
+static inline float _tuiIntPointLineDistance(const int p_x, const int p_y, const int l_sx, const int l_sy, const int l_ex, const int l_ey)
+{
+	const TuiPoint2 line_translation = { l_ex - l_sx, l_ey - l_sy };
+	const TuiPoint2 line_start_point_translation = { p_x - l_sx, p_y - l_sy };
+	const TuiPoint2 line_end_point_translation = { p_x - l_ex, p_y - l_ey };
+	if (_tuiIntDotProduct(line_translation.x, line_translation.y, line_start_point_translation.x, line_start_point_translation.y) < 0)
+	{
+		return _tuiIntPointDistance(l_sx, l_sy, p_x, p_y);
+	}
+	else if (_tuiIntDotProduct(line_translation.x, line_translation.y, line_end_point_translation.x, line_end_point_translation.y) > 0)
+	{
+		return _tuiIntPointDistance(l_ex, l_ey, p_x, p_y);
+	}
+	else
+	{
+		const float line_length = _tuiIntPointDistance(l_sx, l_sy, l_ex, l_ey);
+		const int numerator = abs(((l_ex - l_sx) * (l_sy - p_y)) - ((l_sx - p_x) * (l_ey - l_sy)));
+		return (float)numerator / line_length;
+	}
+}
+
 #endif //header guard

@@ -139,20 +139,10 @@ TuiBoolean tuiCircleContainsCircle(const TuiCircle circle_1, const TuiCircle cir
 
 TuiBoolean tuiCircleIntersectsLine(const TuiCircle circle, const TuiLine line)
 {
-	if (tuiCircleIsDegenerate(circle)) return TUI_FALSE;
-	if (circle.radius < 0.5f) return TUI_FALSE;
-	TuiPoint2 start_point = tuiLineGetStartPoint2(line);
-	TuiPoint2 end_point = tuiLineGetEndPoint2(line);
-	if (tuiCircleContainsPoint2(circle, start_point) || tuiCircleContainsPoint2(circle, end_point)) return TUI_TRUE;
-	const float line_length = tuiLineGetLength(line);
-	const float dot_product = (((circle.center_x - line.start_x) * (line.end_x - line.start_x)) + ((circle.center_y - line.start_y) * (line.end_y - line.start_y))) / (line_length * line_length);
-	const float closest_x = roundf(line.start_x + (dot_product * (line.end_x - line.start_x)));
-	const float closest_y = roundf(line.start_y + (dot_product * (line.end_y - line.start_y)));
-	if (!_tuiPoint2BetweenCollinearPoint2(start_point, end_point, tuiPoint2((int)closest_x, (int)closest_y))) return TUI_FALSE;
-	const float distance_x = closest_x - circle.center_x;
-	const float distance_y = closest_y - circle.center_y;
-	const float distance = sqrtf((distance_x * distance_x) + (distance_y * distance_y));
-	return (distance <= circle.radius);
+	const float abs_radius = fabsf(circle.radius);
+	if (abs_radius < 0.5f) return TUI_FALSE;
+	const float point_line_distance = _tuiIntPointLineDistance(circle.center_x, circle.center_y, line.start_x, line.start_y, line.end_x, line.end_y);
+	return point_line_distance <= circle.radius;
 }
 
 TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect)
