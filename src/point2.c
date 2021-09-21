@@ -40,6 +40,11 @@ float tuiPoint2GetDistanceToPoint2(const TuiPoint2 point2_1, const TuiPoint2 poi
 	return _tuiIntPointDistance(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
 }
 
+float tuiPoint2GetDistanceToLine(const TuiPoint2 point2, const TuiLine line)
+{
+	return _tuiIntPointLineDistance(point2.x, point2.y, line.start_x, line.start_y, line.end_x, line.end_y);
+}
+
 int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	return _tuiIntCrossProductZ(point2_1.x, point2_1.y, point2_2.x, point2_2.y);

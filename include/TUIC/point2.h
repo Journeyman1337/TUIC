@@ -77,6 +77,21 @@ float tuiPoint2GetMagnitude(const TuiPoint2 point2);
  */
 float tuiPoint2GetDistanceToPoint2(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
 /*!
+ * @brief Get the distance between a @ref TuiPoint2 to a @ref TuiLine.
+ *
+ * @param point2 The point.
+ * @param line The line.
+ *
+ * @returns The distance between the point and the line
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+float tuiPoint2GetDistanceToLine(const TuiPoint2 point2, const TuiLine line);
+/*!
  * @brief Get the z component of the cross product between two @ref TuiPoint2.
  *
  * @param point2_1 The first point.
