@@ -113,7 +113,7 @@ static inline float _tuiIntUnitDotProduct(const int x_1, const int y_1, const in
 {
 	const int dot = _tuiIntDotProduct(x_1, y_1, x_2, y_2);
 	const float distance = _tuiIntPointDistance(x_1, x_2, y_1, y_2);
-	if (distance == 0) return 0.0f;
+	if (distance == 0.0f) return 0.0f;
 	return (float)dot / (distance * distance);
 }
 
