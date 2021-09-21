@@ -100,11 +100,12 @@ TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle)
 
 TuiBoolean tuiCircleIsDegenerate(const TuiCircle circle)
 {
-	return (circle.radius < 0);
+	return (circle.radius == 0);
 }
 
 TuiBoolean tuiCircleContainsPoint2(const TuiCircle circle, const TuiPoint2 point2)
 {
+	if (tuiCircleIsDegenerate(circle)) return TUI_FALSE;
 	const float circle_border_squared_distance = (float)((point2.x * point2.x) + (point2.y * point2.y)) - (circle.radius * circle.radius);
 	return circle_border_squared_distance <= 0.0f;
 }
@@ -116,6 +117,7 @@ TuiBoolean tuiCircleContainsLine(const TuiCircle circle, const TuiLine line)
 
 TuiBoolean tuiCircleContainsRect(const TuiCircle circle, const TuiRect rect)
 {
+	if (tuiCircleIsDegenerate(circle) || tuiRectIsDegenerate(rect)) return TUI_FALSE;
 	return
 		tuiCircleContainsPoint2(circle, tuiRectGetTopRightInnerCornerPoint2(rect)) &&
 		tuiCircleContainsPoint2(circle, tuiRectGetTopLeftInnerCornerPoint2(rect)) &&
@@ -125,6 +127,7 @@ TuiBoolean tuiCircleContainsRect(const TuiCircle circle, const TuiRect rect)
 
 TuiBoolean tuiCircleContainsCircle(const TuiCircle circle_1, const TuiCircle circle_2)
 {
+	if (tuiCircleIsDegenerate(circle_1) || tuiCircleIsDegenerate(circle_2)) return TUI_FALSE;
 	return
 		tuiCircleContainsPoint2(circle_1, tuiCircleGetCenterPoint2(circle_2)) &&
 		tuiCircleContainsPoint2(circle_1, tuiCircleGetLeftPoint2(circle_2)) &&
@@ -135,6 +138,7 @@ TuiBoolean tuiCircleContainsCircle(const TuiCircle circle_1, const TuiCircle cir
 
 TuiBoolean tuiCircleIntersectsLine(const TuiCircle circle, const TuiLine line)
 {
+	if (tuiCircleIsDegenerate(circle)) return TUI_FALSE;
 	if (circle.radius < 0.5f) return TUI_FALSE;
 	TuiPoint2 start_point = tuiLineGetStartPoint2(line);
 	TuiPoint2 end_point = tuiLineGetEndPoint2(line);
@@ -152,6 +156,7 @@ TuiBoolean tuiCircleIntersectsLine(const TuiCircle circle, const TuiLine line)
 
 TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect)
 {
+	if (tuiCircleIsDegenerate(circle) || tuiRectIsDegenerate(rect)) return TUI_FALSE;
 	if (rect.width <= 0 || rect.height <= 0 || circle.radius < 0.5f) return TUI_FALSE;
 	const TuiPoint2 closest_rect_point = tuiPoint2(CLAMP(rect.x, rect.x + rect.width - 1, circle.center_x), CLAMP(rect.y, rect.y + rect.height - 1, circle.center_y));
 	const float point_distance = tuiPoint2GetDistance(tuiCircleGetCenterPoint2(circle), closest_rect_point);
@@ -160,7 +165,7 @@ TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect)
 
 TuiBoolean tuiCircleIntersectsCircle(const TuiCircle circle_1, const TuiCircle circle_2)
 {
-	if (circle_1.radius < 0.5f || circle_2.radius < 0.5f) return TUI_FALSE;
+	if (fabsf(circle_1.radius) < 0.5f || fabsf(circle_2.radius) < 0.5f) return TUI_FALSE;
 	const float point_distance = tuiPoint2GetDistance(tuiCircleGetCenterPoint2(circle_1), tuiCircleGetCenterPoint2(circle_2));
 	const float combined_radius = circle_1.radius + circle_2.radius;
 	return (point_distance < combined_radius);

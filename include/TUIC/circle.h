@@ -204,7 +204,7 @@ TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle);
  */
 TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle);
 /*!
- * @brief Get if a @ref TuiCircle is degenerate. A degenerate @ref TuiCircle has a negative radius.
+ * @brief Get if a @ref TuiCircle is degenerate. A degenerate @ref TuiCircle has a 0 valued radius.
  *
  * @param circle The @ref TuiCircle.
  *
