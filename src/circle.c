@@ -73,27 +73,28 @@ TuiRect tuiCircleGetBoundingRect(const TuiCircle circle)
 	return ret;
 }
 
-TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle)
-{
-	TuiPoint2 ret = { circle.center_x,  tuiCircleGetTopY(circle)};
-	return ret;
-}
-
 TuiPoint2 tuiCircleGetLeftPoint2(const TuiCircle circle)
 {
 	TuiPoint2 ret = { tuiCircleGetLeftX(circle), circle.center_y };
 	return ret;
 }
 
-TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle)
+TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle)
 {
-	TuiPoint2 ret = { circle.center_x, tuiCircleGetBottomY(circle) };
+	TuiPoint2 ret = { circle.center_x,  tuiCircleGetTopY(circle)};
 	return ret;
 }
 
 TuiPoint2 tuiCircleGetRightPoint2(const TuiCircle circle)
 {
 	TuiPoint2 ret = { tuiCircleGetRightX(circle), circle.center_y };
+	return ret;
+}
+
+
+TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle)
+{
+	TuiPoint2 ret = { circle.center_x, tuiCircleGetBottomY(circle) };
 	return ret;
 }
 
