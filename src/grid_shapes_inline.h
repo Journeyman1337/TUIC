@@ -21,6 +21,7 @@
 #define TUIC_GRID_SHAPES_INLINE_H
 #include <TUIC/point2.h>
 #include <TUIC/boolean.h>
+#include "math.h"
 
 
 // Get the highest value between two values.
@@ -77,9 +78,30 @@ static inline TuiBoolean _tuiPoint2Collienar(const TuiPoint2 point2_1, const Tui
 	return (determinant == 0);
 }
 
+static inline float _tuiIntPointMagnitude(const int x, const int y)
+{
+	return sqrtf((float)abs((x * x) + (y * y))); // point distance formula (based on pythagorean theorem)
+}
+
+static inline float _tuiIntPointDistance(const int x_1, const int y_1, const int x_2, const int y_2)
+{
+	const int x_distance = x_2 - x_1;
+	const int y_distance = y_2 - y_1;
+	return _tuiIntPointMagnitude(x_distance, y_distance);
+}
+
 static inline int _tuiIntCrossProductZ(const int x_1, const int y_1, const int x_2, const int y_2)
 {
 	return (x_1 * y_2) - (x_2 * y_1);
+}
+
+static inline float _tuiIntUnitCrossProductZ(const int x_1, const int y_1, const int x_2, const int y_2)
+{
+	const int cross_z = _tuiIntCrossProductZ(x_1, y_1, x_2, y_2);
+	const float magnitude_1 = _tuiIntPointMagnitude(x_1, y_1);
+	const float magnitude_2 = _tuiIntPointMagnitude(x_2, y_2);
+	if (magnitude_1 == 0.0f || magnitude_2 == 0.0f) return 0.0f;
+	return (float)cross_z / (magnitude_1 * magnitude_2);
 }
 
 static inline int _tuiIntDotProduct(const int x_1, const int y_1, const int x_2, const int y_2)
@@ -87,5 +109,12 @@ static inline int _tuiIntDotProduct(const int x_1, const int y_1, const int x_2,
 	return (x_1 * x_2) + (y_2 * y_1);
 }
 
+static inline float _tuiIntUnitDotProduct(const int x_1, const int y_1, const int x_2, const int y_2)
+{
+	const int dot = _tuiIntDotProduct(x_1, y_1, x_2, y_2);
+	const float distance = _tuiIntPointDistance(x_1, x_2, y_1, y_2);
+	if (distance == 0) return 0.0f;
+	return (float)dot / (distance * distance);
+}
 
 #endif //header guard

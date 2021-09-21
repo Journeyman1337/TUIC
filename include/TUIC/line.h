@@ -224,7 +224,7 @@ int tuiLineGetDiagonalLength(const TuiLine line);
  * @param line_1 The first @ref TuiLine.
  * @param line_2 The second @ref TuiLine.
  *
- * @returns The cross product.
+ * @returns The z coordinate of the cross product.
  *
  * @errors This function can have no errors.
  *
@@ -233,6 +233,21 @@ int tuiLineGetDiagonalLength(const TuiLine line);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2);
+/*!
+ * @brief Get the z component of the cross product of two @ref TuiLine converted to unit vectors.
+ *
+ * @param line_1 The first @ref TuiLine.
+ * @param line_2 The second @ref TuiLine.
+ *
+ * @returns The z coordinate of the unit cross product.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+float tuiLinesGetUnitCrossProductZ(const TuiLine line_1, const TuiLine line_2);
 /*!
  * @brief Get the dot product of two @ref TuiLine.
  *
@@ -248,6 +263,21 @@ int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 int tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2);
+/*!
+ * @brief Get the dot product of two @ref TuiLine converted to unit vectors.
+ *
+ * @param line_1 The first @ref TuiLine.
+ * @param line_2 The second @ref TuiLine.
+ *
+ * @returns The unit dot product.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+float tuiLinesGetUnitDotProduct(const TuiLine line_1, const TuiLine line_2);
 /*!
  * @brief Get if two @ref TuiLine are parallel.
  *

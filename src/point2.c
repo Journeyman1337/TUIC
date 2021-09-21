@@ -32,16 +32,12 @@ TuiPoint2 tuiPoint2(const int x, const int y)
 
 float tuiPoint2GetMagnitude(const TuiPoint2 point2)
 {
-	const float magnitude = sqrtf((float)abs((point2.x * point2.x) + (point2.y * point2.y))); // use pythagorean theorem
-	return magnitude;
+	return _tuiIntPointMagnitude(point2.x, point2.y);
 }
 
 float tuiPoint2GetDistance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
-	const int x_difference = point2_1.x - point2_2.x; // calculate difference of x coordinates
-	const int y_difference = point2_1.y - point2_2.y; // calculate difference of y coordinates
-	const float distance = sqrtf((float)abs((x_difference * x_difference) + (y_difference * y_difference))); // use pythagorean theorem
-	return distance;
+	return _tuiIntPointDistance(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
 }
 
 int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
@@ -49,9 +45,19 @@ int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2
 	return _tuiIntCrossProductZ(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
 }
 
+float tuiPoint2GetUnitCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
+{
+	return _tuiIntUnitCrossProductZ(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
+}
+
 int tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	return _tuiIntDotProduct(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
+}
+
+float tuiPoint2GetUnitDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
+{
+	return _tuiIntUnitDotProduct(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
 }
 
 TuiBoolean tuiPoint2Collinear(const TuiPoint2 point2_1, const TuiPoint2 point2_2, const TuiPoint2 point2_3)
