@@ -78,20 +78,6 @@ TuiPoint2 tuiCircleGetCenterPoint2(const TuiCircle circle);
  */
 int tuiCircleGetLeftX(const TuiCircle circle);
 /*!
- * @brief Get the top y coordinate of a @ref TuiCircle.
- *
- * @param circle The @ref TuiCircle.
- *
- * @returns The top y coordinate.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-int tuiCircleGetTopY(const TuiCircle circle);
-/*!
  * @brief Get the right x coordinate of a @ref TuiCircle.
  *
  * @param circle The @ref TuiCircle.
@@ -105,6 +91,20 @@ int tuiCircleGetTopY(const TuiCircle circle);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 int tuiCircleGetRightX(const TuiCircle circle);
+/*!
+ * @brief Get the top y coordinate of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The top y coordinate.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+int tuiCircleGetTopY(const TuiCircle circle);
 /*!
  * @brief Get the bottom y coordinate of a @ref TuiCircle.
  *
