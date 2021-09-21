@@ -61,7 +61,7 @@ int tuiCircleGetBottomY(const TuiCircle circle)
 
 int tuiCircleGetDimensions(const TuiCircle circle)
 {
-	return  (int)(roundf(circle.radius) * 2.0f);
+	return  (int)(roundf(fabsf(circle.radius)) * 2.0f);
 }
 
 TuiRect tuiCircleGetBoundingRect(const TuiCircle circle)
