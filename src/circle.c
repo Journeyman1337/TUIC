@@ -112,6 +112,7 @@ TuiBoolean tuiCircleContainsPoint2(const TuiCircle circle, const TuiPoint2 point
 
 TuiBoolean tuiCircleContainsLine(const TuiCircle circle, const TuiLine line)
 {
+	if (tuiCircleIsDegenerate(circle)) return TUI_FALSE;
 	return tuiCircleContainsPoint2(circle, tuiLineGetStartPoint2(line)) && tuiCircleContainsPoint2(circle, tuiLineGetEndPoint2(line));
 }
 
