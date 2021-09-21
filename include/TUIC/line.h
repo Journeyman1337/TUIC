@@ -163,6 +163,21 @@ TuiPoint2 tuiLineGetEndPoint2(const TuiLine line);
 */
 TuiPoint2 tuiLineGetTranslationPoint2(const TuiLine line);
 /*!
+ * @brief Get the distance between a @ref TuiLine to a @ref TuiPoint2.
+ *
+ * @param line The line.
+ * @param point2 The point.
+ *
+ * @returns The distance between the point and the line
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+float tuiLineGetDistanceToPoint2(const TuiLine line, const TuiPoint2 point2);
+/*!
  * @brief Get the length of a @ref TuiLine.
  *
  * @param line The @ref TuiLine.

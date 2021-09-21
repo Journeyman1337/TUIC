@@ -87,6 +87,11 @@ TuiPoint2 tuiLineGetTranslationPoint2(const TuiLine line)
 	return ret;
 }
 
+float tuiLineGetDistanceToPoint2(const TuiLine line, const TuiPoint2 point2)
+{
+	return tuiPoint2GetDistanceToLine(point2, line);
+}
+
 float tuiLineGetLength(const TuiLine line)
 {
 	return _tuiIntPointDistance(line.start_x, line.start_y, line.end_x, line.end_y);
