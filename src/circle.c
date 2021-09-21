@@ -67,10 +67,9 @@ int tuiCircleGetDimensions(const TuiCircle circle)
 TuiRect tuiCircleGetBoundingRect(const TuiCircle circle)
 {
 	const int left_x = tuiCircleGetLeftX(circle);
-	const int right_x = tuiCircleGetRightX(circle);
 	const int top_y = tuiCircleGetTopY(circle);
-	const int bottom_y = tuiCircleGetBottomY(circle);
-	const TuiRect ret = tuiRect(left_x, top_y, right_x - left_x, bottom_y - top_y);
+	const int dimensions = tuiCircleGetDimensions(circle);
+	const TuiRect ret = tuiRect(left_x, top_y, dimensions, dimensions);
 	return ret;
 }
 
