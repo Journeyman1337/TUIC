@@ -120,6 +120,20 @@ int tuiCircleGetTopY(const TuiCircle circle);
  */
 int tuiCircleGetBottomY(const TuiCircle circle);
 /*!
+ * @brief Get the bounding @ref TuiRect of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The bounding @ref TuiRect.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiRect tuiCircleGetBoundingRect(const TuiCircle circle);
+/*!
  * @brief Get the topmost @ref TuiPoint2 of a @ref TuiCircle.
  *
  * @param circle The @ref TuiCircle.

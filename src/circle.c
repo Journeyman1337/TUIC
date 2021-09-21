@@ -59,6 +59,16 @@ int tuiCircleGetBottomY(const TuiCircle circle)
 	return (int)roundf((float)circle.center_y + circle.radius);
 }
 
+TuiRect tuiCircleGetBoundingRect(const TuiCircle circle)
+{
+	const int left_x = tuiCircleGetLeftX(circle);
+	const int right_x = tuiCircleGetRightX(circle);
+	const int top_y = tuiCircleGetTopY(circle);
+	const int bottom_y = tuiCircleGetBottomY(circle);
+	const TuiRect ret = tuiRect(left_x, top_y, right_x - left_x, bottom_y - top_y);
+	return ret;
+}
+
 TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle)
 {
 	TuiPoint2 ret = { circle.center_x,  tuiCircleGetTopY(circle)};
