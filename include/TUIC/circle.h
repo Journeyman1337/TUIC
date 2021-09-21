@@ -148,20 +148,6 @@ int tuiCircleGetDimensions(const TuiCircle circle);
  */
 TuiRect tuiCircleGetBoundingRect(const TuiCircle circle);
 /*!
- * @brief Get the topmost @ref TuiPoint2 of a @ref TuiCircle.
- *
- * @param circle The @ref TuiCircle.
- *
- * @returns The topmost @ref TuiPoint2
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle);
-/*!
  * @brief Get the leftmost @ref TuiPoint2 of a @ref TuiCircle.
  *
  * @param circle The @ref TuiCircle.
@@ -176,20 +162,6 @@ TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle);
  */
 TuiPoint2 tuiCircleGetLeftPoint2(const TuiCircle circle);
 /*!
- * @brief Get the bottomost @ref TuiPoint2 of a @ref TuiCircle.
- *
- * @param circle The @ref TuiCircle.
- *
- * @returns The bottomost @ref TuiPoint2
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle);
-/*!
  * @brief Get the rightmost @ref TuiPoint2 of a @ref TuiCircle.
  *
  * @param circle The @ref TuiCircle.
@@ -203,6 +175,34 @@ TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiPoint2 tuiCircleGetRightPoint2(const TuiCircle circle);
+/*!
+ * @brief Get the topmost @ref TuiPoint2 of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The topmost @ref TuiPoint2
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiPoint2 tuiCircleGetTopPoint2(const TuiCircle circle);
+/*!
+ * @brief Get the bottomost @ref TuiPoint2 of a @ref TuiCircle.
+ *
+ * @param circle The @ref TuiCircle.
+ *
+ * @returns The bottomost @ref TuiPoint2
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiPoint2 tuiCircleGetBottomPoint2(const TuiCircle circle);
 /*!
  * @brief Get if a @ref TuiCircle is degenerate. A degenerate @ref TuiCircle has a negative radius.
  *
