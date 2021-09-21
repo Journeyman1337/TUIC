@@ -5,6 +5,7 @@ add_executable(TUIC_TESTS_AUTO
 	blend_mode_test.cpp
 	box_part_test.cpp
 	button_state_test.cpp
+	circle_test.cpp
 	cursor_mode_test.cpp
 	cursor_shape_test.cpp
 	detail_flag_test.cpp
