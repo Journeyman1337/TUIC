@@ -35,7 +35,7 @@ float tuiPoint2GetMagnitude(const TuiPoint2 point2)
 	return _tuiIntPointMagnitude(point2.x, point2.y);
 }
 
-float tuiPoint2GetDistance(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
+float tuiPoint2GetDistanceToPoint2(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	return _tuiIntPointDistance(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
 }

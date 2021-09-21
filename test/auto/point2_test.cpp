@@ -11,13 +11,13 @@ TEST_CASE("tuiPoint2GetMagnitude")
 	REQUIRE(tuiPoint2GetMagnitude(tuiPoint2(2000, 2425)) == 3143.34614702f);
 }
 
-TEST_CASE("tuiPoint2GetDistance")
+TEST_CASE("tuiPoint2GetDistanceToPoint2")
 {
-	REQUIRE(tuiPoint2GetDistance(tuiPoint2(0, 0), tuiPoint2(0, 0)) == 0.0f);
-	REQUIRE(tuiPoint2GetDistance(tuiPoint2(0, 0), tuiPoint2(1, 0)) == 1.0f);
-	REQUIRE(tuiPoint2GetDistance(tuiPoint2(5, 5), tuiPoint2(-5, -5)) == 14.1421356237f);
-	REQUIRE(tuiPoint2GetDistance(tuiPoint2(15, -15), tuiPoint2(50, 20)) == 49.497475f);
-	REQUIRE(tuiPoint2GetDistance(tuiPoint2(2424, 100233), tuiPoint2(2000, 2425)) == 31251.40039f);
+	REQUIRE(tuiPoint2GetDistanceToPoint2(tuiPoint2(0, 0), tuiPoint2(0, 0)) == 0.0f);
+	REQUIRE(tuiPoint2GetDistanceToPoint2(tuiPoint2(0, 0), tuiPoint2(1, 0)) == 1.0f);
+	REQUIRE(tuiPoint2GetDistanceToPoint2(tuiPoint2(5, 5), tuiPoint2(-5, -5)) == 14.1421356237f);
+	REQUIRE(tuiPoint2GetDistanceToPoint2(tuiPoint2(15, -15), tuiPoint2(50, 20)) == 49.497475f);
+	REQUIRE(tuiPoint2GetDistanceToPoint2(tuiPoint2(2424, 100233), tuiPoint2(2000, 2425)) == 31251.40039f);
 }
 
 TEST_CASE("tuiPoint2GetCrossProductZ")

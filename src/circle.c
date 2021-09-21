@@ -150,14 +150,14 @@ TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect)
 	if (tuiCircleIsDegenerate(circle) || tuiRectIsDegenerate(rect)) return TUI_FALSE;
 	if (rect.width <= 0 || rect.height <= 0 || circle.radius < 0.5f) return TUI_FALSE;
 	const TuiPoint2 closest_rect_point = tuiPoint2(CLAMP(rect.x, rect.x + rect.width - 1, circle.center_x), CLAMP(rect.y, rect.y + rect.height - 1, circle.center_y));
-	const float point_distance = tuiPoint2GetDistance(tuiCircleGetCenterPoint2(circle), closest_rect_point);
+	const float point_distance = tuiPoint2GetDistanceToPoint2(tuiCircleGetCenterPoint2(circle), closest_rect_point);
 	return (point_distance <= circle.radius);
 }
 
 TuiBoolean tuiCircleIntersectsCircle(const TuiCircle circle_1, const TuiCircle circle_2)
 {
 	if (fabsf(circle_1.radius) < 0.5f || fabsf(circle_2.radius) < 0.5f) return TUI_FALSE;
-	const float point_distance = tuiPoint2GetDistance(tuiCircleGetCenterPoint2(circle_1), tuiCircleGetCenterPoint2(circle_2));
+	const float point_distance = tuiPoint2GetDistanceToPoint2(tuiCircleGetCenterPoint2(circle_1), tuiCircleGetCenterPoint2(circle_2));
 	const float combined_radius = circle_1.radius + circle_2.radius;
 	return (point_distance < combined_radius);
 }
