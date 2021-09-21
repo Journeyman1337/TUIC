@@ -106,8 +106,8 @@ TuiBoolean tuiCircleIsDegenerate(const TuiCircle circle)
 TuiBoolean tuiCircleContainsPoint2(const TuiCircle circle, const TuiPoint2 point2)
 {
 	if (tuiCircleIsDegenerate(circle)) return TUI_FALSE;
-	const float circle_border_squared_distance = (float)((point2.x * point2.x) + (point2.y * point2.y)) - (circle.radius * circle.radius);
-	return circle_border_squared_distance <= 0.0f;
+	const float point_circle_center_distance = _tuiIntPointDistance(circle.center_x, circle.center_y, point2.x, point2.y);
+	return point_circle_center_distance < circle.radius;
 }
 
 TuiBoolean tuiCircleContainsLine(const TuiCircle circle, const TuiLine line)
