@@ -41,27 +41,32 @@ TuiPoint2 tuiCircleGetCenterPoint2(const TuiCircle circle)
 
 int tuiCircleGetLeftX(const TuiCircle circle)
 {
-	return circle.center_x - (int)roundf(fabsf(circle.radius));
+	const int left_x = circle.center_x - (int)roundf(fabsf(circle.radius));
+	return left_x;
 }
 
 int tuiCircleGetRightX(const TuiCircle circle)
 {
-	return circle.center_x + (int)roundf(fabsf(circle.radius));
+	const int right_x = circle.center_x + (int)roundf(fabsf(circle.radius));
+	return right_x;
 }
 
 int tuiCircleGetTopY(const TuiCircle circle)
 {
-	return circle.center_y - (int)roundf(fabsf(circle.radius));
+	const int top_y = circle.center_y - (int)roundf(fabsf(circle.radius));
+	return top_y;
 }
 
 int tuiCircleGetBottomY(const TuiCircle circle)
 {
-	return circle.center_y + (int)roundf(fabsf(circle.radius));
+	const int bottom_y = circle.center_y + (int)roundf(fabsf(circle.radius));
+	return bottom_y;
 }
 
 int tuiCircleGetDimensions(const TuiCircle circle)
 {
-	return  (int)(roundf(fabsf(circle.radius)) * 2.0f);
+	const int dimensions = (int)(roundf(fabsf(circle.radius)) * 2.0f);
+	return dimensions;
 }
 
 TuiRect tuiCircleGetBoundingRect(const TuiCircle circle)
