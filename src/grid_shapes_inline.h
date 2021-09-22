@@ -22,6 +22,7 @@
 #include <TUIC/point2.h>
 #include <TUIC/boolean.h>
 #include "math.h"
+#include <stdlib.h> // for abs in mac
 
 
 // Get the highest value between two values.
