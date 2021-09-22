@@ -164,7 +164,7 @@ TuiBoolean tuiRectIsDegenerate(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiPoint2 tuiRectGetTopLeftInnerCornerPoint2(const TuiRect rect);
+TuiPoint2 tuiRectGetTopLeftCornerPoint2(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiPoint2 at the top right corner of a @ref TuiRect.
  *
@@ -178,7 +178,7 @@ TuiPoint2 tuiRectGetTopLeftInnerCornerPoint2(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiPoint2 tuiRectGetTopRightInnerCornerPoint2(const TuiRect rect);
+TuiPoint2 tuiRectGetTopRightCornerPoint2(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiPoint2 at the bottom left corner of a @ref TuiRect.
  *
@@ -192,7 +192,7 @@ TuiPoint2 tuiRectGetTopRightInnerCornerPoint2(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiPoint2 tuiRectGetBottomLeftInnerCornerPoint2(const TuiRect rect);
+TuiPoint2 tuiRectGetBottomLeftCornerPoint2(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiPoint2 at the bottom right corner of a @ref TuiRect.
  *
@@ -206,7 +206,7 @@ TuiPoint2 tuiRectGetBottomLeftInnerCornerPoint2(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiPoint2 tuiRectGetBottomRightInnerCornerPoint2(const TuiRect rect);
+TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect);
 /*!
  * @brief Get the @ref TuiVLine on the left border of a @ref TuiRect.
  *

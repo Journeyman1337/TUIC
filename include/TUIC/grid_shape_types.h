@@ -461,6 +461,26 @@ typedef struct TuiCropCircleIt
 	 */
 	int crop_height;
 } TuiCropCircleIt;
+
+typedef struct TuiRing
+{
+	/*!
+	 * \brief The x position of the center of the circle.
+	 */
+	int center_x;
+	/*!
+	 * \brief The y position of the center of the circle.
+	 */
+	int center_y;
+	/*!
+	 * \brief The outer radius of the ring.
+	 */
+	float radius;
+	/*!
+	 * \brief The depth/thickness of the ring in tiles.
+	 */
+	float depth;
+} TuiRing;
 /*! @} */
 
 

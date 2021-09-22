@@ -40,95 +40,95 @@ TEST_CASE("tuiRectIsDegenerate")
 	REQUIRE(!tuiRectIsDegenerate(tuiRect(0, 0, 1, 1)));
 }
 
-TEST_CASE("tuiRectGetTopLeftInnerCornerPoint2")
+TEST_CASE("tuiRectGetTopLeftCornerPoint2")
 {
 	{
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(0, 0, 10, 10)).x == 0);
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(0, 0, 10, 10)).y == 0);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(0, 0, 10, 10)).x == 0);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(0, 0, 10, 10)).y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(10, 10, 10, 10)).x == 10);
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(10, 10, 10, 10)).y == 10);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(10, 10, 10, 10)).x == 10);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(10, 10, 10, 10)).y == 10);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(10, 10, -10, -10)).x == 10);
-		REQUIRE(tuiRectGetTopLeftInnerCornerPoint2(tuiRect(10, 10, -10, -10)).y == 10);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(10, 10, -10, -10)).x == 10);
+		REQUIRE(tuiRectGetTopLeftCornerPoint2(tuiRect(10, 10, -10, -10)).y == 10);
 	}
 }
 
-TEST_CASE("tuiRectGetTopRightInnerCornerPoint2")
+TEST_CASE("tuiRectGetTopRightCornerPoint2")
 {
 	{
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(0, 0, 10, 10)).x == 9);
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(0, 0, 10, 10)).y == 0);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(0, 0, 10, 10)).x == 9);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(0, 0, 10, 10)).y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(10, 10, 10, 10)).x == 19);
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(10, 10, 10, 10)).y == 10);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(10, 10, 10, 10)).x == 19);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(10, 10, 10, 10)).y == 10);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(10, 10, -10, -10)).x == 19);
-		REQUIRE(tuiRectGetTopRightInnerCornerPoint2(tuiRect(10, 10, -10, -10)).y == 10);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(10, 10, -10, -10)).x == 19);
+		REQUIRE(tuiRectGetTopRightCornerPoint2(tuiRect(10, 10, -10, -10)).y == 10);
 	}
 }
 
-TEST_CASE("tuiRectGetBottomLeftInnerCornerPoint2")
+TEST_CASE("tuiRectGetBottomLeftCornerPoint2")
 {
 	{
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(0, 0, 10, 10)).x == 0);
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(0, 0, 10, 10)).y == 9);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(0, 0, 10, 10)).x == 0);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(0, 0, 10, 10)).y == 9);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(10, 10, 10, 10)).x == 10);
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(10, 10, 10, 10)).y == 19);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(10, 10, 10, 10)).x == 10);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(10, 10, 10, 10)).y == 19);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(10, 10, -10, -10)).x == 10);
-		REQUIRE(tuiRectGetBottomLeftInnerCornerPoint2(tuiRect(10, 10, -10, -10)).y == 19);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(10, 10, -10, -10)).x == 10);
+		REQUIRE(tuiRectGetBottomLeftCornerPoint2(tuiRect(10, 10, -10, -10)).y == 19);
 	}
 }
 
-TEST_CASE("tuiRectGetBottomRightInnerCornerPoint2")
+TEST_CASE("tuiRectGetBottomRightCornerPoint2")
 {
 	{
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(0, 0, 0, 0)).x == 0);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(0, 0, 0, 0)).y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(0, 0, 10, 10)).x == 9);
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(0, 0, 10, 10)).y == 9);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(0, 0, 10, 10)).x == 9);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(0, 0, 10, 10)).y == 9);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(10, 10, 10, 10)).x == 19);
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(10, 10, 10, 10)).y == 19);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(10, 10, 10, 10)).x == 19);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(10, 10, 10, 10)).y == 19);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(10, 10, -10, -10)).x == 19);
-		REQUIRE(tuiRectGetBottomRightInnerCornerPoint2(tuiRect(10, 10, -10, -10)).y == 19);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(10, 10, -10, -10)).x == 19);
+		REQUIRE(tuiRectGetBottomRightCornerPoint2(tuiRect(10, 10, -10, -10)).y == 19);
 	}
 }
 

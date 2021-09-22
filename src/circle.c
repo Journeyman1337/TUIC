@@ -121,10 +121,10 @@ TuiBoolean tuiCircleContainsRect(const TuiCircle circle, const TuiRect rect)
 {
 	if (tuiCircleIsDegenerate(circle) || tuiRectIsDegenerate(rect)) return TUI_FALSE;
 	return
-		tuiCircleContainsPoint2(circle, tuiRectGetTopRightInnerCornerPoint2(rect)) &&
-		tuiCircleContainsPoint2(circle, tuiRectGetTopLeftInnerCornerPoint2(rect)) &&
-		tuiCircleContainsPoint2(circle, tuiRectGetBottomRightInnerCornerPoint2(rect)) &&
-		tuiCircleContainsPoint2(circle, tuiRectGetBottomLeftInnerCornerPoint2(rect));
+		tuiCircleContainsPoint2(circle, tuiRectGetTopRightCornerPoint2(rect)) &&
+		tuiCircleContainsPoint2(circle, tuiRectGetTopLeftCornerPoint2(rect)) &&
+		tuiCircleContainsPoint2(circle, tuiRectGetBottomRightCornerPoint2(rect)) &&
+		tuiCircleContainsPoint2(circle, tuiRectGetBottomLeftCornerPoint2(rect));
 }
 
 TuiBoolean tuiCircleContainsCircle(const TuiCircle circle_1, const TuiCircle circle_2)
@@ -158,7 +158,7 @@ TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect)
 			tuiCircleIntersectsLine(circle, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE))
 		);
 	if (circle_intersects_rect_border) return TUI_TRUE;
-	const TuiBoolean circle_contains_rect = tuiCircleContainsPoint2(circle, tuiRectGetTopLeftInnerCornerPoint2(rect));
+	const TuiBoolean circle_contains_rect = tuiCircleContainsPoint2(circle, tuiRectGetTopLeftCornerPoint2(rect));
 	return circle_contains_rect;
 }
 

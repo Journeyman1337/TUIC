@@ -36,7 +36,7 @@ TEST_CASE("tuiPoint2GetCrossProductZ")
 	REQUIRE(tuiPoint2GetCrossProductZ(tuiPoint2(5, 10), tuiPoint2(15, 20)) == -50);
 }
 
-TEST_CASE("tuiPoint2GetDotProduct")
+TEST_CASE("tuiPoint2GetDotProduct") 
 {
 	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(0, 0), tuiPoint2(0, 0)) == 0);
 	REQUIRE(tuiPoint2GetDotProduct(tuiPoint2(1, 1), tuiPoint2(0, 0)) == 0);
