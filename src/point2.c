@@ -50,11 +50,6 @@ int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2
 	return _tuiIntCrossProductZ(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
 }
 
-float tuiPoint2GetUnitCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
-{
-	return _tuiIntUnitCrossProductZ(point2_1.x, point2_1.y, point2_2.x, point2_2.y);
-}
-
 int tuiPoint2GetDotProduct(const TuiPoint2 point2_1, const TuiPoint2 point2_2)
 {
 	return _tuiIntDotProduct(point2_1.x, point2_1.y, point2_2.x, point2_2.y);

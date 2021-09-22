@@ -124,13 +124,6 @@ int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2)
 	return _tuiIntCrossProductZ(line_1_translation.x, line_1_translation.y, line_2_translation.x, line_2_translation.y);
 }
 
-float tuiLinesGetUnitCrossProductZ(const TuiLine line_1, const TuiLine line_2)
-{
-	const TuiPoint2 line_1_translation = tuiLineGetTranslationPoint2(line_1);
-	const TuiPoint2 line_2_translation = tuiLineGetTranslationPoint2(line_2);
-	return _tuiIntUnitCrossProductZ(line_1_translation.x, line_1_translation.y, line_2_translation.x, line_2_translation.y);
-}
-
 int tuiLinesGetDotProduct(const TuiLine line_1, const TuiLine line_2)
 {
 	const TuiPoint2 line_1_translation = tuiLineGetTranslationPoint2(line_1);

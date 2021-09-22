@@ -107,21 +107,6 @@ float tuiPoint2GetDistanceToLine(const TuiPoint2 point2, const TuiLine line);
  */
 int tuiPoint2GetCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
 /*!
- * @brief Get the z component of the cross product between two @ref TuiPoint2 unit vectors.
- *
- * @param point2_1 The first point.
- * @param point2_2 The second point.
- *
- * @returns The z coordinate of the unit cross product.
- *
- * @errors This function can have no error codes.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-float tuiPoint2GetUnitCrossProductZ(const TuiPoint2 point2_1, const TuiPoint2 point2_2);
-/*!
  * @brief Get the dot product between two @ref TuiPoint2.
  *
  * @param point2_1 The first @ref TuiPoint2.

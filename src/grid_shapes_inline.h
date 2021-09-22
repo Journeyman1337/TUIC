@@ -95,15 +95,6 @@ static inline int _tuiIntCrossProductZ(const int x_1, const int y_1, const int x
 	return (x_1 * y_2) - (x_2 * y_1);
 }
 
-static inline float _tuiIntUnitCrossProductZ(const int x_1, const int y_1, const int x_2, const int y_2)
-{
-	const int cross_z = _tuiIntCrossProductZ(x_1, y_1, x_2, y_2);
-	const float magnitude_1 = _tuiIntPointMagnitude(x_1, y_1);
-	const float magnitude_2 = _tuiIntPointMagnitude(x_2, y_2);
-	if (magnitude_1 == 0.0f || magnitude_2 == 0.0f) return 0.0f;
-	return (float)cross_z / (magnitude_1 * magnitude_2);
-}
-
 static inline int _tuiIntDotProduct(const int x_1, const int y_1, const int x_2, const int y_2)
 {
 	return (x_1 * x_2) + (y_2 * y_1);

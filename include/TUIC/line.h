@@ -249,21 +249,6 @@ int tuiLineGetDiagonalLength(const TuiLine line);
  */
 int tuiLinesGetCrossProductZ(const TuiLine line_1, const TuiLine line_2);
 /*!
- * @brief Get the z component of the cross product of two @ref TuiLine converted to unit vectors.
- *
- * @param line_1 The first @ref TuiLine.
- * @param line_2 The second @ref TuiLine.
- *
- * @returns The z coordinate of the unit cross product.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
-float tuiLinesGetUnitCrossProductZ(const TuiLine line_1, const TuiLine line_2);
-/*!
  * @brief Get the dot product of two @ref TuiLine.
  *
  * @param line_1 The first @ref TuiLine.
