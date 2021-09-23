@@ -53,6 +53,7 @@
 #include <TUIC/point2.h>
 #include <TUIC/rect.h>
 #include <TUIC/rect_it.h>
+#include <TUIC/ring.h>
 #include <TUIC/system.h>
 #include <TUIC/texture.h>
 #include <TUIC/time.h>
