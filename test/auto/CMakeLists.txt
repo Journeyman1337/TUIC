@@ -20,6 +20,7 @@ add_executable(TUIC_TESTS_AUTO
 	palette_test.cpp
 	point2_test.cpp
 	rect_test.cpp
+	ring_test.cpp
 	test.cpp
 )
 target_link_libraries(TUIC_TESTS_AUTO 
