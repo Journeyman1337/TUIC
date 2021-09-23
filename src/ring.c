@@ -104,8 +104,8 @@ int tuiRingGetDimensions(const TuiRing ring)
 
 int tuiRingGetInnerDimensions(const TuiRing ring)
 {
-	const int inner_radius = tuiRingGetInnerRadius(ring);
-	const int inner_dimensions = inner_radius * 2;
+	const float inner_radius = tuiRingGetInnerRadius(ring);
+	const int inner_dimensions = (int)roundf(inner_radius) * 2;
 	return inner_dimensions;
 }
 
