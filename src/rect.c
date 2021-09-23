@@ -20,11 +20,11 @@
 #include <TUIC/rect.h>
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
+#include <TUIC/circle.h>
 #include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
 #include <TUIC/easing.h>
-
 
 TuiRect tuiRect(const int x, const int y, const int width, const int height)
 {
@@ -276,4 +276,9 @@ TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2)
 		(rect_1_far_y >= rect_2.y) &&
 		(rect_1.y <= rect_2_far_y);
 	return rect_intersects_rect;
+}
+
+TuiBoolean tuiRectIntersectsCircle(const TuiRect rect, const TuiCircle circle)
+{
+	return tuiCircleIntersectsRect(circle, rect);
 }
