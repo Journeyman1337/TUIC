@@ -322,6 +322,21 @@ TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiCircleIntersectsCircle(const TuiCircle circle_1, const TuiCircle circle_2);
+/*!
+ * @brief Get if a @ref TuiCircle intersects a @ref TuiRing.
+ *
+ * @param ring The @ref TuiRing.
+ * @param rect The @ref TuiRect
+ *
+ * @returns if the @ref TuiCircle intersects the @ref TuiRing.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiCircleIntersectsRing(const TuiCircle circle, const TuiRing ring);
 /*! @} */
 
 

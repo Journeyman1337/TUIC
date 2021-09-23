@@ -20,7 +20,8 @@
 #include <TUIC/circle.h>
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
-#include <TUIC/rect.h>
+#include <TUIC/rect.h>`
+#include <TUIC/ring.h>
 #include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
@@ -175,4 +176,9 @@ TuiBoolean tuiCircleIntersectsCircle(const TuiCircle circle_1, const TuiCircle c
 	const float point_distance = tuiPoint2GetDistanceToPoint2(tuiCircleGetCenterPoint2(circle_1), tuiCircleGetCenterPoint2(circle_2));
 	const float combined_radius = abs_radius_1 + abs_radius_2;
 	return (point_distance < combined_radius);
+}
+
+TuiBoolean tuiCircleIntersectsRing(const TuiCircle circle, const TuiRing ring)
+{
+	return tuiRingIntersectsCircle(ring, circle);
 }
