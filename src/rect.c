@@ -21,6 +21,7 @@
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
 #include <TUIC/circle.h>
+#include <TUIC/ring.h>
 #include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
@@ -281,4 +282,9 @@ TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2)
 TuiBoolean tuiRectIntersectsCircle(const TuiRect rect, const TuiCircle circle)
 {
 	return tuiCircleIntersectsRect(circle, rect);
+}
+
+TuiBoolean tuiRectIntersectsRing(const TuiRect rect, const TuiRing ring)
+{
+	return tuiRingIntersectsRect(ring, rect);
 }
