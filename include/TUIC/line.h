@@ -396,7 +396,7 @@ TuiBoolean tuiLineIntersectsRect(const TuiLine line, const TuiRect rect);
  * @param line The @ref TuiLine.
  * @param circle The @ref TuiCircle.
  *
- * @returns The @ref TuiBoolean result. If line and rect intersect, it
+ * @returns The @ref TuiBoolean result. If line and circle intersect, it
  * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
  *
  * @errors This function can have no errors.
@@ -406,6 +406,22 @@ TuiBoolean tuiLineIntersectsRect(const TuiLine line, const TuiRect rect);
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
 TuiBoolean tuiLineIntersectsCircle(const TuiLine line, const TuiCircle circle);
+/*!
+ * @brief Get if a @ref TuiLine intersects a @ref TuiRing.
+ *
+ * @param line The @ref TuiLine.
+ * @param ring The @ref TuiRing.
+ *
+ * @returns The @ref TuiBoolean result. If line and ring intersect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
+ *
+ * @errors This function can have no errors.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiLineIntersectsRing(const TuiLine line, const TuiRing ring);
 /*! @} */
 
 
