@@ -461,7 +461,9 @@ typedef struct TuiCropCircleIt
 	 */
 	int crop_height;
 } TuiCropCircleIt;
-
+/*!
+ * \brief A 2D ring.
+ */
 typedef struct TuiRing
 {
 	/*!
