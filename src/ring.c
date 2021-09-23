@@ -199,7 +199,7 @@ TuiBoolean tuiRingIsDegenerate(const TuiRing ring)
 {
 	const float abs_radius = fabsf(ring.radius);
 	const float abs_depth = fabsf(ring.depth);
-	const TuiBoolean is_degenerate = (abs_radius < 0.5f || abs_depth < 0.5f);
+	const TuiBoolean is_degenerate = (abs_radius < 0.5f || abs_depth < 0.5f || abs_radius < abs_depth);
 	return is_degenerate;
 }
 

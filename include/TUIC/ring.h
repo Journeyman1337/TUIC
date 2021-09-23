@@ -387,7 +387,7 @@ TuiPoint2 tuiRingGetInnerTopPoint2(const TuiRing ring);
  */
 TuiPoint2 tuiRingGetInnerBottomPoint2(const TuiRing ring);
 /*!
- * @brief Get if a @ref TuiRing is degenerate. A degenerate @ref TuiCircle has a radius and/or depth greater than -0.5f and less than 0.5f.
+ * @brief Get if a @ref TuiRing is degenerate. A degenerate @ref TuiCircle has a radius and/or depth greater than -0.5f and less than 0.5f or if the unsigned depth is greater than the unsigned radius.
  *
  * @param ring The @ref TuiRing.
  *
