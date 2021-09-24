@@ -59,31 +59,37 @@ static inline int _tuiRectGetBottomY(const TuiRect rect)
 
 int tuiRectGetFarX(const TuiRect rect)
 {
-	return (rect.width == 0) ? rect.x : rect.x + abs(rect.width) - 1;
+	const int far_x = (rect.width == 0) ? rect.x : rect.x + abs(rect.width) - 1;
+	return far_x;
 }
 
 int tuiRectGetFarY(const TuiRect rect)
 {
-	return (rect.height == 0) ? rect.y : rect.y + abs(rect.height) - 1;
+	const int far_y = (rect.height == 0) ? rect.y : rect.y + abs(rect.height) - 1;
+	return far_y;
 }
 
 int tuiRectGetTileWidth(const TuiRect rect)
 {
-	return abs(rect.width);
+	const int tile_width = abs(rect.width);
+	return tile_width;
 }
 
 int tuiRectGetTileHeight(const TuiRect rect)
 {
-	return abs(rect.height);
+	const int tile_height = abs(rect.height);
+	return tile_height;
 }
 TuiBoolean tuiRectIsFlippedWide(const TuiRect rect)
 {
-	return rect.width < 0;
+	const TuiBoolean flipped_wide = rect.width < 0;
+	return flipped_wide;
 }
 
 TuiBoolean tuiRectIsFlippedTall(const TuiRect rect)
 {
-	return rect.height < 0;
+	const TuiBoolean flipped_tall = rect.height < 0;
+	return flipped_tall;
 }
 
 TuiBoolean tuiRectIsDegenerate(const TuiRect rect)
