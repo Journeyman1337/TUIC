@@ -79,7 +79,7 @@ int tuiRectGetFarX(const TuiRect rect);
  */
 int tuiRectGetFarY(const TuiRect rect);
 /*!
- * @brief Get the physical width of a @ref TuiRect in tiles, or the absolute value if its width.
+ * @brief Get the width of a @ref TuiRect in tiles, or the absolute value if its width.
  * 
  * @param rect The @ref TuiRect.
  *
@@ -91,9 +91,9 @@ int tuiRectGetFarY(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-int tuiRectGetPhysicalWidth(const TuiRect rect);
+int tuiRectGetTileWidth(const TuiRect rect);
 /*!
- * @brief Get the physical height of a @ref TuiRect in tiles, or the absolute value if its height.
+ * @brief Get the height of a @ref TuiRect in tiles, or the absolute value if its height.
  *
  * @param rect The @ref TuiRect.
  *
@@ -105,7 +105,7 @@ int tuiRectGetPhysicalWidth(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-int tuiRectGetPhysicalHeight(const TuiRect rect);
+int tuiRectGetTileHeight(const TuiRect rect);
 /*!
  * @brief Get if the contents of a @ref TuiRect is flipped wide, or if its width is negative.
  * 

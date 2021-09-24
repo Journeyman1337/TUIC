@@ -67,12 +67,12 @@ int tuiRectGetFarY(const TuiRect rect)
 	return (rect.height == 0) ? rect.y : rect.y + abs(rect.height) - 1;
 }
 
-int tuiRectGetPhysicalWidth(const TuiRect rect)
+int tuiRectGetTileWidth(const TuiRect rect)
 {
 	return abs(rect.width);
 }
 
-int tuiRectGetPhysicalHeight(const TuiRect rect)
+int tuiRectGetTileHeight(const TuiRect rect)
 {
 	return abs(rect.height);
 }

@@ -18,18 +18,18 @@ TEST_CASE("tuiRectGetFarY")
 	REQUIRE(tuiRectGetFarY(tuiRect(-5, -5, -100, -100)) == 94);
 }
 
-TEST_CASE("tuiRectGetPhysicalWidth")
+TEST_CASE("tuiRectGetTileWidth")
 {
-	REQUIRE(tuiRectGetPhysicalWidth(tuiRect(0, 0, 0, 0)) == 0);
-	REQUIRE(tuiRectGetPhysicalWidth(tuiRect(0, 0, 4, 4)) == 4);
-	REQUIRE(tuiRectGetPhysicalWidth(tuiRect(0, 0, -4, -4)) == 4);
+	REQUIRE(tuiRectGetTileWidth(tuiRect(0, 0, 0, 0)) == 0);
+	REQUIRE(tuiRectGetTileWidth(tuiRect(0, 0, 4, 4)) == 4);
+	REQUIRE(tuiRectGetTileWidth(tuiRect(0, 0, -4, -4)) == 4);
 }
 
-TEST_CASE("tuiRectGetPhysicalHeight")
+TEST_CASE("tuiRectGetTileHeight")
 {
-	REQUIRE(tuiRectGetPhysicalHeight(tuiRect(0, 0, 0, 0)) == 0);
-	REQUIRE(tuiRectGetPhysicalHeight(tuiRect(0, 0, 4, 4)) == 4);
-	REQUIRE(tuiRectGetPhysicalHeight(tuiRect(0, 0, -4, -4)) == 4);
+	REQUIRE(tuiRectGetTileHeight(tuiRect(0, 0, 0, 0)) == 0);
+	REQUIRE(tuiRectGetTileHeight(tuiRect(0, 0, 4, 4)) == 4);
+	REQUIRE(tuiRectGetTileHeight(tuiRect(0, 0, -4, -4)) == 4);
 }
 
 TEST_CASE("tuiRectIsDegenerate")
