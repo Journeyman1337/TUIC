@@ -223,7 +223,7 @@ TuiPoint2 tuiRectGetBottomLeftCornerPoint2(const TuiRect rect);
  */
 TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect);
 /*!
- * @brief Get the @ref TuiVLine on the left border of a @ref TuiRect.
+ * @brief Get the @ref TuiLine on the left border of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
  * @param corners If the corners should be included in the border line.
@@ -236,7 +236,7 @@ TuiPoint2 tuiRectGetBottomRightCornerPoint2(const TuiRect rect);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetLeftInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
+TuiLine tuiRectGetLeftBorderLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiLine on the right border of a @ref TuiRect.
  *
@@ -251,7 +251,7 @@ TuiLine tuiRectGetLeftInnerBorderLine(const TuiRect rect, const TuiBoolean corne
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
+TuiLine tuiRectGetRightBorderLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiLine on the top border of a @ref TuiRect.
  *
@@ -266,7 +266,7 @@ TuiLine tuiRectGetRightInnerBorderLine(const TuiRect rect, const TuiBoolean corn
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetTopInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
+TuiLine tuiRectGetTopBorderLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the @ref TuiLine on the bottom border of a @ref TuiRect.
  *
@@ -281,7 +281,7 @@ TuiLine tuiRectGetTopInnerBorderLine(const TuiRect rect, const TuiBoolean corner
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiLine tuiRectGetBottomInnerBorderLine(const TuiRect rect, const TuiBoolean corners);
+TuiLine tuiRectGetBottomBorderLine(const TuiRect rect, const TuiBoolean corners);
 /*!
  * @brief Get the inner rect of a @ref TuiRect, not including its corners or borders.
  *
