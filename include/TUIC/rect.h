@@ -361,6 +361,22 @@ TuiBoolean tuiRectContainsLine(const TuiRect rect, const TuiLine line);
  */
 TuiBoolean tuiRectContainsRect(const TuiRect rect_1, const TuiRect rect_2);
 /*!
+ * @brief Get if a @ref TuiRect contains a @ref TuiCircle,
+ *
+ * @param rect The @ref TuiRect.
+ * @param circle The @ref TuiCircle
+ *
+ * @returns The @ref TuiBoolean result. If the circle is in rect, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiRectContainsCircle(const TuiRect rect, const TuiCircle circle);
+/*!
  * @brief Get if a @ref TuiRect intersects a @ref TuiLine.
  *
  * @param rect The @ref TuiRect.

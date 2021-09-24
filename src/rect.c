@@ -251,6 +251,25 @@ TuiBoolean tuiRectContainsRect(const TuiRect rect_1, const TuiRect rect_2)
 	return rect_contains_line;
 }
 
+TuiBoolean tuiRectContainsCircle(const TuiRect rect, const TuiCircle circle)
+{
+	const int rect_left_x = _tuiRectGetLeftX(rect);
+	const int rect_right_x = _tuiRectGetRightX(rect);
+	const int rect_top_y = _tuiRectGetTopY(rect);
+	const int rect_bottom_y = _tuiRectGetBottomY(rect);
+	const int circle_left_x = tuiCircleGetLeftX(circle);
+	const int circle_right_x = tuiCircleGetRightX(circle);
+	const int circle_top_y = tuiCircleGetTopY(circle);
+	const int circle_bottom_y = tuiCircleGetBottomY(circle);
+	TuiBoolean rect_contains_circle = (
+			rect_left_x <= circle_left_x &&
+			rect_right_x >= circle_right_x &&
+			rect_top_y <= circle_top_y &&
+			rect_bottom_y >= circle_bottom_y
+		);
+	return rect_contains_circle;
+}
+
 TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 {
 	if (tuiRectIsDegenerate(rect))
