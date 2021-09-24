@@ -176,7 +176,7 @@ TuiRect tuiRectGetInnerRect(const TuiRect rect, const int depth)
 	return ret;
 }
 
-TuiRect tuiRectGetCroppedRect(const TuiRect rect, const TuiRect crop_rect)
+TuiRect tuiRectCrop(const TuiRect rect, const TuiRect crop_rect)
 {
 	if (tuiRectIsDegenerate(rect) || tuiRectIsDegenerate(crop_rect))
 	{

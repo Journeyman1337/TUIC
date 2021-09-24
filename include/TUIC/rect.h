@@ -311,7 +311,7 @@ TuiRect tuiRectGetInnerRect(const TuiRect rect, const int depth);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiRect tuiRectGetCroppedRect(const TuiRect rect, const TuiRect crop_rect);
+TuiRect tuiRectCrop(const TuiRect rect, const TuiRect crop_rect);
 /*!
  * @brief Get if a @ref TuiRect contains a @ref TuiPoint2,
  *
