@@ -83,7 +83,7 @@ int tuiRectGetFarY(const TuiRect rect);
  * 
  * @param rect The @ref TuiRect.
  *
- * @returns The physical width.
+ * @returns The tile width.
  *
  * @errors This function can have no error codes.
  *
@@ -97,7 +97,7 @@ int tuiRectGetTileWidth(const TuiRect rect);
  *
  * @param rect The @ref TuiRect.
  *
- * @returns The physical height.
+ * @returns The tile height.
  *
  * @errors This function can have no error codes.
  *
