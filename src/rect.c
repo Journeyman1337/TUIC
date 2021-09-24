@@ -252,10 +252,10 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line)
 		return TUI_FALSE;
 	}
 	TuiBoolean line_intersects_rect_border = 
-		tuiLineIntersectsLine(line, tuiRectGetLeftInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiLineIntersectsLine(line, tuiRectGetTopInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiLineIntersectsLine(line, tuiRectGetRightInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiLineIntersectsLine(line, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE));
+		tuiLineIntersectsLine(line, tuiRectGetLeftBorderLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetTopBorderLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetRightBorderLine(rect, TUI_TRUE)) ||
+		tuiLineIntersectsLine(line, tuiRectGetBottomBorderLine(rect, TUI_TRUE));
 	if (line_intersects_rect_border) return TUI_TRUE;
 	const int rect_far_x = rect.x + abs(rect.width) - 1;
 	const int rect_far_y = rect.y + abs(rect.height) - 1;
