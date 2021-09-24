@@ -20,7 +20,7 @@
 #include <TUIC/circle.h>
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
-#include <TUIC/rect.h>`
+#include <TUIC/rect.h>
 #include <TUIC/ring.h>
 #include "grid_shapes_inline.h"
 #include <math.h>
