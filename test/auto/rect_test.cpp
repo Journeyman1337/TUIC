@@ -132,103 +132,103 @@ TEST_CASE("tuiRectGetBottomRightCornerPoint2")
 	}
 }
 
-TEST_CASE("tuiRectGetLeftInnerBorderLine")
+TEST_CASE("tuiRectGetLeftBorderLine")
 {
 	{
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 9);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 1);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 8);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 9);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 1);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 8);
 	}
 
 	{
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 9);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 1);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 0);
-		REQUIRE(tuiRectGetLeftInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 8);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 9);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 1);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 0);
+		REQUIRE(tuiRectGetLeftBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 8);
 	}	
 }
 
-TEST_CASE("tuiRectGetRightInnerBorderLine")
+TEST_CASE("tuiRectGetRightBorderLine")
 {
 	{
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_y == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_y == 0);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_y == 8);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_y == 1);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_y == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_y == 0);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_y == 8);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_y == 1);
 	}
 
 	{
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 0);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 8);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 9);
-		REQUIRE(tuiRectGetRightInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 1);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 0);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 8);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 9);
+		REQUIRE(tuiRectGetRightBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 1);
 	}
 }
 
-TEST_CASE("tuiRectGetTopInnerBorderLine")
+TEST_CASE("tuiRectGetTopBorderLine")
 {
 	{
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_x == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_y == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_x == 9);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_y == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_x == 1);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_y == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_x == 8);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_x == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_x == 9);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_x == 1);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_x == 8);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_y == 0);
 	}
 
 	{
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 9);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 1);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 0);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 8);
-		REQUIRE(tuiRectGetTopInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 9);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 1);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 0);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 8);
+		REQUIRE(tuiRectGetTopBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 0);
 	}
 }
 
-TEST_CASE("tuiRectGetBottomInnerBorderLine")
+TEST_CASE("tuiRectGetBottomBorderLine")
 {
 	{
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_x == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_y == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_x == 0);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_y == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_x == 8);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_y == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_x == 1);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_x == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).start_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_x == 0);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_TRUE).end_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_x == 8);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).start_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_x == 1);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, 10, 10), TUI_FALSE).end_y == 9);
 	}
 
 	{
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 0);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 8);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 9);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 1);
-		REQUIRE(tuiRectGetBottomInnerBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_x == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).start_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_x == 0);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_TRUE).end_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_x == 8);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).start_y == 9);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_x == 1);
+		REQUIRE(tuiRectGetBottomBorderLine(tuiRect(0, 0, -10, -10), TUI_FALSE).end_y == 9);
 	}
 }
 
