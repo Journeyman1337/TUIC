@@ -92,6 +92,12 @@ TuiBoolean tuiRectIsDegenerate(const TuiRect rect)
 	return degenerate;
 }
 
+TuiBox tuiRectGetBox(const TuiRect rect, const int depth)
+{
+	TuiBox ret = { rect.x, rect.y, rect.width, rect.height, depth };
+	return ret;
+}
+
 TuiPoint2 tuiRectGetTopLeftCornerPoint2(const TuiRect rect)
 {
 	const int rect_left_x = _tuiRectGetLeftX(rect);

@@ -152,6 +152,21 @@ TuiBoolean tuiRectIsFlippedTall(const TuiRect rect);
  */
 TuiBoolean tuiRectIsDegenerate(const TuiRect rect);
 /*!
+ * @brief Get if a @ref TuiBox from a @ref TuiRect.
+ *
+ * @param rect The @ref TuiRect.
+ * @param depth The depth of the box border in tiles.
+ *
+ * @returns The @ref TuiBox.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBox tuiRectGetBox(const TuiRect rect, const int depth);
+/*!
  * @brief Get the @ref TuiPoint2 at the top left corner of a @ref TuiRect.
  *
  * @param rect The @ref TuiRect.
