@@ -208,7 +208,7 @@ TuiBoolean tuiRingContainsPoint2(const TuiRing ring, const TuiPoint2 point2)
 {
 	const float abs_radius = fabsf(ring.radius);
 	const float abs_depth = fabsf(ring.depth);
-	if (abs_radius < 0.5f || abs_depth < 0.5f) return TUI_FALSE;
+	if (abs_radius < 0.5f || abs_depth < 0.5f || abs_depth > abs_radius) return TUI_FALSE;
 	const float inner_radius = abs_radius - abs_depth;
 	const float point_ring_center_distance = _tuiIntPointDistance(ring.center_x, ring.center_y, point2.x, point2.y);
 	const TuiBoolean point_in_ring = (point_ring_center_distance >= inner_radius && point_ring_center_distance <= abs_radius);
@@ -219,14 +219,14 @@ TuiBoolean tuiRingIntersetsLine(const TuiRing ring, const TuiLine line)
 {
 	const float abs_radius = fabsf(ring.radius);
 	const float abs_depth = fabsf(ring.depth);
-	if (abs_radius < 0.5f || abs_depth < 0.5f) return TUI_FALSE;
+	if (abs_radius < 0.5f || abs_depth < 0.5f || abs_depth > abs_radius) return TUI_FALSE;
 	const float inner_radius = abs_radius - abs_depth;
 	const TuiCircle inner_circle = { ring.center_x, ring.center_y, inner_radius };
 	const TuiBoolean inner_circle_contains_line = tuiCircleContainsLine(inner_circle, line);
 	if (inner_circle_contains_line) return TUI_TRUE;
 	const TuiCircle outer_circle = { ring.center_x, ring.center_y, ring.radius };
 	const TuiBoolean outer_circle_intersects_line = tuiCircleIntersectsLine(outer_circle, line);
-	if (outer_circle_intersects_line) return TUI_TRUE;
+	return (outer_circle_intersects_line);
 }
 
 TuiBoolean tuiRingIntersectsRect(const TuiRing ring, const TuiRect rect)
@@ -234,7 +234,7 @@ TuiBoolean tuiRingIntersectsRect(const TuiRing ring, const TuiRect rect)
 	if (tuiRectIsDegenerate(rect)) return TUI_FALSE;
 	const float abs_radius = fabsf(ring.radius);
 	const float abs_depth = fabsf(ring.depth);
-	if (abs_radius < 0.5f || abs_depth < 0.5f) return TUI_FALSE;
+	if (abs_radius < 0.5f || abs_depth < 0.5f || abs_depth > abs_radius) return TUI_FALSE;
 	const float inner_radius = abs_radius - abs_depth;
 	const TuiCircle ring_circle = { ring.center_x, ring.center_y, ring.radius };
 	const TuiCircle ring_inner_circle = { ring.center_x, ring.center_y, inner_radius };
@@ -258,24 +258,24 @@ TuiBoolean tuiRingIntersectsCircle(const TuiRing ring, const TuiCircle circle)
 	if (tuiCircleIsDegenerate(circle)) return TUI_FALSE;
 	const float abs_radius = fabsf(ring.radius);
 	const float abs_depth = fabsf(ring.depth);
-	if (abs_radius < 0.5f || abs_depth < 0.5f) return TUI_FALSE;
+	if (abs_radius < 0.5f || abs_depth < 0.5f || abs_depth > abs_radius) return TUI_FALSE;
 	const float inner_radius = abs_radius - abs_depth;
 	const TuiCircle inner_circle = { ring.center_x, ring.center_y, inner_radius };
 	const TuiBoolean inner_circle_contains_circle = tuiCircleContainsCircle(inner_circle, circle);
 	if (inner_circle_contains_circle) return TUI_FALSE;
 	const TuiCircle outer_circle = { ring.center_x, ring.center_y, ring.radius };
 	const TuiBoolean outer_circle_intersects_circle = tuiCircleIntersectsCircle(outer_circle, circle);
-	if (outer_circle_intersects_circle) return TUI_TRUE;
+	return (outer_circle_intersects_circle);
 }
 
 TuiBoolean tuiRingIntersectsRing(const TuiRing ring_1, const TuiRing ring_2)
 {
 	const float ring_1_abs_radius = fabsf(ring_1.radius);
 	const float ring_1_abs_depth = fabsf(ring_1.depth);
-	if (ring_1_abs_radius < 0.5f || ring_1_abs_depth < 0.5f) return TUI_FALSE;
+	if (ring_1_abs_radius < 0.5f || ring_1_abs_depth < 0.5f || ring_1_abs_depth > ring_1_abs_radius) return TUI_FALSE;
 	const float ring_2_abs_radius = fabsf(ring_2.radius);
 	const float ring_2_abs_depth = fabsf(ring_2.depth);
-	if (ring_2_abs_radius < 0.5f || ring_2_abs_depth < 0.5f) return TUI_FALSE;
+	if (ring_2_abs_radius < 0.5f || ring_2_abs_depth < 0.5f || ring_2_abs_depth > ring_2_abs_radius) return TUI_FALSE;
 	const float ring_1_inner_radius = ring_1_abs_radius - ring_1_abs_depth;
 	const TuiCircle  ring_1_inner_circle = { ring_1.center_x, ring_1.center_y,  ring_1_inner_radius };
 	const TuiCircle ring_2_outer_circle = { ring_2.center_x, ring_2.center_y, ring_2.radius };
@@ -289,5 +289,5 @@ TuiBoolean tuiRingIntersectsRing(const TuiRing ring_1, const TuiRing ring_2)
 	const TuiBoolean ring_1_intersects_ring_2_outer_circle = tuiCircleIntersectsCircle(ring_1_outer_circle, ring_2_outer_circle);
 	if (ring_1_intersects_ring_2_outer_circle) return TUI_TRUE;
 	const TuiBoolean ring_1_intersects_ring_2_inner_circle = tuiCircleIntersectsCircle(ring_1_outer_circle, ring_2_inner_circle);
-	if (ring_1_intersects_ring_2_inner_circle) return TUI_TRUE;
+	return (ring_1_intersects_ring_2_inner_circle);
 }
