@@ -94,6 +94,7 @@ int tuiRingGetInnerBottomY(const TuiRing ring)
 {
 	const float inner_radius = tuiRingGetInnerRadius(ring);
 	const int inner_bottom_y = ring.center_y + (int)roundf(inner_radius);
+	return inner_bottom_y;
 }
 
 int tuiRingGetDimensions(const TuiRing ring)
