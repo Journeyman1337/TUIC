@@ -151,7 +151,7 @@ TuiBoolean tuiLinesCollinear(const TuiLine line_1, const TuiLine line_2)
 	const TuiPoint2 line_1_end = tuiLineGetEndPoint2(line_1);
 	const TuiPoint2 line_2_start = tuiLineGetStartPoint2(line_2);
 	const TuiPoint2 line_2_end = tuiLineGetEndPoint2(line_2);
-	return (_tuiPoint2Collienar(line_1_start, line_1_end, line_2_start) && _tuiPoint2Collienar(line_1_start, line_1_end, line_2_end));
+	return (_tuiPoint2Collinear(line_1_start, line_1_end, line_2_start) && _tuiPoint2Collinear(line_1_start, line_1_end, line_2_end));
 }
 
 TuiBoolean tuiLinesPerpendicular(const TuiLine line_1, const TuiLine line_2)
