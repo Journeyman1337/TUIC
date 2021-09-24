@@ -238,14 +238,14 @@ TuiBoolean tuiRingIntersectsRect(const TuiRing ring, const TuiRect rect)
 	const TuiCircle ring_circle = { ring.center_x, ring.center_y, ring.radius };
 	const TuiCircle ring_inner_circle = { ring.center_x, ring.center_y, inner_radius };
 	const TuiBoolean ring_intersects_rect_border = (
-		tuiCircleIntersectsLine(ring_circle, tuiRectGetLeftInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_circle, tuiRectGetRightInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_circle, tuiRectGetTopInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_circle, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetLeftInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetRightInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetTopInnerBorderLine(rect, TUI_TRUE)) ||
-		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE))
+		tuiCircleIntersectsLine(ring_circle, tuiRectGetLeftBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_circle, tuiRectGetRightBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_circle, tuiRectGetTopBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_circle, tuiRectGetBottomBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetLeftBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetRightBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetTopBorderLine(rect, TUI_TRUE)) ||
+		tuiCircleIntersectsLine(ring_inner_circle, tuiRectGetBottomBorderLine(rect, TUI_TRUE))
 		);
 	if (ring_intersects_rect_border) return TUI_TRUE;
 	const TuiBoolean circle_contains_rect = tuiRingContainsPoint2(ring, tuiRectGetTopLeftCornerPoint2(rect));

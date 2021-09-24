@@ -158,10 +158,10 @@ TuiBoolean tuiCircleIntersectsRect(const TuiCircle circle, const TuiRect rect)
 	const float abs_radius = fabsf(circle.radius);
 	if (abs_radius < 0.5f) return TUI_FALSE;
 	const TuiBoolean circle_intersects_rect_border = (
-			tuiCircleIntersectsLine(circle, tuiRectGetLeftInnerBorderLine(rect, TUI_TRUE)) ||
-			tuiCircleIntersectsLine(circle, tuiRectGetRightInnerBorderLine(rect, TUI_TRUE)) ||
-			tuiCircleIntersectsLine(circle, tuiRectGetTopInnerBorderLine(rect, TUI_TRUE)) ||
-			tuiCircleIntersectsLine(circle, tuiRectGetBottomInnerBorderLine(rect, TUI_TRUE))
+			tuiCircleIntersectsLine(circle, tuiRectGetLeftBorderLine(rect, TUI_TRUE)) ||
+			tuiCircleIntersectsLine(circle, tuiRectGetRightBorderLine(rect, TUI_TRUE)) ||
+			tuiCircleIntersectsLine(circle, tuiRectGetTopBorderLine(rect, TUI_TRUE)) ||
+			tuiCircleIntersectsLine(circle, tuiRectGetBottomBorderLine(rect, TUI_TRUE))
 		);
 	if (circle_intersects_rect_border) return TUI_TRUE;
 	const TuiBoolean circle_contains_rect = tuiCircleContainsPoint2(circle, tuiRectGetTopLeftCornerPoint2(rect));
