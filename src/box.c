@@ -151,7 +151,7 @@ TuiLine tuiBoxGetLeftBorderLine(const TuiBox box, const TuiBoolean corners)
 	const int box_left_x = _tuiBoxGetLeftX(box);
 	const int box_top_y = _tuiBoxGetTopY(box);
 	const int box_bottom_y = _tuiBoxGetBottomY(box);
-	TuiLine ret = { box_left_x, box_top_y + corner_change, box_left_x, box_top_y - corner_change }; // clockwise
+	TuiLine ret = { box_left_x, box_top_y + corner_change, box_left_x, box_bottom_y - corner_change }; // clockwise
 	return ret;
 }
 
