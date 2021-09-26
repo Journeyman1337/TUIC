@@ -137,6 +137,14 @@ TuiPoint2 tuiBoxGetBottomLeftCornerPoint2(const TuiBox box)
 	return ret;
 }
 
+TuiPoint2 tuiBoxGetBottomRightCornerPoint2(const TuiBox box)
+{
+	const int box_right_x = _tuiBoxGetRightX(box);
+	const int box_bottom_y = _tuiBoxGetBottomY(box);
+	TuiPoint2 ret = { box_right_x, box_bottom_y };
+	return ret;
+}
+
 TuiLine tuiBoxGetLeftBorderLine(const TuiBox box, const TuiBoolean corners)
 {
 	const int corner_change = (corners) ? 0 : 1;

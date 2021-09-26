@@ -223,6 +223,20 @@ TuiPoint2 tuiBoxGetTopRightCornerPoint2(const TuiBox box);
  */
 TuiPoint2 tuiBoxGetBottomLeftCornerPoint2(const TuiBox box);
 /*!
+ * @brief Get the @ref TuiPoint2 at the bottom right corner of a @ref TuiBox.
+ *
+ * @param box The @ref TuiBox.
+ *
+ * @returns The @ref TuiPoint2.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiPoint2 tuiBoxGetBottomRightCornerPoint2(const TuiBox box);
+/*!
  * @brief Get the @ref TuiLine on the left border of a @ref TuiBox.
  *
  * @param box The @ref TuiBox.
