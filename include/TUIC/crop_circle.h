@@ -152,7 +152,7 @@ int tuiCropCircleGetCircleDimensions(const TuiCropCircle crop_circle);
  */
 TuiRect tuiCropCircleGetCircleBoundingRect(const TuiCropCircle crop_circle);
 /*!
- * @brief Get the far x coordinate of the crop rect of a @ref TuiRect.
+ * @brief Get the far x coordinate of the crop rect of a @ref TuiCropCircle.
  *
  * @param crop_circle The @ref TuiCropCircle.
  *
