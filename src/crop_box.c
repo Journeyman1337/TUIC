@@ -18,6 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/crop_box.h>
+#include <TUIC/box.h>
 #include <TUIC/circle.h>
 #include <TUIC/point2.h>
 #include <TUIC/line.h>
