@@ -22,6 +22,7 @@
 #include <TUIC/line.h>
 #include <TUIC/circle.h>
 #include <TUIC/ring.h>
+#include <TUIC/box.h>
 #include "grid_shapes_inline.h"
 #include <math.h>
 #include <stdlib.h>
@@ -308,6 +309,11 @@ TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2)
 		(rect_1_far_y >= rect_2.y) &&
 		(rect_1.y <= rect_2_far_y);
 	return rect_intersects_rect;
+}
+
+TuiBoolean tuiRectIntersectsBox(const TuiRect rect, const TuiBox box)
+{
+	return tuiBoxIntersectsRect(box, rect);
 }
 
 TuiBoolean tuiRectIntersectsCircle(const TuiRect rect, const TuiCircle circle)

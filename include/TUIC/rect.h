@@ -409,6 +409,22 @@ TuiBoolean tuiRectIntersectsLine(const TuiRect rect, const TuiLine line);
  */
 TuiBoolean tuiRectIntersectsRect(const TuiRect rect_1, const TuiRect rect_2);
 /*!
+ * @brief Get if a @ref TuiRect intersects a @ref TuiBox.
+ *
+ * @param rect The @ref TuiRect.
+ * @param box The @ref TuiBox
+ *
+ * @returns The @ref TuiBoolean result. If the rect intersects box, it
+ * returns @ref TUI_TRUE. Otherwise, it returns @ref TUI_FALSE.
+ *
+ * @errors This function can have no error codes.
+ *
+ * @requirements This function can be called freely, even if TUIC is not currently initialized.
+ *
+ * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
+ */
+TuiBoolean tuiRectIntersectsBox(const TuiRect rect, const TuiBox box);
+/*!
  * @brief Get if a @ref TuiRect intersects a @ref TuiCircle.
  *
  * @param rect The @ref TuiRect.
