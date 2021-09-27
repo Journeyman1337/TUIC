@@ -161,18 +161,6 @@ int tuiCropBoxGetCropFarY(const TuiCropBox crop_box)
 	return crop_far_y;
 }
 
-int tuiCropBoxGetCropFarX(const TuiCropBox crop_box)
-{
-	const int crop_far_x = (crop_box.crop_width == 0) ? crop_box.crop_x : crop_box.crop_x + abs(crop_box.crop_width) - 1;
-	return crop_far_x;
-}
-
-int tuiCropBoxGetCropFarY(const TuiCropBox crop_box)
-{
-	const int crop_far_y = (crop_box.crop_height == 0) ? crop_box.crop_y : crop_box.crop_y + abs(crop_box.crop_height) - 1;
-	return crop_far_y;
-}
-
 TuiBox tuiCropBoxGetBox(const TuiCropBox crop_box)
 {
 	const TuiBox ret = { crop_box.x, crop_box.y, crop_box.width, crop_box.height, crop_box.depth };
