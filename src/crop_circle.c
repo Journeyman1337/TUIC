@@ -90,7 +90,6 @@ int tuiCropCircleGetCropFarY(const TuiCropCircle crop_circle)
 	return crop_far_y;
 }
 
-
 int tuiCropCircleGetLeftX(const TuiCropCircle crop_circle)
 {
 	const int circle_left_x = tuiCropCircleGetCircleLeftX(crop_circle);
