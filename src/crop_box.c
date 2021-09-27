@@ -147,6 +147,7 @@ TuiRect tuiCropBoxGetBoundingRect(const TuiCropBox crop_box)
 TuiRect tuiCropBoxGetCropRect(const TuiCropBox crop_box)
 {
 	TuiRect ret = { crop_box.crop_x, crop_box.crop_y, crop_box.crop_width, crop_box.crop_height };
+	return ret;
 }
 
 int tuiCropBoxGetCropFarX(const TuiCropBox crop_box)
@@ -164,6 +165,7 @@ int tuiCropBoxGetCropFarY(const TuiCropBox crop_box)
 TuiBox tuiCropBoxGetBox(const TuiCropBox crop_box)
 {
 	const TuiBox ret = { crop_box.x, crop_box.y, crop_box.width, crop_box.height, crop_box.depth };
+	return ret;
 }
 
 TuiPoint2 tuiCropBoxGetBoxTopLeftCornerPoint2(const TuiCropBox crop_box)
