@@ -483,6 +483,45 @@ typedef struct TuiRing
 	 */
 	float depth;
 } TuiRing;
+
+/*!
+ * \brief A 2D cropped ring.
+ */
+typedef struct TuiCropRing
+{
+	/*!
+	 * \brief The x position of the center of the circle.
+	 */
+	int center_x;
+	/*!
+	 * \brief The y position of the center of the circle.
+	 */
+	int center_y;
+	/*!
+	 * \brief The outer radius of the ring.
+	 */
+	float radius;
+	/*!
+	 * \brief The depth/thickness of the ring in tiles.
+	 */
+	float depth;
+	/*!
+	 * \brief The x position of the left border of the crop rect.
+	 */
+	int crop_x;
+	/*!
+	 * \brief The y position of the top border of the crop rect.
+	 */
+	int crop_y;
+	/*!
+	 * \brief The width of the crop rect in tiles.
+	 */
+	int crop_width;
+	/*!
+	 * \brief The height of the crop rect in tiles.
+	 */
+	int crop_height;
+} TuiCropRing;
 /*! @} */
 
 
