@@ -30,9 +30,9 @@
 #include <TUIC/easing.h>
 
 
-TuiCropBox tuiCropBox(const int x, const int y, const int width, const int height, const int depth)
+TuiCropBox tuiCropBox(const int x, const int y, const int width, const int height, const int depth, const int crop_x, const int crop_y, const int crop_width, const int crop_height)
 {
-	TuiCropBox ret = { x, y, width, height, depth };
+	TuiCropBox ret = { x, y, width, height, depth, crop_x, crop_y, crop_width, crop_height };
 	return ret;
 }
 

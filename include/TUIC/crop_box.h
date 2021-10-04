@@ -54,7 +54,7 @@ extern "C" {
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiCropBox tuiCropBox(const int x, const int y, const int width, const int height, const int depth);
+TuiCropBox tuiCropBox(const int x, const int y, const int width, const int height, const int depth, const int crop_x, const int crop_y, const int crop_width, const int crop_height);
 /*!
  * @brief Get the far x coordinate of a @ref TuiCropBox.
  *
