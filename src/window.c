@@ -2342,7 +2342,6 @@ void tuiWindowRestore(TuiWindow window)
 	}
 }
 
-
 TuiBoolean tuiWindowShouldClose(TuiWindow window)
 {
 	TuiSystem system = tui_get_system();
