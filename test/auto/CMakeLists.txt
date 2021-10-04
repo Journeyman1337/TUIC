@@ -7,6 +7,9 @@ add_executable(TUIC_TESTS_AUTO
 	box_test.cpp
 	button_state_test.cpp
 	circle_test.cpp
+	crop_box_test.cpp
+	crop_circle_test.cpp
+	crop_ring_test.cpp
 	cursor_mode_test.cpp
 	cursor_shape_test.cpp
 	detail_flag_test.cpp
