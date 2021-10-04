@@ -41,6 +41,10 @@ extern "C" {
  * @param width The width of the crop_box. If negative, the crop_box contents are flipped.
  * @param height The height of the crop_box. If negative, the crop_box contents are flipped.
  * @param depth The depth of the crop_box border in tiles.
+ * @param crop_x The uppper left x position of the crop rect.
+ * @param crop_y The upper left y position of the crop rect.
+ * @param crop_width The width of the crop rect in tiles.
+ * @param crop_height The height of the crop rect in tiles.
  *
  * @returns The created @ref TuiRect.
  *
