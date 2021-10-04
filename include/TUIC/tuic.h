@@ -31,6 +31,12 @@
 #include <TUIC/button_state.h>
 #include <TUIC/circle.h>
 #include <TUIC/circle_it.h>
+#include <TUIC/crop_box.h>
+#include <TUIC/crop_box_it.h>
+#include <TUIC/crop_circle.h>
+#include <TUIC/crop_circle_it.h>
+#include <TUIC/crop_ring.h>
+#include <TUIC/crop_ring_it.h>
 #include <TUIC/cursor.h>
 #include <TUIC/cursor_shape.h>
 #include <TUIC/debug.h>
