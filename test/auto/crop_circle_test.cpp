@@ -98,10 +98,6 @@ TEST_CASE("tuiCropCircleGetBottomPoint2")
 
 }
 
-TEST_CASE("tuiCropCircleGetBottomPoint2")
-{
-
-}
 
 TEST_CASE("tuiCropCircleIsDegenerate")
 {
