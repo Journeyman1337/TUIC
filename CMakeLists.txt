@@ -57,6 +57,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_mod.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/line.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/line_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/math_inline.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/monitor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mouse_button.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c

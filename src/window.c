@@ -23,16 +23,7 @@
 #include "opengl33.h"
 #include "glfw_error_check.h"
 #include "image_inline.h"
-
-static int mini(int x, int y)
-{
-	return x < y ? x : y;
-}
-
-static int maxi(int x, int y)
-{
-	return x > y ? x : y;
-}
+#include "math_inline.h"
 
 //taken from https://stackoverflow.com/a/31526753
 static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
@@ -64,8 +55,8 @@ static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 		mh = mode->height;
 
 		overlap =
-			maxi(0, mini(wx + ww, mx + mw) - maxi(wx, mx)) *
-			maxi(0, mini(wy + wh, my + mh) - maxi(wy, my));
+			MAX(0, MIN(wx + ww, mx + mw) - MAX(wx, mx)) *
+			MAX(0, MIN(wy + wh, my + mh) - MAX(wy, my));
 
 		if (bestoverlap < overlap) {
 			bestoverlap = overlap;
@@ -73,22 +64,6 @@ static inline TuiMonitor _GetCurrentMonitor(GLFWwindow* window)
 		}
 	}
 	return (TuiMonitor)monitor;
-}
-
-static inline int _GCF(int n, int m) //returns the greatest common factor of the two values
-{
-	int gcf, remainder;
-
-	while (n != 0)
-	{
-		remainder = m % n;
-		m = n;
-		n = remainder;
-	}
-
-	gcf = m;
-
-	return gcf;
 }
 
 static inline TuiBoolean _WindowHasSizeLimits(TuiWindow window)
@@ -2147,7 +2122,7 @@ void tuiWindowFixCurrentAspectRatio(TuiWindow window)
 	}
 
 	window->IsFixedAspectRatio = TUI_TRUE;
-	int greatest_common_factor = _GCF(window->ViewportPixelWidth, window->ViewportPixelHeight);
+	int greatest_common_factor = _tuiGCF(window->ViewportPixelWidth, window->ViewportPixelHeight);
 	glfwSetWindowAspectRatio(window->GlfwWindow, window->ViewportPixelWidth / greatest_common_factor, window->ViewportPixelHeight / greatest_common_factor);
 	TuiErrorCode glfw_error = _GlfwErrorCheck();
 	if (glfw_error != TUI_ERROR_NONE)
@@ -2212,7 +2187,7 @@ void tuiWindowGetAspectRatio(TuiWindow window, int* numerator, int* denominator)
 		return;
 	}
 
-	int greatest_common_factor = _GCF(window->ViewportPixelWidth, window->ViewportPixelHeight);
+	int greatest_common_factor = _tuiGCF(window->ViewportPixelWidth, window->ViewportPixelHeight);
 	if (numerator != TUI_NULL)
 	{
 		*numerator = window->ViewportPixelWidth / greatest_common_factor;

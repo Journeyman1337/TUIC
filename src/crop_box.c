@@ -25,7 +25,7 @@
 #include <TUIC/rect.h>
 #include <TUIC/ring.h>
 #include "grid_shapes_inline.h"
-#include <math.h>
+#include "math_inline.h"
 #include <stdlib.h>
 #include <TUIC/easing.h>
 

@@ -21,7 +21,7 @@
 #include <TUIC/rect.h>
 #include <TUIC/error_code.h>
 #include <TUIC/debug.h>
-#include <math.h>
+#include "math_inline.h"
 #include <TUIC/easing.h>
 
 TuiRectIt tuiRectIt(const TuiRect rect)

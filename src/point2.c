@@ -18,7 +18,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <TUIC/point2.h>
-#include <math.h>
+#include "math_inline.h"
 #include <stdlib.h> //for abs on mac
 #include <TUIC/easing.h>
 #include "grid_shapes_inline.h"
