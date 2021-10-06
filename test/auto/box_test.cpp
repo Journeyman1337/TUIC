@@ -253,5 +253,5 @@ TEST_CASE("tuiBoxIntersectsBox")
 	REQUIRE(!tuiBoxIntersectsBox(tuiBox(0, 0, 0, 0, 0), tuiBox(0, 0, 0, 0, 0)));
 	REQUIRE(tuiBoxIntersectsBox(tuiBox(0, 0, 5, 5, 1), tuiBox(2, 2, 2, 3, 1)));
 	REQUIRE(tuiBoxIntersectsBox(tuiBox(-10, -10, 20, 20, 1), tuiBox(0, 0, 5, 5, 1)));
-	REQUIRE(!tuiBoxIntersectsBox(tuiBox(0, 0, 10, 10, 1), tuiBox(-10, -10, 5, 5, 1)));
+	REQUIRE(!tuiBoxIntersectsBox(tuiBox(0, 0, 10 , 10, 1), tuiBox(-10, -10, 5, 5, 1)));
 }
