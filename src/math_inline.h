@@ -29,7 +29,7 @@
 // Get the lowest value between two values.
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 // Clamp a value between a minimum and maximum value.
-#define CLAMP(min, max, value) (value) < (min) ? (min) : ((value) > (max) ? (max) : (value))
+#define CLAMP(value, min, max) (value) < (min) ? (min) : ((value) > (max) ? (max) : (value))
 // Get the sign of a value (1 if number is positive or 0, or -1 if number is negative).
 #define SIGN(x) (((x) > 0) - ((x) < 0))
 
