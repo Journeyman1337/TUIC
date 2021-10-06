@@ -192,14 +192,14 @@ TuiRect tuiRectCrop(const TuiRect rect, const TuiRect crop_rect)
 	}
 	const int crop_far_x = tuiRectGetFarX(crop_rect);
 	const int crop_far_y = tuiRectGetFarY(crop_rect);
-	const int rect_far_x = tuiRectGetFarX(crop_rect);
-	const int rect_far_y = tuiRectGetFarY(crop_rect);
+	const int rect_far_x = tuiRectGetFarX(rect);
+	const int rect_far_y = tuiRectGetFarY(rect);
 	const int ret_x = CLAMP(rect.x, crop_rect.x, crop_far_x);
 	const int ret_y = CLAMP(rect.y, crop_rect.y, crop_far_y);
 	const int ret_far_x = CLAMP(rect_far_x, crop_rect.x, crop_far_x);
 	const int ret_far_y = CLAMP(rect_far_y, crop_rect.y, crop_far_y, );
-	const int ret_width = ret_far_x - ret_x;
-	const int ret_height = ret_far_y - ret_y;
+	const int ret_width = ret_far_x - ret_x + 1;
+	const int ret_height = ret_far_y - ret_y + 1;
 	TuiRect ret = {  ret_x, ret_y, ret_width * SIGN(rect.width), ret_height * SIGN(rect.height) };
 	return ret;
 }

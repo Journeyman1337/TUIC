@@ -254,15 +254,15 @@ TEST_CASE("tuiRectCrop")
 	{
 		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(2, 2, 11, 11)).x == 2);
 		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(2, 2, 11, 11)).y == 2);
-		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(2, 2, 11, 11)).width == 10);
-		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(2, 2, 11, 11)).height == 10);
+		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(2, 2, 11, 11)).width == 8);
+		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(2, 2, 11, 11)).height == 8);
 	}
 
 	{
 		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(-2, -2, 4, 4)).x == 0);
 		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(-2, -2, 4, 4)).y == 0);
-		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(-2, -2, 4, 4)).width == 1);
-		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(-2, -2, 4, 4)).height == 1);
+		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(-2, -2, 4, 4)).width == 2);
+		REQUIRE(tuiRectCrop(tuiRect(0, 0, 10, 10), tuiRect(-2, -2, 4, 4)).height == 2);
 	}
 }
 
