@@ -128,7 +128,7 @@ TuiBoolean tuiCropBoxIsFlippedTall(const TuiCropBox crop_box)
 
 TuiBoolean tuiCropBoxIsDegenerate(const TuiCropBox crop_box)
 {
-	TuiBoolean box_degenerate = (crop_box.width == 0 || crop_box.height == 0);
+	TuiBoolean box_degenerate = (crop_box.width == 0 || crop_box.height == 0 || crop_box.depth == 0);
 	if (box_degenerate) return TUI_TRUE;
 	TuiBoolean crop_degenerate = (crop_box.crop_width == 0 || crop_box.crop_height == 0);
 	return crop_degenerate;
