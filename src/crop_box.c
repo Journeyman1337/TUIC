@@ -140,7 +140,11 @@ TuiRect tuiCropBoxGetBoundingRect(const TuiCropBox crop_box)
 	const int right_x = tuiCropBoxGetRightX(crop_box);
 	const int top_y = tuiCropBoxGetTopY(crop_box);
 	const int bottom_y = tuiCropBoxGetBottomY(crop_box);
-	const TuiRect ret = { left_x, top_y, abs(right_x - left_x) + 1, abs(bottom_y - top_y) + 1 };
+	const int difference_wide = right_x - left_x;
+	const int width = (difference_wide == 0) ? 0 :abs(difference_wide) + 1;
+	const int difference_tall = bottom_y - top_y;
+	const int height = (difference_tall == 0) ? 0 : abs(difference_tall) + 1;
+	const TuiRect ret = { left_x, top_y, width, height };
 	return ret;
 }
 
