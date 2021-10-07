@@ -163,6 +163,7 @@ int tuiCropRingGetBottomY(const TuiCropRing crop_ring)
 TuiRing tuiCropRingGetRing(const TuiCropRing crop_ring)
 {
 	TuiRing ret = { crop_ring.center_x, crop_ring.center_y, crop_ring.radius, crop_ring.depth };
+	return ret;
 }
 
 TuiCircle tuiCropRingGetRingCircle(const TuiCropRing crop_ring)
