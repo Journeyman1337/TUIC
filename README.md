@@ -1,3 +1,7 @@
+# Why was this depreciated?
+
+This project became the victim of feature creep and I lost sight of my original goal of designing a cross platform roguelike development library. I have shifted my efforts to RLFW, a C/C++ library that will be more closely alligned to this goal. RLFW will be released as open source when it is ready.
+
 # TUIC
 
 TUIC is an open source, backend agnostic Text-User-Interface rendering library written in C. TUIC can be used directly, but is designed for usage as a renderer by other libraries, such as those made for the creation of Roguelike games.
