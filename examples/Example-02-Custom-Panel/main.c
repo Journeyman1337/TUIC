@@ -91,7 +91,7 @@ int main()
             uint8_t bg_r = 0;
             uint8_t bg_g = 0;
             uint8_t bg_b = 0;
-            tuiBatchSetTile_G16_C24_FULL(batch, tile_x, tile_y, glyph, fg_r, fg_g, fg_b, bg_r, bg_g, bg_b);
+            tuiBatchPushTile_G16_C24_FULL(batch, tile_x, tile_y, glyph, fg_r, fg_g, fg_b, bg_r, bg_g, bg_b);
         }
     }
 

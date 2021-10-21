@@ -179,7 +179,7 @@ int main()
             uint8_t background_color = 0;
             uint8_t glyph = 255;
             uint8_t colors_byte = tuiClassicColorCombine(foreground_color, background_color);
-            tuiBatchSetTile_G8_C4_SPARSE(batch, tile_x, tile_y, glyph, colors_byte);
+            tuiBatchPushTile_G8_C4_SPARSE(batch, tile_x, tile_y, glyph, colors_byte);
             tuiWindowDrawBatch(window, atlas, palette, batch);
         }
 

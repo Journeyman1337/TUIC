@@ -85,6 +85,7 @@ const char* kTui_Error_Null_Batch_Name = TO_STRING(TUI_ERROR_NULL_BATCH);
 const char* kTui_Error_Null_Colors_Name = TO_STRING(TUI_ERROR_NULL_COLORS);
 const char* kTui_Error_Null_Cursor_Name = TO_STRING(TUI_ERROR_NULL_CURSOR);
 const char* kTui_Error_Null_Glyph_Bounding_Boxes_Name = TO_STRING(TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES);
+const char* kTui_Error_Null_Grid_Shape_Iterator_Name = TO_STRING(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR);
 const char* kTui_Error_Null_Image_Name = TO_STRING(TUI_ERROR_NULL_IMAGE);
 const char* kTui_Error_Null_Monitor_Name = TO_STRING(TUI_ERROR_NULL_MONITOR);
 const char* kTui_Error_Null_Palette_Name = TO_STRING(TUI_ERROR_NULL_PALETTE);
@@ -170,6 +171,7 @@ const char* kTui_Error_Null_Batch_Data_Description = "The batch data array is TU
 const char* kTui_Error_Null_Colors_Description = "The colors array is TUI_NULL.";
 const char* kTui_Error_Null_Cursor_Description = "The TuiCursor is TUI_NULL.";
 const char* kTui_Error_Null_Glyph_Bounding_Boxes_Description = "The glyph bounding boxes array is TUI_NULL.";
+const char* kTui_Error_Null_Grid_Shape_Iterator_Description = "The grid shape iterator struct pointer is TUI_NULL.";
 const char* kTui_Error_Null_Image_Description = "The TuiImage is TUI_NULL.";
 const char* kTui_Error_Null_Monitor_Description = "The TuiMonitor is TUI_NULL.";
 const char* kTui_Error_Null_Palette_Description = "The TuiPalette is TUI_NULL.";
@@ -332,6 +334,8 @@ const char* tuiErrorCodeToString(TuiErrorCode error_code)
 		return kTui_Error_Null_Cursor_Name;
 	case TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES:
 		return kTui_Error_Null_Glyph_Bounding_Boxes_Name;
+	case TUI_ERROR_NULL_GRID_SHAPE_ITERATOR:
+		return kTui_Error_Null_Grid_Shape_Iterator_Name;
 	case TUI_ERROR_NULL_IMAGE:
 		return kTui_Error_Null_Image_Name;
 	case TUI_ERROR_NULL_MONITOR:
@@ -629,6 +633,10 @@ TuiErrorCode tuiStringToErrorCode(const char* str)
 	{
 		return TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES;
 	}
+	else if (strcmp(str, kTui_Error_Null_Grid_Shape_Iterator_Name) == 0)
+	{
+		return TUI_ERROR_NULL_GRID_SHAPE_ITERATOR;
+	}
 	else if (strcmp(str, kTui_Error_Null_Image_Name) == 0)
 	{
 		return TUI_ERROR_NULL_IMAGE;
@@ -844,6 +852,8 @@ const char* tuiErrorCodeGetDescription(TuiErrorCode error_code)
 		return kTui_Error_Null_Cursor_Description;
 	case TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES:
 		return kTui_Error_Null_Glyph_Bounding_Boxes_Description;
+	case TUI_ERROR_NULL_GRID_SHAPE_ITERATOR:
+		return kTui_Error_Null_Grid_Shape_Iterator_Description;
 	case TUI_ERROR_NULL_IMAGE:
 		return kTui_Error_Null_Image_Description;
 	case TUI_ERROR_NULL_MONITOR:

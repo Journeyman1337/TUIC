@@ -281,89 +281,93 @@ typedef enum TuiErrorCode
      */
 	TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES = 60,
 	/*!
+	 * \brief TUIC error code for when a grid shape iterator struct pointer is @ref TUI_NULL.
+	 */
+	TUI_ERROR_NULL_GRID_SHAPE_ITERATOR = 61,
+	/*!
 	 * \brief TUIC error code for when a @ref TuiImage is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_IMAGE = 61,
+	TUI_ERROR_NULL_IMAGE = 62,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiMonitor is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_MONITOR = 62,
+	TUI_ERROR_NULL_MONITOR = 63,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiPalette is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PALETTE = 63,
+	TUI_ERROR_NULL_PALETTE = 64,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiPanel is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PANEL = 64,
+	TUI_ERROR_NULL_PANEL = 65,
 	/*!
 	 * \brief TUIC error code for when a path is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PATH = 65,
+	TUI_ERROR_NULL_PATH = 66,
 	/*!
 	 * \brief TUIC error code for when a pixels array is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_PIXELS = 66,
+	TUI_ERROR_NULL_PIXELS = 67,
 	/*!
 	 * \brief TUIC error code for when a string is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_STRING = 67,
+	TUI_ERROR_NULL_STRING = 68,
 	/*!
 	 * \brief TUIC error code for when a subect @ref TuiPanel is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_SUBJECT_PANEL = 68,
+	TUI_ERROR_NULL_SUBJECT_PANEL = 69,
 	/*!
 	 * \brief TUIC error code for when a subject @ref TuiWindow is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_SUBJECT_WINDOW = 69,
+	TUI_ERROR_NULL_SUBJECT_WINDOW = 70,
 	/*!
 	 * \brief TUIC error code for when a target @ref TuiImage is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_TARGET_IMAGE = 70,
+	TUI_ERROR_NULL_TARGET_IMAGE = 71,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiTexture is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_TEXTURE = 71,
+	TUI_ERROR_NULL_TEXTURE = 72,
 	/*!
 	 * \brief TUIC error code for when a texture coordinates array is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_TEXTURE_COORDINATES = 72,
+	TUI_ERROR_NULL_TEXTURE_COORDINATES = 73,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiWindow is @ref TUI_NULL.
      */
-	TUI_ERROR_NULL_WINDOW = 73,
+	TUI_ERROR_NULL_WINDOW = 74,
 	/*!
 	 * \brief TUIC error code for when attempting to render batch data without a @ref TuiPalette when one is required by the @ref TuiDetailMode.
      */
-	TUI_ERROR_PALETTE_REQUIRED = 74,
+	TUI_ERROR_PALETTE_REQUIRED = 75,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiImage has failed to be resized.
      */
-	TUI_ERROR_RESIZE_IMAGE_FAILURE = 75,
+	TUI_ERROR_RESIZE_IMAGE_FAILURE = 76,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiImage has failed to be saved.
 	 */
-	TUI_ERROR_SAVE_IMAGE_FAILURE = 76,
+	TUI_ERROR_SAVE_IMAGE_FAILURE = 77,
 	/*!
 	 * \brief TUIC error code for when a grapihcs API is unavailable on the current platform.
      */
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 77,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API = 78,
 	/*!
 	 * \brief TUIC error code for when a graphics API version is unavailable on the current platform.
      */
-	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 78,
+	TUI_ERROR_UNAVAILABLE_GRAPHICS_API_VERSION = 79,
 	/*!
 	 * \brief TUIC error code for when a @ref TuiCursorShape is not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 79,
+	TUI_ERROR_UNSUPPORTED_CURSOR_SHAPE = 80,
 	/*!
 	 * \brief TUIC error code for when raw mouse motion is not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 80,
+	TUI_ERROR_UNSUPPORTED_RAW_MOUSE_MOTION = 81,
 	/*!
 	 * \brief TUIC error code for when window icons are not supported on the current platform.
      */
-	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 81,
+	TUI_ERROR_UNSUPPORTED_WINDOW_ICONS = 82,
 	/*!
 	 * \brief The first GLFW error code.
      */
@@ -633,6 +637,10 @@ extern const char* kTui_Error_Null_Cursor_Name;
  * @brief String name of @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES.
  */
 extern const char* kTui_Error_Null_Glyph_Bounding_Boxes_Name;
+/*!
+ * @brief String name of @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES.
+ */
+extern const char* kTui_Error_Null_Grid_Shape_Iterator_Name;
 /*!
  * @brief String name of @ref TUI_ERROR_NULL_IMAGE.
  */
@@ -967,7 +975,11 @@ extern const char* kTui_Error_Null_Colors_Description;
  */
 extern const char* kTui_Error_Null_Cursor_Description;
 /*!
- * @brief String description of @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES.
+ * @brief String description of @ref TUI_ERROR_NULL_GRID_SHAPE_ITERATOR.
+ */
+extern const char* kTui_Error_Null_Grid_Shape_Iterator_Description;
+/*!
+ * @brief String description of @ref TUI.
  */
 extern const char* kTui_Error_Null_Glyph_Bounding_Boxes_Description;
 /*!

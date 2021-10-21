@@ -21,27 +21,52 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas_type.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/batch.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_free.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_full.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_sparse.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/box.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/box_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/box_part.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/circle.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/circle_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_box.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_box_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_circle.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_circle_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_ring.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_ring_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_shape.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/easing.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/error_code.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/filter_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/glfw_error_check.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/grid_shapes_inline.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/heap.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/image_inline.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_key.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/keyboard_mod.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/line.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/line_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/math_inline.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/monitor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mouse_button.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/palette.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/panel.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/point2.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/rect.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/rect_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/ring.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/ring_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/system.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/texture.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/objects.h
@@ -53,9 +78,23 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas_type.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_free.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_full.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_sparse.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_part.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_circle.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_circle_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_box.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_box_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_ring.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_ring_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_shape.h
@@ -63,17 +102,26 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/desktop_callback.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_flag.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/easing.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/error_code.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/events.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/grid_shape_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_key.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/keyboard_mod.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/line.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/line_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/monitor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/mouse_button.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point2.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/ring.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/ring_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/system.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/texture.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/time.h

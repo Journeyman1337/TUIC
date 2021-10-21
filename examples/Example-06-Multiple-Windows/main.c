@@ -78,7 +78,7 @@ int main()
             uint8_t background_color_palette_id = 16 - (y % 16);
             uint8_t two_color_byte = tuiClassicColorCombine(foreground_color_palette_id, background_color_palette_id);
             uint8_t glyph_id = (x + y) % 256;
-            tuiBatchSetTile_G8_C4_FULL(batch, x, y, glyph_id, two_color_byte);
+            tuiBatchPushTile_G8_C4_FULL(batch, x, y, glyph_id, two_color_byte);
         }
     }
 
