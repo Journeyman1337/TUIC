@@ -77,7 +77,7 @@ int main()
         {
             for (int tile_x = 0; tile_x < tiles_wide; tile_x++)
             {
-                tuiBatchSetTile_G8_C4_FULL(batch, tile_x, tile_y, glyph_id++, two_color_byte);
+                tuiBatchPushTile_G8_C4_FULL(batch, tile_x, tile_y, glyph_id++, two_color_byte);
             }
         }
     }

@@ -237,7 +237,7 @@ int main()
                         if (part_y < tiles_tall)
                         {
                             uint8_t color = tuiClassicColorCombine(15 - (part_i / kTrailLength), 0);
-                            tuiBatchSetTile_G8_C4_SPARSE(batch, trail_i, part_y, glyphs[trail_i + part_y * tiles_wide], color);
+                            tuiBatchPushTile_G8_C4_SPARSE(batch, trail_i, part_y, glyphs[trail_i + part_y * tiles_wide], color);
                         }
                     }
                 }

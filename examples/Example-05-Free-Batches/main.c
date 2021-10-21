@@ -114,7 +114,7 @@ void update_batch(TuiBatch batch, FreeGlyph* free_glyphs, int free_glyph_count)
     for (size_t glyph_i = 0; glyph_i < (size_t)free_glyph_count; glyph_i++)
     {
         FreeGlyph* cur_glyph = &free_glyphs[glyph_i];
-        tuiBatchSetTile_G8_C4_FREE(batch, cur_glyph->x, cur_glyph->y, cur_glyph->glyph, cur_glyph->colors);
+        tuiBatchPushTile_G8_C4_FREE(batch, cur_glyph->x, cur_glyph->y, cur_glyph->glyph, cur_glyph->colors);
     }
 }
 

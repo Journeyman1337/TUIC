@@ -100,13 +100,13 @@ void window_resize_callback(TuiWindow window, int pixel_width, int pixel_height)
     if (new_tiles_wide != tuiBatchGetTilesWide(window_user_pointer->batch) || new_tiles_tall != tuiBatchGetTilesTall(window_user_pointer->batch)) //if the new size is different than the previous batch size...
     {
         TuiBoolean reserve_leftover_batch_space = TUI_TRUE; //reserve the leftover space if less space is needed for the new size. This can lower allocations/increase performance.
-        tuiBatchSetTileDimensions(window_user_pointer->batch, new_tiles_wide, new_tiles_tall, reserve_leftover_batch_space);
+        tuiBatchPushTileDimensions(window_user_pointer->batch, new_tiles_wide, new_tiles_tall, reserve_leftover_batch_space);
         for (int x = 0; x < new_tiles_wide; x++)
         {
             for (int y = 0; y < new_tiles_tall; y++)
             {
                 int color = tuiClassicColorCombine(x % 256, y % 256);
-                tuiBatchSetTile_G8_C4_FULL(window_user_pointer->batch, x, y, (x + y) % 256, color);
+                tuiBatchPushTile_G8_C4_FULL(window_user_pointer->batch, x, y, (x + y) % 256, color);
             }
         }
     }
@@ -180,7 +180,7 @@ int main()
         for (int y = 0; y < tiles_tall; y++)
         {
             int color = tuiClassicColorCombine(x % 256, y % 256);
-            tuiBatchSetTile_G8_C4_FULL(batch, x, y, (x + y) % 256, color);
+            tuiBatchPushTile_G8_C4_FULL(batch, x, y, (x + y) % 256, color);
         }
     }
 

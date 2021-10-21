@@ -74,7 +74,7 @@ int main()
             for (int tile_x = 0; tile_x < 16; tile_x++)
             {
                 uint8_t colors = tuiClassicColorCombine((uint8_t)tile_x, (uint8_t)tile_y);
-                tuiBatchSetTile_G8_C4_FULL(batch, tile_x, tile_y, glyph_id++, colors);
+                tuiBatchPushTile_G8_C4_FULL(batch, tile_x, tile_y, glyph_id++, colors);
             }
         }
     }

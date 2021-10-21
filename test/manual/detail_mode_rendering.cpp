@@ -37,229 +37,229 @@ TuiBatch GetTestPatternBatch(TuiDetailMode detail_mode)
 				switch (detail_mode)
 				{
 				case TUI_DETAIL_MODE_G0_C8NBG_FULL:
-					tuiBatchSetTile_G0_C8NBG_FULL(batch, x, y, x % 256);
+					tuiBatchPushTile_G0_C8NBG_FULL(batch, x, y, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G0_C24NBG_FULL:
-					tuiBatchSetTile_G0_C24NBG_FULL(batch, x, y, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G0_C24NBG_FULL(batch, x, y, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G0_C32NBG_FULL:
-					tuiBatchSetTile_G0_C32NBG_FULL(batch, x, y, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G0_C32NBG_FULL(batch, x, y, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C0_FULL:
-					tuiBatchSetTile_G8_C0_FULL(batch, x, y, x);
+					tuiBatchPushTile_G8_C0_FULL(batch, x, y, x);
 					break;
 				case TUI_DETAIL_MODE_G8_C4_FULL:
-					tuiBatchSetTile_G8_C4_FULL(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
+					tuiBatchPushTile_G8_C4_FULL(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
 				case TUI_DETAIL_MODE_G8_C8NBG_FULL:
-					tuiBatchSetTile_G8_C8NBG_FULL(batch, x, y, x, x % 256);
+					tuiBatchPushTile_G8_C8NBG_FULL(batch, x, y, x, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C8_FULL:
-					tuiBatchSetTile_G8_C8_FULL(batch, x, y, x, x % 256, y % 256);
+					tuiBatchPushTile_G8_C8_FULL(batch, x, y, x, x % 256, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C8NFG_FULL:
-					tuiBatchSetTile_G8_C8NFG_FULL(batch, x, y, x, y % 256);
+					tuiBatchPushTile_G8_C8NFG_FULL(batch, x, y, x, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24_FULL:
-					tuiBatchSetTile_G8_C24_FULL(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G8_C24_FULL(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24NBG_FULL:
-					tuiBatchSetTile_G8_C24NBG_FULL(batch, x, y, x, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G8_C24NBG_FULL(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24NFG_FULL:
-					tuiBatchSetTile_G8_C24NFG_FULL(batch, x, y, x, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G8_C24NFG_FULL(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C32_FULL:
-					tuiBatchSetTile_G8_C32_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G8_C32_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G8_C32NBG_FULL:
-					tuiBatchSetTile_G8_C32NBG_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G8_C32NBG_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C32NFG_FULL:
-					tuiBatchSetTile_G8_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G8_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C0_FULL:
-					tuiBatchSetTile_G16_C0_FULL(batch, x, y, x);
+					tuiBatchPushTile_G16_C0_FULL(batch, x, y, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C4_FULL:
-					tuiBatchSetTile_G16_C4_FULL(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
+					tuiBatchPushTile_G16_C4_FULL(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
 				case TUI_DETAIL_MODE_G16_C8NBG_FULL:
-					tuiBatchSetTile_G16_C8NBG_FULL(batch, x, y, x, x % 256);
+					tuiBatchPushTile_G16_C8NBG_FULL(batch, x, y, x, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C8_FULL:
-					tuiBatchSetTile_G16_C8_FULL(batch, x, y, x, x % 256, y % 256);
+					tuiBatchPushTile_G16_C8_FULL(batch, x, y, x, x % 256, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C8NFG_FULL:
-					tuiBatchSetTile_G16_C8NFG_FULL(batch, x, y, x, y % 256);
+					tuiBatchPushTile_G16_C8NFG_FULL(batch, x, y, x, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24_FULL:
-					tuiBatchSetTile_G16_C24_FULL(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G16_C24_FULL(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24NBG_FULL:
-					tuiBatchSetTile_G16_C24NBG_FULL(batch, x, y, x, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G16_C24NBG_FULL(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24NFG_FULL:
-					tuiBatchSetTile_G16_C24NFG_FULL(batch, x, y, x, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G16_C24NFG_FULL(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C32_FULL:
-					tuiBatchSetTile_G16_C32_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G16_C32_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C32NBG_FULL:
-					tuiBatchSetTile_G16_C32NBG_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G16_C32NBG_FULL(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G16_C32NFG_FULL:
-					tuiBatchSetTile_G16_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G16_C32NFG_FULL(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G0_C8NBG_SPARSE:
-					tuiBatchSetTile_G0_C8NBG_SPARSE(batch, x, y, x % 256);
+					tuiBatchPushTile_G0_C8NBG_SPARSE(batch, x, y, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G0_C24NBG_SPARSE:
-					tuiBatchSetTile_G0_C24NBG_SPARSE(batch, x, y, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G0_C24NBG_SPARSE(batch, x, y, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G0_C32NBG_SPARSE:
-					tuiBatchSetTile_G0_C32NBG_SPARSE(batch, x, y, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G0_C32NBG_SPARSE(batch, x, y, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C0_SPARSE:
-					tuiBatchSetTile_G8_C0_SPARSE(batch, x, y, x);
+					tuiBatchPushTile_G8_C0_SPARSE(batch, x, y, x);
 					break;
 				case TUI_DETAIL_MODE_G8_C4_SPARSE:
-					tuiBatchSetTile_G8_C4_SPARSE(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
+					tuiBatchPushTile_G8_C4_SPARSE(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
 				case TUI_DETAIL_MODE_G8_C8NBG_SPARSE:
-					tuiBatchSetTile_G8_C8NBG_SPARSE(batch, x, y, x, x % 256);
+					tuiBatchPushTile_G8_C8NBG_SPARSE(batch, x, y, x, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C8_SPARSE:
-					tuiBatchSetTile_G8_C8_SPARSE(batch, x, y, x, x % 256, y % 256);
+					tuiBatchPushTile_G8_C8_SPARSE(batch, x, y, x, x % 256, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C8NFG_SPARSE:
-					tuiBatchSetTile_G8_C8NFG_SPARSE(batch, x, y, x, y % 256);
+					tuiBatchPushTile_G8_C8NFG_SPARSE(batch, x, y, x, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24_SPARSE:
-					tuiBatchSetTile_G8_C24_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G8_C24_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24NBG_SPARSE:
-					tuiBatchSetTile_G8_C24NBG_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G8_C24NBG_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24NFG_SPARSE:
-					tuiBatchSetTile_G8_C24NFG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G8_C24NFG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C32_SPARSE:
-					tuiBatchSetTile_G8_C32_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G8_C32_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G8_C32NBG_SPARSE:
-					tuiBatchSetTile_G8_C32NBG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G8_C32NBG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C32NFG_SPARSE:
-					tuiBatchSetTile_G8_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G8_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C0_SPARSE:
-					tuiBatchSetTile_G16_C0_SPARSE(batch, x, y, x);
+					tuiBatchPushTile_G16_C0_SPARSE(batch, x, y, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C4_SPARSE:
-					tuiBatchSetTile_G16_C4_SPARSE(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
+					tuiBatchPushTile_G16_C4_SPARSE(batch, x, y, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
 				case TUI_DETAIL_MODE_G16_C8NBG_SPARSE:
-					tuiBatchSetTile_G16_C8NBG_SPARSE(batch, x, y, x, x % 256);
+					tuiBatchPushTile_G16_C8NBG_SPARSE(batch, x, y, x, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C8_SPARSE:
-					tuiBatchSetTile_G16_C8_SPARSE(batch, x, y, x, x % 256, y % 256);
+					tuiBatchPushTile_G16_C8_SPARSE(batch, x, y, x, x % 256, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C8NFG_SPARSE:
-					tuiBatchSetTile_G16_C8NFG_SPARSE(batch, x, y, x, y % 256);
+					tuiBatchPushTile_G16_C8NFG_SPARSE(batch, x, y, x, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24_SPARSE:
-					tuiBatchSetTile_G16_C24_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G16_C24_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24NBG_SPARSE:
-					tuiBatchSetTile_G16_C24NBG_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G16_C24NBG_SPARSE(batch, x, y, x, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24NFG_SPARSE:
-					tuiBatchSetTile_G16_C24NFG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G16_C24NFG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C32_SPARSE:
-					tuiBatchSetTile_G16_C32_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G16_C32_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C32NBG_SPARSE:
-					tuiBatchSetTile_G16_C32NBG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G16_C32NBG_SPARSE(batch, x, y, x, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G16_C32NFG_SPARSE:
-					tuiBatchSetTile_G16_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G16_C32NFG_SPARSE(batch, x, y, x, x % 256, y % 128, x % 256, x);
 					break; 
 				case TUI_DETAIL_MODE_G0_C8NBG_FREE:
-					tuiBatchSetTile_G0_C8NBG_FREE(batch, x * 8, y * 8, x % 256);
+					tuiBatchPushTile_G0_C8NBG_FREE(batch, x * 8, y * 8, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G0_C24NBG_FREE:
-					tuiBatchSetTile_G0_C24NBG_FREE(batch, x * 8, y * 8, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G0_C24NBG_FREE(batch, x * 8, y * 8, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G0_C32NBG_FREE:
-					tuiBatchSetTile_G0_C32NBG_FREE(batch, x * 8, y * 8, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G0_C32NBG_FREE(batch, x * 8, y * 8, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C0_FREE:
-					tuiBatchSetTile_G8_C0_FREE(batch, x * 8, y * 8, x);
+					tuiBatchPushTile_G8_C0_FREE(batch, x * 8, y * 8, x);
 					break;
 				case TUI_DETAIL_MODE_G8_C4_FREE:
-					tuiBatchSetTile_G8_C4_FREE(batch, x * 8, y * 8, x, tuiClassicColorCombine(x % 16, y % 16));
+					tuiBatchPushTile_G8_C4_FREE(batch, x * 8, y * 8, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
 				case TUI_DETAIL_MODE_G8_C8NBG_FREE:
-					tuiBatchSetTile_G8_C8NBG_FREE(batch, x * 8, y * 8, x, x % 256);
+					tuiBatchPushTile_G8_C8NBG_FREE(batch, x * 8, y * 8, x, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C8_FREE:
-					tuiBatchSetTile_G8_C8_FREE(batch, x * 8, y * 8, x, x % 256, y % 256);
+					tuiBatchPushTile_G8_C8_FREE(batch, x * 8, y * 8, x, x % 256, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C8NFG_FREE:
-					tuiBatchSetTile_G8_C8NFG_FREE(batch, x * 8, y * 8, x, y % 256);
+					tuiBatchPushTile_G8_C8NFG_FREE(batch, x * 8, y * 8, x, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24_FREE:
-					tuiBatchSetTile_G8_C24_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G8_C24_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24NBG_FREE:
-					tuiBatchSetTile_G8_C24NBG_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G8_C24NBG_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C24NFG_FREE:
-					tuiBatchSetTile_G8_C24NFG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G8_C24NFG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G8_C32_FREE:
-					tuiBatchSetTile_G8_C32_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G8_C32_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G8_C32NBG_FREE:
-					tuiBatchSetTile_G8_C32NBG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G8_C32NBG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G8_C32NFG_FREE:
-					tuiBatchSetTile_G8_C32NFG_FREE(batch, x * 8, y * 8, x, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G8_C32NFG_FREE(batch, x * 8, y * 8, x, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C0_FREE:
-					tuiBatchSetTile_G16_C0_FREE(batch, x * 8, y * 8, x);
+					tuiBatchPushTile_G16_C0_FREE(batch, x * 8, y * 8, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C4_FREE:
-					tuiBatchSetTile_G16_C4_FREE(batch, x * 8, y * 8, x, tuiClassicColorCombine(x % 16, y % 16));
+					tuiBatchPushTile_G16_C4_FREE(batch, x * 8, y * 8, x, tuiClassicColorCombine(x % 16, y % 16));
 					break;
 				case TUI_DETAIL_MODE_G16_C8NBG_FREE:
-					tuiBatchSetTile_G16_C8NBG_FREE(batch, x * 8, y * 8, x, x % 256);
+					tuiBatchPushTile_G16_C8NBG_FREE(batch, x * 8, y * 8, x, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C8_FREE:
-					tuiBatchSetTile_G16_C8_FREE(batch, x * 8, y * 8, x, x % 256, y % 256);
+					tuiBatchPushTile_G16_C8_FREE(batch, x * 8, y * 8, x, x % 256, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C8NFG_FREE:
-					tuiBatchSetTile_G16_C8NFG_FREE(batch, x * 8, y * 8, x, y % 256);
+					tuiBatchPushTile_G16_C8NFG_FREE(batch, x * 8, y * 8, x, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24_FREE:
-					tuiBatchSetTile_G16_C24_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G16_C24_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24NBG_FREE:
-					tuiBatchSetTile_G16_C24NBG_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256);
+					tuiBatchPushTile_G16_C24NBG_FREE(batch, x * 8, y * 8, x, x % 256, y % 256, x % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C24NFG_FREE:
-					tuiBatchSetTile_G16_C24NFG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256);
+					tuiBatchPushTile_G16_C24NFG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256);
 					break;
 				case TUI_DETAIL_MODE_G16_C32_FREE:
-					tuiBatchSetTile_G16_C32_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G16_C32_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y, x % 256, y % 128, x % 256, x);
 					break;
 				case TUI_DETAIL_MODE_G16_C32NBG_FREE:
-					tuiBatchSetTile_G16_C32NBG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y);
+					tuiBatchPushTile_G16_C32NBG_FREE(batch, x * 8, y * 8, x, y % 256, x % 128, y % 256, y);
 					break;
 				case TUI_DETAIL_MODE_G16_C32NFG_FREE:
-					tuiBatchSetTile_G16_C32NFG_FREE(batch, x * 8, y * 8, x, x % 256, y % 128, x % 256, x);
+					tuiBatchPushTile_G16_C32NFG_FREE(batch, x * 8, y * 8, x, x % 256, y % 128, x % 256, x);
 					break;
 				}
 			}
