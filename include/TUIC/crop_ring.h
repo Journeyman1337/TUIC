@@ -221,7 +221,7 @@ int tuiCropRingGetRingDimensions(const TuiCropRing crop_ring);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-int tuiCropRingGetInnerRingDimensions(const TuiCropRing crop_ring);
+int tuiCropRingGetRingInnerDimensions(const TuiCropRing crop_ring);
 /*!
  * @brief Get the far x coordinate of the crop rect of a @ref TuiCropRing.
  *
@@ -375,7 +375,7 @@ TuiRect tuiCropRingGetRingBoundingRect(const TuiCropRing crop_ring);
  *
  * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
  */
-TuiRect tuiCropRingGetInnerRingBoundingRect(const TuiCropRing crop_ring);
+TuiRect tuiCropRingGetRingInnerBoundingRect(const TuiCropRing crop_ring);
 /*!
  * @brief Get the bounding @ref TuiRect of a @ref TuiCropRing.
  *

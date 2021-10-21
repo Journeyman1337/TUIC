@@ -105,7 +105,7 @@ int tuiCropRingGetRingDimensions(const TuiCropRing crop_ring)
 	return dimensions;
 }
 
-int tuiCropRingGetInnerRingDimensions(const TuiCropRing crop_ring)
+int tuiCropRingGetRingInnerDimensions(const TuiCropRing crop_ring)
 {
 	const float inner_radius = tuiCropRingGetInnerRingRadius(crop_ring);
 	const int inner_dimensions = (int)roundf(inner_radius) * 2;
@@ -187,11 +187,11 @@ TuiRect tuiCropRingGetRingBoundingRect(const TuiCropRing crop_ring)
 	return ret;
 }
 
-TuiRect tuiCropRingGetInnerRingBoundingRect(const TuiCropRing crop_ring)
+TuiRect tuiCropRingGetRingInnerBoundingRect(const TuiCropRing crop_ring)
 {
 	const int inner_left_x = tuiCropRingGetInnerRingLeftX(crop_ring);
 	const int inner_top_y = tuiCropRingGetInnerRingTopY(crop_ring);
-	const int inner_dimensions = tuiCropRingGetInnerRingDimensions(crop_ring);
+	const int inner_dimensions = tuiCropRingGetRingInnerDimensions(crop_ring);
 	const TuiRect ret = tuiRect(inner_left_x, inner_top_y, inner_dimensions, inner_dimensions);
 	return ret;
 }
