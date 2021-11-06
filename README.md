@@ -1,6 +1,6 @@
 # Why was this depreciated?
 
-This project became the victim of feature creep and I lost sight of my original goal of designing a cross platform roguelike development library. I have shifted my efforts to RLFW, a C/C++ library that will be more closely alligned to this goal. RLFW will be released as open source when it is ready.
+This project became the victim of feature creep and I lost sight of my original goal of designing a cross platform roguelike development library. I have decided to stop working on this and opt to make a game instead. I plan on making a roguelike library in the future.
 
 # TUIC
 
