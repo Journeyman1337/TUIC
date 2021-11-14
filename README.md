@@ -1,6 +1,6 @@
 # Why was this depreciated?
 
-This project became the victim of feature creep and I lost sight of my original goal of designing a cross platform roguelike development library. I have decided to stop working on this and opt to make a game instead. I plan on making a roguelike library in the future.
+This project became the victim of feature creep and I lost sight of my original goal of designing a cross platform roguelike development library. While this project was a great learning experiance for me, I do not want to continue on it. However, I am not finished working on systems for roguelike game development.
 
 # TUIC
 
