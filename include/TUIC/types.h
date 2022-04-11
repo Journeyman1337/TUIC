@@ -56,10 +56,8 @@ typedef struct TuiAtlas_s* TuiAtlas;
  * \brief A GPU texture.
  */
 typedef struct TuiTexture_s* TuiTexture;
-/*!
- * \brief A container for batch rendering data.
- */
-typedef struct TuiBatch_s* TuiBatch;
+
+typedef struct TuiConsole_s* TuiConsole;
 /*!
  * \brief A GPU framebuffer.
  */

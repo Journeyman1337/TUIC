@@ -173,85 +173,28 @@ typedef struct TuiPanel_s
 	void* ApiData;
 } TuiPanel_s;
 
-typedef struct TuiBatch_s
+typedef struct TuiConsole_s
 {
-	size_t DetailMode;
-} TuiBatch_s;
-
-typedef struct TuiBatchFull_s
-{
-	size_t DetailMode;
-
-	uint8_t* Data;
-
-	size_t UsedDataSize;
-
-	size_t ReservedDataSize;
-
-	size_t BytesPerTile;
-
-	size_t TileCount;
-
-	size_t TilesWide;
-
-	size_t TilesTall;
-} TuiBatchFull_s;
-
-typedef struct TuiBatchSparse_s
-{
-	size_t DetailMode;
-
-	uint8_t* Data;
-
-	size_t UsedDataSize;
-
-	size_t ReservedDataSize;
-
-	size_t BytesPerTile;
-
-	size_t TileCount;
-
-	size_t MaxTileCount;
-
-	size_t TilesWide;
-
-	size_t TilesTall;
-
-	TuiBoolean HasLargeXCoordinate;
-
-	TuiBoolean HasLargeYCoordinate;
-
-	TuiBoolean UseStencil;
-
-	size_t* StencilData;
-
-	size_t StencilDataSize;
-} TuiBatchSparse_s;
-
-typedef struct TuiBatchFree_s
-{
-	size_t DetailMode;
-
-	uint8_t* Data;
-
-	size_t UsedDataSize;
-
-	size_t ReservedDataSize;
-
-	size_t BytesPerTile;
-
-	size_t TileCount;
-
-	int TilePixelWidth;
-
-	int TilePixelHeight;
-
-	int DrawViewportWidth;
-
-	int DrawViewportHeight;
-
-	size_t MaxTileCount;
-} TuiBatchFree_s;
+	size_t PixelWidth;
+	
+    size_t PixelHeight;
+	
+    size_t TilesWide;
+	
+    size_t TilesTall;
+	
+    float PixelScale;
+	
+    size_t TileWidth;
+	
+    size_t TileHeight;
+	
+    size_t TileDataCapacity;
+	
+    size_t TileDataCount;
+	
+    uint8_t* TileData;
+} TuiConsole_s;
 
 typedef struct TuiImage_s
 {
