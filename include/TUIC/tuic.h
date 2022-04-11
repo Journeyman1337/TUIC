@@ -23,14 +23,13 @@
 
 #include <TUIC/atlas.h>
 #include <TUIC/atlas_type.h>
-#include <TUIC/batch.h>
-#include <TUIC/blend_mode.h>
 #include <TUIC/boolean.h>
 #include <TUIC/box.h>
 #include <TUIC/box_part.h>
 #include <TUIC/button_state.h>
 #include <TUIC/circle.h>
 #include <TUIC/circle_it.h>
+#include <TUIC/console.h>
 #include <TUIC/crop_box.h>
 #include <TUIC/crop_box_it.h>
 #include <TUIC/crop_circle.h>
@@ -41,8 +40,6 @@
 #include <TUIC/cursor_shape.h>
 #include <TUIC/debug.h>
 #include <TUIC/desktop_callback.h>
-#include <TUIC/detail_flag.h>
-#include <TUIC/detail_mode.h>
 #include <TUIC/error_code.h>
 #include <TUIC/events.h>
 #include <TUIC/filter_mode.h>
