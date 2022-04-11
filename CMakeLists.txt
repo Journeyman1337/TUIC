@@ -96,12 +96,9 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/cursor_shape.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/debug.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/desktop_callback.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_flag.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/detail_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/easing.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/error_code.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/events.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/filter_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/grid_shape_types.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/heap.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/image.h
@@ -111,7 +108,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/line_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/monitor.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/mouse_button.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/palette.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/panel.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/point2.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/rect.h
