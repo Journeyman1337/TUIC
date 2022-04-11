@@ -265,21 +265,8 @@ void tuiWindowWriteImage(TuiWindow window, TuiImage image);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
  */
 uint8_t* tuiWindowGetPixels(TuiWindow window, int* pixel_width, int* pixel_height, uint8_t* fill_pixels);
-/*!
- * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiWindow.
- *
- * @param window The @ref TuiWindow.
- * @param atlas The @ref TuiAtlas.
- * @param palette The @ref TuiPalette.
- * @param batch The @ref TuiBatch.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_WINDOW, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
- */
-void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
+
+void tuiWindowDrawConsole(TuiWindow window, TuiAtlas atlas, TuiConsole console);
 /*!
  * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiWindow with a transformation.
  *
@@ -298,7 +285,7 @@ void tuiWindowDrawBatch(TuiWindow window, TuiAtlas atlas, TuiPalette palette, Tu
  *
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
-void tuiWindowDrawBatchTransformed(TuiWindow window, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
+void tuiWindowDrawConsoleTransformed(TuiWindow window, TuiAtlas atlas, TuiConsole console, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Draw a @ref TuiPanel to the framebuffer of a @ref TuiWindow.
  *

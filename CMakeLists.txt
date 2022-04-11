@@ -77,11 +77,6 @@ set(TUIC_SOURCES
 	# Include Files
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas_type.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_free.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_full.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/batch_sparse.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/blend_mode.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_it.h
@@ -89,6 +84,7 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/button_state.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/circle_it.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/console.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_circle.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_circle_it.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/crop_box.h

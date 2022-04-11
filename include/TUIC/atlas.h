@@ -25,172 +25,28 @@
 extern "C" {
 #endif
 #include <TUIC/types.h>
-#include <TUIC/blend_mode.h>
 
 
 /*! @name Atlas Functions
  *
  * Functions for manipulating @ref TuiAtlas opaque objects.
  *  @{ */
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture from a @ref TuiImage and glyph coordinates from a raw glyph bouning box array.
- *
- * @param image The @ref TuiImage to use for the texture of the created atlas.
- * @param glyph_count The amount of glyphs in the created atlas.
- * @param glyph_bounding_boxes The integer STPQ pixel coordinate bounding boxes surrounding each consequitive atlas glyph ordered by ID. These coordinates are the order: left pixel x, right pixel x, top pixel y, and then bottom pixel y.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_GLYPH_COUNT, @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated glyph bounding box array may cause undefined behaviour or a fatal crash without an error.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture based on a raw pixel array and glyph coordinates from a raw glyph bouning box array.
- *
- * @param pixel_width The width of the pixel array in pixels.
- * @param pixel_height The height of the pixel array in pixels.
- * @param channel_count The channel count of each pixel in the pixel array.
- * @param raw_pixels A pointer to the start of the pixel array. The pixel array must be ordered from left to right, top to bottom. Each pixel must be in the order RGB or RGBA.
- * @param glyph_count The amount of glyphs in the created atlas.
- * @param glyph_bounding_boxes The integer STPQ pixel coordinate bounding boxes surrounding each consequitive atlas glyph ordered by ID. These coordinates are the order: left pixel x, right pixel x, top pixel y, and then bottom pixel y.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, @ref TUI_ERROR_NULL_GLYPH_BOUNDING_BOXES, @ref TUI_ERROR_INVALID_GLYPH_COUNT, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array or glyph bounding box array may cause undefined behaviour or a fatal crash without an error.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- * 
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture from a @ref TuiImage and glyph coordinates from a raw texture coordinate array.
- *
- * @param image The @ref TuiImage to use as the texture of the created atlas.
- * @param glyph_count The amount of glyphs in the created atlas.
- * @param raw_glyph_uvs The floating point STPQ texture coordinate bounding boxes surrounding each consequitive atlas glyph ordered by ID. These coordinates are the order: left U coordinate, right U coordinate, top V coordinate, and then bottom V coordinate.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_NULL_TEXTURE_COORDINATES, @ref TUI_ERROR_INVALID_GLYPH_COUNT, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated texture coordinate array may cause undefined behaviour or a fatal crash without an error.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_COORDS with a texture from a raw pixel array and glyph coordinates from a raw texture coordinate array.
- *
- * @param pixel_width The width of the pixel array in pixels.
- * @param pixel_height The height of the pixel array in pixels.
- * @param channel_count The channel count of each pixel in the pixel array.
- * @param raw_pixels A pointer to the start of the pixel array. The pixel array must be ordered from left to right, top to bottom. Each pixel must be in the order RGB or RGBA.
- * @param glyph_count The amount of glyphs in the created atlas.
- * @param raw_glyph_uvs The floating point STPQ texture coordinate bounding boxes surrounding each consequitive atlas glyph ordered by ID. These coordinates are the order: left U coordinate, right U coordinate, top V coordinate, and then bottom V coordinate.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, @ref TUI_ERROR_NULL_TEXTURE_COORDINATES, @ref TUI_ERROR_INVALID_GLYPH_COUNT, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated texture coordinate array or pixel array may cause undefined behaviour or a fatal crash without an error.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_GRID with a texture from a @ref TuiImage.
- *
- * @param image The @ref TuiImage to use as the texture of the created atlas.
- * @param tile_pixel_width The width of each glyph in pixels.
- * @param tile_pixel_height The height of each glyph in pixels.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_GLYPH_DIMENSIONS, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_GRID with a texture from a raw pixel array.
- *
- * @param pixel_width The width of the pixel array in pixels.
- * @param pixel_height The height of the pixel array in pixels.
- * @param channel_count The channel count of each pixel in the pixel array.
- * @param raw_pixels A pointer to the start of the pixel array. The pixel array must be ordered from left to right, top to bottom. Each pixel must be in the order RGB or RGBA.
- * @param tile_pixel_width The width of each glyph in pixels.
- * @param tile_pixel_height The height of each glyph in pixels.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, @ref TUI_ERROR_INVALID_GLYPH_DIMENSIONS, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_GRID with a texture from a codepage @ref TuiImage.
- *
- * @param image The @ref TuiImage to use as the texture of the created atlas.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_IMAGE, @ref TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image, TuiBlendMode blend_mode);
-/*!
- * @brief Create a new @ref TuiAtlas of type @ref TUI_ATLAS_GRID.
- *
- * @param pixel_width The width of the pixel array in pixels.
- * @param pixel_height The height of the pixel array in pixels.
- * @param channel_count The channel count of each pixel in the pixel array.
- * @param raw_pixels A pointer to the start of the pixel array. The pixel array must be ordered from left to right, top to bottom. Each pixel must be in the order RGB or RGBA.
- * @param blend_mode The @ref TuiBlendMode used by the created atlas when drawing batch data.
- *
- * @returns The created @ref TuiAtlas. @ref TUI_NULL is returned if an error occurs.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PIXELS, @ref TUI_ERROR_INVALID_PIXEL_DIMENSIONS, @ref TUI_ERROR_INVALID_CHANNEL_COUNT, @ref TUI_ERROR_INVALID_CODEPAGE_DIMENSIONS, and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return. Also, an inccorectly sized or allocated pixel array may cause undefined behaviour or a fatal crash without an error.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @pointer_lifetime The returned @ref TuiAtlas must be destroyed before TUIC is terminated, using the function @ref tuiAtlasDestroy().
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, TuiBlendMode blend_mode);
+
+TuiAtlas tuiAtlasCreateCoordinateImagePixelBoundingBoxes(TuiImage image, int glyph_count, uint16_t* glyph_bounding_boxes);
+
+TuiAtlas tuiAtlasCreateCoordinateRawPixelsPixelBoundingBoxes(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, uint16_t* glyph_bounding_boxes);
+
+TuiAtlas tuiAtlasCreateCoordinateImageRawUVs(TuiImage image, int glyph_count, float* raw_glyph_uvs);
+
+TuiAtlas tuiAtlasCreateCoordinateRawPixelsRawUVs(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int glyph_count, float* raw_glyph_uvs);
+
+TuiAtlas tuiAtlasCreateGridImage(TuiImage image, int tile_pixel_width, int tile_pixel_height);
+
+TuiAtlas tuiAtlasCreateGridRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels, int tile_pixel_width, int tile_pixel_height);
+
+TuiAtlas tuiAtlasCreateCodepageImage(TuiImage image);
+
+TuiAtlas tuiAtlasCreateCodepageRawPixels(int pixel_width, int pixel_height, int channel_count, uint8_t* pixels);
 /*!
  * @brief Free a @ref TuiAtlas and correctly dispose of of its internally managed resources.
  *
@@ -272,33 +128,6 @@ int tuiAtlasGetPixelHeight(TuiAtlas atlas);
  * @thread_safety For each @ref TuiAtlas, this function must only be called on one thread at a time to ensure safe memory access.
  */ 
 void tuiAtlasGetPixelDimensions(TuiAtlas atlas, int* out_pixel_width, int* out_pixel_height, int* out_channel_count);
-/*!
- * @brief Get the @ref TuiBlendMode used when drawing batch data with a @ref TuiAtlas.
- * 
- * @param atlas The @ref TuiAtlas to retrieve the blend mode from.
- * 
- * @returns The @ref TuiBlendMode. @ref TUI_BLEND_INVALID is returned if an error occurs.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED and @ref TUI_ERROR_NULL_ATLAS. The first error that occurs will cause the function to immediatly return.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
- */
-TuiBlendMode tuiAtlasGetBlendMode(TuiAtlas atlas);
-/*!
- * @brief Change the @ref TuiBlendMode used when drawing batch data with a @ref TuiAtlas.
- *
- * @param atlas The @ref TuiAtlas.
- * @param blend_mode The new @ref TuiBlendMode to use for drawing with the atlas.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_ATLAS and @ref TUI_ERROR_INVALID_BLEND_MODE. The first error that occurs will cause the function to immediatly return.
- *
- * @requirements This function can be called at any time. However, this function is only useful for accessing information from a @ref TuiAtlas, which can only exist while TUIC is initialized.
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access and to prevent graphics context errors.
- */
-void tuiAtlasSetBlendMode(TuiAtlas atlas, TuiBlendMode blend_mode);
 /*!
  * @brief Get the amount of glyphs present in a @ref TuiAtlas.
  *

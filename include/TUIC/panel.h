@@ -190,40 +190,10 @@ int tuiPanelGetPixelWidth(TuiPanel panel);
  * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
  */
 int tuiPanelGetPixelHeight(TuiPanel panel);
-/*!
- * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiPanel.
- * 
- * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiAtlas.
- * @param palette The @ref TuiPalette.
- * @param batch The @ref TuiBatch.
- * 
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED.  The first error that occurs will cause the function to immediatly return.
- * 
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
- */
-void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch);
-/*!
- * @brief Draw a @ref TuiBatch to the framebuffer of a @ref TuiPanel with a transformation.
- *
- * @param panel The @ref TuiPanel.
- * @param atlas The @ref TuiAtlas.
- * @param palette The @ref TuiPalette.
- * @param batch The @ref TuiBatch.
- * @param left_x The leftmost x pixel coordinate of the draw rect within the panel.
- * @param right_x The rightmost x pixel coordinate of the draw rect within the panel.
- * @param top_y The topmost y pixel coordinate of the draw rect within the panel.
- * @param bottom_y The bottomost y pixel coordinate of the draw rect within the panel.
- *
- * @errors Possible errors in order are @ref TUI_ERROR_NOT_INITIALIZED, @ref TUI_ERROR_NULL_PANEL, @ref TUI_ERROR_NULL_ATLAS, @ref TUI_ERROR_NULL_BATCH, and @ref TUI_ERROR_PALETTE_REQUIRED. The first error that occurs will cause the function to immediatly return.
- *
- * @requirements This function must be called only while TUIC is initialized.
- *
- * @thread_safety This function must only be called on the same thread on which TUIC was initialized to ensure safe memory access.
- */
-void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y);
+
+void tuiPanelDrawConsole(TuiPanel panel, TuiAtlas atlas, TuiConsole console);
+
+void tuiPanelDrawConsoleTransformed(TuiPanel panel, TuiAtlas atlas, TuiConsole console, int left_x, int right_x, int top_y, int bottom_y);
 /*!
  * @brief Draw a @ref TuiPanel to another panel.
  *
