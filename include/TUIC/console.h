@@ -24,40 +24,54 @@
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-#include <TUIC/types.h>
-#include <TUIC/boolean.h>
 
-TuiConsole tuiConsoleCreateTileDimensions(const int tiles_wide, const int tiles_tall, const float pixel_scale, const int tile_width, const int tile_height);
+#include <stddef.h>
+#include <stdint.h>
 
-TuiConsole tuiConsoleCreatePixelDimensions(const int pixel_width, const int pixel_height, const float pixel_scale, const int tile_width, const int tile_height, const TuiBoolean floor_pixels_to_tiles);
+typedef TuiConsole_s* TuiConsole;
+typedef enum TuiResult_e TuiResult;
+typedef uint8_t TuiBoolean;
+typedef uint16_t TuiGlyph;
+
+extern const size_t TUIC_CONSOLE_DATA_BYTES_PER_TILE;
+
+extern const size_t TUI_CONSOLE_DATA_TILE_POSITION_OFFSET;
+
+extern const size_t TUI_CONSOLE_MAX_TILE_DIMENSIONS;
+
+TuiResult tuiConsoleCreateTileDimensions(TuiConsole* console, int tiles_wide, int tiles_tall, float pixel_scale, int tile_width, int tile_height);
+
+TuiResult tuiConsoleCreatePixelDimensions(TuiConsole* console, int pixel_width, int pixel_height, float pixel_scale, int tile_width, int tile_height, TuiBoolean floor_pixels_to_tiles);
 
 void tuiConsoleDestroy(TuiConsole console);
 
 float tuiConsoleGetPixelScale(TuiConsole console);
 
-void tuiConsoleGetTileGridDimensions(TuiConsole console, int* const tiles_wide, int* const tiles_tall);
+void tuiConsoleGetTileGridDimensions(TuiConsole console, int* tiles_wide, int* tiles_tall);
 
-void tuiConsoleGetPixelDimensions(TuiConsole console, int* const pixel_width, int* const pixel_height);
+void tuiConsoleGetPixelDimensions(TuiConsole console, int* pixel_width, int* pixel_height);
 
-void tuiConsoleGetTilePixelDimensions(TuiConsole console, int* const tile_width, int* const tile_height);
+void tuiConsoleGetTilePixelDimensions(TuiConsole console, int* tile_width, int* tile_height);
 
-void tuiConsoleResizeTileDimensions(TuiConsole console, const int tiles_wide, const int tiles_tall, const float pixel_scale, const int tile_width, const int tile_height);
+TuiResult tuiConsoleResizeTileDimensions(TuiConsole console, int tiles_wide, int tiles_tall, float pixel_scale, int tile_width, int tile_height);
 
-void tuiConsoleResizePixelDimensions(TuiConsole console, const int pixel_width, const int pixel_height, const float pixel_scale, const int tile_width, const int tile_height, const TuiBoolean floor_pixels_to_tiles);
+TuiResult tuiConsoleResizePixelDimensions(TuiConsole console, int pixel_width, int pixel_height, float pixel_scale, int tile_width, int tile_height, TuiBoolean floor_pixels_to_tiles);
 
 void tuiConsoleClearTileData(TuiConsole console);
 
 size_t tuiConsoleGetTileCount(TuiConsole console);
 
-void tuiConsolePushFillTile(TuiConsole console, const uint16_t glyph, const uint8_t fg_r, const uint8_t fg_g, const uint8_t fg_b, const uint8_t fg_a, const uint8_t bg_r, const uint8_t bg_g, const uint8_t bg_b, const uint8_t bg_a);
+TuiResult tuiConsolePushFillTile(TuiConsole console, TuiGlyph glyph, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 
-void tuiConsolePushTileGrid(TuiConsole console, const int grid_x, const int grid_y, const uint16_t glyph, const uint8_t fg_r, const uint8_t fg_g, const uint8_t fg_b, const uint8_t fg_a, const uint8_t bg_r, const uint8_t bg_g, const uint8_t bg_b, const uint8_t bg_a);
+TuiResult tuiConsolePushTileGrid(TuiConsole console, TuiGlyph glyph, int grid_x, int grid_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 
-void tuiConsolePushTileGridSized(TuiConsole console, const int screen_pixel_x, const int screen_pixel_y, const int tile_pixel_width, const int tile_pixel_height, const uint16_t glyph, const uint8_t fg_r, const uint8_t fg_g, const uint8_t fg_b, const uint8_t fg_a, const uint8_t bg_r, const uint8_t bg_g, const uint8_t bg_b, const uint8_t bg_a);
+TuiResult tuiConsolePushTileGridSized(TuiConsole console, TuiGlyph glyph, int grid_x, int grid_y, int tile_pixel_width, int tile_pixel_height, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 
-void tuiConsolePushTileFree(TuiConsole console, const int screen_pixel_x, const int screen_pixel_y, const uint16_t glyph, const uint8_t fg_r, const uint8_t fg_g, const uint8_t fg_b, const uint8_t fg_a, const uint8_t bg_r, const uint8_t bg_g, const uint8_t bg_b, const uint8_t bg_a);
+TuiResult tuiConsolePushTileFree(TuiConsole console, TuiGlyph glyph, int screen_pixel_x, int screen_pixel_y, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
 
-void tuiConsolePushTileFreeSized(TuiConsole console, const int screen_pixel_x, const int screen_pixel_y, const int tile_pixel_width, const int tile_pixel_height, const uint16_t glyph, const uint8_t fg_r, const uint8_t fg_g, const uint8_t fg_b, const uint8_t fg_a, const uint8_t bg_r, const uint8_t bg_g, const uint8_t bg_b, const uint8_t bg_a);
+TuiResult tuiConsolePushTileFreeSized(TuiConsole console, TuiGlyph glyph, int screen_pixel_x, int screen_pixel_y, int tile_pixel_width, int tile_pixel_height, uint8_t fg_r, uint8_t fg_g, uint8_t fg_b, uint8_t fg_a, uint8_t bg_r, uint8_t bg_g, uint8_t bg_b, uint8_t bg_a);
+
+size_t tuiGetConsoleCount();
 
 #ifdef __cplusplus //extern C guard
 }

@@ -2,8 +2,7 @@
 
 uniform vec2 ConsolePixelUnitSize;
 uniform usamplerBuffer Data; //batch data buffer.
-uniform samplerBuffer Fontmap; //the coordinate uv buffer if not uv grid
-uniform mat4 Matrix; //transform matrix for entire batch
+uniform samplerBuffer Coordinates; //the coordinate uv buffer
 out vec3 UV; //uv texture position
 out vec4 FG; //foreground color
 out vec4 BG; //background color
@@ -26,6 +25,7 @@ vec3 getVertexUV(int ch, int tile_vertex)
 }
 vec4 getVertexPosition(int tile, int tile_vertex, inout int buffer_offset)
 {
+	const mat4 Matrix = mat4(2.0, 0.0, 0.0, -1.0, 0.0, -2.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0);
     uint x_pixel = texelFetch(Data, buffer_offset).r;
     buffer_offset += 1;
     x_pixel += texelFetch(Data, buffer_offset).r * 256u;

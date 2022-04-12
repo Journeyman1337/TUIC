@@ -19,31 +19,23 @@ set(TUIC_CONFIGURE_HEADER_TEXT "")
 set(TUIC_SOURCES
 	# Source files
 	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/atlas_type.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/batch.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_free.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_full.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/batch_sparse.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/box.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/box_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/box_part.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/button_state.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/circle_it.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/console.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_box.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_box_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_circle.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_circle_it.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_ring.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crop_ring_it.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/blend_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/cursor_shape.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/debug.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_flag.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/detail_mode.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/easing.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/error_code.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
@@ -76,7 +68,6 @@ set(TUIC_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vendor/stb_impl.c
 	# Include Files
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas.h
-	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/atlas_type.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/boolean.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/TUIC/box_it.h

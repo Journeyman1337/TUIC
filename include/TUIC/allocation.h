@@ -17,56 +17,35 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-#include <TUIC/debug.h>
-#include <TUIC/atlas_type.h>
-#include <TUIC/boolean.h>
-#include <TUIC/types.h>
-#include <string.h>
+/*! \file allocation.h
+ */
+#ifndef TUIC_ALLOCATION_H //header guard
+#define TUIC_ALLOCATION_H
+#ifdef __cplusplus //extern C guard
+extern "C" {
+#endif
 
-#define TO_STRING(value) #value
+#include <stddef.h>
 
-const char* kTui_Atlas_Coords_Name = TO_STRING(TUI_ATLAS_COORDS);
+typedef void* (*tuiAllocateCallback)(size_t size);
 
-const char* kTui_Atlas_Grid_Name = TO_STRING(TUI_ATLAS_GRID);
+typedef void* (*tuiReallocateCallback)(void* ptr, size_t new_size);
 
-TuiBoolean tuiAtlasTypeIsValid(TuiAtlasType atlas_type)
-{
-	if (
-			(atlas_type >= TUI_ATLAS_FIRST) &&
-			(atlas_type <= TUI_ATLAS_LAST) 
-		)
-	{
-		return TUI_TRUE;
-	}
-	else 
-	{
-		return TUI_FALSE;
-	}
+typedef void (*tuiFreeCallback)(void* ptr);
+
+void tuiSetAllocateCallback(tuiAllocateCallback allocate_callback);
+
+void tuiSetReallocateCallback(tuiReallocateCallback reallocate_callback);
+
+void tuiSetFreeCallback(tuiFreeCallback free_callback);
+
+void* tuiAllocate(size_t size);
+
+void* tuiReallocate(void* ptr, size_t new_size);
+
+void tuiFree(void* ptr);
+
+#ifdef __cplusplus //extern C guard
 }
-
-const char* tuiAtlasTypeToString(TuiAtlasType atlas_type)
-{
-	switch (atlas_type)
-	{
-	case TUI_ATLAS_COORDS:
-		return kTui_Atlas_Coords_Name;
-	case TUI_ATLAS_GRID:
-		return kTui_Atlas_Grid_Name;
-	default:
-		return TUI_NULL;
-	}
-}
-
-TuiAtlasType tuiStringToAtlasType(const char* str)
-{
-	if (strcmp(str, kTui_Atlas_Coords_Name) == 0)
-	{
-		return TUI_ATLAS_COORDS;
-	}
-	else if (strcmp(str, kTui_Atlas_Grid_Name) == 0)
-	{
-		return TUI_ATLAS_GRID;
-	}
-	return TUI_ATLAS_INVALID;
-}
-
+#endif
+#endif //header guard

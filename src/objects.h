@@ -27,8 +27,6 @@ extern "C" {
 #include <stdint.h>
 #include <TUIC/types.h>
 #include <GLFW/glfw3.h>
-#include <TUIC/blend_mode.h>
-#include <TUIC/filter_mode.h>
 #include <TUIC/desktop_callback.h>
 
 typedef struct TuiSystem_s
@@ -113,36 +111,23 @@ typedef struct TuiWindow_s
 
 typedef struct TuiAtlas_s
 {
+	size_t Width;
 
-	TuiBlendMode BlendMode;
-
-	size_t AtlasType;
-
-	size_t ChannelCount;
-
-	size_t PixelWidth;
-
-	size_t PixelHeight;
-
-	size_t TileWidth;
-
-	size_t TileHeight;
-
-	size_t PixelDataSize;
+	size_t Height;
+	
+	size_t Pages;
+	
+	size_t Channels;
+	
+	size_t BitDepth;
 
 	size_t GlyphCount;
-
-	size_t GridGlyphsWide;
-
-	size_t GridGlyphsTall;
 
 	void* ApiData;
 } TuiAtlas_s;
 
 typedef struct TuiTexture_s
 {
-
-	TuiFilterMode FilterMode;
 
 	size_t PixelWidth;
 
@@ -152,16 +137,6 @@ typedef struct TuiTexture_s
 
 	void* ApiData;
 } TuiTexture_s;
-
-typedef struct TuiPalette_s
-{
-
-	int ChannelCount;
-
-	size_t ColorCount;	
-
-	void* ApiData;
-} TuiPalette_s;
 
 typedef struct TuiPanel_s
 {
@@ -195,20 +170,6 @@ typedef struct TuiConsole_s
 	
     uint8_t* TileData;
 } TuiConsole_s;
-
-typedef struct TuiImage_s
-{
-
-	size_t ChannelCount;
-
-	size_t PixelWidth;
-
-	size_t PixelHeight;
-
-	size_t PixelDataSize;
-
-	uint8_t* PixelData;
-} TuiImage_s;
 
 #ifdef __cplusplus // extern C guard
 }

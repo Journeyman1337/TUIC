@@ -23,601 +23,150 @@
 #include "opengl33.h"
 #include "glfw_error_check.h"
 
-static int sPanelCount = 0;
+#include <stddef.h>
+#include <stdint.h>
+#include <assert.h>
 
-TuiPanel tuiPanelCreate(int pixel_width, int pixel_height)
+static size_t sPanelCount = 0;
+
+TuiResult tuiPanelCreate(TuiPanel* panel, int pixel_width, int pixel_height)
 {
+	assert(panel != NULL);
 	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
+	if (system == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
+		return TUI_RESULT_ERROR_NOT_INITIALIZED;
 	}
 	if (pixel_width <= 0 || pixel_height <= 0)
 	{
-		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
-		return TUI_NULL;
+		return TUI_RESULT_ERROR_INVALID_VALUE;
 	}
-
-	TuiPanel panel = tuiAllocate(sizeof(TuiPanel_s));
-	panel->PixelWidth = (size_t)pixel_width;
-	panel->PixelHeight = (size_t)pixel_height;
-	panel->ApiData = TUI_NULL;
-	TuiErrorCode error_code = tuiPanelCreate_Opengl33(panel);
-	if (error_code != TUI_ERROR_NONE)
+	*panel = (TuiPanel)tuiAllocate(sizeof(TuiPanel_s));
+	memset(*panel, 0, sizeof(TuiPanel_s));
+	(*panel)->PixelWidth = pixel_width;
+	(*panel)->PixelHeight = pixel_height;
+	TuiResult result = tuiPanelCreate_Opengl33((*panel), pixel_width, pixel_height);
+	if (result != TUI_RESULT_OK)
 	{
-		tuiPanelDestroy(panel);
-		tuiFree(panel);
-		tuiDebugError(error_code, __func__);
-		return TUI_NULL;
+		tuiFree(*panel);
+		*panel = NULL;
+		return result;
 	}
 	sPanelCount++;
-	return panel;
+	return TUI_RESULT_OK;
 }
 
 void tuiPanelDestroy(TuiPanel panel)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-
-	glfwMakeContextCurrent(system->BaseWindow);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
-	TuiErrorCode error_code = tuiPanelDestroy_Opengl33(panel);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
-	sPanelCount--;
+	assert(panel != NULL);
+	tuiPanelDestroy_Opengl33(panel);
 	tuiFree(panel);
+	sPanelCount--;
 }
 
-int tuiGetPanelCount()
+TuiResult tuiPanelGetPixels(TuiPanel panel, uint8_t** pixels, int* pixel_width, int* pixel_height)
 {
-	return sPanelCount;
-}
-
-TuiImage tuiPanelGetImage(TuiPanel panel)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return TUI_NULL;
-	}
-
-	size_t p_width = 0;
-	size_t p_height = 0;
-	uint8_t* pixel_data = TUI_NULL;
-	TuiErrorCode error_code = tuiPanelGetPixels_Opengl33(panel, &p_width, &p_height, &pixel_data);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		if (pixel_data != TUI_NULL)
-		{
-			tuiFree(pixel_data);
-		}
-		tuiDebugError(error_code, __func__);
-		return TUI_NULL;
-	}
-	TuiImage image = _CreateImage(p_width, p_height, 4, pixel_data, TUI_FALSE);
-	return image;
-}
-
-void tuiPanelWriteImage(TuiPanel panel, TuiImage image)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (image == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_IMAGE, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelGetPixels_Opengl33(panel, &image->PixelWidth, &image->PixelHeight, &(image->PixelData));
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
-}
-
-uint8_t* tuiPanelGetPixels(TuiPanel panel, int* pixel_width, int* pixel_height, uint8_t* fill_pixels)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return TUI_NULL;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return TUI_NULL;
-	}
-
-	size_t o_width, o_height;
-	uint8_t* pixels = fill_pixels;
-	if (pixels == TUI_NULL)
-	{
-		pixels = (uint8_t*)tuiAllocate((size_t)pixel_width * (size_t)pixel_height);
-	}
-	TuiErrorCode error_code = tuiPanelGetPixels_Opengl33(panel, &o_width, &o_height, &pixels);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		if (fill_pixels == TUI_NULL)
-		{
-			tuiFree(pixels);
-		}
-		tuiDebugError(error_code, __func__);
-		return TUI_NULL;;
-	}
-	*pixel_width = (int)o_width;
-	*pixel_height = (int)o_height;
-	return pixels;
-} 
-
-void tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(pixels != NULL);
 	
-	TuiErrorCode error_code = tuiPanelClearColor_Opengl33(panel, r, g, b, a);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	return tuPanelGetPixels_Opengl33(panel, pixels, pixel_width, pixel_height);
 }
 
-void tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_height)
+TuiResult tuiPanelClearColor(TuiPanel panel, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (pixel_width <= 0 || pixel_height <= 0)
-	{
-		tuiDebugError(TUI_ERROR_INVALID_PANEL_DIMENSIONS, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	
+	return tuiPanelClearColor_Opengl33(panel, r, g, b, a);
+}
 
-	TuiErrorCode error_code = tuiPanelSetSize_Opengl33(panel, (size_t)pixel_width, (size_t)pixel_height);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+TuiResult tuiPanelSetPixelDimensions(TuiPanel panel, int pixel_width, int pixel_height)
+{
+	assert(panel != NULL);
+	
+	return tuiPanelSetPixelDimensions_Opengl33(panel, pixel_width, pixel_height);
 }
 
 void tuiPanelGetPixelDimensions(TuiPanel panel, int* pixel_width, int* pixel_height)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
+	assert(panel != NULL);
+	
+	if (pixel_width != NULL)
 	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
+		*pixel_width = panel->PixelWidth;
 	}
-	if (panel == TUI_NULL)
+	if (pixel_height != NULL)
 	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-
-	if (pixel_width != TUI_NULL)
-	{
-		*pixel_width = (int)panel->PixelWidth;
-	}
-	if (pixel_height != TUI_NULL)
-	{
-		*pixel_height = (int)panel->PixelHeight;
+		*pixel_height = panel->PixelHeight;
 	}
 }
 
-int tuiPanelGetPixelWidth(TuiPanel panel)
+TuiResult tuiPanelDrawConsole(TuiPanel panel, TuiAtlas atlas, TuiConsole console)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return 0;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return 0;
-	}
-
-	return panel->PixelWidth;
+	assert(panel != NULL);
+	assert(atlas != NULL);
+	assert(console != NULL);
+	
+	return tuiPanelDrawConsole_Opengl33(panel, atlas, console, 0, panel->PixelWidth, 0, panel->PixelHeight);
 }
 
-int tuiPanelGetPixelHeight(TuiPanel panel)
+TuiResult tuiPanelDrawConsoleTransformed(TuiPanel panel, TuiAtlas atlas, TuiConsole console, int left_x, int right_x, int top_y, int bottom_y)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return 0;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return 0;
-	}
-
-	return panel->PixelHeight;
+	assert(panel != NULL);
+	assert(atlas != NULL);
+	assert(console != NULL);
+	
+	return tuiPanelDrawConsole_Opengl33(panel, atlas, console, left_x, right_x, top_y, bottom_y);
 }
 
-
-void tuiPanelDrawBatch(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch)
+TuiResult tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (atlas == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
-		return;
-	}
-	if (batch == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
-	}
-	if (tuiDetailHasPalette(batch->DetailMode) && palette == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
-		return;
-	}
-
-	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
-	switch (layout_flag)
-	{
-	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
-	{
-		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
-		if (batch_sparse->TileCount == 0)
-		{
-			return;
-		}
-	}
-	break;
-	case TUI_DETAIL_FLAG_LAYOUT_FREE:
-	{
-		TuiBatchFree_s* batch_free = (TuiBatchFree_s*)batch;
-		if (batch_free->TileCount == 0)
-		{
-			return;
-		}
-	}
-	default:
-		break;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawBatch_Opengl33(panel, atlas, palette, batch, 0, panel->PixelWidth, 0, panel->PixelHeight);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(subject_panel != NULL);
+	
+	return tuiPanelDrawPanel_Opengl33(panel, subject_panel, 0, panel->PixelWidth, 0, panel->PixelHeight);
 }
 
-void tuiPanelDrawBatchTransformed(TuiPanel panel, TuiAtlas atlas, TuiPalette palette, TuiBatch batch, int left_x, int right_x, int top_y, int bottom_y)
+TuiResult tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (atlas == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
-		return;
-	}
-	if (batch == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_BATCH, __func__);
-		return;
-	}
-	if (tuiDetailHasPalette(batch->DetailMode) && palette == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_PALETTE_REQUIRED, __func__);
-		return;
-	}
-
-	TuiDetailFlag layout_flag = tuiDetailGetLayoutFlag(batch->DetailMode);
-	switch (layout_flag)
-	{
-	case TUI_DETAIL_FLAG_LAYOUT_SPARSE:
-	{
-		TuiBatchSparse_s* batch_sparse = (TuiBatchSparse_s*)batch;
-		if (batch_sparse->TileCount == 0)
-		{
-			return;
-		}
-	}
-	break;
-	default:
-		break;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawBatch_Opengl33(panel, atlas, palette, batch, left_x, right_x, top_y, bottom_y);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(subject_panel != NULL);
+	
+	return tuiPanelDrawPanel_Opengl33(panel, subject_panel, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiPanelDrawPanel(TuiPanel panel, TuiPanel subject_panel)
+TuiResult tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (subject_panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_SUBJECT_PANEL, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawPanel_Opengl33(panel, subject_panel, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(texture != NULL);
+	
+	return tuiPanelDrawTexture_Opengl33(panel, texture, 0, panel->PixelWidth, 0, panel->PixelHeight);
 }
 
-void tuiPanelDrawPanelTransformed(TuiPanel panel, TuiPanel subject_panel, int left_x, int right_x, int top_y, int bottom_y)
+TuiResult tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (subject_panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_SUBJECT_PANEL, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawPanel_Opengl33(panel, subject_panel, left_x, right_x, top_y, bottom_y);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(texture != NULL);
+	
+	return tuiPanelDrawTexture_Opengl33(panel, texture, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiPanelDrawTexture(TuiPanel panel, TuiTexture texture)
+TuiResult tuiPanelDrawWindow(TuiPanel panel, TuiWindow window)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (texture == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawTexture_Opengl33(panel, texture, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(window != NULL);
+	
+	return tuiPanelDrawWindow_Opengl33(panel, window, 0, panel->PixelWidth, 0, panel->PixelHeight);
 }
 
-void tuiPanelDrawTextureTransformed(TuiPanel panel, TuiTexture texture, int left_x, int right_x, int top_y, int bottom_y)
+TuiResult tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (texture == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_TEXTURE, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawTexture_Opengl33(panel, texture, left_x, right_x, top_y, bottom_y);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	assert(panel != NULL);
+	assert(window != NULL);
+	
+	return tuiPanelDrawWindow_Opengl33(panel, window, left_x, right_x, top_y, bottom_y);
 }
 
-void tuiPanelDrawAtlas(TuiPanel panel, TuiAtlas atlas)
+size_t tuiGetPanelCount()
 {
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (atlas == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawAtlas_Opengl33(panel, atlas, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
-}
-
-void tuiPanelDrawAtlasTransformed(TuiPanel panel, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (atlas == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_ATLAS, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawAtlas_Opengl33(panel, atlas, left_x, right_x, top_y, bottom_y);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
-}
-
-void tuiPanelDrawWindow(TuiPanel panel, TuiWindow window)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (window == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawWindow_Opengl33(panel, window, 0, (int)panel->PixelWidth, 0, (int)panel->PixelHeight);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
-}
-
-void tuiPanelDrawWindowTransformed(TuiPanel panel, TuiWindow window, int left_x, int right_x, int top_y, int bottom_y)
-{
-	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
-	}
-	if (panel == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_PANEL, __func__);
-		return;
-	}
-	if (window == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_WINDOW, __func__);
-		return;
-	}
-
-	TuiErrorCode error_code = tuiPanelDrawWindow_Opengl33(panel, window, left_x, right_x, top_y, bottom_y);
-	if (error_code != TUI_ERROR_NONE)
-	{
-		tuiDebugError(error_code, __func__);
-		return;
-	}
+	return sPanelCount;
 }

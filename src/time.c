@@ -23,42 +23,28 @@
 #include "glfw_error_check.h"
 #include "objects.h"
 
-double tuiGetTime()
+TuiResult tuiGetTime(double* time)
 {
 	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
+	if (system == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return 0.0;
+		return TUI_RESULT_ERROR_NOT_INITIALIZED;
 	}
-	double time = glfwGetTime();
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return 0.0;
-	}
-	return time;
+	*time = glfwGetTime();
+	return _GlfwErrorCheck();
 }
 
-void tuiSetTime(double time)
+TuiResult tuiSetTime(double time)
 {
 	TuiSystem system = tui_get_system();
-	if (system == TUI_NULL)
+	if (system == NULL)
 	{
-		tuiDebugError(TUI_ERROR_NOT_INITIALIZED, __func__);
-		return;
+		return TUI_RESULT_ERROR_NOT_INITIALIZED;
 	}
 	if (time <= 0 || time >= 18446744073.0) //this is also enforced by GLFW, but better to enforce it explicitly ourselves
 	{
-		tuiDebugError(TUI_ERROR_INVALID_TIME, __func__);
-		return;
+		return TUI_RESULT_ERROR_INVALID_VALUE;
 	}
 	glfwSetTime(time);
-	TuiErrorCode glfw_error = _GlfwErrorCheck();
-	if (glfw_error != TUI_ERROR_NONE)
-	{
-		tuiDebugError(glfw_error, __func__);
-		return;
-	}
+	return _GlfwErrorCheck();
 }

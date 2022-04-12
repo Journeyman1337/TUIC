@@ -25,22 +25,6 @@
 extern "C" {
 #endif
 
-
-/*!
- * @brief Use linear interpolation to get a value between two other values.
- *
- * @param a The first value to interpolate between.
- * @param b The second value to interpolate between.
- * @param t The percentage to interpolate.
- * 
- * @returns The interpolated value.
- *
- * @errors This function can have no errors.
- *
- * @requirements This function can be called freely, even if TUIC is not currently initialized.
- *
- * @thread_safety This function does not access memory in ways that could cause a data race, so it is thread safe.
- */
 float tuiLerp(const float a, const float b, const float t);
 
 

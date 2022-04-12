@@ -27,17 +27,10 @@ extern "C" {
 #include <stdint.h>
 
 
-/*!
- * @brief Type for boolean values.
- */
 typedef uint8_t TuiBoolean;
-/*!
- * @brief Boolean false value.
- */
+
 #define TUI_TRUE 1
-/*!
- * @brief Boolean false value.
- */
+
 #define TUI_FALSE 0
 
 

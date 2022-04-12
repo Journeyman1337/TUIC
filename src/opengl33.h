@@ -38,7 +38,7 @@ TuiErrorCode tuiWindowDrawTexture_Opengl33(TuiWindow window, TuiTexture texture,
 TuiErrorCode tuiWindowDrawAtlas_Opengl33(TuiWindow window, TuiAtlas atlas, int left_x, int right_x, int top_y, int bottom_y);
 TuiErrorCode tuiWindowDrawWindow_Opengl33(TuiWindow window, TuiWindow subject_window, int left_x, int right_x, int top_y, int bottom_y);
 TuiErrorCode tuiWindowRender_Opengl33(TuiWindow window);
-TuiErrorCode tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* pixel_data, const float* raw_glyph_uvs);
+TuiErrorCode tuiAtlasCreate_Opengl33(TuiAtlas atlas, const uint8_t* const pixel_data, const float* const stpqp_coordinates);
 TuiErrorCode tuiAtlasDestroy_Opengl33(TuiAtlas atlas);
 TuiErrorCode tuiTextureCreate_Opengl33(TuiTexture texture, const uint8_t* pixels);
 TuiErrorCode tuiTextureDestroy_Opengl33(TuiTexture texture);

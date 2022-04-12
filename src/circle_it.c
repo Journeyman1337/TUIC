@@ -24,6 +24,8 @@
 #include "math_inline.h"
 #include <TUIC/easing.h>
 
+#include <assert.h>
+
 
 TuiCircleIt tuiCircleIt(const TuiCircle circle)
 {
@@ -44,12 +46,7 @@ TuiBoolean tuiCircleItDone(const TuiCircleIt it)
 
 void tuiCircleItStepForward(TuiCircleIt* const it)
 {
-	if (it == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
-		return;
-	}
-
+	assert(it != NULL);
 	if (it->cur_x_position == it->row_right_x)
 	{
 		it->cur_y_position++;
@@ -68,12 +65,7 @@ void tuiCircleItStepForward(TuiCircleIt* const it)
 
 void tuiCircleItSetStart(TuiCircleIt* const it)
 {
-	if (it == TUI_NULL)
-	{
-		tuiDebugError(TUI_ERROR_NULL_GRID_SHAPE_ITERATOR, __func__);
-		return;
-	}
-
+	assert(it != NULL);
 	it->cur_y_position = it->top_y;
 	if (it->cur_y_position > it->bottom_y) return;
 	const float row_y_distance = (float)(it->cur_y_position - it->center_y);

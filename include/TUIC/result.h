@@ -17,46 +17,32 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*! \file heap.h
+/*! \file result.h
  */
-#ifndef TUIC_HEAP_H //header guard
-#define TUIC_HEAP_H
+#ifndef TUIC_RESULT_H //header guard
+#define TUIC_RESULT_H
 #ifdef __cplusplus //extern C guard
 extern "C" {
 #endif
-#include <TUIC/types.h>
+#include <TUIC/boolean.h>
 
-
-/*! @name Allocation Callback Functions
- *
- * These functions are used manage heap memory.
- *
- *  @{ */
-/*!
- * @brief Allocate a block of heap memory.
- *
- * @param size The size of the block to allocate.
- *
- * @returns A pointer to the allocated memory.
- */
-void* tuiAllocate(size_t size);
-/*!
- * @brief Reallocate a block of heap memory.
- *
- * @param to_realloc A pointer to the memory to reallocate.
- * @param size The new size of the memory.
- *
- * @returns A pointer to the reallocated memory.
- */
-void* tuiReallocate(void* to_realloc, size_t size);
-/*!
- * @brief Free a block of heap memory.
- *
- * @param to_realloc A pointer to the memory to free.
- */
-void tuiFree(void* to_free);
-/*! @} */
-
+typedef enum TuiResult_e
+{
+	TUI_RESULT_OK = 0,
+	TUI_RESULT_TILE_OUT_OF_CONSOLE,
+	TUI_RESULT_ERROR_OUT_OF_MEMORY,
+	TUI_RESULT_ERROR_INVALID_VALUE,
+	TUI_RESULT_ERROR_INVALID_ENUM,
+	TUI_RESULT_ERROR_FILE_NOT_FOUND,
+	TUI_RESULT_ERROR_FILE_CREATION_FAILURE,
+	TUI_RESULT_ERROR_FILE_READ_FAILURE,
+	TUI_RESULT_ERROR_FILE_WRITE_FAILURE,
+	TUI_RESULT_ERROR_NOT_INITIALIZED,
+	TUI_RESULT_ERROR_GRAPHICS_BACKEND,
+	TUI_RESULT_ERROR_UNSUPPORTED_OPERATION,
+	TUI_RESULT_FIRST = TUI_RESULT_OK,
+	TUI_RESULT_LAST = TUI_RESULT_ERROR_UNSUPPORTED_OPERATION
+} TuiResult;
 
 #ifdef __cplusplus //extern C guard
 }
