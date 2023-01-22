@@ -7,7 +7,6 @@ This project became the victim of feature creep and I lost sight of my original 
 TUIC is an open source, backend agnostic Text-User-Interface rendering library written in C. TUIC can be used directly, but is designed for usage as a renderer by other libraries, such as those made for the creation of Roguelike games.
 
 * Documentation site: https://journeyman-dev.github.io/TUIC/
-* Discord chat: https://discord.gg/KbuMynmkRk
 
 # Features
 
@@ -21,7 +20,3 @@ TUIC is an open source, backend agnostic Text-User-Interface rendering library w
  * Built in tile data batching mechanism designed to pack the bytes in as little space as possible for extreme performance.
  * Modern object oriented design with well defined rules for creation and destruction of the included opaque C structs.
  * An included debug error callback system with verbose error descriptions.
- 
-# Showcase
-
- * [Matrix rain example video](https://www.youtube.com/watch?v=gazj_BWtqNM)
